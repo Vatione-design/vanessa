@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="说来惭愧，写js有一小段时间了，可惜没完整的好好看过一本书。只看了个AjaxDay1.ppt。平常只是用到什么查什么，具体的没有详细看过，看到一下这篇文章，觉得应该好好看下。该文章分为5部分，我将会看一部分收藏一部分。谢谢博者提供那么好的东东。&amp;nbsp;转自：http://www.cnblogs.com/sanshi/archive/2009/07/08/1519036.html&amp;nbsp;面向">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript继承详解（一）">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzim50087xwrqiutqxp3r/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="说来惭愧，写js有一小段时间了，可惜没完整的好好看过一本书。只看了个AjaxDay1.ppt。平常只是用到什么查什么，具体的没有详细看过，看到一下这篇文章，觉得应该好好看下。该文章分为5部分，我将会看一部分收藏一部分。谢谢博者提供那么好的东东。&amp;nbsp;转自：http://www.cnblogs.com/sanshi/archive/2009/07/08/1519036.html&amp;nbsp;面向">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-22T15:56:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript继承详解（一）">
+<meta name="twitter:description" content="说来惭愧，写js有一小段时间了，可惜没完整的好好看过一本书。只看了个AjaxDay1.ppt。平常只是用到什么查什么，具体的没有详细看过，看到一下这篇文章，觉得应该好好看下。该文章分为5部分，我将会看一部分收藏一部分。谢谢博者提供那么好的东东。&amp;nbsp;转自：http://www.cnblogs.com/sanshi/archive/2009/07/08/1519036.html&amp;nbsp;面向">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzim50087xwrqiutqxp3r/"/>
+
+
+
+
+
+  <title>JavaScript继承详解（一） | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzim50087xwrqiutqxp3r/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript继承详解（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-08-14T03:12:00+08:00">
+                2009-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>说来惭愧，写js有一小段时间了，可惜没完整的好好看过一本书。只看了个AjaxDay1.ppt。平常只是用到什么查什么，具体的没有详细看过，看到一下这篇文章，觉得应该好好看下。该文章分为5部分，我将会看一部分收藏一部分。谢谢博者提供那么好的东东。</p><br><p>&nbsp;</p><br><p>转自：<a href="http://www.cnblogs.com/sanshi/archive/2009/07/08/1519036.html" target="_blank" rel="noopener">http://www.cnblogs.com/sanshi/archive/2009/07/08/1519036.html</a></p><br><p>&nbsp;</p><br><h2><strong>面向对象与基于对象</strong><br></h2><br><p>几乎每个开发人员都有面向对象语言（比如C++、C#、Java）的开发经验。 在传统面向对象的语言中，有两个非常重要的概念 - 类和实例。<br>类定义了一类事物公共的行为和方法；而实例则是类的一个具体实现。 我们还知道，面向对象编程有三个重要的概念 - 封装、继承和多态。 </p><br><p>但是在JavaScript的世界中，所有的这一切特性似乎都不存在。 因为JavaScript本身不是面向对象的语言，而是基于对象的语言。<br>这里面就有一些有趣的特性，比如JavaScript中所有事物都是对象， 包括字符串、数组、日期、数字，甚至是函数，比如下面这个例子： </p><br><pre class="cnblogs_code">        // 定义一个函数 - add<br><br>        function add(a, b) {<br><br>            add.invokeTimes++;<br><br>            return a + b;<br><br>        }<br><br>        // 因为函数本身也是对象，这里为函数add定义一个属性，用来记录此函数被调用的次数<br><br>        add.invokeTimes = 0;<br><br>        <br><br>        add(1 + 1);<br><br>        add(2 + 3);<br><br>        console.log(add.invokeTimes);   // 2<br><br>        </pre><br><p>&nbsp;</p><br><h2><strong>模拟JavaScript中类和继承</strong><br></h2><br><p>在面向对象的语言中，我们使用类来创建一个自定义对象。然而JavaScript中所有事物都是对象，<strong>那么用什么办法来创建自定义对象呢？</strong><br> </p><br><p>这就需要引入另外一个概念 - 原型（prototype），我们可以简单的把prototype看做是一个模版，新创建的自定义对象都是这个模版（prototype）的一个拷贝 （实际上不是拷贝而是链接，只不过这种链接是不可见，给人们的感觉好像是拷贝）。 </p><br><p>让我们看一下通过prototype创建自定义对象的一个例子： </p><br><pre class="cnblogs_code">        // 构造函数<br><br>        function Person(name, sex) {<br><br>            this.name = name;<br><br>            this.sex = sex;<br><br>        }<br><br>        // 定义Person的原型，原型中的属性可以被自定义对象引用<br><br>        Person.prototype = {<br><br>            getName: function() {<br><br>                return this.name;<br><br>            },<br><br>            getSex: function() {<br><br>                return this.sex;<br><br>            }<br><br>        }<br><br>        </pre><br><p>这里我们把函数Person称为构造函数，也就是创建自定义对象的函数。可以看出，JavaScript通过构造函数和原型的方式模拟实现了类的功能。 <br><br>创建自定义对象（实例化类）的代码： </p><br><pre class="cnblogs_code">        var zhang = new Person(&quot;ZhangSan&quot;, &quot;man&quot;);<br><br>        console.log(zhang.getName());   // &quot;ZhangSan&quot;<br><br>        <br><br>        var chun = new Person(&quot;ChunHua&quot;, &quot;woman&quot;);<br><br>        console.log(chun.getName());   // &quot;ChunHua&quot;<br><br>        </pre><br><p>当代码var zhang = new Person(&quot;ZhangSan&quot;, &quot;man&quot;)执行时，其实内部做了如下几件事情： </p><br><ul><br><li>创建一个空白对象（new Object()）。</li><br><li>拷贝Person.prototype中的属性（键值对）到这个空对象中（我们前面提到，内部实现时不是拷贝而是一个隐藏的链接）。</li><br><li>将这个对象通过this关键字传递到构造函数中并执行构造函数。</li><br><li>将这个对象赋值给变量zhang。 </li><br></ul><br><p>&nbsp;</p><br><p>为了证明prototype模版并不是被拷贝到实例化的对象中，而是一种链接的方式，请看如下代码： </p><br><pre class="cnblogs_code">        function Person(name, sex) {<br><br>            this.name = name;<br><br>            this.sex = sex;<br><br>        }<br><br>        Person.prototype.age = 20;<br><br><br><br>        var zhang = new Person(&quot;ZhangSan&quot;, &quot;man&quot;);<br><br>        console.log(zhang.age);   // 20<br><br>        // 覆盖prototype中的age属性<br><br>        zhang.age = 19;<br><br>        console.log(zhang.age);   // 19<br><br>        delete zhang.age;<br><br>        // 在删除实例属性age后，此属性值又从prototype中获取<br><br>        console.log(zhang.age);   // 20<br><br>        </pre><br><p>这种在JavaScript内部实现的隐藏的prototype链接，是JavaScript赖以生存的温润土壤， 也是模拟实现继承的基础。 </p><br><p>&nbsp;</p><br><p><strong>如何在JavaScript中实现简单的继承？</strong><br> <br><br>下面的例子将创建一个雇员类Employee，它从Person继承了原型prototype中的所有属性。 </p><br><pre class="cnblogs_code">        function Employee(name, sex, employeeID) {<br><br>            this.name = name;<br><br>            this.sex = sex;<br><br>            this.employeeID = employeeID;<br><br>        }<br><br>        // 将Employee的原型指向Person的一个实例<br><br>        // 因为Person的实例可以调用Person原型中的方法, 所以Employee的实例也可以调用Person原型中的所有属性。<br><br>        Employee.prototype = new Person();<br><br>        Employee.prototype.getEmployeeID = function() {<br><br>            return this.employeeID;<br><br>        };<br><br><br><br>        var zhang = new Employee(&quot;ZhangSan&quot;, &quot;man&quot;, &quot;1234&quot;);<br><br>        console.log(zhang.getName());   // &quot;ZhangSan<br><br>        </pre><br><p>&nbsp;</p><br><p>上面关于继承的实现很粗糙，并且存在很多问题： </p><br><ul><br><li>在创建Employee构造函数和原型（以后简称类）时，就对Person进行了实例化，这是不合适的。</li><br><li>Employee的构造函数没法调用父类Person的构造函数，导致在Employee构造函数中对name和sex属性的重复赋值。</li><br><li>Employee中的函数会覆盖Person中的同名函数，没有重载的机制（和上一条是一个类型的问题）。</li><br><li>创建JavaScript类的语法过于零散，不如C#/Java中的语法优雅。</li><br><li>实现中有constructor属性的指向错误，这个会在第二篇文章中讨论。 </li><br></ul><br><p>我们会在第三章完善这个例子。 </p><br><p>&nbsp;</p><br><h2><strong>JavaScript继承的实现</strong><br></h2><br><p>正因为JavaScript本身没有完整的类和继承的实现，并且我们也看到通过手工实现的方式存在很多问题， 因此对于这个富有挑战性的任务网上已经有很多实现了： </p><br><ul><br><li>Douglas Crockford - <a href="http://javascript.crockford.com/prototypal.html" target="_blank" rel="noopener">Prototypal Inheritance in JavaScript</a><br></li><br><li>Douglas Crockford - <a href="http://javascript.crockford.com/inheritance.html" target="_blank" rel="noopener">Classical Inheritance in JavaScript</a><br></li><br><li>John Resig - <a href="http://ejohn.org/blog/simple-javascript-inheritance/" target="_blank" rel="noopener">Simple JavaScript Inheritance</a><br></li><br><li>Dean Edwards - <a href="http://dean.edwards.name/weblog/2006/03/base/" target="_blank" rel="noopener">A Base Class for JavaScript Inheritance</a><br></li><br><li><a href="http://www.prototypejs.org/learn/class-inheritance" target="_blank" rel="noopener">Prototype</a><br></li><br><li><a href="http://mootools.net/docs/core/Class/Class" target="_blank" rel="noopener">Mootools</a><br></li><br><li><a href="http://extjs.com/" target="_blank" rel="noopener">Extjs</a><br> </li><br></ul><br><p>这个系列的文章将会逐一深入分析这些实现，最终达到对JavaScript中如何实现类和继承有一个深入的了解。 </p><br><p>&nbsp;</p><br><p>下一章我们将会介绍在类实现中的相关知识，比如this、constructor、prototype等。 </p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziks006lxwrqtmg4iayc/" rel="next" title="JSF 2 简介，第 1 部分: 流线化 Web 应用程序开发">
+                <i class="fa fa-chevron-left"></i> JSF 2 简介，第 1 部分: 流线化 Web 应用程序开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j9r00bbl6rqaehhp3gm/" rel="prev" title="工作之余——看js代码（HTML Beautify）">
+                工作之余——看js代码（HTML Beautify） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">面向对象与基于对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">模拟JavaScript中类和继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">JavaScript继承的实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

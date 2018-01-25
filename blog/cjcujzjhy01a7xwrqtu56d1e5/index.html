@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web,CSS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Author: 李丽媛Date: 2010/6/2Email: lly219#gmail.com1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS 优化方案1.1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用CSS 优化工具a)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
+<meta name="keywords" content="Web,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端优化方案-CSS 优化方案">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzjhy01a7xwrqtu56d1e5/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="Author: 李丽媛Date: 2010/6/2Email: lly219#gmail.com1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS 优化方案1.1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用CSS 优化工具a)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T10:56:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端优化方案-CSS 优化方案">
+<meta name="twitter:description" content="Author: 李丽媛Date: 2010/6/2Email: lly219#gmail.com1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS 优化方案1.1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用CSS 优化工具a)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzjhy01a7xwrqtu56d1e5/"/>
+
+
+
+
+
+  <title>前端优化方案-CSS 优化方案 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzjhy01a7xwrqtu56d1e5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端优化方案-CSS 优化方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-06-04T06:08:00+08:00">
+                2010-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="MsoNormal" style="text-align: left;"><span style="font-family: &quot;微软雅黑&quot;,&quot;sans-serif&quot;;">Author: 李丽媛<span lang="EN-US"></span><br></span><br></p><br><p class="MsoNormal" style="text-align: left;"><span style="font-family: &quot;微软雅黑&quot;,&quot;sans-serif&quot;;" lang="EN-US">Date: 2010/6/2</span><br></p><br><p class="MsoNormal" style="text-align: left;"><span style="font-family: &quot;微软雅黑&quot;,&quot;sans-serif&quot;;" lang="EN-US">Email: lly219#gmail.com<br><br></span><br></p><br><h1 style="margin-left: 21.25pt; text-indent: -21.25pt;"><!-- [if !supportLists]--><span lang="EN-US"><span>1<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">CSS </span><br><span style="font-family: 宋体;">优化方案</span><br><span lang="EN-US"></span><br></h1><br><p class="MsoNormal" style="margin-left: 49.6pt; text-indent: -1cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.1<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">使用</span><br><span lang="EN-US">CSS </span><br></strong><br><strong><span style="font-family: 宋体;">优化工具</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>a)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">online CSS Optimizer</span><br><span style="font-family: 宋体;">；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><em><span lang="EN-US"><span>b)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br></em><br><!-- [endif]--><em><span lang="EN-US">CSS Formatter and Optimizer</span><br></em><br><em><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></em><br></p><br><p class="MsoNormal" style="margin-left: 21pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：选取以上一个工具进行进行优化。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt;"><strong><span lang="EN-US">&nbsp;</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt; text-indent: -1cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.2<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">清理</span><br><span lang="EN-US"> CSS</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 20.75pt;"><span style="font-family: 宋体;">在我们写样式的时候，页面的</span><br><span lang="EN-US">CSS</span><br><span style="font-family: 宋体;">在经历几个版本的修改之后，可能有些样式已经用不到了，或许将某些样式</span><br> <span style="font-family: 宋体;">更名了而原来的忘了删除，总之页面中可能存在着一</span><br><span style="font-family: 宋体;">些无用的样式。这些无用的浪费了一些服务器空间和带宽消耗，也会增大我们的维护成本。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>a)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">Dust-Me selector</span><br><span style="font-family: 宋体;">；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>b)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">Page Speed</span><br><span style="font-family: 宋体;">；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>c)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">CSS Redundancy Checker</span><br><span style="font-family: 宋体;">；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>d)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">IntelliJ IDEA</span><br><span style="font-family: 宋体;">；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>e)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">Expression Web</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：选取以上一个工具进行</span><br><span lang="EN-US"> CSS </span><br><span style="font-family: 宋体;">清理。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt;"><span lang="EN-US">&nbsp;</span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt; text-indent: -1cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.3<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">在浏览器支持的情况下尽量使用</span><br><span lang="EN-US"> CSS </span><br></strong><br><strong><span style="font-family: 宋体;">选择器</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.2pt; text-indent: 20.6pt;"><span style="font-family: 宋体;">避免为每一个标签都定义</span><br><span lang="EN-US"> class</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt;"><span lang="EN-US"><!-- [if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:399pt;
+ height:300pt'>
+ <v:imagedata src="file:///C:\Users\Vanessa\AppData\Local\Temp\msohtmlclip1\01\clip_image001.png" mce_src="file:///C:\Users\Vanessa\AppData\Local\Temp\msohtmlclip1\01\clip_image001.png"
+  o:title=""/>
+</v:shape><![endif]--><!-- [if !vml]--><!-- [endif]--></span><br></p><br><p class="MsoNormal" style="text-indent: 21pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：重构</span><br><span lang="EN-US"> CSS</span><br><span style="font-family: 宋体;">，去除不必要的</span><br><span lang="EN-US"> class</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt;"><span lang="EN-US">&nbsp;</span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt; text-indent: -1cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.4<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">减少</span><br><span lang="EN-US"> CSS hack </span><br></strong><br><strong><span style="font-family: 宋体;">的使用</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>a)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">尽量把浏览器默认值不相同的元素定义出来；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>b)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">注意</span><br> <span lang="EN-US">padding</span><br><span style="font-family: 宋体;">，</span><br><span lang="EN-US"> margin</span><br><span style="font-family: 宋体;">，</span><br><span lang="EN-US"> border </span><br><span style="font-family: 宋体;">在</span><br><span lang="EN-US"> width </span><br><span style="font-family: 宋体;">和</span><br><span lang="EN-US"> height </span><br><span style="font-family: 宋体;">中的大小计算；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 70.9pt; text-indent: -1cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>c)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">注意</span><br><span lang="EN-US"> IE </span><br><span style="font-family: 宋体;">中最小高度和</span><br><span lang="EN-US"> img </span><br><span style="font-family: 宋体;">的使用。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：删除不必要的</span><br><span lang="EN-US"> CSS hack</span><br><span style="font-family: 宋体;">，然后进行细节修改。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt;"><span lang="EN-US">&nbsp;</span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt; text-indent: -1cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.5<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">避免使用内联引用和内部引用，尽量使用外部引用</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt; text-indent: 0cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>a)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">网页处理速度会更快一些，尤其在有很多网页共用一份</span><br><span lang="EN-US">CSS</span><br><span style="font-family: 宋体;">样式表时；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt; text-indent: 0cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>b)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">看上去更加专业，整个网站的配色、细节等做到完全统一，具有一致性，避免内联的像素、色彩等偏差；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt; text-indent: 0cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>c)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">方便维护。只要修改一个</span><br><span lang="EN-US">CSS</span><br><span style="font-family: 宋体;">文件，不管你有多少个网页文件，都会以你最新修改的版本为标准，不必进行散弹式修改。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 74pt; text-indent: -52.5pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：把内联引用和内部引用的</span><br><span lang="EN-US"> CSS </span><br><span style="font-family: 宋体;">进行抽取、提出放到外部</span><br><span lang="EN-US"> CSS </span><br><span style="font-family: 宋体;">文件中，使用外联引用。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt;"><span lang="EN-US">&nbsp;</span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt; text-indent: -1cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.6<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">浏览器兼容</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.2pt; text-indent: 20.6pt;"><span style="font-family: 宋体;">支持主流浏览器：</span><br><span lang="EN-US">Firefox</span><br><span style="font-family: 宋体;">，</span><br><span lang="EN-US"> IE6</span><br><span style="font-family: 宋体;">，</span><br><span lang="EN-US"> IE7</span><br><span style="font-family: 宋体;">，</span><br><span lang="EN-US"> IE8</span><br><span style="font-family: 宋体;">；逐步支持</span><br><span lang="EN-US">Chrome</span><br><span style="font-family: 宋体;">，</span><br><span lang="EN-US"> Opera</span><br><span style="font-family: 宋体;">，</span><br><span lang="EN-US"> Safari</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="text-indent: 21pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：在不同浏览器上进行测试，然后逐一修复。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 49.6pt;"><strong><span lang="EN-US">&nbsp;</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 0cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.7<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp; </span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">元素合并</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.2pt; text-indent: 20.6pt;"><span style="font-family: 宋体;">类似</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt;"><span style="font-family: 宋体;">（</span><br><span lang="EN-US">background-image: url(/oaweb/img/common/333.png); background-repeat:<br>repeat-y; background-position: 0px 0px;</span><br><span style="font-family: 宋体;">）</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt;"><span style="font-family: 宋体;">可合并为（</span><br><span lang="EN-US">background</span><br><span style="font-family: 宋体;">：</span><br><span lang="EN-US">url(/oaweb/img/common/333.png)<span>&nbsp; </span><br>repeat-y 0 0;</span><br><span style="font-family: 宋体;">）。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：有此类问题的地方进行合并。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt;"><strong><span lang="EN-US">&nbsp;</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 0cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.8<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp; </span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">规范命名</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt; text-indent: 0cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>a)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span lang="EN-US">id</span><br><span style="font-family: 宋体;">和</span><br><span lang="EN-US">class</span><br><span style="font-family: 宋体;">命名采用该内容的英文单词或组合命名，并第一个单词小写，第二个单词首个字母大写，如</span><br><span lang="EN-US">:newRelease</span><br><span style="font-family: 宋体;">（最新产品</span><br><span lang="EN-US"><br>/new+Release)</span><br><span style="font-family: 宋体;">；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt; text-indent: 0cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>b)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">添加注释；</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt; text-indent: 0cm;"><!-- [if !supportLists]--><span lang="EN-US"><span>c)<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><br></span><br></span><br><!-- [endif]--><span style="font-family: 宋体;">常用命名规范（参见附件</span><br><span lang="EN-US">1</span><br><span style="font-family: 宋体;">）。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 73.7pt; text-indent: -52.5pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：发现不符合要求的进行修改；没有注释或注释不详、不清的地方进行添加或补充、修改。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 42.55pt;"><strong><span lang="EN-US">&nbsp;</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 0cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.9<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp; </span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">抽取出一些常用的</span><br><span lang="EN-US"> CSS</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 21pt;"><span style="font-family: 宋体;">对于标签可使用</span><br><span lang="EN-US"> class </span><br><span style="font-family: 宋体;">组合，不需要把</span><br><span lang="EN-US"><br>float:right; </span><br><span style="font-family: 宋体;">类似这样常用的样式写到一组定义的</span><br><span lang="EN-US"> CSS </span><br><span style="font-family: 宋体;">中。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 73.5pt; text-indent: -73.5pt;"><span lang="EN-US"><span>&nbsp;&nbsp;&nbsp; </span><br></span><br><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：定义一些常用的</span><br><span lang="EN-US"> CSS</span><br><span style="font-family: 宋体;">，在样式中去除含有这些常用样式的</span><br><span lang="EN-US"> style</span><br><span style="font-family: 宋体;">；最后在用到该样式的标签中加上定义好的被删除的常用样式的</span><br><span lang="EN-US"> class</span><br><span style="font-family: 宋体;">。</span><br> <span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 21pt;"><span lang="EN-US"><span>&nbsp;</span><br></span><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 0cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.10<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp; </span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">注意</span><br><span lang="EN-US"> class </span><br></strong><br><strong><span style="font-family: 宋体;">和</span><br><span lang="EN-US"> id </span><br></strong><br><strong><span style="font-family: 宋体;">的异同，不要滥用</span><br><span lang="EN-US"></span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 21pt;"><span lang="EN-US">id </span><br><span style="font-family: 宋体;">是用来进行唯一标示，作为网站中的样式，每个页面样式需要具备一致性。因此，除特定原因外，样式尽量使用</span><br><span lang="EN-US"> class</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal"><em><span lang="EN-US"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><br></span><br></em><br><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：查看不符合用</span><br><span lang="EN-US"> class </span><br><span style="font-family: 宋体;">的标签，改为</span><br><span lang="EN-US"> id</span><br><span style="font-family: 宋体;">；反之，改为</span><br><span lang="EN-US"> class</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt;"><strong><span lang="EN-US">&nbsp;</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 0cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.11<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp; </span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">满足</span><br><span lang="EN-US">SEO</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 42pt;"><span lang="EN-US">OA </span><br><span style="font-family: 宋体;">当然不需要此项，但是在</span><br><span lang="EN-US"> eCooe </span><br><span style="font-family: 宋体;">体验中就在所难免了。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="text-indent: 21pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：凭经验可适当修改，但毕竟不是这行的专家，可买本书来研究研究。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoListParagraph" style="text-indent: 21.1pt;"><strong><span lang="EN-US">&nbsp;</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 0cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.12<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp; </span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">恰当的使用</span><br> <span lang="EN-US">CSS Sprite</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 21pt;"><span style="font-family: 宋体;">不要在每一处需要图片的地方都使用</span><br><span lang="EN-US"> CSS Sprite</span><br><span style="font-family: 宋体;">，它的难维护性决定了只适用于做背景图的时候采用；对于图片，还是应该去使用</span><br><span lang="EN-US"> img </span><br><span style="font-family: 宋体;">标签。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal" style="margin-left: 73.5pt; text-indent: -52.5pt;"><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：把使用了</span><br><span lang="EN-US"> CSS Sprite </span><br><span style="font-family: 宋体;">，但不用做背景的地方改为</span><br><span lang="EN-US"> img </span><br><span style="font-family: 宋体;">标签；反之改为使用</span><br><span lang="EN-US"> CSS Sprite</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoListParagraph" style="text-indent: 21.1pt;"><strong><span lang="EN-US">&nbsp;</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 0cm;"><!-- [if !supportLists]--><strong><span lang="EN-US"><span>1.13<span style="font: 7pt &quot;Times New Roman&quot;;">&nbsp; </span><br></span><br></span><br></strong><br><!-- [endif]--><strong><span style="font-family: 宋体;">避免使用</span><br><span lang="EN-US"> expression </span><br></strong><br><strong><span style="font-family: 宋体;">和</span><br><span lang="EN-US"> behavior</span><br></strong><br></p><br><p class="MsoNormal" style="margin-left: 21.25pt; text-indent: 21pt;"><span style="font-family: 宋体;">在页面渲染的过程中，</span><br><span lang="EN-US">expression</span><br><span style="font-family: 宋体;">和</span><br><span lang="EN-US">behavior</span><br><span style="font-family: 宋体;">需要大量的计算，会大量地耗费客户端资源。所以不到迫不得已，请不要使用</span><br><span lang="EN-US"> expression</span><br><span style="font-family: 宋体;">和</span><br><span lang="EN-US">behavior</span><br><span style="font-family: 宋体;">。</span><br><span lang="EN-US"></span><br></p><br><p class="MsoNormal"><span lang="EN-US"><span>&nbsp;&nbsp;&nbsp; </span><br></span><br><em><span style="font-family: 宋体;">解决方案</span><br></em><br><span style="font-family: 宋体;">：删除使用了</span><br><span lang="EN-US"> expression </span><br><span style="font-family: 宋体;">和</span><br><span lang="EN-US"> behavior </span><br><span style="font-family: 宋体;">的地方，改之使用</span><br><span lang="EN-US"> JavaScript </span><br><span style="font-family: 宋体;">进行替代。</span><br><strong><span lang="EN-US"></span><br></strong><br></p><br><p>&nbsp;</p><br><h1><span style="font-family: 宋体;">附件</span><br><span lang="EN-US">1</span><br></h1><br><table class="MsoNormalTable" style="width: 574px; border-collapse: collapse; border: medium none;" border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: 1pt 1pt 2.25pt solid black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-family: 宋体;">内容</span><br></strong><br><strong><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></strong><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: 1pt 1pt 2.25pt medium solid solid solid none black black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-family: 宋体;">命名</span><br></strong><br><strong><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></strong><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: 1pt 1pt 2.25pt medium solid solid solid none black black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-family: 宋体;">内容</span><br></strong><br><strong><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></strong><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: 1pt 1pt 2.25pt medium solid solid solid none black black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-family: 宋体;">命名</span><br></strong><br><strong><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></strong><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">模块</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">module.css</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">主题</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">themes.css</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">基本共用</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">base.css</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">专栏</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">columns.css</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">布局、版面</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">layout.css</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">表单</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">forms.css</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">文字</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">font.css</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">补丁</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">mend.css</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">打印</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">print.css</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">头</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">header</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">内容</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">content/container</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">尾</span><br><span lang="EN-US">/</span><br><span style="font-family: 宋体;">页脚</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">footer</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">导航</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">nav</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">侧栏</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">sidebar</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">栏目</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">column</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">页面外围控制整体布局宽度</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">wrapper</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">左</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US">/</span><br><span style="font-family: 宋体;">右</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US">/</span><br><span style="font-family: 宋体;">中</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">left/right/center</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">登录条</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">loginBar</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">标志</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">logo</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">广告</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">banner</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">页面主体</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">main</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">热点</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">hot</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">新闻</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">news</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">下载</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">download</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">子导航</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">subNav</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">菜单</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">menu</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">子菜单</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">submenu</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">搜索</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">search</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">友情链接</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">friendLink</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">版权</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">copyright</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">滚动</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">scroll</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">标签页</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">tab</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">文章列表</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">list</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">提示信息</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">msg</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">小技巧</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">tips</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">栏目标题</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">title</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">加入</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">joinUs</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">指南</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">guild</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">服务</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">service</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">注册</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">register</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">状态</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">status</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">投票</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">vote</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">合作伙伴</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">partner</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">12</span><br><span style="font-family: 宋体;">号字体</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">font12</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">红色</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">red</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">浮动清除</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">clear</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">常见问题</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">faqs</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">缩略图</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">screenshot</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">最新产品</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">newsRelease</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">编辑评论</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">editorReview</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">关键词</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-indent: 21pt;"><span lang="EN-US">keywords</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">论坛</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">forum</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">主导航</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">mainNav</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">主菜单</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">mainMenu</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">标签</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">tag</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">摘要</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">summary</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">商标</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">branding</span><br></p><br></td><br><td style="width: 5cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">法律声明</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; background: none repeat scroll 0% 0% #bfbfbf; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">legal</span><br></p><br></td><br></tr><br><tr><br><td style="width: 106.5pt; padding: 0cm 5.4pt; border: medium 1pt 1pt none solid solid -moz-use-text-color black black;" width="142" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">网站信息</span><br><span style="font-family: &quot;Cambria&quot;,&quot;serif&quot;;" lang="EN-US"></span><br></p><br></td><br><td style="width: 97.35pt; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="130" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">siteInfo</span><br></p><br></td><br><td style="width: 5cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="189" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span style="font-family: 宋体;">信誉</span><br><span lang="EN-US"></span><br></p><br></td><br><td style="width: 3cm; padding: 0cm 5.4pt; border: medium 1pt 1pt medium none solid solid none -moz-use-text-color black black -moz-use-text-color;" width="113" valign="top"><br><p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-US">credits</span><br></p><br></td><br></tr><br></tbody><br></table><br><p>&nbsp;</p><br><p>&nbsp;</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/blog/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziyc00ldxwrq7jrj1o3r/" rel="next" title="js内存泄露问题">
+                <i class="fa fa-chevron-left"></i> js内存泄露问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzj3500prxwrqk5ysldol/" rel="prev" title="前端优化方案-JavaScript 优化方案">
+                前端优化方案-JavaScript 优化方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1      CSS 优化方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">附件1</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

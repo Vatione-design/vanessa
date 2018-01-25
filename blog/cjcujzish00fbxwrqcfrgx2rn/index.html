@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Rapha&amp;euml;l–一个小巧但功能强大的javascript画图库。Main Function                             Raphael                         Creates a canvas object on which to draw. You must do">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rapha?l—JavaScript Library">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzish00fbxwrqcfrgx2rn/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="Rapha&amp;euml;l–一个小巧但功能强大的javascript画图库。Main Function                             Raphael                         Creates a canvas object on which to draw. You must do">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-25T02:55:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rapha?l—JavaScript Library">
+<meta name="twitter:description" content="Rapha&amp;euml;l–一个小巧但功能强大的javascript画图库。Main Function                             Raphael                         Creates a canvas object on which to draw. You must do">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzish00fbxwrqcfrgx2rn/"/>
+
+
+
+
+
+  <title>Rapha?l—JavaScript Library | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzish00fbxwrqcfrgx2rn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Rapha?l—JavaScript Library</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-04-17T09:20:00+08:00">
+                2009-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h3 class="post-title entry-title"><br><a href="http://vanessally.blogspot.com/2009/04/raphaeljavascript-library.html" target="_blank" rel="noopener"><br></a><br></h3><p></p>
+<div id="header">             <a id="rss" name="rss" href="http://twitter.com/statuses/user_timeline/17180567.atom" target="_blank" rel="noopener"></a>                      </div><br><div id="content"><br><div><br><div><br><div id="column-1"><br><h2>Rapha&euml;l–一个小巧但功能强大的javascript画图库。</h2><br><h2>Main Function</h2><br><h3 id="Raphael">                             Raphael                         </h3><br><p><br>Creates a canvas object on which to draw. You must do this first, as<br>all future calls to drawing methods from this instance will be bound to<br>this canvas. </p><br><h4>Parameters</h4><br><ol><br><li>container <em>HTMLElement</em> or <em>string</em></li><br><li>width <em>number</em></li><br><li>height <em>number</em></li><br></ol><br><p>or</p><br><ol><br><li>x <em>number</em></li><br><li>y <em>number</em></li><br><li>width <em>number</em></li><br><li>height <em>number</em></li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><span class="c">// Each of the following examples create a canvas that is 320px wide by 200px high</span><br><span class="c">// Canvas is created at the viewport’s <span class="d">10</span>,<span class="d">50</span> coordinate</span><br><strong>var</strong> paper<span class="s"> = </span>Raphael(<span class="d">10</span>, <span class="d">50</span>, <span class="d">320</span>, <span class="d">200</span>);<br><span class="c">// Canvas is created at the top left corner of the #notepad element (or its top right corner <strong>in</strong> dir=<em>“rtl”</em> elements)</span><br><strong>var</strong> paper<span class="s"> = </span>Raphael(document.getElementById(<em>“notepad”</em>), <span class="d">320</span>, <span class="d">200</span>);<br><span class="c">// Same as above</span><br><strong>var</strong> paper<span class="s"> = </span>Raphael(<em>“notepad”</em>, <span class="d">320</span>, <span class="d">200</span>);</code></pre><br><h2 id="Element">                             Element&rsquo;s generic methods                         </h2><br><p>                             Each object created on the canvas shares these same generic methods:                         </p><br><h3 id="node">                             node                         </h3><br><p><br>Gives you a reference to the DOM object, so you can assign event<br>handlers or just mess around. </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>); <span class="c">// draw a circle at coordinate <span class="d">10</span>,<span class="d">10</span> <strong>with</strong> radius of <span class="d">10</span></span><br>c.node.onclick<span class="s"> = </span><strong>function</strong> () { c.attr(<em>“fill”</em>, <em>“red”</em>); };</code></pre><br><h3 id="remove">                             remove                         </h3><br><p>                             Removes element from the DOM. You can&rsquo;t use it after this method call.                         </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);<br>c.remove();</code></pre><br><h3 id="hide">                             hide                         </h3><br><p>                             Makes element invisible.                         </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);<br>c.hide();</code></pre><br><h3 id="show">                             show                         </h3><br><p>                             Makes element visible.                         </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);<br>c.show();</code></pre><br><h3 id="rotate">                             rotate                         </h3><br><p>                             Rotates the element by the given degree from its center point.                         </p><br><h4>Parameters</h4><br><ol><br><li>degree <em>number</em> Degree of rotation (0 &ndash; 360&deg;)</li><br><li>isAbsolute <em>boolean</em> [optional] Specifies is degree is relative to previous position (<code>false</code>) or is it absolute angle (<code>true</code>)</li><br></ol><br><p>or</p><br><ol><br><li>degree <em>number</em> Degree of rotation (0 &ndash; 360&deg;)</li><br><li>cx <em>number</em> [optional] X coordinate of the origin of rotation</li><br><li>cY <em>number</em> [optional] Y coordinate of the origin of rotation</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);<br>c.rotate(<span class="d">45</span>);        <span class="c">// rotation is relative</span><br>c.rotate(<span class="d">45</span>, <strong>true</strong>);  <span class="c">// rotation is absolute</span></code></pre><br><h3 id="translate">                             translate                         </h3><br><p>                             Moves the element around the canvas by the given distances.                         </p><br><h4>Parameters</h4><br><ol><br><li>dx <em>number</em> Pixels of translation by X axis</li><br><li>dy <em>number</em> Pixels of translation by Y axis</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);<br>c.translate(<span class="d">10</span>, <span class="d">10</span>); <span class="c">// moves the circle down the canvas, <strong>in</strong> a diagonal line</span></code></pre><br><h3 id="scale">                             scale                         </h3><br><p>                             Resizes the element by the given multiplier.                         </p><br><h4>Parameters</h4><br><ol><br><li>Xtimes <em>number</em> Amount to scale horizontally</li><br><li>Ytimes <em>number</em> Amount to scale vertically</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);<br>c.scale(<span class="d">1</span>.<span class="d">5</span>, <span class="d">1</span>.<span class="d">5</span>); <span class="c">// makes the circle <span class="d">1</span>.<span class="d">5</span> times larger</span><br>c.scale(.<span class="d">5</span>, .<span class="d">75</span>);  <span class="c">// makes the circle half as wide, and <span class="d">75</span>% as high</span></code></pre><br><h3 id="attr">                             attr                         </h3><br><p>                             Sets the attributes of elements directly.                         </p><br><h4>Parameters</h4><br><ol><br><li>attributeName <em>string</em></li><br><li>value <em>string</em></li><br></ol><br><p>or</p><br><ol><br><li>params <em>object</em></li><br></ol><br><p>or</p><br><ol><br><li>attributeName <em>string</em> in this case method returns current value for given attribute name</li><br></ol><br><p>or</p><br><ol><br><li>attributeNames <em>array</em> in this case method returns array of current values for given attribute names</li><br></ol><br><h4>Possible parameters</h4><br><p>Please refer to the <a title="The W3C Recommendation for the SVG language describes these properties in detail." href="http://www.w3.org/TR/SVG/" target="_blank" rel="noopener">SVG specification</a> for an explanation of these parameters.</p><br><ul><br><li>cx <em>number</em></li><br><li>cy <em>number</em></li><br><li>fill <em>colour</em></li><br><li>fill-opacity <em>number</em></li><br><li>font <em>string</em></li><br><li>font-family <em>string</em></li><br><li>font-size <em>number</em></li><br><li>font-weight <em>string</em></li><br><li>gradient <em>object|string</em> “&lsaquo;angle&rsaquo;-&lsaquo;colour&rsaquo;[-&lsaquo;colour&rsaquo;[:&lsaquo;offset&rsaquo;]]*-&lsaquo;colour&rsaquo;”</li><br><li>height <em>number</em></li><br><li>opacity <em>number</em></li><br><li>path <em>pathString</em></li><br><li>r <em>number</em></li><br><li>rotation <em>number</em></li><br><li>rx <em>number</em></li><br><li>ry <em>number</em></li><br><li>scale <em>CSV</em></li><br><li>src <em>string</em> (URL)</li><br><li>stroke <em>colour</em></li><br><li>stroke-dasharray <em>string</em> [&ldquo;-&rdquo;, &ldquo;.&rdquo;, &ldquo;-.&rdquo;, &ldquo;-..&rdquo;, &ldquo;. &rdquo;, &ldquo;- &rdquo;, &ldquo;–&rdquo;, &ldquo;- .&rdquo;, &ldquo;–.&rdquo;, &ldquo;–..&rdquo;]</li><br><li>stroke-linecap <em>string</em> [&ldquo;butt&rdquo;, &ldquo;square&rdquo;, &ldquo;round&rdquo;, &ldquo;miter&rdquo;]</li><br><li>stroke-linejoin <em>string</em> [&ldquo;butt&rdquo;, &ldquo;square&rdquo;, &ldquo;round&rdquo;, &ldquo;miter&rdquo;]</li><br><li>stroke-miterlimit <em>number</em></li><br><li>stroke-opacity <em>number</em></li><br><li>stroke-width <em>number</em></li><br><li>translation <em>CSV</em></li><br><li>width <em>number</em></li><br><li>x <em>number</em></li><br><li>y <em>number</em></li><br></ul><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);<br>c.attr(<em>“fill”</em>, <em>“black”</em>);                              <span class="c">// using strings</span><br>c.attr({fill: <em>“#<span class="d">000</span>“</em>, stroke: <em>“#f00”</em>, opacity: <span class="d">0</span>.<span class="d">5</span>}); <span class="c">// using params object</span></code></pre><br><h3 id="animate">                             animate                         </h3><br><p> Linearly changes an attribute from its current value to its specified value in the given amount of milliseconds. </p><br><h4>Parameters</h4><br><ol><br><li>newAttrs <em>object</em> A parameters object of the animation results. (Not all attributes can be animated.)</li><br><li>ms <em>number</em> The duration of the animation, given in milliseconds.</li><br><li>callback <em>function</em> [optional]</li><br></ol><br><h4>Attributes that can be animated</h4><br><p>The <code>newAttrs</code> parameter accepts an object whose properties are the attributes to animate. However, not all attributes listed in the <code>attr</code> method reference can be animated. The following is a list of those properties that can be animated:</p><br><ul><br><li>cx <em>number</em></li><br><li>cy <em>number</em></li><br><li>fill <em>colour</em></li><br><li>fill-opacity <em>number</em></li><br><li>font-size <em>number</em></li><br><li>height <em>number</em></li><br><li>opacity <em>number</em></li><br><li>path <em>pathString</em></li><br><li>r <em>number</em></li><br><li>rotation <em>number</em></li><br><li>rx <em>number</em></li><br><li>ry <em>number</em></li><br><li>scale <em>CSV</em></li><br><li>stroke <em>colour</em></li><br><li>stroke-opacity <em>number</em></li><br><li>stroke-width <em>number</em></li><br><li>translation <em>CSV</em></li><br><li>width <em>number</em></li><br><li>x <em>number</em></li><br><li>y <em>number</em></li><br></ul><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="even">c.animate({cx: <span class="d">20</span>, r: <span class="d">20</span>}, <span class="d">2000</span>);</code></pre><br><h3 id="getBBox">                             getBBox                         </h3><br><p>                             Returns the dimensions of an element.                         </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="even"><strong>var</strong> width<span class="s"> = </span>c.getBBox().width;</code></pre><br><h3 id="toFront">                             toFront                         </h3><br><p><br>Moves the element so it is the closest to the viewer&rsquo;s eyes, on top of<br>other elements. </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="even">c.toFront();</code></pre><br><h3 id="toBack">                             toBack                         </h3><br><p><br>Moves the element so it is the furthest from the viewer&rsquo;s eyes, behind<br>other elements. </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="even">c.toBack();</code></pre><br><h3 id="insertBefore">                             insertBefore                         </h3><br><p>                             Inserts current object before the given one.                         </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> r<span class="s"> = </span>paper.rect(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="odd">c.insertBefore(r);</code></pre><br><h3 id="insertAfter">                             insertAfter                         </h3><br><p>                             Inserts current object after the given one                         </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> r<span class="s"> = </span>paper.rect(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="even">r.insertAfter(c);</code></pre><br><h2>Graphic Primitives</h2><br><h3 id="circle">                             circle                         </h3><br><p>                             Draws a circle.                         </p><br><h4>Parameters</h4><br><ol><br><li>x <em>number</em> X coordinate of the centre</li><br><li>y <em>number</em> Y coordinate of the centre</li><br><li>r <em>number</em> radius</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code></pre><br><h3 id="rect">                             rect                         </h3><br><p>                             Draws a rectangle.                         </p><br><h4>Parameters</h4><br><ol><br><li>x <em>number</em> X coordinate of top left corner</li><br><li>y <em>number</em> Y coordinate of top left corner</li><br><li>width <em>number</em></li><br><li>height <em>number</em></li><br><li>r <em>number</em> [optional] radius for rounded corners, default is 0</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><span class="c">// regular rectangle</span></code><br><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.rect(<span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>, <span class="d">10</span>);</code><br><code class="even"><span class="c">// rectangle <strong>with</strong> rounded corners</span></code><br><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.rect(<span class="d">10</span>, <span class="d">10</span>, <span class="d">100</span>, <span class="d">50</span>, <span class="d">10</span>);</code></pre><br><h3 id="ellipse">                             ellipse                         </h3><br><p>                             Draws an ellipse.                         </p><br><h4>Parameters</h4><br><ol><br><li>x <em>number</em> X coordinate of the centre</li><br><li>y <em>number</em> X coordinate of the centre</li><br><li>rx <em>number</em> Horisontal radius</li><br><li>ry <em>number</em> Vertical radius</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.ellipse(<span class="d">100</span>, <span class="d">100</span>, <span class="d">30</span>, <span class="d">40</span>);</code></pre><br><h3 id="image">                             image                         </h3><br><p>                             Embeds an image into the SVG/VML canvas.                         </p><br><h4>Parameters</h4><br><ol><br><li>src <em>string</em> URI of the source image</li><br><li>x <em>number</em> X coordinate position</li><br><li>y <em>number</em> Y coordinate position</li><br><li>width <em>number</em> Width of the image</li><br><li>height <em>number</em> Height of the image</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.image(<em>“apple.png”</em>, <span class="d">10</span>, <span class="d">10</span>, <span class="d">100</span>, <span class="d">100</span>);</code></pre><br><h3 id="set">                             set                         </h3><br><p><br>Creates array-like object to keep and operate couple of elements at<br>once. Warning: it doesn&rsquo;t create any elements for itself in the page. </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> st<span class="s"> = </span>paper.set();</code><br><code class="odd">st.push(paper.circle(<span class="d">10</span>, <span class="d">10</span>, <span class="d">5</span>));</code><br><code class="even">st.push(paper.circle(<span class="d">30</span>, <span class="d">10</span>, <span class="d">5</span>));</code><br><code class="odd">st.attr({fill: <em>“red”</em>});</code></pre><br><h3 id="text">                             text                         </h3><br><p>                             Draws a text string. If you need line breaks, put &ldquo;\n&rdquo; in the string.                         </p><br><h4>Parameters</h4><br><ol><br><li>x <em>number</em> X coordinate position.</li><br><li>y <em>number</em> Y coordinate position.</li><br><li>text <em>string</em> The text string to draw.</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> t<span class="s"> = </span>paper.text(<span class="d">10</span>, <span class="d">10</span>, <em>“Look mom, I’m scalable!”</em>);</code></pre><br><h3 id="path">                             path                         </h3><br><p>                             Initialises path drawing. Typically, this function returns an empty <code>path</code> object and to draw paths you use its built-in methods like <code>lineTo</code> and <code>curveTo</code>. However, you can also specify a path literally by supplying the path data as a second argument.                         </p><br><h4>Parameters</h4><br><ol><br><li>params <em>object</em> Attributes for the resulting path as described in the <code><a href="http://raphaeljs.com/reference.html#attr" target="_blank" rel="noopener">attr</a></code> reference.</li><br><li>pathString <em>string</em> [optional] Path data in <a title="Details of a path's data attribute's format are described in the SVG specification." href="http://www.w3.org/TR/SVG/paths.html#PathData" target="_blank" rel="noopener">SVG path string format</a>.</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).lineTo(<span class="d">50</span>, <span class="d">50</span>); <span class="c">// draw a diagonal line</span><br><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}, <em>“M <span class="d">10</span> <span class="d">10</span> L <span class="d">50</span> <span class="d">50</span>“</em>);            <span class="c">// same</span></code></pre><br><h2>Path Methods</h2><br><h3 id="absolutely">                             absolutely                         </h3><br><p> Sets a trigger to count all following units as absolute ones, unless said otherwise. (This is on by default.) </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).absolutely()<br>  .moveTo(<span class="d">10</span>, <span class="d">10</span>).lineTo(<span class="d">50</span>, <span class="d">50</span>);</code></pre><br><h3 id="relatively">                             relatively                         </h3><br><p><br>Sets a trigger to count all following units as relative ones, unless<br>said otherwise. </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).relatively()<br>  .moveTo(<span class="d">10</span>, <span class="d">10</span>).lineTo(<span class="d">50</span>, <span class="d">50</span>);</code></pre><br><h3 id="moveTo">                             moveTo                         </h3><br><p>                             Moves the drawing point to the given coordinates.                         </p><br><h4>Parameters</h4><br><ol><br><li>x <em>number</em> X coordinate</li><br><li>y <em>number</em> Y coordinate</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><span class="c">// Begins drawing the path at coordinate <span class="d">10</span>,<span class="d">10</span></span><br><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).lineTo(<span class="d">50</span>, <span class="d">50</span>);</code></pre><br><h3 id="lineTo">                             lineTo                         </h3><br><p>                             Draws a straight line to the given coordinates.                         </p><br><h4>Parameters</h4><br><ol><br><li>x <em>number</em> X coordinate</li><br><li>y <em>number</em> Y coordinate</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><span class="c">// Draws a line starting from <span class="d">10</span>,<span class="d">10</span> to <span class="d">50</span>,<span class="d">50</span></span><br><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).lineTo(<span class="d">50</span>, <span class="d">50</span>);</code></pre><br><h3 id="cplineTo">                             cplineTo                         </h3><br><p> Draws a curved line to the given coordinates. The line will have horizontal anchors on start and on finish. </p><br><h4>Parameters</h4><br><ol><br><li>x <em>number</em></li><br><li>y <em>number</em></li><br><li>width <em>number</em></li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).cplineTo(<span class="d">50</span>, <span class="d">50</span>);</code></pre><br><h3 id="curveTo">                             curveTo                         </h3><br><p>                             Draws a bicubic curve to the given coordinates.                         </p><br><h4>Parameters</h4><br><ol><br><li>x1 <em>number</em></li><br><li>y1 <em>number</em></li><br><li>x2 <em>number</em></li><br><li>y2 <em>number</em></li><br><li>x3 <em>number</em></li><br><li>y3 <em>number</em></li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).curveTo(<span class="d">10</span>, <span class="d">15</span>, <span class="d">45</span>, <span class="d">45</span>, <span class="d">50</span>, <span class="d">50</span>);</code></pre><br><h3 id="qcurveTo">                             qcurveTo                         </h3><br><p>                             Draws a quadratic curve to the given coordinates.                         </p><br><h4>Parameters</h4><br><ol><br><li>x1 <em>number</em></li><br><li>y1 <em>number</em></li><br><li>x2 <em>number</em></li><br><li>y2 <em>number</em></li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).curveTo(<span class="d">10</span>, <span class="d">15</span>, <span class="d">45</span>, <span class="d">45</span>, <span class="d">50</span>, <span class="d">50</span>);</code></pre><br><h3 id="addRoundedCorner">                             addRoundedCorner                         </h3><br><p>                             Draws a quarter of a circle from the current drawing point.                         </p><br><h4>Parameters</h4><br><ol><br><li>r <em>number</em></li><br><li>dir <em>string</em> Two-letter directional instruction, as described below.</li><br></ol><br><h4>Possible <code>dir</code> values</h4><br><dl><dt>lu</dt><dd>left up</dd><dt>ld</dt><dd>left down</dd><dt>ru</dt><dd>right up</dd><dt>rd</dt><dd>right down</dd><dt>ur</dt><dd>up right</dd><dt>ul</dt><dd>up left</dd><dt>dr</dt><dd>down right</dd><dt>dl</dt><dd>down left</dd></dl><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).addRoundedCorner(<span class="d">10</span>, <em>“rd”</em>);</code></pre><br><h3 id="andClose">                             andClose                         </h3><br><p>                             Closes the path being drawn.                         </p><br><h4>Usage</h4><br><pre class="javascript code"><code class="even"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: <em>“#<span class="d">036</span>“</em>}).moveTo(<span class="d">10</span>, <span class="d">10</span>).andClose();</code></pre><br><h3 id="setSize">                             setSize                         </h3><br><p>                             If you need to change dimensions of the canvas call this method                         </p><br><h4>Parameters</h4><br><ol><br><li>width <em>number</em> new width of the canvas</li><br><li>height <em>number</em> new height of the canvas</li><br></ol><br><h3 id="setWindow">                             setWindow                         </h3><br><p><br>Should be called before main Raphael method. Sets which window should<br>be used for drawing. Default is the current one. You need to use it if<br>you want to draw inside <code>iframe</code>                         </p><br><h4>Parameters</h4><br><ol><br><li>window <em>object</em></li><br></ol><br><h3 id="getColor">                             getColor                         </h3><br><p>                             Returns a colour object for the next colour in spectrum                         </p><br><h4>Parameters</h4><br><ol><br><li>value <em>number</em> brightness [optional]</li><br></ol><br><h4>Usage</h4><br><pre class="javascript code"><code class="odd"><strong>var</strong> c<span class="s"> = </span>paper.path({stroke: Raphael.getColor()}, <em>“M10,10L100,<span class="d">100</span>“</em>)</code></pre><br><h3 id="getColor-reset">                             getColor.reset                         </h3><br><p>                             Resets getColor function, so it will start from the beginning                         </p><br></div><br><div id="column-2"><br></div><br><div id="footer"><br><h3 id="copyright">                             <a title="Creative Commons Attribution-ShareAlike 3.0 Unported" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Some Rights Reserved</a> by <a href="http://dmitry.baranovskiy.com/" target="_blank" rel="noopener">Dmitry Baranovskiy</a>                         </h3><br><h3 id="font">                             Font by <a href="http://www.exljbris.nl/" target="_blank" rel="noopener">Jos Buivenga</a> &middot; Logo by <a href="http://wasabicube.com/" target="_blank" rel="noopener">Wasabicube</a> &middot;                             Work at this project started as 20% time at <a title="Atlassian &mdash; Software to Track, Test &amp; Collaborate, from Enterprises to Open Source Projects." href="http://www.atlassian.com/" target="_blank" rel="noopener">Atlassian</a>                         </h3><br></div><br></div><br></div><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzisu00fpxwrq57mukfnr/" rel="next" title="Rapha?l 简单Demo">
+                <i class="fa fa-chevron-left"></i> Rapha?l 简单Demo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzig3001hxwrqaa4opsp0/" rel="prev" title="CSS基础：@import与link的具体区别">
+                CSS基础：@import与link的具体区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Raphaël–一个小巧但功能强大的javascript画图库。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Main Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Raphael"><span class="nav-number">1.</span> <span class="nav-text">                             Raphael                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">Usage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Element"><span class="nav-number"></span> <span class="nav-text">                             Element’s generic methods                         </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#node"><span class="nav-number">1.</span> <span class="nav-text">                             node                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove"><span class="nav-number">2.</span> <span class="nav-text">                             remove                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hide"><span class="nav-number">3.</span> <span class="nav-text">                             hide                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show"><span class="nav-number">4.</span> <span class="nav-text">                             show                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rotate"><span class="nav-number">5.</span> <span class="nav-text">                             rotate                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">5.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#translate"><span class="nav-number">6.</span> <span class="nav-text">                             translate                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">6.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">6.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scale"><span class="nav-number">7.</span> <span class="nav-text">                             scale                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">7.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">7.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attr"><span class="nav-number">8.</span> <span class="nav-text">                             attr                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">8.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">8.2.</span> <span class="nav-text">Possible parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">8.3.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animate"><span class="nav-number">9.</span> <span class="nav-text">                             animate                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">9.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">9.2.</span> <span class="nav-text">Attributes that can be animated</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">9.3.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getBBox"><span class="nav-number">10.</span> <span class="nav-text">                             getBBox                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">10.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toFront"><span class="nav-number">11.</span> <span class="nav-text">                             toFront                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">11.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toBack"><span class="nav-number">12.</span> <span class="nav-text">                             toBack                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">12.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insertBefore"><span class="nav-number">13.</span> <span class="nav-text">                             insertBefore                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">13.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insertAfter"><span class="nav-number">14.</span> <span class="nav-text">                             insertAfter                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">14.1.</span> <span class="nav-text">Usage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Graphic Primitives</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#circle"><span class="nav-number">1.</span> <span class="nav-text">                             circle                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rect"><span class="nav-number">2.</span> <span class="nav-text">                             rect                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ellipse"><span class="nav-number">3.</span> <span class="nav-text">                             ellipse                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image"><span class="nav-number">4.</span> <span class="nav-text">                             image                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">5.</span> <span class="nav-text">                             set                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text"><span class="nav-number">6.</span> <span class="nav-text">                             text                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">6.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">6.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path"><span class="nav-number">7.</span> <span class="nav-text">                             path                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">7.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">7.2.</span> <span class="nav-text">Usage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Path Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#absolutely"><span class="nav-number">1.</span> <span class="nav-text">                             absolutely                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#relatively"><span class="nav-number">2.</span> <span class="nav-text">                             relatively                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#moveTo"><span class="nav-number">3.</span> <span class="nav-text">                             moveTo                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lineTo"><span class="nav-number">4.</span> <span class="nav-text">                             lineTo                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cplineTo"><span class="nav-number">5.</span> <span class="nav-text">                             cplineTo                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">5.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#curveTo"><span class="nav-number">6.</span> <span class="nav-text">                             curveTo                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">6.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">6.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qcurveTo"><span class="nav-number">7.</span> <span class="nav-text">                             qcurveTo                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">7.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">7.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addRoundedCorner"><span class="nav-number">8.</span> <span class="nav-text">                             addRoundedCorner                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">8.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">8.2.</span> <span class="nav-text">Possible dir values</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">8.3.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#andClose"><span class="nav-number">9.</span> <span class="nav-text">                             andClose                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">9.1.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setSize"><span class="nav-number">10.</span> <span class="nav-text">                             setSize                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">10.1.</span> <span class="nav-text">Parameters</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setWindow"><span class="nav-number">11.</span> <span class="nav-text">                             setWindow                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">11.1.</span> <span class="nav-text">Parameters</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getColor"><span class="nav-number">12.</span> <span class="nav-text">                             getColor                         </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">12.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">12.2.</span> <span class="nav-text">Usage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getColor-reset"><span class="nav-number">13.</span> <span class="nav-text">                             getColor.reset                         </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copyright"><span class="nav-number">14.</span> <span class="nav-text">                             Some Rights Reserved by Dmitry Baranovskiy                         </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font"><span class="nav-number">15.</span> <span class="nav-text">                             Font by Jos Buivenga · Logo by Wasabicube ·                             Work at this project started as 20% time at Atlassian                         </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

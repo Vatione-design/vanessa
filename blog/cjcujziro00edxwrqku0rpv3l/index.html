@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NetBeans," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;By carol.zhang@sun.com,3/6/07 Netbeans在近年的发展，可说是长足的进步。它不仅是功能强大的集成开发环境，更可以看作是一个开发框架和平台，基于这个平台，通过模块开发，扩展这个平台的功能，或者根据自己的需求，定制个性化的IDE环境。 概述 Netbeans IDE由一个核心运行时环境(core runtime)和一组模块组成。这个core runtime">
+<meta name="keywords" content="NetBeans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Netbeans 插件模块（Plugin Module）的开发">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujziro00edxwrqku0rpv3l/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;nbsp;By carol.zhang@sun.com,3/6/07 Netbeans在近年的发展，可说是长足的进步。它不仅是功能强大的集成开发环境，更可以看作是一个开发框架和平台，基于这个平台，通过模块开发，扩展这个平台的功能，或者根据自己的需求，定制个性化的IDE环境。 概述 Netbeans IDE由一个核心运行时环境(core runtime)和一组模块组成。这个core runtime">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://developers.sun.com.cn/system/galleries/pics/ISVs/Step1.jpg">
+<meta property="og:image" content="http://developers.sun.com.cn/system/galleries/pics/ISVs/filetemplate.jpg">
+<meta property="og:image" content="http://developers.sun.com.cn/system/galleries/pics/ISVs/NewAction.jpg">
+<meta property="og:image" content="http://developers.sun.com.cn/system/galleries/pics/ISVs/GuiReg.jpg">
+<meta property="og:updated_time" content="2018-01-03T09:50:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Netbeans 插件模块（Plugin Module）的开发">
+<meta name="twitter:description" content="&amp;nbsp;By carol.zhang@sun.com,3/6/07 Netbeans在近年的发展，可说是长足的进步。它不仅是功能强大的集成开发环境，更可以看作是一个开发框架和平台，基于这个平台，通过模块开发，扩展这个平台的功能，或者根据自己的需求，定制个性化的IDE环境。 概述 Netbeans IDE由一个核心运行时环境(core runtime)和一组模块组成。这个core runtime">
+<meta name="twitter:image" content="http://developers.sun.com.cn/system/galleries/pics/ISVs/Step1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujziro00edxwrqku0rpv3l/"/>
+
+
+
+
+
+  <title>Netbeans 插件模块（Plugin Module）的开发 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujziro00edxwrqku0rpv3l/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Netbeans 插件模块（Plugin Module）的开发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-08-20T03:33:00+08:00">
+                2008-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;<em>By <a href="http://developers.sun.com.cn/export/sites/default/ISVs/docs/docs/nbplugin.html#author" target="_blank" rel="noopener">carol.zhang@sun.com</a>,<br>3/6/07</em></p>
+<p></p><p>Netbeans在近年的发展，可说是长足的进步。它不仅是功能强大的集成开发环境，更可以看作是一个开发框架和平台，基于这个平台，通过模块开发，扩展这个平台的功能，或者根据自己的需求，定<br>制个性化的IDE环境。<br><br></p><p></p>
+<p></p><h3>概述</h3><p></p>
+<p>Netbeans IDE由一个核心运行时环境(core runtime)和一组模块组成。这个core runtime为大多数桌面应用提供公共组件和服务，而“模块”,则是运行在这个core<br>runtime之上的java class，譬如，对于Java语言的支持，就是一个”plugin module”，所有Netbeans IDE的跟开发相关的功能都是以“模块”的方式提供的。<br><br><br><br>开发者可以根据Netbeans平台所开放的编程接口，开发自己的”plugin module”来实现特定的功能。一般来说，有这么两个目的：<br><br></p><br><ul><li>扩展Netbeans IDE。我们可以轻松的加入需要的特性，扩展IDE的功能。譬如，在工具栏上加入Google的搜索框；支持新的文件类型；在Netbeans<br>IDE上支持新的web应用框架的开发；或者实现web 程序在特殊的应用服务器上的部署或调试，等等。</li><li>在Netbeans核心平台之上，构造自己的rich client应用。譬如，构造一个有丰富的GUI界面的报表生成器。<br><br></li></ul><br><p>从程序的角度看，一个module就是一个java的archive（.jar）文件，它包含多个java类，以及一个manifest文件，用来标志该jar文件是一个Plugin Module。当<br>平台的main class运行时，找到所有可用的module，建立一个内存登记表，并且运行这些module指定的在平台启动时的代码，module的其它代码则根据需要装载。<br><br><br><br>从发布的角度看，一个module是一个.nbm文件，使用者可以从利用Netbeans IDE中的“update center”功能，从网站下载.nbm文件并安装，或<br>者选择本地的.nbm文件进行安装。<br><br>　</p><br><h3>创建Plugin Module的一般步骤</h3><br><p>Netbeans从5.0版本开始，提供了向导(Wizard)和模板template，来帮助Netbeans module的开发。一般的开发过程是在基于Wizard生成的Template之上，添<br>加功能。下面以一个简单的Plugin Module开发过程（参考：<a href="http://platform.netbeans.org/tutorials/nbm-google.html）为例，来" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-google.html）为例，来</a><br>介绍这个过程:</p><br><p>1. 创建Plugin Module Project</p><br><p><br><img src="http://developers.sun.com.cn/system/galleries/pics/ISVs/Step1.jpg" alt="Step1" width="730" border="0" height="516"></p><br><p>在创建project的界面上，如图所示，有三类：</p><br><ul><li>Module Project：为一个standalone plugin module创建模板</li><li>Module Suite Project：为一组互相关联的plugin module和library wrapper module创建模板。它们将一起部署。</li><li>Library Wrapper Module Project：为一个外部的jar文件创建一个plugin module，可以包含在module suite project中。</li></ul><br><p>这里选择Module Project就可。</p><br><p>Library Wrapper Module有什么用途？它帮助我们在Netbeans Plugin开发中和第三方jar文件建立依赖关系。举例：如果要申明本模块依赖test.jar，</p><br><ul><li>将test.jar包装成Library Wrapper Module，命名为TestModule</li><li>在Project property的API versioning页中，设置这个module的版本号，以及public package（public<br>package是指对于module之外的其它类可见的package）</li><li>将这两个模块放到同一个Module Suite Project中</li><li>在原module中的“add dependency”的界面中，加入它和TestModule的public package的依赖关系。</li></ul><br><p>当然，如果模块依赖Netbeans本身提供的module，比如Data System API，只需最后一步即可，不用Library Wrapper Module。</p><br><p>这和我们在普通的java程序开发过程中，申明和.jar之间的依赖关系的方法有所不同，平时，我们只需将.jar文件放到classpath上即可。Netbeans<br>Module申明依赖关系的方式的好处在于保持很好的模块化，将模块之间的依赖关系最小化，清晰化，并且利用netbeans中的public package的功能，隐藏API的实现细节，利<br>于模块将来的升级和维护。</p><br><p>在接下来的界面中，给模块命名(MyFirstModule)，选择模块所在的目录(d:\test\nbmodule)，生成的java的包名(org.myorg.myfirstmodule)。点击“<br> finish”就完成了模板的建立。</p><br><p>2. 让我们看看模板中都包含些什么：</p><br><p>&nbsp;</p><br><ul><li><br><p align="left">源文件和单元测试的包。除了包含和大多数其它普通项目一样的源文件，它还包含一个重要文件：</p><br><ul><li><br><p align="left">缺省在org.myorg.myfirstmodule的源文件包下，有一个“layer.xml”文件。它以xml的格式定义了系统的可扩展点，如新增加的 Menu，T<br>oolbars，action属性等以及用户自定义的配置信息，这些信息将合并到整个netbeans系统的配置注册表中（以后会谈到，这个系统的配置注册表称为System FileSystem）。浏<br>览layer.xml文件的内容，会发现它包含了“FileSystem”这样的tag。</p><br></li></ul><br><p align="left">　</p><br></li><li><br><p align="left">Important Files：这个目录下包含了Plugin Module项目中重要的配置文件，其中比较重要的有：</p><br></li></ul><br><blockquote><br><ul><li><br><p align="left">XML Layer：它是上述的layer.xml文件的图形表达方式，可以通过图形界面对layer.xml进行浏览和修改</p><br></li><li><br><p align="left">Module Manifest：位于项目根目录下的manifest.mf 文件指明该项目是一个plugin module，并<br>包含layer.xml和bundle文件的位置<br><br></p><br></li><li><br><p align="left">Project Metadata：包含项目的元数据，如项目类型，该模块和别的模块依赖关系等等。在Library Wrapper Module Project介绍中<br>提到的依赖关系即在这里申明。</p><br></li></ul><br></blockquote><br><p>3. 在生成的项目上，就可以利用IDE提供的wizard来创建各种文件模板：</p><br><p><br><img src="http://developers.sun.com.cn/system/galleries/pics/ISVs/filetemplate.jpg" alt="filetemplate" width="736" border="0" height="347"></p><br><p>如图所示，Netbeans为plugin的开发提供了多种模板以供选择。除了常见的Java Package，Java Class和File/Folder等，有些模板是Plugin<br>Module开发专用的，它们提供了扩展系统的一些方式，运用模板能够迅速的搭起框架，或者获得示例的代码：如，Project Template可以以提供的项目结构和源码为基准，建立新的模板，加<br>入到主菜单的“File”-&gt; “New Project”的可选项目模板中；Wizard可以帮助你建立一系列向导窗口；Window Component可以用来创建以<br>TopComponent为子类的窗口类，并且可将对应的窗口对象嵌入到IDE的指定位置；等等。值得注意的是，并不是所有的系统扩展和新功能的添加都能够，或者必须通过模板的方式来实现，如，希<br>望在Editor中添加代码自动完成的功能，则没有可用的模板，开发者应熟悉在layer.xml中可以添加的系统的扩展点，以及对应的code completion API。</p><br><p>这里，我们以生成一个新的Action为例。目的是要在系统的工具条上加上一个google搜索栏。当在搜索栏中输入文字，回车后，将调用GoogleAction。因此，在模板列表中选择“<br>Action…”，出现</p><br><p><br><img src="http://developers.sun.com.cn/system/galleries/pics/ISVs/NewAction.jpg" alt="NewAction" width="611" border="0" height="457"></p><br><p>我们知道，凡菜单项或者工具条选项，都有两个状态，激活或者禁止。这里界面上有两个选项正是为这两种状态设置。“Always Enabled”，如名称所示，这个Action总是处于可调用的状态，因<br>而界面上的选项将总是处于激活的状态。而“Conditionally Enabled (use CookieAction)”则是根据当前所选择的界面对象的状态和条件，来决定是否激活Action。关<br>于界面上看到的DataObject，Node和Cookie等，我们将在后续的内容中介绍。这里简单起见，选择“Always Enabled”，下一步的界面“GUI Registration”：</p><br><p><br><img src="http://developers.sun.com.cn/system/galleries/pics/ISVs/GuiReg.jpg" alt="GuiReg" width="621" border="0" height="685"></p><br><p>容易推测出，这一步为Action在界面上注册一个调用入口，并且指定它的位置。它可以是一个菜单项，也可以工具条上的按钮，或者对应某个快捷键等。指定Toolbar和Position之后，在<br>接下来的步骤中指定类名GoogleAction等信息后，就完成了Action模板的建立。</p><br><p>让我们看看Netbeans自动为我们做了什么：</p><br><ul><li><br><strong>GoogleAction.java</strong>：新生成的CallableSystemAction的子类。注意，在代码中，i<br>mport了org.openide.util等package。这意味着本 module依赖了其它的module。</li><li><br><strong>Layer.xml</strong>：被修改。因为增加了新的action以及工具条选项。在之前提到的“FileSystem”下，新增加了一些“folder”和“file”。 这些“<br>folder”和“file”正描述了这个action以及界面注册的情况等等。</li><li><br><strong>Project metadata</strong>：被修改。因为增加了新的module dependency。</li></ul><br><p>4. 基于自动生成的模板，运用Netbeans API编写代码，实现所需功能。</p><br><p>本例将创建JPanel 表单，并和GoogleAction关联。在项目名字上右键弹出的菜单中，选择“new”-&gt; “JPanel Form”，在生成的Panel界面上，建立表单，编<br>写代码实现Google Search。最后重载GoogleAction类的getToolbarPresenter()方法，将JPanel实例作为返回值，即可。具体的步骤请参见<br><a href="http://platform.netbeans.org/tutorials/nbm-google.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-google.html</a><br><br></p><br><p>5. 测试和安装</p><br><p>这两步也非常简单。选择右键菜单中的“Install/Reload in Target Platform”，即可以测试。选择“Create NBM”，可以创建可发布的nbm文件，<br>用户则可以用菜单中的“Tools”-&gt;“Update Center”来安装。如果想卸载，则可用“Tools”-&gt; “Module Manager”功能。</p><br><p>这是非常简单的例子，但是在这个例中，我们介绍了plugin module的几种类型，创建和发布plugin module的一般步骤，module的基本组成，如何解决 netbeans<br>module dependency，怎么扩展系统的菜单，以及action API的基本用法。但是，在这个示例的介绍中，也留下了很多疑问，比如什么是 System FileSystem，D<br>ataObject，Node等等。在下文中，将比较深入的介绍基于netbeans平台，进行Plugin Module开发所涉及到的基本概念，以及其中API的使用。</p><br><p>　</p><br><h2>基本概念 &amp; API</h2><br><p>我们知道，构建一个框架或者平台软件，必须考虑平台的通用性以及模块和平台之间的接口。当我们学习怎么基于netbeans的平台，做模块开发的时候，不仅 是单纯的开发过程，也<br>是一个了解netbeans的设计思想的过程。<br><br></p><br><h3>文件系统 (FileSystem)</h3><br><p>在netbeans 3.x的版本的IDE中，开发者经常要mount“filesystem”到一个虚拟的名字空间中，每个文件系统都有一个根（“root”），所<br>有在这个根下的文件都存于这个名字空间中。在netbeans 4.0以后，对于普通IDE使用者而言，在界面上，文件系统的概念已经不存在了，但是类似的概念仍然存在于IDE的基础架构中，开发plugin<br>module仍需涉及。</p><br><p>Netbeans中，文件系统（FileSystem）扮演着双重角色：它既可以代表磁盘上的物理文件系统，也可以代表IDE和module的配置数据构成的虚拟的文件系统。基于IDE<br>的配置数据的文件系统称为“System FileSystem”。在当前的FileSystem API中，可以从一个称为Repository的singleton对象里，用<br>Repository.getDefault().getDefaultFileSystem()方法获得“System FileSystem”，开发者利用System FileSystem，存<br>取系统的配置数据，以及特定配置目录下的磁盘文件。其它常见的文件系统有JarFileSystem和LocalFileSystem等。LocalFileSystem代表本地磁盘的文件系统。无论是物理的，还<br> 是虚拟的文件系统，它们都共享FileSystem的抽象特性，以及基于其上的FileObject，DataObject，Node等概念。</p><br><p>从文件系统中，获得的是FileObject对象，它提供关于文件对象的基础信息（名字，父对象，是否存在等），和在对象上的操作（移动，删除等）。FileObject和<br>java.io.File的主要不同之一在于FileObject提供了change listener的机制。另外，FileObject并不一定是代表磁盘上的物理文件，这种情况在接下来介绍中，可<br>以看到实例。</p><br><p>物理的文件系统（如LocalFileSystem）是比较好理解的，可以参考相关API。这里，我们更需要关注关于System FileSystem的几个基本问题：<br><br>1. Netbeans plugin的配置数据是如何表示的？<br><br>2. 配置数据与System FileSystem的关系？<br><br>3. System FileSystem的根（“root”）在哪里？<br><br>4. System FileSystem的扩展点<br><br>5. 如何取得System FileSystem根下的物理文件？<br><br>6. 如何取得System FileSystem里的虚拟文件对象？<br><br></p><br><p>上文提到，每个module都是通过一个“layer.xml”文件来保存配置数据，文件中包含一些虚拟的“文件”和“目录”。这些layer.xml合并在一起就构成了System<br>FileSystem。module就是通过这种方式把配置数据加载到系统中。在module的jar文件中的manifest中，指明了这个layer.xml所处的位置，例如:</p><br><p>OpenIDE-Module-Layer: org/myorg/myfirstmodule/layer.xml<br><br></p><br><p>根据这个信息，可以在classes目录中找到这个文件。</p><br><p>一个简单的layer.xml文件就像：<br><br><br><code>&lt;folder name=”Actions”&gt;&nbsp;&nbsp;&nbsp;<br><br> &nbsp; &lt;folder name=”Edit”&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br> &nbsp;&nbsp;&nbsp; &lt;file<br>name=”org-myorg-myfirstmodule-GoogleAction.instance”/&gt;&nbsp;&nbsp;&nbsp;<br><br> &nbsp; &lt;/folder&gt;<br><br> &lt;/folder&gt;<br><br><br><br> &lt;folder name=”Toolbars”&gt;<br><br> &nbsp; &lt;folder name=”Edit”&gt;<br><br> &nbsp;&nbsp;&nbsp; &lt;attr<br>name=”org-openide-actions-FindAction.instance/org-myorg-myfirstmodule-GoogleAction.shadow”<br>boolvalue=”true”/&gt;<br><br> &nbsp;&nbsp;&nbsp; &lt;file name=”org-myorg-myfirstmodule-GoogleAction.shadow”&gt;<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;attr name=”originalFile”<br>stringvalue=”Actions/Build/org-myorg-myfirstmodule-GoogleAction.instance”/&gt;<br><br> &nbsp;&nbsp;&nbsp; &lt;/file&gt;<br><br> &nbsp; &lt;/folder&gt;<br><br> &lt;/folder&gt;<br><br><br><br> &lt;folder name=”myFolder”&gt;&nbsp;<br><br> &nbsp; &lt;file name=”vFile”&gt;<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;attr name=”attr1”<br>stringvalue=”attrValue”/&gt;&nbsp;&nbsp;&nbsp;<br><br> &nbsp; &lt;/file&gt;&nbsp;&nbsp;&nbsp;<br><br> &nbsp; &lt;file name=”myFile.txt” url=”resource/realfile”/&gt;<br><br> &lt;/folder&gt;<br><br></code><br><br>其中有一些“folder”是系统预先定义好的，比如，例中的“Actions”和“Toolbars”，当module往IDE的toolbar上添加新的选项的时候，在 “Toolbars”以<br>及它的子目录下，必然出现对应与这个新选项的“file”条目和相关的属性。可以看到，这些预定义的folder正是这个系统的扩展点。</p><br><p>还有一些folder是用户自定义的，比如例中的“myFolder”，注册于System FileSystem中，可以动态保存用户自己的配置或者资源信息。这些信息可以以虚拟文件的形式，存<br>于layer.xml中：</p><br><p><br><code>FileObject vFile =<br>Repository.getDefault().getDefaultFileSystem().findResource(“myFolder/vFile”);<br><br> System.out.println(“the attr is:” + vFile.getAttribute(“attr1”));<br><br></code></p><br><p>程序将打印出”the attr is attrValue”。这是一个在System FileSystem中代表虚拟文件的FileObject的例子。当然，如果需要一个物理文件作为实体，也可以用“<br> url”属性建立虚拟文件和物理文件之间的映射。如例中的<br><code>&lt;file name=”myFile.txt” url=”resource/realfile”/&gt;</code>。 用下面的代码，程<br>序将获得相对于layer.xml路径的”resource/realfile”物理文件，并且构造出File Object：<br><br><br><br><br><code>FileObject res =<br>Repository.getDefault().getDefaultFileSystem().findResource(“myFolder/myFile.txt”);</code></p><br><p>另外，在运行过程中，还可以在System FileSystem的根下，往myFolder目录下添加新的物理目录和文件：</p><br><p><br><code>FileObject myFolder =<br>Repository.getDefault().getDefaultFileSystem().getRoot().getFileObject(“myFolder”);<br>myFolder.createData(“newFile”);</code></p><br><p>程序将获得System FileSystem根下myFolder目录对应的FileObject，并调用createData方法，在这个目录下创建一个“newFile”文件。在<br>module的开发调试环境中这个“根“位于&lt;myModulePath&gt;\build\testuserdir\config，在以nbm的格式安装下，位<br>于&lt;userdir&gt;.netbeans\5.5\config目录下（在windows环境中，&lt;userdir&gt;常见于“C:\Documents and<br>Settings\&lt;useraccount&gt;”）。</p><br><p>更cool的是，在System FileSystem中，可以使FileObject成为java对象的工厂。在上例中以.instance为后缀的文件，就是这样的例子。我们在介绍Data<br>System API的时候会详细介绍。</p><br><p>可见，在netbeans中，文件系统以及文件对象扮演了多种角色，但是它们基于同一抽象的特性，使下面介绍的DataObject，Node等能广泛适用。</p><br><h3>数据系统 （Data System）</h3><br><p>DataObject是FileObject的wrapper。FileObject代表的是一个类似于文件的实体，而DataObject代表的则是文件内容的模型。文件类型是通过后缀名来标志的，一<br>般来说不同的文件类型对应于不同的DataObject的实现。DataLoader是创建DataObject的工厂类，如果程序需要支持新的文件类型，则应实现相应的DataLoader<br>和DataObject，并在module的manifest中注册，如：<br><br></p><br><p>Name: org/netbeans/modules/povray/PovDataLoader.class<br><br>OpenIDE-Module-Class: Loader</p><br><p>如果不需要支持新的文件类型，则不用和DataLoader打交道。只须用下面的方法获得某个fileobject的DataObject：<br><br><br><br><br><code>DataObject.find(someFileObject)；</code></p><br><p>和DataObject交互的方式是通过getCookie()和getLookup()方法。这两个方法应该是可以互换的。getCookie()在将来的netbeans版本中，将<br>被getLookup所替代。注意，这里的Cookie和http协议中的Cookie没有关系。它代表的是这个DataObject能够提供的操作或者服务。用法如下：</p><br><pre><code>OpenCookie open = someDataObject.getCookie (OpenCookie.class);<br><br><br><br>  if (open != null) {<br><br>     open.open();<br><br>  }</code><br></pre><br><p>如果在someDataObject上如果支持open操作，则从这个DataObject中获得实现了OpenCookie接口的对象，然后调用这个对象上的open操作。这样，DataObject<br>中并不实现具体的操作，接口实现代码封装在cookie中，通过getCookie和getLookup（关于Lookup，在后面介绍）的编程接口，提供给调用者。</p><br><p>前面提到，System FileSystem中，以.instance为后缀的文件构造的FileObject，能成为java对象的工厂。让我们看看是怎么实现的：在例中的lay.xml中，<br><code><br><br><br><br> //fo中包含了要构造的对象的类名。<br><br> FileObject fo =<br>Repository.getDefault().getDefaultFileSystem().findResource(“Actions/Edit/org-myorg-myfirstmodule-GoogleAction.instance”)<br><br><br><br> DataObject dobject = DataObject.find(fo); //根据后缀名，获得DataObject对象。<br><br> InstanceCookie ic = dobject.getCookie(InstanceCookie.class) //从DataObject中，获<br>得InstanceCookie的实现<br><br> if (ic != null) { //如果该DataObject支持创建新的实例的操作<br><br> &nbsp; GoogleAction myAction = (GoogleAction)ic.createInstance(); //利用Cookie接口，创建Java对象<br><br> }</code></p><br><p>和以.instance为后缀名的情况类似，如果文件对象的后缀名是.ser，即对象的串行化的结果文件，也可以通过获得InstanceCookie的方法来创建被串行化的对象。<br><br></p><br><h3>节点（Nodes）<br><br></h3><br><p>前面提到，FileObject是文件的抽象，DataObject是文件内容的模型，而Node是表现层的对象。它们有actions（操作），properties（属性），本<br>地化的显示名称以及图标等等，封装了对象在人机接口方面的特性。需要注意的是，Netbeans 的Node不是GUI对象，和JDK中的TreeNode没有继承关系。但类似的是，它一般来说，也<br>是一个树型结构，每一个Node有Children对象，提供子节点的列表。<br><br></p><br><ul><li>Node和Lookup<br><br>和DataObject类似，每个Node对象都有一个Lookup对象，来存储上下文相关的信息。对于两者而言，调用者都可以通过getLookup方法获得 其上下文以及支持的操作。同<br>样Node也有getCookie方法，但是它的典型实现是，代理给了DataObject的getCookie()方法。<br><br><br><br>Node实例中的Lookup对象是如何设置的呢？这里列举几种方法：<br><br>－ 在API中，有可能用到Node的基本实现类AbstractNode(注意，它其实并不是一个抽象类), 在AbstractNode的构造方法中，可以以Lookup为参数。<br><br>－ 从DataObject中调用用getNodeDelegate()方法获得的Node对象，可能已经包含了Lookup。<br><br>－ 子类如从FilterNode继承，则子类的Lookup可以从代理Node对象中获得。<br><br>－ 子类中重载Node的getLookup方法，返回所需的Lookup对象<br><br><br><br>至于Lookup的详细说明，以及怎么创建一个Lookup对象，见下章节。</li></ul><br><ul><li>Node和Explorer Views<br><br>Explorer Views是界面对象，Node可以用不同的View展现出来。这些View对象包含在Explorer &amp; Property Sheet API中，比<br>如BeanTreeView用来显示Node 的树型结构，ListView用来显示Node的列表等。至于怎样用View去展现Node，会在Explorer API中介绍。</li></ul><br><ul><li>Node和DataObject<br><br>DataObject可以用Node，也可以不用Node来表现。同样，Node后面的数据，可以是DataObject，也可以不是DataObject。但是，在某些场景下是互相关联的，它们<br>之间也有API可以方便的互相转换。比如，希望用界面树型组件来显示磁盘上的某个目录结构，或者System FileSystem中的虚拟目录。很自然，从FileSystem，到 FileObject，D<br>ataObject，Node，最后用Explorer View显示出来。<br><br><br><br>现在我们从编程的角度，看看FileSystem，FileObject, DataObject, Node之间调用和转换关系：<br><br><br><code><br><br>//Find a file on disk<br><br> FileObject f =<br>Repository.getDefault().getDefaultFilesystem().getRoot().getFileObject(“lsome/folder/someFile.txt”);<br><br><br><br> //or if something passes you a File…<br><br> FileObject f = FileUtil.toFileObject (new File(“some/folder/someFile.txt”));<br><br><br><br><br><br> //Turn a FileObject into a File (may fail for virtual filesystems)<br><br> File f = FileUtil.toFile (someFileObject)<br><br><br><br> //Get the DataObject for a FileObject<br><br> DataObject obj = DataObject.find (someFileObject)<br><br><br><br> //Get the FileObject a DataObject represents<br><br> FileObject file = someDataObject.getPrimaryFile();<br><br><br><br> //Get the Node that represents a FileObject<br><br> Node n = someDataObject.getNodeDelegate();<br><br><br><br> //Get the DataObject a Node represents (if any)<br><br> DataObject obj = (DataObject) someNode.getLookup().lookup(DataObject.class);</code></li></ul><br><ul><li>Node和Action<br><br>Node可以提供一组Actions，这些Actions表示在该node被选中的时候，右键弹出菜单中将显示的项目。在这组Actions中，开<br>发者可以加入一个AbstractAction的子类， 也可以从SystemAction中获得系统菜单中支持的如“delete”，“copy”，“save”等Action。如下例所示：<br><br><br><code><br><br>public Action[] getActions(boolean popup) {<br><br> &nbsp;&nbsp;&nbsp; DataFolder df = (DataFolder)getLookup().lookup(DataFolder.class);<br><br> &nbsp;&nbsp;&nbsp; return new Action[] {<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new AddRssAction(df),<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SystemAction.get(DeleteAction.class),<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SystemAction.get(SaveAction.class)<br><br> &nbsp;&nbsp;&nbsp; };<br><br><br><br> }&nbsp;</code><br><p>当该Node被选中，在点击右键弹出的菜单中，会有三个选项，一个是“add”操作，操作的实现在AddRssAction中，该操作是在激活状态，因为AddRssAction就是这<br>个action的实现；第二个是系统Action中的“delete”操作。操作如“delete”，“copy”，“paste”，“cut”，它们的实现可以由ExploreUtil的工厂方法来 提供，它<br>们的激活与否是由ExploreManager以及当前的剪贴板等状态来控制的。第三个选项是系统Action中的“save”操作，它的激活与否在于该Node的Lookup或者<br>cookie中有没有SaveCookie的实现。简而言之，getActions（）返回了右键菜单中的选项，但是这些选项是否激活，取决于运行系统是否能以各种方式获得对应action的 实现。&lt;<br>/p&gt;</p></li></ul><br><h3>Lookup</h3><br><p>在DataObject和Node的介绍中，多次提到Lookup。Lookup（<br><a href="http://www.netbeans.org/download/dev/javadoc/org-openide-util/org/openide/util/Lookup.html）类，是" target="_blank" rel="noopener">http://www.netbeans.org/download/dev/javadoc/org-openide-util/org/openide/util/Lookup.html）类，是</a><br>被广泛应用于netbeans API中一个很重要的概念，我们也可以把它看成是Netbeans版本的IoC的实现，它也是各个模块之间实现decouple的关键所在。可以先简单的把它理解为，它<br>是一个Map，其中keys是class对象，对应每个key的value，是这个class的实例。一般来说，这个class对象是一个interface，定义了某服务的接口，而class实例，是<br>这个服务的实现。</p><br><p>在Netbeans中，有两种Lookup的用法。一种是用于从全局的服务登记表中获得某个服务的实现，Lookup.getDefault()调用返回的Lookup对象，即这个全局的服务登记表；另<br>一种，局部的用法，用来查询某个对象是否支持某个服务，并且获得它所支持的服务的实现。很多类型的对象都有自己的Lookup，比如TopComponent，DataObject，Node等等，可<br>以用类似于obj.getLookup()调用来获得obj的Lookup，这个Lookup对象里存的是当前上下文信息。对于调用者来说，只需获得它所关心的对象的Lookup，从中检索并调用相应的服务。&amp;<br>amp; amp; amp; lt; /p&gt;</p><br><p>这里我们主要探讨一下Lookup的局部用法。用户在IDE环境中的常用操作之一是，移动焦点，并且“选择”某个对象，在这个对象上执行相应操作。当前焦点所在的对象，也称当前选中的对象，活动的对象，或<br>者处于激活状态的对象。Netbeans IDE菜单中的常见功能，比如“打开”，是在当前所选中的对象上执行“打开”操作。显然对于不同的对象，“打开”操作的实现是不一样的。当选择不同的对象的时候，也<br>可见属性窗口中的属性值随着对象的不同而变化。那么在同样一个框架下，如何判断某个特定对象是否支持“打开”这样的公用操作，并且执行操作？当焦点对象变化的时候，框架如何得到通知，从而作相应的变化？在<br>Netbeans中，Lookup就是解决类似问题的答案。</p><br><p>例如下面这个例子就是从Node对象中获得它的Lookup：</p><br><pre><code>Node[] n = TopComponent.getRegistry().getActivatedNodes();<br><br><br><br>    if (n.length == 1) {<br><br>        OpenCookie oc = (OpenCookie) n[0].getLookup().lookup(OpenCookie.class);<br><br>       if (oc != null) {<br><br>         oc.open();<br><br>        }<br><br>  }</code><br></pre><br><p>这段代码，就可以用于实现上文描述的关于“打开”操作的场景，Lookup的应用，使得“打开”这个操作不需关心当前活动的节点的内容，也不用关心该节点将怎么执行 “打开”操作，只<br>要这个节点的Lookup中能够检索到OpenCookie接口的实现，调用其open函数即可。这样就实现了模块之间的解耦。关于Lookup的更细节的用法说明，请参见：</p><br><p>Lookup的基本概念：<br><br><a href="http://openide.netbeans.org/lookup/" target="_blank" rel="noopener">http://openide.netbeans.org/lookup/</a><br><br><br><br>用Lookup SPI构造自己的Lookup：<br><br><a href="http://www.netbeans.org/download/dev/javadoc/org-openide-util/org/openide/util/lookup/doc-files/lookup-spi.html" target="_blank" rel="noopener">http://www.netbeans.org/download/dev/javadoc/org-openide-util/org/openide/util/lookup/doc-files/lookup-spi.html</a><br><br><br><br>Lookup API的使用：<br><br><a href="http://www.netbeans.org/download/dev/javadoc/org-openide-util/org/openide/util/lookup/doc-files/lookup-api.html" target="_blank" rel="noopener">http://www.netbeans.org/download/dev/javadoc/org-openide-util/org/openide/util/lookup/doc-files/lookup-api.html</a><br><br>　</p><br><h3>Window System</h3><br><p>在Window System API中，最常用到的是TopComponent类，它是可嵌入式的窗口组件的父类，负责跟Netbeans的窗口系统交互。在<br>前面介绍Netbeans提供的代码模板类型中，就提到TopComponent。选择“Window Component”模板自动生成的java类，就是TopComponent的子类。Top<br>component可以是一个单独的窗口，也可以嵌入在tab页中。Netbeans的整个界面环境被划分为不同的部分，每个部分都有名称。比如：“explorer”，一般指位于界面左上角位置的窗口部分，“<br>Project”，“Files”，“Runtime”这些都是位于“explorer”位置的窗口组件。”Editor”，指的是位于界面中间的部分，比如各种编辑器都是位于这个部分。生成新的窗口组件时，会<br>要求指定窗口所处的位置。</p><br><p>每一个TopComponent实例都有一个Lookup的对象来标志其上下文，有一组Explorer view对象作为其界面元素，和一个或者多个激活的节点（Nodes）。程序中，一<br>般用associateLookup方法来设置TopComponent的Lookup对象，而当前激活的nodes则一般从下文将要介绍的ExplorerManager中得到。</p><br><h3>Explorer &amp; Explorer Views</h3><br><p>Nodes提供了一组层次化的对象，而Explorer API则提供了界面对象（Explorer View）来显示这些Nodes。但是Nodes和界面对象view之间，并没有直接的调用关系，它<br>们之间的交互是通过ExplorerManager来实现的。用MVC的观点看，ExplorerManager就是Controller，它提供一个或者多个view要显示的node内容，管<br>理了views之间的共享的状态，如当前选中的节点和它的Lookup。当用户在某个view上的操作导致共享状态的改变时，该view对象会调用ExplorerManager的方法更新共享状态，E<br>xplorerManager再将共享状态的改变通知到其它的view。结合这些概念，来看一段代码：</p><br><pre><code>class FeedTopComponent extends TopComponent implements ExplorerManager.Provider {<br><br>        private final ExplorerManager manager = new ExplorerManager();<br><br>        private final BeanTreeView view = new BeanTreeView();<br><br>        private FeedTopComponent() {  <br><br>             add(view, BorderLayout.CENTER);<br><br>            view.setRootVisible(true);  <br><br>             try {      <br><br>                 manager.setRootContext(new RssNode.RootRssNode());  <br><br>             } catch (DataObjectNotFoundException ex) {      <br><br>                 ErrorManager.getDefault().notify(ex);  <br><br>             }<br><br>            ActionMap map = getActionMap();  <br><br>             map.put(“delete”, ExplorerUtils.actionDelete(manager, true));  <br><br>             associateLookup(ExplorerUtils.createLookup(manager, map));<br><br>        }<br><br><br><br>       public ExplorerManager getExplorerManager() {  <br><br>             return manager;<br><br>        }<br><br>        ………..<br><br>  }</code><br><br><br></pre><br><p>示例中，FeedTopComponent即上文提到的TopComponent的子类，BeanTreeView作为一个Explorer View对象加入到了窗口对象中。B<br>eanTreeView需要显示的节点，以及共享状态是由ExplorerManager来控制的。通过调用ExploreManager的setRootContext方法，设置了这组节点的根。</p><br><p>因为ExplorerManager管理了nodes的状态，所以前面提到能从TopComponent窗口实例中获得一组当前激活的节点，实际上，是从其内置的ExplorerManager 中获得。T<br> opComponent的Lookup对象用ExplorerUtils.createLookup（ExplorerManager，ActionMap）方法创建，使<br>得TopComponent的Lookup实际上，代理给了由ExplorerManager管理下的当前活动节点的Lookup和ActionMap中支持的action操作。</p><br><p>ActionMap对象维护了action的名字和对应的action实现的映射。示例中，ActionMap添加了“delete”操作，通<br>过把ActionMap和ExplorerManager一起加入到TopComponent的lookup中，使“delete”操作能够在ExplorerManager管理下的nodes上执行。也<br>就是说当某个node选中的时候，系统的“delete”菜单会被激活。</p><br><h3>其它的API</h3><br><p>Netbeans中还有很多别的API，可以参见Netbeans的网站上javadoc和相关资料。当然关于API的了解，往往也是在实际运用中得到增强的。</p><br><h3>总结</h3><br><p>本文首先介绍了创建Netbeans Plugin Module的一般步骤，然后就开发过程中要涉及到的基本概念做了探讨，目的在于了解Netbeans Plugin<br>Module开发中的基本思想和要素，为更深入的学习和理解打下一定的基础。</p><br><h3>参考文档</h3><br><p><br><a href="http://platform.netbeans.org/tutorials/index.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/index.html</a></p><br><p><br><a href="http://www.netbeans.org/download/dev/javadoc/" target="_blank" rel="noopener">http://www.netbeans.org/download/dev/javadoc/</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/NetBeans/" rel="tag"># NetBeans</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj7f00tdxwrqt8o8qj41/" rel="next" title="敏捷开发最佳实践:Model Storming">
+                <i class="fa fa-chevron-left"></i> 敏捷开发最佳实践:Model Storming
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j4b008bl6rqg5jj290b/" rel="prev" title="带有排序和过滤功能的JTable">
+                带有排序和过滤功能的JTable <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">创建Plugin Module的一般步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">基本概念 &amp; API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">文件系统 (FileSystem)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">数据系统 （Data System）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">节点（Nodes）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Lookup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Window System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">Explorer &amp; Explorer Views</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">其它的API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

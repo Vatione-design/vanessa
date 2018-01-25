@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="转自：http://www.cnblogs.com/sanshi/archive/2009/07/08/1519251.html此文章真是通俗易懂&amp;nbsp;&amp;nbsp;这一章我们将会重点介绍JavaScript中几个重要的属性（this、constructor、prototype）， 这些属性对于我们理解如何实现JavaScript中的类和继承起着至关重要的作用。 thisthis表示当前对象，">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript继承详解（二）">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzim8008bxwrqmriqm5so/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="转自：http://www.cnblogs.com/sanshi/archive/2009/07/08/1519251.html此文章真是通俗易懂&amp;nbsp;&amp;nbsp;这一章我们将会重点介绍JavaScript中几个重要的属性（this、constructor、prototype）， 这些属性对于我们理解如何实现JavaScript中的类和继承起着至关重要的作用。 thisthis表示当前对象，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T11:00:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript继承详解（二）">
+<meta name="twitter:description" content="转自：http://www.cnblogs.com/sanshi/archive/2009/07/08/1519251.html此文章真是通俗易懂&amp;nbsp;&amp;nbsp;这一章我们将会重点介绍JavaScript中几个重要的属性（this、constructor、prototype）， 这些属性对于我们理解如何实现JavaScript中的类和继承起着至关重要的作用。 thisthis表示当前对象，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzim8008bxwrqmriqm5so/"/>
+
+
+
+
+
+  <title>JavaScript继承详解（二） | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzim8008bxwrqmriqm5so/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript继承详解（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-08-15T04:59:00+08:00">
+                2009-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转自：<a href="http://www.cnblogs.com/sanshi/archive/2009/07/08/1519251.html" target="_blank" rel="noopener">http://www.cnblogs.com/sanshi/archive/2009/07/08/1519251.html</a></p><br><p>此文章真是通俗易懂</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>这一章我们将会重点介绍JavaScript中几个重要的属性（this、constructor、prototype）， 这些属性对于我们理解如何实现JavaScript中的类和继承起着至关重要的作用。 </p><br><h2>this</h2><br><p>this表示当前对象，如果在全局作用范围内使用this，则指代当前页面对象window； 如果在函数中使用this，则this指代什么是根据运行时此函数在什么对象上被调用。 我们还可以使用apply和call两个全局方法来改变函数中this的具体指向。 </p><br><p>先看一个在全局作用范围内使用this的例子： </p><br><pre class="cnblogs_code">        &lt;script type=&quot;text/javascript&quot;&gt;<br><br>            console.log(this === window);  // true<br><br>            console.log(window.alert === this.alert);  // true<br><br>            console.log(this.parseInt(&quot;021&quot;, 10));  // 10<br><br>        &lt;/script&gt;<br><br>        </pre><br><p>&nbsp;</p><br><p>函数中的this是在运行时决定的，而不是函数定义时，如下： </p><br><pre class="cnblogs_code">        // 定义一个全局函数<br><br>        function foo() {<br><br>            console.log(this.fruit);<br><br>        }<br><br>        // 定义一个全局变量，等价于window.fruit = &quot;apple&quot;;<br><br>        var fruit = &quot;apple&quot;;<br><br>        // 此时函数foo中this指向window对象<br><br>        // 这种调用方式和window.foo();是完全等价的<br><br>        foo();  // &quot;apple&quot;<br><br><br><br>        // 自定义一个对象，并将此对象的属性foo指向全局函数foo<br><br>        var pack = {<br><br>            fruit: &quot;orange&quot;,<br><br>            foo: foo<br><br>        };<br><br>        // 此时函数foo中this指向window.pack对象<br><br>        pack.foo(); // &quot;orange&quot;<br><br>        </pre><br><p>&nbsp;</p><br><p>全局函数apply和call可以用来改变函数中this的指向，如下： </p><br><pre class="cnblogs_code">        // 定义一个全局函数<br><br>        function foo() {<br><br>            console.log(this.fruit);<br><br>        }<br><br>        <br><br>        // 定义一个全局变量<br><br>        var fruit = &quot;apple&quot;;<br><br>        // 自定义一个对象<br><br>        var pack = {<br><br>            fruit: &quot;orange&quot;<br><br>        };<br><br>        <br><br>        // 等价于window.foo();<br><br>        foo.apply(window);  // &quot;apple&quot;<br><br>        // 此时foo中的this === pack<br><br>        foo.apply(pack);    // &quot;orange&quot;<br><br>        </pre><br><p>注：apply和call两个函数的作用相同，唯一的区别是两个函数的参数定义不同。<br></p><br><p>&nbsp;</p><br><p>因为在JavaScript中函数也是对象，所以我们可以看到如下有趣的例子： </p><br><pre class="cnblogs_code">        // 定义一个全局函数<br><br>        function foo() {<br><br>            if (this === window) {<br><br>                console.log(&quot;this is window.&quot;);<br><br>            }<br><br>        }<br><br>        <br><br>        // 函数foo也是对象，所以可以定义foo的属性boo为一个函数<br><br>        foo.boo = function() {<br><br>            if (this === foo) {<br><br>                console.log(&quot;this is foo.&quot;);<br><br>            } else if (this === window) {<br><br>                console.log(&quot;this is window.&quot;);<br><br>            }<br><br>        };<br><br>        // 等价于window.foo();<br><br>        foo();  // this is window.<br><br>        <br><br>        // 可以看到函数中this的指向调用函数的对象<br><br>        foo.boo();  // this is foo.<br><br>        <br><br>        // 使用apply改变函数中this的指向<br><br>        foo.boo.apply(window);  // this is window.<br><br>        </pre><br><p>&nbsp;</p><br><h2>prototype</h2><br><p>我们已经在第一章中使用prototype模拟类和继承的实现。 prototype本质上还是一个JavaScript对象。 并且每个函数都有一个默认的prototype属性。 <br><br>如果这个函数被用在创建自定义对象的场景中，我们称这个函数为构造函数。 比如下面一个简单的场景： </p><br><pre class="cnblogs_code">        // 构造函数<br><br>        function Person(name) {<br><br>            this.name = name;<br><br>        }<br><br>        // 定义Person的原型，原型中的属性可以被自定义对象引用<br><br>        Person.prototype = {<br><br>            getName: function() {<br><br>                return this.name;<br><br>            }<br><br>        }<br><br>        var zhang = new Person(&quot;ZhangSan&quot;);<br><br>        console.log(zhang.getName());   // &quot;ZhangSan&quot;<br><br>        </pre><br><p>作为类比，我们考虑下JavaScript中的数据类型 - 字符串（String）、数字（Number）、数组（Array）、对象（Object）、日期（Date）等。 我们有理由相信，在JavaScript内部这些类型都是作为构造函数来实现的，比如： </p><br><pre class="cnblogs_code">        // 定义数组的构造函数，作为JavaScript的一种预定义类型<br><br>        function Array() {<br><br>            // …<br><br>        }<br><br>        <br><br>        // 初始化数组的实例<br><br>        var arr1 = new Array(1, 56, 34, 12);<br><br>        // 但是，我们更倾向于如下的语法定义：<br><br>        var arr2 = [1, 56, 34, 12];<br><br>        </pre><br><p>同时对数组操作的很多方法（比如concat、join、push）应该也是在prototype属性中定义的。 <br><br>实际上，JavaScript所有的固有数据类型都具有只读的prototype属性（这是可以理解的：因为如果修改了这些类型的prototype属性，则哪些预定义的方法就消失了）， 但是我们可以向其中添加自己的扩展方法。 </p><br><pre class="cnblogs_code">        // 向JavaScript固有类型Array扩展一个获取最小值的方法<br><br>        Array.prototype.min = function() {<br><br>            var min = this[0];<br><br>            for (var i = 1; i &lt; this.length; i++) {<br><br>                if (this[i] &lt; min) {<br><br>                    min = this[i];<br><br>                }<br><br>            }<br><br>            return min;<br><br>        };<br><br>        <br><br>        // 在任意Array的实例上调用min方法<br><br>        console.log([1, 56, 34, 12].min());  // 1<br><br>        </pre><br><p><br><br>注意：这里有一个陷阱，向Array的原型中添加扩展方法后，当使用for-in循环数组时，这个扩展方法也会被循环出来。 <br><br>下面的代码说明这一点（假设已经向Array的原型中扩展了min方法）： </p><br><pre class="cnblogs_code">        var arr = [1, 56, 34, 12];<br><br>        var total = 0;<br><br>        for (var i in arr) {<br><br>            total += parseInt(arr[i], 10);<br><br>        }<br><br>        console.log(total);   // NaN<br><br>        <br><br>        </pre><br><p>解决方法也很简单： </p><br><pre class="cnblogs_code">        var arr = [1, 56, 34, 12];<br><br>        var total = 0;<br><br>        for (var i in arr) {<br><br>            if (arr.hasOwnProperty(i)) {<br><br>                total += parseInt(arr[i], 10);<br><br>            }<br><br>        }<br><br>        console.log(total);   // 103<br><br>        </pre><br><p>&nbsp;</p><br><h2>constructor </h2><br><p>constructor始终指向创建当前对象的构造函数。比如下面例子： </p><br><pre class="cnblogs_code">        // 等价于 var foo = new Array(1, 56, 34, 12);<br><br>        var arr = [1, 56, 34, 12];<br><br>        console.log(arr.constructor === Array); // true<br><br>        // 等价于 var foo = new Function();<br><br>        var Foo = function() { };<br><br>        console.log(Foo.constructor === Function); // true<br><br>        // 由构造函数实例化一个obj对象<br><br>        var obj = new Foo();<br><br>        console.log(obj.constructor === Foo); // true<br><br>        <br><br>        // 将上面两段代码合起来，就得到下面的结论<br><br>        console.log(obj.constructor.constructor === Function); // true<br><br>        </pre><br><p>&nbsp;</p><br><p>但是当constructor遇到prototype时，有趣的事情就发生了。 <br><br>我们知道每个函数都有一个默认的属性prototype，而这个prototype的constructor默认指向这个函数。如下例所示： </p><br><pre class="cnblogs_code">        function Person(name) {<br><br>            this.name = name;<br><br>        };<br><br>        Person.prototype.getName = function() {<br><br>            return this.name;<br><br>        };<br><br>        var p = new Person(&quot;ZhangSan&quot;);<br><br>        <br><br>        console.log(p.constructor === Person);  // true<br><br>        console.log(Person.prototype.constructor === Person); // true<br><br>        // 将上两行代码合并就得到如下结果<br><br>        console.log(p.constructor.prototype.constructor === Person); // true<br><br>        </pre><br><p>当时当我们重新定义函数的prototype时（注意：和上例的区别，这里不是修改而是覆盖）， constructor的行为就有点奇怪了，如下示例： </p><br><pre class="cnblogs_code">        function Person(name) {<br><br>            this.name = name;<br><br>        };<br><br>        Person.prototype = {<br><br>            getName: function() {<br><br>                return this.name;<br><br>            }<br><br>        };<br><br>        var p = new Person(&quot;ZhangSan&quot;);<br><br>        console.log(p.constructor === Person);  // false<br><br>        console.log(Person.prototype.constructor === Person); // false<br><br>        console.log(p.constructor.prototype.constructor === Person); // false<br><br>        </pre><br><p>为什么呢？ <br><br>原来是因为覆盖Person.prototype时，等价于进行如下代码操作： </p><br><pre class="cnblogs_code">        Person.prototype = new Object({<br><br>            getName: function() {<br><br>                return this.name;<br><br>            }<br><br>        });<br><br>        </pre><br><p>而constructor始终指向创建自身的构造函数，所以此时Person.prototype.constructor === Object，即是： </p><br><pre class="cnblogs_code">        function Person(name) {<br><br>            this.name = name;<br><br>        };<br><br>        Person.prototype = {<br><br>            getName: function() {<br><br>                return this.name;<br><br>            }<br><br>        };<br><br>        var p = new Person(&quot;ZhangSan&quot;);<br><br>        console.log(p.constructor === Object);  // true<br><br>        console.log(Person.prototype.constructor === Object); // true<br><br>        console.log(p.constructor.prototype.constructor === Object); // true<br><br>        </pre><br><p>怎么修正这种问题呢？方法也很简单，重新覆盖Person.prototype.constructor即可： </p><br><pre class="cnblogs_code">        function Person(name) {<br><br>            this.name = name;<br><br>        };<br><br>        Person.prototype = new Object({<br><br>            getName: function() {<br><br>                return this.name;<br><br>            }<br><br>        });<br><br>        Person.prototype.constructor = Person;<br><br>        var p = new Person(&quot;ZhangSan&quot;);<br><br>        console.log(p.constructor === Person);  // true<br><br>        console.log(Person.prototype.constructor === Person); // true<br><br>        console.log(p.constructor.prototype.constructor === Person); // true<br><br>        </pre><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>下一章我们将会对第一章提到的Person-Employee类和继承的实现进行完善。 </p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzioe00arxwrq39v2ntsb/" rel="next" title="Modernizr: start implementing CSS 3 and HTML5 features now">
+                <i class="fa fa-chevron-left"></i> Modernizr: start implementing CSS 3 and HTML5 features now
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j4k008fl6rq644kmv8t/" rel="prev" title="痘痘告诉你，身体哪里生病了">
+                痘痘告诉你，身体哪里生病了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">prototype</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">constructor </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

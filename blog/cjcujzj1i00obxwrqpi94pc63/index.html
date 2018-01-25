@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Work,Management," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="说的很有道理，特别喜欢“他说对于复杂的脑力工作来说，一天工作4个小时以上是完全没有意义且生产力低下的方式。”这句话。    转自：http://www.infoq.com/cn/news/2013/12/are-your-programmers-working        Mike Hadlow是一位资深软件开发者，同时也是EasyNetQ与Suteki Shop的作者，喜爱历史与科技，">
+<meta name="keywords" content="Work,Management">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你的程序员是在努力工作还是在偷懒？">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj1i00obxwrqpi94pc63/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="说的很有道理，特别喜欢“他说对于复杂的脑力工作来说，一天工作4个小时以上是完全没有意义且生产力低下的方式。”这句话。    转自：http://www.infoq.com/cn/news/2013/12/are-your-programmers-working        Mike Hadlow是一位资深软件开发者，同时也是EasyNetQ与Suteki Shop的作者，喜爱历史与科技，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T17:50:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你的程序员是在努力工作还是在偷懒？">
+<meta name="twitter:description" content="说的很有道理，特别喜欢“他说对于复杂的脑力工作来说，一天工作4个小时以上是完全没有意义且生产力低下的方式。”这句话。    转自：http://www.infoq.com/cn/news/2013/12/are-your-programmers-working        Mike Hadlow是一位资深软件开发者，同时也是EasyNetQ与Suteki Shop的作者，喜爱历史与科技，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj1i00obxwrqpi94pc63/"/>
+
+
+
+
+
+  <title>你的程序员是在努力工作还是在偷懒？ | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj1i00obxwrqpi94pc63/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">你的程序员是在努力工作还是在偷懒？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-01-27T19:20:35+08:00">
+                2014-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><br>    说的很有道理，特别喜欢“他说对于复杂的脑力工作来说，一天工作4个小时以上是完全没有意义且生产力低下的方式。”这句话。<br></p><br><p><br>    转自：<a target="_blank" href="http://www.infoq.com/cn/news/2013/12/are-your-programmers-working">http://www.infoq.com/cn/news/2013/12/are-your-programmers-working</a><br></p><br><p><br>    <br><br></p><br><p><br>    <a href="http://java.dzone.com/users/mikehadlow" target="_blank" rel="noopener">Mike Hadlow</a>是一位资深软件开发者，同时也是EasyNetQ与Suteki Shop的作者，喜爱历史与科技，是一个技术极客。近日，Mike就程序员工作效率、工作表现以及工作成果等主题撰写了一篇<a href="http://java.dzone.com/articles/are-your-programmers-working" target="_blank" rel="noopener">博客</a>，谈到了我们该如何看待程序员到底是在努力工作还是在偷懒这个问题。<br></p><br><p><br>    如果人们从事的是体力劳动，那么我们就很容易能够看出他们工作的努力程度。你会直观、清楚地看到他们频繁移动的步伐，流下的汗珠。还会看到他们工作<br>的成果：逐渐升起的砖墙，地上的洞变得越来越深，等等。观察到并奖励努力工作的人是人类的一种很基本的天性，这也是我们觉得忍耐力运动令人着迷的原因之<br>一。不过对于管理技术创造性的员工来说，这种对努力的体力劳动天然的欣赏之情就会出现问题。高效的知识工作者常常看起来并不是那么努力工作。<br></p><br><p><br>    回到2004年，那时我还是一名初级开发者，工作在一个大型团队中，主要从事有线电视公司的账单与供应系统。就像所有的大型系统一样，这个系统由大<br>量相对比较独立的组件构成，不同的小组负责不同的组件开发工作。模拟电视与数字电视供应系统几乎是完全分开的，由两个不同的小组分别进行开发。<br></p><br><p><br>    模拟电视团队决定根据Microsoft<br>Biztalk的一个早期版本来构建他们的系统。团队有4个人以及一个来自于微软的团队共同开发并运行这个系统。他们看起来工作非常努力，常常工作到深<br>夜，周末也在加班加点。当遇到生产问题时，团队的每个人都会放下手头的工作，围拢在一起，提供各种建议和意见，以及如何修复问题的见解。你会看到，这个团<br>队中的每个人都有很强的团队凝聚力，而且他们工作都非常努力。<br></p><br><p><br>    数字电视供应系统则大相径庭。系统的代码几乎是由一个家伙搞定的，我们暂且称这个家伙为Dave吧。我是团队的一名初级维护工程师。一开始，我在理<br>解代码时遇到了很多麻烦。程序中并没有长长的过程语句，相反有大量的小体积类和方法，每个方法的代码也只有寥寥数行而已。我有几个同事抱怨Dave将事情<br>搞得过于复杂了。不过Dave却建议我应该阅读几本关于面向对象编程的图书。他教会了我设计模式、SOLID原则以及单元测试等知识。很快，他所编写的代<br>码开始变得具有现实意义了，随着我不断加深对代码的理解，我也越来越发现它优雅的设计。代码在产品中没有出现问题，只是一直在默默地工作。要想对代码做出<br>修改也是轻而易举的事情，因此实现新的特性简直是手到擒来。单元测试意味着进入到生产系统中的Bug数量变得微乎其微。<br></p><br><p><br>    结果就是我们这个团队看起来工作不那么努力。我每天下午5:30下班，周末也从来不用工作，我们也不必围聚在一起猜测到底是什么原因导致了生产系统<br>的问题。从外人的角度来看，我们所从事的工作肯定要比模拟电视团队的简单得多。事实上，二者的需求非常相像，只是我们开发出了设计更好的软件、提供了更好<br>的支持基础设施，特别是单元测试。<br></p><br><p><br>    管理团队宣布要根据绩效给予员工奖励。轮到老板与我谈话时，他说公平的做法是对那些努力工作的员工给予奖励，工作越努力，奖励力度越大，我们的团队看起来对公司并不那么在意，更无法与那些放弃晚间与周末时间的英雄相提并论。<br></p><br><p><br>    这家有线电视公司有一点与众不同，你可以直接比较好的软件设计与差的软件设计之间的差别，还可以对团队行为进行比较。大多数组织者都并没有提供这一<br>比较。我们很难说某个员工是不是通宵达旦地工作，甚至周末时间也在工作，频繁充当救火队员的角色，这种做法是不是就是复杂软件系统必须要做的呢。除非你可<br>以让几个互相竞争的团队解决同一问题，否则你永远也没法直接比较他们工作上的差别。相反，对于那个坐在角落里，朝九晚五工作的家伙有可能花了很多时间在上<br>网呢？也许他非常善于编写稳定、可靠的代码，也许他的工作要比其他人的简单。对于偶尔过来检查的管理者来说，他们会觉得第一种人工作很努力，第二种人则不<br>是这样。努力工作就很好，偷懒就很不好，真的是这样么？<br></p><br><p><br>    我的看法是表面上的努力工作常常是失败的信号。高压力、频繁中断的环境常常无法开发出好的软件。长时间的工作也不是一种正确的做法。有时，解决难题<br>最好的方式可能是不再思考这个问题，出去走走，或是睡个好觉，让你的潜意识来解决问题。我最喜欢的一本书是G. H. Hardy所编写的<a href="http://en.wikipedia.org/wiki/A_Mathematician%27s_Apology" target="_blank" rel="noopener">A Mathematician’s Apology</a>，他是20世纪英国的一位杰出数学家。这本书描绘了他每天的工作：上午工作4个小时，下午观看板球比赛。他说对于复杂的脑力工作来说，一天工作4个小时以上是完全没有意义且生产力低下的方式。<br></p><br><p><br>    我想对管理者说的是，以结果为导向，根据员工工作的成果，根据可运行的软件为导向，不要被人们表面上的努力工作所蒙蔽。另外，最好不要与你的开发者<br>坐在一起，你会得到更好的结果，不受传统、直觉判断所影响的好结果。远程工作的好处是非常多的，你只能以输出来衡量员工的工作情况，而不是看他们是不是每<br>天端坐8小时盯着IDE在看为标准，或是聚集在一起提出自己的见解为衡量的准则。<br></p><br><p><br>    有读者评论说，文章写的很实在，有时真的很难说服同事设计的简单性与恰当使用OO原则所带来的好处。我就看到有的人以编写复杂代码并工作到深夜为傲。<br></p><br><p><br>    还有读者说，我曾经与一个家伙共事过，他说“第一次就将事情做对的困难之处在于没有人认识到事情会有多么复杂”。几年过去了，我发现这句话非常正确。我现在都会在项目开始前进行大量的提前设计。这常常会让执行变得非常平滑，不过可能会让其他人觉得这件事挺简单的。<br></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Work/" rel="tag"># Work</a>
+          
+            <a href="/blog/tags/Management/" rel="tag"># Management</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6j2b005fl6rq9wii69fb/" rel="next" title="2014年值得关注的9项技术">
+                <i class="fa fa-chevron-left"></i> 2014年值得关注的9项技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujziq000clxwrq1iap3gpy/" rel="prev" title="NetBeans Weekly News Issue # 271 - Jan 28, 2014">
+                NetBeans Weekly News Issue # 271 - Jan 28, 2014 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

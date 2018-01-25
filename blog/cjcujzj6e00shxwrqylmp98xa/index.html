@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Information," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        Abel Avram译者        赵劼        发布于        2009年1月11日 上午10时49分      &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;dd&amp;gt;&amp;lt;a href=&amp;quot;http">
+<meta name="keywords" content="Information">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微软发布Silverlight 2源码和工具包">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj6e00shxwrqylmp98xa/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        Abel Avram译者        赵劼        发布于        2009年1月11日 上午10时49分      &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;dd&amp;gt;&amp;lt;a href=&amp;quot;http">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T06:34:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微软发布Silverlight 2源码和工具包">
+<meta name="twitter:description" content="作者        Abel Avram译者        赵劼        发布于        2009年1月11日 上午10时49分      &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;dd&amp;gt;&amp;lt;a href=&amp;quot;http">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj6e00shxwrqylmp98xa/"/>
+
+
+
+
+
+  <title>微软发布Silverlight 2源码和工具包 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj6e00shxwrqylmp98xa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微软发布Silverlight 2源码和工具包</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-01-15T01:27:00+08:00">
+                2009-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>        作者<br>        <strong>Abel Avram</strong>译者<br>        <strong>赵劼</strong><br>        发布于<br>        2009年1月11日 上午10时49分<br>    </p>
+
+<pre><code>&lt;dl class=&quot;tags2&quot;&gt;&lt;dt class=&quot;community&quot;&gt;社区&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/dotnet&quot; name=&quot;dotnet&quot; id=&quot;740&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;.NET&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;主题&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/ria&quot; name=&quot;ria&quot; id=&quot;777&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;RIA&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/Silverlight&quot; name=&quot;Silverlight&quot; id=&quot;1,112&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Silverlight&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;标签&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/Microsoft&quot; name=&quot;Microsoft&quot; id=&quot;1,062&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;微软&lt;/a&gt;&lt;/dd&gt;&lt;/dl&gt;
+
+   &lt;div&gt;微
+</code></pre><p>软发布了Silverlight<br>2自带控件的源代码和单元测试，其中包括System.Windows.dll、System.Windows.Controls.dll和<br>System.Windows.Controls.Data.dll。此外，Silverlight工具箱也在CodePlex上发布了。</p>
+<div>&nbsp;</div><br><div>以下控件的源代码已经发布：</div><br><ul><li>ButtonBase</li><li>Button</li><li>HyperlinkButton</li><li>CheckBox</li><li>RadioButton</li><li>CheckBox</li><li>ToogleButton</li><li>RepeatButton</li><li>RangeBase</li><li>Slider</li><li>ScrollBar</li><li>ProgressBar</li><li>Calendar</li><li>DataGrid</li><li>DatePicker</li><li>GridSplitter</li><li>TabControl</li></ul><br><div>SDK里如下类的源码也已发布：</div><br><ul><li>Calendar</li><li>DatePicker</li><li>DataGrid</li><li>TabControl</li><li>GridSplitter</li></ul><br><div>开发Silverlight应用程序时并不需要Silverlight 2控件的源代码，不过在开发其他控件时可以作为很好的参考。数以千计的单元测试随源代码一起发布，它们对于开发期望样式和行为的控件非常有帮助。</div><br><div>&nbsp;</div><br><div><a href="http://www.codeplex.com/Silverlight" target="_blank">Silverlight 工具箱</a>是<br>一套独立于普通发布周期的Silverlight组件，它们可以在CodePlex下载到。这个工具箱包含了以下三大类组件：控件、图表和主题。它和刚发<br>布的Silverlight 2源代码一样，对那些希望为自己应用程序开发自定义Silverlight组件的开发人员提供指导。工具箱中包含以下组件：</div><br><ul><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#AutoCompleteBox" target="_blank" rel="noopener">AutoCompleteBox</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#DockPanel" target="_blank" rel="noopener">DockPanel</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#HeaderedContentControl" target="_blank" rel="noopener">HeaderedContentControl</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#HeaderedItemsControl" target="_blank" rel="noopener">HeaderedItemsControl</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20November%202008%20overview&amp;referringTitle=Home&amp;ANCHOR#Label" target="_blank" rel="noopener">Label</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#NumericUpDown" target="_blank" rel="noopener">NumericUpDown</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#TreeView" target="_blank" rel="noopener">TreeView</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#WrapPanel" target="_blank" rel="noopener">WrapPanel</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%202&amp;referringTitle=Home" target="_blank" rel="noopener">Charting</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#Expander" target="_blank" rel="noopener">Expander</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#ImplicitStyleManager" target="_blank" rel="noopener">ImplicitStyleManager</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%201&amp;referringTitle=Home&amp;ANCHOR#Viewbox" target="_blank" rel="noopener">Viewbox</a> </b></li></ul><br><div>以及下列主题：</div><br><ul><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#BureauBlackTheme" target="_blank" rel="noopener">Bureau Black</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#BureauBlueTheme" target="_blank" rel="noopener">Bureau Blue</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#ExpressionDarkTheme" target="_blank" rel="noopener">Expression Dark</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#ExpressionLightTheme" target="_blank" rel="noopener">Expression Light</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#RainierPurpleTheme" target="_blank" rel="noopener">Rainier Purple</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#RainierOrangeTheme" target="_blank" rel="noopener">Rainier Orange</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#ShinyBlueTheme" target="_blank" rel="noopener">Shiny Blue</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#ShinyRedTheme" target="_blank" rel="noopener">Shiny Red</a> </b></li><li><b><a href="http://www.codeplex.com/Silverlight/Wiki/View.aspx?title=Silverlight%20Toolkit%20Overview%20Part%203&amp;referringTitle=Home&amp;ANCHOR#WhistlerBlueTheme" target="_blank" rel="noopener">Whistler Blue</a> </b></li></ul><br><div>Silverlight 2控件和工具箱都发布于<a href="http://www.opensource.org/licenses/ms-pl.html" target="_blank" rel="noopener">Microsoft Public License</a> (Ms-PL)。<br><br><br>转自：<a href="http://www.infoq.com/cn/news/2009/01/Silverlight-2-Source-Code" target="_blank" rel="noopener">http://www.infoq.com/cn/news/2009/01/Silverlight-2-Source-Code</a><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Information/" rel="tag"># Information</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziqz00dnxwrq601k9veb/" rel="next" title="NetBeans Weekly 刊号 # 41 - Jan 13, 2009">
+                <i class="fa fa-chevron-left"></i> NetBeans Weekly 刊号 # 41 - Jan 13, 2009
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzjcm00xtxwrq5h6qz6uz/" rel="prev" title="网页的栅格系统设计">
+                网页的栅格系统设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

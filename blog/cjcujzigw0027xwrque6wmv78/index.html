@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="01 May 2009 | Design,  Tools | andyQuiet times in blog land as we&amp;rsquo;ve been busy in green field development with a new feedback platform for the V1 product line.  I&amp;rsquo;ve been writing more">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Creating a Web App with jQuery UI">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzigw0027xwrque6wmv78/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="01 May 2009 | Design,  Tools | andyQuiet times in blog land as we&amp;rsquo;ve been busy in green field development with a new feedback platform for the V1 product line.  I&amp;rsquo;ve been writing more">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://farm4.static.flickr.com/3576/3490917211_cc9dbac353_m.jpg">
+<meta property="og:image" content="http://farm4.static.flickr.com/3637/3491733450_a3fa7a07e3.jpg?v=0">
+<meta property="og:updated_time" content="2018-01-23T23:58:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Creating a Web App with jQuery UI">
+<meta name="twitter:description" content="01 May 2009 | Design,  Tools | andyQuiet times in blog land as we&amp;rsquo;ve been busy in green field development with a new feedback platform for the V1 product line.  I&amp;rsquo;ve been writing more">
+<meta name="twitter:image" content="http://farm4.static.flickr.com/3576/3490917211_cc9dbac353_m.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzigw0027xwrque6wmv78/"/>
+
+
+
+
+
+  <title>Creating a Web App with jQuery UI | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzigw0027xwrque6wmv78/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Creating a Web App with jQuery UI</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-05-05T09:11:00+08:00">
+                2009-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h2><a title="Creating a Web App with jQuery UI" href="http://uxagile.com/2009/05/creating-a-web-app-with-jquery-ui/" target="_blank" rel="noopener"><br></a></h2><p></p>
+<div class="entry"><br><p class="postmetadata"><br>    01 May 2009 | <a title="View all posts in Design" rel="noopener" href="http://uxagile.com/category/design/" target="_blank">Design</a>,  <a title="View all posts in Tools" rel="noopener" href="http://uxagile.com/category/tools/" target="_blank">Tools</a> | andy</p><br><p>Quiet times in blog land as we&rsquo;ve been busy in green field development with a <a onclick="javascript:pageTracker._trackPageview('/outgoing/ideaspace.versionone.com');" href="http://ideaspace.versionone.com/" target="_blank" rel="noopener">new feedback platform</a> for the V1 product line.  I&rsquo;ve been writing more code than normal and was greatly facilitated by using <a onclick="javascript:pageTracker._trackPageview('/outgoing/www.jquery.com');" href="http://www.jquery.com/" target="_blank" rel="noopener">jQuery</a> and <a onclick="javascript:pageTracker._trackPageview('/outgoing/www.jqueryui.com');" href="http://www.jqueryui.com/" target="_blank" rel="noopener">jQueryUI</a>. </p><br><p><a onclick="javascript:pageTracker._trackPageview('/outgoing/www.flickr.com/photos/32717188@N05/3490917211/');" href="http://www.flickr.com/photos/32717188@N05/3490917211/" target="_blank" rel="noopener"><img style="margin: 4px; padding: 8px;" src="http://farm4.static.flickr.com/3576/3490917211_cc9dbac353_m.jpg" border="0" alt="" align="right"></a></p><br><p>Using jQueryUI&rsquo;s inline modal, we support a seamless transition from<br>non-logged-in state to logged-in even in the midst of write operations.<br>For instance, you can, as an un-registered user, click to vote on an<br>idea and then register, confirm, and return to the original window to<br>commit your vote. This is an experience that a lot of sites get wrong&hellip;<br>try favoriting on slideshare w/o being logged in, FAIL. </p><br><p>We&rsquo;re using lots of base jQuery ajax functions as well as jQueryUI <a onclick="javascript:pageTracker._trackPageview('/outgoing/docs.jquery.com/UI/Dialog');" href="http://docs.jquery.com/UI/Dialog" target="_blank" rel="noopener">dialog</a>, buttons, and skin elements.  </p><br><p>The button system is pretty slick, supporting a number of states: primary, secondary, disabled, active, hover.   This <a onclick="javascript:pageTracker._trackPageview('/outgoing/www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/');" href="http://www.filamentgroup.com/lab/styling_buttons_and_toolbars_with_the_jquery_ui_css_framework/" target="_blank" rel="noopener">blog post</a> is actually a better reference than the official docs.<br><br><a onclick="javascript:pageTracker._trackPageview('/outgoing/www.flickr.com/photos/32717188@N05/3491733450/');" href="http://www.flickr.com/photos/32717188@N05/3491733450/" target="_blank" rel="noopener"><img style="padding: 8px;" src="http://farm4.static.flickr.com/3637/3491733450_a3fa7a07e3.jpg?v=0" border="0" alt=""></a> </p><br><p>jQueryUI&rsquo;s theming system, called <a onclick="javascript:pageTracker._trackPageview('/outgoing/jqueryui.com/themeroller/');" href="http://jqueryui.com/themeroller/" target="_blank" rel="noopener">ThemeRoller</a><br>allows configuration of the colors, corners, patterns, etc as well as<br>generating several versions of standard icon canvases for a variety of<br>options in icon coloring. Be sure to save the permalink for your<br>themeroller config!</p><br><p>On the pure jQuery side, we appreciated <a onclick="javascript:pageTracker._trackPageview('/outgoing/docs.jquery.com/Events/live#typefn');" href="http://docs.jquery.com/Events/live#typefn" target="_blank" rel="noopener">Live</a> <a onclick="javascript:pageTracker._trackPageview('/outgoing/docs.jquery.com/Events');" href="http://docs.jquery.com/Events" target="_blank" rel="noopener">Event Listeners</a><br>which attach not just to the current DOM, but for all DOM that&rsquo;s<br>created &mdash; simplifying the process of adding interactive elements with<br>script.</p><br><p>With a browser matrix including IE6 to Firefox and Webkit, jQuery<br>was indispensable. We did design our IE6 support to be jettisonable in<br>some hopeful future, accepting some visual downgrades and separating<br>out exception rules for IE6 issues to a separate style sheet.</p><br><p><a onclick="javascript:pageTracker._trackPageview('/outgoing/ericmiraglia.com/blog/?p=181');" href="http://ericmiraglia.com/blog/?p=181" target="_blank" rel="noopener">Nate Koechly at Yahoo</a><br>describes extensively the challenges of modern UI engineering. Thanks<br>to the jQuery folks for the getting us to a level where we could aim<br>for superior experience. Hat tip to the <a onclick="javascript:pageTracker._trackPageview('/outgoing/lucene.apache.org/java/docs/');" href="http://lucene.apache.org/java/docs/" target="_blank" rel="noopener">Apache Lucene</a> project, and specifically <a onclick="javascript:pageTracker._trackPageview('/outgoing/incubator.apache.org/lucene.net/');" href="http://incubator.apache.org/lucene.net/" target="_blank" rel="noopener">Lucene.net</a>, for capable full text search.</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>转自：<a href="http://uxagile.com/2009/05/creating-a-web-app-with-jquery-ui/" target="_blank" rel="noopener">http://uxagile.com/2009/05/creating-a-web-app-with-jquery-ui/</a></p><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj9a00uzxwrqieff0wtd/" rel="next" title="浅谈：多媒体课件界面设计方案">
+                <i class="fa fa-chevron-left"></i> 浅谈：多媒体课件界面设计方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6cor000xl6rq6s988vtz/" rel="prev" title="5个便捷的Google高级搜索工具">
+                5个便捷的Google高级搜索工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

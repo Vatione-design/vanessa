@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NetBeans," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近都在学写netbeans的插件，感觉这个例子比较好。现在翻译后贴出来共享下。例子简介：从palette中选择下列三个图形中的任意一个，左键拖动到主面板上，并可进行适量缩放及修改图形的ID。          建立Module首先我们需要创建一个mudule工程和一个用户window component。选择 文件 &amp;gt; 新建项目. 在新建项目的向导中,左边选择NetBeans Module">
+<meta name="keywords" content="NetBeans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NetBeans Visual Library Tutorial">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzip800bnxwrq8szsfd77/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="最近都在学写netbeans的插件，感觉这个例子比较好。现在翻译后贴出来共享下。例子简介：从palette中选择下列三个图形中的任意一个，左键拖动到主面板上，并可进行适量缩放及修改图形的ID。          建立Module首先我们需要创建一个mudule工程和一个用户window component。选择 文件 &amp;gt; 新建项目. 在新建项目的向导中,左边选择NetBeans Module">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="file:///C:/DOCUME%7E1/pub32/LOCALS%7E1/Temp/moz-screenshot-1.jpg">
+<meta property="og:image" content="file:///C:/DOCUME%7E1/pub32/LOCALS%7E1/Temp/moz-screenshot-2.jpg">
+<meta property="og:image" content="file:///C:/DOCUME%7E1/pub32/LOCALS%7E1/Temp/moz-screenshot.jpg">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/image1.png">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/image2.png">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/image3.png">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/Vanessa219/EntryImages/20080902/untitled.PNG">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/shapetopcomponent.png">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/finishedscene.png">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/zoom.png">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/unzoom.png">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/editable.png">
+<meta property="og:image" content="http://platform.netbeans.org/images/tutorials/vislib/selectable-hoverable.png">
+<meta property="og:updated_time" content="2018-01-22T09:11:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NetBeans Visual Library Tutorial">
+<meta name="twitter:description" content="最近都在学写netbeans的插件，感觉这个例子比较好。现在翻译后贴出来共享下。例子简介：从palette中选择下列三个图形中的任意一个，左键拖动到主面板上，并可进行适量缩放及修改图形的ID。          建立Module首先我们需要创建一个mudule工程和一个用户window component。选择 文件 &amp;gt; 新建项目. 在新建项目的向导中,左边选择NetBeans Module">
+<meta name="twitter:image" content="file:///C:/DOCUME%7E1/pub32/LOCALS%7E1/Temp/moz-screenshot-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzip800bnxwrq8szsfd77/"/>
+
+
+
+
+
+  <title>NetBeans Visual Library Tutorial | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzip800bnxwrq8szsfd77/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NetBeans Visual Library Tutorial</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-09-03T05:50:00+08:00">
+                2008-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近都在学写netbeans的插件，感觉这个例子比较好。现在翻译后贴出来共享下。<br><br></p><p>例子简介：从palette中选择下列三个图形中的任意一个，左键拖动到主面板上，并可进行适量缩放及修改图形的ID。</p><p><img src="file:///C:/DOCUME%7E1/pub32/LOCALS%7E1/Temp/moz-screenshot-1.jpg" alt=""><img src="file:///C:/DOCUME%7E1/pub32/LOCALS%7E1/Temp/moz-screenshot-2.jpg" alt=""></p><p><img src="file:///C:/DOCUME%7E1/pub32/LOCALS%7E1/Temp/moz-screenshot.jpg" alt=""></p><p><a href="file:///C:/Documents%20and%20Settings/pub32/Desktop/untitled.bmp" target="_blank" rel="noopener"><br></a></p><p><img src="http://platform.netbeans.org/images/tutorials/vislib/image1.png" border="1"><br>    <img src="http://platform.netbeans.org/images/tutorials/vislib/image2.png" border="1"><br>    <img src="http://platform.netbeans.org/images/tutorials/vislib/image3.png" border="1"></p><p><img alt="" src="http://p.blog.csdn.net/images/p_blog_csdn_net/Vanessa219/EntryImages/20080902/untitled.PNG" align=""><br></p>
+<p></p><br><p><!-- ===================================================================================== --></p>
+<p></p><h2><a name="getting-started"></a></h2><h2>建立Module</h2>首先我们需要创建一个mudule工程和一个用户window component。<br><ol><li>选择 文件 &gt; 新建项目. 在新建项目的向导中,左边选择NetBeans Modules，右边选择 Module.点击下一步.在项目名处输入<tt>ShapeSample 并设置保存在本机上的位置。</tt>最后选择Standalone Module and Set as Main Project.点击下一步步.<p></p>
+<p>   </p></li><li>在代码名处输入<tt>org.netbeans.shapesample，在模块显示名处输入</tt><tt> Shape Sample</tt>. 点击完成.<p></p>
+<p> </p></li><li>右键点击新建好的项目，选择Properties, 点击 Libraries，添加以下lib:<p></p>
+<ul><li>Visual Library API<br>    </li><li>Action APIs</li><li>Command Line Parsing API</li><li>Common Palette</li><li>Nodes API</li><li>Swing Layout Extensions integration</li><li>UI Utilities API</li><li>Utilities API</li><li>Windows System API</li></ul>
+
+
+  <p>点击确定。<br><br><br></p></li><li>右键点击该项目，选择新建<br> New &gt; Other 并在NetBeans Module Development category 中选择 Window Component . 点击下一步. 在第一个下拉列表中选择 <tt>editor</tt> 并选择 Open on Application Start. 点击下一步.<br><br> </li><li>在类名中输入 <tt>Shape</tt>. 最好选择一副16px×16px的图片做图标，以便识别和更加专业：）。 点击完成.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 这样多个文件将会被自动创建。其中有一个叫<tt>ShapeTopComponent</tt>. 打开它后你将看到如下视图:<br><br> </li><li><p><img src="http://platform.netbeans.org/images/tutorials/vislib/shapetopcomponent.png" border="1"><br><br><br></p></li><li>右键点击<tt>ShapeTopComponent的面板中心</tt>, 选择Set Layout, 选咋 Border Layout.<br><br></li></ol><br><br><br><h2><a name="creating-the-scene"></a>创建Editor<br></h2><ol><li>选则<tt>ShapeTopComponent，</tt>从 Palette (Ctrl-Shift-8) 中途一个<tt><span style="font-family: sans-serif;">J</span>ScrollPane</tt> 到 TopComponent上. <tt><span style="font-family: sans-serif;">选择属性中的名字，把它修改为s</span>hapePane</tt>.并在inspector面板中双击<tt><span style="font-family: sans-serif;">J</span>ScrollPane，把名字改为shapePane。</tt></li><li>在包 <tt>org.netbeans.shapesample</tt> 中创建一个 <tt>GraphSceneImpl.java</tt><pre class="examplecode">/<em><br> </em> This is just a exercise to hoe to use JTable.<br> <em>/<br>package org.netbeans.shapesample;<br><br>import java.awt.Graphics2D;<br>import java.awt.Image;<br>import java.awt.Point;<br>import java.awt.Rectangle;<br>import java.awt.datatransfer.DataFlavor;<br>import java.awt.datatransfer.Transferable;<br>import java.awt.datatransfer.UnsupportedFlavorException;<br>import java.awt.geom.AffineTransform;<br>import java.io.IOException;<br>import javax.swing.JComponent;<br>import org.netbeans.api.visual.action.AcceptProvider;<br>import org.netbeans.api.visual.action.ActionFactory;<br>import org.netbeans.api.visual.action.ConnectorState;<br>import org.netbeans.api.visual.action.TextFieldInplaceEditor;<br>import org.netbeans.api.visual.action.WidgetAction;<br>import org.netbeans.api.visual.graph.GraphScene;<br>import org.netbeans.api.visual.widget.LabelWidget;<br>import org.netbeans.api.visual.widget.LayerWidget;<br>import org.netbeans.api.visual.widget.Widget;<br>import org.netbeans.api.visual.widget.general.IconNodeWidget;<br>import org.netbeans.shapesample.palette.MyNode;<br>import org.openide.util.Utilities;<br><br>/**<br> </em><br> <em> @author Vanessa &lt;liyuan.li at Yunnan University&gt;<br> </em> @version 1.0.0.0<br> <em>/<br>public class GraphSceneImpl extends GraphScene&lt;MyNode, String&gt; {<br><br>    private LayerWidget mainLayer;<br>    private WidgetAction editorAction = ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor());<br><br>    private class LabelTextFieldEditor implements TextFieldInplaceEditor {<br><br>        public boolean isEnabled(Widget widget) {<br>            return true;<br>        }<br><br>        public String getText(Widget widget) {<br>            return ((LabelWidget) widget).getLabel();<br>        }<br><br>        public void setText(Widget widget, String text) {<br>            ((LabelWidget) widget).setLabel(text);<br>        }<br>    }<br><br>    public GraphSceneImpl() {<br>        mainLayer = new LayerWidget(this);<br>        addChild(mainLayer);<br>        getActions().addAction(ActionFactory.createAcceptAction(new AcceptProvider() {<br><br>            public ConnectorState isAcceptable(Widget widget, Point point, Transferable transferable) {<br>                Image dragImage = getImageFromTransferable(transferable);<br>                JComponent view = getView();<br>                Graphics2D g2 = (Graphics2D) view.getGraphics();<br>                Rectangle visRect = view.getVisibleRect();<br>                view.paintImmediately(visRect.x, visRect.y, visRect.width, visRect.height);<br>                g2.drawImage(dragImage,<br>                        AffineTransform.getTranslateInstance(point.getLocation().getX(),<br>                        point.getLocation().getY()),<br>                        null);<br>                return ConnectorState.ACCEPT;<br>            }<br><br>            public void accept(Widget widget, Point point, Transferable transferable) {<br>                Image image = getImageFromTransferable(transferable);<br>                Widget w = GraphSceneImpl.this.addNode(new MyNode(image));<br>                w.setPreferredLocation(widget.convertLocalToScene(point));<br>            }<br>        }));<br><br>        getActions().addAction(ActionFactory.createZoomAction());<br>        getActions().addAction(ActionFactory.createPanAction());<br>    }<br><br>    private Image getImageFromTransferable(Transferable transferable) {<br>        Object o = null;<br>        try {<br>            o = transferable.getTransferData(DataFlavor.imageFlavor);<br>        } catch (IOException ex) {<br>            ex.printStackTrace();<br>        } catch (UnsupportedFlavorException ex) {<br>            ex.printStackTrace();<br>        }<br>        return o instanceof Image ? (Image) o : Utilities.loadImage(“org/netbeans/shapesample/palette/shape1.png”);<br>    }<br><br>    @Override<br>    protected Widget attachNodeWidget(MyNode node) {<br>        IconNodeWidget widget = new IconNodeWidget(this);<br>        widget.setImage(node.getImage());<br>        widget.setLabel(Long.toString(node.hashCode()));<br><br>        //double-click, the event is consumed while double-clicking only:<br>        widget.getLabelWidget().getActions().addAction(editorAction);<br><br>        //single-click, the event is not consumed:<br>        widget.getActions().addAction(createSelectAction());<br><br>        //mouse-dragged, the event is consumed while mouse is dragged:<br>        widget.getActions().addAction(ActionFactory.createMoveAction());<br><br>        //mouse-over, the event is consumed while the mouse is over the widget:<br>        widget.getActions().addAction(createObjectHoverAction());<br><br>        mainLayer.addChild(widget);<br>        return widget;<br>    }<br><br>    @Override<br>    protected Widget attachEdgeWidget(String edge) {<br>        throw new UnsupportedOperationException(“Not supported yet.”);<br>    }<br><br>    @Override<br>    protected void attachEdgeSourceAnchor(String edge, MyNode oldSourceNode, MyNode sourceNode) {<br>        throw new UnsupportedOperationException(“Not supported yet.”);<br>    }<br><br>    @Override<br>    protected void attachEdgeTargetAnchor(String edge, MyNode oldTargetNode, MyNode targetNode) {<br>        throw new UnsupportedOperationException(“Not supported yet.”);<br>    }<br>}<br>在红线处右键选择Fix Imports。</em></pre></li><li><pre class="examplecode">在ShapeTopComponent.java中修改 getPersistenceType()如下</pre></li></ol><blockquote><blockquote><span style="font-family: sans-serif;"></span>public int getPersistenceType() {<br></blockquote></blockquote><blockquote><blockquote><blockquote>return TopComponent.PERSISTENCE_NEVER;<br></blockquote></blockquote></blockquote><blockquote><blockquote><pre class="examplecode">}</pre></blockquote></blockquote><!-- ===================================================================================== --><br><h2><a name="creating-a-palette"></a>创建 Component Palette</h2><br><br><ol><li>新建<tt>org.netbeans.shapesample.palette包，并在其中船舰一下类</tt>:<br><br>         <ul><li><a href="http://platform.netbeans.org/images/tutorials/vislib/Category.java" target="_blank" rel="noopener">Category.java</a></li></ul>/<br>&nbsp;<em> Category.java<br>&nbsp;</em><br>&nbsp;<em> Created on September 21, 2006, 9:00 PM<br>&nbsp;</em><br>&nbsp;<em> To change this template, choose Tools | Template Manager<br>&nbsp;</em> and open the template in the editor.<br>&nbsp;<em><br>&nbsp;</em> To understand this class, see <a href="http://platform.netbeans.org/tutorials/nbm-nodesapi3.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-nodesapi3.html</a><br>&nbsp;<em>/<br><br>package org.netbeans.shapesample.palette;<br><br>/**<br>&nbsp;</em><br>&nbsp;<em> @author Geertjan Wielenga<br>&nbsp;</em>/<br><br>public class Category {<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; private String name;<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; /<strong> Creates a new instance of Category <em>/<br>&nbsp;&nbsp;&nbsp; public Category() {<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; public String getName() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; public void setName(String name) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; <br>}<br><ul><li><a href="http://platform.netbeans.org/images/tutorials/vislib/CategoryChildren.java" target="_blank" rel="noopener">CategoryChildren.java</a></li></ul>/</em><br>&nbsp;<em> CategoryChildren.java<br>&nbsp;</em><br>&nbsp;<em> Created on September 21, 2006, 9:00 PM<br>&nbsp;</em><br>&nbsp;<em> To change this template, choose Tools | Template Manager<br>&nbsp;</em> and open the template in the editor.<br>&nbsp;<em><br>&nbsp;</em> To understand this class, see <a href="http://platform.netbeans.org/tutorials/nbm-nodesapi3.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-nodesapi3.html</a><br>&nbsp;*/<br><br>package org.netbeans.shapesample.palette;<br><br>import org.openide.nodes.Children;<br>import org.openide.nodes.Node;<br><br>/</strong><br>&nbsp;<em><br>&nbsp;</em> @author Geertjan Wielenga<br>&nbsp;<em>/<br>public class CategoryChildren extends Children.Keys {<br><br>&nbsp;&nbsp;&nbsp; private String[] Categories = new String[]{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; “Shapes”};<br><br>&nbsp;&nbsp;&nbsp; public CategoryChildren() {<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; protected Node[] createNodes(Object key) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Category obj = (Category) key;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Node[] { new CategoryNode(obj) };<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; protected void addNotify() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.addNotify();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Category[] objs = new Category[Categories.length];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; objs.length; i++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Category cat = new Category();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cat.setName(Categories[i]);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objs[i] = cat;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setKeys(objs);<br>&nbsp;&nbsp;&nbsp; }<br><br>}<br><ul><li><a href="http://platform.netbeans.org/images/tutorials/vislib/CategoryNode.java" target="_blank" rel="noopener">CategoryNode.java</a></li></ul>/</em><br>&nbsp;<em> CategoryNode.java<br>&nbsp;</em><br>&nbsp;<em> Created on September 21, 2006, 9:02 PM<br>&nbsp;</em><br>&nbsp;<em> To change this template, choose Tools | Template Manager<br>&nbsp;</em> and open the template in the editor.<br>&nbsp;<em><br>&nbsp;</em> To understand this class, see <a href="http://platform.netbeans.org/tutorials/nbm-nodesapi3.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-nodesapi3.html</a><br>&nbsp;<em>/<br><br>package org.netbeans.shapesample.palette;<br><br>import org.openide.nodes.AbstractNode;<br>import org.openide.util.lookup.Lookups;<br><br>/**<br>&nbsp;</em><br>&nbsp;<em> @author Geertjan Wielenga<br>&nbsp;</em>/<br>public class CategoryNode extends AbstractNode {<br><br>&nbsp;&nbsp;&nbsp; /<strong> Creates a new instance of CategoryNode <em>/<br>&nbsp;&nbsp;&nbsp; public CategoryNode( Category category ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super( new ShapeChildren(category), Lookups.singleton(category) );<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setDisplayName(category.getName());<br>&nbsp;&nbsp;&nbsp; }<br>}<br><ul><li><a href="http://platform.netbeans.org/images/tutorials/vislib/PaletteSupport.java" target="_blank" rel="noopener">PaletteSupport.java</a></li></ul>/</em><br>&nbsp;<em> PaletteSupport.java<br>&nbsp;</em><br>&nbsp;<em> Created on September 25, 2006, 2:22 PM<br>&nbsp;</em><br>&nbsp;<em> To change this template, choose Tools | Template Manager<br>&nbsp;</em> and open the template in the editor.<br>&nbsp;<em><br>&nbsp;</em> To understand this class, see <a href="http://platform.netbeans.org/tutorials/nbm-nodesapi3.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-nodesapi3.html</a><br>&nbsp;*/<br><br>package org.netbeans.shapesample.palette;<br><br>import java.awt.Image;<br>import java.awt.datatransfer.DataFlavor;<br>import java.awt.datatransfer.UnsupportedFlavorException;<br>import java.beans.BeanInfo;<br>import java.io.IOException;<br>import javax.swing.Action;<br>import org.netbeans.spi.palette.DragAndDropHandler;<br>import org.netbeans.spi.palette.PaletteActions;<br>import org.netbeans.spi.palette.PaletteController;<br>import org.netbeans.spi.palette.PaletteFactory;<br>import org.openide.nodes.AbstractNode;<br>import org.openide.nodes.Node;<br>import org.openide.util.Lookup;<br>import org.openide.util.datatransfer.ExTransferable;<br><br>/</strong><br>&nbsp;<em><br>&nbsp;</em> @author dave<br>&nbsp;<em>/<br>public class PaletteSupport {<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; public static PaletteController createPalette() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AbstractNode paletteRoot = new AbstractNode(new CategoryChildren());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paletteRoot.setName(“Palette Root”);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return PaletteFactory.createPalette( paletteRoot, new MyActions(), null, new MyDnDHandler() );<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; private static class MyActions extends PaletteActions {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public Action[] getImportActions() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public Action[] getCustomPaletteActions() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public Action[] getCustomCategoryActions(Lookup lookup) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public Action[] getCustomItemActions(Lookup lookup) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public Action getPreferredAction(Lookup lookup) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; private static class MyDnDHandler extends DragAndDropHandler {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void customize(ExTransferable exTransferable, Lookup lookup) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Node node = lookup.lookup(Node.class);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final Image image = (Image) node.getIcon(BeanInfo.ICON_COLOR_16x16);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exTransferable.put(new ExTransferable.Single (DataFlavor.imageFlavor) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; protected Object getData() throws IOException, UnsupportedFlavorException {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return image;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; }<br><br>}<br><br><ul><li><a href="http://platform.netbeans.org/images/tutorials/vislib/Shape.java" target="_blank" rel="noopener">Shape.java</a></li></ul>/</em><br>&nbsp;<em> Shape.java<br>&nbsp;</em><br>&nbsp;<em> Created on September 21, 2006, 9:09 PM<br>&nbsp;</em><br>&nbsp;<em> To change this template, choose Tools | Template Manager<br>&nbsp;</em> and open the template in the editor.<br>&nbsp;<em><br>&nbsp;</em> To understand this class, see <a href="http://platform.netbeans.org/tutorials/nbm-nodesapi3.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-nodesapi3.html</a><br>&nbsp;<em>/<br><br>package org.netbeans.shapesample.palette;<br><br>/**<br>&nbsp;</em><br>&nbsp;<em> @author Geertjan Wielenga<br>&nbsp;</em>/<br>public class Shape {<br><br>&nbsp;&nbsp;&nbsp; private Integer number;<br>&nbsp;&nbsp;&nbsp; private String category;<br>&nbsp;&nbsp;&nbsp; private String title;<br>&nbsp;&nbsp;&nbsp; private String image;<br><br>&nbsp;&nbsp;&nbsp; /<strong> Creates a new instance of Instrument <em>/<br>&nbsp;&nbsp;&nbsp; public Shape() {<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; public Integer getNumber() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return number;<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; public void setNumber(Integer number) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.number = number;<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; public String getCategory() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return category;<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; public void setCategory(String category) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.category = category;<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; public String getImage() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return image;<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; public void setImage(String image) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.image = image;<br>&nbsp;&nbsp;&nbsp; }<br><br>}<br><ul><li><a href="http://platform.netbeans.org/images/tutorials/vislib/ShapeChildren.java" target="_blank" rel="noopener">ShapeChildren.java</a></li></ul>/</em><br><br>&nbsp;<em> ShapeChildren.java<br><br>&nbsp;</em><br><br>&nbsp;<em> Created on September 21, 2006, 9:10 PM<br><br>&nbsp;</em><br><br>&nbsp;<em> To change this template, choose Tools | Template Manager<br><br>&nbsp;</em> and open the template in the editor.<br><br>&nbsp;<em><br><br>&nbsp;</em> To understand this class, see <a href="http://platform.netbeans.org/tutorials/nbm-nodesapi3.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-nodesapi3.html</a><br><br>&nbsp;*/<br><br><br><br><br><br>package org.netbeans.shapesample.palette;<br><br><br><br>import java.util.ArrayList;<br><br>import org.openide.nodes.Index;<br><br>import org.openide.nodes.Node;<br><br><br><br>/</strong><br><br>&nbsp;<em><br><br>&nbsp;</em> @author Geertjan Wielenga<br><br>&nbsp;<em>/<br><br>public class ShapeChildren&nbsp; extends Index.ArrayChildren {<br><br><br><br>&nbsp;&nbsp;&nbsp; private Category category;<br><br><br><br>&nbsp;&nbsp;&nbsp; private String[][] items = new String[][]{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {“0”, “Shapes”, “org/netbeans/shapesample/palette/image1.png”},<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {“1”, “Shapes”, “org/netbeans/shapesample/palette/image2.png”},<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {“2”, “Shapes”, “org/netbeans/shapesample/palette/image3.png”},<br><br>&nbsp;&nbsp;&nbsp; };<br><br><br><br>&nbsp;&nbsp;&nbsp; public ShapeChildren(Category Category) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.category = Category;<br><br>&nbsp;&nbsp;&nbsp; }<br><br><br><br>&nbsp;&nbsp;&nbsp; protected java.util.List&lt;Node&gt; initCollection() {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ArrayList childrenNodes = new ArrayList( items.length );<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for( int i=0; i&lt;items.length; i++ ) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if( category.getName().equals( items[i][1] ) ) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shape item = new Shape();<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; item.setNumber(new Integer(items[i][0]));<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; item.setCategory(items[i][1]);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; item.setImage(items[i][2]);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; childrenNodes.add( new ShapeNode( item ) );<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return childrenNodes;<br><br>&nbsp;&nbsp;&nbsp; }<br><br><br><br>}<ul><li>MyNode.java</li></ul>/</em><br>&nbsp;<em> This is just a exercise to hoe to use JTable.<br>&nbsp;</em>/<br><br>package org.netbeans.shapesample.palette;<br><br>import java.awt.Image;<br><br>/<strong><br>&nbsp;<em><br>&nbsp;</em> @author Vanessa &lt;liyuan.li at Yunnan University&gt;<br>&nbsp;<em> @version 1.0.0.0<br>&nbsp;</em>/<br>public class MyNode {<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; private Image image;<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; public MyNode(Image image) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.image = image;<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; public Image getImage() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return image;<br>&nbsp;&nbsp;&nbsp; }<br>}<br><br><ul><li><a href="http://platform.netbeans.org/images/tutorials/vislib/ShapeNode.java" target="_blank" rel="noopener">ShapeNode.java</a></li></ul>/<em><br>&nbsp;</em> ShapeNode.java<br>&nbsp;<em><br>&nbsp;</em> Created on September 21, 2006, 9:18 PM<br>&nbsp;<em><br>&nbsp;</em> To change this template, choose Tools | Template Manager<br>&nbsp;<em> and open the template in the editor.<br>&nbsp;</em><br>&nbsp;<em> To understand this class, see <a href="http://platform.netbeans.org/tutorials/nbm-nodesapi3.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/nbm-nodesapi3.html</a><br>&nbsp;</em>/<br><br>package org.netbeans.shapesample.palette;<br><br>import org.openide.nodes.AbstractNode;<br>import org.openide.nodes.Children;<br>import org.openide.util.lookup.Lookups;<br><br>/</strong><br>&nbsp;<em><br>&nbsp;</em> @author Geertjan Wielenga<br>&nbsp;<em>/<br>public class ShapeNode extends AbstractNode {<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; private Shape shape;<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; /** Creates a new instance of InstrumentNode </em>/<br>&nbsp;&nbsp;&nbsp; public ShapeNode(Shape key) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(Children.LEAF, Lookups.fixed( new Object[] {key} ) );<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.shape = key;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setIconBaseWithExtension(key.getImage());<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; <br>}</li><li>在ShapeTopComponent.java的构造器中添加如下代码:<br><br>         <pre class="examplecode">associateLookup( Lookups.fixed( new Object[] { PaletteSupport.createPalette() } ) );</pre><br><br>         </li><li><p>项目结构如下。<br></p>
+
+<pre><code>&lt;p&gt;&lt;img src=&quot;http://platform.netbeans.org/images/tutorials/vislib/proj-window.png&quot; border=&quot;1&quot;&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;br&gt;&lt;br&gt;示例演示：&lt;br&gt;
+</code></pre><!-- ===================================================================================== -->
+<p></p><h2><a name="adding-a-layer-widget"></a></h2><ol><li><p><img src="http://platform.netbeans.org/images/tutorials/vislib/finishedscene.png" border="1"></p><p></p>
+<p></p></li></ol><p></p>
+<!-- ===================================================================================== -->
+<p></p><h2><a name="adding-to-scene"></a></h2><ol><li><p><img src="http://platform.netbeans.org/images/tutorials/vislib/zoom.png" border="1"></p></li><li><br></li><li>CTRL+鼠标滚轮<p></p>
+<p><img src="http://platform.netbeans.org/images/tutorials/vislib/unzoom.png" border="1"></p>
+
+<p></p></li></ol>修改ID<br><p><img src="http://platform.netbeans.org/images/tutorials/vislib/editable.png" border="1"></p><p></p>
+  <p><br></p><p><img src="http://platform.netbeans.org/images/tutorials/vislib/selectable-hoverable.png" border="1"></p>
+
+
+
+
+<p>备注：</p><p>1。以上是总结后的简略方法，原文参见<a href="http://platform.netbeans.org/tutorials/60/nbm-visual_library.html" target="_blank" rel="noopener">http://platform.netbeans.org/tutorials/60/nbm-visual_library.html</a></p><p>从原文中可以体会到每部分代码的作用。从而对netbeans platform有更加深刻的认识。</p><p>2.有红线的地方请使用右键 选择Fix Imports。<br></p>
+
+<p><br></p>
+</li></ol>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/NetBeans/" rel="tag"># NetBeans</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziyh00lhxwrqpv5zs1yj/" rel="next" title="netbeans6.5Beta Module for file type">
+                <i class="fa fa-chevron-left"></i> netbeans6.5Beta Module for file type
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujziin0045xwrqgpzq5b75/" rel="prev" title="Google chrome 浏览器试用后简单的比较">
+                Google chrome 浏览器试用后简单的比较 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">建立Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">创建Editor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">创建 Component Palette</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

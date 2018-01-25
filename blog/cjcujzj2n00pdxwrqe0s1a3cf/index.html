@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JAXB以其方便的XML数据处理能力可能会引起你的兴趣。你可能还不了解JAXB是什么，想要知道它到底有什么好处，如果这是你需要的，你才会再花时间去细细的研究它，或者你只需要使用最基本的功能。然而Sun关于JAXB的文档有80页之多。我想大部分人都没有耐心看完这样的长篇大论。本文以简短的篇幅介绍了JAXB的基本使用，算是先睹为快吧。本文附带的代码包括了JAXB1.0 earlyaccess版本和本文">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用JAXB处理XML文档——先睹为快">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj2n00pdxwrqe0s1a3cf/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="JAXB以其方便的XML数据处理能力可能会引起你的兴趣。你可能还不了解JAXB是什么，想要知道它到底有什么好处，如果这是你需要的，你才会再花时间去细细的研究它，或者你只需要使用最基本的功能。然而Sun关于JAXB的文档有80页之多。我想大部分人都没有耐心看完这样的长篇大论。本文以简短的篇幅介绍了JAXB的基本使用，算是先睹为快吧。本文附带的代码包括了JAXB1.0 earlyaccess版本和本文">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T19:59:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用JAXB处理XML文档——先睹为快">
+<meta name="twitter:description" content="JAXB以其方便的XML数据处理能力可能会引起你的兴趣。你可能还不了解JAXB是什么，想要知道它到底有什么好处，如果这是你需要的，你才会再花时间去细细的研究它，或者你只需要使用最基本的功能。然而Sun关于JAXB的文档有80页之多。我想大部分人都没有耐心看完这样的长篇大论。本文以简短的篇幅介绍了JAXB的基本使用，算是先睹为快吧。本文附带的代码包括了JAXB1.0 earlyaccess版本和本文">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj2n00pdxwrqe0s1a3cf/"/>
+
+
+
+
+
+  <title>使用JAXB处理XML文档——先睹为快 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj2n00pdxwrqe0s1a3cf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用JAXB处理XML文档——先睹为快</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-12-13T09:17:00+08:00">
+                2008-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p class="MsoNormal">JAXB以其方便的XML数据处理能力可能会引起你的兴趣。你可能还不了解JAXB是什么，想要知道它到底有<br>什么好处，如果这是你需要的，你才会再花时间去细细的研究它，或者你只需要使用最基本的功能。然而Sun关于JAXB的文档有80页之多。我想大部分人都<br>没有耐心看完这样的长篇大论。本文以简短的篇幅介绍了JAXB的基本使用，算是先睹为快吧。本文附带的代码包括了JAXB1.0 early<br>access版本和本文所使用的代码。欢迎与我讨论： mailto:boyofjava@sina.com</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">本文假设你会使用Java编程，了解并能够看懂XML，DTD。</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal"><b>1 </b><b>为什么要使用JAXB<o:p></o:p></b></p><p class="MsoNormal" style="text-indent: 22.5pt;">在<br>Java中处理XML数据的常规方法有SAX，DOM等。其中SAX使用起来很麻烦，不能修改XML数据；而DOM的处理大文档速度非常的慢，易用性也不<br>必SAX好到哪里去。实际上，无论是SAX还是DOM都不是专门为Java准备的，它们都是访问XML文档的统一底层接口，与语言无关。</p><p class="MsoNormal" style="text-indent: 21pt;">现在我们有了另外的选择。这就是JAXB和JDOM。JDOM与本文无关，目前最新的版本是beta8，感兴趣的话，可以访问<a href="http://www.jdom.org/。" target="_blank" rel="noopener">http://www.jdom.org/。</a></p><p class="MsoNormal" style="text-indent: 21pt;">JAXB<br>的全名是Java&nbsp;? Architecture for XML Binding，目前是1.0的early<br>access版本，在Sun的Java站点只有注册为成员才能够下载。JAXB的特点就是将你用DTD定义好的XML文档映射为Java对象，提供简单、<br>快速的数据操作方式。要访问XML中的元素、属性只要通过相应对象上的一系列getter和&nbsp;setter方法。你还可以通过marshal方法将对象的<br>数据写进XML文件，通过unmarshal方法将XML文件的数据读入对象，通过validate方法验证XML文件是否符合DTD的约束。JAXB的<br>缺点就在于只能访问特定的（也就是你用DTD定义的）XML文档。<o:p></o:p></p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal"><b>2 JAXB</b><b>如何工作</b><b><o:p></o:p></b></p><p class="MsoNormal" style="text-indent: 21pt;">JAXB<br>包括了一个运行类库和一个模式编译器。首先你要定义XML的DTD，然后编写一个绑定模式（Binding<br>Schema）。DTD定义了XML文档，绑定模式也是一个XML文件，指出DTD定义的XML文档如何被映射为Java对象。运行编译器，将DTD和绑<br>定模式作为参数传给编译器，编译器就会生成Java代码。编译生成的Java代码，通过这些代码就可以访问XML文档了。</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal"><b>3 JAXB</b><b>的安装<o:p></o:p></b></p><p class="MsoNormal" style="text-indent: 21pt;">以1.0<br>early<br>access为例，它不包含在JDK中，先到<a href="http://java.sun.com/xml下载。注意由于是早期版本，需要先登录才能下载，本文附带的" target="_blank" rel="noopener">http://java.sun.com/xml下载。注意由于是早期版本，需要先登录才能下载，本文附带的</a><br>源码包含了JAXB1.0 early<br>access。下载后将文件解压缩，在lib目录中有两个文件。jaxb-rt-1.0-ea.jar是运行支持库，jaxb-xjc-1.0-<br>ea.jar是模式编译器。注意bin目录中的xjc文件只能在UNIX下使用，如果你的系统是Windows，那么你需要在命令行窗口手工输入命令来编<br>译。为了在任何地方都可以运行模式编译器和它生成的代码，我们要把这两的文件加入CLASSPATH。一个简单的办法是把这两个文件拷贝到jre/lib<br>/ext下。</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal"><b>4 </b><b>一个简单的例子<o:p></o:p></b></p><p class="MsoNormal" style="text-indent: 21pt;">有这样一个XML文档。它描述书的列表，举例如下：</p><p class="MsoNormal">文件exampleA.xml</p><p class="MsoNormal">&lt;?xml version=”1.0” encoding=”GBK”?&gt;</p><p class="MsoNormal">&lt;bookList&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;book&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;name&gt;Java编程入门&lt;/name&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;author&gt;张三&lt;/author&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;publishDate&gt;2002-6-6&lt;/publishDate&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;price&gt;35.0&lt;/price&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;/book&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;book&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;name&gt;XML在Java中的应用&lt;/name&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;author&gt;李四&lt;/author&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;publishDate&gt;2002-9-16&lt;/publishDate&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;price&gt;92.0&lt;/price&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;/book&gt;</p><p class="MsoNormal">&lt;/bookList&gt;</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal" style="text-indent: 21pt;">其DTD文件如下：</p><p class="MsoNormal">文件bookList.dtd</p><p class="MsoNormal">&lt;!ELEMENT bookList (book)<em>&gt;</em></p><p class="MsoNormal">&lt;!ELEMENT book(name,author,publishDate,price)&gt;</p><p class="MsoNormal">&lt;!ELEMENT name (#PCDATA)&gt;</p><p class="MsoNormal">&lt;!ELEMENT author (#PCDATA)&gt;</p><p class="MsoNormal">&lt;!ELEMENT publishDate (#PCDATA)&gt;</p><p class="MsoNormal">&lt;!ELEMENT price (#PCDATA)&gt;</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal" style="text-indent: 21pt;">现在我们就来编写一个最简单的绑定模式，其文件扩展名应该为xjs。</p><p class="MsoNormal">文件bookList.xjs</p><p class="MsoNormal">&lt;xml-java-binding-schema version=”1.0-ea”&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;element name=”bookList” type=”class” root=”true”/&gt;</p><p class="MsoNormal">&lt;/xml-java-binding-schema&gt;</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal" style="text-indent: 21.75pt;">现在就可以运行模式编译器生成Java代码，请先保证CLASSPATH中包含了JAXB的两个JAR文件。Windows用户注意bin目录下的那个文件是没用的。在命令行运行：</p><p class="MsoNormal">java com.sun.tools.xjc.Main bookList.dtd bookList.xjs</p><p class="MsoNormal" style="text-indent: 21.75pt;">如果没出问题，编译器就生成了Book.java，BookList.java两个文件。你不用去理解这两个源文件里面的代码，只要知道怎么使用它们提供的方法就可以了。它们的继承结构都是这样的：</p><p class="MsoNormal">java.lang.Object</p><p class="MsoNormal">&nbsp; &nbsp;javax.xml.bind.ValidatableObject</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; javax.xml.bind.MarshallableObject</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; javax.xml.bind.MarshallableRootElement</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BookList or Book</p><p class="MsoNormal" style="text-indent: 74.25pt;">&nbsp;<o:p></o:p></p><p class="MsoNormal">BookList.java主要包含了以下方法</p><p class="MsoNormal">BookList()&nbsp;&nbsp;&nbsp; //构造函数</p><p class="MsoNormal">List getBook()&nbsp;&nbsp;&nbsp; //得到书的集合，List中的对象实际类型是Book，可以添加、修改、删除其中的元素</p><p class="MsoNormal">void deleteBook()&nbsp;&nbsp; //删除集合</p><p class="MsoNormal">void emptyBook()&nbsp;&nbsp;&nbsp; //删除并生成一个新的空集合</p><p class="MsoNormal">void marshal(X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //将数据写进XML文档</p><p class="MsoNormal">void unmarshal(X)&nbsp;&nbsp; //将数据从XML文档读入对象</p><p class="MsoNormal">void validate(X)&nbsp;&nbsp;&nbsp; //检查是否符合DTD约束，同时检查子树。在这个例子中就是BookList的Book集合</p><p class="MsoNormal">void validateThis()&nbsp;&nbsp; //检查是否符合DTD约束，不检查子树</p><p class="MsoNormal">其中marshal，unmarshal，validate被重载，有多种参数形式（可以参考JAXB的API文档）。</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">Book.java主要包含了以下方法</p><p class="MsoNormal">Book()</p><p class="MsoNormal">String getName()</p><p class="MsoNormal">String getAuthor()</p><p class="MsoNormal">String getPublishDate()</p><p class="MsoNormal">String getPrice()</p><p class="MsoNormal">void setName(String x)</p><p class="MsoNormal">void setAuthor(String x)</p><p class="MsoNormal">void setPublishDate(String x)</p><p class="MsoNormal">void setPrice(String x)</p><p class="MsoNormal">void marshal()</p><p class="MsoNormal">void unmarshal()</p><p class="MsoNormal">void validate()</p><p class="MsoNormal" style="text-indent: 21pt;">现在我们就可以使用这两个文件访问XML了。首先编<br>译这两个文件。编写一个Test.java文件，把它和生成的两个文件以及前面的exampleA.xml放在一起。这个程序从<br>exampleA.xml读入数据，作修改（把第一本书作者改成王五）后写入exampleB.xml。因为中文的编码问题，所以我们需要多一点手续。</p><p class="MsoNormal">文件Test.java</p><p class="MsoNormal">import java.io.;</p><p class="MsoNormal">import java.util.<em>;</em></p><p class="MsoNormal">import javax.xml.bind.;</p><p class="MsoNormal">import javax.xml.marshal.*;</p><p class="MsoNormal">public class Test{</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static void main(String[] args) throws Exception{</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BookList bl = new BookList();</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FileInputStream fis = new FileInputStream(“exampleA.xml”);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bl = bl.unmarshal(fis);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }finally{</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fis.close();</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List books = bl.getBook();</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Book b = (Book)books.get(0);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.setAuthor(“王五”);</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bl.validate();&nbsp; //先验证，不然marshal会出错</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FileOutputStream fos = new FileOutputStream(“exampleB.xml”);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; XMLWriter xw = new XMLWriter(fos,”GBK”);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bl.marshal(xw);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }finally{</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fos.close();</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p><p class="MsoNormal">}</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">编译运行，生成的文件exampleB.xml如下：</p><p class="MsoNormal">&lt;?xml version=”1.0” encoding=”GBK”?&gt;</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">&lt;bookList&gt;</p><p class="MsoNormal">&nbsp; &lt;book&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;name&gt;Java编程入门&lt;/name&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;author&gt;王五&lt;/author&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;publishDate&gt;2002-6-6&lt;/publishDate&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;price&gt;35.0&lt;/price&gt;&lt;/book&gt;</p><p class="MsoNormal">&nbsp; &lt;book&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;name&gt;XML在Java中的应用&lt;/name&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;author&gt;李四&lt;/author&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;publishDate&gt;2002-9-16&lt;/publishDate&gt;</p><p class="MsoNormal" style="text-indent: 21.75pt;">&lt;price&gt;92.0&lt;/price&gt;&lt;/book&gt;&lt;/bookList&gt;</p>&nbsp;<p class="MsoNormal"><b>5 </b><b>更进一步：数据类型转换<o:p></o:p></b></p><p class="MsoNormal" style="text-indent: 21pt;">你<br>可能已经注意到在上面的例子中，生成的Book对象的getPrice方法返回的是String，实际上它应该是float。同样publishDate<br>以该是日期类型，而不是字符串。这是因为我们的绑定模式写得太简单了，模式编译器生成了默认的String类型。现在我们这样写：</p><p class="MsoNormal">文件bookList2.xjs</p><p class="MsoNormal">&lt;xml-java-binding-schema version=”1.0-ea”&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;element name=”bookList” type=”class” root=”true”/&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;element name=”price” type=”value” convert=”float”/&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;element name=”publishDate” type=”value” convert=”TransDate” /&gt;</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &lt;conversion name=”TransDate” type=”java.util.Date”</p><p class="MsoNormal">&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parse=”TransDate.parseDate” print=”TransDate.printDate”/&gt;</p><p class="MsoNormal">&lt;/xml-java-binding-schema&gt;</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">用java com.sun.tools.xjc.Main bookList.dtd bookList2.xjs运行编译器。生成的Book文件的相应代码为：</p><p class="MsoNormal">float getPrice()</p><p class="MsoNormal">java.util.Date getPublishDate()</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal" style="text-indent: 21pt;">bookList2.xjs<br>第3行将Price转换成了float类型，float类型是一个简单类型，因此用convert=”float”描述就可以了。而<br>publishDate需要转变成java.util.Date，这是一个类，而且他没有以字符串作为参数的构造函数。<br>parse=”TransDate.parseDate”就表示使用unmarshal读取数据的时候，会调用<br>TransDate.parseDate()方法。这个静态方法以字符串为参数，返回java.util.date。<br>print=”TransDate.printDate”的作用相反。TransDate这个类需要我们提供。</p><p class="MsoNormal">文件TransDate.java</p><p class="MsoNormal">import java.util.Date;</p><p class="MsoNormal">public class TransDate {</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; private static java.text.SimpleDateFormat df </p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = new java.text.SimpleDateFormat(“yyyy-MM-dd”);</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; public static Date parseDate(String d) {</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; try {</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return df.parse(d);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } catch (java.text.ParseException pe) {</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(pe);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Date();</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; }</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; public static String printDate(Date d) {</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return df.format(d);</p><p class="MsoNormal">&nbsp;&nbsp;&nbsp; }</p><p class="MsoNormal">}</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal"><b>6 </b><b>那些使JAXB</b><b>能够做到，但本文没有提到的<o:p></o:p></b></p><p class="MsoNormal" style="text-indent: 21pt;">本文提供的这个例子很简单，实际上JAXB还可以定义文档的哪些元素（属性）可以被转换成类，哪些被转换成类的属性。处理元素的属性。处理枚举值。为一些元素共同的子元素生成接口（因为JAXB不支持NameSpace），定义继承结构等等。</p><p class="MsoNormal" style="text-indent: 21pt;"><br></p><p class="MsoNormal"><b>7 JAXB</b><b>不能做到的<o:p></o:p></b></p><p class="MsoNormal">Sun的文档里提到的：</p><p class="MsoNormal">仅支持用DTD定义XML</p><p class="MsoNormal">不支持NameSpace</p><p class="MsoNormal">不支持内部子集、NOTATIONs、ENTITY、ENTITIES等。</p><p class="MsoNormal">&nbsp;<o:p></o:p></p><p class="MsoNormal" style="text-indent: 21pt;">另外，我发现如果要写一条处理指令到XML文档中，例如指定转换的样式单</p><p class="MsoNormal">&lt;?xml-stylesheet href=”a.xsl” type=”text/xsl”?&gt;</p><p class="MsoNormal" style="text-indent: 21pt;">在<br>JAXB中好像做不到，在javax.xml.marshal.XMLWriter中有一个chars(String<br>str)方法，可以把字符串到XML文件的声明后面，但是这个方法对特殊字符作了转义，也就是没办法可以做到。这很奇怪，因为这是一个常用的功能，要实现<br>也不难。也许还有我没有发现的办法。倒是有一个doctype方法可以写DOCTYPE声明。</p><p class="MsoNormal"><b>&nbsp;<o:p></o:p></b></p><p class="MsoNormal"><b>8 </b><b>参考文档<o:p></o:p></b></p><p class="MsoNormal">1 The Java ? Architecture for XML Binding User’s Guide</p><p class="MsoNormal">&nbsp;(<a href="http://java.sun.com/xml/jaxb/jaxb-docs.pdf" target="_blank" rel="noopener">http://java.sun.com/xml/jaxb/jaxb-docs.pdf</a>)</p><p class="MsoNormal">2<br>Web Services Made Easier. The Java TM APIs and Architectures for XML, A<br>Technical White Paper (<a href="http://java.sun.com/xml/webservices.pdf" target="_blank" rel="noopener">http://java.sun.com/xml/webservices.pdf</a> )</p><p class="MsoNormal"><br></p><p class="MsoNormal"><br></p><p class="MsoNormal">转自：<a href="http://www.cn-teacher.com/fuwu/dn/bcjs/javajc/200704/192483_5.html" target="_blank" rel="noopener">http://www.cn-teacher.com/fuwu/dn/bcjs/javajc/200704/192483_5.html</a><br></p>&nbsp;<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6cno0000l6rquc3n94yh/" rel="next" title="。。。">
+                <i class="fa fa-chevron-left"></i> 。。。
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j1w004tl6rqyfmhxich/" rel="prev" title="2009年IT业界趋势预测">
+                2009年IT业界趋势预测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

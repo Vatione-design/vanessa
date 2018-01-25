@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Information,JavaEE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        David West译者        崔康        发布于        2009年2月5日 上午8时58分     社区Java主题开放源代码,云计算,JCP标准,商业标签Sun Microsystems,JCP Sun的近期裁员（据称将涉及到从事OpenJDK、JCP、J2SE和桌面Java的员工），和Sun最近对云基础设施厂商Q-Layer的收购，">
+<meta name="keywords" content="Information,JavaEE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sun的未来与云计算">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzitz00gvxwrqmf71se7w/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        David West译者        崔康        发布于        2009年2月5日 上午8时58分     社区Java主题开放源代码,云计算,JCP标准,商业标签Sun Microsystems,JCP Sun的近期裁员（据称将涉及到从事OpenJDK、JCP、J2SE和桌面Java的员工），和Sun最近对云基础设施厂商Q-Layer的收购，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T19:07:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sun的未来与云计算">
+<meta name="twitter:description" content="作者        David West译者        崔康        发布于        2009年2月5日 上午8时58分     社区Java主题开放源代码,云计算,JCP标准,商业标签Sun Microsystems,JCP Sun的近期裁员（据称将涉及到从事OpenJDK、JCP、J2SE和桌面Java的员工），和Sun最近对云基础设施厂商Q-Layer的收购，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzitz00gvxwrqmf71se7w/"/>
+
+
+
+
+
+  <title>Sun的未来与云计算 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzitz00gvxwrqmf71se7w/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Sun的未来与云计算</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-02-09T14:07:00+08:00">
+                2009-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p class="info"><br>        作者<br>        <strong>David West</strong>译者<br>        <strong>崔康</strong><br>        发布于<br>        2009年2月5日 上午8时58分<br>    </p><p></p>
+<p><dl class="tags2"><dt class="community">社区</dt><dd><a id="739" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="java" href="http://www.infoq.com/cn/java" target="_blank" rel="noopener">Java</a></dd><dt class="topics">主题</dt><dd><a id="833" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="opensource" href="http://www.infoq.com/cn/opensource" target="_blank" rel="noopener">开放源代码</a>,</dd><dd><a id="3,857" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="cloud-computing" href="http://www.infoq.com/cn/cloud-computing" target="_blank" rel="noopener">云计算</a>,</dd><dd><a id="806" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="jcp_standards" href="http://www.infoq.com/cn/jcp_standards" target="_blank" rel="noopener">JCP标准</a>,</dd><dd><a id="844" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="Business" href="http://www.infoq.com/cn/Business" target="_blank" rel="noopener">商业</a></dd><dt class="topics">标签</dt><dd><a id="1,149" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="Sun" href="http://www.infoq.com/cn/Sun" target="_blank" rel="noopener">Sun Microsystems</a>,</dd><dd><a id="1,403" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="jcp" href="http://www.infoq.com/cn/jcp" target="_blank" rel="noopener">JCP</a></dd></dl></p>
+<p></p><p>Sun的近期裁员（据称将<a id="s:0k" title="涉及到从事OpenJDK、JCP、J2SE和桌面Java的员工" href="http://blogs.zdnet.com/open-source/?p=3318" target="_blank" rel="noopener">涉及到从事OpenJDK、JCP、J2SE和桌面Java的员工</a>），和Sun最近<a id="sopa" title="对云基础设施厂商Q-Layer的收购" href="http://www.informationweek.com/news/services/saas/showArticle.jhtml?articleID=212701237&amp;subSection=Hosted+Software" target="_blank" rel="noopener">对云基础设施厂商Q-Layer的收购</a>，引起了人们的持续讨论：Sun将如何重新确定其战略方向和选择侧重于众多技术中的哪些方面。Sun与Java社区存在着密切的联系，近期的财务、缩编和股票业绩表现等问题引起了人们的关注。去年秋天，Tim Bray通过&ldquo;<a id="a7th" title="Sun究竟该做什么" href="http://www.tbray.org/ongoing/When/200x/2008/11/24/What-Sun-Should-Do" target="_blank" rel="noopener">Sun究竟该做什么</a>&rdquo;一文展开了对Sun未来发展方向的讨论。很多人，特别是<a href="http://ianskerrett.wordpress.com/2008/11/26/what-sun-should-do/" target="_blank" rel="noopener">Ian Skerrett</a>、<a href="http://redmonk.com/sogrady/2008/11/26/wwsd" target="_blank" rel="noopener">Redmonk的Stephen O’Grady</a>、<a href="http://rollerweblogger.org/roller/tags/netbeans" target="_blank" rel="noopener">BloggingRoller的</a><a href="http://rollerweblogger.org/roller/tags/netbeans" target="_blank" rel="noopener">Dave Johnson</a>和<a href="http://weblogs.java.net/blog/terrencebarr/archive/2008/11/thoughts_on_wha.html" target="_blank" rel="noopener">Terrence Barr</a> 参与其中。</p><p></p>
+<p></p><p>不容置疑的是，Sun拥有广阔和令人兴奋的技术资产&mdash;&mdash;如此之大以至于在当前形势下难以维护和发展。所有人都认为Sun应该关注某些技术子集而从中受益。但问题是：应该选择哪个子集呢？</p><p></p>
+<p></p><p>Tim 建议Sun&ldquo;集中精力构建一组Sun<br>Web套件，使其成为首选的Web应用部署平台&rdquo;。这种做法将保证Sun可以继续保留其硬件、操作系统、HotSpot虚拟机和服务器端技术（例如<br>GlassFish和MySQL），同时放弃客户端技术（例如JavaFX），Tim认为其没有竞争力，还包括NetBeans和类似非Web相关的技<br>术。Tim同时建议Sun结束&ldquo;Java管家&rdquo;的角色，就像IBM释放Eclipse一样放手JCP。</p><p></p>
+<p></p><p>Terrence Barr不赞成Tim的绝大多数建议，特别是放弃客户端技术。Terrence认为客户端技术使Sun为用户所知，吸引客户更多的目光到其他具有更强创收潜力的技术上。</p><p></p>
+<p></p><p>Ian Skerrett和Stephen O’Grady都主张改革Sun的市场营销和企业内部文化&mdash;&mdash;强调做好商业生意的重要性。不再完全让鼓励创新、技术和工程文化的思想驱动公司，也需要思考如何做好生意，就像IBM十年前面临类似的问题那样。</p><p></p>
+<p></p><p>Tim和tephen O’Grady都提到了Sun参与云计算的问题，该领域目前还不是Sun的技术重点&mdash;&mdash;虽然去年建立了一个云计算部门。Tim首先指出了云计算的一些未知问题：</p><p></p>
+<p><blockquote></blockquote></p>
+<p><ul></ul></p>
+<p><li>它会运行在虚拟硬件的层次上吗，像Amazon的AWS那样，或者以平台即服务的形式，像Google App引擎（事实上，PHP社区的很多东西也是这样）？</li></p>
+<p><li>买家会接受一定数量的锁定吗，或者他们会坚持零障碍退出吗？</li></p>
+<p><li>那些部署企业应用的买家会愿意把他们的数据导入云中吗？如果愿意，他们会要求怎样的隐私保证？</li></p>
+<p><li>那些部署企业应用的买家会乐意构建内部云风格的基础设施吗？</li><br><br></p>
+<p></p><p>尽管存在这些未知量，Tim总结道：</p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>我们已知的是：云计算的商业需求看起来十分诱人。我不确信Sun会以云服务的大型提供商的身份成功，我甚至也不确信我们需要这样做。我认为我们必须提前建立一些云基础设施并保持运营平衡，当云计算找到自身生存的方式时，我们将会把Web套件应用其中。</p><br><p></p>
+<div dir="ltr">Stephen O’Grady支持Tim的观点，建议Sun必须参与云领域。目前的云厂商（Google、Amazon和Microsoft）都采用普通的硬件设备，Sun甚至算不上是一个供应商。Sun唯一的参与方式是在自己的平台上提供云服务。<br><br><br><br>Sun<br>收购了Q-Layer，它的NephOS软件包含了一些云技术（提供了Tim有关云是否会以虚拟硬件形式运行的一种答案），但是单纯的收购看不出来是一种<br>云战略或者方向。Sun的云计算部门市场副总裁Carlos Soto表示&ldquo;Sun不会在收购的第一天就发布新的云计算产品，不过相信很快会有消息&rdquo;。<br><br><br><br>除了云计算领域，没人提到Sun当前产品线的技术。例如，Sun的<a href="http://research.sun.com/projects/lively" target="_blank" rel="noopener">Lively Kernel</a>可能有潜力重振Sun的客户端技术产品，帮助它们打入新的市场。<br><br><br><br>你觉得Sun该怎么办？<br><br><br><br><strong>查看英文原文：</strong><a id="lqbq" title="Sun's Future and Cloud Computing" href="http://www.infoq.com/news/2009/02/sun-future" target="_blank" rel="noopener">Sun’s Future and Cloud Computing</a></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Information/" rel="tag"># Information</a>
+          
+            <a href="/blog/tags/JavaEE/" rel="tag"># JavaEE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzimy0095xwrqa4yrzv74/" rel="next" title="Java EE 6 Platform草案包含了Web Profile">
+                <i class="fa fa-chevron-left"></i> Java EE 6 Platform草案包含了Web Profile
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j3p007hl6rq2ifjkivi/" rel="prev" title="程序员的十层楼">
+                程序员的十层楼 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

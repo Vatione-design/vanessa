@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="http://www.sina.com.cn&amp;nbsp;&amp;nbsp;2009年07月22日&amp;nbsp;11:27&amp;nbsp;&amp;nbsp;计算机世界                 &amp;lt;!--  正文内部文字导航 : begin --&amp;gt;            &amp;nbsp;">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web应用“卡”在何处？">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzivj00ihxwrqk1dfie6m/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="http://www.sina.com.cn&amp;nbsp;&amp;nbsp;2009年07月22日&amp;nbsp;11:27&amp;nbsp;&amp;nbsp;计算机世界                 &amp;lt;!--  正文内部文字导航 : begin --&amp;gt;            &amp;nbsp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i0.sinaimg.cn/IT/b/2009-07-22/1248233313_TN7Hff.jpg">
+<meta property="og:updated_time" content="2018-01-23T20:56:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web应用“卡”在何处？">
+<meta name="twitter:description" content="http://www.sina.com.cn&amp;nbsp;&amp;nbsp;2009年07月22日&amp;nbsp;11:27&amp;nbsp;&amp;nbsp;计算机世界                 &amp;lt;!--  正文内部文字导航 : begin --&amp;gt;            &amp;nbsp;">
+<meta name="twitter:image" content="http://i0.sinaimg.cn/IT/b/2009-07-22/1248233313_TN7Hff.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzivj00ihxwrqk1dfie6m/"/>
+
+
+
+
+
+  <title>Web应用“卡”在何处？ | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzivj00ihxwrqk1dfie6m/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web应用“卡”在何处？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-07-23T13:35:00+08:00">
+                2009-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><div class="artInfo"><span id="art_source"><a href="http://www.sina.com.cn/" target="_blank" rel="noopener">http://www.sina.com.cn</a><br></span><br>&nbsp;&nbsp;<span id="pub_date">2009年07月22日&nbsp;11:27</span><br>&nbsp;&nbsp;<span id="media_name"><a href="http://www.ccw.com.cn/" target="_blank">计算机世界</a><br></span><br></div><br><!--  正文内容 begin --><br>                <!--  google_ad_section_start --></p>
+<pre><code>&lt;!--  正文内部文字导航 : begin --&gt;
+</code></pre><p><table style="height: 31px;" border="0" cellspacing="0" cellpadding="0" width="30" background="http://i1.sinaimg.cn/IT/c/2003-09-18/1_2-68-1059-22851_20030918182450.gif" bordercolor="#111111"></table></p>
+<p><tbody></tbody></p>
+<p><tr align="center"></tr></p>
+<p><td height="20"></td></p>
+<p><td><br><br></td></p>
+<p><td></td></p>
+<p><td></td></p>
+<p><td></td></p>
+<p><td></td></p>
+<p><td></td></p>
+<p><td></td><br><br><br></p>
+<p>&nbsp;</p><br><!--  正文内部文字导航 : end --><br>                    <!--  内容模块：单图 begin --><br><br><br>                    <!--  内容模块：单图 end --><br>                    <!--  内容模块：段落 begin --><br>                    <!--
+<div class="moduleParagraph"> --><br>                        <!--  publish_helper name='原始正文' p_id='2' t_id='1' d_id='3283752' f_id='2' --><br><p>　　Web应用响应缓慢，其原因并不全都出在网页本身，很多时候广告等第三方内容提供方才是罪魁祸首。</p><br><p>　　Web应用&ldquo;卡&rdquo;在何处？</p><br><p>　　乐天 编译</p><br><p>　　Firefox 3.5已于不久前正式对外发布。Mozilla基金组织宣传说，Firefox<br>3.5的最大优势是其速度，因为这个最新版的开源浏览器采用了名为TraceMonkey的JavaScript引擎，能把JavaScript的性能提<br>升到一个数量级甚至更多。</p><br><p>&nbsp;</p><br><span class="f12"><br><table border="0" cellspacing="4" cellpadding="1" align="center"><br><tbody><br><tr><br><td align="center" valign="top"><img style="border: 1px solid #000000;" src="http://i0.sinaimg.cn/IT/b/2009-07-22/1248233313_TN7Hff.jpg" alt="Web应用&ldquo;卡&rdquo;在何处？"><br></td><br></tr><br><tr><br><td align="center" valign="top"></td><br></tr><br></tbody><br></table><br></span><br><p>　　Mozilla将Firefox<br>3.5的卖点放在JavaScript引擎上并不令人意外，随着浏览器供应商把竞争的焦点转到了改善Web应用的性能上，JavaScript引擎已经成<br>为突破的重点。自从Google在其去年发布的Chrome中首次采用了高性能的JavaScript引擎以来，到目前为止，Opera和Apple都宣<br>布在各自的浏览器中引入新的JavaScript引擎，甚至微软也不得不对其IE性能进行优化。</p><br><p>　　不过，浏览器并不是Web应用的全部。不久前，在获知迈克尔&middot;杰克逊死讯后，不少想了解该消息的网民就经历过一次网络大堵塞。事后的调查发现，<br>问题的根源并不是浏览器的性能不高，也不是新闻网站的服务器处理能力不够，而是因为广告网络和第三方的内容供应商自己的网应对不了这么高的并发访问请求。</p><br><p>　　这次事件再次提醒我们Web应用的复杂性。现代的网络应用通常有多个内容来源、数据来源，其中的服务也可能来自不同的组织，最终用户体验到的Web应用是多个因素综合后呈现的结果，单靠Web应用的开发者是无法保证提供一个快速响应的Web应用的。</p><br><p>　　Web开发者面临的难题</p><br><p>　　开发一个网页很容易，但是开发一个好的Web应用绝对不是一个简单的事情。对开发人员来说，开发桌面应用一切都在自己的掌控之中。比如，为了优<br>化程序的性能，程序员可以减少内存泄漏或者改善程序访问磁盘的效率等。而在开发Web应用时，这些方法都用不上，因为此时是浏览器在管理本地资源的利用。<br>而且，Web开发人员还必须面对并不一定可靠的网络。这导致Web应用的性能具有非常大的不确定性。</p><br><p>　　比如，用户访问的一个网页中有一个图片来自第三方。这时，用户访问网页的最终效果就不仅取决于用户所使用的浏览器，还与用户的网络出口带宽、提<br>供网页的Web服务器、Web应用程序、Web服务器与提供图片的服务器之间带宽以及提供图片的服务器上的软件等都有关。而Web应用的开发者只能优化他<br>能做的部分&mdash;&mdash;其中很小的一部分，作为Web应用的开发者根本就不知道第三方的图片提供者是否充分考虑了安全问题，也不知道第三方是否进行了常规的备份，<br>因此，对整个应用是否能正常运行也没有什么把握。</p><br><p>　　一个更直接的问题是究竟采用何种方式将外部的服务到底集成到网页中。目前，大多数服务采用的是JavaScript、iframe或者两者同时<br>采用，其中的任何一种都可能出现问题，从而影响网页的加载，导致用户请求的网页无法打开或者打开很慢。而且，问题往往出现在JavaScript引擎执行<br>脚本之前，因此，很多时候浏览器的JavaScript引擎再快也于事无补。如果再加上拥塞的网络，就让原本脆弱的Web应用更不可靠了。</p><br><p>　　复杂的网页增大了风险</p><br><p>　　业界正在努力解决这个问题。例如，现在的浏览器在等待JavaScript脚本执行的同时可以下载其他网页内容，开发人员也可能想出很多办法来克服脚本方面的问题。不过，归根结底，这些办法的作用是很有限的，不能从根本上解决问题。</p><br><p>　　《高性能网站》的作者、Google公司的Web性能专家Steve<br>Souter说：&ldquo;你设想一下，当我们把一大堆包含CSS、JavaScript、Flash等众多内容的HTML语句构成的网页导入另一个网页时难免会<br>影响该网页的呈现，因此这个网页的性能如果大幅降低、甚至整个网站完全崩溃，我们都不应该感到奇怪，。&rdquo;</p><br><p>　　导致这个问题出现的部分原因在于这些内容之间整合时缺乏统一的协调或监控。&ldquo;要把第三方的内容整合到一个网页中是很复杂的工作，即使这两者属于<br>同一个公司，也并不容易，更何况如果整合的是广告内容，大多数情况下这两方分别属于不同的公司。&rdquo;<br>Souter说，&ldquo;实际上，广告内容的提供者很可能从来没有与网站内容的开发团队进行过沟通和联系。&rdquo;</p><br><p>　　而另一方面，这并不是每个人都要为网站响应慢而承担责任。实际情况是，如果网站的网页打不开或者很长时间才能打开，人们通常会责备这个网站的所有者，而几乎很少有人会想到可能原因出在网站之外的内容的提供方，特别是广告的提供方。</p><br><p>　　事情向好的方向发展</p><br><p>　　如今，Web应用的开发者和架构师所要做的首先是充分了解开发这种分布式、类似云的Web应用时可能存在的性能瓶颈或者其他可能出现的问题。<br>Souter的《高性能网站》是一个不错的起点，而不久前Google启用了一个新的网站，专门用于指导Web开发人员，网站上介绍了很多改善<br>JavaScript性能的最佳实践。</p><br><p>　　但是，从长远发展而言，Web服务的提供方和消费方需要合作制定出一个基于云的互联网应用开发实践标准。IAB(互联网架构委员会)已经成立了<br>几个工作组，这些工作组给广告提供方提供了很多可以减少广告装载时间的最佳实践。这是一个非常好的开端，但是，很显然后面还有很多工作要做。</p><br><p>　　目前还有一个让事情变得更复杂的问题就是大客户非常强势。比如，沃尔玛或者几个主要的运行项目组织常常会对外部的内容提供商提出很多要求，如全面的服务级别协议以及Web开发者的诸多责任等，而一般的报纸出版商就不可能提出这些要求，更小一些的客户就更不可能提出了。</p><br><p>　　这也就是为什么这一点非常关键：即Web应用的开发界应该共同努力，不仅要提高浏览器本身的性能，而且更为重要的是要提高跨组织的Web开发团<br>队协作能力。随着网站之间和服务之间的联系日益紧密，我们需要新的办法进行沟通、协作和合作，以确保分布式、跨网站的开发工作进行得更为顺利。惟其如此，<br>基于云的Web应用才会得以普及，最终把互联网变成一个可靠的、一流的应用开发平台。</p><br><p>　　===链接==</p><br><p>　　网络广告性能引起关注</p><br><p>　　广告引发网页呈现速度的问题已经引起了人们的重视，这也正是IAB(互联网结构委员会)下属的广告装载性能工作组（Ad Load<br>Performance Working Group）和的富媒体和Ajax工作组（Rich Media &amp; Ajax Working<br>Group）主要工作内容。</p><br><p>　　去年下半年，前者正式公布它的第一个工作成果网络广告性能最佳实践，该文档为所有网络广告内容的制作方、交付方以及所有相关各方（包括代理、供应商、发布商）提供了一个如何减少网络广告对网页的影响的指南。</p><br><p>　　而富媒体和Ajax工作组同一天发布的&ldquo;在异步广告环境中的富媒体广告最佳实践&rdquo;则从更具体的角度提供了方法论指导，尽管这个最佳实践面向的富<br>媒体，而实际上，它对提升网页装载一般广告内容时的性能同样具有指导意义。以此为基础，该工作组未来还会推出测量广告转载性能的方法（或者工具），以此来<br>改善用户访问互联网的体验。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziib003rxwrq2qk5lsp4/" rel="next" title="Google Chrome最强鼠标手势插件面世">
+                <i class="fa fa-chevron-left"></i> Google Chrome最强鼠标手势插件面世
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzih6002jxwrq36ybvd7r/" rel="prev" title="Flex 4的十大变化">
+                Flex 4的十大变化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

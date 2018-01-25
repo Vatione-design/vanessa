@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下转自http://flovemayday.blog.com.cn/archives/2007/216">
+<meta name="description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下 转自http://flovemayday.blog.com.cn/archives/2007/21">
 <meta name="keywords" content="Java,Database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java连接SQLServer">
 <meta property="og:url" content="https://vanessa.js.org/blog/cjcui692x0000jurqoe5bjluc/index.html">
 <meta property="og:site_name" content="Vanessa">
-<meta property="og:description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下转自http://flovemayday.blog.com.cn/archives/2007/216">
+<meta property="og:description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下 转自http://flovemayday.blog.com.cn/archives/2007/21">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-23T22:58:24.000Z">
+<meta property="og:updated_time" content="2018-01-25T13:38:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java连接SQLServer">
-<meta name="twitter:description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下转自http://flovemayday.blog.com.cn/archives/2007/216">
+<meta name="twitter:description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下 转自http://flovemayday.blog.com.cn/archives/2007/21">
 
 
 
@@ -302,34 +302,25 @@
       
         <p>一切来得太顺利，多亏有前人的经验<br>安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁<br>安装了jdk，netbeans6.1<br>半个小时不到就在window下搭建好了数据库设计大作业的环境<br>好顺利啊<br>一切ok了<br>最后打开zy写的工程进行密码修改</p>
 <p>run！！！<br>ok</p>
-<p>不过为了以后方便还是搜了<br>一下转自<a href="http://flovemayday.blog.com.cn/archives/2007/2164558.shtml" target="_blank" rel="noopener">http://flovemayday.blog.com.cn/archives/2007/2164558.shtml</a><br>呵呵，看到这个界面好面熟啊，以前也用过这个模板，不过在firefox下解析不同产生了问题，害得我修改了一下午的模板。嘻嘻</p>
-<p>java连接SQLServer 弄了一下午才弄出来 整理出来 供以后参考<br> 1.安装SQLserver 2000 以前在安装的时候我都是能顺利安装上去的 但是昨天重装系统后今天装的时候就 </p>
-<p> 有了挂起错误并提示要重启 傻不拉几的我还真重启了好几次 但仍然有挂起错误，在网上找了下。原来 </p>
-<p> SQLsever2000 的安装跟操作系统有关 如果有挂起错误可以修改注册表来避免，具体方法如下：<br>    在运行窗口输入regedit，打开注册表编辑器，在HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001 </p>
-<p> \Control \Session Manager中找到PendingFileRenameOperations，删除该键值（这个键值是安装程序暂 </p>
-<p> 挂项目，只要找到对应的应用程序清除掉就行了），关闭注册表编辑器。重新安装SQL Server 2000即可 </p>
-<p> 。<br> 2.下载JDBC FOR SQLSERVER 的驱动：<br> <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=4f8f2f01-1ed7-4c4d-8f7b-" target="_blank" rel="noopener">http://www.microsoft.com/downloads/details.aspx?FamilyID=4f8f2f01-1ed7-4c4d-8f7b-</a> </p>
-<p> 3d47969e66ae&amp;DisplayLang=en#filelist<br> 点击setup.exe下载驱动，下载后开始安装，就用默认设置安装,会被安装到：<br>    C:\Program Files\Microsoft SQL Server 2000 Driver for JDBC。把C:\Program Files\Microsoft  </p>
-<p> SQL Server 2000 Driver for JDBC\lib。下面的mssqlserver.jar,msbase.jar,msutil.jar三个文件拷贝 </p>
-<p> 到你的JDK主目录\jre\lib\ext下面。同时也要考到Tomcat的安装目录下面的lib文件夹下面（有的网站上 </p>
-<p> 没有这一步，但我是考了后才能连接上的）。现在JDBC驱动就算配置好了。<br> 3.下载并安装SQLserver 2000的最新补丁sql2000ps4，自己在网上搜下应该就能找到下载地址，我不记得 </p>
-<p> 下载地址了，下下来有50多个M。（也可以来找我考啊^^）<br> 4.设置SQL SERVER登录认证模式为混合认证模式，因为SQL SERVER默认安装后认证模式为WINDOWS认证模 </p>
-<p> 式，方法如下：<br>   a.启动SQLSERVER企业管理器，选择要进行认证模式设置的服务器。右击该服务器，在弹出菜单中选择 </p>
-<p> 属性，SQL SERVER将弹出属性对话框<br>   b.在属性对话框中选择安全性选项，在身份验证处选择&ldquo;SQL Server和Windows&rdquo;，然后确定(这里要确 </p>
-<p> 认连接的用户名为&ldquo;sa&rdquo;密码为空，全为默认就行了。因为我后面给的测试例子是这样的)<br> 5.测试是否能通过JDBC连接上的代码（注意两种仍一种能够运行成功就表示能够连上了，如果发先a可以 </p>
-<p> 而b不可以那应该是上面的第4步没弄好）<br>   a.java代码：<br> import java.sql.*; </p>
-<p> public class TestDB {<br>    public static void main(String[] args) {<br>        String driverName = &quot;com.microsoft.jdbc.sqlserver.SQLServerDriver&quot;;<br>        String dbURL = &quot;jdbc:microsoft:sqlserver://localhost:1433; DatabaseName=pubs&quot;;<br>        String userName = &quot;sa&quot;;<br>        String userPwd = &quot;&quot;;<br>        Connection dbConn; </p>
-<pre><code>    try { 
-        Class.forName(driverName); 
-        dbConn = DriverManager.getConnection(dbURL, userName, userPwd); 
-        System.out.println(&amp;quot;Connection Successful!&amp;quot;); 
-    } 
-    catch (Exception e) { 
-        e.printStackTrace(); 
-    } 
-} 
-</code></pre><p> } </p>
-<p>   b.jsp代码：<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;%@ page contentType=&amp;quot;text/html;charset=gb2312&amp;quot;% &amp;gt; </span><br><span class="line">&amp;lt;%@ page import=&amp;quot;java.sql.*&amp;quot;% &amp;gt; </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&amp;lt;%Class.forName(&amp;quot;com.microsoft.jdbc.sqlserver.SQLServerDriver&amp;quot;).newInstance(); </span><br><span class="line">String url=&amp;quot;jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=pubs&amp;quot;; </span><br><span class="line">//pubs为你的数据库的 </span><br><span class="line">String user=&amp;quot;sa&amp;quot;; </span><br><span class="line">String password=&amp;quot;&amp;quot;; </span><br><span class="line">Connection conn= DriverManager.getConnection(url,user,password); </span><br><span class="line">Statement stmt=conn.createStatement </span><br><span class="line"> </span><br><span class="line">(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); </span><br><span class="line">String sql=&amp;quot;select * from jobs&amp;quot;; </span><br><span class="line">ResultSet rs=stmt.executeQuery(sql); </span><br><span class="line">while(rs.next()) &#123;% &amp;gt; </span><br><span class="line">您的第一个字段内容为：&amp;lt;%=rs.getString(1)% &amp;gt; </span><br><span class="line">您的第二个字段内容为：&amp;lt;%=rs.getString(2)% &amp;gt; </span><br><span class="line">&amp;lt;%&#125;% &amp;gt; </span><br><span class="line">&amp;lt;%out.print(&amp;quot;数据库操作成功，恭喜你&amp;quot;);% &amp;gt; </span><br><span class="line">&amp;lt;%rs.close(); </span><br><span class="line">stmt.close(); </span><br><span class="line">conn.close(); </span><br><span class="line">% &amp;gt;</span><br></pre></td></tr></table></figure></p>
+<p>不过为了以后方便还是搜了一下</p>
+<p>转自<a href="http://flovemayday.blog.com.cn/archives/2007/2164558.shtml" target="_blank" rel="noopener">http://flovemayday.blog.com.cn/archives/2007/2164558.shtml</a></p>
+<p>呵呵，看到这个界面好面熟啊，以前也用过这个模板，不过在firefox下解析不同产生了问题，害得我修改了一下午的模板。嘻嘻</p>
+<p>java连接SQLServer 弄了一下午才弄出来 整理出来 供以后参考 </p>
+<ol>
+<li><p>安装SQLserver 2000 以前在安装的时候我都是能顺利安装上去的 但是昨天重装系统后今天装的时候就有了挂起错误并提示要重启 傻不拉几的我还真重启了好几次 但仍然有挂起错误，在网上找了下。原来 SQLsever2000 的安装跟操作系统有关 如果有挂起错误可以修改注册表来避免，具体方法如下： </p>
+<p> 在运行窗口输入regedit，打开注册表编辑器，在HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control \Session Manager中找到PendingFileRenameOperations，删除该键值（这个键值是安装程序暂挂项目，只要找到对应的应用程序清除掉就行了），关闭注册表编辑器。重新安装SQL Server 2000即可。 </p>
+</li>
+<li><p>下载JDBC FOR SQLSERVER 的驱动： <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=4f8f2f01-1ed7-4c4d-8f7b-3d47969e66ae&amp;DisplayLang=en#filelist" target="_blank" rel="noopener">http://www.microsoft.com/downloads/details.aspx?FamilyID=4f8f2f01-1ed7-4c4d-8f7b-3d47969e66ae&amp;DisplayLang=en#filelist</a> </p>
+</li>
+</ol>
+<p>点击setup.exe下载驱动，下载后开始安装，就用默认设置安装,会被安装到：<br>    C:\Program Files\Microsoft SQL Server 2000 Driver for JDBC。把C:\Program Files\Microsoft SQL Server 2000 Driver for JDBC\lib。下面的mssqlserver.jar,msbase.jar,msutil.jar三个文件拷贝到你的JDK主目录\jre\lib\ext下面。同时也要考到Tomcat的安装目录下面的lib文件夹下面（有的网站上没有这一步，但我是考了后才能连接上的）。现在JDBC驱动就算配置好了。 </p>
+<p> 3.下载并安装SQLserver 2000的最新补丁sql2000ps4，自己在网上搜下应该就能找到下载地址，我不记得下载地址了，下下来有50多个M。（也可以来找我考啊^^） </p>
+<p> 4.设置SQL SERVER登录认证模式为混合认证模式，因为SQL SERVER默认安装后认证模式为WINDOWS认证模式，方法如下：</p>
+<p>   a.启动SQLSERVER企业管理器，选择要进行认证模式设置的服务器。右击该服务器，在弹出菜单中选择属性，SQL SERVER将弹出属性对话框  </p>
+<p>   b.在属性对话框中选择安全性选项，在身份验证处选择&ldquo;SQL Server和Windows&rdquo;，然后确定(这里要确认连接的用户名为&ldquo;sa&rdquo;密码为空，全为默认就行了。因为我后面给的测试例子是这样的) </p>
+<p> 5.测试是否能通过JDBC连接上的代码（注意两种仍一种能够运行成功就表示能够连上了，如果发先a可以而b不可以那应该是上面的第4步没弄好）<br>   a.java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import java.sql.*; </span><br><span class="line"> </span><br><span class="line">public class TestDB &#123; </span><br><span class="line">   public static void main(String[] args) &#123; </span><br><span class="line">       String driverName = &amp;quot;com.microsoft.jdbc.sqlserver.SQLServerDriver&amp;quot;; </span><br><span class="line">       String dbURL = &amp;quot;jdbc:microsoft:sqlserver://localhost:1433; DatabaseName=pubs&amp;quot;; </span><br><span class="line">       String userName = &amp;quot;sa&amp;quot;; </span><br><span class="line">       String userPwd = &amp;quot;&amp;quot;; </span><br><span class="line">       Connection dbConn; </span><br><span class="line"> </span><br><span class="line">       try &#123; </span><br><span class="line">           Class.forName(driverName); </span><br><span class="line">           dbConn = DriverManager.getConnection(dbURL, userName, userPwd); </span><br><span class="line">           System.out.println(&amp;quot;Connection Successful!&amp;quot;); </span><br><span class="line">       &#125; </span><br><span class="line">       catch (Exception e) &#123; </span><br><span class="line">           e.printStackTrace(); </span><br><span class="line">       &#125; </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>   b.jsp代码： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;%@ page contentType=&amp;quot;text/html;charset=gb2312&amp;quot;%&amp;gt; </span><br><span class="line">&amp;lt;%@ page import=&amp;quot;java.sql.*&amp;quot;%&amp;gt; </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&amp;lt;%Class.forName(&amp;quot;com.microsoft.jdbc.sqlserver.SQLServerDriver&amp;quot;).newInstance(); </span><br><span class="line">String url=&amp;quot;jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=pubs&amp;quot;; </span><br><span class="line">//pubs为你的数据库的 </span><br><span class="line">String user=&amp;quot;sa&amp;quot;; </span><br><span class="line">String password=&amp;quot;&amp;quot;; </span><br><span class="line">Connection conn= DriverManager.getConnection(url,user,password); </span><br><span class="line">Statement stmt=conn.createStatement </span><br><span class="line"> </span><br><span class="line">(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); </span><br><span class="line">String sql=&amp;quot;select * from jobs&amp;quot;; </span><br><span class="line">ResultSet rs=stmt.executeQuery(sql); </span><br><span class="line">while(rs.next()) &#123;%&amp;gt; </span><br><span class="line">您的第一个字段内容为：&amp;lt;%=rs.getString(1)%&amp;gt; </span><br><span class="line">您的第二个字段内容为：&amp;lt;%=rs.getString(2)%&amp;gt; </span><br><span class="line">&amp;lt;%&#125;%&amp;gt; </span><br><span class="line">&amp;lt;%out.print(&amp;quot;数据库操作成功，恭喜你&amp;quot;);%&amp;gt; </span><br><span class="line">&amp;lt;%rs.close(); </span><br><span class="line">stmt.close(); </span><br><span class="line">conn.close(); </span><br><span class="line">%&amp;gt;</span><br></pre></td></tr></table></figure>
 <p> #java连接SQLServer 弄了一下午才弄出来 整理出来 供以后参考#</p>
 
       
@@ -363,8 +354,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/cjcuj6co20005l6rqekp814eb/" rel="next" title="[Ubuntu 8.04] firefox 繁体中文变成简体中文的简易方法">
-                <i class="fa fa-chevron-left"></i> [Ubuntu 8.04] firefox 繁体中文变成简体中文的简易方法
+              <a href="/blog/cjcujzizj00mhxwrqd0di2n1m/" rel="next" title="ubuntu 下音乐播放器listen的bug">
+                <i class="fa fa-chevron-left"></i> ubuntu 下音乐播放器listen的bug
               </a>
             
           </div>
@@ -373,8 +364,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/cjcuj6co7000dl6rqg2ui3619/" rel="prev" title="《2008胡润IT富豪榜》">
-                《2008胡润IT富豪榜》 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/cjcujzj3200ppxwrqa9jg5zr4/" rel="prev" title="再次开始写界面">
+                再次开始写界面 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -443,7 +434,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">874</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

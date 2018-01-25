@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,ECMAScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天的这篇文章令我感到非常兴奋，我们将一起领略ES6中最具魔力的特性。为什么说是&amp;ldquo;最具魔力的&amp;rdquo;？对于初学者来说，此特性与JS之前已有的特性截然不同，可能会觉得有点晦涩难懂。但是，从某种意义上来说，它使语言内部的常态行为变得更加强大，如果这都不算有魔力，我不知道还有什么能算。不仅如此，此特性可以极大地简化代码，它甚至可以帮助你逃离&amp;ldquo;回调地狱&amp;rdquo;。既然新特">
+<meta name="keywords" content="JavaScript,ECMAScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入浅出ES6（三）：生成器 Generators">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj9p00vbxwrqidj1bfxo/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="今天的这篇文章令我感到非常兴奋，我们将一起领略ES6中最具魔力的特性。为什么说是&amp;ldquo;最具魔力的&amp;rdquo;？对于初学者来说，此特性与JS之前已有的特性截然不同，可能会觉得有点晦涩难懂。但是，从某种意义上来说，它使语言内部的常态行为变得更加强大，如果这都不算有魔力，我不知道还有什么能算。不仅如此，此特性可以极大地简化代码，它甚至可以帮助你逃离&amp;ldquo;回调地狱&amp;rdquo;。既然新特">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T11:21:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入浅出ES6（三）：生成器 Generators">
+<meta name="twitter:description" content="今天的这篇文章令我感到非常兴奋，我们将一起领略ES6中最具魔力的特性。为什么说是&amp;ldquo;最具魔力的&amp;rdquo;？对于初学者来说，此特性与JS之前已有的特性截然不同，可能会觉得有点晦涩难懂。但是，从某种意义上来说，它使语言内部的常态行为变得更加强大，如果这都不算有魔力，我不知道还有什么能算。不仅如此，此特性可以极大地简化代码，它甚至可以帮助你逃离&amp;ldquo;回调地狱&amp;rdquo;。既然新特">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj9p00vbxwrqidj1bfxo/"/>
+
+
+
+
+
+  <title>深入浅出ES6（三）：生成器 Generators | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj9p00vbxwrqidj1bfxo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入浅出ES6（三）：生成器 Generators</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-09T18:11:21+08:00">
+                2015-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天的这篇文章令我感到非常兴奋，我们将一起领略ES6中最具魔力的特性。</p><br><p>为什么说是&ldquo;最具魔力的&rdquo;？对于初学者来说，此特性与JS之前已有的特性截然不同，可能会觉得有点晦涩难懂。但是，从某种意义上来说，它使语言内部的常态行为变得更加强大，如果这都不算有魔力，我不知道还有什么能算。</p><br><p>不仅如此，此特性可以极大地简化代码，它甚至可以帮助你逃离&ldquo;回调地狱&rdquo;。</p><br><p>既然新特性如此神奇，那么就一起深入了解它的魔力吧！</p><br><h2>ES6生成器（Generators）简介</h2><br><p>什么是生成器？</p><br><p>我们从一个示例开始：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token keyword">function</span><span class="token operator"><em></em></span> <span class="token function">quips<span class="token punctuation">(</span></span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">yield</span> <span class="token string">“你好 “</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">“!”</span><span class="token punctuation">;</span><br>  <span class="token keyword">yield</span> <span class="token string">“希望你能喜欢这篇介绍ES6的译文”</span><span class="token punctuation">;</span><br>  <span class="token keyword">if</span> <span class="token punctuation">(</span>name<span class="token punctuation">.</span><span class="token function">startsWith<span class="token punctuation">(</span></span><span class="token string">“X”</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">yield</span> <span class="token string">“你的名字 “</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">“  首字母是X，这很酷！”</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token keyword">yield</span> <span class="token string">“我们下次再见！”</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre><br><p>这是一只<a href="http://people.mozilla.org/~jorendorff/demos/meow.html" target="_blank" rel="noopener">会说话的猫</a>，这段代码很可能代表着当今互联网上最重要的一类应用。（试着点击<a href="http://people.mozilla.org/~jorendorff/demos/meow.html" target="_blank" rel="noopener">这个链接</a>，与这只猫互动一下，如果你感到有些困惑，回到这里继续阅读）。</p><br><p>这段代码看起来很像一个函数，我们称之为生成器函数，它与普通函数有很多共同点，但是二者有如下区别：</p><br><ul><br><li>普通函数使用function声明，而生成器函数使用function声明。</li><br><li>在生成器函数内部，有一种类似return的语法：关键字yield。二者的区别是，普通函数只可以return一次，而生成器函数可以yield多次（当然也可以只yield一次）。在生成器的执行过程中，遇到yield表达式立即暂停，后续可恢复执行状态。</li><br></ul><br><p>这就是普通函数和生成器函数之间最大的区别，普通函数不能自暂停，生成器函数可以。</p><br><h2>生成器做了什么？</h2><br><p>当你调用quips()生成器函数时发生了什么？</p><br><pre><code class="language-nolanguage">&gt; var iter = quips(“jorendorff”);<br>  [object Generator]<br>&gt; iter.next()<br>  { value: “你好 jorendorff!”, done: false }<br>&gt; iter.next()<br>  { value: “希望你能喜欢这篇介绍ES6的译文”, done: false }<br>&gt; iter.next()<br>  { value: “我们下次再见！”, done: false }<br>&gt; iter.next()<br>  { value: undefined, done: true }</code></pre><br><p>你大概已经习惯了普通函数的使用方式，当你调用它们时，它们立即开始运行，直到遇到return或抛出异常时才退出执行，作为JS程序员你一定深谙此道。</p><br><p>生成器调用看起来非常类似：quips(“jorendorff”)。但是，当你调用一个生成器时，它并非立即执行，而是返回一个已暂停的生成器对象（上述实例代码中的iter）。你可将这个生成器对象视为一次函数调用，只不过立即冻结了，它恰好在生成器函数的最顶端的第一行代码之前冻结了。</p><br><p>每当你调用生成器对象的.next()方法时，函数调用将其自身解冻并一直运行到下一个yield表达式，再次暂停。</p><br><p>这也是在上述代码中我们每次都调用iter.next()的原因，我们获得了quips()函数体中yield表达式生成的不同的字符串值。</p><br><p>调用最后一个iter.next()时，我们最终抵达生成器函数的末尾，所以返回结果中done的值为true。抵达函数的末尾意味着没有返回值，所以返回结果中value的值为undefined。</p><br><p>现在回到<a href="http://people.mozilla.org/~jorendorff/demos/meow.html" target="_blank" rel="noopener">会说话的猫的demo页面</a>，尝试在循环中加入一个yield，会发生什么？</p><br><p>如果用专业术语描述，每当生成器执行yields语句，生成器的堆栈结构（本地变量、参数、临时值、生成器内部当前的执行位置）被移出堆栈。然而，生成器对象保留了对这个堆栈结构的引用（备份），所以稍后调用.next()可以重新激活堆栈结构并且继续执行。</p><br><p>值得特别一提的是，<strong>生成器不是线程</strong>，在支持线程的语言中，多段代码可以同时运行，通通常导致竞态条件和非确定性，不过同时也带来不错的性能。生成器则完全不同。当生成器运行时，它和调用者处于同一线程中，拥有确定的连续执行顺序，永不并发。与系统线程不同的是，生成器只有在其函数体内标记为yield的点才会暂停。</p><br><p>现在，我们了解了生成器的原理，领略过生成器的运行、暂停恢复运行的不同状态。那么，这些奇怪的功能究竟有何用处？</p><br><h2>生成器是迭代器！</h2><br><p>上周，我们学习了ES6的迭代器，它是ES6中独立的内建类，同时也是语言的一个扩展点，通过实现<a href="">Symbol.iterator</a>和.next()两个方法你就可以创建自定义迭代器。</p><br><p>实现一个接口不是一桩小事，我们一起实现一个迭代器。举个例子，我们创建一个简单的range迭代器，它可以简单地将两个数字之间的所有数相加。首先是传统C的for(;;)循环：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token comment">// 应该弹出三次 “ding”<br></span><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> value of <span class="token function">range<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token function">alert<span class="token punctuation">(</span></span><span class="token string">“Ding! at floor #”</span> <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre><br><p>使用ES6的类的解决方案（如果不清楚语法细节，无须担心，我们将在接下来的文章中为你讲解）：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token keyword">class</span> <span class="token class-name">RangeIterator</span> <span class="token punctuation">{</span><br>  <span class="token function">constructor<span class="token punctuation">(</span></span>start<span class="token punctuation">,</span> stop<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> start<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>stop <span class="token operator">=</span> stop<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>iterator<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><br><br>  <span class="token function">next<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">var</span> value <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>stop<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      <span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token operator">++</span><span class="token punctuation">;</span><br>      <span class="token keyword">return</span> <span class="token punctuation">{</span>done<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> value<span class="token punctuation">}</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span><br>      <span class="token keyword">return</span> <span class="token punctuation">{</span>done<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> undefined<span class="token punctuation">}</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// 返回一个新的迭代器，可以从start到stop计数。<br></span><span class="token keyword">function</span> <span class="token function">range<span class="token punctuation">(</span></span>start<span class="token punctuation">,</span> stop<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RangeIterator</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> stop<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre><br><p><a href="http://codepen.io/anon/pen/NqGgOQ" target="_blank" rel="noopener">查看代码运行情况。</a></p><br><p>这里的实现类似<a href="http://gafter.blogspot.com/2007/07/internal-versus-external-iterators.html" target="_blank" rel="noopener">Java</a>或<a href="https://schani.wordpress.com/2014/06/06/generators-in-swift/" target="_blank" rel="noopener">Swift</a>中的迭代器，不是很糟糕，但也不是完全没有问题。我们很难说清这段代码中是否有bug，这段代码看起来完全不像我们试图模仿的传统for (;;)循环，迭代器协议迫使我们拆解掉循环部分。</p><br><p>此时此刻你对迭代器可能尚无感觉，他们用起来很酷，但看起来有些难以实现。</p><br><p>你大概不会为了使迭代器更易于构建从而建议我们为JS语言引入一个离奇古怪又野蛮的新型控制流结构，但是既然我们有生成器，是否可以在这里应用它们呢？一起尝试一下：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token keyword">function</span><span class="token operator"><em></em></span> <span class="token function">range<span class="token punctuation">(</span></span>start<span class="token punctuation">,</span> stop<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> start<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> stop<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token keyword">yield</span> i<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre><br><p><a href="http://codepen.io/anon/pen/mJewga" target="_blank" rel="noopener">查看代码运行情况。</a></p><br><p>以上4行代码实现的生成器完全可以替代之前引入了一整个RangeIterator类的23行代码的实现。可行的原因是：<strong>生成器是迭代器</strong>。所有的生成器都有内建.next()和<a href="">Symbol.iterator</a>方法的实现。你只须编写循环部分的行为。</p><br><p>我们都非常讨厌被迫用被动语态写一封很长的邮件，不借助生成器实现迭代器的过程与之类似，令人痛苦不堪。当你的语言不再简练，说出的话就会变得难以理解。RangeIterator的实现代码很长并且非常奇怪，因为你需要在不借助循环语法的前提下为它添加循环功能的描述。所以生成器是最好的解决方案！</p><br><p>我们如何发挥作为迭代器的生成器所产生的最大效力？</p><br><p>l 使任意对象可迭代。编写生成器函数遍历这个对象，运行时yield每一个值。然后将这个生成器函数作为这个对象的[Symbol.iterator]方法。</p><br><p>l 简化数组构建函数。假设你有一个函数，每次调用的时候返回一个数组结果，就像这样：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token comment">// 拆分一维数组icons<br></span><span class="token comment">// 根据长度rowLength<br></span><span class="token keyword">function</span> <span class="token function">splitIntoRows<span class="token punctuation">(</span></span>icons<span class="token punctuation">,</span> rowLength<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">var</span> rows <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> icons<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> rowLength<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    rows<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span>icons<span class="token punctuation">.</span><span class="token function">slice<span class="token punctuation">(</span></span>i<span class="token punctuation">,</span> i <span class="token operator">+</span> rowLength<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token keyword">return</span> rows<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre><br><p>使用生成器创建的代码相对较短：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token keyword">function</span><span class="token operator"></span> <span class="token function">splitIntoRows<span class="token punctuation">(</span></span>icons<span class="token punctuation">,</span> rowLength<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> icons<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> rowLength<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">yield</span> icons<span class="token punctuation">.</span><span class="token function">slice<span class="token punctuation">(</span></span>i<span class="token punctuation">,</span> i <span class="token operator">+</span> rowLength<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre><br><p>行为上唯一的不同是，传统写法立即计算所有结果并返回一个数组类型的结果，使用生成器则返回一个迭代器，每次根据需要逐一地计算结果。</p><br><ul><br><li>获取异常尺寸的结果。你无法构建一个无限大的数组，但是你可以返回一个可以生成一个永无止境的序列的生成器，每次调用可以从中取任意数量的值。</li><br><li>重构复杂循环。你是否写过又丑又大的函数？你是否愿意将其拆分为两个更简单的部分？现在，你的重构工具箱里有了新的利刃&mdash;&mdash;生成器。当你面对一个复杂的循环时，你可以拆分出生成数据的代码，将其转换为独立的生成器函数，然后使用for (var data of myNewGenerator(args))遍历我们所需的数据。</li><br><li>构建与迭代相关的工具。ES6不提供用来过滤、映射以及针对任意可迭代数据集进行特殊操作的扩展库。借助生成器，我们只须写几行代码就可以实现类似的工具。</li><br></ul><br><p>举个例子，假设你需要一个等效于Array.prototype.filter并且支持DOM NodeLists的方法，可以这样写：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token keyword">function</span><span class="token operator"><em></em></span> <span class="token function">filter<span class="token punctuation">(</span></span>test<span class="token punctuation">,</span> iterable<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> item of iterable<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">test<span class="token punctuation">(</span></span>item<span class="token punctuation">)</span><span class="token punctuation">)</span><br>      <span class="token keyword">yield</span> item<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre><br><p>你看，生成器魔力四射！借助它们的力量可以非常轻松地实现自定义迭代器，记住，迭代器贯穿ES6的始终，它是数据和循环的新标准。</p><br><p>以上只是生成器的冰山一角，最重要的功能请继续观看！</p><br><h2>生成器和异步代码</h2><br><p>这是我在一段时间以前写的一些JS代码</p><br><pre><code class="language-nolanguage">         };<br>        })<br>      });<br>    });<br>  });<br>});</code></pre><br><p>可能你已经在自己的代码中见过类似的片段，<a href="http://www.html5rocks.com/en/tutorials/async/deferred/" target="_blank" rel="noopener">异步API</a>通常需要一个回调函数，这意味着你需要为每一次任务执行编写额外的异步函数。所以如果你有一段代码需要完成三个任务，你将看到类似的三层级缩进的代码，而非简单的三行代码。</p><br><p>后来我就这样写了：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">‘close’</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token function">done<span class="token punctuation">(</span></span>undefined<span class="token punctuation">,</span> undefined<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">‘error’</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token function">done<span class="token punctuation">(</span></span>error<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><br><p>异步API拥有错误处理规则，不支持异常处理。不同的API有不同的规则，大多数的错误规则是默认的；在有些API里，甚至连成功提示都是默认的。</p><br><p>这些是到目前为止我们为异步编程所付出的代价，我们正慢慢开始接受异步代码不如等效同步代码美观又简洁的这个事实。</p><br><p>生成器为你提供了避免以上问题的新思路。</p><br><p>实验性的<a href="https://github.com/kriskowal/q/tree/v1/examples/async-generators" target="_blank" rel="noopener">Q.async()</a>尝试结合promises使用生成器产生异步代码的等效同步代码。举个例子：</p><br><pre class=" language-javascript"><code class=" language-javascript" data-language="javascript"><span class="token comment">// 制造一些噪音的同步代码。<br></span><span class="token keyword">function</span> <span class="token function">makeNoise<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token function">shake<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token function">rattle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token function">roll<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// 制造一些噪音的异步代码。<br></span><span class="token comment">// 返回一个Promise对象<br></span><span class="token comment">// 当我们制造完噪音的时候会变为resolved<br></span><span class="token keyword">function</span> <span class="token function">makeNoise_async<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> Q<span class="token punctuation">.</span><span class="token function">async<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token operator"></span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">yield</span> <span class="token function">shake_async<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">yield</span> <span class="token function">rattle_async<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">yield</span> <span class="token function">roll_async<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre><br><p>二者主要的区别是，异步版本必须在每次调用异步函数的地方添加yield关键字。</p><br><p>在Q.async版本中添加一个类似if语句的判断或try/catch块，如同向同步版本中添加类似功能一样简单。与其它异步代码编写方法相比，这种方法更自然，不像是学一门新语言一样辛苦。</p><br><p>如果你已经看到这里，你可以试着阅读来自James Long的<a href="http://jlongster.com/A-Study-on-Solving-Callbacks-with-JavaScript-Generators" target="_blank" rel="noopener">更深入地讲解生成器的文章</a>。</p><br><p>生成器为我们提供了一个新的异步编程模型思路，这种方法更适合人类的大脑。相关工作正在不断展开。此外，更好的语法或许会有帮助，<a href="https://github.com/tc39/ecma262" target="_blank" rel="noopener">ES7中</a>有一个<a href="https://github.com/lukehoban/ecmascript-asyncawait" target="_blank" rel="noopener">有关异步函数的提案</a>，它基于promises和生成器构建，并从C#相似的特性中汲取了大量灵感。</p><br><h2>如何应用这些疯狂的新特性？</h2><br><p>在服务器端，现在你可以在io.js中使用ES6（在Node中你需要使用–harmony这个命令行选项）。</p><br><p>在浏览器端，到目前为止只有Firefox 27+和Chrome 39+支持了ES6生成器。如果要在web端使用生成器，你需要使用<a href="http://babeljs.io/" target="_blank" rel="noopener">Babel</a>或<a href="https://github.com/google/traceur-compiler#what-is-traceur" target="_blank" rel="noopener">Traceur</a>来将你的ES6代码转译为Web友好的ES5。</p><br><p>起初，JS中的生成器由Brendan Eich实现，他的设计参考了<a href="https://www.python.org/dev/peps/pep-0255/" target="_blank" rel="noopener">Python生成器</a>，而此Python生成器则受到<a href="http://www.cs.arizona.edu/icon/" target="_blank" rel="noopener">Icon</a>的启发。他们<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7" target="_blank" rel="noopener">早在2006年</a>就在Firefox 2.0中移植了相关代码。但是，标准化的道路崎岖不平，相关语法和行为都在原先的基础上有所改动。Firefox和Chrome中的ES6生成器都是由编译器hacker&nbsp;<a href="http://wingolog.org/" target="_blank" rel="noopener">Andy Wingo</a>实现的。这项工作由<a href="http://www.bloomberg.com/" target="_blank" rel="noopener">彭博</a>赞助支持（没听错，就是大名鼎鼎的那个彭博！）。</p><br><h2>yield;</h2><br><p>生成器还有更多未提及的特性，例如：.throw()和.return()方法、可选参数.next()、yield*表达式语法。由于行文过长，估计观众老爷们已然疲乏，我们应该学习一下生成器，暂时yield在这里，剩下的干货择机为大家献上。</p><br><p>下一次，我们变换一下风格，由于我们接连搬了两座大山：迭代器和生成器，下次就一起研究下不会改变你编程风格的ES6特性好不？就是一些简单又实用的东西，你一定会喜笑颜开哒！你还别说，在什么都要&ldquo;微&rdquo;一下的今天，ES6当然要有微改进了！</p><br><p>下回预告：ES6模板字符串深度解析，每天都会写的代码！观众老爷们记得回来哦！我会想你们的！</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/ECMAScript/" rel="tag"># ECMAScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj9r00vdxwrqxsfc7vj9/" rel="next" title="深入浅出ES6（二）：迭代器和for-of循环">
+                <i class="fa fa-chevron-left"></i> 深入浅出ES6（二）：迭代器和for-of循环
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j4d008dl6rq6y3sm6hk/" rel="prev" title="地球2.0">
+                地球2.0 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">ES6生成器（Generators）简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">生成器做了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">生成器是迭代器！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">生成器和异步代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">如何应用这些疯狂的新特性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">yield;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

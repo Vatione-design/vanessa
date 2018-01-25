@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2009-09-07 08:11                                                                作者：佚名                                                        来源：网页教学网">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS教程:认真学习haslayout">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzig5001jxwrq26nqzj7m/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="2009-09-07 08:11                                                                作者：佚名                                                        来源：网页教学网">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-18T04:58:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS教程:认真学习haslayout">
+<meta name="twitter:description" content="2009-09-07 08:11                                                                作者：佚名                                                        来源：网页教学网">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzig5001jxwrq26nqzj7m/"/>
+
+
+
+
+
+  <title>CSS教程:认真学习haslayout | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzig5001jxwrq26nqzj7m/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS教程:认真学习haslayout</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-09-09T14:07:00+08:00">
+                2009-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table style="border-bottom: 1px solid #aaaaaa; height: 95px;" border="0" cellspacing="0" cellpadding="0" width="98%"><br><tbody><br><tr><br><td align="center"><strong class="p24"><br><br></strong><br>            </td><br></tr><br><tr><br><td align="center"><br>                <span style="color: #515151;"><br>                2009-09-07 08:11<br>                                                                作者：佚名<br>                                                        来源：<a href="http://www.enet.com.cn/article/2009/0907/A20090907531017.shtml" target="_blank">网页教学网</a><br></span><br><br><table border="0" width="468" align="center"><br><tbody><br><tr><br><td><br><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="0" width="90%"><br><tbody><br><tr><br><td height="5"></td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="2" width="100%"><br><tbody><br><tr><br><td height="5"></td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="0" width="98%"><br><tbody><br><tr><br><td style="color: #000000; font-size: 14px;"><br><br><table style="height: 62px;" border="0" cellspacing="0" cellpadding="1" width="370" align="center"><br><tbody><br><tr><br><td class="p12h" height="200" valign="top"><span style="color: #dc6900;"><br>                            【简 介】<br><br></span><br>要想更好的理解 css， 尤其是 IE 下对 css 的渲染，haslayout 是一个非常有必要彻底弄清除的概念。大多IE下的显示错误，就是源于 haslayout。<br></td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="2" width="100%"><br><tbody><br><tr><br><td class="p12h" valign="bottom"><br></td><br></tr><br></tbody><br></table><br><table style="height: 1px;" border="0" cellspacing="0" cellpadding="0" width="370"><br><tbody><br><tr><br><td height="25" align="center" valign="bottom"></td><br></tr><br></tbody><br></table><br></td><br><td width="360"><br><table border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr><br><td class="p14h" width="360" align="center"><br><br><table border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr><br><td><br><br>           </td><br></tr><br></tbody><br></table><br><!-- include virtual="/eschool/includes/adv/ahua.html"--><br>    </td><br></tr><br><tr><br><td><br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td width="360" valign="top"><br>         <!-- 苹果的画中画--><br>         <!-- include virtual="/eschool/includes/adv/applehua0131.html"--><br>         </td><br></tr><br><tr><br><td><br>           <!-- include virtual="/eschool/includes/v1/d/all_1.html"--><br>            <!-- table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.enet.com.cn/home/images/v3/ht_00.gif">
+
+<tr>
+<td width="93"><img src="http://www.enet.com.cn/home/images/v3/ht_00.jpg" width="93" height="49"></td>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="20"><img src="http://www.enet.com.cn/home/images/v3/ht_02.gif" width="6" height="5" hspace="4" align="absmiddle"><a href="http://stores.enet.com.cn/efala/100004120/product/86788" target="_blank" title="文曲星视频器1080"><font color="#FF6600">文曲星视频器1080</font></a></td>
+<td height="20"><img src="http://www.enet.com.cn/home/images/v3/ht_02.gif" width="6" height="5" hspace="4" align="absmiddle"><a href="http://enet5.enet.com.cn/adcount.php?id=AD20060901016&url=http%3A%2F%2Fad.cn.doubleclick.net%2Fclk%3B37345456%3B14085097%3Bo%3Fhttp%3A%2F%2Fdellstorecn.sg.dell.com/public/default.jsp?c=cn&s=dhs&l=cn&rflag=AP&aflag=A&siteid=enetNB" target="_blank" title="随心更换彩壳本本"><font color="#FF6600">随心更换彩壳本本</font></a></td>
+</tr>
+<tr>
+<td height="20"><img src="http://www.enet.com.cn/home/images/v3/ht_02.gif" width="6" height="5" hspace="4" align="absmiddle"><a href="http://stores.enet.com.cn/efala/888103169/product/117788" target="_blank" title="JVC圆您摄像梦想"><font color="#FF6600">JVC圆您摄像梦想</font></a></td>
+<td height="20"><img src="http://www.enet.com.cn/home/images/v3/ht_02.gif" width="6" height="5" hspace="4" align="absmiddle"><a href="http://shop.enet.com.cn/marketplace/DP81726.html" target="_blank" title="森海塞尔仅150"><font color="#FF6600">森海塞尔仅150</font></a></td>
+</tr>
+<tr>
+</tr>
+</table>
+</td>
+<td width="5"><img src="/home/images/v3/ht_01.gif" width="5" height="49"></td>
+</tr>
+</table--><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="1" width="100%"><br><tbody><br><tr><br><td><br><hr size="1"><br></td><br></tr><br><tr><br><td style="color: #000000; font-size: 14px;"><br><br><table border="0" cellspacing="0" cellpadding="2" width="99%" align="center"><br><tbody><br><tr><br><td width="5"></td><br><td style="color: #000000; font-size: 14px;"><a name="part"></a><br>　　要想更好的理解 css， 尤其是 IE 下对 css 的渲染，haslayout 是一个非常有必要彻底弄清除的概念。大多IE下的显示错误，就是源于 haslayout。<br><br><br><br><br>　　<strong>什么是 haslayout ？</strong><br><br><br><br><br>　　haslayout 是Windows Internet Explorer渲染引擎的一个内部组成部分。在Internet<br>Explorer中，一个元素要么自己对自身的内容进行计算大小和组织，要么依赖于父元素来计算尺寸和组织内容。为了调节这两个不同的概念，渲染引擎采用<br>了 hasLayout 的属性，属性值可以为true或false。当一个元素的 hasLayout<br>属性值为true时，我们说这个元素有一个布局（layout）<br><br><br><br><br>　　当一个元素有一个布局时，它负责对自己和可能的子孙元素进行尺寸计算和定位。简单来说，这意味着这个元素需要花更多的代价来维护自身和里面的<br>内容，<br>而不是依赖于祖先元素来完成这些工作。因此，一些元素默认会有一个布局。当我们说一个元素&ldquo;拥有layout&rdquo;或&ldquo;得到layout&rdquo;，或者说一个元素<br>&ldquo;has layout&rdquo; 的时候，我们的意思是指它的<a class="article" href="http://www.enet.com.cn/cpu/" target="_blank">微软</a><br>专<br>有属性 hasLayout 被设为了 true 。一个&ldquo;layout元素&rdquo;可以是一个默认就拥有 layout 的元素或者是一个通过设置某些<br>CSS 属性得到 layout 的元素。如果某个HTML元素拥有 haslayout 属性，那么这个元素的 haslayout 的值一定只有<br>true，haslayout 为只读属性 一旦被触发，就不可逆转。通过 IE Developer Toolbar 可以查看 IE 下 HTML<br>元素是否拥有haslayout，在 IE Developer Toolbar 下，拥有 haslayout<br>的元素，通常显示为&ldquo;haslayout = -1&rdquo;。<br><br><br><br><br>　　负责组织自身内容的元素将默认有一个布局，主要包括以下元素（不完全列表）：<br><br><br><br><br>　　<em> body and html<br><br><br><br>
+　　</em> table, tr, th, td<br><br><br><br><br>　　<em> img<br><br><br><br>
+　　</em> hr<br><br><br><br><br>　　<em> input, button, file, select, textarea, fieldset<br><br><br><br>
+　　</em> marquee<br><br><br><br><br>　　<em> frameset, frame, iframe<br><br><br><br>
+　　</em> objects, <a class="article" href="http://product.enet.com.cn/price/plist4_2289.shtml" target="_blank">apple</a><br>ts, embed<br><br><br><br><br>　　对于并非所有的元素都默认有布局，微软给出的主要原因是&ldquo;性能和简洁&rdquo;。如果所有的元素都默认有布局，会对性能和内存使用上产生有害的影响。<br><br><br><br><br>　　<strong>如何激发 haslayout？</strong><br><br><br><br><br>　　大部分的 IE 显示错误，都可以通过激发元素的 haslayout 属性来修正。可以通过设置 css 尺寸属性(width/height)等来激发元素的 haslayout，使其&ldquo;拥有布局&rdquo;。如下所示，通过设置以下 css 属性即可。<br><br><br><br><br>　　<em> display: inline-block<br><br><br><br>
+　　</em> height: (任何值除了auto)<br><br><br><br><br>　　<em> float: (left 或 right)<br><br><br><br>
+　　</em> position: absolute<br><br><br><br><br>　　<em> width: (任何值除了auto)<br><br><br><br>
+　　</em> writing-mode: tb-rl<br><br><br><br><br>　　<em> zoom: (除 normal 外任意值)<br><br><br><br><br>　　Internet Explorer 7 还有一些额外的属性(不完全列表):<br><br><br><br>
+　　</em> min-height: (任意值)<br><br><br><br><br>　　<em> max-height: (除 none 外任意值)<br><br><br><br>
+　　</em> min-width: (任意值)<br><br><br><br><br>　　<em> max-width: (除 none 外任意值)<br><br><br><br>
+　　</em> overflow: (除 visible 外任意值)<br><br><br><br><br>　　<em> overflow-x: (除 visible 外任意值)<br><br><br><br>
+　　</em> overflow-y: (除 visible 外任意值)<br><br><br><br><br>　　* position: fixed<br><br><br><br><br>　　其中 overflow-x 和 overflow-y 是 css3 盒模型中的属性，目前还未被浏览器广泛支持。<br><br><br><br><br>　　对于内联元素(默认即为内联的元素，如 span，或 display:inline; 的元素)，<br><br><br><br><br>　　width 和 height 只在 IE5.x 下和 IE6 或更新版本的 quirks 模式下触发 hasLayout 。而对于<br>IE6，如果浏览器运行于标准兼容模式下，内联元素会忽略 width 或 height 属性，所以设置 width 或 height<br>不能在此种情况下令该元素具有 layout。 <br><br><br><br>　　zoom 总是可以触发 hasLayout，但是在 IE5.0 中不支持。<br><br><br><br><br>　　具有&ldquo;layout&rdquo; 的元素如果同时 display: inline ，那么它的行为就和标准中所说的 inline-block<br>很类似了：在段落中和普通文字一样在水平方向和连续排列，受 vertical-align<br>影响，并且大小可以根据内容自适应调整。这也可以解释为什么单单在 IE/Win 中内联元素可以包含块级元素而少出问题，因为在别的浏览器中<br>display: inline 就是内联，不像 IE/Win 一旦内联元素拥有 layout 还会变成 inline-block。<br><br><br><br><br>　　<strong>haslayout 问题的调试与解决</strong><br><br><br><br><br>　　当网页在 IE 中有异常表现时，可以尝试激发 haslayout 来看看是不是问题所在。常用的方法是给某元素 css 设定<br>zoom:1 。使用 zoom:1 是因为大多数情况下，它能在不影响现有环境的条件下激发元素的<br>haslayout。而一旦问题消失，那基本上就可以判断是 haslayout 的原因。然后就可以通过设定相应的 css<br>属性来对这个问题进行修正了。建议首先要考虑的是设定元素的 width/height 属性，其次再考虑其他属性。<br><br><br><br><br>　　对 IE6 及更早版本来说，常用的方法被称为霍莉破解(Holly hack)，即设定这个元素的高度为 1%<br>(height:1%;)。需要注意的是，当这个元素的 overflow 属性被设置为 visible 时，这个方法就失效了。或者使用 IE<br>的条件注释。<br><br><br><br><br>　　对 IE7 来说，最好的方法时设置元素的最小高度为 0 (min-height:0;)。<br><br><br><br><br>　　haslayout 问题引起的常见 bug<br><br><br><br><br>　　IE6 及更低版本的双空白边浮动 bug<br><br><br><br><br>　　bug 修复: display:inline;<br><br><br><br><br>　　IE5-6/win 的 3 像素偏移 bug<br><br><br><br><br>　　bug 修复: _height:1%;<br><br><br><br><br>　　E6 的躲躲猫(peek-a-boo) bug<br><br><br><br><br>　　bug 修复: _height:1%;</td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzilf0079xwrqk9rs7vpk/" rel="next" title="JS常用代码片段截取（三）">
+                <i class="fa fa-chevron-left"></i> JS常用代码片段截取（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzinw00a7xwrqm6fowtlm/" rel="prev" title="Learn CSS Positioning in Ten Steps">
+                Learn CSS Positioning in Ten Steps <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者：IT168 戚祥&amp;nbsp;&amp;nbsp;2007-07-13&amp;mdash;&amp;mdash; 比较JSF、Spring MVC、Stripes、Struts 2、Tapestry和Wicket                                &amp;nbsp;&amp;nbsp;&amp;nbsp;【译者按】这是Matt Raible在今年6月24-27号召开的J">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web层框架比较">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzimi008nxwrqpwpjv8gn/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者：IT168 戚祥&amp;nbsp;&amp;nbsp;2007-07-13&amp;mdash;&amp;mdash; 比较JSF、Spring MVC、Stripes、Struts 2、Tapestry和Wicket                                &amp;nbsp;&amp;nbsp;&amp;nbsp;【译者按】这是Matt Raible在今年6月24-27号召开的J">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.it168.com/cms/2007-7-13/78888.JPG">
+<meta property="og:updated_time" content="2018-01-23T20:51:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Web层框架比较">
+<meta name="twitter:description" content="作者：IT168 戚祥&amp;nbsp;&amp;nbsp;2007-07-13&amp;mdash;&amp;mdash; 比较JSF、Spring MVC、Stripes、Struts 2、Tapestry和Wicket                                &amp;nbsp;&amp;nbsp;&amp;nbsp;【译者按】这是Matt Raible在今年6月24-27号召开的J">
+<meta name="twitter:image" content="http://image.it168.com/cms/2007-7-13/78888.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzimi008nxwrqpwpjv8gn/"/>
+
+
+
+
+
+  <title>Java Web层框架比较 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzimi008nxwrqpwpjv8gn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java Web层框架比较</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-04-08T04:23:00+08:00">
+                2009-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="w_c2"><br><div class="l2"><br><br>                    作者：<strong class="red">IT168 戚祥</strong>&nbsp;&nbsp;2007-07-13</div><br>&mdash;&mdash; 比较JSF、Spring MVC、Stripes、Struts 2、Tapestry和Wicket<br>                                </div><br><div id="1"><br><p><br><br>&nbsp;&nbsp;&nbsp;<br>【译者按】这是Matt Raible在今年6月24-27号召开的JA-SIG夏季会议上所作的主题演讲，Matt从众多方面对Java<br>Web层框架做了一个全面、深入的比较。笔者认为这是一份及时的文档，它对开发者如何判定一个Web层框架的好坏、如何选择适合自己项目的框架有极大的指<br>导作用。本文是对Matt Raible演讲稿的整理归纳。 <br>【作者介绍】Matt<br>Raible，开源框架AppFuse的发起者、主要开发者；《Professional JSP 2.0》、《Spring<br>Live》等书的作者；众多会议的演讲者，MySQL User Conference, ApacheCon, ApacheCon<br>EU等；现任Raible Designs的CEO。 <br><br>&nbsp;&nbsp;&nbsp; 首先，Matt以自己的实践经验，指出了Java Web层框架&mdash;&mdash;JSF、Spring MVC、Stripes、Struts 2、Tapestry和Wicket他们各自的优、缺点： <br>&nbsp;&nbsp;&nbsp; JSF <br>&nbsp;&nbsp;&nbsp; 优点： <br>&nbsp;&nbsp;&nbsp; Java EE标准，这意味着有很大的市场需求和更多的工作机会 <br>&nbsp;&nbsp;&nbsp; 上手快速并且相对容易 <br>&nbsp;&nbsp;&nbsp; 有大量可用的组件库&nbsp;<br>&nbsp;&nbsp;&nbsp; 缺点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 大量的JSP标签&nbsp;<br>&nbsp;&nbsp;&nbsp; 对REST和安全支持不好&nbsp;<br>&nbsp;&nbsp;&nbsp; 没有一个统一的实现。既有SUN的实现，又有Apache的实现&mdash;&mdash;MyFaces。&nbsp;<br><br>&nbsp;&nbsp;&nbsp; Spring MVC&nbsp;<br>&nbsp;&nbsp;&nbsp; 优点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 对覆盖绑定（overriding binding）、验证（validation）等提供生命周期管理&nbsp;<br>&nbsp;&nbsp;&nbsp; 与许多表示层技术/框架无缝集成：JSP/JSTL、Tiles、Velocity、FreeMarker、Excel、XSL、PDF等&nbsp;<br>&nbsp;&nbsp;&nbsp; 便于测试&mdash;&mdash;归功于IoC&nbsp;<br>&nbsp;&nbsp;&nbsp; 缺点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 大量的XML配置文件&nbsp;<br>&nbsp;&nbsp;&nbsp; 太过灵活&mdash;&mdash;没有公共的父控制器&nbsp;<br>&nbsp;&nbsp;&nbsp; 没有内置的Ajax支持 Stripes&nbsp;<br>&nbsp;&nbsp;&nbsp; 优点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 不需要书写XML配置文件&nbsp;<br>&nbsp;&nbsp;&nbsp; 良好的学习文档&nbsp;<br>&nbsp;&nbsp;&nbsp; 社区成员很热心&nbsp;<br>&nbsp;&nbsp;&nbsp; 缺点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 社区比较小&nbsp;<br>&nbsp;&nbsp;&nbsp; 不如其他的项目活跃&nbsp;<br>&nbsp;&nbsp;&nbsp; ActionBean里面的URL是硬编码的&nbsp;<br><br>&nbsp;&nbsp;&nbsp; Struts 2&nbsp;<br>&nbsp;&nbsp;&nbsp; 优点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 架构简单&mdash;&mdash;易于扩展&nbsp;<br>&nbsp;&nbsp;&nbsp; 标记库很容易利用FreeMarker或者Velocity来定制&nbsp;<br>&nbsp;&nbsp;&nbsp; 基于控制器或者基于页面的导航&nbsp;<br>&nbsp;&nbsp;&nbsp; 缺点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 文档组织得很差&nbsp;<br>&nbsp;&nbsp;&nbsp; 对新特征过分关注&nbsp;<br>&nbsp;&nbsp;&nbsp; 通过Google搜索到的大多是Struts 1.x的文档&nbsp;<br><br>&nbsp;&nbsp;&nbsp; Tapestry&nbsp;<br>&nbsp;&nbsp;&nbsp; 优点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 一旦学会它，将极大地提高生产率&nbsp;<br>&nbsp;&nbsp;&nbsp; HTML模板&mdash;&mdash;对页面设计师非常有利&nbsp;<br>&nbsp;&nbsp;&nbsp; 每出一个新版本，都会有大量的创新&nbsp;<br>&nbsp;&nbsp;&nbsp; 缺点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 文档过于概念性，不够实用&nbsp;<br>&nbsp;&nbsp;&nbsp; 学习曲线陡峭&nbsp;<br>&nbsp;&nbsp;&nbsp; 发行周期长&mdash;&mdash;每年都有较大的升级&nbsp;<br><br>&nbsp;&nbsp;&nbsp; Wicket&nbsp;<br>&nbsp;&nbsp;&nbsp; 优点：&nbsp;<br>&nbsp;&nbsp;&nbsp; 对Java开发者有利（不是Web开发者）&nbsp;<br>&nbsp;&nbsp;&nbsp; 页面和显示绑定紧密&nbsp;<br>&nbsp;&nbsp;&nbsp; 社区活跃&mdash;&mdash;有来自创建者的支持&nbsp;<br>&nbsp;&nbsp;&nbsp; 缺点：&nbsp;<br>&nbsp;&nbsp;&nbsp; HTML模板和Java代码紧挨着&nbsp;<br>&nbsp;&nbsp;&nbsp; 需要对OO有较好的理解&nbsp;<br>&nbsp;&nbsp;&nbsp; Wicket逻辑&mdash;&mdash;什么都用Java搞定 接着，Matt通过采访这些框架的作者，与他们讨论各种开源的Java Web框架，并且突出各个框架的长处、听取框架作者对其他框架的看法，希望借此了解这些框架的未来发展方向。 <br><br>&nbsp;&nbsp;&nbsp; 下列是一些被采访者： <br>&nbsp;&nbsp;&nbsp; JSF, Jacob Hookom <br>&nbsp;&nbsp;&nbsp; RIFE, Geert Bevin&nbsp;<br>&nbsp;&nbsp;&nbsp; Seam, Gavin King&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC, Rob Harrop&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring Web Flow, Rob Harrop and Keith Donald&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes, Tim Fennell&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 1, Don Brown&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry, Howard Lewis Ship&nbsp;<br>&nbsp;&nbsp;&nbsp; Trails, Chris Nelson&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2, Patrick Lightbody&nbsp;<br>&nbsp;&nbsp;&nbsp; Wicket, Eelco Hillenius&nbsp;<br><br>&nbsp;&nbsp;&nbsp; Matt对采访做了如下总结：&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF:&nbsp;<br>&nbsp;&nbsp;&nbsp; 如果你想让web应用具有类似桌面程序的功能性，那么JSF的标准规范和大量第三方组件库的支持值得你 信赖。&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC:&nbsp;<br>&nbsp;&nbsp;&nbsp; 综合了许多不同的技术，这使得它可以被广泛地应用到不同类型的项目中去；它可以被当作web应用开发的一个基础平台。&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes:&nbsp;<br>&nbsp;&nbsp;&nbsp; 可以被应用到存在大量复杂数据交互的程序中；有强大的类型转换、绑定和验证功能；可以使管理大的复杂表单以及直接映射它们到域对象变得简单&hellip;&hellip;&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry:&nbsp;<br>&nbsp;&nbsp;&nbsp; 在中到大型项目中，表现突出（当然，你也可以只把它应用到单个页面上），在这些项目中，你可以通过简单地创建新的组件起到杠杆作用。&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2:&nbsp;<br>&nbsp;&nbsp;&nbsp; 通常更适合于那些希望可以真正开始做事并且愿意花费大量时间来学习他们使用的开源工具的小项目组。Struts 2的目标不是那些更喜欢拖放式开发的&ldquo;扶手椅程序员&rdquo;。&nbsp;<br>&nbsp;&nbsp;&nbsp; Wicket:&nbsp;<br>&nbsp;&nbsp;&nbsp; 非常适合于这样的内/外部网应用：UI很复杂并且你希望可以充分利用你的开发者资源。&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 上面的总结，基本是突出了各个框架的长处。然而，哪些又是他们不好的地方呢？ Matt提出了评价一个框架好坏与否的标准：&nbsp;<br>&nbsp;&nbsp;&nbsp; Ajax支持&nbsp;<br>&nbsp;&nbsp;&nbsp; 是不是内置了？是否便于使用？&nbsp;<br>&nbsp;&nbsp;&nbsp; 书签能力&nbsp;<br>&nbsp;&nbsp;&nbsp; 用户能否将某个页面收藏起来并且可以方便地返回到该页面？&nbsp;<br>&nbsp;&nbsp;&nbsp; 验证&nbsp;<br>&nbsp;&nbsp;&nbsp; 使用是否简单？是否支持客户端（JavaScript）验证？&nbsp;<br>&nbsp;&nbsp;&nbsp; 可测试性&nbsp;<br>&nbsp;&nbsp;&nbsp; 脱离容器测试控制器，是否足够简单？&nbsp;<br>&nbsp;&nbsp;&nbsp; 提交和重定向&nbsp;<br>&nbsp;&nbsp;&nbsp; 框架如何处理重复提交问题？&nbsp;<br>&nbsp;&nbsp;&nbsp; 国际化&nbsp;<br>&nbsp;&nbsp;&nbsp; 如何支持国际化？控制器利用国际化信息，是否容易？&nbsp;<br>&nbsp;&nbsp;&nbsp; 页面修饰&nbsp;<br>&nbsp;&nbsp;&nbsp; 框架支持哪种类型的页面修饰/组成机制？&nbsp;<br>&nbsp;&nbsp;&nbsp; 社区和技术支持&nbsp;<br>&nbsp;&nbsp;&nbsp; 提出问题，能否被快速地、恭敬地回答？&nbsp;<br>&nbsp;&nbsp;&nbsp; 开发工具&nbsp;<br>&nbsp;&nbsp;&nbsp; 是否有支持这个框架的好的工具，尤其是IDE？&nbsp;<br>&nbsp;&nbsp;&nbsp; 市场需求&nbsp;<br>&nbsp;&nbsp;&nbsp; 学习了这个框架，它能否帮你找到份工作？&nbsp;<br>&nbsp;&nbsp;&nbsp; 岗位数量&nbsp;<br>&nbsp;&nbsp;&nbsp; 在dice.com和indeed.com上，对这个框架技能的需求如何？  笔者认为这个评价标准，值得大家借鉴。&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 然后，Matt按照这些评价标准，对各个框架做了以下阐述：&nbsp;<br>&nbsp;&nbsp;&nbsp; Ajax支持&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF：没有内置的Ajax支持，需要使用ICEfaces和Ajax4JSF&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes：没有对应的类库，支持流输出&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2：内置Dojo，有用于GWT和JSON的插件&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC：没有对应的类库，需要使用DWR和Spring MVC扩展&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry：Tapestry 4.1中，有内置的Dojo&nbsp;<br>&nbsp;&nbsp;&nbsp; Wicket：有Dojo和Script.aculo.us支持&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 书签能力&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF：可以任意提交&mdash;&mdash;URL甚至不被考虑&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes：使用约定，但是你可以不加理会&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2：有命名空间的概念，这使得收藏某个页面并返回变得容易&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC：允许完全的URL控制&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry：依然存在一些丑陋的URL&nbsp;<br>&nbsp;&nbsp;&nbsp; Wicket：允许装配（mount）页面/URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 验证&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF：默认的国际化信息丑陋，但是配置简单&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes和Wicket：用Java类进行验证&mdash;&mdash;不支持客户端验证&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2：使用OGNL完成强大的表达式验证功能；只有在Action上指定了规则，才支持客户端验证。&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC：允许你使用公共验证器&mdash;&mdash;这是一种成熟的解决方案&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry：有健壮的验证功能&mdash;&mdash;不需自定义就有漂亮的国际化信息&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 可测试性&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC和Struts 2：允许利用mocks（例如EasyMock、jMock和Spring Mocks）简单地进行测试&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry：测试困难，因为页面类被抽象、具体类被简化&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF：页面类可以方便地被测试，实际上很像Struts 2 中的actions&nbsp;<br>&nbsp;&nbsp;&nbsp; Wicket：有WicketTester&mdash;&mdash;一个强大的解决方案&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes：有Servlet API Mocks和MockRoundtrip&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 提交和重定向&nbsp;<br>&nbsp;&nbsp;&nbsp; 解决重复提交问题的最简单方法是：在提交后重定向&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC：允许你将参数加到重定向URL上&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes、Tapestry和Wicket：有&ldquo;flash式&rdquo;的支持&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2：需要一个自定义的解决方案&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF：需要一个自定义的解决方案，国际化信息很难加入到页面bean中&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 国际化&nbsp;<br>&nbsp;&nbsp;&nbsp; JSTL的&lt;fmt:message&gt;标签使国际化变得简单；如何将国际化信息放到控制器类中，还没有一个统一的标准。&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes、Spring MVC和JSF：每个地区使用一个资源绑定文件&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2、Tapestry和Wicket：提倡把每个页面/action用到的资源文件分开&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF：需要在每个页面上定义资源绑定信息&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry：&lt;span key=”key.name”&gt;标签比较可怕&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 页面修饰&nbsp;<br>&nbsp;&nbsp;&nbsp; Tiles能够用于Struts 2、Spring MVC和JSF中；需要对每个页面进行配置。&nbsp;<br>&nbsp;&nbsp;&nbsp; SiteMesh能够用于所有的这些框架中（不推荐在JSF、Tapestry或者Wicket中使用）；在设置完成后， 只需要很少的维护。&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 开发工具&nbsp;<br>&nbsp;&nbsp;&nbsp; Spring MVC：Spring IDE，但是只做XML校验，不是一个UI/web工具&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts 2：Eclipse&nbsp;<br>&nbsp;&nbsp;&nbsp; Tapestry：Spindle，对编码者非常有利&nbsp;<br>&nbsp;&nbsp;&nbsp; JSF：众多IDE支持，并且做得越来越好&nbsp;<br>&nbsp;&nbsp;&nbsp; Stripes和Wicket：没有任何官方工具&nbsp;<br>&nbsp;&nbsp;&nbsp; NetBeans目前支持Struts *、JSF（+Facelets）、Tapestry和Wicket，尚不支持Stripes和Spring MVC<br><img src="http://image.it168.com/cms/2007-7-13/78888.JPG" alt="" width="450" height="253">市场需求&nbsp;<br>&nbsp;&nbsp; Struts 1：需求依然很大并且被广泛使用&nbsp;<br>&nbsp;&nbsp; Spring MVC：越来越受关注，但大部分是因为Spring框架的一些其他特征&nbsp;<br>&nbsp;&nbsp; JSF：很快地变得流行起来&nbsp;<br>&nbsp;&nbsp; Struts 2：正在获得地盘，但是相关的工作机会很少&nbsp;<br>&nbsp;&nbsp; Tapestry：在过去的数年里，受欢迎程度不断增加&nbsp;<br>&nbsp;&nbsp; Wicket和Stripes：还是未知数&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 通过以上的比较，我想大家对在自己的项目中应该选择哪种Web层框架，应该有了更清醒的认识。&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 最后，Matt列出了一些相关资源，也供读者参考。&nbsp;<br>&nbsp;&nbsp;&nbsp; Struts - <a href="http://struts.apache.org&amp;nbsp" target="_blank" rel="noopener">http://struts.apache.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; StrutsTestCase: <a href="http://strutstestcase.sf.net&amp;nbsp" target="_blank" rel="noopener">http://strutstestcase.sf.net&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Spring MVC - <a href="http://www.springframework.org&amp;nbsp" target="_blank" rel="noopener">http://www.springframework.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Spring IDE: <a href="http://www.springide.org&amp;nbsp" target="_blank" rel="noopener">http://www.springide.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Gaijin Studio: <a href="http://gaijin-studio.sf.net&amp;nbsp" target="_blank" rel="noopener">http://gaijin-studio.sf.net&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Struts 2 - <a href="http://opensymphony.org/webwork&amp;nbsp" target="_blank" rel="noopener">http://opensymphony.org/webwork&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Eclipse Plugin: <a href="http://sf.net/projects/eclipsework" target="_blank" rel="noopener">http://sf.net/projects/eclipsework</a> <br>?IDEA Plugin: <a href="http://wiki.opensymphony.com/display/WW/IDEA+Plugin" target="_blank" rel="noopener">http://wiki.opensymphony.com/display/WW/IDEA+Plugin</a> <br>&nbsp;&nbsp;&nbsp; Tapestry - <a href="http://tapestry.apache.org&amp;nbsp" target="_blank" rel="noopener">http://tapestry.apache.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://spindle.sourceforge.net&amp;nbsp" target="_blank" rel="noopener">http://spindle.sourceforge.net&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; JSF - <a href="http://java.sun.com/j2ee/javaserverfaces" target="_blank" rel="noopener">http://java.sun.com/j2ee/javaserverfaces</a> and <a href="http://myfaces.apache.org&amp;nbsp" target="_blank" rel="noopener">http://myfaces.apache.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Java Studio Creator: <a href="http://sun.com/software/products/jscreator&amp;nbsp" target="_blank" rel="noopener">http://sun.com/software/products/jscreator&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; MyEclipse: <a href="http://myeclipseide.com&amp;nbsp" target="_blank" rel="noopener">http://myeclipseide.com&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; IDEA: <a href="http://www.jetbrains.com/idea&amp;nbsp" target="_blank" rel="noopener">http://www.jetbrains.com/idea&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; SiteMesh: <a href="http://opensymphony.com/sitemesh&amp;nbsp" target="_blank" rel="noopener">http://opensymphony.com/sitemesh&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Testing Frameworks&nbsp;<br>&nbsp;&nbsp;&nbsp; JUnit: <a href="http://junit.org&amp;nbsp" target="_blank" rel="noopener">http://junit.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; EasyMock: <a href="http://easymock.org&amp;nbsp" target="_blank" rel="noopener">http://easymock.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; jMock: <a href="http://jmock.org&amp;nbsp" target="_blank" rel="noopener">http://jmock.org&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; jWebUnit: <a href="http://jwebunit.sourceforge.net&amp;nbsp" target="_blank" rel="noopener">http://jwebunit.sourceforge.net&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Canoo WebTest: <a href="http://webtest.canoo.com&amp;nbsp" target="_blank" rel="noopener">http://webtest.canoo.com&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; Tapestry Test Assist: <a href="http://howardlewisship.com/blog/2004/05/tapestry-test-assist.html&amp;nbsp" target="_blank" rel="noopener">http://howardlewisship.com/blog/2004/05/tapestry-test-assist.html&amp;nbsp</a>;<br>&nbsp;&nbsp;&nbsp; AppFuse - <a href="http://appfuse.org&amp;nbsp" target="_blank" rel="noopener">http://appfuse.org&amp;nbsp</a>;<br><br>&nbsp;&nbsp;&nbsp; 演讲的最后，Matt以一句&ldquo;If it works, use it!&rdquo;作为结尾，可谓精辟！&nbsp;<br><br>&nbsp;&nbsp;&nbsp; 通过此文，相信大家可以拨开当前Java Web层框架选用上的&ldquo;迷雾&rdquo;，见得&ldquo;月明&rdquo;了。&nbsp;<br>&nbsp;&nbsp;&nbsp; 原演讲稿请参见：<a href="http://raibledesigns.com/rd/entry/ja_sig_comparing_java_web。" target="_blank" rel="noopener">http://raibledesigns.com/rd/entry/ja_sig_comparing_java_web。</a></p><br><p>&nbsp;</p><br><p>转自：<a href="http://tech.it168.com/j/n/2007-07-13/200707131036390_5.shtml" target="_blank" rel="noopener">http://tech.it168.com/j/n/2007-07-13/200707131036390_5.shtml</a></p><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzivg00idxwrqa8ydoogg/" rel="next" title="Web Services模式——第一部分：基本数据类型">
+                <i class="fa fa-chevron-left"></i> Web Services模式——第一部分：基本数据类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzjbp00wzxwrqdcn4e57p/" rel="prev" title="网站设计基础：简述各类有创意的导航方式">
+                网站设计基础：简述各类有创意的导航方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

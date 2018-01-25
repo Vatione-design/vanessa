@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTML," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="转自：InfoQ        作者        Abel Avram            译者            张龙        发布于        2010年1月30日 上午12时6分    目前Web Hypertext ApplicationTechnology Working Group（WHATWG）正与W3C通力合作建立HTML 5标准，在过去3个月中，该项工作已经进入">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML 5通过sandbox属性提升iFrame的安全性">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzij3004nxwrqjmnhtbp3/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="转自：InfoQ        作者        Abel Avram            译者            张龙        发布于        2010年1月30日 上午12时6分    目前Web Hypertext ApplicationTechnology Working Group（WHATWG）正与W3C通力合作建立HTML 5标准，在过去3个月中，该项工作已经进入">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T07:15:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML 5通过sandbox属性提升iFrame的安全性">
+<meta name="twitter:description" content="转自：InfoQ        作者        Abel Avram            译者            张龙        发布于        2010年1月30日 上午12时6分    目前Web Hypertext ApplicationTechnology Working Group（WHATWG）正与W3C通力合作建立HTML 5标准，在过去3个月中，该项工作已经进入">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzij3004nxwrqjmnhtbp3/"/>
+
+
+
+
+
+  <title>HTML 5通过sandbox属性提升iFrame的安全性 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzij3004nxwrqjmnhtbp3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML 5通过sandbox属性提升iFrame的安全性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-02-06T02:59:00+08:00">
+                2010-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info">转自：InfoQ</p><br><p class="info"><br>        作者<br><br><br><br>        <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=Abel-Avram" target="_blank" rel="noopener"><br>Abel Avram</a><br></strong><br><br><br><br><br>            译者<br>            <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E5%BC%A0%E9%BE%99" target="_blank" rel="noopener"><br>张龙</a><br></strong><br><br>        发布于<br>        2010年1月30日 上午12时6分<br>    </p><br><p>目前<a href="http://www.whatwg.org/" target="_blank" rel="noopener">Web Hypertext Application<br>Technology Working Group</a><br>（WHATWG）正与<a href="http://www.w3.org/" target="_blank" rel="noopener">W3C</a><br>通<br>力合作建立HTML 5标准，在过去3个月中，该项工作已经进入到了WHATWG的&ldquo;<a style="color: #551a8b;" href="http://blog.whatwg.org/html5-at-last-call" target="_blank" rel="noopener">Last Call</a><br>&rdquo;阶<br>段。在这期间，变化最大的一个特性就是iframe元素的sandbox属性。sandbox属性可以防止不信任的Web页面执行某些操作。</p><br><p><a id="sn6r" title="HTML 5" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/" target="_blank" rel="noopener">HTML<br> 5</a><br>规范的编辑Ian Hickson<a id="p31e" title="谈到了sandbox的好处" href="http://blog.whatwg.org/whats-next-in-html-episode-2-sandbox" target="_blank" rel="noopener">谈到了<br>sandbox的好处</a><br>，它可以防止如下操作：</p><br><blockquote><br><ul><br><li>访问父页面的DOM（从技术角度来说，这是因为相对于父页面iframe已经成为不同的源了）</li><br><li>执行脚本</li><br><li>通过脚本嵌入自己的表单或是操纵表单</li><br><li>对cookie、本地存储或本地SQL数据库的读写</li><br></ul><br></blockquote><br><p><a id="hfga" title="HTML 5的修订历史页面" href="http://html5.org/tools/web-apps-tracker?from=1642&amp;to=1643" target="_blank" rel="noopener">HTML<br> 5的修订历史页面</a><br>还提到了sandbox的其他特性：</p><br><ul><br><li>禁用插件</li><br><li>禁止其他浏览上下文的导航</li><br><li>禁止弹出窗口和模式对话框</li><br></ul><br><p>iFrames因安全问题而臭名昭著，这主要是因为iFrames常常被用于嵌入第三方内容，而后者则可能会执行某些恶意操作。sandbox通过<br>限制被嵌入内容所允许的操作而提升iFrames的安全性。这种方式将沙箱内容与父页面进行了分离，因此限制了被嵌入内容的权限。</p><br><p>与sandbox一起出来的还有其MIME类型：text/html-sandboxed。Hickson说到：</p><br><blockquote> text/html-sandboxed<br>MIME类型确保用户不会访问到不可信的内容。它包含两部分内容：首先，如果用户直接访问页面时，浏览器不可以渲染那些具有text/html-<br>sandboxed<br>MIME类型的页面。目前所有浏览器都支持这一点，这些浏览器会下载页面的标记但不会渲染页面；其次，支持sandbox属性的浏览器需要渲染具有<br>text/html-sandboxed<br>MIME类型的iframes（但会受到sandbox属性中所设定的权限限制）目前为止，还没有浏览器实现这一点，Google<br>Chrome也是如此（它会渲染父页面，但却下载iframe内容而非在iframe中对其进行渲染）。因此目前还没法使用该项技术，除非Google更<br>新Chrome以支持这一点（从理论上来说，其他的浏览器厂商在实现了对sandbox属性的支持后就会实现该技术，让我们拭目以待吧）。 </blockquote><br><p>目前，只有Google Chrome<br>4.0使用了sandbox，Firefox、IE8和Safari都还没有实现这一点，但相信不久之后这些浏览器都会实现的。围绕着HTML 5<br>&lt;video&gt;元素发生了<a id="mw:j" title="很多事情" href="http://www.infoq.com/news/2010/01/youtube-html5" target="_blank" rel="noopener">很多事情</a><br>，Google通过<a id="m-.s" title="H.264" href="http://en.wikipedia.org/wiki/H.264/MPEG-4_AVC" target="_blank" rel="noopener">H.264</a><br>标准对其进行实现，而<br>其他浏览器则使用了不同的标准或是干脆还没有实现。但这种情况不会发生在这里，因为每个浏览器都可以在内部自由决定如何实现sandbox。但即便是明天<br>所有的主流浏览器都采用了sandbox，众多的开发者和内容管理者也不能立刻就使用它，因为还有那么多的遗留浏览器会忽略掉该属性，因此稳妥的办法还是<br>采取常规的安全手段来保护iFrames。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/HTML/" rel="tag"># HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6j2y006bl6rql2b9poen/" rel="next" title="背下这148句话，你可以提高一个档次了，不止在文学方面">
+                <i class="fa fa-chevron-left"></i> 背下这148句话，你可以提高一个档次了，不止在文学方面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzip700blxwrqiulufivq/" rel="prev" title="NetBeans Weekly Newa-Issue # 426 - Feb 09, 2010">
+                NetBeans Weekly Newa-Issue # 426 - Feb 09, 2010 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

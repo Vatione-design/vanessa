@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Ubuntu," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="./xx.sh&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 运行sh脚本。1. man 对你熟悉或不熟悉的命令提供帮助解释eg:man ls 就可以查看ls相关的用法注：按q键或者ctrl+c退出，在linux下可以使用ctrl+c终止当前程序运行。2. ls 查看目录或者文件的属，列举出任一目录下面的文件eg: ls /usr/ma">
+<meta name="keywords" content="Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令集合">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzio100adxwrqgsqtr8ej/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="./xx.sh&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 运行sh脚本。1. man 对你熟悉或不熟悉的命令提供帮助解释eg:man ls 就可以查看ls相关的用法注：按q键或者ctrl+c退出，在linux下可以使用ctrl+c终止当前程序运行。2. ls 查看目录或者文件的属，列举出任一目录下面的文件eg: ls /usr/ma">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T02:24:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用命令集合">
+<meta name="twitter:description" content="./xx.sh&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 运行sh脚本。1. man 对你熟悉或不熟悉的命令提供帮助解释eg:man ls 就可以查看ls相关的用法注：按q键或者ctrl+c退出，在linux下可以使用ctrl+c终止当前程序运行。2. ls 查看目录或者文件的属，列举出任一目录下面的文件eg: ls /usr/ma">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzio100adxwrqgsqtr8ej/"/>
+
+
+
+
+
+  <title>Linux常用命令集合 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzio100adxwrqgsqtr8ej/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux常用命令集合</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-03-24T08:15:00+08:00">
+                2008-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>./xx.sh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 运行sh脚本。<br>1. man 对你熟悉或不熟悉的命令提供帮助解释</p><br><p>eg:man ls 就可以查看ls相关的用法</p><br><p>注：按q键或者ctrl+c退出，在linux下可以使用ctrl+c终止当前程序运行。</p><br><p>2. ls 查看目录或者文件的属<em>，列举出任一目录下面的文件</em></p><br><p>eg: ls /usr/man</p><br><p>ls -l</p><br><p>a.d表示目录(directory)，如果是一个&rdquo;-&rdquo;表示是文件，如果是l则表示是一个连接文件(link)</p><br><p>b.表示文件或者目录许可权限.分别用可读(r)，可写(w)，可运行(x)。</p><br><p>3. cp 拷贝文件</p><br><p>eg: cp filename1 filename2 //把filename1拷贝成filename2</p><br><p>cp 1.c netseek/2.c //将1.c拷到netseek目录下命名为2.c</p><br><p>4. rm 删除文件和目录</p><br><p>eg: rm 1.c //将1.c这个文件删除</p><br><p>5. mv 移走目录或者改文件名</p><br><p>eg: mv filename1 filename2 //将filename1 改名为filename2</p><br><p>mv qib.tgz ../qib.tgz //移到上一级目录</p><br><p>6. cd 改变当前目录 pwd 查看当前所在目录完整路径</p><br><p>eg: pwd //查看当前所在目录路径</p><br><p>cd netseek //进入netseek这个目录</p><br><p>cd //退出当前目录</p><br><p>7. cat，more命令</p><br><p>将某个文件的内容显示出来。两个命令所不同的是:cat把文件内容一直打印出来，而 more则分屏显示</p><br><p>eg; cat&gt;1.c //就可以把代码粘帖到1.c文件里，按ctrl+d 保存代码。</p><br><p>cat 1.c 或more 1.c //都可以查看里面的内容。</p><br><p>gcc -o 1 1.c //将1.c编译成.exe文件，我们可以用此命编译出代码。</p><br><p>8.chmod 命令 权限修改 用法：chmod 一位8进制数 filename。</p><br><p>eg: chmod u+x filenmame //只想给自己运行，别人只能读</p><br><p>//u表示文件主人， g 表示文件文件所在组。 o 表示其他人 ;r 表可读，w 表可写，x 表可以运行</p><br><p>chmod g+x filename //同组的人来执行</p><br><p>9. clear，date命令</p><br><p>clear:清屏，相当与DOS下的cls;date:显示当前时间。</p><br><p>10. mount 加载一个硬件设备</p><br><p>用法:mount [参数] 要加载的设备 载入点</p><br><p>eg: mount /dev/cdrom</p><br><p>cd /mnt/cdrom //进入光盘目录</p><br><p>11. su 在不退出登陆的情况下，切换到另外一个人的身份</p><br><p>用法: su -l 用户名(如果用户名缺省，则切换到root状态)</p><br><p>eg:su -l netseek (切换到netseek这个用户，将提示输入密码)</p><br><p>12.whoami，whereis，which，id</p><br><p>//whoami:确认自己身份</p><br><p>//whereis:查询命令所在目录以及帮助文档所在目录</p><br><p>//which:查询该命令所在目录(类似whereis)</p><br><p>//id:打印出自己的UID以及GID。(UID:用户身份唯一标识。GID:用户组身份唯一标识。每一个用户只能有一个唯一的UID和 GID)</p><br><p>eg: whoami //显示你自已登陆的用户名</p><br><p>whereis bin 显示bin所在的目录，将显示为：/usr/local/bin</p><br><p>which bin</p><br><p>13. grep，find</p><br><p>grep:文本内容搜索;find:文件或者目录名以及权限属主等匹配搜索</p><br><p>eg: grep success  　　 /<em>查找当前目录下面所有文件里面含有success字符的文件</em></p><br><p>14. kill 可以杀死某个正在进行或者已经是dest状态的进程</p><br><p>eg; ps ax</p><br><p>15. passwd 可以设置口令</p><br><p>16. history 用户用过的命令</p><br><p>eg: history //可以显示用户过去使用的命令</p><br><p>17. !! 执行最近一次的命令</p><br><p>18. mkdir命令</p><br><p>eg: mkdir netseek //创建netseek这个目录</p><br><p>19. tar 解压命令</p><br><p>eg: tar -zxvf nmap-3.45.tgz //将这个解压到nmap-3.45这个目录里</p><br><p>20. finger 可以让使用者查询一些其他使用者的资料</p><br><p>eg: finger //查看所用用户的使用资料</p><br><p>finger root //查看root的资料</p><br><p class="a14c" style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">su</p><br><p style="text-indent: 2em;">su命令是最基本的命令之一，常用于不同用户间切换。例如，如果登录为 user1，要切换为user2，只要用如下命令：</p><br><p style="text-indent: 2em;">$su user2</p><br><p style="text-indent: 2em;">然后系统提示输入user2口令，输入正确的口令之后就可以切换到user2。完成之后就可以用exit命令返回到user1。</p><br><p style="text-indent: 2em;">su命令的常见用法是变成根用户或超级用户。如果发出不带用户名的su命令 ，则系统提示输入根口令，输入之后则可切换为根用户。</p><br><p style="text-indent: 2em;">如果登录为根用户，则可以用su命令成为系统上任何用户而不需要口令。</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">pwd</p><br><p style="text-indent: 2em;">pwd命令也是最常用最基本的命令之一，用于显示用户当前所在的目录。</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">cd</p><br><p style="text-indent: 2em;">cd命令不仅显示当前状态，还改变当前状态，它的用发跟dos下的cd命令基本一致。</p><br><p style="text-indent: 2em;">cd ..可进入上一层目录</p><br><p style="text-indent: 2em;">cd -可进入上一个进入的目录</p><br><p style="text-indent: 2em;">cd ~可进入用户的home目录</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">ls</p><br><p style="text-indent: 2em;">ls命令跟dos下的dir命令一样，用于显示当前目录的内容。</p><br><p style="text-indent: 2em;">如果想取得详细的信息，可用ls -l命令， 这样就可以显示目录内容的详细信息。</p><br><p style="text-indent: 2em;">如果目录下的文件太多，用一屏显示不了，可以用ls -l |more分屏显示 。</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">find</p><br><p style="text-indent: 2em;">find命令用于查找文件。这个命令可以按文件名、建立或修改日期、所有者(通常是建立文件的用户)、文件长度或文件类型进行搜索。</p><br><p style="text-indent: 2em;">find命令的基本结构如下：</p><br><p style="text-indent: 2em;">$find</p><br><p style="text-indent: 2em;">其中指定从哪个目录开始搜索。指定搜索条件。表示找到文件怎么处理。一般来说，要用-print动作，显示 整个文件路径和名称。如果没有这个动作，则find命令进行所要搜索而不显示结果，等于白费劲。</p><br><p style="text-indent: 2em;">例如，要搜索系统上所有名称为ye的文件，可用如下命令：</p><br><p style="text-indent: 2em;">$find / -name ye -print</p><br><p style="text-indent: 2em;">这样就可以显示出系统上所有名称为ye的文件。</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">tar</p><br><p style="text-indent: 2em;">tar最初用于建立磁带备份系统，目前广泛用于建立文件发布档案。可用如下方法建立tar档案：</p><br><p style="text-indent: 2em;">$tar cvf</p><br><p style="text-indent: 2em;">例如，如果要将当前目录中所有文件存档到ye.tar中，可用如下命令：</p><br><p style="text-indent: 2em;">$tar cvf ye.tar .<em></em></p><br><p style="text-indent: 2em;">要浏览档案内容，将c选项变成t。如果要浏览ye.tar档案中的内容，可用如下命令：</p><br><p style="text-indent: 2em;">$tar tvf ye.tar</p><br><p style="text-indent: 2em;">要取出档案内的内容，将c选项变成x。如果要将ye.tar档案中的内容取到当前目录中，可用如下命令：</p><br><p style="text-indent: 2em;">$tar xvf ye.tar</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">gzip</p><br><p style="text-indent: 2em;">gzip命令用于压缩文件。 例如，如果要将ye.txt文件压缩，可用如下命令：</p><br><p style="text-indent: 2em;">$gzip ye.txt</p><br><p style="text-indent: 2em;">这样就可以压缩文件并在文件名后面加上gz扩展名，变成文件ye.txt.gz。</p><br><p style="text-indent: 2em;">解压缩文件可用gzip -d命令实现：</p><br><p style="text-indent: 2em;">$gzip -d ye.txt.gz</p><br><p style="text-indent: 2em;">这样就可以解压缩文件并删除gz扩展名。除此之外还可以用gunzip命令来解 压缩文件，效果跟用gzip -d命令一样。</p><br><p style="text-indent: 2em;">旧版的tar命令不压缩档案，可用gzip压缩。例如：</p><br><p style="text-indent: 2em;">$tar cvf ye.tar .txt</p><br><p style="text-indent: 2em;">$gzip ye.tar</p><br><p style="text-indent: 2em;">则可建立压缩档案ye.tar.gz。</p><br><p style="text-indent: 2em;">新版的tar可以直接访问和建立gzip压缩的tar档案，只要在tar命令中加上z 选项就可以了。例如：</p><br><p style="text-indent: 2em;">$tar czvf ye.tar <em>.txt</em></p><br><p style="text-indent: 2em;">生成压缩档案ye.tar.gz，</p><br><p style="text-indent: 2em;">$tar tzvf ye.tar .txt</p><br><p style="text-indent: 2em;">显示压缩档案ye.tar.gz的内容，而</p><br><p style="text-indent: 2em;">$tar xzvf ye.tar *.txt</p><br><p style="text-indent: 2em;">取出压缩档案ye.tar.gz的内容。</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">reboot</p><br><p style="text-indent: 2em;">重启命令，不必多说。</p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">halt</p><br><p style="text-indent: 2em;">关机命令，不必多说。</p><br><p>文章转载自 赛迪网</p><br><p><span class="b">来源：CnXHacker.Net</span> <span class="b">作者：Linux论坛</span></p><br><p>&nbsp;</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzjel00zdxwrqwp2j9en7/" rel="next" title="面向对象的基本概念（二）－－UML.类之间的关系">
+                <i class="fa fa-chevron-left"></i> 面向对象的基本概念（二）－－UML.类之间的关系
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzium00hfxwrq0mupoz26/" rel="prev" title="Together2007 for MyEclipse的使用">
+                Together2007 for MyEclipse的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

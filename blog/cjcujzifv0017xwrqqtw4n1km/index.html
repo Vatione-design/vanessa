@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天无意看到一个CSS样式里有段代码很是陌生，经查居然是CSS3.0的样式代码。leesum曾收藏过苏沈小雨的CSS2.0中文手册对网页代码编写很是有帮助。秉承学习至上的精神搜CSS3.0中文手册的时候发现W3C的CSS3说明书还没有定稿，但一些比较前卫的Web浏览器(像Mozilla Firefox, Opera和基于WebKit的浏览器)已经完全或者部份支持CSS3。&amp;nbsp;作为一个We">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3.0中文手册及相关资源">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzifv0017xwrqqtw4n1km/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="今天无意看到一个CSS样式里有段代码很是陌生，经查居然是CSS3.0的样式代码。leesum曾收藏过苏沈小雨的CSS2.0中文手册对网页代码编写很是有帮助。秉承学习至上的精神搜CSS3.0中文手册的时候发现W3C的CSS3说明书还没有定稿，但一些比较前卫的Web浏览器(像Mozilla Firefox, Opera和基于WebKit的浏览器)已经完全或者部份支持CSS3。&amp;nbsp;作为一个We">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T20:54:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3.0中文手册及相关资源">
+<meta name="twitter:description" content="今天无意看到一个CSS样式里有段代码很是陌生，经查居然是CSS3.0的样式代码。leesum曾收藏过苏沈小雨的CSS2.0中文手册对网页代码编写很是有帮助。秉承学习至上的精神搜CSS3.0中文手册的时候发现W3C的CSS3说明书还没有定稿，但一些比较前卫的Web浏览器(像Mozilla Firefox, Opera和基于WebKit的浏览器)已经完全或者部份支持CSS3。&amp;nbsp;作为一个We">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzifv0017xwrqqtw4n1km/"/>
+
+
+
+
+
+  <title>CSS3.0中文手册及相关资源 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzifv0017xwrqqtw4n1km/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS3.0中文手册及相关资源</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-05-08T02:08:00+08:00">
+                2009-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1><a title="CSS3.0中文手册及相关资源" rel="noopener" href="http://www.leesum.com/blog/archives/452" target="_blank"><br></a></h1><p></p>
+<p>今天无意看到一个CSS样式里有段代码很是陌生，经查居然是CSS3.0的样式代码。leesum曾收藏过<a href="http://www.leesum.com/tool/css/" target="_blank">苏沈小雨的CSS2.0中文手册</a>对网页代码编写很是有帮助。秉承学习至上的精神搜CSS3.0中文手册的时候发现W3C的CSS3说明书还没有定稿，但一些比较前卫的Web浏览器(像Mozilla Firefox, Opera和基于WebKit的浏览器)已经完全或者部份支持CSS3。</p><br><p>&nbsp;</p><br><p>作为一个Web开发者，保持对未来Web标准的关注、学习和了解是很重要的。这里是一些CSS3相关的文章和资源，不管你是第一次准备去认识CSS3，还是已经略知皮毛，下面这些资源都将有助你更好的学习和理解CSS3。<br><br><strong>英文CSS3资源</strong><br><br><a href="http://www.css3.info/" target="_blank">CSS3.info</a><br><br>看域名就知道，这是一个专门介绍CSS3的网站。所有你想了解的有关CSS3的信息，都能在这里找到。<br><br><a href="http://css3.com/" target="_blank">CSS3.com</a><br><br>又一个专门介绍CSS3的网站，包含各种CSS3参考文章和教程。<br><br><a href="http://www.w3.org/TR/css3-roadmap/" target="_blank">Introduction to CSS3</a><br><br>W3C官方对CSS3的各种详细介绍。</p><br><p><strong>中文CSS3资源</strong><br><br><a href="http://pagetalks.com/2008/09/10/introduction-to-css3.html" target="_blank">CSS3中文译文介绍</a></p><br><p>这篇文章是目前少数一些介绍即将取代CSS2的新标准&mdash;&mdash;CSS3的文章。我们将从非常基础的东西开始讲解，即使你对CSS3毫无了解，读完了之后相信也能很好的介绍这些将被广泛使用的一些功能。</p><br><p><a href="http://blog.bingo929.com/5-techniques-to-acquaint-you-with-css-3.html" target="_blank">你应当了解的5个CSS3新技术</a></p><br><p>CSS3中的5个有趣的新技术:圆角、个别圆角、不透明度、阴影和调整元素大小<br><br><a href="http://www.dudo.org/article.asp?id=263" target="_blank">就 CSS3 向 Eric Meyer 请教的 6 个问题</a><br><br><a class="quoteLink" href="http://meyerweb.com/eric/" target="_blank">Eric A. Meyer</a> 对基于 Web 标准的 CSS 与 HTML 绝非一知半解，他是这个领域杰出的专家，曾写过不少 <a class="quoteLink" href="http://meyerweb.com/eric/writing.html" target="_blank">CSS 方面的书</a>，是 <a class="quoteLink" href="http://aneventapart.com/" target="_blank">An Event Apart</a> 的合伙创始人，<a class="quoteLink" href="http://www.alistapart.com/authors/m/ericmeyer/" target="_blank">A List Apart 团队</a>成员，还是 <a class="quoteLink" href="http://complexspiral.com/" target="_blank">Complex Spiral Consulting</a> 的创始人。另外， Eric Meyer 7年来一直是 <a class="quoteLink" href="http://www.w3.org/Style/CSS/members.php3" target="_blank">CSS Working Group</a> 资格深获邀专家，他们负责维护和开发 CSS。</p><br><p>不用说，如果要找个人请教一些 CSS 方面的问题，Eric Meyer 就是那个人。本文作者日前向 Eric Meyer 提问了7个与 CSS3 有关的问题，以下是 Eric Meyer 对这些问题的解答。</p><br><p><a href="http://www.blueidea.com/tech/web/2008/5708.asp" target="_blank">详解CSS3中的属性选择符 </a><br><br>在CSS3中还有功能更加强大的选择符等待我们去发掘和使用。CSS3中的很多选择符已经在现代浏览器中得到很好的应用（IE8.0中也已经部分地<br>支持了<br>CSS3，dudo注），但是这些基本功能上的支持还远远不能满足开发者使用的要求。但是在某些情况下使用他们可以带来很好的超前体验，因此我认为了解一<br>下CSS 3新增选择符是如何使用还是有益处的。</p><br><p><a href="http://www.pjhome.net/article/Web/920.htm" target="_blank">初探CSS3 RGBA颜色</a><br><br>浏览器的透明一直无法实现 单纯的颜色透明，每次使用alpha后就会把透明的属性继承到子节点上。换句话说，很难实现 背景颜色透明 而文字不透明的效果&hellip;直到 RGBA 颜色的出现这一切将成为现实。</p><br><p><a href="http://blog.istef.info/2007/12/19/css3-gird-template/" target="_blank">CSS3 中的 Gird 布局</a><br><br>刚刚看了一份 W3C CSS3 的文档，是关于 Gird （网格？）布局草案的说明。无论它最终实现是否如草案中的描述，但这个功能本身就已经足够吸引人了。</p><br><p><strong>CSS3.0抢先看</strong><br><br>这个系列文章分别对CSS3.0的一切主要的新功能和属性做了详细的介绍。</p><br><ul><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/05/2084920.aspx" target="_blank" rel="noopener">css3.0抢先看(一)：border-radius圆角边框</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/06/2086075.aspx" target="_blank" rel="noopener">css3.0抢先看(二)：border-color边框颜色的新用法，绝对酷</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/07/2086120.aspx" target="_blank" rel="noopener">css3.0抢先看(三)：border-image边框也能有背景图片</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/09/2087022.aspx" target="_blank">css3.0抢先看(四)：box-shadow创造酷炫的模糊阴影</a></li><br><li> <a href="http://www.diybl.com/course/1_web/css/cssxl/2008224/101397.html" target="_blank">css3.0抢先看(五)：background-origin and background-clip</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/10/2087810.aspx" target="_blank" rel="noopener">css3.0抢先看(六)：background-size定义背景大小</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/10/2087843.aspx" target="_blank" rel="noopener">css3.0抢先看(七)：多重背景</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/11/2088379.aspx" target="_blank" rel="noopener">css3.0抢先看(七)：HSL和HSLA,RGBA全新的定义颜色方法</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/12/2089155.aspx" target="_blank" rel="noopener">css3.0抢先看(八)：text-shadow文字也能有阴影</a></li><br><li> <a href="http://blog.csdn.net/haozit146/archive/2008/02/18/2102940.aspx" target="_blank" rel="noopener">css3.0抢先看(九)：box-sizing改变盒状模型结构</a></li><br></ul><br><p><strong>CSS3.0参考手册和教程下载</strong></p><br><ul><br><li><a href="http://download.csdn.net/source/947826" target="_blank" rel="noopener">CSS3.0完全参考手册</a></li><br><li><a href="http://www.diybl.com/chm/htm/1_web/css/cssxl/2008820/2008820140530.html" target="_blank" rel="noopener">css3.0抢先看_chm电子书下载</a></li><br></ul><br><p>转载自：<a href="http://parandroid.com/css30-related/" target="_blank">帕兰印象</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj7100t1xwrqwfe5n9qx/" rel="next" title="拿什么拯救你的黑头">
+                <i class="fa fa-chevron-left"></i> 拿什么拯救你的黑头
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzijz005jxwrq35uwua7x/" rel="prev" title="IE和Firefox之间的JavaScript差异">
+                IE和Firefox之间的JavaScript差异 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

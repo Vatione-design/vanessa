@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Information," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        Alex Blewitt            译者            张龙        发布于        2009年6月25日 上午12时44分    今天是Java社区大喜的日子，因为Eclipse基金会发布了Eclipse Galileo，与之相伴的还有33个项目，包括Eclipse JDT。除了InfoQ此前所报道过的新特性外，此次发布的Ga">
+<meta name="keywords" content="Information">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse Galileo发布啦">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzigz002bxwrqe1bnaq7z/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        Alex Blewitt            译者            张龙        发布于        2009年6月25日 上午12时44分    今天是Java社区大喜的日子，因为Eclipse基金会发布了Eclipse Galileo，与之相伴的还有33个项目，包括Eclipse JDT。除了InfoQ此前所报道过的新特性外，此次发布的Ga">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T22:06:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse Galileo发布啦">
+<meta name="twitter:description" content="作者        Alex Blewitt            译者            张龙        发布于        2009年6月25日 上午12时44分    今天是Java社区大喜的日子，因为Eclipse基金会发布了Eclipse Galileo，与之相伴的还有33个项目，包括Eclipse JDT。除了InfoQ此前所报道过的新特性外，此次发布的Ga">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzigz002bxwrqe1bnaq7z/"/>
+
+
+
+
+
+  <title>Eclipse Galileo发布啦 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzigz002bxwrqe1bnaq7z/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Eclipse Galileo发布啦</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-07-02T16:11:00+08:00">
+                2009-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1><br><br></h1><p></p>
+<p class="info"><br>        作者<br><br><br><br>        <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=Alex-Blewitt" target="_blank" rel="noopener"><br>Alex Blewitt</a><br></strong><br><br><br><br><br>            译者<br>            <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E5%BC%A0%E9%BE%99" target="_blank" rel="noopener"><br>张龙</a><br></strong><br><br>        发布于<br>        2009年6月25日 上午12时44分<br>    </p><br><p>今天是Java社区大喜的日子，因为Eclipse基金会<a id="k7iz" title="发布" href="http://www.eclipse.org/org/press-release/20090624_galileo.php" target="_blank" rel="noopener">发布</a><br>了<a href="http://www.eclipse.org/galileo/" target="_blank" rel="noopener">Eclipse Galileo</a><br>，与之相伴的还有<a id="rcjn" title="33个项目" href="http://www.eclipse.org/galileo/projects.php" target="_blank" rel="noopener">33个项目</a><br>，包括Eclipse <a href="http://www.eclipse.org/jdt/" target="_blank" rel="noopener">JDT</a><br>。除了<a id="btnh" title="InfoQ此前所报道过的新特性" href="http://www.infoq.com/news/2009/06/galileo" target="_blank" rel="noopener">InfoQ此前所报道过的新特性</a><br>外，此次发布的Galileo还包含了<a id="fevz" title="PHP开发工具项目" href="http://www.eclipse.org/pdt/" target="_blank" rel="noopener">PHP开发工具项目</a><br>以及<a id="qh5c" title="Modelling项目" href="http://www.eclipse.org/modeling/" target="_blank" rel="noopener">Modelling项目</a><br>和持久层<a href="http://www.eclipse.org/eclipselink/" target="_blank" rel="noopener">EclipseLink</a><br>项目（即大家所熟知的Oracle TopLink）。</p><br><p>对于组件开发者来说，此次发布的Galileo还向标准的<a href="http://www.eclipse.org/equinox/" target="_blank" rel="noopener">Equinox</a><br>运行时添加了最新的OSGi声明式服务支持，该支持位于<a href="http://www.infoq.com/cn/news/2009/06/www.eclipse.org/rcp/" target="_blank" rel="noopener">RCP</a><br>客户端中。同时此次发布还极大地增强了对Mac OS X运行时的支持，因为新的Eclipse基于Cocoa（而不是以前的基于Carbon的API），这使得一些新特性如dialog sheets以及运行在最新的Intel 64位Java 6上成为可能。</p><br><p>尽管最初仅仅是个Java IDE，但现在的Eclipse早已成长为一个综合性的平台，支持多种语言，如<a href="http://www.eclipse.org/cdt/" target="_blank" rel="noopener">C</a><br>、<a href="http://www.eclipse.org/pdt/" target="_blank" rel="noopener">PHP</a><br>、<a href="http://www.eclipse.org/webtools/" target="_blank" rel="noopener">HTML</a><br>、<span style="text-decoration: underline;"><span style="color: #0066cc;">JavaScript</span><br></span><br>及<a id="csmc" title="动态语言" href="http://www.eclipse.org/dltk/" target="_blank" rel="noopener">动态语言</a><br>，更不必说在Eclipse基金会之外所开发的平台了（如<a href="http://www.scala-lang.org/node/94" target="_blank" rel="noopener">Scala</a><br>和<a href="http://pydev.sourceforge.net/" target="_blank" rel="noopener">Python</a><br>）。<a href="http://www.eclipse.org/rt/" target="_blank" rel="noopener">Eclipse Runtime</a><br>项目不仅提供了基础的Equinox OSGi运行时，还提供了通用的通信框架<a href="http://www.eclipse.org/ecf" target="_blank" rel="noopener">ECF</a><br>，<a href="http://wiki.eclipse.org/Equinox_p2" target="_blank" rel="noopener">P2</a><br>就利用其从HTTP上下载各种bundle（或是其他服务如<a href="http://www.eclipse.org/downloads/?tab=torrents" target="_blank" rel="noopener">Bitorrent</a><br>，也许<a id="l-ev" title="不久的将来" href="http://eclipsesource.com/blogs/2009/06/15/google-wave-and-ecf/" target="_blank" rel="noopener">不久的将来</a><br>还能与<a href="http://www.waveprotocol.org/" target="_blank" rel="noopener">Google Wave</a><br>之类的服务进行通信）。</p><br><p>来自<a href="http://eclipsesource.com/" target="_blank" rel="noopener">EclipseSource</a><br>的<a href="http://eclipsesource.com/blogs/author/irbull/" target="_blank" rel="noopener">Ian Bull</a><br>给出了Eclipse Galileo的十大特性列表：</p><br><ol><br><li><a id="iyrn" title="P2" href="http://eclipsesource.com/blogs/2009/06/24/eclipse-galileo-feature-top-10-list-number-1/" target="_blank" rel="noopener">P2</a><br>，为Eclipse带来更高效的更新过程。</li><br><li><a id="s7:7" title="OSGi声明式服务" href="http://eclipsesource.com/blogs/2009/06/23/eclipse-galileo-feature-top-10-list-number-2/" target="_blank" rel="noopener">OSGi声明式服务</a><br>，这样就可以在启动bundle服务前基于XML配置并安装OSGi服务。</li><br><li><a id="jc.m" title="改进的目标平台管理" href="http://eclipsesource.com/blogs/2009/06/22/eclipse-galileo-feature-top-10-list-number-3/" target="_blank" rel="noopener">改进的目标平台管理</a><br>，这样我们就能更轻松地配置运行时平台了。</li><br><li><a href="http://eclipsesource.com/blogs/2009/06/21/eclipse-galileo-feature-top-10-list-number-4/" target="_blank" rel="noopener">Mylyn WikiText</a><br>，我们可以通过Mylyn编辑bug并转换成其他文档格式如DocBook。</li><br><li><a id="qp1c" title="Eclipse Memory Analyser" href="http://eclipsesource.com/blogs/2009/06/20/eclipse-galileo-feature-top-10-list-number-5/" target="_blank" rel="noopener">Eclipse Memory Analyser</a><br>，它可以分析JVM堆的使用情况。</li><br><li><a id="t3ld" title="自我安装" href="http://eclipsesource.com/blogs/2009/06/19/eclipse-galileo-feature-top-10-list-number-6/" target="_blank" rel="noopener">自我安装</a><br>，我们可以在当前运行着的Eclipse平台上开发并安装插件了。</li><br><li><a id="guqt" title="增强的Eclipse Modeling项目" href="http://eclipsesource.com/blogs/2009/06/18/eclipse-galileo-feature-top-10-list-number-7/" target="_blank" rel="noopener">增强的Eclipse Modeling项目</a><br>，降低了所需的EMF运行时的大小。</li><br><li><a id="m-33" title="增强的RAP风格" href="http://eclipsesource.com/blogs/2009/06/17/eclipse-galileo-feature-top-10-list-number-8/" target="_blank" rel="noopener">增强的RAP风格</a><br>，这样我们就可以定制基于RAP的应用了。</li><br><li><a id="l_y1" title="增强的JavaScript桥" href="http://eclipsesource.com/blogs/2009/06/16/eclipse-galileo-feature-top-10-list-number-9/" target="_blank" rel="noopener">增强的JavaScript桥</a><br>，可以将widgets如Google Maps嵌入到SWT浏览器中。</li><br><li><a id="tbf-" title="增强的Java比较编辑器" href="http://eclipsesource.com/blogs/2009/06/16/eclipse35-my-top-10-list-number-10/" target="_blank" rel="noopener">增强的Java比较编辑器</a><br>，支持JavaDoc的悬停显示，链接等。</li><br></ol><br><p>Eclipse基金会将于本月26日推出<a href="http://www.eclipse.org/galileo/galileoinaction.php" target="_blank" rel="noopener"><span style="color: #800080;">Galileo in action</span><br></a><br>虚拟会议，届时将有众多演示和介绍，同时还将举办<a href="http://wiki.eclipse.org/Eclipse_DemoCamps_Galileo_2009" target="_blank" rel="noopener"><span style="color: #800080;">DemoCamps</span><br></a><br>全球巡展，介绍Galileo的新特性。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Information/" rel="tag"># Information</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzikj0069xwrqk6sy3q5s/" rel="next" title="JSF+Seam框架学习心得">
+                <i class="fa fa-chevron-left"></i> JSF+Seam框架学习心得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzjb700wlxwrq1h5jplxs/" rel="prev" title="索然无味">
+                索然无味 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

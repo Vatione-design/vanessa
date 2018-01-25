@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Test," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="摘自:List of unit testing frameworks                                         Name                                        xUnit                                        TAP">
+<meta name="keywords" content="JavaScript,Test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unit Testing Framework - JavaScript">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujziv400hzxwrq303sooyj/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="摘自:List of unit testing frameworks                                         Name                                        xUnit                                        TAP">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T08:39:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unit Testing Framework - JavaScript">
+<meta name="twitter:description" content="摘自:List of unit testing frameworks                                         Name                                        xUnit                                        TAP">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujziv400hzxwrq303sooyj/"/>
+
+
+
+
+
+  <title>Unit Testing Framework - JavaScript | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujziv400hzxwrq303sooyj/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Unit Testing Framework - JavaScript</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-19T01:33:44+08:00">
+                2013-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h3><br>    <span><span style="font-size:14px;"><strong>摘自:</strong></span></span><a target="_blank" href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript"><span style="font-size:14px;"><strong>List of unit testing frameworks</strong></span></a><br></h3><p></p>
+<table border="1"><br>    <tbody><br>        <tr><br>            <th width="103"><br>                Name<br>            </th><br>            <th width="78"><br>                <a href="http://en.wikipedia.org/wiki/XUnit" target="_blank" rel="noopener">xUnit</a><br>            </th><br>            <th width="31"><br>                <a href="http://en.wikipedia.org/wiki/Test_Anything_Protocol" target="_blank" rel="noopener">TAP</a><br>            </th><br>            <th width="82"><br>                <a href="http://en.wikipedia.org/wiki/Client_side" target="_blank" rel="noopener">Client-side</a><br>            </th><br>            <th width="89"><br>                <a href="http://en.wikipedia.org/wiki/Server-side" target="_blank" rel="noopener">Server-side</a><br>            </th><br>            <th width="83"><br>                Source<br>            </th><br>            <th><br>                Remarks<br>            </th><br>        </tr><br>    </tbody><br>    <tbody><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Suitest&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Suitest</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-106" target="_blank" rel="noopener"><span>[</span>106<span>]</span></a></sup><br>            </td><br>            <td><br>                Suitest is a powerful and easy-to-use JavaScript BDD test suite<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=DOH_%28software%29&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">DOH</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-107" target="_blank" rel="noopener"><span>[</span>107<span>]</span></a></sup><br>            </td><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/Dojo_Toolkit" target="_blank" rel="noopener">Dojo</a> Objective Harness that can be run in-browser or independently via <a href="http://en.wikipedia.org/wiki/Rhino_%28JavaScript_engine%29" target="_blank" rel="noopener">Rhino</a><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=LBRTW_UT&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">LBRTW UT</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <a href="http://github.com/lbrtw/ut/" target="_blank" rel="noopener">[118]</a> <a href="http://lbrtw.com/javascript-unit-test-framework-part-1" target="_blank" rel="noopener">[119]</a><br>            </td><br>            <td><br>                Developed as a learning project<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/JSUnit" target="_blank" rel="noopener">JSUnit</a><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <a href="http://www.jsunit.net/" target="_blank" rel="noopener">[120]</a><br>            </td><br>            <td><br>                JSUnit is no longer actively maintained<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Enhance_JS&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Enhance JS</a><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-108" target="_blank" rel="noopener"><span>[</span>108<span>]</span></a></sup><br>            </td><br>            <td><br>                Port of Enhance PHP<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/QUnit" target="_blank" rel="noopener">QUnit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://qunitjs.com/" target="_blank" rel="noopener">[121]</a><br>            </td><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/JQuery" target="_blank" rel="noopener">jQuery</a> test harness<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=RhUnit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">RhUnit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://www.iankent.co.uk/rhunit/" target="_blank" rel="noopener">[122]</a><br>            </td><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/QUnit" target="_blank" rel="noopener">QUnit</a> compatible Rhino/JUnit framework<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Crosscheck_%28software%29&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Crosscheck</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-109" target="_blank" rel="noopener"><span>[</span>109<span>]</span></a></sup><br>            </td><br>            <td><br>                Browserless Java-based framework<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=J3Unit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">J3Unit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <a href="http://j3unit.sourceforge.net/" target="_blank" rel="noopener">[123]</a><br>            </td><br>            <td><br>                <br><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                Mocha<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://visionmedia.github.com/mocha/" target="_blank" rel="noopener">[124]</a><br>            </td><br>            <td><br>                <br><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                intern<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="https://github.com/theintern/intern" target="_blank" rel="noopener">[125]</a><br>            </td><br>            <td><br>                <br><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JSNUnit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">JSNUnit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-110" target="_blank" rel="noopener"><span>[</span>110<span>]</span></a></sup><br>            </td><br>            <td><br>                <br><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=YUI_Test&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">YUI Test</a><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-111" target="_blank" rel="noopener"><span>[</span>111<span>]</span></a></sup><br>            </td><br>            <td><br>                <br><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JSSpec&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">JSSpec</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-112" target="_blank" rel="noopener"><span>[</span>112<span>]</span></a></sup><br>            </td><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/Behaviour-driven_development" target="_blank" rel="noopener">Behaviour-driven development</a> framework<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=UnitTesting_%28software%29&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">UnitTesting</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-113" target="_blank" rel="noopener"><span>[</span>113<span>]</span></a></sup><br>            </td><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/Script.aculo.us" target="_blank" rel="noopener">script.aculo.us</a> javascript test harness<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JSpec&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">JSpec</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://visionmedia.github.com/jspec" target="_blank" rel="noopener">[126]</a><br>            </td><br>            <td><br>                Highly readable BDD, 50+ matchers, DOM / framework independent, async, rhino, node.js support and more (no longer maintained)<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/Jasmine_%28JavaScript_framework%29" target="_blank" rel="noopener">Jasmine</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://pivotal.github.com/jasmine" target="_blank" rel="noopener">[127]</a><br>            </td><br>            <td><br>                BDD, framework independent, easy integration with Ruby projects and<br>continuous builds. Allows for both DOM-less testing and asynchronous<br>testing.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Screw-unit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">screw-unit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-114" target="_blank" rel="noopener"><span>[</span>114<span>]</span></a></sup><br>            </td><br>            <td><br>                Requires jQuery<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Test.Simple&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Test.Simple</a><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-115" target="_blank" rel="noopener"><span>[</span>115<span>]</span></a></sup><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-116" target="_blank" rel="noopener"><span>[</span>116<span>]</span></a></sup><br>            </td><br>            <td><br>                Write TAP-emitting unit tests in JavaScript and run them in your browser.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Test.More&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Test.More</a><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No[1]<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-117" target="_blank" rel="noopener"><span>[</span>117<span>]</span></a></sup><br>            </td><br>            <td><br>                Write TAP-emitting unit tests in JavaScript and run them in your web browser.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=TestCase&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">TestCase</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-118" target="_blank" rel="noopener"><span>[</span>118<span>]</span></a></sup><br>            </td><br>            <td><br>                <br><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=TestIt&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">TestIt</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-119" target="_blank" rel="noopener"><span>[</span>119<span>]</span></a></sup><br>            </td><br>            <td><br>                Light-weight, non-polluting, and easy to set up and use<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JsUnitTest&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">jsUnitTest</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-120" target="_blank" rel="noopener"><span>[</span>120<span>]</span></a></sup><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                Based on TestCase but without the Prototype dependency<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JSTest&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">JSTest</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-121" target="_blank" rel="noopener"><span>[</span>121<span>]</span></a></sup><br>            </td><br>            <td><br>                Light-weight, non-polluting browser-based framework<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JSTest.NET&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">JSTest.NET</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://jstest.codeplex.com/" target="_blank" rel="noopener">[128]</a><br>            </td><br>            <td><br>                Browserless JavaScript unit test runner for use with MsTest, XUnit, NUnit, etc.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JsUnity&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">jsUnity</a><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://jsunity.com/" target="_blank" rel="noopener">[129]</a><br>            </td><br>            <td><br>                Context-agnostic (JavaScript, JScript (ASP/WSH), Rhino, etc.)<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=RhinoUnit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">RhinoUnit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-122" target="_blank" rel="noopener"><span>[</span>122<span>]</span></a></sup><br>            </td><br>            <td><br>                <a href="http://en.wikipedia.org/wiki/Rhino_%28JavaScript_engine%29" target="_blank" rel="noopener">Rhino</a>-based framework that allows tests to be run in Ant<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=JasUnit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">JasUnit</a><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-123" target="_blank" rel="noopener"><span>[</span>123<span>]</span></a></sup><br>            </td><br>            <td><br>                Light-weight framework. Part of a project that provides Mocks and IoC.)<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=FireUnit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">FireUnit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <a href="http://fireunit.org/" target="_blank" rel="noopener">[130]</a><br>            </td><br>            <td><br>                Testing framework that provides logging and viewing within a new tab of <a href="http://en.wikipedia.org/wiki/Firebug_%28Firefox_extension%29" target="_blank" rel="noopener">Firebug</a>.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Js-test-driver&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Js-test-driver</a><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-124" target="_blank" rel="noopener"><span>[</span>124<span>]</span></a></sup><br>            </td><br>            <td><br>                The goal of JsTestDriver is to build a JavaScript test runner which<br>easily integrates with continuous builds systems and allows running<br>tests on multiple browsers quickly to ease TDD style development.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Js-test-runner&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Js-test-runner</a><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://js-testrunner.codehaus.org/" target="_blank" rel="noopener">[131]</a><br>            </td><br>            <td><br>                A JUnit test runner that runs JavaScript tests. The goal of the JS<br>Test Runner is to be able to test JavaScript code using an approach that<br> test driven programmers will feel comfortable with; particularly in the<br> context of Continuous Integration.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Sinon.js&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Sinon.js</a><br>            </td><br>            <td><br>                Compatible<br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://cjohansen.no/sinon/" target="_blank" rel="noopener">[132]</a><br>            </td><br>            <td><br>                Standalone test spies, stubs and mocks for JavaScript. No dependencies, works with any unit testing framework.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=SOAtest&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">SOAtest</a><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-parasoft2-95" target="_blank" rel="noopener"><span>[</span>95<span>]</span></a></sup><br>            </td><br>            <td><br>                Commercial. Testing platform whose record/playback runs in most<br>modern web browsers where client-side Javascript can be tested both<br>through static analysis and functional verification.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Vows_%28JavaScript%29&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Vows</a><br>            </td><br>            <td style="background:#ff9090;color:black;vertical-align:middle;text-align:center;"><br>                No<br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://vowsjs.org" target="_blank" rel="noopener">[133]</a><br>            </td><br>            <td><br>                <br><br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Nodeunit&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Nodeunit</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-125" target="_blank" rel="noopener"><span>[</span>125<span>]</span></a></sup><br>            </td><br>            <td><br>                Asynchronous Javascript testing framework<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Tyrtle&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Tyrtle</a><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://spadgos.github.com/tyrtle" target="_blank" rel="noopener">[134]</a><br>            </td><br>            <td><br>                Testing framework which allows expressive assertions and interactive test output<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Wru&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">wru</a><br>            </td><br>            <td><br>                Compatible<br>            </td><br>            <td><br>                <br><br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <sup><a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#cite_note-126" target="_blank" rel="noopener"><span>[</span>126<span>]</span></a></sup><br>            </td><br>            <td><br>                General purpose environment agnostic sync/async JavaScript test<br>framework. Compatible with any browser, desktop or mobile, node.js,<br>Rhino, and phantom.js. Tiny, essential, fast.<br>            </td><br>        </tr><br>        <tr><br>            <td><br>                <a href="http://en.wikipedia.org/w/index.php?title=Buster.JS&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Buster.JS</a><br>            </td><br>            <td><br>                Compatible<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td style="background:#90ff90;color:black;vertical-align:middle;text-align:center;"><br>                Yes<br>            </td><br>            <td><br>                <a href="http://busterjs.org" target="_blank" rel="noopener">[135]</a><br>            </td><br>            <td><br>                BDD/xUnit, assertions, expectations, browser/server, extendable with<br> tools like linting and other QA measures, highly configurable, well<br>documented and actively developed<br>            </td><br>        </tr><br>    </tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/Test/" rel="tag"># Test</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzin6009dxwrqqsaig8v3/" rel="next" title="Java 开源博客——B3log Solo 0.6.5 正式版发布了！">
+                <i class="fa fa-chevron-left"></i> Java 开源博客——B3log Solo 0.6.5 正式版发布了！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujziq200cnxwrq5p7ogad9/" rel="prev" title="NetBeans Weekly News Issue # 265 - Dec 24, 2013">
+                NetBeans Weekly News Issue # 265 - Dec 24, 2013 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">    摘自:List of unit testing frameworks</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

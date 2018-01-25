@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Mozilla,Firefox," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript 1.8 是 Gecko 1.9（已合并在 Firefox 3 中）的一部分。比起 JavaScript 1.7，这只是很小的更新，不过它也确实包含了一些向 ECMAScript 4/JavaScript 2 升级的痕迹。JavaScript 1.8 还将包含 JavaScript 1.6 和 JavaScript 1.7 中的所有新特性。 1. 使用 JavaScript 1">
+<meta name="keywords" content="JavaScript,Mozilla,Firefox">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 1.8">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzilu007vxwrqzh91w9lr/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="JavaScript 1.8 是 Gecko 1.9（已合并在 Firefox 3 中）的一部分。比起 JavaScript 1.7，这只是很小的更新，不过它也确实包含了一些向 ECMAScript 4/JavaScript 2 升级的痕迹。JavaScript 1.8 还将包含 JavaScript 1.6 和 JavaScript 1.7 中的所有新特性。 1. 使用 JavaScript 1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T17:57:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 1.8">
+<meta name="twitter:description" content="JavaScript 1.8 是 Gecko 1.9（已合并在 Firefox 3 中）的一部分。比起 JavaScript 1.7，这只是很小的更新，不过它也确实包含了一些向 ECMAScript 4/JavaScript 2 升级的痕迹。JavaScript 1.8 还将包含 JavaScript 1.6 和 JavaScript 1.7 中的所有新特性。 1. 使用 JavaScript 1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzilu007vxwrqzh91w9lr/"/>
+
+
+
+
+
+  <title>JavaScript 1.8 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzilu007vxwrqzh91w9lr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript 1.8</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2011-11-17T03:33:14+08:00">
+                2011-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p>JavaScript 1.8 是 Gecko 1.9（已合并在 <a class="new " title="cn/Firefox_3" href="https://developer.mozilla.org/en/Firefox_3" rel="noopener" target="_blank">Firefox 3</a> 中）的一部分。比起 <a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7" target="_blank" rel="noopener">JavaScript 1.7</a>，这只是很小的更新，不过它也确实包含了一些向 ECMAScript 4/JavaScript 2 升级的痕迹。JavaScript 1.8 还将包含 <a title="JavaScript 1.6" href="http://vanessa.b3log.org/javascript-1.6" target="_blank" rel="noopener">JavaScript 1.6</a> 和 <a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7" target="_blank" rel="noopener">JavaScript 1.7</a> 中的所有新特性。</p><p></p>
+<div id="section_1"><br><h3 class="editable">1. 使用 JavaScript 1.8</h3><br><p>为了可以在 HTML 中使用 JavaScript 1.8 的新特性，需要这样写：</p><br><pre class="brush: js">&lt;script type=”application/javascript;version=1.8”&gt; … 你的代码 … &lt;/script&gt;</pre><br><p>在使用 JavaScript shell 、JavaScript XPCOM 组件，或者 XUL <code>&lt;script&gt;</code> 元素的时候，自动启用最新的JS版本（Mozilla 1.9中的 JS1.8）。</p><br><p>另一种方法（不推荐）是使用旧式的 &lt;script&gt; 属性 language，把它定义为 “JavaScript1.8”。</p><br><p>如果需要使用新的关键字 “yield” 和 “let”，你需要指定是1.7版本或者更高的版本，因为现有的代码可能会把这两个关键字用作变量名或者函数名。如果没有使用任何新的关键字，就可以不指定 JavaScript 的版本。</p><br><p><em>好高级，可是其它浏览器不行啊&nbsp; </em>(┬＿┬)</p><br></div><br><div id="section_2"><br><h3 class="editable">2. 表达式闭包</h3><br><p>这个新添加的特性其实就是简单函数的方便写法，使得这个语言更加类似典型的 <a class="external" title="http://en.wikipedia.org/wiki/Lambda_calculus#Lambda_calculus_and_programming_languages" href="http://en.wikipedia.org/wiki/Lambda_calculus#Lambda_calculus_and_programming_languages" rel="external" target="_blank">Lambda notation</a>.<br> <a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7" target="_blank" rel="noopener">JavaScript 1.7</a> 以及更老的版本:</p><br><pre class="brush: js">function(x) { return x <em> x; }</em></pre><br><p>JavaScript 1.8:</p><br><pre class="brush: js">function(x) x  x</pre><br><p>这个语法允许你省略花括号和 ‘return’ 语句－－使它们成为隐式的。用这种方法写，只是表面上看起来短了一些，并没有其他好处。</p><br><p><strong>示例:</strong></p><br><p>绑定事件处理器的简单写法：</p><br><pre class="brush: js">document.addEventListener(“click”, function() false, true);</pre><br><p>把这个定义与 <a title="JavaScript 1.6" href="http://vanessa.b3log.org/javascript-1.6" target="_blank" rel="noopener">JavaScript 1.6</a> 中的数组函数一起使用：</p><br><pre class="brush: js">elems.some(function(elem) elem.type == “text”);</pre><br></div><br><div id="section_3"><br><p class="editable"><em>第一感觉，不太可读，即使只有一行，我也会用个括号括起来的。</em></p><br><h3 class="editable">3. 生成器表达式</h3><br><p>这个新添加的特性，允许你简单的创建生成器（在 <a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7" target="_blank" rel="noopener">JavaScript 1.7</a> 中引入）。通常你需要创建一个自定义的函数，它含有一个 yield，但这个新特性使你可以使用类似<a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7%3E%3Cspan%20class=" target="_blank" rel="noopener">数组领悟</a>的语法来创建一个独立的生成器句柄。</p><br><p>在 <a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7" target="_blank" rel="noopener">JavaScript 1.7</a> 中，你可能需要写出像下面这样的代码来为一个对象创建自定义的生成器：</p><br><pre class="brush: js"> function add3(obj) {<br>   for ( let i in obj )<br>     yield i + 3;<br> }<br><br> let it = add3(someObj);<br> try {<br>   while (true) {<br>     document.write(it.next() + “&lt;br&gt;\n”);<br>   }<br> } catch (err if err instanceof StopIteration) {<br>   document.write(“End of record.&lt;br&gt;\n”);<br> }</pre><br><p>在 JavaScript 1.8 中，你可以规避要创建生成器函数的麻烦，而使用一个生成器表达式来代替：</p><br><pre class="brush: js"> let it = (i + 3 for (i in someObj));<br> try {<br>   while (true) {<br>     document.write(it.next() + “&lt;br&gt;\n”);<br>   }<br> } catch (err if err instanceof StopIteration) {<br>   document.write(“End of record.&lt;br&gt;\n”);<br> }<br></pre><br><p>生成器表达式也可以被作为值传给一个函数。特别要注意的是，生成器在绝对要用到的时候才运行（与典型的数组领悟的场景不同，不事先构造数组）。这个区别可以从下面的例子中看出：</p><br><p>使用&nbsp;<a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7" target="_blank" rel="noopener">JavaScript 1.7</a> 数组领悟</p><br><pre class="brush: js"> handleResults([ i for ( i in obj ) if ( i &gt; 3 ) ]);<br><br> function handleResults( results ) {<br>   for ( let i in results )<br>     // …<br> }<br></pre><br><p>使用 JavaScript 1.8 的生成器表达式</p><br><pre class="brush: js"> handleResults( i for ( i in obj ) if ( i &gt; 3 ) );<br><br> function handleResults( results ) {<br>   for ( let i in results )<br>     // …<br> }<br></pre><br><p>这两个例子之间最大的区别就是，使用生成器表达式的时候，一共只循环 ‘obj’ 结构一次；而在第一个例子中，领悟这个数组时要循环一次，遍例的时候又循环一次。</p><br><p><em>有点小复杂，需要结合 <a title="JavaScript 1.7" href="http://vanessa.b3log.org/javascript-1.7" target="_blank" rel="noopener">JavaScript 1.7</a> 中的 let 和 Array comprehensions</em></p><br></div><br><div id="section_4"><br><h3 class="editable">4. 更多数组特性</h3><br><p>JavaScript 1.8 中包含了两个新的数组遍例方法，分别是：</p><br></div><br><div id="section_4"><strong><span class="internal">4.1 reduce()</span></strong> : 对该数组的每项和前一次调用的结果运行一个函数，收集最后的结果。</div><br><div><br><div><br><div><br><div id="section_2"><code>语法：<code><var style="font-style: italic;">array</var>.reduce(<var style="font-style: italic;">callback</var><span style="font-style: italic;">[</span>, <var style="font-style: italic;">initialValue</var><span style="font-style: italic;">]</span>)</code><em></em><code><em></em></code></code></div><br><div>参数：</div><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>callback</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 为每个元素执行的函数，有以下四个参数：<code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; previousValue:&nbsp; 上一个回调函数返回的值或者初始值 <code><code><var style="font-style: italic;">initialValue</var></code></code>. </code>(参见下文)<code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; currentValue: 当前元素的值</code></div><br><div><code></code><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; index: 当前元素位置。有初始值 <code><code><code><var style="font-style: italic;">initialValue</var></code></code></code> 时从0开始，否则从1开始。</code><code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array: 当前数组</code><code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initialValue&nbsp; 第一次调用函数中的第一个参数值</code></div><br></div><br><div>兼容性：于&nbsp;ECMAScript 5 标准中添加，部分浏览器可能会不支持。您可以添加以下代码来进行支持。</div><br><div><br><pre class="brush: js">if ( !Array.prototype.reduce ) {<br>  Array.prototype.reduce = function reduce(accumulator){<br>        var i, l = this.length, curr;<br><br>        if(typeof accumulator !== “function”) // ES5 : “If IsCallable(callbackfn) is false, throw a TypeError exception.”<br>          throw new TypeError(“First argument is not callable”);<br><br>        if((l == 0 || l === null) &amp;&amp; (arguments.length &lt;= 1))// == on purpose to test 0 and false.<br>          throw new TypeError(“Array length is 0 and no second argument”);<br><br>        if(arguments.length &lt;= 1){<br>          curr = this[0]; // Increase i to start searching the secondly defined element in the array<br>          i = 1; // start accumulating at the second element<br>        }<br>        else{<br>          curr = arguments[1];<br>        }<br><br>        for(i = i || 0 ; i &lt; l ; ++i){<br>          if(i in this)<br>            curr = accumulator.call(undefined, curr, this[i], i, this);<br>        }<br><br>        return curr;<br>      };<br>  }</pre><br></div><br></div><br></div><br><div><br><strong><span class="internal">4.2 reduceRight()</span></strong> : 同上，但从右向左执行。</div><br><div><br><div><br><div id="section_2"><code>语法：<code><var style="font-style: italic;">array</var>.<code>reduceRight</code>(<var style="font-style: italic;">callback</var><span style="font-style: italic;">[</span>, <var style="font-style: italic;">initialValue</var><span style="font-style: italic;">]</span>)</code><em></em><code><em></em></code></code></div><br><div>参数：</div><br><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>callback</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 为每个元素执行的函数，有以下四个参数：<code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; previousValue:&nbsp; 上一个回调函数返回的值或者初始值 <code><code><var style="font-style: italic;">initialValue</var></code></code>. </code>(参见下文)<code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; currentValue: 当前元素的值</code></div><br><div><code></code><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; index: 当前元素位置。有初始值 <code><code><code><var style="font-style: italic;">initialValue</var></code></code></code> 时从0开始，否则从1开始。</code><code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array: 当前数组</code><code></code></div><br><div><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initialValue&nbsp; 第一次调用函数中的第一个参数值</code></div><br></div><br><div>兼容性：于&nbsp;ECMA-262 标准中添加，部分浏览器可能会不支持。您可以添加以下代码来进行支持。</div><br><div><br><pre class="brush: js">    if (!Array.prototype.reduceRight)  {<br>      Array.prototype.reduceRight = function(callbackfn /<em>, initialValue </em>/)  {<br>        “use strict”;<br><br>        if (this === void 0 || this === null)<br>          throw new TypeError();<br><br>        var t = Object(this);<br>        var len = t.length &gt;&gt;&gt; 0;<br>        if (typeof callbackfn !== “function”)<br>          throw new TypeError();<br><br>        // no value to return if no initial value, empty array<br>        if (len === 0 &amp;&amp; arguments.length === 1)<br>          throw new TypeError();<br><br>        var k = len - 1;<br>        var accumulator;<br>        if (arguments.length &gt;= 2)  {<br>          accumulator = arguments[1];<br>        }<br>        else  {<br>          do  {<br>            if (k in this)  {<br>              accumulator = this[k–];<br>              break;<br>            }<br><br>            // if array contains no values, no initial value to return<br>            if (–k &lt; 0)<br>              throw new TypeError();<br>          }<br>          while (true);<br>        }<br><br>        while (k &gt;= 0)  {<br>          if (k in t)<br>            accumulator = callbackfn.call(undefined, accumulator, t[k], k, t);<br>          k–;<br>        }<br><br>        return accumulator;<br>      };<br>    }  </pre><br></div><br></div><br><div>&nbsp;</div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/Mozilla/" rel="tag"># Mozilla</a>
+          
+            <a href="/blog/tags/Firefox/" rel="tag"># Firefox</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj4g00qzxwrq5yup46op/" rel="next" title="奇货可居典故">
+                <i class="fa fa-chevron-left"></i> 奇货可居典故
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzin00097xwrq56zk7k6t/" rel="prev" title="JavaScript 1.6">
+                JavaScript 1.6 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1. 使用 JavaScript 1.8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2. 表达式闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3. 生成器表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4. 更多数组特性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="UserExperience," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            Naysawn Naderi                译者曹如进            发布于            2009年11月24日 下午6时0分        &amp;nbsp;无论使用的是桌面的，Web的或是手机上的应用程序，用户界面都在其中起着一个重要的作用。Alan Cooper，用户界面设计的思想领袖，在他的《About  Fa">
+<meta name="keywords" content="UserExperience">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户界面设计的思想领袖回怎么做？">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzjap00w7xwrq0yfougk6/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            Naysawn Naderi                译者曹如进            发布于            2009年11月24日 下午6时0分        &amp;nbsp;无论使用的是桌面的，Web的或是手机上的应用程序，用户界面都在其中起着一个重要的作用。Alan Cooper，用户界面设计的思想领袖，在他的《About  Fa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T14:36:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用户界面设计的思想领袖回怎么做？">
+<meta name="twitter:description" content="作者            Naysawn Naderi                译者曹如进            发布于            2009年11月24日 下午6时0分        &amp;nbsp;无论使用的是桌面的，Web的或是手机上的应用程序，用户界面都在其中起着一个重要的作用。Alan Cooper，用户界面设计的思想领袖，在他的《About  Fa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzjap00w7xwrq0yfougk6/"/>
+
+
+
+
+
+  <title>用户界面设计的思想领袖回怎么做？ | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzjap00w7xwrq0yfougk6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用户界面设计的思想领袖回怎么做？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-12-15T03:56:00+08:00">
+                2009-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>            作者<br><br><br><br>            <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=Naysawn-Naderi" target="_blank" rel="noopener"><br>Naysawn Naderi</a><br></strong><br><br><br><br><br>                译者<strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E6%9B%B9%E5%A6%82%E8%BF%9B" target="_blank" rel="noopener"><br>曹如进</a><br></strong><br><br>            发布于<br>            2009年11月24日 下午6时0分<br>        </p><br><p class="info">&nbsp;</p><br><p class="info">无论使用的是桌面的，Web的或是手机上的应用程序，用户界面都在其中起着一个重要的作用。<a href="http://www.cooper.com/management_team/" target="_blank">Alan Cooper</a><br>，用户界面设计的思想领袖，在他的《<a href="http://www.cooper.com/insights/books/#aboutface3" target="_blank">About  Face</a><br>》一书中给出了一些有趣和有用的建议来帮助应用程序创建UI。下面是该书中的部分重要思想。</p><br><h2>为中级用户（Intermediates Users）设计</h2><br><p>Cooper认为，不管什么软件产品，它的绝大多数用户都可以归类为中级用户&mdash;&mdash;即那些基本了解如何使用产品和一般使用产品重复进行同样操作的用户。他估计，这样的用户约占使用产品总人数的80%，而剩下的20%平均分布在初学者和高级用户当中。</p><br><p>尽管如此，他饶有兴趣地指出，虽然中级用户是产品的主要使用群体，但是他们的需求却往往在UI设计中被忽视。他指出，由于管理层经常与初学者打交<br>道，因此<br>都倾向于满足初学者大部分的需求。而开发人员，应该定义为专家用户，他们在思考时都倾向于将终端用户也看作为专家用户。Cooper认为，虽然中级用户是<br>产品的主要使用群体，但是他们在这样的混乱情况下都显得很迷惑。</p><br><p>他解释到，三种类型用户的需求由他们熟悉产品程度的不同而不同。专家用户想要快速地干活并且可以定制应用程序，而初学者更多关注的是基本工具的概况。中级用户则倾向于使用工具来重复地做同样的事情，并且不希望界面妨碍他们的工作流程。</p><br><h2>使用工具来帮助初学者成为中级用户</h2><br><p>虽然只有10%的产品用户是初学者，但是所有的产品用户都要经历初学者的阶段。因此要特别注意去设计一些界面来帮助新手用户学会应用程序的基础。</p><br><p>虽然UI设计的目标是帮助初学者转移到中级用户，但是Coppe很快指出，一旦一名用户从最初状态过渡到了下一个状态，那么那些帮助都不再有太大用处。事实上，它可能会妨碍用户的工作流程。</p><br><p>大量产品可以帮助培养初学者，但同时它们也干扰着该产品的中级用户。例如在VS2008中，我们在生成的单元测试代码里加入注释来帮助初学者理解一<br>个单元 测试的各个组成部分。虽然它们很好地达到了目的，但是一旦组成部分被理解后，它们就会妨碍用户。因此我们在VS2010中将它们移除了。</p><br><p>想要帮助用户成为中级用户，Cooper建议，可以在UI上添加一些概要信息，来帮助用户如何使用产品。他指出，当用户想要关闭这些信息时，它们应当可以被移除。这可以采用经典的&ldquo;入门指南&rdquo;视频的形式来概述产品的功能。</p><br><p>Cooper认为，在线帮助和工具提示实际上更好地满足了中级用户而并非初学者，因为他们的需求略有不同。他提到，中级用户会在帮助文档中查找参考资料，而初学者往往对文档的概要信息更为感兴趣。</p><br><h2>少即是多</h2><br><p>我喜欢一句话叫做：&ldquo;不管你的界面有多酷，少一些会更好&rdquo;。</p><br><p>有时在UI设计中，我觉得我们忘记了用户是将产品当做一个工具在完成特定的目标。有时我们也被很酷的导航工具所左右，将注意力过多地放在它上面。一个在黑暗中可以闪闪发光的紫色锤子，如果不能够有效的把钉子钉进木头的话，它仍然是毫无用处的。</p><br><p>Cooper是一个简约设计的主张者：在简约设计中每一个选项都应该有目的并且是直接的。Cooper主张减少用户界面中过多的直接选项。他认为，在一个精心设计的UI中，用户界面对用户几乎是透明的，因为它自然地符合了用户的思维模式。</p><br><h2>为最可能的操作进行设计，为可能的操作提供方法</h2><br><p>Cooper主张在设计产品和通过应用程序对主线流程进行优化时，应当按照用户的思维模式来做。虽然这常常意味着要在窗口中去掉很多程序员看来很舒服的选项，但是这并不意味着没有方法来做那些复杂精细的事情，而是说访问它们要困难一点。</p><br><p>Cooper认为，不管用户在应用程序工作流中的哪一个步骤，总会执行一两种活动类型。因此，界面应当被优化来帮助用户找到这些活动，并且通过工作<br>流来指 导他们，而并非每次仅仅列出所有的选项。此外对于用户而言，也应当有方法来让他们访问到非主流的活动，但是UI不应当为此而进行优化。</p><br><p>我认为Office<br>Ribbon在这方面做得很出色，它为最可能的操作进行了优化并且还允许其他可能进行的操作。在Ribbon中，用户最喜爱使用的条目只需要1次点击，使<br>用较少的条目需要2次点击，而那些不太可能用到的条目需要3次或更多的点击。可以很清楚地看到，他们为最可能的操作优化了UI。</p><br><h2>移除错误提示和确认对话框</h2><br><p>按照遵循用户的思维模式和移除所有妨碍中级用户工作流程的原则，Cooper主张移除掉产品中所有的错误和确认对话框。他认为从统计学角度来看，应用程序应该有着很好的正确率，它要做的是为用户提供一个撤销他们操作的选项。</p><br><p>Cooper说，用户都想看到对他们可用的选项，然后进行操作，并希望执行完后可以得到一个确认来告知刚刚的操作已经成功执行。如果一个操作结束后<br>如果没<br>有确认的话，用户会想知道他们的操作是否已经真正地执行。为了能够与用户交流操作的结果，相比较使用一个弹出的提示框，Cooper更提倡使用内嵌的状态<br>提示和积极的听觉反馈。</p><br><p>虽然我同意移除所有环境下的确认对话框很理想化，但是要将他它们全部移除显得太过于鲁莽，这不是我的风格。想要实现Cooper的建议，开发者需要<br>让用户<br>执行的每一个操作可逆，这样做不仅代价高，而且在我来看也不是很必要。我喜欢尽全力地移除确认对话框和让操作可逆，但是万一碰到暴力的（drastic）<br>操作，例如磁盘格式化和删除文件，弹出一个确认对话框看起来会更好，实际上这也是用户所期待的。</p><br><p>另一方面，我同意Cooper关于移除所有错误对话框的观点。尽管错误对话框对程序员来说很有意义，但是它们对终端用户的意义却很小。我看到很多用<br>户在他<br>们的工作流被错误对话框破坏后变得非常泄气。Cooper提到，虽然它们可以用来标志代码的某个部分发生了错误，但是用户往往都将其理解为&ldquo;我做错了什么<br>事情&rdquo;。当用户被反复告知出错的话，他们会开始讨厌你的产品。我最近在和Mac<br>UI打交道，并且很惊讶地看到它们似乎不断地吃掉了自己的异常。显然，出现了问题是不应该呈现给用户看的。</p><br><h2>关于作者</h2><br><p>Naysawn Naderi是微软Visual Studio测试小组的程序经理（Program Manager<br>）。目前他正专注于创建正确的用户体验，来让手工测试人员可以更好地进行测试以及更有效地与软件小组人员进行合作。他拥有麦吉尔大学（McGill<br>University）的电气工程学士学位。他的blog是<a href="http://blogs.msdn.com/nnaderi/" target="_blank" rel="noopener">Testmundo</a><br>。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/UserExperience/" rel="tag"># UserExperience</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzijq005bxwrqmy1kv18c/" rel="next" title="IE9初窥：支持CSS3，和HTML5？">
+                <i class="fa fa-chevron-left"></i> IE9初窥：支持CSS3，和HTML5？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzirp00efxwrqfviswoza/" rel="prev" title="NetBeans 新闻 Issue # 420 - Dec 15, 2009">
+                NetBeans 新闻 Issue # 420 - Dec 15, 2009 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">为中级用户（Intermediates Users）设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">使用工具来帮助初学者成为中级用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">少即是多</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">为最可能的操作进行设计，为可能的操作提供方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">移除错误提示和确认对话框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">关于作者</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

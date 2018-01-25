@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Selenium是一款开源Web自动化测试工具，最近发布了1.0版，标志着Web自动化测试领域正式加入了一名新成员。在其新版本中，除了修正了若干Bug，最引人瞩目的就是Selenium RC增加了对Google Chrome浏览器的支持，同时Selenium官方网站上提供了完整的用户指南。InfoQ一直关注Selenium的成长，赵劼在.NET平台下Web测试工具横向比较一文中对Selenium做">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web自动化测试工具Selenium 1.0正式发布:Chrome支持+用户指南">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzivv00ivxwrqbut1qvze/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="Selenium是一款开源Web自动化测试工具，最近发布了1.0版，标志着Web自动化测试领域正式加入了一名新成员。在其新版本中，除了修正了若干Bug，最引人瞩目的就是Selenium RC增加了对Google Chrome浏览器的支持，同时Selenium官方网站上提供了完整的用户指南。InfoQ一直关注Selenium的成长，赵劼在.NET平台下Web测试工具横向比较一文中对Selenium做">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T04:44:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web自动化测试工具Selenium 1.0正式发布:Chrome支持+用户指南">
+<meta name="twitter:description" content="Selenium是一款开源Web自动化测试工具，最近发布了1.0版，标志着Web自动化测试领域正式加入了一名新成员。在其新版本中，除了修正了若干Bug，最引人瞩目的就是Selenium RC增加了对Google Chrome浏览器的支持，同时Selenium官方网站上提供了完整的用户指南。InfoQ一直关注Selenium的成长，赵劼在.NET平台下Web测试工具横向比较一文中对Selenium做">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzivv00ivxwrqbut1qvze/"/>
+
+
+
+
+
+  <title>Web自动化测试工具Selenium 1.0正式发布:Chrome支持+用户指南 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzivv00ivxwrqbut1qvze/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web自动化测试工具Selenium 1.0正式发布:Chrome支持+用户指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-06-14T15:27:00+08:00">
+                2009-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Selenium<br>是一款开源Web自动化测试工具，最近发布了1.0版，标志着Web自动化测试领域正式加入了一名新成员。在其新版本中，除了修正了若干Bug，最引人瞩<br>目的就是Selenium RC增加了对Google Chrome浏览器的支持，同时Selenium官方网站上提供了完整的用户指南。</p><br><p>InfoQ一直关注Selenium的成长，<a href="http://www.infoq.com/cn/bycategory.action?authorName=%E8%B5%B5%E5%8A%BC" target="_blank" rel="noopener">赵劼</a><br>在<a id="lumw" title="《.NET平台下Web测试工具横向比较》" href="http://www.infoq.com/cn/news/2009/04/dotnet-web-test-fx-compare" target="_blank" rel="noopener">.NET平台下Web测试工具横向比较</a><br>一文中对Selenium做了概括：</p><br><blockquote> 严格说来，<a href="http://seleniumhq.org/" target="_blank" rel="noopener">Selenium</a><br>是一套完整的Web应用程序测试系统，它包含了测试的录制（<a href="http://seleniumhq.org/projects/ide/" target="_blank" rel="noopener">Selenium IDE</a><br>）、编写及运行（<a href="http://seleniumhq.org/projects/remote-control/" target="_blank" rel="noopener">Selenium Remote Control</a><br>）和测试的并行处理（<a href="http://selenium-grid.openqa.org/" target="_blank" rel="noopener">Selenium Grid</a><br>）。Selenium的核心<a href="http://seleniumhq.org/projects/core/" target="_blank" rel="noopener">Selenium Core</a><br>基于<a href="http://jsunit.net/" target="_blank" rel="noopener">JsUnit</a><br>，<br>完全由JavaScript编写，因此可运行于任何支持JavaScript的浏览器上。Selenium<br>Core由一种指定格式的HTML文件驱动，在一定程度上增强了测试套件（Test Suite）的可读性。Selenium Remote<br>Control允许测试人员使用<a href="http://seleniumhq.org/about/platforms.html#programming-languages" target="_blank" rel="noopener">常见的语言</a><br>（自然包括C#等.NET语言）编写测试代码，并支持<a href="http://seleniumhq.org/about/platforms.html#operating-systems" target="_blank" rel="noopener">不同操作系统</a><br>下的<a href="http://seleniumhq.org/about/platforms.html#browsers" target="_blank" rel="noopener">各种主流浏览器</a><br>。Selenium Grid的作用是将测试分发至多台机器，这样便可大大加快测试速度。与WatiN相同，Selenium也是一款同样使用Apache License 2.0协议发布的开源框架。 </blockquote><br><p>从读者对上文的<a id="p38n" title="回复" href="http://www.infoq.com/cn/news/2009/04/dotnet-web-test-fx-compare#view_41345" target="_blank" rel="noopener">回复</a><br>中也可以看出，国内社区对Selenium的喜爱和关注也在升温。</p><br><p>Selenium作为一款Web自动化测试工具，其支持的浏览器类型之多一直为社区所乐道，而在1.0版中，Selenium正式加入了对Google Chrome的<a id="qq32" title="支持" href="http://jira.openqa.org/browse/SRC-520" target="_blank" rel="noopener">支持</a><br>：</p><br><blockquote> Selenium Remote Control采用浏览器参数googlechrome调用Google Chrome，在Windows XP/Vista上已通过测试，Chrome支持由Google人员完成。 </blockquote><br><p>至此，除了对IE8的支持功能还在开发中，<a id="f._8" title="其他所有主流浏览器" href="http://seleniumhq.org/docs/01_introducing_selenium.html#supported-browsers" target="_blank" rel="noopener">其他所有主流浏览器</a><br>都可以通过Selenium来自动化驱动以测试Web应用。</p><br><p>Selenium的官方网站在Selenium 1.0发布之际，正式推出了Selenium的<a id="hpyg" title="用户手册" href="http://seleniumhq.org/docs/01_introducing_selenium.html#supported-browsers" target="_blank" rel="noopener">用户指南</a><br>。在此之前，用户只能通过有限的文字介绍和<a id="jasc" title="论坛" href="http://clearspace.openqa.org/community/selenium" target="_blank" rel="noopener">论坛</a><br>来学习Selenium。现在，负责文档写作的团队完成了一份较为完整的Selenium用户指南，主要包括：</p><br><ul><br><li><a id="nyxs" title="Selenium介绍" href="http://seleniumhq.org/docs/01_introducing_selenium.html" target="_blank" rel="noopener">Selenium介绍</a><br></li><br><li><a id="wki1" title="Selenium基本概念" href="http://seleniumhq.org/docs/02_selenium_basics.html" target="_blank" rel="noopener">Selenium基本概念</a><br></li><br><li><a id="j.sq" title="使用Selenium IDE开发测试用例" href="http://seleniumhq.org/docs/03_selenium_ide.html" target="_blank" rel="noopener">使用Selenium IDE开发测试用例</a><br></li><br><li><a id="kqla" title="熟悉Selenium命令" href="http://seleniumhq.org/docs/04_selenese_commands.html" target="_blank" rel="noopener">熟悉Selenium命令</a><br></li><br><li><a href="http://seleniumhq.org/docs/05_selenium_rc.html" target="_blank" rel="noopener">Selenium-RC</a><br></li><br></ul><br><p>除此之外，Selenium 1.0还包括了以下重要更新：</p><br><ul><br><li><a id="zvwd" title="支持右键/上下文菜单" href="http://jira.openqa.org/browse/SEL-381" target="_blank" rel="noopener">支持右键/上下文菜单</a><br></li><br><li><a id="t.aa" title="支持setSpeed" href="http://jira.openqa.org/browse/SEL-400" target="_blank" rel="noopener">支持setSpeed</a><br></li><br><li><a id="on71" title="大小写敏感匹配" href="http://jira.openqa.org/browse/SEL-460" target="_blank" rel="noopener">大小写敏感匹配</a><br></li><br><li><a id="oaq6" title="增加deleteAllVisibleCookies命令" href="http://jira.openqa.org/browse/SEL-508" target="_blank" rel="noopener">增加deleteAllVisibleCookies命令</a><br></li><br></ul><br><p>不过在Selenium 1.0中，shutDownSeleniumServer命令由于之前的代码重构错误而不起作用，因此Selenium团队随即发布了1.0.1版本，以修正该Bug，最新版可以从<a id="rxa5" title="这里" href="http://seleniumhq.org/download/" target="_blank" rel="noopener">这里</a><br>下载。</p><br><p>令人欣喜的是，国内社区在学习和使用Selenium之余，也针对其不足提出了新的Web自动化测试框架，<a id="f5lw" title="Tellurium" href="http://code.google.com/p/aost/" target="_blank" rel="noopener">Tellurium</a><br>就是其中一个。目前InfoQ中文站<a id="jw3-" title="张凯峰" href="http://www.infoq.com/cn/bycategory.action?authorName=%E5%BC%A0%E5%87%AF%E5%B3%B0" target="_blank" rel="noopener">张凯峰</a><br>对此做了<a id="tgqw" title="专门报道" href="http://www.infoq.com/cn/articles/tellurium-testing-framework" target="_blank" rel="noopener">专题报道</a><br>，Tellurium的创始人方剑先生在采访中谈到了Selenium的不足：</p><br><blockquote>我有个工作（Task）就是用Selenium去测试我们的一个应用程序（是用Dojo<br>Javascript框架写的）。应该说在当时，Selenium是一个开创性的框架，如果用他们的复制和重播模式（record and<br>replay）很容易产生测试脚本。但一旦我开始用Selenium，我发现它还是有一些缺点和不便之处。主要测试脚本是对代码的更新很脆弱<br>（Fragile）。 但是在一个敏捷开发的环境下，一般都有阶段性的用户接受测试（User Acceptance<br>Test），由于程序一直更新，Selenium测试脚本的维护就变成一个很头痛的问题。而且，对于很多企业级应用，复制和重播模式本身就不太适用，比喻<br>我们有很多数据格（Data<br>Grid），它的内容本身就是动态的。其他的问题包括Selenium测试脚本不是结构化的，你可以看到处有XPath，这更增加了维护的困难。 </blockquote><br><p>他同时表示，Tellurium脱胎于Selenium,它的主要竞争对手还是Selenium, 毕竟Selenium已经推广好几年了。要用户用一个新的框架是要花一定的时间的。</p><br><p>由此可见，Web自动化测试工具的竞争愈演愈烈。但不论是Selenium还是Tellurium，软件开发社区都是最终的评判者和受益者。读者可以在InfoQ中文站查看更多有关<a id="st-n" title="测试" href="http://www.infoq.com/cn/Testing" target="_blank" rel="noopener">测试</a><br>的报道。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzjb300whxwrqqmbn9eor/" rel="next" title="目标:安全纯净互联网 软件升级报38期">
+                <i class="fa fa-chevron-left"></i> 目标:安全纯净互联网 软件升级报38期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzj3e00pzxwrqtn2v6qfg/" rel="prev" title="十分钟学会Java RMI">
+                十分钟学会Java RMI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
