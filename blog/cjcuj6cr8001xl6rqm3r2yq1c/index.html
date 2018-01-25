@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="UserExperience,Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是Web分析学？web分析是指，收集站点对于访客的可用性以及有效性方面的有意义的信息，并对web内容的数据进行集合和分析的过程。Web分析相关的网络应用非常丰富，你也许已经知道类似 Google Analytics 和 Crazy Egg 的最有影响力的网站分析应用，以及类似 Alexa 和 Compete 等远程网站服务。我们这里先跳过这些知名的应用[参考：免费访客行为分析研究工具]，并探讨">
+<meta name="keywords" content="UserExperience,Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10个精选免费网站分析工具">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuj6cr8001xl6rqm3r2yq1c/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="什么是Web分析学？web分析是指，收集站点对于访客的可用性以及有效性方面的有意义的信息，并对web内容的数据进行集合和分析的过程。Web分析相关的网络应用非常丰富，你也许已经知道类似 Google Analytics 和 Crazy Egg 的最有影响力的网站分析应用，以及类似 Alexa 和 Compete 等远程网站服务。我们这里先跳过这些知名的应用[参考：免费访客行为分析研究工具]，并探讨">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-01_piwik.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-02_firestats.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-03_snoop.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-04_yahoo_web_analytics.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-05_bbclone.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-06_woopra.jpg">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-07_jawstats.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-08_4q.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-09_mochibot.png">
+<meta property="og:image" content="http://images.sixrevisions.com/2009/01/02-10_grape_web_statistics.png">
+<meta property="og:updated_time" content="2018-01-23T20:48:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10个精选免费网站分析工具">
+<meta name="twitter:description" content="什么是Web分析学？web分析是指，收集站点对于访客的可用性以及有效性方面的有意义的信息，并对web内容的数据进行集合和分析的过程。Web分析相关的网络应用非常丰富，你也许已经知道类似 Google Analytics 和 Crazy Egg 的最有影响力的网站分析应用，以及类似 Alexa 和 Compete 等远程网站服务。我们这里先跳过这些知名的应用[参考：免费访客行为分析研究工具]，并探讨">
+<meta name="twitter:image" content="http://images.sixrevisions.com/2009/01/02-01_piwik.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuj6cr8001xl6rqm3r2yq1c/"/>
+
+
+
+
+
+  <title>10个精选免费网站分析工具 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuj6cr8001xl6rqm3r2yq1c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">10个精选免费网站分析工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-02-25T04:22:00+08:00">
+                2009-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="articlebody" class="itembody" style="padding: 0px; position: static; height: 100%;"><br><div id="article_body" style="height: 100%;"><br><p>什么是<a class="bodytag" href="http://www.yeeyan.com/articles/tag/Web" target="_blank"><em>Web</em></a>分析学？web分析是指，收集站点对于访客的可用性以及有效性方面的有意义的信息，并对web内容的数据进行集合和分析的过程。Web分析相关的网络应用非常丰富，你也许已经知道类似 <a href="http://zhengyong.net/marketing/free-google-analytics-tool.html" target="_blank" rel="noopener">Google Analytics</a> 和 <a href="http://zhengyong.net/marketing/crazy-egg-web-analytics-tool.html" target="_blank" rel="noopener">Crazy Egg</a> 的最有影响力的网站分析应用，以及类似 <a href="http://www.alexa.com/" target="_blank" rel="noopener">Alexa</a> 和 <a href="http://www.compete.com/" target="_blank" rel="noopener">Compete</a> 等远程网站服务。</p><br><p>我们这里先跳过这些知名的应用[参考：<a href="http://zhengyong.net/marketing/understanding-your-visitors.html" target="_blank" rel="noopener">免费访客行为分析研究工具</a>]，并探讨一些不太知名的网络分析选项。在本文中，你将发现<strong>10个精选的<a class="bodytag" href="http://www.yeeyan.com/articles/tag/%E5%85%8D%E8%B4%B9" target="_blank"><em>免费</em></a>web分析工具和应用程序</strong>，他们可以帮助你收集和分析与你网站内容有关的数据。</p><br><h3>1. <a href="http://piwik.org/" target="_blank" rel="noopener">Piwik</a></h3><br><p><a href="http://piwik.org/" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-01_piwik.png" alt="Piwik - screen shot." width="590" height="240"></a></p><br><p><span class="figure-caption">这里可以参考<a href="http://piwik.org/demo/index.php?module=CoreHome&amp;action=index&amp;idSite=1&amp;period=day&amp;date=yesterday" target="_blank" rel="noopener">Piwik的在线演示</a></span></p><br><p><em>Piwik</em><br>是一个开放源代码的网站分析应用，它使用PHP和MySql开发。Piwik有一个允许你任意延伸和自定义的&ldquo;插件&rdquo;系统。你可以选择仅仅安装你需要的插<br>件，或者全部安装。Piwik插件系统，和你想象的一样，它也给你一个创建你自己的定制扩展应用的可能，并且piwik是个轻量级的应用，下载包只有<br>1.9MB。</p><br><h3>2. <a href="http://firestats.cc/" target="_blank" rel="noopener">FireStats</a></h3><br><p><a href="http://firestats.cc/" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-02_firestats.png" alt="FireStats - screen shot." width="590" height="240"></a></p><br><p><span class="figure-caption">参考 <a href="http://firestats.cc/" target="_blank" rel="noopener">FireStats的在线演示</a>.</span></p><br><p><em>FireStats</em> 是一个简单和直接的网站分析应用，使用PHP和MySql开发。它支持多种平台，包括C#站点，Django站点，Drupal，Joomla等CMS，以及<a title="Wordpress" href="http://zhengyong.net/marketing/category/wordpress" target="_blank" rel="noopener">Wordpress</a>和<a href="http://firestats.cc/wiki/InstallUpgrade" target="_blank" rel="noopener">其他的一些平台</a>。 你是一名经验丰富的开发人员吗？FireStats 还有一个 <a title="API wiki of FireStats." href="http://firestats.cc/wiki/API" target="_blank" rel="noopener">优秀的API[应用程序接口]</a> ，它可以协助你创建你自己的基于你的FireStats数据的特制应用程序或发布平台组件 (想象看: <em>在你的wordpress博客显示下载次数最多的10个文件</em>) 。</p><br><h3>3. <a href="http://report.reinvigorate.net/snoop" target="_blank" rel="noopener">Snoop</a></h3><br><p><a href="http://report.reinvigorate.net/snoop" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-03_snoop.png" alt="Snoop - screen shot." width="590" height="240"></a></p><br><p><em>Snoop</em> 是一个基于桌面，运行在 Mac OS X 和 Windows XP/Vista 平台的web分析工具。它运行后，会驻留在你的系统状态栏或系统托盘中，当一些事件发生的时候，会有声音来提醒你。另外一个显著的Snoop特色就是<a href="http://report.reinvigorate.net/name_tags" target="_blank" rel="noopener">Name Tags</a> 选项，允许你使用&ldquo;标记&rdquo;来更容易的识别访客。因此，当在财务部门Joe的访问你的网站时，你会立刻知道。</p><br><h3>4. <a href="http://web.analytics.yahoo.com/" target="_blank" rel="noopener">Yahoo! Web  Analytics</a></h3><br><p><a href="http://web.analytics.yahoo.com/" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-04_yahoo_web_analytics.png" alt="Yahoo! Web Analytics - screen shot." width="590" height="240"></a></p><br><p><em>Yahoo! <a class="bodytag" href="http://www.yeeyan.com/articles/tag/Web" target="_blank"><em>Web</em></a> analytics</em> 是在web分析行业占据主导地位的<a title="Google" href="http://zhengyong.net/marketing/category/%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B0%E9%97%BB/google-%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B0%E9%97%BB" target="_blank" rel="noopener">Google</a> Analytics的另一个替代选择。它属于企业级的，健壮的，基于Web的第三方分析服务，特别是对于多用户集团，它更容易的实现数据的访问。yahoo网站分析工具全面提供你需要的web分析工具，比如图表工具，自定义设计（并且可打印）报表、以及实时数据跟踪。</p><br><h3>5. <a href="http://bbclone.de/" target="_blank" rel="noopener">BBClone</a></h3><br><p><a href="http://bbclone.de/" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-05_bbclone.png" alt="BBClone - screen shot." width="590" height="240"></a></p><br><p><span class="figure-caption">参考<a href="http://bbclone.de/demo/" target="_blank" rel="noopener">BBClone的在线演示</a></span></p><br><p>如果你正在寻找一个简单的，服务端的并且不依赖于第三方服务的web应用来监控网站数据，<em>BBClone</em> -<br>一个基于PHP的服务端应用，为你报告详细的站点流量和访客数据。它支持32种本地化语言，包括英语，中文，德文，日文等。BBClone能够与时下最受<br>欢迎的发布平台容易的集成，比如Drupal，Wordpress，Textpattern等。<br>由于它是基于日志文件的，因此它不需要你使用其他的服务端关系数据库。</p><br><h3>6. <a href="http://www.woopra.com/" target="_blank" rel="noopener">Woopra</a></h3><br><p><a href="http://www.woopra.com/" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-06_woopra.jpg" alt="Woopra - screen shot." width="590" height="240"></a></p><br><p><em>Woopra</em> 是使用Java开发的web分析应用。它分为两个部分，包括一个桌面应用进行数据分析研究，还有一个监控站点统计的<a title="web service" href="http://zhengyong.net/marketing/category/%E4%BA%92%E8%81%94%E7%BD%91%E5%BA%94%E7%94%A8/web-service" target="_blank" rel="noopener">web service</a>。 Woopra 有一个健壮的用户接口，一个允许你运行在多个网站和域名和直观的管理系统，甚至还提供一个聊天功能，因此你可以通过与访客交谈来收集非商业信息。 Woopra当前还处于beta版本，并且需要你请求一个私有数据beta注册。</p><br><h3>7. <a href="http://www.jawstats.com/" target="_blank" rel="noopener">JAWStats</a></h3><br><p><a href="http://www.jawstats.com/" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-07_jawstats.png" alt="JAWStats - screen shot." width="590" height="240"></a></p><br><p><em>JAWStats</em> 也是一个服务端的网站分析应用，它与最流行的 <a href="http://awstats.sourceforge.net/" target="_blank" rel="noopener">AWStats</a> 协同运行(实际上，如果你是使用的共享主机计划的话，那么AWStats很可能已经安装好了)。 JAWStats 在awstats的基础上进行了两个扩展 - 依靠减轻服务器资源的使用来提升执行性能，在用户接口部分做了一点提升。</p><br><h3>8. <a href="http://4q.iperceptions.com/default.aspx?c=en-US" target="_blank" rel="noopener">4Q</a></h3><br><p><a href="http://4q.iperceptions.com/default.aspx?c=en-US" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-08_4q.png" alt="4Q - screen shot." width="590" height="240"></a></p><br><p>有很大部分的web分析涉及数字运算和数值数据。原始数据只告诉你事件的一部分，另外经常与实际用户进行交互的办法来处理分析数据也会非常的有用。 <a href="http://zhengyong.net/marketing/4q-online-survey-tool.html" target="_blank" rel="noopener">4Q</a> 的开发人员 Avinash Kaushik 让这变得非常完美，他说：&ldquo;web分析对于&lsquo;what&rsquo;非常适用，但却不适用&rsquo;why&rsquo; &rdquo;。<em>4Q</em> 是一个简单的调查应用，专注于使用实际用户的反馈来补充和提升你的传统网站分析数字。下面有个<a href="http://www.youtube.com/watch?v=o2LJliORQPQ" target="_blank" rel="noopener">YouTube video</a> 会告诉你如何容易的安装 <a href="http://zhengyong.net/marketing/4q-online-survey-tool.html" target="_blank" rel="noopener">4Q web分析工具</a>.</p><br><h3>9. <a href="http://www.mochibot.com/" target="_blank" rel="noopener">MochiBot</a></h3><br><p><a href="http://www.mochibot.com/" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-09_mochibot.png" alt="MochiBot - screen shot." width="590" height="240"></a></p><br><p><em>MochiBot</em> 是一个免费的web分析和跟踪工具，它特别为 <a href="http://en.wikipedia.org/wiki/Flash" target="_blank" rel="noopener">Flash</a><br>资源设计。 使用<br>MochiBot，你可以看到什么人正在分享你的flash内容，人们视差了你的内容多少次，很好的帮助你跟踪你的flash内容是否被剽窃或非法转载。<br>安装 MochiBot 很轻快，只需要你可以简单的copy几行ActionScript到你需要监控的.fla文件中去。</p><br><h3>10. <a href="http://www.quate.net/grape" target="_blank" rel="noopener">Grape Web  Statistics</a></h3><br><p><a href="http://www.quate.net/grape" target="_blank" rel="noopener"><img src="http://images.sixrevisions.com/2009/01/02-10_grape_web_statistics.png" alt="Grape Web Statistics - screen shot." width="590" height="240"></a></p><br><p><span class="figure-caption">参考<a href="http://extremetuxracer.com/grape/" target="_blank" rel="noopener">Grape Web Statistics在线演示</a></span></p><br><p><em>Grape <a class="bodytag" href="http://www.yeeyan.com/articles/tag/Web" target="_blank"><em>Web</em></a> Statistics</em> 是一个简单，开源的面向开发人员的网站分析应用。它有一个清爽和可用的接口，并且还有一个扩展的API可以定制你的安装。Grape后端采用PHP程序，你可以在任何运行PHP的操作系统上使用该工具。</p><br><p>转自：<a href="http://www.yeeyan.com/articles/view/14183/24720" target="_blank" rel="noopener">http://www.yeeyan.com/articles/view/14183/24720</a></p><br></div><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/UserExperience/" rel="tag"># UserExperience</a>
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6cra0021l6rqimv793yz/" rel="next" title="10项2009年重要的Java技术解决方案">
+                <i class="fa fa-chevron-left"></i> 10项2009年重要的Java技术解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6cod000hl6rqq2qv15mp/" rel="prev" title="《JBoss Seam：一个深度集成框架》一文的最后一部分。">
+                《JBoss Seam：一个深度集成框架》一文的最后一部分。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1. Piwik</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2. FireStats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3. Snoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4. Yahoo! Web  Analytics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">5. BBClone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">6. Woopra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">7. JAWStats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">8. 4Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">9. MochiBot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">10. Grape Web  Statistics</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

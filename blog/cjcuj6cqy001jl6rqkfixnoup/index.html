@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,jQuery,Plugin," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="so cool &amp;amp; mark转自: 9款别出心裁的jQuery插件前端集锦资源 | 前端开发网(W3Cfuns.com)!jQuery插件开发正在以惊人的速度快速增长，因其强大且易用的jQuery框架，使得我们的工作变得更加轻松！除了jQuery，还有 Flash，HTML5/CSS3以及一些强大的Web浏览器的支持，可以说JavaScript已经打造了交互式网站设计的一片艳阳天。在这篇文">
+<meta name="keywords" content="JavaScript,jQuery,Plugin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9 款别出心裁的 jQuery 插件">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuj6cqy001jl6rqkfixnoup/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="so cool &amp;amp; mark转自: 9款别出心裁的jQuery插件前端集锦资源 | 前端开发网(W3Cfuns.com)!jQuery插件开发正在以惊人的速度快速增长，因其强大且易用的jQuery框架，使得我们的工作变得更加轻松！除了jQuery，还有 Flash，HTML5/CSS3以及一些强大的Web浏览器的支持，可以说JavaScript已经打造了交互式网站设计的一片艳阳天。在这篇文">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427nokzzcgbonsn662n.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427psveplls3epz1unk.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427t7v8vxz7oaeef4au.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/11242725r9cd556d69qjp9.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427pvlidcmc444ym4aa.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427l2zlf2h1boph44hs.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/1124281pnvpvvaaq4pwu3w.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/11242815vbu75h1hirrohh.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/1124281sy391c445dy878s.jpg">
+<meta property="og:updated_time" content="2018-01-24T07:28:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9 款别出心裁的 jQuery 插件">
+<meta name="twitter:description" content="so cool &amp;amp; mark转自: 9款别出心裁的jQuery插件前端集锦资源 | 前端开发网(W3Cfuns.com)!jQuery插件开发正在以惊人的速度快速增长，因其强大且易用的jQuery框架，使得我们的工作变得更加轻松！除了jQuery，还有 Flash，HTML5/CSS3以及一些强大的Web浏览器的支持，可以说JavaScript已经打造了交互式网站设计的一片艳阳天。在这篇文">
+<meta name="twitter:image" content="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427nokzzcgbonsn662n.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuj6cqy001jl6rqkfixnoup/"/>
+
+
+
+
+
+  <title>9 款别出心裁的 jQuery 插件 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuj6cqy001jl6rqkfixnoup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">9 款别出心裁的 jQuery 插件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-07-04T22:55:53+08:00">
+                2012-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>so cool &amp; mark</p><br><p>转自: <a target="_blank" href="http://www.w3cfuns.com/portal.php?mod=view&amp;aid=723">9款别出心裁的jQuery插件前端集锦资源 | 前端开发网(W3Cfuns.com)!</a></p><br><p>jQuery插件开发正在以惊人的速度快速增长，因其强大且易用的jQuery框架，使得我们的工作变得更加轻松！除了jQuery，还有 Flash，HTML5/CSS3以及一些强大的Web浏览器的支持，可以说JavaScript已经打造了交互式网站设计的一片艳阳天。在这篇文章中， 我们收集了9款强大的jQuery插件，希望对你有所帮助。</p><br><p><strong>1. </strong><a target="_blank" href="http://willowsystems.github.com/jSignature/#/about/"><strong>jSignature</strong></a></p><br><p>jSignature是一款JavaScript小部件（jQuery插件），你可以利用鼠标、手写笔或手指在浏览器中绘制签名。</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427nokzzcgbonsn662n.jpg" alt=""></p><br><p><strong>2. </strong><a target="_blank" href="http://lab.hakim.se/scroll-effects/"><strong>Scoll Effects</strong></a></p><br><p>很酷的CSS3滚动效果。</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427psveplls3epz1unk.jpg" alt=""></p><br><p><strong>3. </strong><a target="_blank" href="http://sigmajs.org/"><strong>SigmaJS</strong></a></p><br><p>SigmaJS是一款开源的轻量级JavaScript库用以绘制图形，使用HTML canvas元素。它被精心设计过，从图形可视化软件可显示交互式静态图表&mdash;&mdash;比如利用Gephi可将图形生成动态效果。</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427t7v8vxz7oaeef4au.jpg" alt=""></p><br><p><strong>4．</strong><a target="_blank" href="http://alexdunphy.github.com/refineslide/"><strong>Refine Slide</strong></a></p><br><p>支持CSS和3D转换，你可以根据自己喜好选择各种移动方式，呈现出不同的效果。</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/11242725r9cd556d69qjp9.jpg" alt=""></p><br><p><strong>5. </strong><a target="_blank" href="http://widgets.better2web.com/loader/"><strong>Loader</strong></a></p><br><p>一款细小的jQuery 插件，让你可以直观的了解进程运行情况。</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427pvlidcmc444ym4aa.jpg" alt=""></p><br><p><strong>6. </strong><a target="_blank" href="http://anthonyterrien.com/knob/"><strong>Knob</strong></a></p><br><p>Knob是一款很酷的UI界面，目的在于减少或增加值。</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/112427l2zlf2h1boph44hs.jpg" alt=""></p><br><p><strong>7. <a target="_blank" href="http://indamix.github.com/real-shadow/">Real Shadow</a></strong></p><br><p>利用Real Shadow来创建逼真的色彩shadow，像不像眼影盒？</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/1124281pnvpvvaaq4pwu3w.jpg" alt=""></p><br><p><strong>8. <a target="_blank" href="http://seuratjs.com/">SeuratJS</a></strong></p><br><p>SeuratJS是一款JavaScript库，Rapha&euml;l的扩展，允许使用最少的代码来创建生动且模糊的作品。利用SVG在原有图形的基础上通过二次创作，使图片变得就像打了马赛克一样。&nbsp;</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/11242815vbu75h1hirrohh.jpg" alt=""></p><br><p><strong>9. </strong><a target="_blank" href="http://photon.attasi.com/"><strong>Photon</strong></a></p><br><p>CSS3 3D轻量级引擎，原图中的小纸鹤可以随意转动，是不是很有趣？</p><br><p style="text-align: center;"><img src="http://www.w3cfuns.com/data/attachment/portal/201207/04/1124281sy391c445dy878s.jpg" alt=""></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/jQuery/" rel="tag"># jQuery</a>
+          
+            <a href="/blog/tags/Plugin/" rel="tag"># Plugin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6crb0023l6rqs0js43cq/" rel="next" title="11个视觉差滚动效果的 HTML5 网站">
+                <i class="fa fa-chevron-left"></i> 11个视觉差滚动效果的 HTML5 网站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6coj000pl6rqt8t7zoz0/" rel="prev" title="5款书签类型的测试工具">
+                5款书签类型的测试工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
