@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、简化代码采用更为简短的写法，不仅可以减少输入的字符数，还可以减少文件大小。大部分采用简单写法的代码，执行效率都有轻微提高。1.1&amp;nbsp; 简化常用对象定义：使用 var obj = {}; 代替 var obj = new Object();使用 var arr = []; 代替 var arr = new Array();1.2&amp;nbsp; 精简if语句三元操作符可以有效精简只涉及赋值传">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript开发经验谈">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzind009lxwrqbmbn68yy/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="一、简化代码采用更为简短的写法，不仅可以减少输入的字符数，还可以减少文件大小。大部分采用简单写法的代码，执行效率都有轻微提高。1.1&amp;nbsp; 简化常用对象定义：使用 var obj = {}; 代替 var obj = new Object();使用 var arr = []; 代替 var arr = new Array();1.2&amp;nbsp; 精简if语句三元操作符可以有效精简只涉及赋值传">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-04T15:04:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript开发经验谈">
+<meta name="twitter:description" content="一、简化代码采用更为简短的写法，不仅可以减少输入的字符数，还可以减少文件大小。大部分采用简单写法的代码，执行效率都有轻微提高。1.1&amp;nbsp; 简化常用对象定义：使用 var obj = {}; 代替 var obj = new Object();使用 var arr = []; 代替 var arr = new Array();1.2&amp;nbsp; 精简if语句三元操作符可以有效精简只涉及赋值传">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzind009lxwrqbmbn68yy/"/>
+
+
+
+
+
+  <title>Javascript开发经验谈 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzind009lxwrqbmbn68yy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript开发经验谈</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-05-22T08:33:00+08:00">
+                2009-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="entry"><br><h3>一、简化代码</h3><br><p>采用更为简短的写法，不仅可以减少输入的字符数，还可以减少文件大小。大部分采用简单写法的代码，执行效率都有轻微提高。</p><br><h4>1.1&nbsp; 简化常用对象定义：</h4><br><p>使用 <strong>var obj = {};</strong> 代替 var obj = new Object();<br><br>使用 <strong>var arr = [];</strong> 代替 var arr = new Array();</p><br><h4>1.2&nbsp; 精简if语句</h4><br><p>三元操作符可以有效精简只涉及赋值传值操作的if语句，比如<br><br>var score = 60, grade;<br><br>if (score &lt; 60) {<br><br>&nbsp;&nbsp;&nbsp; grade = &ldquo;不及格&rdquo;;<br><br>} else {<br><br>&nbsp;&nbsp;&nbsp; grade = &ldquo;及格&rdquo;;<br><br>}<br><br>可以精简为：<br><br>var score = 60;<br><br><strong>var grade = score &lt; 60 ? &ldquo;不及格&rdquo; : &ldquo;及格&rdquo;;</strong><br><br>三元操作符也支持嵌套，但是嵌套的层次太多会影响程序的可读性，这方面要多加斟酌。</p><br><h4>1.3&nbsp; 使用JSON</h4><br><p>JSON是一种轻量级的数据格式，轻量级首先体现在它的结构定义非常简单。<br><br>var obj = {};<br><br>obj.p1 = &lsquo;a&rsquo;;<br><br>obj.p2 = &lsquo;b&rsquo;;<br><br>obj.p3 = &lsquo;c&rsquo;;<br><br>可精简为：<br><br>var obj = {<br><br>&nbsp;&nbsp;&nbsp; p1 : &lsquo;a&rsquo;,<br><br>&nbsp;&nbsp; &nbsp;p2 : &lsquo;b&rsquo;,<br><br>&nbsp;&nbsp;&nbsp; p3 : &lsquo;c&rsquo;<br><br>};</p><br><h3>二、使用高效率的代码</h3><br><p>网上流传的效率优化文章非常多，一些比较专业的Javascript书籍也谈到了不少，因此，这里就只列出一些很少谈到的。</p><br><h4>2.1&nbsp; 精简循环体</h4><br><p>循环的效率很大程度上是由循环体决定的，与之相比，用for还是while的差别就太小了。考虑如下的代码，其功能是为某一批元素添加事件：<br><br>function addEvent(elems, eventName, handler) {<br><br>&nbsp;&nbsp;&nbsp; for (var i = 0, len = elems.length; i &lt; len; i++) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (window.attachEvent) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elems[i].attachEvent(&rdquo;on&rdquo; + eventName, handler);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (window.addEventListener) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elems[i].addEventListener(eventName, handler, false);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; }<br><br>}<br><br>循环每执行一次，都会判断window对象的attachEvent或addEventListener是否存在，其实这个仅判断一次也就够了；此外，&ldquo;&rdquo;on&rdquo; + eventName&rdquo;的字符串拼接也会重复执行。优化如下：<br><br>function addEvent(elems, eventName, handler) {<br><br>&nbsp;&nbsp;&nbsp; var i = -1, len = elems.length;<br><br>&nbsp;&nbsp;&nbsp; <strong>if (window.attachEvent) {</strong><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>eventName = &ldquo;on&rdquo; + eventName;<br><br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (++i &lt; len) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elems[i].attachEvent(eventName, handler);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; <strong>} else if (window.addEventListener) {<br><br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (++i &lt; len) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elems[i].addEventListener(eventName, handler, false);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; }<br><br>}</p><br><h4>2.2&nbsp; 尽量使用原生的函数而不是自定义函数</h4><br><p>当你对Javascript的内置类型变量执行某项操作时，你应该先查查这项操作是否有原生的方法。<br><br>要生成一个数组的副本，你会怎么做呢？遍历数组元素然后逐个赋值到另一个数组，这似乎是唯一的方法。其实，原生的<strong>Array.prototype.slice就可以达到复制的目的</strong>。这个方法可以从某个数组返回选定的元素，且不影响原来的数组。如果参数留空，返回的就是全部元素。<br><br>Array.prototype.slice还可以对某些不是数组而又能通过数字索引访问的类型进行操作，比如arguments：<br><br>function test() {<br><br>&nbsp;&nbsp;&nbsp; alert(Array.prototype.slice.call(arguments));<br><br>}<br><br>test(1, 2, 3); // output &ldquo;1,2,3&Prime;<br><br>在Firefox下，它甚至可以对HtmlCollection进行操作。可惜在IE下不行。</p><br><p>另一个例子是数组排序，一般情况下，我们不需要另外写排序算法，用原生的Array.prototype.sort就够了。sort方法只有一个参<br>数，该参数是一个函数，决定两个相比较的元素谁在前谁在后，默认是按照字符顺序排序，比如11会排在2之前。要按数字大小排序，可以这样写：<br><br>var arr = [11, 2, 0, 12, 33];<br><br>arr.sort(<br><br>&nbsp;&nbsp;&nbsp; function(a, b) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>return a - b;<br><br></strong>&nbsp;&nbsp;&nbsp; }<br><br>);<br><br>也可以按照对象的某个属性进行排序：<br><br>var arr = [<br><br>&nbsp;&nbsp;&nbsp; { id : 11 },<br><br>&nbsp;&nbsp;&nbsp; { id : 0 },<br><br>&nbsp;&nbsp;&nbsp; { id : 22 }<br><br>];<br><br>arr.sort(<br><br>&nbsp;&nbsp;&nbsp; function(a, b) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>return a.id - b.id;<br><br></strong>&nbsp;&nbsp;&nbsp; }<br><br>);</p><br><h4>2.3&nbsp; 数组去重复</h4><br><p>Array类型并没有提供去重复的方法，如果要把数组的重复元素干掉，那得自己想办法：<br><br>function unique(arr) {<br><br>&nbsp;&nbsp;&nbsp; var result = [], isRepeated;<br><br>&nbsp;&nbsp;&nbsp; for (var i = 0, len = arr.length; i &lt; len; i++) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isRepeated = false;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (var j = 0, len = result.length; j &lt; len; j++) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (arr[i] == result[j]) {&nbsp;&nbsp;&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isRepeated = true;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!isRepeated) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result.push(arr[i]);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; return result;<br><br>}<br><br>总体思路是把数组元素逐个搬运到另一个数组，搬运的过程中检查这个元素是否有重复，如果有就直接丢掉。从嵌套循环就可以看出，这种方法效率极低。我们可以<br>用一个hashtable的结构记录已有的元素，这样就可以避免内层循环。恰好，在Javascript中实现hashtable是极为简单的，改进如<br>下：<br><br>function unique(arr) {<br><br>&nbsp;&nbsp;&nbsp; var result = [], <strong>hash = {}</strong>;<br><br>&nbsp;&nbsp;&nbsp; for (var i = 0, elem; (elem = arr[i]) != null; i++) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>if (!hash[elem]) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result.push(elem);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hash[elem] = true;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br></strong>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; return result;<br><br>}</p><br><h3>三、使代码更易读、更好维护</h3><br><p>无论是在开发中还是开发后，保持代码清晰易读可以更快更准确地修改代码。</p><br><h4>3.1&nbsp; 连接HTML字符串</h4><br><p>相信做前端开发的朋友都受过这个折磨：连接HTML的时候被可恶的单引号、双引号搞得头昏脑胀。比如：<br><br>element.innerHTML = &lsquo;&lt;a href=&rdquo;&lsquo; + url + &lsquo;&rdquo; onclick=&rdquo;alert(\&rdquo; + msg + &lsquo;\&rsquo;);&rdquo;&gt;&rsquo; + text + &lsquo;&lt;/a&gt;&rsquo;;<br><br>这里介绍一个字符串格式化函数：<br><br><strong>String.format</strong> = function(str) {<br><br>&nbsp;&nbsp;&nbsp; var args = arguments, re = new RegExp(&rdquo;%([1-“ + args.length + “])&rdquo;, &ldquo;g&rdquo;);<br><br>&nbsp;&nbsp;&nbsp; return String(str).replace(<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; re,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function($1, $2) {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return args[$2];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; );<br><br>};<br><br>调用方法很简单：<br><br>element.innerHTML = String.format(&rsquo;&lt;a href=&rdquo;%1&Prime; onclick=&rdquo;alert(\&rsquo;%2\&rsquo;);&rdquo;&gt;%3&lt;/a&gt;&rsquo;, url, msg, text);<br><br>意思就是<strong>用第n个参数把%n替换掉</strong>。这样一来清晰多了吧。</p><br><h4>3.2&nbsp; 为您的程序打造一个Config配置对象</h4><br><p>编写Java或者C#程序的时候，我们一般会从XML读取程序的配置信息。在Javascript里面，用XML做配置信息不大划算，一方面要多请<br>求一个XML文件或者把XML字符串转换为XML对象，另一方面XML对象的方法比较复杂冗长。轻量级的JSON是最好的选择。<br><br><strong>程序中的常量应该放到Config配置对象中</strong>，比如Ajax请求的Url、某个操作的提示等，例如：<br><br>var Config = {<br><br>&nbsp;&nbsp;&nbsp; ajaxUrl : &ldquo;test.jsp&rdquo;,<br><br>&nbsp;&nbsp;&nbsp; successTips : &ldquo;请求完成&rdquo;<br><br>};<br><br>如果Config的数量较多，可以根据配置类型多嵌套一层，比如：<br><br>var Config = {<br><br>&nbsp;&nbsp;&nbsp; url : {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; src1 : &ldquo;test1.jsp&rdquo;,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; src2 : &ldquo;test2.jsp&rdquo;,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<br><br>&nbsp;&nbsp;&nbsp; },<br><br>&nbsp;&nbsp;&nbsp; tips : {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; src1Suc : &ldquo;请求1完成&rdquo;,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; src2Suc: &ldquo;请求2完成&rdquo;,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<br><br>&nbsp;&nbsp;&nbsp; }<br><br>};<br><br>Config应放置于程序的最前面，方便查看和修改。</p><br><p>&nbsp;</p><br>转自：<a href="http://www.ued163.com/?p=422" target="_blank" rel="noopener">http://www.ued163.com/?p=422</a><br>            </div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzjbz00x7xwrqgaefoanh/" rel="next" title="网页设计师必用的14个Firefox扩展">
+                <i class="fa fa-chevron-left"></i> 网页设计师必用的14个Firefox扩展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6jig00ezl6rqqm1ezemu/" rel="prev" title="解密CSS Sprites的使用技巧及经典实例">
+                解密CSS Sprites的使用技巧及经典实例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一、简化代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  简化常用对象定义：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">1.2  精简if语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">1.3  使用JSON</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">二、使用高效率的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">2.1  精简循环体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  尽量使用原生的函数而不是自定义函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  数组去重复</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">三、使代码更易读、更好维护</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">3.1  连接HTML字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">3.2  为您的程序打造一个Config配置对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

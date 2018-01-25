@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            Dennis Sosnoski译者            崔康            发布于            2009年3月25日 下午6时0分        社区Java,SOA主题XML 数据绑定标签数据绑定XML消息交换是大多数web服务的基础，包括SOAP和REST方式。使用XML导致了一些缺陷，包括性能的潜在问题，但是这也提供了抽">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Services模式——第一部分：基本数据类型">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko55j00rk4urq44mhdsd7/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            Dennis Sosnoski译者            崔康            发布于            2009年3月25日 下午6时0分        社区Java,SOA主题XML 数据绑定标签数据绑定XML消息交换是大多数web服务的基础，包括SOAP和REST方式。使用XML导致了一些缺陷，包括性能的潜在问题，但是这也提供了抽">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/sponsorship/featuredcategory/742/SOA20091.gif">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/schema-for-ws-part1/zh/resources/image.jpg">
+<meta property="og:updated_time" content="2018-01-23T20:51:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Services模式——第一部分：基本数据类型">
+<meta name="twitter:description" content="作者            Dennis Sosnoski译者            崔康            发布于            2009年3月25日 下午6时0分        社区Java,SOA主题XML 数据绑定标签数据绑定XML消息交换是大多数web服务的基础，包括SOAP和REST方式。使用XML导致了一些缺陷，包括性能的潜在问题，但是这也提供了抽">
+<meta name="twitter:image" content="http://www.infoq.com/resource/sponsorship/featuredcategory/742/SOA20091.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko55j00rk4urq44mhdsd7/"/>
+
+
+
+
+
+  <title>Web Services模式——第一部分：基本数据类型 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko55j00rk4urq44mhdsd7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web Services模式——第一部分：基本数据类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-04-05T00:38:00+08:00">
+                2009-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>            作者<br>            <strong>Dennis Sosnoski</strong>译者<br>            <strong>崔康</strong><br>            发布于<br>            2009年3月25日 下午6时0分<br>        </p><br><dl class="tags2"><dt class="community">社区</dt><dd><a id="739" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="java" href="http://www.infoq.com/cn/java" target="_blank" rel="noopener">Java</a>,</dd><dd><a id="742" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="soa" href="http://www.infoq.com/cn/soa" target="_blank" rel="noopener">SOA</a></dd><dt class="topics">主题</dt><dd><a id="953" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="xml_databinding" href="http://www.infoq.com/cn/xml_databinding" target="_blank" rel="noopener">XML 数据绑定</a></dd><dt class="topics">标签</dt><dd><a id="898" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="data_binding" href="http://www.infoq.com/cn/data_binding" target="_blank" rel="noopener">数据绑定</a></dd></dl><br><p>XML<br>消息交换是大多数web服务的基础，包括SOAP和REST方式。使用XML导致了一些缺陷，包括性能的潜在问题，但是这也提供了抽象层，允许参与交换各<br>方之间的松耦合。为了使松耦合真的起作用，你需要定义交换中的XML文档的结构，便于验证文档的正确性。W3C的XML<br>Schema定义语言（在本文后面部分简写为&ldquo;模式&rdquo;）是用于消息结构定义的最常用的方法。</p><br><div class="vendor-content-box-float"><br><h3>相关<span class="vendor">厂商</span>内容</h3><br><p class="entryarticle"><br>            <a href="http://www.infoq.com/infoq/url.action?i=731&amp;t=f" target="_blank"><br>                点击浏览SOA中国论坛2009现场直播！！<br>            </a><br>        </p><br><p class="entryarticle"><br>            <a href="http://www.infoq.com/infoq/url.action?i=606&amp;t=f" target="_blank"><br>                演讲嘉宾：黄柳青、程朝晖、焦烈炎、袁义等技术专家<br>            </a><br>        </p><br><p class="entrypdf"><br>            <a href="http://www.infoq.com/infoq/url.action?i=607&amp;t=f" target="_blank"><br>                日程安排：3月27日北京、4月1日上海、4月9日广州<br>            </a><br>        </p><br><p class="entrydemo"><br>            <a href="http://www.infoq.com/infoq/url.action?i=608&amp;t=f" target="_blank"><br>                会议议题：中国企业实施SOA从哪开始？<br>            </a><br>        </p><br><p class="entryarticle"><br>            <a href="http://www.infoq.com/infoq/url.action?i=605&amp;t=f" target="_blank"><br>                论坛主题：SOA从应用开始暨SOA新平台发布<br>            </a><br>        </p><br><h3>相关赞助商</h3><br><a href="http://www.infoq.com/infoq/url.action?i=655&amp;t=f" target="_blank"><br>                <img style="margin: 0pt 0pt 5px 5px;" src="http://www.infoq.com/resource/sponsorship/featuredcategory/742/SOA20091.gif" border="0" alt="" align="right"><br>            </a><br><div class="entrysponsors"><br><p>了解建设银行、交通银行、华为等企业SOA实施心得，了解从项目迈向企业级SOA实施路径。 <a href="http://www.infoq.com/infoq/url.action?i=654&amp;t=f" target="_blank">现在免费报名SOA中国论坛</a>！</p><br></div><br></div><br><p>大多数web服务不与XML文档直接交互，而是通过web服务工具包的数据绑定转换层。这方便了应用开发人员，因为这意味着他们可以直接使用选定编<br>程语言的数据结构。但是数据绑定过程需要处理模式数据类型、结构和编程语言数据类型、结构之间的不匹配问题，这些都会为应用制造麻烦。如果你想要你的<br>web服务提供一致的、平台兼容性（这也是使用web服务的首要意义所在），你需要设计模式定义以避免潜在的问题&mdash;&mdash;或者至少意识到使用存在问题的模式的<br>风险。</p><br><p>在本系列文章中，我们将探讨一下来自于模式和web服务数据绑定之间不匹配问题的各个方面。在第一篇文章中，我们从最基础的角度开始，看一看简单数据类型和相关的问题。</p><br><h2>数字表示</h2><br><p>数字是业务数据中最基本的类型。既然数字如此重要，你可能会认为模式在这一领域运转的很稳定和一致。从某种抽象意义上来说，的确是这样&mdash;&mdash;但是当web服务工具包应用模式时，你仍然会遇到多种问题。</p><br><p>其中一个问题是内建模式数字类型的多样性。图1展示了本领域模式数据类型的组成部分。为了便于理解，运用特殊化方法&mdash;&mdash;这棵树从上到下的分支走得越<br>远，数据类型就越特殊化。在顶层，是anySimpleType类型，其下面是基本的数据类型float、decimal和double。Float和<br>double是最终类型，符合IEEE对浮点书的标准定义，也提供了跨web服务的良好互操作性：每一个主流编程语言都支持32位浮点数字，匹配浮点数规<br>范，支持64位浮点数字，匹配double模式规范，因此，web服务工具包可以简单的把这些类型映射到原生语言类型。可能在特殊值（非数字、正无穷、负<br>无穷、正零、负零）的编程语言文字表达上和模式之间有细微的区别，不过工具包可以很容易的处理转换。</p><br><p><img src="http://www.infoq.com/resource/articles/schema-for-ws-part1/zh/resources/image.jpg" alt=""></p><br><p><strong>图1. 模式数字类型</strong></p><br><p>当你来到decimal分支的时候，你就会遇到问题。Decimal本身被定义为一个任意长度小数位数的字符串，包括可选的正负号和小数点。<br>Integer是decimal的直接子节点，表示decimal的一个子集，包含可选的正负号，但不允许小数点。Integer的子节点做了进一步约<br>束，nonPositiveInteger和nonNegativeInteger限制了其值大于零或者小于零，long则把取值范围限制在64位2进制<br>补码表示。Int、short和byte进一步限制了范围，分别是32位、16位和8位2进制补码表示，而unsigned各种变形则是同样位数的非负<br>值。</p><br><p>所有主流编程语言支持匹配long、int和short模式类型的值，但是其他变形则有可能出现问题。举例来说，Java不包含对应<br>unsignedLong和unsignedInt的内建数据类型。Java<br>web服务框架一般使用特殊的类而不是原生类型来应付这种语言的缺失，但是这使得web服务接口多少有些笨拙，同时可能引起性能问题（因为计算时内建类型<br>一般远远快于对象类型）。</p><br><p>甚至decimal和integer也会引起问题。大多数Java工具包使用标准的java.lang.BigDecimal和<br>java.lang.BigInteger类来处理这些类型，导致了糟糕的性能，但是支持无大小限制的值。.Net则使用128位固定长度的表示法，限制<br>了值域（模式规范所许可的），但是提供了相对较好的性能。</p><br><p>模式数字类型令人困惑和不协调（比如，为什么存在nonPositiveInteger而没有nonPositiveDecimal类型？），一般<br>只是用于某种语法上的便利（因为范围可以通过simpleType限制实现）。鉴于此，在你的模式定义中，最好避免使用大多数类型，特别是那些用于web<br>服务的。尽量使用某些特定的类型（double和float用于实数，long和int用于整数），因为这些与编程语言的原生类型保持一致。如果你需要使<br>用超过这些类型范围或者精度的值，请记住decimal和integer由于依赖实现可能无法提供你所想要的，你可以考虑使用字符串，在应用程序代码中处<br>理这种转换。</p><br><h3>时间问题</h3><br><p>时间相关的值是使用模式的另一个常见问题来源。模式定义了九种独立的时间相关的数据类型，全部基于Western Gregorian日历形式。不像数字值，时间相关的类型彼此之间不是特殊化的关系&mdash;&mdash;相反，它们都是直接继承自通用类型anySimpleType。</p><br><p>应用最广泛的时间类型是dateTime、date和time。这三种数据类型共享同一种表示形式，dateTime最完整。下面是一个<br>dateTime值的例子，我写这篇文章的当前时间是：”2008-09-08T15:38:53”。Date使用相同的表示法，只是去掉了&lsquo;T&rsquo;和后面<br>的小时&mdash;&mdash;分钟&mdash;&mdash;秒（在本例中，剩下”2008-09-08”），time值则去掉了&ldquo;T&rdquo;之前的所有东西，只保留小时&mdash;&mdash;分钟&mdash;&mdash;秒<br>（”15:38:53”）。</p><br><p>到目前为止很简单，是吧？让人感到困难的地方在于这些值的实际解释。日期和时间根据你所在的地点而变，也就是时区。举例来说，当我在新英格兰州写这<br>篇文章时，比格林尼治时间提前12小时，比太平洋西部时间（美国西海岸所用时区）提前19小时。当前时间的dateTime值<br>是”2008-09-08T15:38:53”，西雅图时间则是”2008-09-07T20:38:53”。</p><br><p>很多程序需要指定日期和时间，允许把一个值关联到另一个。模式通过允许使用附加时区提示的手段满足这种需求。这种时区提示既可以使用字母&lsquo;Z&rsquo;表明<br>是格林尼治时间，也可以使用相对格林尼治时间的偏移量。因此，所有dateTime值（和很多其他变形）都可以用于指示同一时<br>间：”2008-09-08T15:38:53+12:00”、”2008-09-07T20:38:53-08:00”或者<br>“2008-09-08T03:38:53Z”。</p><br><p>但是模式并不强制你指定时区提示，没有这种限制，日期/时间只能被解释为世界上任意地区的准确时间。对于某些程序，这种性质可能恰好是你想要的&mdash;&mdash;<br>举例来说，某人的生日日期通常被视为一个特定的日子而不管是哪个地区，同样的，人们以世界各地的当地时间为准庆祝罗马制新年&mdash;&mdash;但是对于其他程序，就会产<br>生大麻烦。考虑电话会议的例子，所有参与各方都需要调整会议时间到本地时间。</p><br><p>不幸的是，模式不允许你区分何时需要完全指定的日期/时间、何时需要无分区的值（至少不是通过web服务工具包解释的方式&mdash;&mdash;你可以使用simpleType限制，但通常会被工具包忽略）。因此模式在这一点上的含糊不清意味着工具包需要处理存在和不存在时区提示的两种值。</p><br><p>这种处理两种值的需求在解释阶段让人很头痛，特别是因为编程语言一般基于绝对时间值实现date/time类型。没有办法把缺少时区提示的模式值正<br>确的转化为绝对时间。当然，这无法阻止工具包处理类似值。在大多数情况下，他们把这些值当作本地时区值转化，这通常也是你所期望的&mdash;&mdash;但是，当它不是时，<br>由此导致的问题很难定位。</p><br><p>由于时区造成的问题对于date类型特别麻烦。多数情况下，人们认为日期是日历上的一个固定刻度。举例来说，当你签署法律文件时，你一般会写上日<br>期。如果你同意一个新项目，一般会有一个计划完成日期（通常都是空想）。买东西时有时需要出示驾照表明年龄，店员会查看你的生日日期，并与年龄限制作比<br>较。在所有这些情况下，日期被认为具有日期分辨功能，时区之间的差别被忽略了。但是，模式日期类型使用相应的时区提示，如dateTime和time类<br>型。这种做法分割了模式日期和常用日期。一般来说，这会通过把日期转化为00:00（午夜，一天的开始时刻）时间表示法来解决，不管是什么时区。但是如果<br>你把日期值使用本地时区打印出来，你可能会发现它与文档里最初指定的值不同。</p><br><p>如果模式分别定义了带有时区提示和不带时区提示的日期\时间类型，应用程序就会易于挑选其所需的。否则，工具包难以处理一个模式上存在缺陷的日期/<br>时间表示法。Java的JAXB<br>2.0采用了可能是最综合的办法来处理这个问题，通过一个特殊的类（javax.xml.datatype.XmlGregorianCalendar）<br>来处理所有模式日期/时间类型。这种方法保存了表示法的所有细节，只是把解释过程交给了开发人员。其他工具包一般使用缺省办法，例如假定是本地时区。</p><br><p>既然有这么难解的问题，最好的处理办法是只为那些完全指定时区提示的值使用日期/时间类型，并保证生成的所有文档都包含时区提示。大多数web服务<br>工具包会自动为你生成时区提示，所以最后一步很简单。要求输入文档也使用时区提示则困难些，特别是因为文档会经过多步处理。如果你想要不陷入错误的转化假<br>定所引起的问题中，最好的解决办法是在模式表达中使用字符串类型，这样的话，web服务工具包会把值传递给你的应用程序代码，而不会解释其值。</p><br><p>如果你需要无时区的日期/时间值（如生日日期），最好也使用字符串类型。从提供一个精确表示的角度看，这不是很令人满意，但是避免了web服务工具包把无分区的值解释成本地时区。</p><br><h2>引用</h2><br><p>应用程序内部使用的数据结构经常包含组件之间的多个连接，包括交叉引用和间接关联。另一方面，XML天生是树形结构的。在XML中，通过包含可以很<br>容易的表示一对多的关系，但是表示其他关系则困难。甚至是一对多关系也效率低下。考虑一个文档列举了顾客的订单历史，每一订单都有对应的付款和发送地址，<br>但是这些地址通常是重复的。如果你对每一份订单都插入地址，则最终文档里会有大量冗余信息。</p><br><p>引用可以用于解决XML树形结构的限制。引用的思想是在XML文档中定义事物一次，包含一个唯一标识码。每当其他数据想要使用该定义时，使用标识码创建一个引用。</p><br><p>模式直接支持两种引用。第一，使用ID类型，定义元素标识符，可以使用IDREF或者IDREFS类型从文档中任意处关联。ID/IDREF关联的<br>优点是非常简单&mdash;&mdash;标识符就是名字，任何类型的元素都可以在模式中定义ID值。缺点是使用全局上下文，因此没办法说某个IDREF使用的值肯定采用特定元<br>素类型定义，用作ID值的名字在文档中必须唯一（即使是跨类型的元素）。一些web服务工具包支持使用ID/IDREF关联来表示数据结构内部的引用（包<br>括 JAX-WS/JAXB 2.0，Apache<br>Axis2使用JiBX数据绑定时），其他工具包（如.Net、Axis2使用ADB）则不是，把IDREF值简单的当作文本字符串。</p><br><p>模式支持的第二种引用是key/keyref关联。ID/IDREF关联使用数据类型定义，key/keyref关联则是模式定义的结构组成部分。<br>这允许key/keyref关联比ID/IDREF更具有表现力，包括定义key值唯一的上下文环境。但是，因为key/keyref关联的设计意图更倾<br>向于文档验证而不是结构化，它们太复杂，数据绑定框架一般也不会用于做XML数据和数据结构之间的转化。</p><br><p>因此，如果你想在XML文档中插入关联并由web服务工具包处理，唯一的办法就是ID/IDREF。一些工具包现在直接支持这种关联，其他的则只是把标识符看做字符串，但是你可以编写应用程序代码来交叉引用标识符和值、构建自己的关联。</p><br><h2>结论</h2><br><p>在本文中，我们探讨了在web服务中使用最常用数据类型时会遇到的问题。除了本文提到的还有很多其他模式数据类型（一共42种！），其中一些会引起<br>其它问题。总的来说，使用web服务模式定义的最好办法是避免使用过度特殊化的类型（除了那些匹配常用编程语言类型的数字类型），当你想完全控制这些值<br>时，你可以使用字符串类型转换这些值。</p><br><p>值得一提的是，虽然本文中讨论的一些问题可以通过数据绑定框架处理的更好一些，但是很多问题来源于模式本身。特别是，数据/时间类型难以使用，甚至<br>可能因为缺少时区和非时区之间的区别来导致错误。虽然可以像JAXB那样使用XmlGregorianCalendar类把这种混乱交给用户处理，但这实<br>在不是一种解决办法。</p><br><h2>关于作者</h2><br><p><a href="mailto:enquiry@sosnoski.co.nz?subject=InfoQ" target="_blank" rel="noopener">Dennis Sosnoski</a>是<br>一名基于Java的SOA和web服务领域的顾问和培训讲师。他在软件开发领域工作超过30年，近10年专注于服务器端的XML和Java技术。<br>Dennis是开源项目JiBX XML和相关JiBX/WS框架的主要开发人员，也是Apache Axis2<br>web服务框架的开发者。同时，他也是JAX-WS 2.0和JAXB 2.0的专家组成员。有关他的培训和咨询服务请登陆网站<a href="http://www.sosnoski.co.nz/" target="_blank" rel="noopener">http://www.sosnoski.co.nz</a>。</p><br><p>&nbsp;</p><br><p>转自：<a href="http://www.infoq.com/cn/articles/schema-for-ws-part1" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/schema-for-ws-part1</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5ss01jo4urq5efo1z5i/" rel="next" title="黄智生博士谈语义网与Web 3.0">
+                <i class="fa fa-chevron-left"></i> 黄智生博士谈语义网与Web 3.0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4ya00fu4urqaxmlym7w/" rel="prev" title="Java Web层框架比较">
+                Java Web层框架比较 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">相关厂商内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">相关赞助商</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">数字表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">时间问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">关于作者</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

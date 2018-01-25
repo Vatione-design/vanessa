@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者: cschalk&amp;nbsp;&amp;nbsp;翻译: icess http://blog.matrix.org.cn/page/icess&amp;nbsp;JSF新手可能常常听到 &amp;nbsp;”JSF Request Processing Lifecycle” ,但是不一定知道在生命周期中都发生了什么事情.这里有一点代码, 一个 &amp;nbsp;PhaseListener, 我们可以用她来了解 &amp;nbsp;">
+<meta name="keywords" content="JSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用一个PhaseListener来熟悉JSF 生命周期">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5bt010m4urqwf8v1d71/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者: cschalk&amp;nbsp;&amp;nbsp;翻译: icess http://blog.matrix.org.cn/page/icess&amp;nbsp;JSF新手可能常常听到 &amp;nbsp;”JSF Request Processing Lifecycle” ,但是不一定知道在生命周期中都发生了什么事情.这里有一点代码, 一个 &amp;nbsp;PhaseListener, 我们可以用她来了解 &amp;nbsp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://java.sun.com/j2ee/1.4/docs/tutorial/doc/images/jsfIntro-lifecycle.gif">
+<meta property="og:updated_time" content="2018-01-23T20:51:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用一个PhaseListener来熟悉JSF 生命周期">
+<meta name="twitter:description" content="作者: cschalk&amp;nbsp;&amp;nbsp;翻译: icess http://blog.matrix.org.cn/page/icess&amp;nbsp;JSF新手可能常常听到 &amp;nbsp;”JSF Request Processing Lifecycle” ,但是不一定知道在生命周期中都发生了什么事情.这里有一点代码, 一个 &amp;nbsp;PhaseListener, 我们可以用她来了解 &amp;nbsp;">
+<meta name="twitter:image" content="http://java.sun.com/j2ee/1.4/docs/tutorial/doc/images/jsfIntro-lifecycle.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5bt010m4urqwf8v1d71/"/>
+
+
+
+
+
+  <title>使用一个PhaseListener来熟悉JSF 生命周期 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5bt010m4urqwf8v1d71/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用一个PhaseListener来熟悉JSF 生命周期</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-03-28T02:03:00+08:00">
+                2009-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong><br></strong><br></p><br><p>作者: cschalk&nbsp;&nbsp;</p><br><p>翻译: icess <a href="http://blog.matrix.org.cn/page/icess" target="_blank" rel="noopener">http://blog.matrix.org.cn/page/icess</a></p><br><p>&nbsp;JSF新手可能常常听到 &nbsp;”JSF Request Processing Lifecycle” ,但是不一定知道在生命周期中都发生了什么事情.</p><br><p><img src="http://java.sun.com/j2ee/1.4/docs/tutorial/doc/images/jsfIntro-lifecycle.gif" alt=""></p><br><p>这里有一点代码, 一个 &nbsp;<strong>PhaseListener</strong>, 我们可以用她来了解 &nbsp;JSF’s Request Processing Lifecycle如何工作的. </p><br><p>下面是一个在生命周期开始和结束时执行的一个简单的PhaseListener </p><br><p>&nbsp;</p><br><pre>package com.jsf;<br>import javax.faces.event.PhaseListener;<br>import javax.faces.event.PhaseEvent;<br>import javax.faces.event.PhaseId;<br><br>public class MyPhaseListener  implements PhaseListener<br>{<br><br>  public MyPhaseListener()<br>  {<br>  }<br><br>  public void beforePhase(PhaseEvent pe)<br>  {<br>   if (pe.getPhaseId() == PhaseId.RESTORE_VIEW)<br>      System.out.println(“Processing new  Request!”);<br>        <br>   System.out.println(“before - “ + pe.getPhaseId().toString());<br>  }<br><br>  public void afterPhase(PhaseEvent pe)<br>  { <br>  System.out.println(“after - “ + pe.getPhaseId().toString());<br>  <br>  if (pe.getPhaseId() == PhaseId.RENDER_RESPONSE)<br>     System.out.println(“Done with Request!\n”);<br>  }<br><br>  public PhaseId getPhaseId()<br>  {  <br>    return PhaseId.ANY_PHASE;<br>  }<br>}</pre><br><p>&nbsp;</p><br><p>当每一个阶段开始和结束的时候,她 在控制台上打印出一些东西. 你需要在 faces-config.xml中来注册该listener</p><br><p>&nbsp;</p><br><pre>&lt;lifecycle&gt;<br>&lt;phase-listener&gt;com.jsf.MyPhaseListener /&gt;<br>&lt;/lifecycle&gt;<br></pre><br><p>&nbsp;</p><br><p>一旦你注册了 &nbsp;PhaseListener, 你就可以开始写个小程序来测试了. 我们使用一个简单的程序,一个输入表单和按钮:</p><br><p>&nbsp;</p><br><pre>&lt;h:commandButton value=”button” action=”#{backingbean.button_action}”/&lt;<br></pre><br><p>&nbsp;</p><br><p>按钮绑定了一个manage bean的动作方法.:</p><br><pre>public String button_action()<br>  {<br>    System.out.println(“Action event processed…”);<br>    return “success”;<br>  }<br></pre><br><p>运行该页面可以看到下面的输出,.:</p><br><pre>05/08/31 20:32:46 Processing new  Request!<br>05/08/31 20:32:46 before - RESTORE_VIEW 1<br>05/08/31 20:32:46 after - RESTORE_VIEW 1<br>05/08/31 20:32:46 before - RENDER_RESPONSE 6<br>05/08/31 20:32:46 after - RENDER_RESPONSE 6<br>05/08/31 20:32:46 Done with Request!<br><br>05/08/31 20:32:57 Processing new  Request!<br>05/08/31 20:32:57 before - RESTORE_VIEW 1<br>05/08/31 20:32:57 after - RESTORE_VIEW 1<br>05/08/31 20:32:57 before - APPLY_REQUEST_VALUES 2<br>05/08/31 20:32:57 after - APPLY_REQUEST_VALUES 2<br>05/08/31 20:32:57 before - PROCESS_VALIDATIONS 3<br>05/08/31 20:32:57 after - PROCESS_VALIDATIONS 3<br>05/08/31 20:32:57 before - UPDATE_MODEL_VALUES 4<br>05/08/31 20:32:57 after - UPDATE_MODEL_VALUES 4<br>05/08/31 20:32:57 before - INVOKE_APPLICATION 5<br>05/08/31 20:32:57 Action event processed…<br>05/08/31 20:32:57 after - INVOKE_APPLICATION 5<br>05/08/31 20:32:57 before - RENDER_RESPONSE 6<br>05/08/31 20:32:57 after - RENDER_RESPONSE 6<br>05/08/31 20:32:57 Done with Request!<br></pre><br><p>注意在第一个请求 (non-postback) ,只有两个阶段, RESTORE_VIEW and<br>RENDER_RESPONSE..这说明她只是创建 &nbsp;UI component tree然后显示她 . 下一步,你点击按钮,注意打印的消息.<br>这次她通过了整个jsf生命周期. 注意,按钮点击的动作事件在 INVOKE_APPLICATION phase处理…</p><br><p>现在,作为一个实验,把&nbsp; &nbsp;commandButton 的&nbsp;<strong>immediate</strong>&nbsp; 属性改变为 <strong>true</strong> ,看看如何影响动作事件的处理的.</p><br><p>下一步你可能想添加一个输入表单,并且添加一个 &nbsp;ValueChangeListener 来显示一个值变化事件. </p><br><p>A new input field…</p><br><pre>&lt;h:inputText value=”foo”&gt;<br> &lt;f:valueChangeListener type=”com.jsf.MyValueChangeListener”/&gt;<br>&lt;/h:inputText&gt;<br></pre><br><p>下面是ValueChangeListener代码..</p><br><pre>package com.jsf;<br>import javax.faces.event.ValueChangeListener;<br>import javax.faces.event.ValueChangeEvent;<br>import javax.faces.event.AbortProcessingException;<br><br>public class MyValueChangeListener implements ValueChangeListener<br>{<br><br>  public MyValueChangeListener()<br>  {<br>  }<br><br>  public void processValueChange(ValueChangeEvent vce) throws AbortProcessingException<br>  {<br>     System.out.println(“A value has changed!”);<br>  }<br>}<br></pre><br><p>这里你不需要在faces配置文件中注册 ValueChangeListener,你可以直接运行程序,看看有什么信息打印出来.</p><br><pre>05/08/31 20:41:33 Processing new  Request!<br>05/08/31 20:41:33 before - RESTORE_VIEW 1<br>05/08/31 20:41:33 after - RESTORE_VIEW 1<br>05/08/31 20:41:33 before - RENDER_RESPONSE 6<br>05/08/31 20:41:33 after - RENDER_RESPONSE 6<br>05/08/31 20:41:33 Done with Request!<br></pre><br><p>输入一个值在输入表单中, 看看有什么发生. </p><br><pre>5/08/31 20:42:42 Processing new  Request!<br>05/08/31 20:42:42 before - RESTORE_VIEW 1<br>05/08/31 20:42:42 after - RESTORE_VIEW 1<br>05/08/31 20:42:42 before - APPLY_REQUEST_VALUES 2<br>05/08/31 20:42:42 after - APPLY_REQUEST_VALUES 2<br>05/08/31 20:42:42 before - PROCESS_VALIDATIONS 3<br>05/08/31 20:42:42 A value has changed!<br>05/08/31 20:42:42 after - PROCESS_VALIDATIONS 3<br>05/08/31 20:42:42 before - UPDATE_MODEL_VALUES 4<br>05/08/31 20:42:42 after - UPDATE_MODEL_VALUES 4<br>05/08/31 20:42:42 before - INVOKE_APPLICATION 5<br>05/08/31 20:42:42 Action event processed!<br>05/08/31 20:42:42 after - INVOKE_APPLICATION 5<br>05/08/31 20:42:42 before - RENDER_RESPONSE 6<br>05/08/31 20:42:42 after - RENDER_RESPONSE 6<br>05/08/31 20:42:42 Done with Request!<br></pre><br><p>当你添加输入框和事件时，当事件发生，也就是向输入框输入值或改变值的话，此事件将在验证后开始后执行，验证结束前完成，按照此方法，你可以更加深入的了解JSF 生命周期，并选则适当的方法进行编写。</p><br><p>&nbsp;</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JSF/" rel="tag"># JSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5vs01zc4urqd86nu80b/" rel="next" title="怀疑论者的 JSF: JSF 应用程序的生命周期">
+                <i class="fa fa-chevron-left"></i> 怀疑论者的 JSF: JSF 应用程序的生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5kd01b04urq4cc5x1u6/" rel="prev" title="极少人知道的手机隐藏功能和禁忌(必转篇)">
+                极少人知道的手机隐藏功能和禁忌(必转篇) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

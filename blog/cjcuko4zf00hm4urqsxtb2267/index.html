@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web,Nginx,Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近开始折腾 Nginx，Windows 下的就不说了。Linux 就大学那会学过，在上一家公司用过的命令也不超过5个，纯属菜鸟级别。首先安装 SecureCRT，然后在会话选项 -&amp;gt; 终端 -&amp;gt; 外观中修改当前颜色方案为 Traditional ，选择字符编码，选择你喜欢的字体。这样就可以装下，让人觉得你会这个东东的样子，同时也增加自己的信心&amp;mdash;&amp;mdash;输命令吧，木有">
+<meta name="keywords" content="Web,Nginx,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 中如何安装 Nginx">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4zf00hm4urqsxtb2267/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="最近开始折腾 Nginx，Windows 下的就不说了。Linux 就大学那会学过，在上一家公司用过的命令也不超过5个，纯属菜鸟级别。首先安装 SecureCRT，然后在会话选项 -&amp;gt; 终端 -&amp;gt; 外观中修改当前颜色方案为 Traditional ，选择字符编码，选择你喜欢的字体。这样就可以装下，让人觉得你会这个东东的样子，同时也增加自己的信心&amp;mdash;&amp;mdash;输命令吧，木有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://nginx.org/nginx.gif">
+<meta property="og:updated_time" content="2018-01-23T04:34:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 中如何安装 Nginx">
+<meta name="twitter:description" content="最近开始折腾 Nginx，Windows 下的就不说了。Linux 就大学那会学过，在上一家公司用过的命令也不超过5个，纯属菜鸟级别。首先安装 SecureCRT，然后在会话选项 -&amp;gt; 终端 -&amp;gt; 外观中修改当前颜色方案为 Traditional ，选择字符编码，选择你喜欢的字体。这样就可以装下，让人觉得你会这个东东的样子，同时也增加自己的信心&amp;mdash;&amp;mdash;输命令吧，木有">
+<meta name="twitter:image" content="http://nginx.org/nginx.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4zf00hm4urqsxtb2267/"/>
+
+
+
+
+
+  <title>Linux 中如何安装 Nginx | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4zf00hm4urqsxtb2267/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux 中如何安装 Nginx</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-04-17T21:57:11+08:00">
+                2012-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近开始折腾 Nginx，Windows 下的就不说了。Linux 就大学那会学过，在上一家公司用过的命令也不超过5个，纯属菜鸟级别。</p><br><p>首先安装 SecureCRT，然后在会话选项 -&gt; 终端 -&gt; 外观中修改当前颜色方案为 Traditional ，选择字符编码，选择你喜欢的字体。这样就可以装下，让人觉得你会这个东东的样子，同时也增加自己的信心&mdash;&mdash;输命令吧，木有问题 o(&cap;_&cap;)o</p><br><p><img src="http://nginx.org/nginx.gif" alt="nginx" width="150" height="50"></p><br><h3>网上一搜一堆一堆的，这里就带着 Linux 命令简单说下如何安装</h3><br><p>1.1 cd 到你想要的目录，如 #cd /opt</p><br><p>1.2 建立所需存放安装文件的文件夹，如 #mkdir install</p><br><p>1.3 进入该目录，如 #cd install</p><br><p>1.4 获取安装文件 #wget <a href="http://nginx.org/download/nginx-1.0.15.tar.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.0.15.tar.gz</a></p><br><p>1.5 查看文件 #ls</p><br><p>1.6 解压#tar xzvf nginx-1.0.15.tar.gz</p><br><p>1.7 进入解压好的文件中 #cd nginx-1.0.15</p><br><p>1.8 #./configure –prefix=/opt/nginx</p><br><p>1.9 #make</p><br><p>1.10 #make install</p><br><p>1.11 上传需要使用的静态文件到 html 下<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #cd /opt/nginx/html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #rz&nbsp;</p><br><p>1.12 启动<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #cd /opt/nginx/sbin<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #./nginx</p><br><p>&nbsp;</p><br><h3>使用到的命令说明</h3><br><p><strong>cd</strong><br>定位路径，和 Windows 的 cmd 一样</p><br><p><strong>mkdir</strong><br>用法：mkdir [选项] 目录…<br> 若目录不是已经存在则创建目录。<br> <br> 长选项必须用的参数在使用短选项时也是必须的。<br> &nbsp; -m, –mode=模式&nbsp;&nbsp; 设定权限&lt;模式&gt; (类似 chmod)，而不是 rwxrwxrwx 减 umask<br> &nbsp; -p, –parents&nbsp;&nbsp;&nbsp;&nbsp; 需要时创建上层目录，如目录早已存在则不当作错误<br> &nbsp; -v, –verbose&nbsp;&nbsp;&nbsp;&nbsp; 每次创建新目录都显示信息<br> &nbsp; -Z, –context=CONTEXT (SELinux) set security context to CONTEXT<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; –help&nbsp;&nbsp;&nbsp;&nbsp; 显示此帮助信息并退出<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; –version&nbsp; 输出版本信息并退出</p><br><p><strong>wget<br></strong>非交互式的网络文件下载工具。<br>用法： wget [选项]… [URL]…<br>参数太多了，还没带过。参见 <a href="http://home.phpchina.com/blog-29824-39817.html" target="_blank">wget</a><strong></strong></p><br><p><strong>ls</strong><br>列出目标目录中所有的子目录和文件。<br>用法：ls [选项]… [目录名]…<br>参数太多了，还没带过。参见 <a href="http://www.9usb.net/201005/linux-ls.html" target="_blank">ls</a><strong><br></strong></p><br><p><strong>tar<br></strong>Usage: tar [OPTION…] [FILE]…<br>saves many files together into a single tape or disk archive, and can restore individual files from the archive.<br><br>Examples:<br>&nbsp; tar -cf archive.tar foo bar&nbsp; # Create archive.tar from files foo and bar.<br>&nbsp; tar -tvf archive.tar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # List all files in archive.tar verbosely.<br>&nbsp; tar -xf archive.tar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Extract all files from archive.tar.<strong></strong></p><br><p>参数太多了，还没带过。参见 <a href="http://www.linuxso.com/command/tar.html" target="_blank">tar</a></p><br><p><strong>rz<br></strong>上传文件<br>Usage: rz [options] [filename.if.xmodem]<br>Receive files with ZMODEM/YMODEM/XMODEM protocol<br>&nbsp;&nbsp;&nbsp; (X) = option applies to XMODEM only<br>&nbsp;&nbsp;&nbsp; (Y) = option applies to YMODEM only<br>&nbsp;&nbsp;&nbsp; (Z) = option applies to ZMODEM only<br>&nbsp; -+, –append&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; append to existing files<br>&nbsp; -a, –ascii&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASCII transfer (change CR/LF to LF)<br>&nbsp; -b, –binary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binary transfer<br>&nbsp; -B, –bufsize N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buffer N bytes (N==auto: buffer whole file)<br>&nbsp; -c, –with-crc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use 16 bit CRC (X)<br>&nbsp; -C, –allow-remote-commands allow execution of remote commands (Z)<br>&nbsp; -D, –null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; write all received data to /dev/null<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; –delay-startup N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sleep N seconds before doing anything<br>&nbsp; -e, –escape&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Escape control characters (Z)<br>&nbsp; -E, –rename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rename any files already existing<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; –errors N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; generate CRC error every N bytes (debugging)<br>&nbsp; -h, –help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Help, print this usage message<br>&nbsp; -m, –min-bps N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stop transmission if BPS below N<br>&nbsp; -M, –min-bps-time N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for at least N seconds (default: 120)<br>&nbsp; -O, –disable-timeouts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disable timeout code, wait forever for data<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; –o-sync&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; open output file(s) in synchronous write mode<br>&nbsp; -p, –protect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; protect existing files<br>&nbsp; -q, –quiet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quiet, no progress reports<br>&nbsp; -r, –resume&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try to resume interrupted file transfer (Z)<br>&nbsp; -R, –restricted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; restricted, more secure mode<br>&nbsp; -s, –stop-at {HH:MM|+N}&nbsp;&nbsp;&nbsp; stop transmission at HH:MM or in N seconds<br>&nbsp; -S, –timesync&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; request remote time (twice: set local time)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; –syslog[=off]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; turn syslog on or off, if possible<br>&nbsp; -t, –timeout N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set timeout to N tenths of a second<br>&nbsp; -u, –keep-uppercase&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; keep upper case filenames<br>&nbsp; -U, –unrestrict&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disable restricted mode (if allowed to)<br>&nbsp; -v, –verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; be verbose, provide debugging information<br>&nbsp; -w, –windowsize N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Window is N bytes (Z)<br>&nbsp; -X&nbsp; –xmodem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use XMODEM protocol<br>&nbsp; -y, –overwrite&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes, clobber existing file if any<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; –ymodem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use YMODEM protocol<br>&nbsp; -Z, –zmodem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use ZMODEM protocol</p><br><p><strong><br>svn co URL<br></strong>用 svn checkout<strong><br></strong></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/blog/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5k901aw4urqy24up4mu/" rel="next" title="杭州 say goodbye">
+                <i class="fa fa-chevron-left"></i> 杭州 say goodbye
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4zh00hp4urqlf3remw0/" rel="prev" title="Linux 中批量查找并替换">
+                Linux 中批量查找并替换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">网上一搜一堆一堆的，这里就带着 Linux 命令简单说下如何安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">使用到的命令说明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

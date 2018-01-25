@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="从jQuery1.4发布以来就再没关注过它了，那么优秀的东西，今天突然看到一篇帖子，是自己落伍了，还是它太优秀了，相信喜欢jQuery的人应该都拜读过了，鄙人在这里Backup一下。&amp;nbsp;&amp;nbsp;jQuery 1.4 最近发布了。 超乎大家的预期，这次并非简单的修修补补，1.4包含了很多新特性、功能增强和性能提升！本文即向您介绍这些可能对你十分有用的新特性和优化增强。你可以立刻下载jQu">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery最新1.4 版本的十五个新特性">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko57i00ud4urqzgiz7e4j/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="从jQuery1.4发布以来就再没关注过它了，那么优秀的东西，今天突然看到一篇帖子，是自己落伍了，还是它太优秀了，相信喜欢jQuery的人应该都拜读过了，鄙人在这里Backup一下。&amp;nbsp;&amp;nbsp;jQuery 1.4 最近发布了。 超乎大家的预期，这次并非简单的修修补补，1.4包含了很多新特性、功能增强和性能提升！本文即向您介绍这些可能对你十分有用的新特性和优化增强。你可以立刻下载jQu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-25T07:17:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery最新1.4 版本的十五个新特性">
+<meta name="twitter:description" content="从jQuery1.4发布以来就再没关注过它了，那么优秀的东西，今天突然看到一篇帖子，是自己落伍了，还是它太优秀了，相信喜欢jQuery的人应该都拜读过了，鄙人在这里Backup一下。&amp;nbsp;&amp;nbsp;jQuery 1.4 最近发布了。 超乎大家的预期，这次并非简单的修修补补，1.4包含了很多新特性、功能增强和性能提升！本文即向您介绍这些可能对你十分有用的新特性和优化增强。你可以立刻下载jQu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko57i00ud4urqzgiz7e4j/"/>
+
+
+
+
+
+  <title>jQuery最新1.4 版本的十五个新特性 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko57i00ud4urqzgiz7e4j/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery最新1.4 版本的十五个新特性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-04-10T02:26:00+08:00">
+                2010-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>从jQuery1.4发布以来就再没关注过它了，那么优秀的东西，今天突然看到一篇帖子，是自己落伍了，还是它太优秀了，相信喜欢jQuery的人应该都拜读过了，鄙人在这里Backup一下。</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>jQuery 1.4 最近发布了。 超乎大家的预期，这次并非简单的修修补补，1.4<br>包含了很多新特性、功能增强和性能提升！本文即向您介绍这些可能对你十分有用的新特性和优化增强。</p><br><p>你可以立刻下载jQuery 1.4试用： <a href="http://code.jquery.com/jquery-1.4.js" target="_blank"><strong></strong><br></a><br><a href="http://code.jquery.com/jquery-1.4.js" target="_blank" rel="noopener">http://code.jquery.com/jquery-1.4.js</a><br></p><br><p><strong>1. 传参给 jQuery(&hellip;)</strong><br></p><br><p>之前，jQuery可以通过 <a href="http://api.jquery.com/attr/" target="_blank"><span style="color: #1a8bc8;">attr </span><br></a><br>方法设置元素的属性，既可传属性的名和值，也<br>可以是包含几组特定 属性名值对 的 对象。在 jQuery 1.4 中，你可以把一个参数对象作为第二个参数传给 jQuery<br>函数本身，同时创建HTML元素。</p><br><p>比方说你想要创建一个带有几个属性的锚记元素（&lt;a&gt;&lt;/a&gt;）。在1.4中，一切如此简单：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;&lt;a/&gt;&rsquo;, {<br><br>id: &lsquo;foo&rsquo;,<br><br>href: &lsquo;<a href="http://google.com&amp;rsquo" target="_blank" rel="noopener">http://google.com&amp;rsquo</a>;,<br><br>title: &lsquo;Become a Googler&rsquo;,<br><br>rel: &lsquo;external&rsquo;,<br><br>text: &lsquo;Go to Google!&rsquo;<br><br>});</td><br></tr><br></tbody><br></table><br><p>你大概也能猜到，这个锚记元素没有的 text 属性会调用 jQuery 的私有方法 .text() ，把元素里的文字设置为&ldquo;Go to<br>Google!&rdquo;</p><br><p>针对这一用法，下面是更有用的实例：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;&lt;div/&gt;&rsquo;, {<br><br>id: &lsquo;foo&rsquo;,<br><br>css: {<br><br>fontWeight: 700,<br><br>color: &lsquo;green&rsquo;<br><br>},<br><br>click: function(){<br><br>alert(&lsquo;Foo has been clicked!&rsquo;);<br><br>}<br><br>});</td><br></tr><br></tbody><br></table><br><p>id 为一般属性，被直接加上了，而 css 和 click 则激发了相应的 jQuery 方法。在1.4以前，上面的代码需写成这个样子：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;&lt;div/&gt;&rsquo;)<br><br>.attr(&lsquo;id&rsquo;, &lsquo;foo&rsquo;)<br><br>.css({<br><br>fontWeight: 700,<br><br>color: &lsquo;green&rsquo;<br><br>})<br><br>.click(function(){<br><br>alert(&lsquo;Foo has been clicked!&rsquo;);<br><br>});</td><br></tr><br></tbody><br></table><br><p><a href="http://api.jquery.com/jQuery/" target="_blank"><span style="color: #1a8bc8;">详细了解 jQuery(&hellip;) </span><br></a><br></p><br><p><strong>2. 直到遇见你&hellip;</strong><br></p><br><p>1.4的DOM遍历工具包里又增加了3个新方法： nextUntil， prevUntil&nbsp;&nbsp; 和&nbsp;&nbsp; parentsUntil<br>。这些方法会按照特定的方向遍历DOM，直到遇到满足指定选择符的元素为止。举例来说，现在我们有一张水果名的清单：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">&lt;ul&gt;<br><br>&lt;li&gt;Apple&lt;/li&gt;<br><br>&lt;li&gt;Banana&lt;/li&gt;<br><br>&lt;li&gt;Grape&lt;/li&gt;<br><br>&lt;li&gt;Strawberry&lt;/li&gt;<br><br>&lt;li&gt;Pear&lt;/li&gt;<br><br>&lt;li&gt;Peach&lt;/li&gt;<br><br>&lt;/ul&gt;</td><br></tr><br></tbody><br></table><br><p>我们想挑选出所有在 Apple 后，Pear 前的所有条目。代码十分简单：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;ul<br>li:contains(Apple)&rsquo;).nextUntil(&lsquo;:contains(Pear)&rsquo;);</td><br></tr><br></tbody><br></table><br><p>详细了解： <a href="http://api.jquery.com/prevUntil/" target="_blank"><span style="color: #1a8bc8;">prevUntil</span><br></a><br>, <a href="http://api.jquery.com/nextUntil/" target="_blank"><span style="color: #1a8bc8;">nextUntil</span><br></a><br>, <a href="http://api.jquery.com/parentsUntil/" target="_blank"><span style="color: #1a8bc8;">parentsUntil</span><br></a><br></p><br><p><strong>3. 绑定多个事件处理器</strong><br></p><br><p>不再需要把各个事件绑定方法&ldquo;链&rdquo;在一起，现在你可以把它们捆成一堆，如下：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;#foo).bind({<br><br>click: function() {<br><br>// do something<br><br>},<br><br>mouseover: function() {<br><br>// do something<br><br>},<br><br>mouseout: function() {<br><br>// do something<br><br>}<br><br>})</td><br></tr><br></tbody><br></table><br><p>这一用法也适用于 &rdquo; .one() &ldquo;.</p><br><p><a href="http://api.jquery.com/bind/" target="_blank"><span style="color: #1a8bc8;">详细了解 .bind(&hellip;)</span><br></a><br></p><br><p><strong>4. 依属性指定缓动效果</strong><br></p><br><p>以前只能为一个动画指定一种缓动效果（easing，即动画过程中的速度变化规律。jQuery<br>原生支持两种缓动效果，swing（默认）和linear 。要使用其他效果，你需要自己<a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank"><span style="color: #1a8bc8;">另行下载</span><br></a><br>。），现在你可以为动画的各个属性参数指定不同的<br>缓动效果：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;#foo&rsquo;).animate({<br><br>left: 500,<br><br>top: [500, ‘easeOutBounce’]<br><br>}, 2000);</td><br></tr><br></tbody><br></table><br><p><a href="http://james.padolsey.com/demos/jquery/easing/easing-jq14.html" target="_blank"><span style="color: #1a8bc8;">点此查看实际效果</span><br></a><br></p><br><p>你也可以在一个可选的动画选项对象中为 secialEasing 设置一系列名值对来完全上面的工作：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;#foo&rsquo;).animate({<br><br>left: 500,<br><br>top: 500<br><br>}, {<br><br>duration: 2000,<br><br>specialEasing: {<br><br>top: &lsquo;easeOutBounce&rsquo;<br><br>}<br><br>});</td><br></tr><br></tbody><br></table><br><p>编辑注：我们的作者 James Padolsey 谦虚了，这一功能点是他想出来的哦！</p><br><p><a href="http://api.jquery.com/animate/#per-property-easing" target="_blank"><span style="color: #1a8bc8;">详细了解有关<br>per-property-easing 的内容</span><br></a><br></p><br><p><strong>5. 更新的 Live 事件</strong><br></p><br><p>jQuery 1.4 添加了对指派 <strong>submit </strong><br>， <strong>change </strong><br>，<br> <strong>focus</strong><br> 和 <strong>blur</strong><br> 事件的支持。在jQuery中，我们利用&rdquo;<br>.live() &rdquo;<br>方法指派事件。当你想要为多个元素注册事件处理器时，这会非常有用。而且就算满足选择符的元素是新出现的，这些事件也会继续有效（使用&nbsp;&nbsp;<br>.live()&nbsp;&nbsp; 比不断重复绑定要省力省心得多）。</p><br><p><strong>不过，当心了！</strong><br> 注册 focus 和 blur 事件时你需要用 <strong>focusin</strong><br> 和 <strong>focusout</strong><br> 作为事件名。</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;input&rsquo;).live(&lsquo;focusin&rsquo;, function(){<br><br>// do something with this<br><br>});</td><br></tr><br></tbody><br></table><br><p><strong>6. 控制函数上下文</strong><br></p><br><p>jQuery 1.4 提供了一个全新的&nbsp;&nbsp; proxy&nbsp;&nbsp; 函数，位于 jQuery<br>命名空间下。这一函数接受两个参数，一个是&ldquo;作用域&rdquo;（scope）或者一个方法名，另一个是某函数或者目标作用域（the intended<br>scope）。</p><br><p>众所周知， JavaScript的 this 关键字是一个很难把握的东西。有时候你并不想它代表一个元素，而想让它代表你前面创建的某个对象。</p><br><p>例如，在这里我们创建了一个&nbsp;&nbsp; app&nbsp;&nbsp; 对象，它拥有两个属性，一个是&nbsp;&nbsp; clickHandler&nbsp;&nbsp;<br>方法，一个是负责参数配置的对象。</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">var app = {<br><br>config: {<br><br>clickMessage: &lsquo;Hi!&rsquo;<br><br>},<br><br>clickHandler: function() {<br><br>alert(this.config.clickMessage);<br><br>}<br><br>};</td><br></tr><br></tbody><br></table><br><p>这个&nbsp;clickHandler 方法，当像&nbsp;app.clickHandler()&nbsp;这样调用时， app&nbsp;就是其上下文，也就是说&nbsp;&nbsp;<br>this&nbsp;&nbsp; 关键字指向的是&nbsp;app&nbsp;。如果只需简单地调用，这样的写法没什么问题：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">app.clickHandler(); // &ldquo;Hi!&rdquo; is alerted</td><br></tr><br></tbody><br></table><br><p>不过如果把它当作一个事件处理器：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;a&rsquo;).bind(&lsquo;click&rsquo;, app.clickHandler);</td><br></tr><br></tbody><br></table><br><p>当我们点击这个锚记时，并没有达到预想的效果（没东西 alert 出来）。这是因为 jQuery<br>（以及大部分理智的事件模型），默认地，都会把处理器的上下文指定为目标元素本身。也就是说， this 所代表正是被点击的这个链接。而我们想的是，<br>this&nbsp;&nbsp; 应该继续代表&nbsp;&nbsp; app&nbsp;&nbsp; 。在jQuery 1.4中，实现这一目的十分简单：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;a&rsquo;).bind(<br><br>&lsquo;click&rsquo;,<br><br>jQuery.proxy(app, &lsquo;clickHandler&rsquo;)<br><br>);</td><br></tr><br></tbody><br></table><br><p>现在点击所有锚记都会弹出&ldquo;Hi!&rdquo;了。</p><br><p>代理函数把你的函数包裹一圈，同时把函数内的&nbsp;&nbsp; this&nbsp;&nbsp; 设定为你想要东西。在其他上下文应用场景，如把回调函数传给其他 jQuery<br>方法或插件，代理函数也能派上用场。</p><br><p><span style="color: #1a8bc8;"><a href="http://api.jquery.com/jQuery.proxy" target="_blank"><span style="color: #1a8bc8;">了解更多&nbsp;&nbsp; jQuery.proxy&nbsp;</span><br></a><br></span><br></p><br><p><strong>7.&nbsp;&nbsp; 动画队列延迟</strong><br></p><br><p>现在，可以给动画队列加一个延迟了。虽然这个功能可以在任何队列里实现，但最常用的可能还是延迟&ldquo;fx 队列&rdquo;（&rdquo;fx&rdquo;<br>queue，jQuery默认的动画队列）。它能让你在两个动画行为之间暂停一下，而不用牵扯到回调函数和&nbsp;&nbsp; setTimeout&nbsp;&nbsp; 之类的东西。<br> .delay()&nbsp;&nbsp; 的第一个参数即你需要设定的延迟毫秒数：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(&lsquo;#foo&rsquo;)<br><br>.slideDown() // Slide down<br><br>.delay(200) // Do nothing for 200 ms<br><br>.fadeIn(); // Fade in</td><br></tr><br></tbody><br></table><br><p>如果你想延迟一个除 fx 以外的队列，把队列名作为第二个参数传给&nbsp;&nbsp; .delay() 就可以了 。</p><br><p><a href="http://api.jquery.com/delay" target="_blank"><span style="color: #1a8bc8;">详细了解&nbsp;&nbsp; .delay(&hellip;) </span><br></a><br></p><br><p><strong>8. 检测元素是否含有特定内容</strong><br></p><br><p>jQuery 1.4 让检测一个元素（或集合）是否含有（ .has() ）某项东西更为容易。其背后的机理和选择过滤器&nbsp;&nbsp; :has()<br>是一样的。这个方法会从当前集合中选出满足任意指定条件之一的元素。 jQuery(&lsquo;div&rsquo;).has(&lsquo;ul&rsquo;);</p><br><p>这条语句在所有DIV元素中挑出那些包含UL元素的。这种情况可能用选择过滤器&nbsp;&nbsp; :has()&nbsp;&nbsp;<br>就好了，但当你要更程式化地过滤选择集时&nbsp;&nbsp; .has()&nbsp;&nbsp; 方法就十分有用了。</p><br><p>jQuery 1.4 还在 jQuery 命名空间下新增了一个&nbsp;&nbsp; contains 函数。这是一个比较底层的函数，接受两个 DOM<br>节点为参数。返回一个布尔值，指示第二个元素是否包含在第一个元素中。例如：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery.contains(document.documentElement,<br>document.body);<br><br>// 返回true &ndash; &lt;body&gt; 确实包含在 &lt;html&gt; 中</td><br></tr><br></tbody><br></table><br><p>消息了解： <a href="http://api.jquery.com/has/" target="_blank"><span style="color: #1a8bc8;">.has(&hellip;) </span><br></a><br>, <a href="http://api.jquery.com/jQuery.contains/" target="_blank"><span style="color: #1a8bc8;">jQuery.contains(&hellip;) </span><br></a><br></p><br><p><strong>9. 给元素剥皮！</strong><br></p><br><p>很早以前，jQuery 就可以用&nbsp;&nbsp; .wrap()&nbsp;&nbsp; 给元素裹一层皮。现在， jQuery 1.4 添加了&nbsp;&nbsp; .unwrap()&nbsp;&nbsp;<br> 方法，用以剥皮。看下面的DOM结构：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">&lt;pre name=&rdquo;code]&lt;div&gt;<br><br>&lt;p&gt;Foo&lt;/p&gt;<br><br>&lt;/div&gt;[/code]</td><br></tr><br></tbody><br></table><br><p>来把 p 元素外面的一层皮（div）剥掉：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(‘p’).unwrap();</td><br></tr><br></tbody><br></table><br><p>DOM 变成了：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">&lt;p&gt;Foo&lt;/p&gt;</td><br></tr><br></tbody><br></table><br><p>总而言之，这个方法可以把任意元素的父元素移除。</p><br><p><a href="http://api.jquery.com/unwrap/" target="_blank"><span style="color: #1a8bc8;">详细了解&nbsp;&nbsp; .unwrap(&hellip;) </span><br></a><br></p><br><p><strong>10. 移除元素，而不删除数据</strong><br></p><br><p>以前有一个 .remove() 方法，是把元素剥离后抛弃。全新的&nbsp; .detach()<br>方法可以让你把一个元素从DOM中剥离，而不丢失数据。囊括该元素的 jQuery 对象会在操作完成后还保留这个元素。数据可以通过&nbsp;&nbsp;<br>.data() 或者 jQuery 事件系统中的任意事件处理器传入 jQuery 对象。</p><br><p>当你需要把某个元素从DOM中移除，然后在将来某个场景中重新引入时，这个函数会很有用。元素的事件句柄和其他所有数据都会被保留。</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">var foo = jQuery(‘#foo’);<br><br>// 绑定一个重要的事件处理器<br><br>foo.click(function(){<br><br>alert(‘Foo!’);<br><br>});<br><br>foo.detach(); // 从DOM中移除<br><br>// &hellip; do stuff<br><br>foo.appendTo(‘body’); // 重新加入到DOM<br><br>foo.click(); // 弹出alert信息： &quot;Foo!&quot;</td><br></tr><br></tbody><br></table><br><p><a href="http://api.jquery.com/detach" target="_blank"><span style="color: #1a8bc8;">详细了解&nbsp;&nbsp; .detach(&hellip;) </span><br></a><br></p><br><p><strong>11. index(&hellip;) 的功能增强</strong><br></p><br><p>jQuery 1.4 为您使用&nbsp;&nbsp; .index()&nbsp;&nbsp;<br>提供了两种新方法。以前，你必须把元素作为参数传给它，然后获得一个返回的数值，代表在当前集合中这个元素的索引。现在，如果不传参数过去，返回的值就代<br>表某元素在其同辈中排行老几。比方说下面的DOM：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">&lt;ul&gt;<br><br>&lt;li&gt;Apple&lt;/li&gt;<br><br>&lt;li&gt;Banana&lt;/li&gt;<br><br>&lt;li&gt;Grape&lt;/li&gt;<br><br>&lt;li&gt;Strawberry&lt;/li&gt;<br><br>&lt;li&gt;Pear&lt;/li&gt;<br><br>&lt;li&gt;Peach&lt;/li&gt;<br><br>&lt;/ul&gt;</td><br></tr><br></tbody><br></table><br><p>你想要晓得点击一个条目后它是列表中的第几个，实现的代码十分简单：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(‘li’).click(function(){<br><br>alert( jQuery(this).index() );<br><br>});</td><br></tr><br></tbody><br></table><br><p>jQuery 1.4 也允许你将选择符作为&nbsp;&nbsp; .index()&nbsp;&nbsp;<br>的第一个参数。这样做会返回当前元素在你指定的选择符所匹配出的元素集合中的索引值。</p><br><p>还得提醒一点，这一方法返回的是数值，如果文档中无法找到指定条件的元素，会返回数值 -1 。</p><br><p><a href="http://api.jquery.com/index" target="_blank"><span style="color: #1a8bc8;">详细了解&nbsp;&nbsp; .index(&hellip;) </span><br></a><br><strong></strong><br></p><br><p><strong>12. DOM 操纵可接收回调函数</strong><br></p><br><p>现在，大部分的DOM操纵方法都支持了将 函数 作为单一参数传入（ .css()&nbsp;&nbsp; 和&nbsp;&nbsp; .attr()&nbsp;&nbsp;<br>传入为第二个参数）。这个函数会为选择集中的每一个元素都跑一遍，从而为相应操纵方法提供更&ldquo;有个性&rdquo;的值。</p><br><p>下列方法支持这一功能：</p><br><p><a href="http://api.jquery.com/after" target="_blank"><span style="color: #1a8bc8;">after</span><br></a></p><br><p><a href="http://api.jquery.com/before" target="_blank"><span style="color: #1a8bc8;">before</span><br></a></p><br><p><a href="http://api.jquery.com/append" target="_blank"><span style="color: #1a8bc8;">append</span><br></a></p><br><p><a href="http://api.jquery.com/prepend" target="_blank"><span style="color: #1a8bc8;">prepend</span><br></a></p><br><p><a href="http://api.jquery.com/addClass" target="_blank"><span style="color: #1a8bc8;">addClass</span><br></a></p><br><p><a href="http://api.jquery.com/toggleClass" target="_blank"><span style="color: #1a8bc8;">toggleClass</span><br></a></p><br><p><a href="http://api.jquery.com/removeClass" target="_blank"><span style="color: #1a8bc8;">removeClass</span><br></a></p><br><p><a href="http://api.jquery.com/wrap" target="_blank"><span style="color: #1a8bc8;">wrap</span><br></a></p><br><p><a href="http://api.jquery.com/wrapAll" target="_blank"><span style="color: #1a8bc8;">wrapAll</span><br></a></p><br><p><a href="http://api.jquery.com/wrapInner" target="_blank"><span style="color: #1a8bc8;">wrapInner</span><br></a></p><br><p><a href="http://api.jquery.com/val" target="_blank"><span style="color: #1a8bc8;">val</span><br></a></p><br><p><a href="http://api.jquery.com/text" target="_blank"><span style="color: #1a8bc8;">text</span><br></a></p><br><p><a href="http://api.jquery.com/replaceWith" target="_blank"><span style="color: #1a8bc8;">replaceWith</span><br></a></p><br><p><a href="http://api.jquery.com/css" target="_blank"><span style="color: #1a8bc8;">css</span><br></a></p><br><p><a href="http://api.jquery.com/attr" target="_blank"><span style="color: #1a8bc8;">attr</span><br></a></p><br><p><a href="http://api.jquery.com/html" target="_blank"><span style="color: #1a8bc8;">html</span><br></a><br></p><br><p>有了回调函数，你就能在选择集中利用&nbsp;&nbsp; this&nbsp;&nbsp; 关键字来访问当前元素，用回调函数的第一个参数来访问其索引值。</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(‘li’).html(function(i){<br><br>return ‘Index of this list item: ‘ + i;<br><br>});</td><br></tr><br></tbody><br></table><br><p>还有还有，上面的某些方法还提供第二个参数供你利用。如果你调用的是一个设定型方法（如 .html()&nbsp;&nbsp; 和&nbsp;&nbsp;<br>.attr(‘href…)&nbsp;&nbsp; ），你还能取得当前值。例如：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(‘a’).attr(‘href’, function(i, currentHref){<br><br>return currentHref + ‘?foo=bar’;<br><br>});</td><br></tr><br></tbody><br></table><br><p>如您所见，对于 .css()&nbsp;&nbsp; 和&nbsp;&nbsp; .attr()&nbsp;&nbsp;<br>方法来说，之所以要把函数作为第二个参数传递，是因为第一个参数要用来指定我们需要修改的是哪一个属性：</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(‘li’).css(‘color’, function(i,<br>currentCssColor){<br><br>return i % 2 ? ‘red’ : ‘blue’;<br><br>});</td><br></tr><br></tbody><br></table><br><p><strong>13. 判定对象类型</strong><br></p><br><p>jQuery 1.4 新增了两个全新的辅助函数（都直接位于 jQuery 命名空间下），可以帮助你判别你正在操纵的是何种对象。</p><br><p>第一个函数是&nbsp;&nbsp; isEmptyObject , ，它返回一个布尔值，判定对象是否为空（）。第二个是&nbsp;&nbsp; isPlainObject&nbsp;&nbsp;<br>，它返回的布尔值代表传递过去的参数是否为JavaScript的简单对象（plain object），也就是用&nbsp;&nbsp; {} 或 new<br>Object() 创建的对象。 复制内容到剪贴板</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery.isEmptyObject({}); // true<br><br>jQuery.isEmptyObject({foo:1}); // false<br><br>jQuery.isPlainObject({}); // true<br><br>jQuery.isPlainObject(window); // false<br><br>jQuery.isPlainObject(jQuery()); // false</td><br></tr><br></tbody><br></table><br><p>了解更多： <a href="http://api.jquery.com/jQuery.isPlainObject" target="_blank"><span style="color: #1a8bc8;">isPlainObject(&hellip;)<br> </span><br></a><br>, <a href="http://api.jquery.com/jQuery.isEmptyObject" target="_blank"><span style="color: #1a8bc8;">isEmptyObject(&hellip;)<br> </span><br></a><br></p><br><p><strong>14. Closest(&hellip;) 的功能增强</strong><br></p><br><p>jQuery的 .closest()&nbsp;&nbsp;<br>方法现在可以接受一组选择符作为参数。当你需要遍历某一元素的所有上级，找到一个以上符合特定特征的最近元素时，此功能就能派上用场。</p><br><p>而且，现在它还能接受上下文环境作为第二个参数，也就是说你可以控制DOM遍历的深度或者说远度。虽然说大家可能很少会用到这两个新特性，但一旦用<br>上效果是惊人的！</p><br><p><a href="http://api.jquery.com/closest" target="_blank"><span style="color: #1a8bc8;">了解更多&nbsp;&nbsp; .closest(&hellip;) </span><br></a><br></p><br><p><strong>15. 新事件！ focusIn 与 focusOut</strong><br></p><br><p>如前所述，现在部署 focus 和 blur 事件时，你需要使用 focusin 和 focusout<br>这两个新事件。这两个事件帮助你在特定元素或者该元素的子元素 获取/失去 焦点时采取行动。&nbsp;</p><br><table style="width: 95%;" border="0" cellspacing="0" cellpadding="6" align="center"><br><tbody><br><tr><br><td bgcolor="#ddedfb">jQuery(‘form’)<br><br>.focusin(function(){<br><br>jQuery(this).addClass(‘focused’);<br><br>});<br><br>.focusout(function(){<br><br>jQuery(this).removeClass(‘focused’);<br><br>});</td><br></tr><br></tbody><br></table><br><p>值得说明的是，这两个事件不会传播开来（即所谓的&ldquo;冒泡&rdquo;），它们会被捕获住。也就是说，外部元素（父辈）会在作孽的&ldquo;目标&rdquo;元素（causal<br>&quot;target&quot; element）之前被触发。</p><br><p>&nbsp;</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4xr00et4urq2jd435t2/" rel="next" title="JavaScript Demo - so cool">
+                <i class="fa fa-chevron-left"></i> JavaScript Demo - so cool
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5ot01fw4urq2layeyas/" rel="prev" title="致我亲爱的blog">
+                致我亲爱的blog <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Software," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            章昱恒            发布于            2009年3月5日 上午12时30分         社区Agile主题企业级敏捷标签迁移 数据迁移是指在系统软件开发中，将具有实际业务价值的数据，依据功能需求或系统开发的要求，在不同存储媒介、存储形式或计算机系统之间转移的过程。  数据迁移是系统开发经常涉及到的一项工作。在企业级应用系">
+<meta name="keywords" content="Software">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在敏捷开发中做好数据迁移">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5fe01564urqwhc70ykg/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            章昱恒            发布于            2009年3月5日 上午12时30分         社区Agile主题企业级敏捷标签迁移 数据迁移是指在系统软件开发中，将具有实际业务价值的数据，依据功能需求或系统开发的要求，在不同存储媒介、存储形式或计算机系统之间转移的过程。  数据迁移是系统开发经常涉及到的一项工作。在企业级应用系">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image1.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image2.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image3.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image4.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image5.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image6.png">
+<meta property="og:updated_time" content="2018-01-24T08:20:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在敏捷开发中做好数据迁移">
+<meta name="twitter:description" content="作者            章昱恒            发布于            2009年3月5日 上午12时30分         社区Agile主题企业级敏捷标签迁移 数据迁移是指在系统软件开发中，将具有实际业务价值的数据，依据功能需求或系统开发的要求，在不同存储媒介、存储形式或计算机系统之间转移的过程。  数据迁移是系统开发经常涉及到的一项工作。在企业级应用系">
+<meta name="twitter:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5fe01564urqwhc70ykg/"/>
+
+
+
+
+
+  <title>如何在敏捷开发中做好数据迁移 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5fe01564urqwhc70ykg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何在敏捷开发中做好数据迁移</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-03-12T01:55:00+08:00">
+                2009-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p class="info"><br>            作者<br>            <strong>章昱恒</strong><br>            发布于<br>            2009年3月5日 上午12时30分<br>        </p><p></p>
+<p><dl class="tags2"><dt class="community">社区</dt><dd><a id="743" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="agile" href="http://www.infoq.com/cn/agile" target="_blank" rel="noopener">Agile</a></dd><dt class="topics">主题</dt><dd><a id="811" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="agile_enterprise" href="http://www.infoq.com/cn/agile_enterprise" target="_blank" rel="noopener">企业级敏捷</a></dd><dt class="topics">标签</dt><dd><a id="973" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="migration" href="http://www.infoq.com/cn/migration" target="_blank" rel="noopener">迁移</a></dd></dl></p>
+<p></p><p>数据迁移是指在系统软件开发中，将具有实际业务价值的数据，依据功能需求或系统开发的要求，在不同存储媒介、存储形式或计算机系统之间转移的过程。</p><p></p>
+<p><div class="vendor-content-box-float"></div></p>
+<p></p><p>数据迁移是系统开发经常涉及到的一项工作。在企业级应用系统中，新系统的开发，新旧系统的升级换代，以及正常的系统维护，不可避免地涉及到大量的迁<br>移工<br>作。而在一个以数据为核心的业务系统中，数据的迁移更是无处不在。比如：在以数据仓库为架构原型的系统设计中，ETL（抽取，转换，装载）部分的实现就是<br>一种数据迁移；对大型数据系统的分布式实施，数据迁移就是整个实施过程的主要部分。而在敏捷实践中，渐进式的数据库开发，更是涉及到大量的数据迁移和同步<br>工作。</p><p></p>
+<p></p><p>我们时常会听到用户提出这样的要求&ldquo;我们并不过于关心应用的好坏，但需务必保证数据准确&rdquo;。的确，在以数据为运营基础的行业里，数据质量本身就是软<br>件质量<br>的权重部分，尤其在电信、金融和控制领域里，这一特征表现的格外明显。数据迁移也是敏捷开发中相当重要的环节，它影响着各个发布版本的数据质量，而数据质<br>量又决定着系统的有效性和可靠性，因此高质量地完成数据迁移不容忽视。</p><p></p>
+<p></p><p>数据迁移往往被视为一件很简单的工作。在很多人眼里，数据迁移仅仅是用sql语句向相应数据表装载数据的过程。但在实际操作中，数据迁移涉及到很多<br>层面的<br>因素，如用户需求，系统功能，数据库建模等，若出现问题，将导致开发进展缓慢或质量不高。常见问题有业务系统逻辑模糊、脏数据、遗留系统的技术债和管理债<br>等。那么如何有效的避免这些问题，提高迁移质量呢？</p><p></p>
+<p></p><p>本文将以ThoughtWorks中国公司与客户合作的CRM项目为背景，为读者介绍如何在敏捷开发中高质量地处理数据迁移工作，从而在数据层面提高系统质量。</p><p></p>
+<p></p><h3>开发背景</h3><p></p>
+<p></p><p>A系统（旧系统）是客户原有的一套CRM（客户关系管理）系统。系统采用B/S 架构，使用sql server<br>2005做为后台数据库。旧系统的数据建模设计采用了高度范式化的设计思路，其目的是极度追求灵活性。业务数据被大量拆分并散布存储在上百张数据表里。数<br>据表内和表之间不存在参照约束。大量的业务逻辑采用存储过程封装以提高效率。存储过程体系相当庞大，且存在复杂的相互调用。数据库中存在一些脏数据，可能<br>是长期的使用、维护或误操作导致，但没人知道它们有多少，具体存在哪里。应用界面可用性不理想而且系统效率较低，用户常抱怨系统反映迟缓或无反应。数据库<br>存储的业务数据约50G左右。</p><p></p>
+<p></p><p>ThoughtWorks<br>团队将为客户提供一套新的CRM系统用以替换旧系统主要功能。新系统精简整理旧系统功能，并整合了客户的最新需求。在设计上做了巨大变更，以改善界面可用<br>性，同时为了保障终端用户对系统服务的需要，新旧系统要求能够同时运行并实现数据同步，当终端用户全部过度到新系统后，终止旧系统。在这个过程中，DBA<br>团队需给予足够的数据保障。</p><p></p>
+<p></p><p>以下为项目版本的发布图。</p><p></p>
+<p></p><p class="image-wide"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image1.jpg" alt=""></p><p></p>
+<p></p><h3>数据迁移开发方法</h3><p></p>
+<p></p><p><strong>1. DBA需要制定目标并且管理自己的任务 </strong></p><p></p>
+<p></p><p>尽管在每个迭代中，团队都会讨论决定如何组织&lsquo;需求故事&rsquo;（story），但是DBA仍然需要有自己的&lsquo;故事墙&rsquo;（story<br>wall），并且花时间组织自己的story。在实际开发中，数据迁移仅仅是DBA工作的一部分，DBA还要完成相应的story开发和数据分析，有时还<br>要给开发人员提供数据支持。混乱的管理会带来开发上的冲突。因此，有效管理任务是做好数据迁移的首要环节。</p><p></p>
+<p></p><p>故事墙是管理这些任务的最好方法。尽管这个故事墙对客户提供的商业价值是间接的，但从整个团队角度来看，任何需要数据的人或程序都是DBA的用户，<br>故事墙有利于管理每个story包含的数据需求，避免数据迁移任务与其它数据库开发任务之间的冲突，从而减少重复性工作或修复性工作。DBA有必要将这种<br>方法引入到数据库开发中。</p><p></p>
+<p></p><p>DBA要从商业价值角度决策数据迁移的需求。系统开发中，客户和开发员常常会向DBA提出自己的数据迁移要求，但往往这些要求并不具有全局性和决定<br>性，毕<br>竟他们仅仅是针对一个story的需要而提出。如果DBA盲目执行，将起到事倍功半的效果。DBA应当积极参加IPM（迭代计划会议。它是在每个迭代开始<br>时的会议，全体成员共同讨论story计划完成数量）。无论是直接与用户交互，还是参与团队合作，DBA有必要将每个story内容了解的清清楚楚。通<br>常，DBA可以不必像开发人员一样去了解story的开发细节，但通过与业务分析师和开发员的沟通，潜在的数据需求自然浮出水面。针对这些数据需求，通过<br>再次组织并加以优先级，我们很容易回答这些问题：接下来应该完成的任务是什么？它的实际商业价值是什么？谁将需要它？什么时候需要？实践证明，多花些时间<br>和团队或客户沟通是事半功倍的好方法，而且DBA通过了解业务数据可以给开发员更好的指导，减少开发员对数据的误解，有利于提高整体团队的开发效率。</p><p></p>
+<p></p><p>通过对每个story的了解，我们总结并制定了针对当前发布版本需要的7个数据迁移story，并且确认了它们的确不存在任务上的重复，也邀请项目经理和客户一起确认了这份计划。如此我们的目标已经制定。</p><p></p>
+<p></p><p><strong>2. 思考实施策略 </strong></p><p></p>
+<p></p><p>我们已经管理好所有数据迁移的任务，接下来考虑如何实现。通过以往的经验，我们发现如果没有仔细思考全局和细节问题而直接编写代码，带来的后果是无<br>法控制的。我们应该首先充分了解这个过程可能存在的风险，然后决定采用什么样的策略，是否可以借助工具提高效率。这里的潜在风险主要包括：</p><p></p>
+<p></p><p>2.1 数据质量</p><p></p>
+<p><blockquote>  旧系统的数据库建模是一个高度范式化的结构，每个表之间存在相当大的依赖关系。一旦一个表存在脏数据，我们如何保证得到正确的查询结果？ </blockquote></p>
+<p></p><p>2.2 对原有系统的了解</p><p></p>
+<p><blockquote>  旧系统的应用程序引入了面向对象的设计方法，并且继承关系数据也被存储在若干张数据表里，如何正确区分这些业务对象和关系，保证在迁移过程中不会制造脏数据？ </blockquote></p>
+<p></p><p>2.3 业务数据映射</p><p></p>
+<p><blockquote>  旧系统和新系统之间存在着相当大的业务逻辑差异，我们是否能够将业务逻辑、数据映射到新系统？是否存在不可实现的转换？ </blockquote></p>
+<p></p><p>在未充分了解这些问题之前，我们无法进一步制定计划，即时给予客户反馈是解决这些问题的最好方法。经过进一步沟通后，我们发现问题的复杂程度远远超过想象，尽管客户对旧系统非常了解，但他们对于某些数据也不能给出明确答案。鉴于这些情况，我们制定了初步的解决策略：</p><p></p>
+<p><ol></ol></p>
+<p><li>更多的了解旧系统，即时给予反馈。对于那些无法找到答案的问题，考虑是否可以寻求其它资源或忽略没有价值的数据。</li></p>
+<p><li>尽量细化分割每一个复杂需求，形成多个任务。小粒度任务能够帮助暴露更多问题。</li></p>
+<p><li>采用测试驱动，确保一套可靠的测试机制。</li></p>
+<p><li>制定实现框架和阶段性目标。</li></p>
+<p><li>不要过于乐观的估计进展，每一阶段要留有充分的单元测试。</li></p>
+<p><li>调整每个迭代的内容，对有较强依赖关系的任务可以放在今后的迭代周期里。</li><br></p>
+<p></p><p><strong>3. 实施数据迁移 </strong></p><p></p>
+<p></p><p>新系统的数据迁移包含两个部分：一次性数据迁移和数据同步迁移</p><p></p>
+<p></p><p><strong>一次性数据迁移</strong></p><p></p>
+<p></p><p>一次性数据迁移指仅仅发生在某一个发布版本上线安装时，新旧系统同时处于脱机状态，一部分数据将从旧系统中转移到新系统的过程。</p><p></p>
+<p></p><p><strong>数据同步迁移</strong></p><p></p>
+<p></p><p>数据同步迁移过程发生在新系统运行时，新旧系统同时处于工作状态，双方通过交换数据保证彼此数据的一致性。</p><p></p>
+<p></p><p>同为数据迁移，但因两类迁移各具特点，因此在共同的处理方式上也略有不同。</p><p></p>
+<p><table style="width: 451px; height: 489px;" border="1" cellspacing="0" cellpadding="8" bordercolor="#000000"></table></p>
+<col width="232">  <col width="233">  <col width="233">
+
+<p><tbody></tbody></p>
+<p><tr valign="top"></tr></p>
+<p><td width="232"></td></p>
+<p></p><p>&nbsp;</p><br><p></p>
+<p><td width="233"></td></p>
+<p></p><p>一次性数据迁移</p><br><p></p>
+<p><td width="233"></td></p>
+<p></p><p>数据同步迁移</p><br><br><p></p>
+<p><tr valign="top"></tr></p>
+<p><td width="232"></td></p>
+<p></p><p>特点</p><br><p></p>
+<p><td width="233"><br>            <ol></ol></td></p>
+<p><li></li></p>
+<p></p><p>数据量大。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>使用频率低（一次性使用）。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>转换逻辑复杂，需大量定制映射转换数据。</p><br><br><p></p>
+<p></p><p>&nbsp;</p><br><p></p>
+<p><td width="233"><br>            <ol></ol></td></p>
+<p><li></li></p>
+<p></p><p>数据量小</p><br><p></p>
+<p><li></li></p>
+<p></p><p>使用频率高（以分钟为单位，周期性运行）。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>转换逻辑复杂，少量定制映射转换数据。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>需要事务处理以保证数据一致性</p><br><br><br>            <br><p></p>
+<p><tr valign="top"></tr></p>
+<p><td width="232"></td></p>
+<p></p><p>共同处理方式</p><br><p></p>
+<p><td colspan="2" width="482"><br>            <ol></ol></td></p>
+<p><li></li></p>
+<p></p><p>细化任务。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>测试驱动。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>持续集成</p><br><br><br>            <br><p></p>
+<p><tr valign="top"></tr></p>
+<p><td width="232"></td></p>
+<p></p><p>不同处理方式</p><br><p></p>
+<p><td width="233"><br>            <ol></ol></td></p>
+<p><li></li></p>
+<p></p><p>在执行测试驱动中，应侧重数据质量的测试。应依据不同环境的测试结果，增强测试体系。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>工具选择。避免使用第三方工具，直接使用sql脚本以提高迁移效率。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>保留中间处理结果</p><br><br><br>            <p></p>
+<p><td width="233"><br>            <ol></ol></td></p>
+<p><li></li></p>
+<p></p><p>在执行测试驱动中，应侧重逻辑映射方面的测试。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>工具选择。可考虑使用第三方工具，增强事务控制。</p><br><p></p>
+<p><li></li></p>
+<p></p><p>可不保留中间结果</p><br><br><br>            <br><br><br><p></p>
+<p><ol></ol></p>
+<p><li></li></p>
+<p></p><p>细化任务</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">依据最初制定的开发策略，当我们遇到复杂的迁移需求时，首先分解每个需求为若干个模块，然后画出整体结构图。以下是某一处数据迁移脚本的模块分割：</p><p></p>
+<p></p><p class="image-wide" style="margin-left: 40px;"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image2.jpg" alt=""></p><p></p>
+<p></p><p style="margin-left: 40px;">最初由于这个部分的迁移逻辑过于复杂，以至于客户对它的处理结果没有信心。但当共同完成这个图表后，大家一致认为它没有像想象中的困难。总而言之，立刻解决一个复杂的问题很困难，但解决其中一个小问题却很容易。</p><p></p>
+<p><ol></ol></p>
+<p><li></li></p>
+<p></p><p>测试驱动</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">如同编写程序代码一样，我们不仅为实现数据迁移脚本使用了测试驱动，还引入了针对数据库设<br>计的一些方法。在程序设计中，当代码本身结构良好，单元（类、方法）之间关系清晰，可以直接添加单元测试。现在，我们有了很好的脚本逻辑结构，可以很容易<br>添加每一步结果的单元测试，这就如同形成了一道安全网，保证异常数据出现时，能够立即发现并加以处理。在实际编写迁移脚本之前，应首先明确测试内容，准备<br>好测试脚本。</p><p></p>
+<p></p><p style="margin-left: 40px;">测试内容包括：</p><p></p>
+<p><ul></ul></p>
+<p><li></li></p>
+<p></p><p class="western">应产生的符合期望的数据</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">基于给予的原始测试数据，这一测试过程测试脚本的数据转换逻辑是否正确。以下举例说明：</p><p></p>
+<p></p><p style="margin-left: 40px;">测试环境：旧系统中存在某个名为’Jason’的客户信息，他的personId&nbsp;是1000101 。</p><p></p>
+<p></p><p style="margin-left: 40px;">测试目的：当某一客户的信息迁移到新系统的CUSTOMERS表后，新系统应该存在该客户信息。</p><p></p>
+<p></p><p style="margin-left: 40px;">新系统上要运行的测试代码：</p><p></p>
+<p><pre><p style="margin-left: 40px;">DECLARE @personName NVARCHAR(250),</p><p style="margin-left: 40px;">&nbsp;</p><p style="margin-left: 40px;">SELECT</p><p style="margin-left: 40px;">@personName = personName</p><p style="margin-left: 40px;">FROM</p><p style="margin-left: 40px;">CUSTOMERS</p><p style="margin-left: 40px;">WHERE</p><p style="margin-left: 40px;">personId = 1000101</p><br><p style="margin-left: 40px;">IF (@personName &lt;&gt; ‘Jason’) or (@personName is NULL)</p><p style="margin-left: 40px;">BEGIN</p><p style="margin-left: 40px;">INSERT INTO LoadTestErrorLog (errorDescription)</p><p style="margin-left: 40px;">VALUES (‘personName for personId 1000101 is not Jason’)</p><p style="margin-left: 40px;">END</p><p style="margin-left: 40px;">Go</p><br></pre></p>
+<p></p><p style="margin-left: 40px;">这里常用的原则是：一段sql语句仅用来测试一处期望数据，这样可以减少代码之间的相互依赖性，更准确的定位错误数据。</p><p></p>
+<p><ul></ul></p>
+<p><li></li></p>
+<p></p><p>不应当产生的异常数据</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">异常数据指在迁移过程中出现的不符合逻辑的数据。理论上讲，迁移过程不应当出现异常数据，<br>然而现实情况中，迁移结果总会出现我们不需要的数据。其原因包括<br>数据源出现异常、实现过程中的误操作、系统应用的bug等。总而言之，为了保证这些错误不会出现在最终结果，相应的测试脚本必不可少，也是防止问题进一步<br>扩大的有效举措。这一测试过程常被用来发现在生产环境中可能出现的问题。以下举例如何测试异常数据：</p><p></p>
+<p></p><p style="margin-left: 40px;">测试环境：全部或部分生产环境数据</p><p></p>
+<p></p><p style="margin-left: 40px;">测试目的：将某个客户的信息迁移到新系统的CUSTOMERS表后，数据表不应该具有顾客名字为空的记录，如果出现将视为迁移过程的错误。</p><p></p>
+<p></p><p style="margin-left: 40px;">新系统上要运行的测试代码：</p><p></p>
+<p><pre><p style="margin-left: 40px;">DECLARE @isExistPersonNameWithNULL INTEGER</p><p style="margin-left: 40px;">&nbsp;</p><p style="margin-left: 40px;">SELECT</p><p style="margin-left: 40px;">@isExistPersonNameWithNULL = count(*)</p><p style="margin-left: 40px;">FROM</p><p style="margin-left: 40px;">CUSTOMERS</p><p style="margin-left: 40px;">where personName is null</p><p style="margin-left: 40px;">&nbsp;</p><p style="margin-left: 40px;">IF (@isExistPersonNameWithNULL&gt; 0)</p><p style="margin-left: 40px;">BEGIN</p><p style="margin-left: 40px;">INSERT INTO LoadTestErrorLog (errorDescription)</p><p style="margin-left: 40px;">VALUES (‘personName doesn’t contain legal information’)</p><p style="margin-left: 40px;">END</p><p style="margin-left: 40px;">&nbsp;</p><p style="margin-left: 40px;">Go</p></pre></p>
+<p><ul></ul></p>
+<p><li></li></p>
+<p></p><p class="western">数据表的数据量是否符合期望</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">当数据被迁移至新系统后，应当确保迁移数据量符合应期望值。实现方法多种多样，较简单的方法是直接比较数据迁移前后的数据记录数是否在数值上相等。以下举例说明：</p><p></p>
+<p></p><p style="margin-left: 40px;">测试环境：全部或部分生产环境数据。</p><p></p>
+<p></p><p style="margin-left: 40px;">测试目的：客户数据被迁移后，应当确保客户数据没有丢失。</p><p></p>
+<p></p><p style="margin-left: 40px;">新系统上要运行的测试代码：</p><p></p>
+<p><pre><p style="margin-left: 40px;">DECLARE @NumberofCustomerinOldDB INTEGER</p><p style="margin-left: 40px;">DECLARE @NumberofCustomerinNewDB INTEGER</p><p style="margin-left: 40px;">&nbsp;</p><p style="margin-left: 40px;">SELECT</p><p style="margin-left: 40px;">@NumberofCustomerinOldDB = count(*)</p><p style="margin-left: 40px;">FROM</p><p style="margin-left: 40px;">oldDB.dbo.persons – 这是在旧系统中定义的客户表</p><p style="margin-left: 40px;">…</p></pre></p>
+<p></p><p style="margin-left: 40px;">–省略复杂的过滤逻辑</p><p></p>
+<p><pre><p style="margin-left: 40px;">SELECT</p><p style="margin-left: 40px;">@NumberofCustomerinNewDB = count(*)</p><p style="margin-left: 40px;">FROM</p><p style="margin-left: 40px;">newdb.dbo.CUSTOMERS – 这是在新系统中定义的客户表</p><p style="margin-left: 40px;">where personName is null&nbsp;</p><br><p style="margin-left: 40px;">IF (@NumberofCustomerinOldDB&lt;&gt;@NumberofCustomerinNewDB )</p><p style="margin-left: 40px;">BEGIN</p><p style="margin-left: 40px;">INSERT INTO LoadTestErrorLog (errorDescription)</p><p style="margin-left: 40px;">VALUES (‘not all customers are migrated ‘)</p><p style="margin-left: 40px;">END</p><p style="margin-left: 40px;">Go</p><br></pre></p>
+<p></p><p style="margin-left: 40px;">最终当把测试sql代码片段组装在一起后，我们获得了一批测试脚本，并按照以下流程，通过使用NANT工具实现自动化：</p><p></p>
+<p></p><p class="image-wide" style="margin-left: 40px;"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image3.jpg" alt=""></p><p></p>
+<p></p><p style="margin-left: 40px;">NANT中的实现方法：</p><p></p>
+<p></p><p style="margin-left: 40px;">&lt;target name=”-init “ &hellip; /&gt;</p><p></p>
+<p></p><p style="margin-left: 40px;">该任务负责初始化测试环境</p><p></p>
+<p></p><p style="margin-left: 40px;">&lt;target name=”-parseDbScripts “ &hellip; /&gt;</p><p></p>
+<p></p><p style="margin-left: 40px;">该任务负责编译并部署迁移脚本</p><p></p>
+<p></p><p style="margin-left: 40px;">&lt;target name=”-resetTestData “ &hellip; /&gt;</p><p></p>
+<p></p><p style="margin-left: 40px;">该任务负责重置测试数据</p><p></p>
+<p></p><p style="margin-left: 40px;">&lt;target name=”-executeMigrationScripts “ &hellip; /&gt;</p><p></p>
+<p></p><p style="margin-left: 40px;">该任务负责执行迁移脚本</p><p></p>
+<p></p><p style="margin-left: 40px;">&lt;target name=”-testMigration “ &hellip; /&gt;</p><p></p>
+<p></p><p style="margin-left: 40px;">该任务负责执行迁移测试脚本</p><p></p>
+<p></p><p style="margin-left: 40px;">&lt;target name=”testDataMigration”<br>depends=”-init, -parseDbScripts, -resetTestData,<br>executeMigrationScripts, -testMigration” /&gt;</p><p></p>
+<p></p><p style="margin-left: 40px;">该任务将成为持续集成调用的入口</p><p></p>
+<p><ol></ol></p>
+<p><li></li></p>
+<p></p><p class="western">持续集成</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">为完成持续集成测试，测试沙盒必不可少。&ldquo;沙盒&ldquo;是一个完整的功能环境，在这里脚本能够被编译，测试和运行。</p><p></p>
+<p><ul style="margin-left: 40px;"></ul></p>
+<p><li></li></p>
+<p></p><p class="western">在开发沙盒中，我们准备了少量的核心数据，用以测试sql脚本的质量。</p><br><br><p></p>
+<p><ul style="margin-left: 40px;"></ul></p>
+<p><li></li></p>
+<p></p><p class="western">在系统级集成测试沙盒中，我们还准备了一个小型数据库，这个数据库包含了一部分核心数据，着重测试数据迁移过程的逻辑转换。</p><br><br><p></p>
+<p><ul style="margin-left: 40px;"></ul></p>
+<p><li></li></p>
+<p></p><p>在生产环境级测试沙盒中，由于数据库来源于实际<br>数据备份，因此数据处于不断变化状态，这就更需要不断运行测试脚本，避免脏数据和数据丢失。由于生产环境数<br>据量相对大了许多，我们可以适当减少测试次数以减少对开发资源的消耗。同时，其它测试脚本，如变更数据库结构的脚本，都可以和数据迁移脚本组织在一起，一<br>次性完成测试。</p><br><br><p></p>
+<p></p><p class="image-wide" style="margin-left: 40px;"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image4.jpg" alt=""></p><p></p>
+<p></p><p style="margin-left: 40px;">同样，我们采用自动化机制维护这些开发测试沙盒。</p><p></p>
+<p></p><p class="image-wide" style="margin-left: 40px;"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image5.jpg" alt=""></p><p></p>
+<p></p><p style="margin-left: 40px;">将测试置于持续集成环境中，下图是处于持续集成环境的测试任务。</p><p></p>
+<p></p><p class="image-wide" style="margin-left: 40px;"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partii/zh/resources/image6.png" alt=""></p><p></p>
+<p><ol></ol></p>
+<p><li></li></p>
+<p></p><p class="western">工具选择</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">选择数据迁移工具应当以帮助提高工作效率和数据迁移运行效率为原则。通常最直接的方法是编<br>写sql脚本，借助其它工具也能起到很好的效果，比如MS<br>SSIS等。然而我们发现，过多的引入第三方工具往往带来的麻烦也多，例如，我们不得不花时间来学习这些工具的某些特殊用法，有时工具也会产生bug，以<br>至于不得不再花时间解决这些bug，而这与最初的开发目标相背离。因此，有效的方法是尽量使用sql脚本执行所有的迁移工作，同时也得到了最佳的执行效<br>率。</p><p></p>
+<p><ol></ol></p>
+<p><li></li></p>
+<p></p><p class="western">保留中间结果用于脚本调试</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">相比设计语言，Sql语句较难调试，即使有些数据库产品提供了调试工具，但是调试数据结果<br>集仍然是项挑战性的工作。尤其在旧系统到新系统的迁移过程中，业务逻辑发生巨大变化，客户经常要求提供某些证据，来解释他们对数据迁移结果的怀疑。保留中<br>间环节数据,不仅方便调试，也方便数据追溯，为开发带来更高效率。以下举例说明：</p><p></p>
+<p><pre><p style="margin-left: 40px;">SELECT</p><p style="margin-left: 40px;">…</p><p style="margin-left: 40px;">into debug_allpersonhistroy</p><p style="margin-left: 40px;">FROM</p><p style="margin-left: 40px;">oldDB.dbo.personhistory – 这是在旧系统中定义的业务存储表</p><p style="margin-left: 40px;">…</p><p style="margin-left: 40px;">–省略复杂的过滤逻辑</p><p style="margin-left: 40px;">select column1…columnN</p><p style="margin-left: 40px;">into debug_allpersonhistroy_aftermapping –保留这一步数据集合</p><p style="margin-left: 40px;">from debug_allpersonhistroy inner join mappingtableBtwOldandNew</p><p style="margin-left: 40px;">…</p><p style="margin-left: 40px;">–省略复杂的过滤逻辑</p><p style="margin-left: 40px;">SELECT</p><p style="margin-left: 40px;">…</p><p style="margin-left: 40px;">FROM</p><p style="margin-left: 40px;">newdb.dbo.contactHistory – 这是在新系统中定义的业务存储表</p><p style="margin-left: 40px;">…</p><p style="margin-left: 40px;">–省略复杂的过滤逻辑</p><p style="margin-left: 40px;">Go</p></pre></p>
+<p></p><h3>典型问题</h3><p></p>
+<p></p><p>数据迁移在不同的场景往往出现不同的问题，单凭经验也不能全部解决。运用头脑风暴，集中团队中所有力量思考所有可能出现的问题并加以避免。有时开发员遇到的问题也帮助DBA少走弯路。最终，头脑风暴能够提供我们的是一份有价值的列表，里面包含各种问题和注意事项：</p><p></p>
+<p><ol></ol></p>
+<p><li></li></p>
+<p></p><p>一致性检查</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">一致性检查包括：字符编码检查、语言设置、环境参数设置等。</p><p></p>
+<p></p><p style="margin-left: 40px;">迁移过程常出问题的是字符集，它带来的问题是数据乱码。不同系统在最初设计时应用的字符集或编码格式未必相同。在迁移过程中，单凭缺省设置是不够不安全的。有效的办法是在项目伊始，即确认系统间环境一致性。在新系统中采用兼容性的unicode编码也能够解决这些问题。</p><p></p>
+<p><ol></ol></p>
+<p><li></li></p>
+<p></p><p class="western">控制NULL的使用</p><br><br><p></p>
+<p></p><p style="margin-left: 40px;">由于旧系统本身很少使用约束，以至于在表连接查询中出现大量无法得到正确匹配的数据。在<br>sql中，当我们试图使用自然连接，我们发现某些数据丢失了，如果使用外连接，这将会带来一种新的脏数据：NULL。从数据库设计角度，NULL不代表任<br>何含义，而实际情况中，很多数据库建模往往给NULL赋予含义，甚至多种含义，以至于不同的查询需求要视不同的业务逻辑对待。在旧系统里，这种现象比比皆<br>是，无疑给迁移带来了不少麻烦。</p><p></p>
+<p></p><p style="margin-left: 40px;">解决方法：不为NULL赋予逻辑上的定义。尽量少使用外连接运算。</p><p></p>
+<p></p><p style="margin-left: 40px;">例如：</p><p></p>
+<p></p><p style="margin-left: 40px;">旧系统定义如下父子结构表：</p><p></p>
+<p><pre><p style="margin-left: 40px;">objectId, parentObjectId,objectType &hellip;</p><p style="margin-left: 40px;"></p>
+</pre></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Software/" rel="tag"># Software</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko53i00od4urqlfys7hk6/" rel="next" title="RichClient/RIA原则与实践（上）">
+                <i class="fa fa-chevron-left"></i> RichClient/RIA原则与实践（上）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4vw00aw4urqs0s78spv/" rel="prev" title="Hernate的优化方案">
+                Hernate的优化方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">开发背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">数据迁移开发方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">典型问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

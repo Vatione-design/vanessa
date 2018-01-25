@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Ubuntu," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="随着经济环境的恶化和Vista没有获得太多的认可,很多IT部门考虑将平台向Linux迁移.尽管很多人认为Linux优于Windows,但是在更换平台前应该先要慎重考虑.  否则到最后你可能到发现必须得回到原来的平台,如果你考虑向Linux平台迁移,应先考虑以下十个问题:  1.那些私有的,关键性的程序能否在新的平台运行?  考虑平台迁移必须考虑的第一件事是:是的,可能大部分软件在Linux平台下都">
+<meta name="keywords" content="Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迁移到Linux平台应考虑的十个问题">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzje700z3xwrq3my6xcbx/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="随着经济环境的恶化和Vista没有获得太多的认可,很多IT部门考虑将平台向Linux迁移.尽管很多人认为Linux优于Windows,但是在更换平台前应该先要慎重考虑.  否则到最后你可能到发现必须得回到原来的平台,如果你考虑向Linux平台迁移,应先考虑以下十个问题:  1.那些私有的,关键性的程序能否在新的平台运行?  考虑平台迁移必须考虑的第一件事是:是的,可能大部分软件在Linux平台下都">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-21T08:10:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="迁移到Linux平台应考虑的十个问题">
+<meta name="twitter:description" content="随着经济环境的恶化和Vista没有获得太多的认可,很多IT部门考虑将平台向Linux迁移.尽管很多人认为Linux优于Windows,但是在更换平台前应该先要慎重考虑.  否则到最后你可能到发现必须得回到原来的平台,如果你考虑向Linux平台迁移,应先考虑以下十个问题:  1.那些私有的,关键性的程序能否在新的平台运行?  考虑平台迁移必须考虑的第一件事是:是的,可能大部分软件在Linux平台下都">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzje700z3xwrq3my6xcbx/"/>
+
+
+
+
+
+  <title>迁移到Linux平台应考虑的十个问题 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzje700z3xwrq3my6xcbx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">迁移到Linux平台应考虑的十个问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-20T02:03:00+08:00">
+                2008-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着经济环境的恶化和Vista没有获得太多的认可,很多IT部门考虑将平台向Linux迁移.尽管很多人认为Linux优于Windows,但是在更换平台前应该先要慎重考虑.<br> <br> 否则到最后你可能到发现必须得回到原来的平台,如果你考虑向Linux平台迁移,应先考虑以下十个问题:<br> <br> 1.那些私有的,关键性的程序能否在新的平台运行?<br> <br> 考虑平台迁移必须考虑的第一件事是:是的,可能大部分软件在Linux平台下都有类似的程序可以使用.比如photoshop,可以用Gimp代 替,Adobe Pagemaker可以用Scribus代替.但是,有的特定软件在Linux平台没有相应的跨平台版本,在这种情况下,你就得使用Wine,或者虚拟机 来运行windows上的程序.但是这样会花费很多时间和精力,有的时候还不是能很稳定运行,特别是使用Wine的时候.<br> <br> 如果你有关键的程序专门是为windows开发的,那么最好不要进行平台迁移,以使这些软件能正常使用,当然要是这些关键软件是基于WEB的话,那么你可以进行迁移,因为使用Firefox也能达到和IE同等的效果.<br> <br> 2.你计划使用哪个桌面环境?<br> <br> 对于windows和Mac OS X,桌面倒是很选择,可是对于发行版数量庞大的Linux选择面就更广了.如果你选择一个错误的桌面环境,你的工作效率可能低了很多,但是,选择合适的桌面也不是很难.<br> <br> 如果你的用户之前习惯使用Mac OS X,那么最好选择Gnome;如果之前习惯使用XP,那么最好选择KDE 3.5.x;如果之前习惯Vista,那么最好的选择是KDE4.X.Linux桌面环境定制性可以超越windows 和Mac OS X.你可以发挥自己的想象力,为公司定制一个特别的桌面环境.但是基于这点,你必须先深入统计用户喜欢使用哪种桌面环境.<br> <br> 3.你的部门能胜任这个平台吗?<br> <br> 向Linux平台迁移可能导致的最大问题就是,如果不进行额外的培训,员工不一定能随着平台改变自己的习惯.如果员工很了解windows,不意味着他能 很好的管理Linux系统和网络.如果你计划进行平台迁移,先了解一下员工对新操作系统的了解程度.如果他们不是很了解,那么无论在迁移时还是迁移之后都 将遇到很大的麻烦.我们当然希望自己的员工精通所有的技术,但是现实是大部分IT专家也只是精通于自己研究的领域.但是对于大部分IT管理员来说,使用 Linux当然不是什么难事.<br> <br> 4.你的公司从Windows系统获益了吗?<br> <br> 很多公司和机构使用windows系统获益与否都不是马上显现的.比如很多大学为学生提供很多软件,类似于Visual Studio和Ofiice,部署在学校的电脑上.如果进行平台迁移,这些软件就报废了,损失是很巨大的.当然如果使用Linux,那么将得到免费的软件 支持,可以节约不少开支.<br> <br> 5.雇员使用很多便携式媒体设备吗?<br> <br> Linux 已经对多媒体设备的支持进行很大的改进,但是仍然不如windows方便.很多Linux新的发行版本做得很好,可移动磁盘安装和使用都是件简单的事情, 这些过程都是全自动的.如果很多员工使用可移动磁盘,那么就得选择一个能很好支持这些设备的发行版,比如Mandriva.<br> <br> 6.你的硬件支持新的平台吗?<br> <br> 一般来说,这已经不再是个问题,但是对于为了节约成本而使用廉价硬件的公司来说,这就是个问题了.大多数情况下最大的问题就是集成显卡,虽然升级显卡问题不大,但是如果公司的机器太多,如果为了迁移系统而进行显卡升级,那么花费肯定也不低.<br> <br> 另外如果在笔记本上部署也是个很大的阻碍,无线网卡能用吗?声卡显卡都能正常工作吗?高兴的是Linux可以使用LiveCD,你可以通过它来测试你的硬件是否支持相应的系统.<br> <br> 7.你在使用Active Directory吗?<br> <br> 如果你的公司很大程度地依赖Active Directory,如果从Active Directory迁移OpenLDAP将是件困难的事情,因为他们的功能不一致.如果非得进行这个迁移,你可以使用pwdump2 和ActiveState Perl来管理.但是别指望能通过输入简单的命令或者点击图标就能完成.<br> <br> 8.你是否外购技术支持?<br> <br> 很大大公司都花钱外购技术支持,如果你的公司是这样的情况,那么向Linux迁移前你最好先进行调查.如果计划采用Unbuntu,RedHat,或者 Novell Linux,那么你可以购买技术支持.但是对于其他发行版,你可能就不能获得同等级的技术支持了,他们大多是通过邮件的方式来进行支持.<br> <br> 9.你是否受制于软件的许可费用?<br> <br> 如果你已经和安全公司定下购买安全软件的合同,那么你就是在浪费钱了,因为这些服务在Linux也许用不到.如果你还在为安全软件付费,那么最好进行平台迁移,它可以为你省不少安全服务的费用.<br> <br> 10.哪些雇员能适应平台迁移?<br> <br> 实际上你可以控制平台迁移的范围,把它做得更聪明,更有效率.或许很多雇员能适应迁移的要求,比如它主要进行基于web浏览器的工作,你可以把他列入平台 迁移的对象,这对他们来说没多大的变化.对于经常使用office套装工作的雇员,可以不进行平台迁移或者使用OpenOffice来代替.而对于使用专 业软件的人员来说,最好不要进行平台迁移<br><br><br>转自：<a href="http://news.csdn.net/n/20081117/120893.html" target="_blank" rel="noopener">http://news.csdn.net/n/20081117/120893.html</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6j2p0061l6rql58c551f/" rel="next" title="八大优势能否助JSF统一Web开发">
+                <i class="fa fa-chevron-left"></i> 八大优势能否助JSF统一Web开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzj0l00nhxwrqliu2etk4/" rel="prev" title="一位软件工程师的6年总结">
+                一位软件工程师的6年总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

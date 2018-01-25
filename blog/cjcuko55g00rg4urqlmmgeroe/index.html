@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Information," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        Charles Humble译者        张凯峰        发布于        2009年1月18日 上午3时24分     社区Java主题JCP标准,Web框架标签JBoss Seam,JBoss,Guice Seam站点上的Web Beans页面这样描述Web Beans：  &amp;ldquo;&amp;hellip;&amp;hellip;一套针对Java EE">
+<meta name="keywords" content="Information">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Beans（JSR-299）：与规范领导者Gavin King的问答">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko55g00rg4urqlmmgeroe/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        Charles Humble译者        张凯峰        发布于        2009年1月18日 上午3时24分     社区Java主题JCP标准,Web框架标签JBoss Seam,JBoss,Guice Seam站点上的Web Beans页面这样描述Web Beans：  &amp;ldquo;&amp;hellip;&amp;hellip;一套针对Java EE">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T19:51:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Beans（JSR-299）：与规范领导者Gavin King的问答">
+<meta name="twitter:description" content="作者        Charles Humble译者        张凯峰        发布于        2009年1月18日 上午3时24分     社区Java主题JCP标准,Web框架标签JBoss Seam,JBoss,Guice Seam站点上的Web Beans页面这样描述Web Beans：  &amp;ldquo;&amp;hellip;&amp;hellip;一套针对Java EE">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko55g00rg4urqlmmgeroe/"/>
+
+
+
+
+
+  <title>Web Beans（JSR-299）：与规范领导者Gavin King的问答 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko55g00rg4urqlmmgeroe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web Beans（JSR-299）：与规范领导者Gavin King的问答</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-01-20T05:45:00+08:00">
+                2009-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p class="info"><br>        作者<br>        <strong>Charles Humble</strong>译者<br>        <strong>张凯峰</strong><br>        发布于<br>        2009年1月18日 上午3时24分<br>    </p><p></p>
+<p><dl class="tags2"><dt class="community">社区</dt><dd><a id="739" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="java" href="http://www.infoq.com/cn/java" target="_blank" rel="noopener">Java</a></dd><dt class="topics">主题</dt><dd><a id="806" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="jcp_standards" href="http://www.infoq.com/cn/jcp_standards" target="_blank" rel="noopener">JCP标准</a>,</dd><dd><a id="744" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="webframework" href="http://www.infoq.com/cn/webframework" target="_blank" rel="noopener">Web框架</a></dd><dt class="topics">标签</dt><dd><a id="1,329" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="seam" href="http://www.infoq.com/cn/seam" target="_blank" rel="noopener">JBoss Seam</a>,</dd><dd><a id="823" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="jboss" href="http://www.infoq.com/cn/jboss" target="_blank" rel="noopener">JBoss</a>,</dd><dd><a id="916" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="guice" href="http://www.infoq.com/cn/guice" target="_blank" rel="noopener">Guice</a></dd></dl></p>
+<p></p><p><a id="o072" title="WebBeans page on the Seam website" href="http://www.seamframework.org/WebBeans" target="_blank" rel="noopener">Seam站点上的Web Beans页面</a>这样描述Web Beans：</p><p></p>
+<blockquote> &ldquo;&hellip;&hellip;一套针对Java EE环境的服务，让应用程序开发起来更加简单。Web<br>Beans在已有的Java组件类型比如JavaBeans和企业JavaBeans之上，搭建了增强的生命周期和交互模型一层。作为针对传统Java<br>EE编程模型的补充，Web Beans服务提供了：<br><ul><br><li>改善有状态组件的生命周期，并绑定到定义良好的上下文上，</li><br><li>为依赖注入提供类型安全的方式，</li><br><li>通过事件通知机制进行交互，</li><br><li>一个把拦截器绑定到组件上更好的方法，并提供一个新型的拦截器，也叫装饰器（decorator），这对解决业务问题更加合适。&rdquo;</li><br></ul><br></blockquote><br><p>目前在公开草稿预览阶段中，Web Beans所会带来的广泛潜在的影响让JEE社区的成员们有所牵挂，而规范的领导者Gavin King也已经宣布将预览期限延至2009年，以此来解决人们所担心的一部分问题。InfoQ为此采访了King：</p><br><p><strong>InfoQ：考虑到Spring和Web Beans都为Java EE提供了依赖注入框架，我很想知道你认为Web Beans比Spring最主要的优势在什么地方？有来自SpringSource的人加入到这个专家组中吗？</strong></p><br><blockquote> Web<br>Beans中的模型的确受到了Spring、Guice和Seam的影响。但是，最最直接的影响来自于Seam的上下文状态管理模型和Guice的类型安<br>全依赖注入。Seam和Guice也影响了Spring的发展，比如Spring最近就添加了针对上下文bean和Guice风格的绑定类型的支持。然<br>而，Web Beans具有&ldquo;成分清白&rdquo;的优势，所以最后的结果只会是更加干净，更加优雅，而且类型更加安全。Web<br>Beans还引入了许多创新性的思想，比如装饰器、原型、部署类型、类型安全事件/观察者绑定以及拦截器绑定注解，这些在其他解决方案里面是没有的。最终<br>的结果就是更少的XML但更多的类型安全性。<br><br><br><br>SpringSource目前并不在JSR-299专家组中。 </blockquote><br><p><strong>InfoQ：装饰器和拦截器的区别是什么？</strong></p><br><blockquote><br>每一个你用装饰器可以解决的问题，你也可以用拦截器来解决，但拦截器是非类型安全的，处理业务逻辑的方式也不够自然。装饰器提供了能够感知到正在被调用的<br>方法的语义的拦截方式，而且能应用到特定的Java类型上。换句话说，拦截器从技术上解决了像把交易管理和安全从业务逻辑中解耦出来这样的问题，而装饰器<br>是在业务的角度提供了类似的解决方案。 </blockquote><br><p><strong>InfoQ:为什么Web Beans需要一个事件模型？</strong></p><br><blockquote>这是因为我们想促成一种松耦合和强类型的编码方法；这种理念是该规范的基础。但是除此之外，我们还试图编写出既有状态又松耦合的<br>组件。由于需要管理缓存着的状态，有状态的组件可能会在Web上下文中出现问题，比如，发生回滚时许多应用都会出问题，因为状态并没有和事务绑定起来。由<br>于这些类型的问题通常只发生在应用程序负载很重的情况下，所以往往非常难以测试。因此，事件模型提供了一种控制这些类型问题的方式。</blockquote><br><p><strong>InfoQ：Web Beans的事件模型与observer/observable模式有什么区别？</strong></p><br><blockquote>Web<br>Beans模型与Java的observer/observable模式的区别在于，观察者（observer）不需要知道被观察者，因为这类依赖在<br>Web Beans上下文中并不实用。Web<br>Beans模型还支持消息选择器及事件类型&mdash;&mdash;一种事件类型有点像一个MOM主题，而消息选择器则像二进制类型。因此你可以以类型安全的方式在这一级别应<br>用过滤。<br><br><br><br>我们仍在做一些这方面的工作&mdash;&mdash;例如，IBM提出的一个问题是当前草案中并没有支持处理集群（cluster）的语义，因此，下一个草案或许将允许事件被发送到JMS主题或队列上，以提供一种优雅的方式将Java对象发送到一个队列。请参见这个<a id="myw8" title="this blog entry" href="http://relation.to/Bloggers/DistributedEventsForWebBeans" target="_blank" rel="noopener">blog</a>以获得更多信息。 </blockquote><br><p><strong>InfoQ: 显然Web Beans与集成JSF和EJB极其相关。你们考虑过其它集成用例吗？</strong></p><br><blockquote> Web<br>Beans是一个依赖注入框架。虽然在某种意义上依赖注入在技术上并没什么特别的；实际上DI框架所做的就是为对象之间的交互提供一个中枢。DI框架是这<br>样一种中枢:不仅可以供应用程序组件间交互使用，还可以供应用组件和基础设施间交互使用。Java<br>EE缺乏把第三方框架集成进其环境的API，所以目前你需要加一层像Spring或Seam这样的中枢。而Web<br>Beans则提供了一种标准的方式来做这件事，它是Java EE的一部分。<br><br><br><br>我们正集中于四个大的用例，我想它们覆盖到了多数用例。首当其冲的是Web框架&mdash;&mdash;应该很容易把Web<br>Beans与其它Web框架相集成，我相信这一点。其次是业务流程管理（Business Process<br>Management）引擎，比如JBPM或Oracle的BPM&mdash;&mdash;它促使了分级管理模型的使用。第三是使用现有依赖注入框架（比如Spring、<br>Seam、Guice或其他DI机制）的人们需要能够把他们的现有代码与Web Beans相集成，第四是JAX-RS。</blockquote><br><p><strong>InfoQ：Web Beans会对Seam 3产生什么影响？ </strong></p><br><blockquote>Seam 3 的核心引擎将是Web<br>Beans。然后我们将要移植全套模块，整合JSF、JBPM、Hibernate、Drools、Groovy、Wicket和GWT这样的技术，或者<br>解决常见的顾虑如安全、展现PDF、email、Excel、RSS等等，把他们都移植到Web<br>Beans中枢上。我还在考虑如何支持那些使用Seam专有依赖注入的现有代码，是通过一个Seam 2的集成层呢还是在Web<br>Beans上重新实现这一API。</blockquote><br><p><strong>InfoQ：我没看到处理远程EJB的方法？有这样的用例吗？如果有，你们有什么样的计划？</strong></p><br><blockquote>是的，我们修订公共草案需要解决的一个问题就是为所有现有Java EE资源类型提供Web Beans风格的注入，包括远程引用EJB，它已成为一个公共特性需求。 </blockquote><br><p><strong>InfoQ：关于JCP的一个普遍看法是专家组之间的沟通非常困难。因为Web Beans跨越很多规范，包括JSF和EJB，还有Servlets和通用注解，我非常想知道，对您来说这方面存在多大问题，您又是如何处理的。</strong></p><br><blockquote>这的确是一个问题，我们也正在解决。我不得不说，当JCP在解决跨多个专家组的问题时就会失控。 </blockquote><br><p><strong>InfoQ：当Web Beans规范首次发布时，人们讨论了很多它的通用性和它是否应该成为JEE规范或者JSE<br>7的一部分，以使它能和Swing/JavaFX一块使用，以及用在其他DI框架可以使用的地方。但是，规范依赖EJB（或者至少是EJB<br>Lite），这限制了它的广泛应用性。您能分享一下这方面的看法吗，还有为什么API至今还没有超过最初的职责范围？</strong></p><br><blockquote>我不确信如果Web<br>Beans提供一个EJB的替代品是否可行，但我认为这不是一个真正的限制。人们在SE环境中使用的是一种提供了EJB Lite和Web<br>Beans的集成功能包的产品。不使用EJB Lite而只用Web<br>Beans对我来说似乎没有意义，因为使用这样一个残缺产品的用户不得不构建自己的非标准的事务管理环境、持久化集成等等。集成后产品的规模实际上会比<br>Spring这样的东西更小（但是比Guice要大），而且不需要很多配置。<br><br><br><br>当然，在社区中也存在一种心态：非理性地恐惧任何与EJB有关的事情，不过坦率地说，如果想利用Web Beans，就不得不克服这种心理。 </blockquote><br><p><strong>InfoQ：当JSR首次提出时，IBM公开表示了对JCP规范的顾虑：<br><br><br><br>&ldquo;我们正在担心JSR 299的发展方向，似乎它已经超越了集成JSF和EJB组件的设想，我们认为继续下去会导致其偏离Java EE 6。我们相信客户不会容易地采用Java EE 6平台，因为又添加了一个组件模型定义。&rdquo;<br><br><br><br>IBM的顾虑对规范的发展方向有多大影响？</strong></p><br><blockquote> 很多JCP成员，包括IBM，批评Web<br>Beans早期草稿，认为它是一种新的&ldquo;组件模型&rdquo;。因此在公开草稿中，我们重新把其功能定位成一套用于现存EE组件类型的服务。这种做法部分解决了批评<br>问题，但是很明显不够，因此我们延长了299的公开审校时间，以对规范做更多修改。<br><br><br><br>最近我们花费了很多时间与IBM和其他EE厂商一起工作以解决他们的顾虑。IBM刚刚加入了299专家组，正在致力于修订公开草稿。目前在主要EE厂商已<br>经达成了共识&mdash;&mdash;299应该包含在EE<br>6中，只要在一月底发布的修改公开草稿中消除了他们的顾虑。EE平台最终将拥有一种标准的、先进的依赖管理方案。 </blockquote><br><blockquote>转自：<a href="http://www.infoq.com/cn/news/2009/01/webbeansqa" target="_blank" rel="noopener">http://www.infoq.com/cn/news/2009/01/webbeansqa</a><br></blockquote>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Information/" rel="tag"># Information</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4x600dl4urqmdvsa7lw/" rel="next" title="JSR的标准化的一般过程">
+                <i class="fa fa-chevron-left"></i> JSR的标准化的一般过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4wf00c54urqusj0mnj7/" rel="prev" title="IntelliJ IDEA 8 中文乱码解决办法">
+                IntelliJ IDEA 8 中文乱码解决办法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

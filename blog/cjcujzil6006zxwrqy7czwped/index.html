@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者: thesixthday, 　出处:赛迪网技术社区,　责任编辑: 李春禹,2007-12-27 13:21　　浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件进行更新即可。更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。　　3年前，&amp;ldquo;Spring之父&amp;rdquo;Rod.Johnson写了一本在J">
+<meta name="keywords" content="JSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP&#x2F;Servlet&#x2F;JSF：JavaEE 不再需要 Ajax">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzil6006zxwrqy7czwped/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者: thesixthday, 　出处:赛迪网技术社区,　责任编辑: 李春禹,2007-12-27 13:21　　浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件进行更新即可。更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。　　3年前，&amp;ldquo;Spring之父&amp;rdquo;Rod.Johnson写了一本在J">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://java.ccidnet.com/col/attachment/2007/12/1334949.jpg">
+<meta property="og:image" content="http://java.ccidnet.com/col/attachment/2007/12/1334951.jpg">
+<meta property="og:image" content="http://java.ccidnet.com/col/attachment/2007/12/1334953.jpg">
+<meta property="og:updated_time" content="2018-01-24T03:16:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP&#x2F;Servlet&#x2F;JSF：JavaEE 不再需要 Ajax">
+<meta name="twitter:description" content="作者: thesixthday, 　出处:赛迪网技术社区,　责任编辑: 李春禹,2007-12-27 13:21　　浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件进行更新即可。更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。　　3年前，&amp;ldquo;Spring之父&amp;rdquo;Rod.Johnson写了一本在J">
+<meta name="twitter:image" content="http://java.ccidnet.com/col/attachment/2007/12/1334949.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzil6006zxwrqy7czwped/"/>
+
+
+
+
+
+  <title>JSP/Servlet/JSF：JavaEE 不再需要 Ajax | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzil6006zxwrqy7czwped/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSP/Servlet/JSF：JavaEE 不再需要 Ajax</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-03-31T01:33:00+08:00">
+                2009-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="dots">作者: thesixthday, 　出处:赛迪网技术社区,　责任编辑: 李春禹,<br><div class="posted">2007-12-27 13:21</div><br></div><br><h5 style="padding: 8px; line-height: 20px; font-weight: normal;">　　浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件进行更新即可。更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。</h5><br><div class="guanggao"><span id="contentAdv"><br><script type="text/javascript"><!--
+document.write("<SCRIPT LANGUAGE=\"JavaScript1.1\" SRC="\" mce_SRC="\""http:\/\/ucpn.yesky.com\/js.ng\/area=cc-wenzhangye_pip1&format=picinpic&node_ctocio_cto="+nodeid+"&num=1&page=cont&site=ctocio_cto\"><\/SCRIPT>");
+// --></script><br><script src="http://ucpn.yesky.com/js.ng/area=cc-wenzhangye_pip1&amp;format=picinpic&amp;node_ctocio_cto=20380&amp;num=1&amp;page=cont&amp;site=ctocio_cto"></script><br></span></div><br><p>　　3年前，&ldquo;Spring之父&rdquo;Rod.Johnson写了一本在Java界引起轰动的书：《Expert<br>One-on-One J2EE Development Without<br>EJB》。这本书阐述了EJB作为J2EE核心技术所带来的意义与价值，但作者用了更大篇幅介绍EJB的一些缺陷与不足，并提出了Without<br>EJB的解决方案。正是由于&ldquo;J2EE Without EJB&rdquo;这个激动人心的口号及这本书奠定的基础，导致了Spring<br>Framework这个经典轻量级框架的诞生。</p><br><p>　　2年前，Ajax开始进入人们的视野。时至今日，Ajax已经成为一个红得发紫的技术。但是今天，我想说一句：JavaEE without Ajax。</p><br><p>　<strong>　Ajax的&ldquo;原罪&rdquo;</strong></p><br><p>　　Ajax为什么这样红?有人说，是因为起了个好听易记的名字(比如荷兰著名的Ajax球队，即阿贾克斯);也有人说，是因为Google全新的<br>Ajax应用产品给人们带来的超酷体验(比如伟大的Google<br>Maps、GMail等)。确实如此，Ajax能够如此流行的最主要原因就是它带来了更好的用户体验，改变了人们对传统Web应用的不佳印象。</p><br><p>　　然而，即使Ajax的狂热Fans也不得不承认的是，从技术层面上来说，Ajax并没有带来什么新鲜的东西。它本质上是一种新瓶装旧酒的技术，<br>好处是通过Java<br>Script与DHTML提供了一种异步编程模型，从而使Web应用给客户带来了更好的人机体验。正如我在去年引起大家争论的拙文《Ajax，只是一种过<br>渡技术》中表述的：Ajax解决问题的层面较低。或者说，它解决问题的方法与手段，很难形成一种可高度抽象的框架级解决方案。并且，正是因为Ajax基于<br>Java Script，因此不可避免地带来了Java Script的诸多缺点，譬如：</p><br><p>　　? 跨浏览器是一场噩梦</p><br><p>　　? 对搜索引擎的支持不好</p><br><p>　　? 干掉了Back、History等按钮(尽管我并不认为Back、History是什么好东西)</p><br><p>　　? 开发与维护成本过高</p><br><p>　　要Java, 不要Java Script</p><br><p>　　We Love Java, Not Java Script。套用毛泽东的惯用句式就是：&ldquo;要Java, 不要Java Script&rdquo;。相信很多读者看完这个标题也许会不以为然，但这句话却代表了许多J2EE开发人员的心声。</p><br><p>　　众多Java工程师都对Java有一种近乎偏执的喜爱，他们热爱Java的简洁与优雅。但一旦让他们去进行Java<br>Script的开发，却往往会不知所措：过度灵活的语法，无法通过编译器进行语法校验，缺乏良好的调试工具等等这些，都会让人们对Java<br>Script畏手畏脚，更遑论Ajax的开发。</p><br><p>　　一句话，Java社区需要Ajax，需要它来提升基于JavaEE的Web应用的人机体验;但是，人们并不喜欢Ajax目前的开发模式。无疑，我们需要一种新的解决方案。</p><br><p>　　<strong>谁来拯救JavaEE的Ajax?</strong></p><br><p>　　我给出的答案是JSF。目前，关于JSF的一种流行说法是&ldquo;悲剧人生：Sun让JSF光着身子降临到Java Web世界&rdquo;。然而，我的看法却是：作为一种革命性的服务器端组件技术，JSF犹如早晨八九点钟的太阳，前途不可限量。</p><br><p>　　让事实说话，我们先来看看JSF请求/响应过程的标准生命周期：</p><br><p>　　<img src="http://java.ccidnet.com/col/attachment/2007/12/1334949.jpg" alt="" width="400" height="193"></p><br><p>　　图1：JSF的生命周期</p><br><p>　　通过上图可以观察到，任何一个JSF&ldquo;Faces Request&rdquo; 请求，经过Restore View、Apply Request<br>Values、Process Validations、Update Models、Invoke Application等阶段以后，产生了一个<br>&ldquo;Render Response&rdquo; 返回给客户端。那么，常规JSF引擎是如何实现上述过程的呢?</p><br><h5 style="padding: 8px; line-height: 20px; font-weight: normal;">　浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件进行更新即可。更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。</h5><br><div id="content"><br><div class="guanggao"><span id="contentAdv"><br><script type="text/javascript"><!--
+document.write("&lt;SCRIPT LANGUAGE=\"JavaScript1.1\" SRC=\"http:\/\/ucpn.yesky.com\/js.ng\/area=cc-wenzhangye_pip1&amp;format=picinpic&amp;node_ctocio_cto="+nodeid+"&amp;num=1&amp;page=cont&amp;site=ctocio_cto\"&gt;&lt;\/SCRIPT&gt;");
+// --></script><br><script src="http://ucpn.yesky.com/js.ng/area=cc-wenzhangye_pip1&amp;format=picinpic&amp;node_ctocio_cto=20380&amp;num=1&amp;page=cont&amp;site=ctocio_cto"></script><br></span></div><br><p>　　<img src="http://java.ccidnet.com/col/attachment/2007/12/1334951.jpg" alt="" width="400" height="262"></p><br><p>　　图2：常规JSF引擎的请求与响应过程</p><br><p>　　回顾一下常规JSF引擎针对请求与响应的过程：首先，客户端请求某个资源，产生一个Faces<br>Request;服务器端接收到此请求以后，经过一系列后台处理，产生一个Faces<br>Response。我们注意到：响应的Content-Type是text/html，而产生的内容主体是一段HTML文本;浏览器在接收到HTML文本<br>以后，进行整个页面的渲染与刷新。</p><br><p>　　无需写Ajax代码的Ajax Enabled应用</p><br><p>　　我用自己开发的JSF引擎，这样处理上述过程(详见参考资料www.OperaMasks.org )，如下图所示：</p><br><p>　　<img src="http://java.ccidnet.com/col/attachment/2007/12/1334953.jpg" alt="" width="400" height="204"></p><br><p>　　图3：OperaMasks JSF实现的请求与响应过程</p><br><p>　　首先可以观察到，Faces Request的发出是基于&ldquo;x-requested-by: XML Http<br>Request&rdquo;，也就是说，这是一个Ajax请求，而该请求在到达服务器端以后，服务器端所产生的Faces Response同常规Faces<br>Response相比也发生了变化：Content-Type不再是text/html，变成了text/javascript;并且，响应的主体也不再<br>是html文本，而是一堆script脚本。浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件<br>进行更新即可。</p><br><p>　　显而易见，通过上述JSF技术，我们获得了：</p><br><p>　　? 基于Ajax的请求、应答、及页面控件的更新</p><br><p>　　? 数据传输量明显减少</p><br><p>　　? 避免整个页面的刷新，更好的用户体验</p><br><p>　　? 系统保持敏捷、高效</p><br><p>　　换言之：任何标准JSF应用，只需将其在OperaMasks JSF引擎上运行，就可以达到这样的效果。我们并没有写任何一行Ajax的代码，但是，我们的应用却是自然而然的Ajax Enabled的应用。大道至简，大象无形。</p><br><p>　　奥妙所在：JSF的Render机制</p><br><p>　　为什么可以这样?</p><br><p>　　JSF组件只是特定状态和行为的载体，而组件以什么形式去和用户交互，是完全可定制的、独立于该特定的表现语言，可以是HTML、WML或者其<br>他形式;具体是什么，可以通过指定JSF组件的Render Kit来实现，而每一种Render<br>Kit，对应于组件作者写的同一风格和形式的一系列Render。</p><br><p>　　比如，如果想在网页中实现图表功能(Chart)，MSIE有VML，Gecko和Opera有SVG;而在服务器端只需要简单地判断一下浏览器类型，就可以选择一个Render Kit，生成不同的客户端表现来完成相同功能――这是用常规JSP技术很难完成的任务。</p><br><p>　　通俗的说，JSF组件可以翻译成任何你想要的形式。So，JSF框架比现有其它开源框架具有更强的生命力。上文所述的OperaMasks JSF，其容器级别Ajax实现，正是灵活应用Render Kit的具体案例。</p><br><p>　　从容器级别对Ajax予以支持的JSF引擎</p><br><p>　　我们提出的JSF是直接由JSF容器来处理Ajax请求的，它会根据请求类型来判断这是一个正常HTTP请求还是一个<br>Ajax请求：如果是常规HTTP请求就运行JSP页面，生成页面文档(特定的，对于Ajax Render<br>kit，要加入一些Ajax基础JavaScript代码);如果是Ajax请求，服务器对请求参数正常解码，并执行JSF中除页面输出阶段以外的所有其<br>他阶段，生成一个JSF组件树。</p><br><p>　　一直到这一步为止，处理方式与对普通HTTP请求的处理完全一致，唯一不同的是：在随后Render<br>Response阶段，容器除了调用组件作者写的Ajax功能<br>Renderer以外，更重要的是在生成响应页面时，会过滤掉一切不会变化的静态内容――也就是说，静态内容不会生成到响应页面中去，而对每一个动态内容<br>则会生成一个相应JavaScript代码(可以更进一步优化为只有变化了的动态内容才处理)。这样，传给客户的Ajax应答实际上是由这样一些<br>JavaScript语句构成。在Ajax响应返回到客户端时，就可以自动由Ajax回调函数执行这些JavaScript语句，完成对页面即时的、局部<br>的更改，而不需要刷新整个页面。依赖JSF组件的具体功能，甚至可以改变页面的外观。而整个Ajax机制由JSF引擎提供，对用户完全透明。</p><br><p>　　实际上，在JSF规范中JSF页面输出阶段所采用的Render Kit是可替换的，默认的HTML_BASIC Render<br>Kit输出的是标准HTML语法，不包含任何Java Script代码。我们提出的JSF引擎实现了一个 Ajax Render<br>Kit，可以在HTML文档中嵌入Java Script代码来实现Ajax特性，而替换Render Kit只需要修改配置文件即可。</p><br><p>　　简单地说，这种JSF引擎为每个标准组件都实现了相应的Ajax Render， 比如对UICommand组件，其Ajax<br>Render会在onclick事件中加入JavaScript的Ajax提交代码，向服务器提交Ajax请求。通过这种方式，任何一个包含标准JSF组<br>件的Web应用，都可以通过只更改Render Kit配置为Ajax来实现Web应用Ajax化。而对于第三方的组件，可能本身并不支持<br>Ajax，但使用一个名为的标签，就可以立即将这个第三方组件转换成Ajax Enabled。</p><br><p>　　例如，Apache<br>myfaces的Tomahawk项目提供了一个Tree组件，这个组件本身并不支持Ajax，每当按下一个Tree结点都将重新刷新整个页面。使用标签<br>后，则只刷新Tree部分，而不刷新页面的其他部分。当然更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。关于标签的原<br>理，有兴趣的读者可以参考OperaMasks JSF的源码(详见参考资料)，这里就不再一一赘述了。</p><br><p>　　综上，JavaEE 需要Ajax，但并不需要传统的Ajax开发模式。通过我们提出的OperaMasks JSF技术，我们不再需要知道什么是Ajax，而我们的应用却是自然而然的Ajax Enabled应用。</p><br><p>　　因此，我们认为：JavaEE Without Ajax!</p><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JSF/" rel="tag"># JSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziky006nxwrqc1890hgx/" rel="next" title="JSF伴随着Java EE 5从幕后走上前台">
+                <i class="fa fa-chevron-left"></i> JSF伴随着Java EE 5从幕后走上前台
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzilg007bxwrq5iqzfh45/" rel="prev" title="JSF days 2009 - Web Beans">
+                JSF days 2009 - Web Beans <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">　　浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件进行更新即可。更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">　浏览器在接收到响应以后，再也不需要进行整个页面的渲染与刷新，而只仅仅需要执行这段脚本内容，将页面的控件进行更新即可。更好的方式是，提供一个本身就支持Ajax的Tree组件，以减少冗余数据的传递。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

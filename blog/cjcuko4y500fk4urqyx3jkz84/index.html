@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaEE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JSF 2.0&amp;nbsp;尽管 Java 在展示层框架上竞争的非常激烈，但 JSF 仍然固守着自己的领地。虽然有很多关于 JSF 的易用性和健壮性的质疑声，但 JSF2.0 就是为正面解决这些问题而提出来的，它的易用，创新以及可扩展的特性包括：&amp;nbsp;JSF 正式将 Facelets 作为视图技术。也许你不熟悉Facelets ，它也是一个与 JSF 结合默契的开源视图技术。因此，与 JSP">
+<meta name="keywords" content="JavaEE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java EE开发三剑客发展现状以及发展浅析">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4y500fk4urqyx3jkz84/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="JSF 2.0&amp;nbsp;尽管 Java 在展示层框架上竞争的非常激烈，但 JSF 仍然固守着自己的领地。虽然有很多关于 JSF 的易用性和健壮性的质疑声，但 JSF2.0 就是为正面解决这些问题而提出来的，它的易用，创新以及可扩展的特性包括：&amp;nbsp;JSF 正式将 Facelets 作为视图技术。也许你不熟悉Facelets ，它也是一个与 JSF 结合默契的开源视图技术。因此，与 JSP">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T20:47:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java EE开发三剑客发展现状以及发展浅析">
+<meta name="twitter:description" content="JSF 2.0&amp;nbsp;尽管 Java 在展示层框架上竞争的非常激烈，但 JSF 仍然固守着自己的领地。虽然有很多关于 JSF 的易用性和健壮性的质疑声，但 JSF2.0 就是为正面解决这些问题而提出来的，它的易用，创新以及可扩展的特性包括：&amp;nbsp;JSF 正式将 Facelets 作为视图技术。也许你不熟悉Facelets ，它也是一个与 JSF 结合默契的开源视图技术。因此，与 JSP">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4y500fk4urqyx3jkz84/"/>
+
+
+
+
+
+  <title>Java EE开发三剑客发展现状以及发展浅析 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4y500fk4urqyx3jkz84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java EE开发三剑客发展现状以及发展浅析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-02-21T03:01:00+08:00">
+                2009-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><span id="zoom" class="a14c"><br><p style="text-indent: 2em;">　JSF 2.0<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">尽管 Java 在展示层框架上竞争的非常激烈，但 JSF 仍然固守着自己的领地。虽然有很多关于 JSF 的易用性和健壮性的质疑声，但 JSF2.0 就是为正面解决这些问题而提出来的，它的易用，创新以及可扩展的特性包括：<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JSF 正式将 Facelets 作为视图技术。也许你不熟悉<br>Facelets ，它也是一个与 JSF 结合默契的开源视图技术。因此，与 JSP 不同的是 Facelets 更适合 JSF<br>的组件模型以及生命周期的概念。当然，也许 Facelets 最强大的特性就是在用 mark-up 来代替 java<br>代码创建自定义的组件。创建自定义组件的复杂度也许是开发者对 JSF 抱怨最多的地方了。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JSF2.0 通过使用标签为 Java EE 5 提供了基于<br>annotation 驱动的配置特性（比如说可以使用 @ManagedBean 和 @ManagedProperty<br>）。这也意味着可以一定程度上的减少 faces-config.xml 文件的大小，不过像在 navigation 这些结点的配置在 XML<br>文件还是不能少。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JSF2.0 为适应 AJAX 而改变了自身的生命周期，只需要局部页面的交由 AJAX 事件处理。这个特性使得 JSF+AJAX 的组合更加自然。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JSF2.0 现在内置了优秀的资源处理器。对 images ， JavaScript 文件以及 CSS 样式等都表现出众。它可以对通过逻辑名称，资源分组以及版本等方式来更好的引用资源。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">除上述特性外， JSF2.0 还包括许多其它方便的改变。比如说支持事件，支持<br>RAILS_ENV 的开发风格 （ 就是 ROR） ，支持对标准组件集进行扩展。你可以通过下面的链接来看看 JSF2.0<br>的公开草案：<a href="http://jcp.org/en/jsr/detail？id=314" target="_blank" rel="noopener">http://jcp.org/en/jsr/detail？id=314</a><br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">EJB 3.1<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">EJB 在 Java EE 5<br>就已经经历过了非常大的改动。也许看似不可能，但实际上 EJB3.0<br>还是在社区中广泛得到认可，并且采纳它的人也在不断增长。而这一切也许是因为我们过度的认为需要怎么怎么简化 Java EE 5<br>才取得这样的成绩。比如说，对 JBoss Seam 的兴趣和 GlassFish 的热情都是重要的关键因素。 EJB3.1<br>的目标就是在增加业务组件时，继续让 EJB 变得尽可能简单。下面是对 EJB3.1 特性的高度概括：<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">原本需要甚至实现 Session Beans 的业务接口变得可选了，不再强迫要求实现。在使用 Session Beans+JSF+WebBeans 的场景下尤其有用。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">EJB3.1 增加了 Singleton Beans 的概念。因为人们更倾向于管理共享的应用程序状态，需要保证是完全线程安全的模型。此外， EJB3.1 新增的声明式的并发控制也更加灵活。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">EJB3.1 一个可圈可点的的强大特性就是支持 cron 风格的 scheduling .除目前基于 timer API 的调度计时器外，声明式和编程式的 cron 风格的 scheduling API 也加入了进来。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">另一个强大的特性就是可以通过使用 @Asynchronous 标注来对 Session Bean 的方法进行异步调用。你甚至还通过它来控制异步 EJB 方法从而返回一个 java.util.concurrent.Future 对象。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">EJB3.1 Lite 概念的逐渐引入形成了一个 EJB API<br>的子集，并在 Web Profile 中得到应用。只不过 EJB Lite 包含了像事务处理和安全这样的特性，而那些消息机制，远程调用以及<br>scheduling 等非必须的自然没有必要加入其中。除上述列表所述特性外，<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">EJB3.1 的特性还包括：括直接将 EJB 打包成 war 文件，可运行在<br>embedded 的容器中便于 Java SE 环境进行 JUnit 测试，使用统一的标准化全局 JNDI 命名方式。 EJB3.1<br>的公开草案可从以下链接获得： <a href="http://jcp.org/en/jsr/detail？id=318" target="_blank" rel="noopener">http://jcp.org/en/jsr/detail？id=318</a><br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JPA 2.0<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">到 Java EE 6 的时候， JPA 已经彻底从 EJB<br>中分离，形成自己的体系 （EJB3.0 已经将 JPA 分离出去了 ） . JPA<br>的成功是毫无疑问的。它广泛得到社区的采纳和一流供应商的支持。本来我们担心 EJB2.* 的 Enity Beans 垮台可能无法让 Java<br>EE 再次引领持久层的标准，一个重要成功的因素就是 Gaving King 和 JBoss 社区毫不含糊的支持。 JPA2.0<br>的目标就是要在这次成功的基础上再接再厉，填补更多的空白，再创多的创新：<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JPA2.0 加入了大量必须的 ORM 映射增强特性，包括：支持通过使用<br>@ElementCollection 标注来增强 collections， maps 和 lists（ 这里不是指实体之间的关联关系 ）<br>集合，支持 map 的单向 one-to-many 关联 （JPA1.0 只允许双向 one-to-many 关联 ） .<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">EntityManager 和 Query API<br>都得到改进。比如说，现在可以从结果集中直接取得第一条记录 （JPA1.0 只允许从一个 unique 结果集中反回单个记录 ） ，指定<br>query 结果集的最大值，访问各个供应商的底层实体对象 manager 或 query ，最后就是加入悲观锁 （JPA1.0 只支持乐观锁<br>） .<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JPQL 也提供类似于 SQL 的 CASE ， NULLIF ， COALESCE 等函数 .<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">JPA2.0 应广大开发者要求增加了 Criteria API .要是你对<br>Hibernate 或 TopLink 的 Criteria API 不熟悉的话，可以将它想像成一个以 Java<br>为中心的面向对象，线程安全并可以与 JPQL 划上等号的一组 API .这组 API 适合于编写复杂的动态查询语句，还可避免解析 JPQL<br>语句时，所抛出的运行期异常。<br></p><br><p style="text-indent: 2em;">&nbsp;</p><br><p style="text-indent: 2em;">更完整的 JAP2.0 特性还包括：标准的二级缓存，标准的 JDBC<br>properties ，指定超时时间等等。你可以随时通过下面的 JSR 站点看看关于 JPA2.0 公开草案的更多细节：<br><a href="http://jcp.org/en/jsr/detail？id=317" target="_blank" rel="noopener">http://jcp.org/en/jsr/detail？id=317</a><br></p><br><p align="right">(责任编辑：董建伟)</p><br><p align="right">&nbsp;</p><br><p align="right">转自：<a href="http://java.ccidnet.com/art/12011/20090217/1678897_1.html" target="_blank" rel="noopener">http://java.ccidnet.com/art/12011/20090217/1678897_1.html</a></p><br></span></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaEE/" rel="tag"># JavaEE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4we00c24urqeb7xzmug/" rel="next" title="IT一族必备的5款日常泡茶">
+                <i class="fa fa-chevron-left"></i> IT一族必备的5款日常泡茶
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5gz01754urqlgq0h0u2/" rel="prev" title="应用最广的十大Javascript框架">
+                应用最广的十大Javascript框架 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

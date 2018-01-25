@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Database," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下 转自http://flovemayday.blog.com.cn/archives/2007/21">
+<meta name="keywords" content="Java,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java连接SQLServer">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko57x00v24urq4ep8y366/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下 转自http://flovemayday.blog.com.cn/archives/2007/21">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-25T13:38:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java连接SQLServer">
+<meta name="twitter:description" content="一切来得太顺利，多亏有前人的经验安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁安装了jdk，netbeans6.1半个小时不到就在window下搭建好了数据库设计大作业的环境好顺利啊一切ok了最后打开zy写的工程进行密码修改 run！！！ok 不过为了以后方便还是搜了一下 转自http://flovemayday.blog.com.cn/archives/2007/21">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko57x00v24urq4ep8y366/"/>
+
+
+
+
+
+  <title>java连接SQLServer | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko57x00v24urq4ep8y366/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java连接SQLServer</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-06-22T13:37:00+08:00">
+                2008-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一切来得太顺利，多亏有前人的经验<br>安装好SQLserver 2000，下载了个补丁sql2000_sp3补丁<br>安装了jdk，netbeans6.1<br>半个小时不到就在window下搭建好了数据库设计大作业的环境<br>好顺利啊<br>一切ok了<br>最后打开zy写的工程进行密码修改</p>
+<p>run！！！<br>ok</p>
+<p>不过为了以后方便还是搜了一下</p>
+<p>转自<a href="http://flovemayday.blog.com.cn/archives/2007/2164558.shtml" target="_blank" rel="noopener">http://flovemayday.blog.com.cn/archives/2007/2164558.shtml</a></p>
+<p>呵呵，看到这个界面好面熟啊，以前也用过这个模板，不过在firefox下解析不同产生了问题，害得我修改了一下午的模板。嘻嘻</p>
+<p>java连接SQLServer 弄了一下午才弄出来 整理出来 供以后参考 </p>
+<ol>
+<li><p>安装SQLserver 2000 以前在安装的时候我都是能顺利安装上去的 但是昨天重装系统后今天装的时候就有了挂起错误并提示要重启 傻不拉几的我还真重启了好几次 但仍然有挂起错误，在网上找了下。原来 SQLsever2000 的安装跟操作系统有关 如果有挂起错误可以修改注册表来避免，具体方法如下： </p>
+<p> 在运行窗口输入regedit，打开注册表编辑器，在HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control \Session Manager中找到PendingFileRenameOperations，删除该键值（这个键值是安装程序暂挂项目，只要找到对应的应用程序清除掉就行了），关闭注册表编辑器。重新安装SQL Server 2000即可。 </p>
+</li>
+<li><p>下载JDBC FOR SQLSERVER 的驱动： <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=4f8f2f01-1ed7-4c4d-8f7b-3d47969e66ae&amp;DisplayLang=en#filelist" target="_blank" rel="noopener">http://www.microsoft.com/downloads/details.aspx?FamilyID=4f8f2f01-1ed7-4c4d-8f7b-3d47969e66ae&amp;DisplayLang=en#filelist</a> </p>
+</li>
+</ol>
+<p>点击setup.exe下载驱动，下载后开始安装，就用默认设置安装,会被安装到：<br>    C:\Program Files\Microsoft SQL Server 2000 Driver for JDBC。把C:\Program Files\Microsoft SQL Server 2000 Driver for JDBC\lib。下面的mssqlserver.jar,msbase.jar,msutil.jar三个文件拷贝到你的JDK主目录\jre\lib\ext下面。同时也要考到Tomcat的安装目录下面的lib文件夹下面（有的网站上没有这一步，但我是考了后才能连接上的）。现在JDBC驱动就算配置好了。 </p>
+<p> 3.下载并安装SQLserver 2000的最新补丁sql2000ps4，自己在网上搜下应该就能找到下载地址，我不记得下载地址了，下下来有50多个M。（也可以来找我考啊^^） </p>
+<p> 4.设置SQL SERVER登录认证模式为混合认证模式，因为SQL SERVER默认安装后认证模式为WINDOWS认证模式，方法如下：</p>
+<p>   a.启动SQLSERVER企业管理器，选择要进行认证模式设置的服务器。右击该服务器，在弹出菜单中选择属性，SQL SERVER将弹出属性对话框  </p>
+<p>   b.在属性对话框中选择安全性选项，在身份验证处选择&ldquo;SQL Server和Windows&rdquo;，然后确定(这里要确认连接的用户名为&ldquo;sa&rdquo;密码为空，全为默认就行了。因为我后面给的测试例子是这样的) </p>
+<p> 5.测试是否能通过JDBC连接上的代码（注意两种仍一种能够运行成功就表示能够连上了，如果发先a可以而b不可以那应该是上面的第4步没弄好）<br>   a.java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import java.sql.*; </span><br><span class="line"> </span><br><span class="line">public class TestDB &#123; </span><br><span class="line">   public static void main(String[] args) &#123; </span><br><span class="line">       String driverName = &amp;quot;com.microsoft.jdbc.sqlserver.SQLServerDriver&amp;quot;; </span><br><span class="line">       String dbURL = &amp;quot;jdbc:microsoft:sqlserver://localhost:1433; DatabaseName=pubs&amp;quot;; </span><br><span class="line">       String userName = &amp;quot;sa&amp;quot;; </span><br><span class="line">       String userPwd = &amp;quot;&amp;quot;; </span><br><span class="line">       Connection dbConn; </span><br><span class="line"> </span><br><span class="line">       try &#123; </span><br><span class="line">           Class.forName(driverName); </span><br><span class="line">           dbConn = DriverManager.getConnection(dbURL, userName, userPwd); </span><br><span class="line">           System.out.println(&amp;quot;Connection Successful!&amp;quot;); </span><br><span class="line">       &#125; </span><br><span class="line">       catch (Exception e) &#123; </span><br><span class="line">           e.printStackTrace(); </span><br><span class="line">       &#125; </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>   b.jsp代码： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;%@ page contentType=&amp;quot;text/html;charset=gb2312&amp;quot;%&amp;gt; </span><br><span class="line">&amp;lt;%@ page import=&amp;quot;java.sql.*&amp;quot;%&amp;gt; </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&amp;lt;%Class.forName(&amp;quot;com.microsoft.jdbc.sqlserver.SQLServerDriver&amp;quot;).newInstance(); </span><br><span class="line">String url=&amp;quot;jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=pubs&amp;quot;; </span><br><span class="line">//pubs为你的数据库的 </span><br><span class="line">String user=&amp;quot;sa&amp;quot;; </span><br><span class="line">String password=&amp;quot;&amp;quot;; </span><br><span class="line">Connection conn= DriverManager.getConnection(url,user,password); </span><br><span class="line">Statement stmt=conn.createStatement </span><br><span class="line"> </span><br><span class="line">(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); </span><br><span class="line">String sql=&amp;quot;select * from jobs&amp;quot;; </span><br><span class="line">ResultSet rs=stmt.executeQuery(sql); </span><br><span class="line">while(rs.next()) &#123;%&amp;gt; </span><br><span class="line">您的第一个字段内容为：&amp;lt;%=rs.getString(1)%&amp;gt; </span><br><span class="line">您的第二个字段内容为：&amp;lt;%=rs.getString(2)%&amp;gt; </span><br><span class="line">&amp;lt;%&#125;%&amp;gt; </span><br><span class="line">&amp;lt;%out.print(&amp;quot;数据库操作成功，恭喜你&amp;quot;);%&amp;gt; </span><br><span class="line">&amp;lt;%rs.close(); </span><br><span class="line">stmt.close(); </span><br><span class="line">conn.close(); </span><br><span class="line">%&amp;gt;</span><br></pre></td></tr></table></figure>
+<p> #java连接SQLServer 弄了一下午才弄出来 整理出来 供以后参考#</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/blog/tags/Database/" rel="tag"># Database</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko59600wy4urq2zyvjhyh/" rel="next" title="ubuntu 下音乐播放器listen的bug">
+                <i class="fa fa-chevron-left"></i> ubuntu 下音乐播放器listen的bug
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5cp011s4urqer1ada7o/" rel="prev" title="再次开始写界面">
+                再次开始写界面 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTML," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;            作者            Dionysios G. Synodinos                译者王瑜珩            发布于            2009年10月27日 上午1时36分        HTML 5是万维网核心语言的第5个主要版本，早在2004年就由网络富文本应用技术工作组（WHATWG）发起。虽然标准仍在制定之中，但有些浏览">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟座谈：HTML5来了，JavaScript框架会如何发展">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5p001g54urq92yplvjf/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;nbsp;            作者            Dionysios G. Synodinos                译者王瑜珩            发布于            2009年10月27日 上午1时36分        HTML 5是万维网核心语言的第5个主要版本，早在2004年就由网络富文本应用技术工作组（WHATWG）发起。虽然标准仍在制定之中，但有些浏览">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T20:59:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="虚拟座谈：HTML5来了，JavaScript框架会如何发展">
+<meta name="twitter:description" content="&amp;nbsp;            作者            Dionysios G. Synodinos                译者王瑜珩            发布于            2009年10月27日 上午1时36分        HTML 5是万维网核心语言的第5个主要版本，早在2004年就由网络富文本应用技术工作组（WHATWG）发起。虽然标准仍在制定之中，但有些浏览">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5p001g54urq92yplvjf/"/>
+
+
+
+
+
+  <title>虚拟座谈：HTML5来了，JavaScript框架会如何发展 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5p001g54urq92yplvjf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">虚拟座谈：HTML5来了，JavaScript框架会如何发展</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-11-06T06:45:00+08:00">
+                2009-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;</p><br><p class="info"><br>            作者<br><br><br><br>            <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=Dionysios-G.-Synodinos" target="_blank" rel="noopener"><br>Dionysios G. Synodinos</a><br></strong><br><br><br><br><br>                译者<strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E7%8E%8B%E7%91%9C%E7%8F%A9" target="_blank" rel="noopener"><br>王瑜珩</a><br></strong><br><br>            发布于<br>            2009年10月27日 上午1时36分<br>        </p><br><p>HTML 5是万维网核心语言的第5个主要版本，早在2004年就由<a title="网络富文本应用技术工作组（WHATWG）" href="http://www.whatwg.org/" target="_blank" rel="noopener">网络富文本应用技术工作组（WHATWG）</a><br>发起。虽然标准仍在制定之中，但有些浏览器已经能够支持一部分HTML 5的特性了，如<a title="Safari 4 beta" href="http://www.infoq.com/news/2009/02/caracan_safari4" target="_blank" rel="noopener">Safari 4 beta</a><br>。</p><br><div class="vendor-content-box-float"><a href="http://www.infoq.com/infoq/url.action?i=895&amp;t=f" target="_blank"><br><br>            </a><br><div class="entrysponsors"><br><p>汇集最新RIA技术相关资源，提供Flash开发平台相关工具高速下载，<a href="http://www.infoq.com/infoq/url.action?i=939&amp;t=f" target="_blank">免费获得Adobe软件的产品序列号</a><br>。</p><br></div><br></div><br><p>除了更多的标记以外，HTML 5还添加了一些<a title="脚本API" href="http://www.infoq.com/cn/news/2008/02/html5draft" target="_blank" rel="noopener">脚本API</a><br>：</p><br><blockquote> 新增的特性充分地考虑了应用程序开发人员，HTML 5引入了大量的新的Javascript API。可以利用这些内容与对应的HTML元素相关联，它们包括：<br><br><br><br><br><ul><br><li>二维绘图API，可以用在一个新的<strong>画布（Canvas）</strong><br>元素上以呈现图像、游戏图形或者其他运行中的可视图形。</li><br><li>一个允许web应用程序将自身注册为某个协议或MIME类型的API。</li><br><li>一个引入新的缓存机制以支持脱机web应用程序的API。</li><br><li>一个能够播放视频和音频的API，可以使用新的<strong>video</strong><br>和<strong>audio</strong><br>元素。</li><br><li>一个历史纪录API，它可以公开正在浏览的历史纪录，从而允许页面更好地支持AJAX应用程序中实现对后退功能。</li><br><li>跨文档的消息传递，它提供了一种方式，使得文档可以互相通信而不用考虑它们的来源域，在某种程度上，这样的设计是为了防止跨站点的脚本攻击。</li><br><li>一个支持拖放操作的API，用它可以与<strong>draggable</strong><br>特性相关联。</li><br><li>一个支持编辑操作的API，用它可以与一个新的全局<strong>contenteditable</strong><br>特性相关联。</li><br><li>一个新的网络API，它支持web应用程序在本地网络上互相通信，并在它们的源服务器上维持双向的通信。</li><br><li>使用JavaScript API的键/值对实现客户端的持久化存储，同时支持嵌入的SQL数据库。</li><br><li>服务器发送的事件，通过它可以与新的事件源（event-source）元素关联，新的事件源元素有利于与远程数据源的持久性连接，而且极大地消除了在Web应用程序中对轮询的需求。</li><br></ul><br></blockquote><br><p>最近InfoQ利用电子邮件组织了一次虚拟座谈，主题为JavaScript框架将会如何发展，以便充分利用这些新的API。此次座谈邀请了来自主流JavaScript框架的代表：</p><br><ul><br><li><strong>Dylan Schiemann</strong><br>，SitePen的CEO，<a title="Dojo" href="http://dojotoolkit.com/" target="_blank" rel="noopener">Dojo</a><br>的共同创建者</li><br><li><strong>Matt Sweeney</strong><br>和<strong>Eric Miraglia</strong><br>，来自<a title="YUI" href="http://developer.yahoo.com/yui" target="_blank" rel="noopener">YUI</a><br>开发团队</li><br><li><strong>Andrew Dupont</strong><br>，<a title="Prototype" href="http://www.prototypejs.org/" target="_blank" rel="noopener">Prototype</a><br>的核心开发者</li><br><li><strong>Thomas Fuchs</strong><br>，<a title="script.aculo.us" href="http://script.aculo.us/" target="_blank" rel="noopener">script.aculo.us</a><br>的创建者，<a id="smal" title="Prototype" href="http://www.prototypejs.org/" target="_blank" rel="noopener">Prototype</a><br>和Ruby on Rails的核心开发人员</li><br><li><strong>David Walsh</strong><br>，<a title="MooTools" href="http://mootools.net/" target="_blank" rel="noopener">MooTools</a><br>的核心开发人员</li><br><li><strong>Scott Blum</strong><br>和<strong>Joel Webber</strong><br>，GWT的<a title="领头人" href="http://code.google.com/webtoolkit/" target="_blank" rel="noopener">领头人</a><br></li><br></ul><br><p>下面是我们的问题以及各专家的回答。</p><br><p><strong>InfoQ：由于HTML 5标准仍在制定之中，大多数开发人员对它的新特性并不熟悉，您认为对于web开发人员，哪些特性是最值得关注的？</strong><br></p><br><blockquote> <strong>Dylan：</strong><br>HTML<br>5包含很多东西，其中很多有价值的特性都已经在Dojo这样的框架中实现了。例如，内置的富表单控件将包含多文件上传和数据属性，这样人们就不会再抱怨<br>Dojo使用非标准的自定义属性了，虽然这些属性也是合法的。最近Peter<br>Higgins为Dojo解析器写了一个补丁，大概有1KB左右的代码量，以便当这些特性添加到浏览器时可以使用它们。对我来说最感兴趣的特性是<br>WebSocket，它是由Michael<br>Carter提出，并由Orbited最先实现的。WebSocket非常适合那些长连接应用，你可以将它看做是web安全的TCP Socket。<br><br><br><br><strong>Matt &amp; Eric</strong><br>：对那些把浏览器当成是应用平台的开发人员来说，HTML<br>5包含了一些很具创新性的组件。但需要注意的是这有点超出文档语义领域，已经到达DOM<br>API领域了，这不是HTML规范的必须部分。我们希望HTML 5规范能够限制在对文档语义的增强和精化上，而把对行为API的规定留给其它规范。<br><br><br><br>一般来说，开发人员应该知道HTML5提供的以下HTML相关的特性：<br><br><br><br><br><ul><br><li>反对使用仅用于显示的元素和属性</li><br><li>更多有语义的元素</li><br><li>更多种输入控件和语义</li><br><li>自定义数据属性</li><br></ul><br>开发人员看起来对HTML 5中的DOM<br>API很感兴趣，如果它们最后能够被实现，其中的某些特性确实能够丰富我们的工具箱，成为很重要的工具。最早被浏览器厂商实现的2D绘图API（通过<br>Canvas元素）以及客户端存储API已经引发了广泛的关注，这些关注与浏览器厂商在标准确定之前就率先实现有关。但是还有很多其他的重要变化目前也在<br>草案之中：<br><br><br><br><br><ul><br><li>Iframe 沙箱</li><br><li>支持&quot;getElementsByClassName()&quot;</li><br><li>&quot;classList&quot; API</li><br><li>音频和视频（通过Audio和Video元素）API</li><br><li>离线web应用API</li><br><li>编辑（通过contentEditable属性）API</li><br><li>跨文档消息API</li><br><li>服务器端事件API</li><br></ul><br>HTML 5试图解决一些重大的问题，而且解决的不错，比我们上面列出的还要多。<br><br><br><br><strong>Andrew：</strong><br>&ldquo;web存储&rdquo;（客户端数据库）会被广泛使用&mdash;&mdash;很多网站已经开始好好地利用它了。新的form控件（Web Forms<br>2）从一开始就存在于标准之中，我都等不及赶快使用了。服务器发送事件可以用来构造纯粹的&ldquo;推&rdquo;服务程序，而不需要依赖Ajax的不断轮询或不稳定的长连<br>接。我还喜欢自定义数据属性，虽然相比之下，这只是一个不太重要的特性。<br><br><br><br><strong>Thomas：</strong><br>除了离线应用特性（主要指持久化存储），我认为VIEDO和AUDIO标签是最重要的新特性，因为我们终于可以离开烦人的<br>OBJECT和EMBED了。当然这还需要一段时间，直到所有浏览器都支持，不过这确实是朝着正确的方向在发展，而对所有非正式标准的标准化工作也会让浏<br>览器表现得比现在更好。一个容易被忽略的特性是web应用程序能够注册协议和媒体类型，以使它们自己成为默认处理程序，就像桌面应用程序一样（但是从UI<br>的角度看，仍有很多阻碍，因为对计算机不甚了解的用户不懂什么是&ldquo;协议&rdquo;或者&ldquo;媒体类型&rdquo;）。<br><br><br><br><strong>David：</strong><br>除非被广泛支持，否则没有哪个HTML<br>5的特性是非常值得关注的。这些概念值得去实现，但在只有少数几个浏览器支持的情况下使用是不明智的。这就是我们不使用querySelectorAll<br>的原因：浏览器厂商的不同实现会导致更多针对浏览器的hack，而不是简单的避免使用QSA。<br><br><br><br><strong>Scott &amp; Joel：</strong><br>在HTML5中我最关注的是那些现在就可以使用，而不需要开发人员额外创建不同版本程序的特性。我对其<br>中的数据库和缓存API特别感兴趣，程序可以真正支持在线和离线两种模式了。另外对于移动web开发人员来说，HTML5提供了大量特性来处理低速和连接<br>不稳定的移动网络。<br><br><br><br>另外一些HTML5的特性也很让人激动，例如&lt;canvas&gt;、&lt;audio&gt;和&lt;video&gt;，这些功能现在还需要插件来实现。目前这些标签还没有被主流浏览器广泛支持，但是随着浏览器支持的增强，使用的人也会增加。 </blockquote><br><p><strong>InfoQ：您认为现有的JavaScript框架该如何发展，以支持像内置媒体、离线浏览以及更高级的服务器进程通信这样的新特性？能粗略说一下您所在项目的路线图么？</strong><br></p><br><blockquote> <strong>Dylan</strong><br>：我们的目标一直是弥补浏览器的不足。我们希望我们的框架能够越来越不重要（例如，实现统一的事件系<br>统或者是<br>QuerySelectorAll）。我们发现在某些情况下，我们会随着时间的推移一点一点的删除代码，但是Dojo的用户并不会感到有任何的不同，他们<br>还是可以继续使用相同的API，只是这些API会简单的调用本地实现。对于你提到的更高级的特性，Dojo已经可以支持媒体和离线程序，并且支持<br>JSON-PRC和REST，甚至可以在Perservere这样的服务器端JavaScript环境中运行！<br><br><br><br><strong>Matt &amp; Eric</strong><br>：JavaScript框架的作用是利用更丰富的API和透明的跨浏览器支持来改善编程环境。YUI将会遵<br>循HTML<br>5标准（特别是那些已经对浏览器产生影响的），并添加对老版本浏览器的支持，以便让新的功能可以在标准实现和推广之前就得以应用。客户端存储API是一个<br>例子，YUI将要实现它以消除HTML 5和现有浏览器之间的不同。<br><br><br><br><strong>Andrew</strong><br>：像Prototype这样的&ldquo;中间件&rdquo;框架，主要是把难用的、不一致的API包装为统一的、完善的接口，HTML5并不会<br>（为Prototype）带来太大的影响。HTML5的特性会让某些工作变得简单，但是Prototype会一直保留&ldquo;困难的方式&rdquo;，直到最后一个非<br>HTML5浏览器不再得到支持。<br><br><br><br>另一方面，建立在Prototype上的库<br>－script.aculo.us，显然需要做出选择。Script.aculo.us提供了一个&ldquo;slider&rdquo;控件，HTML5也有。是否应该使用浏<br>览器内置的HTML5 slider？还是使用现有的纯JavasScript版本，以保正在所有浏览器中的外观一致？<br><br><br><br>HTML5提供了一些特性的本地实现，而之前的多年我们一直用HTML和JavaScript来实现这些特性，这是一个进步。如果我们能够全部转移到<br>HTML5而不管老版本浏览器，大多数的（JavaScript）库都可以移除大量的代码。但是在很长的一段时间里，我们还需要保留这些旧代码。<br><br><br><br>Prototype和script.aculo.us并没有长期的路线图，但是我知道，当四种主流浏览器中至少有两个支持某一特性时，我就会认真考虑是否实现它。记住，HTML5不会一次就全部实现的。<br><br><br><br><strong>Thomas</strong><br>：是的，它们会进化的，最终当浏览器支持这些新特性时，它们也会支持。这对于框架来说并不是什么新鲜事，当新版本浏览器发布<br>时，通常需要关注的是bugs而不是新特性。目前，对于script.aculo.us来说，最新的&ldquo;舞台&rdquo;将是Canvas<br>元素，它可以平衡Prototype的功能。例如，insertAdjacentHTML() DOM API可能会比我们目前插入HTML的方法更快。<br><br><br><br><strong>David</strong><br>：我认为我们会像以前那样：从浏览器实现中抽象出API，对那些不一致的实现进行修复。在某种程度上，我们为老版本浏览器开发解<br>决方案，以提供跨浏览器支持，但当我们无法实现时，我们会提供检测功能以处理这种情况（或许使用欺骗手段）。我们还不能忘记IE6拒绝灭亡的事实，还要过<br>很长的时间，我们才能完全依赖这些特性。<br><br><br><br>对于路线图，我们将会利用这些特性的优点，首先创建更小、更快的库。如果我们可以为支持HTML5的浏览器构建更快的选择器引擎，我们会将精力集中在那<br>里，而不是一些非广泛支持的特性。将规范集成到我们的API将会提升性能并减少代码量，这在短期内是对我们的最大好处，直到更高级的特性被浏览器市场普遍<br>实现。<br><br><br><br><strong>Scott &amp; Joel</strong><br>：对于GWT来说，我们会集中在那些被主流浏览器实现的特性上，但是我们也<br>可能会根据用户浏览器的不同而提供不同的实现方式。例如我们提供了抽象的存储API，可以根据用户的环境使用Google Gears或HTML<br>5。GWT的好处是，最终用户只需要下载他们浏览器支持的特定实现，因为我们已经事先考虑了所有的可能。 </blockquote><br><p><strong>InfoQ：HTML 5为客户端添加了非常多的重量级特性，有些人认为目前的JavaScript和DOM编程模型已经走到了尽头。我们是否需要为不久的将来考虑一个完全不同的编程模型？</strong><br></p><br><blockquote> <strong>Dylan</strong><br>：jQuery和Dojo的一个主要不同是，jQuery本质上是以DOM为中心的，而Dojo还试<br>图改进JavaScript 的不足。像Mozilla<br>Lab的Bespin这样的程序用于非DOM为中心的开发，我一直认为DOM是JavaScript开发人员的工具，而不是全部，如果有些事不能通过修改<br>DOM来解决，那就不应该在浏览器中解决。坦白地说，我们已经通过不同的工具提供了不同的开发方式。<br><br><br><br><strong>Matt and Eric：</strong><br>浏览器环境允许不同的模型，而且事实上也有很多模型被开发出来。Flash/Flex/AIR就是一个很好的<br>例子，它与HTML/DOM/CSS（同时）都是web成功的关键部分。当你使用iPhone上的Facebook程序而不是Facebook的移动网站<br>时，你就在使用一种新的模型。到目前为止，还没有哪个其他的模型可以在访问性和简便性上超过它。我们应该在以后&ldquo;考虑其它模型&rdquo;么？作为开发人员，我们曾<br>经有过争执，每次我们构建新程序时，都会考虑其他的模型。如果今天的大多数程序是web程序，那么就已经说明浏览器仍然有价值。我们认为浏览器中仍有许多<br>未被发现的价值，聪明的改进规范（就像ECMA3.1那样）将会对目前的平台产生长远的改善。<br><br><br><br><strong>Andrew</strong><br>：这很难说。有些人希望浏览器解析标记；有些人希望浏览器在窗口上绘制像素。这取决于你构建的程序类型。这并非是要代替DOM，而是寻找其他的模型来补充DOM，这样你就可以使用最合适的工具来工作。我觉得Canvas和SVG可能就是这一类模型。<br><br><br><br><strong>Thomas</strong><br>：我不这样认为， HTML、CSS和JavaScript的组合已经被证明是非常实用和通用的，每一项技术都在积极的进步，没有必要替换掉它们。<br><br><br><br><strong>David</strong><br>：怎么会在&ldquo;不久的将来&rdquo;呢？任何HTML5中能够改变这个模型的东西，都会在多年后才能出现。而且目前的模型已经很完善、很易于理解，更被成千上万的网页所使用。我认为目前还不会有任何改变。<br><br><br><br><strong>Scott &amp; Joel</strong><br>：我认为目前的方式还没有任何走到尽头的迹象，反而发展的更快、更有组织了。<br><br><br><br>一方面，有很多理由去制造更好的浏览器（带有V8的Chrome、带有TraceMonky的Firefox、带有SquirrelFish Extreme的Safari，当然还有IE8）。不管你喜欢哪个浏览器，开发者都有一个更强大的平台。<br><br><br><br>同时，开发者在这个平台上可使用的工具也越来越好。当GWT出现时，我认为它是革命性的。而几周前我们刚刚发布了GWT 1.6，它比最初的GWT，甚至比一年前的GWT更强大。你可以看到，它的内部其实还是那些东西，只不过随着它的成熟而增加了一些工具。<br><br><br><br>因此我认为还有很大的发展空间。 </blockquote><br><p><strong>InfoQ：有人建议使用另一种客户端语言，例如Ruby。您认为JavaScript目前是否足够强大？是否需要做出大的修改？是否应该使用更多的DSL技术？</strong><br></p><br><blockquote> <strong>Dylan</strong><br>：我想我们很可能会看到DSL，甚至在服务器端也会有JavaScript。有一个服务器端<br>JavaScript讨论组对此有着<br>极大的兴趣。JavaScript本身并不是问题所在，真正的问题是浏览器对DOM和JavaScript交互的实现方式，以前的JavaScript引<br>擎比现在Mozilla、Google、Apple和Opera都要慢很多。我曾经认真考虑过如果Python或Ruby成为客户端语言意味着什么，坦白<br>说我觉得这并不能解决问题。<br><br><br><br><strong>Matt &amp; Eric</strong><br>：JavaScript在ECMA 3.1中做出了彻底的改变，这就是目前我们真正需要的。<br><br><br><br>浏览器可以自行选择实现其它的脚本引擎。不过既然它们按照规范实现了DOM API，使用什么脚本语言也就无所谓了。一些人&mdash;&mdash;包括Yahoo的Douglas Crockford－曾经争论过将来的Web是否需要一种新的内建安全机制的语言。<br><br><br><br><strong>Andrew</strong><br>：完全的语言替换是不会发生的－JavaScript背后的力量很强大。我喜欢已经流产的ES4提案中的很多新特性&mdash;&mdash;运算符<br>重 载、Ruby风格的catch-all<br>methods等等。不幸的是，ES4包含的太多了。我很庆幸在&ldquo;妥协&rdquo;后，ES3.1包含了getter和setter。但是我认为ES<br>3.1做的还不够。简单来说，我觉得应该尽量让JavaScript更加动态。<br><br><br><br><strong>Thomas</strong><br>：是的，我觉得JavaScript就应该是现在这样。它不应该成为一个&ldquo;真正的面向对象编程语言&rdquo;，它强大的基于原型的机制<br>已经很好了。这可以让我们使用不同的开发风格，并根据个人喜好进行定制。JavaScript和Ruby有时候非常相似（JavaScript框架<br>Prototype中的某些部分就是在向JavaScript中添加Ruby风格的元素）。更多的DSL将会很好&mdash;&mdash;我最希望未来在JavaScript<br>中 能有两样东西，一样是捕获未定义函数名（就像是Ruby的method_missing），另一样是内联函数（blocks）以避免总是需要写<br>function(){…}。<br><br><br><br><strong>David</strong><br>：JavaScript是这个星球上最成功的编程语言之一。尽管有些语言没有那么多的问题（我们知<br>道Valerio喜欢写Lua<br>代码，他已经爱上Lua了），JavaScript真正的问题一直是浏览器的实现。框架为我们解决了其中的大量问题，但是显然JavaScript规范应<br>该得到更新。框架的目的有3个：1）抽象出浏览器的不同，并支持老版本浏览器；2）提供丰富的、更方便的API；3）提供规范中没有的功能（例如效果、可<br>排序表格、图册）。<br><br><br><br>对于浏览器的错误实现，我们需要1），对于仍不好用的API，我们需要2），对于规范无法提供丰富的功能，我们需要3）。我们只是没有发现这些东西在近期有任何改变。<br><br><br><br><strong>Scott &amp; Joel</strong><br>：我认为JavaScript作为一种语言非常强大，甚至有些时候太强大了。你有64位整型数或为金融程<br>序而内建的BigDecimal，但是JavaScript面临的最大挑战在与如何构建和管理庞大的手写源代码库。当我们最初创建GWT时，我们打赌<br>JavaScript为人们喜欢的巨大灵活性也可以使它成为一个优秀的编译器目标语言，因此也可以将它当成是Web上的某种汇编语言。 </blockquote><br><p>你可以在<a href="http://www.infoq.com/javascript" target="_blank" rel="noopener">JavaScript         frameworks</a><br>和<a href="http://www.infoq.com/ria" target="_blank" rel="noopener">Rich Internet         Applications</a><br>找到更多信息。</p><br><p><strong>阅读英文原文</strong><br>：<a href="http://www.infoq.com/articles/js-for-h5" target="_blank" rel="noopener">Virtual Panel: Evolution of JavaScript Frameworks for HTML 5</a><br>。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/HTML/" rel="tag"># HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko56c00st4urqldld5a7j/" rel="next" title="css—border， margin， padding-浏览器">
+                <i class="fa fa-chevron-left"></i> css—border， margin， padding-浏览器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko50d00jc4urqzfbo6fjx/" rel="prev" title="NetBeans Weekly News-刊号 # 79 - Nov 05, 2009">
+                NetBeans Weekly News-刊号 # 79 - Nov 05, 2009 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

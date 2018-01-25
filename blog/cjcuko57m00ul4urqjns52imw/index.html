@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="类分层结构 java.lang.Objectjava.lang.Boolean (implements java.lang.Comparable&amp;lt;T&amp;gt;, java.io.Serializable)java.lang.Character (implements java.lang.Comparable&amp;lt;T&amp;gt;, java.io.Serializable)java.lang.Ch">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java.lang分层结构">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko57m00ul4urqjns52imw/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="类分层结构 java.lang.Objectjava.lang.Boolean (implements java.lang.Comparable&amp;lt;T&amp;gt;, java.io.Serializable)java.lang.Character (implements java.lang.Comparable&amp;lt;T&amp;gt;, java.io.Serializable)java.lang.Ch">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-18T04:37:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java.lang分层结构">
+<meta name="twitter:description" content="类分层结构 java.lang.Objectjava.lang.Boolean (implements java.lang.Comparable&amp;lt;T&amp;gt;, java.io.Serializable)java.lang.Character (implements java.lang.Comparable&amp;lt;T&amp;gt;, java.io.Serializable)java.lang.Ch">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko57m00ul4urqjns52imw/"/>
+
+
+
+
+
+  <title>java.lang分层结构 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko57m00ul4urqjns52imw/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java.lang分层结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-09-10T02:52:00+08:00">
+                2008-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>类分层结构</p>
+<ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Object.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Object</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Boolean.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Boolean</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Character.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Character</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Character.Subset.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Character.Subset</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Character.UnicodeBlock.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Character.UnicodeBlock</b></a></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Class.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Class</b></a>&lt;T&gt; (implements java.lang.reflect.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/reflect/AnnotatedElement.html" title="java.lang.reflect 中的接口" target="_blank" rel="noopener">AnnotatedElement</a>, java.lang.reflect.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/reflect/GenericDeclaration.html" title="java.lang.reflect 中的接口" target="_blank" rel="noopener">GenericDeclaration</a>, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>, java.lang.reflect.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/reflect/Type.html" title="java.lang.reflect 中的接口" target="_blank" rel="noopener">Type</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ClassLoader.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ClassLoader</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Compiler.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Compiler</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Enum.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Enum</b></a>&lt;E&gt; (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Math.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Math</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Number.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Number</b></a> (implements java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Byte.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Byte</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Double.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Double</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Float.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Float</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Integer.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Integer</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Long.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Long</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Short.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Short</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;)<br></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Package.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Package</b></a> (implements java.lang.reflect.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/reflect/AnnotatedElement.html" title="java.lang.reflect 中的接口" target="_blank" rel="noopener">AnnotatedElement</a>)<br></li><li type="circle">java.security.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/security/Permission.html" title="java.security 中的类" target="_blank" rel="noopener"><b>Permission</b></a> (implements java.security.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/security/Guard.html" title="java.security 中的接口" target="_blank" rel="noopener">Guard</a>, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br><ul><li type="circle">java.security.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/security/BasicPermission.html" title="java.security 中的类" target="_blank" rel="noopener"><b>BasicPermission</b></a> (implements java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/RuntimePermission.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>RuntimePermission</b></a></li></ul><br></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Process.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Process</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ProcessBuilder.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ProcessBuilder</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Runtime.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Runtime</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/SecurityManager.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>SecurityManager</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/StackTraceElement.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>StackTraceElement</b></a> (implements java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/StrictMath.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>StrictMath</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/String.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>String</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/CharSequence.html" title="java.lang 中的接口" target="_blank" rel="noopener">CharSequence</a>, java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/StringBuffer.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>StringBuffer</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/CharSequence.html" title="java.lang 中的接口" target="_blank" rel="noopener">CharSequence</a>, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/StringBuilder.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>StringBuilder</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/CharSequence.html" title="java.lang 中的接口" target="_blank" rel="noopener">CharSequence</a>, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/System.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>System</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Thread.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Thread</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Runnable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Runnable</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ThreadGroup.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ThreadGroup</b></a> (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Thread.UncaughtExceptionHandler.html" title="java.lang 中的接口" target="_blank" rel="noopener">Thread.UncaughtExceptionHandler</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ThreadLocal.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ThreadLocal</b></a>&lt;T&gt;<ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/InheritableThreadLocal.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>InheritableThreadLocal</b></a>&lt;T&gt;</li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Throwable.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Throwable</b></a> (implements java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Error.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Error</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/AssertionError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>AssertionError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/LinkageError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>LinkageError</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ClassCircularityError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ClassCircularityError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ClassFormatError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ClassFormatError</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/UnsupportedClassVersionError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>UnsupportedClassVersionError</b></a></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ExceptionInInitializerError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ExceptionInInitializerError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IncompatibleClassChangeError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IncompatibleClassChangeError</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/AbstractMethodError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>AbstractMethodError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IllegalAccessError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IllegalAccessError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/InstantiationError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>InstantiationError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NoSuchFieldError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NoSuchFieldError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NoSuchMethodError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NoSuchMethodError</b></a></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NoClassDefFoundError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NoClassDefFoundError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/UnsatisfiedLinkError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>UnsatisfiedLinkError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/VerifyError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>VerifyError</b></a></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ThreadDeath.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ThreadDeath</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/VirtualMachineError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>VirtualMachineError</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/InternalError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>InternalError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/OutOfMemoryError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>OutOfMemoryError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/StackOverflowError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>StackOverflowError</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/UnknownError.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>UnknownError</b></a></li></ul><br></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Exception.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Exception</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ClassNotFoundException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ClassNotFoundException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/CloneNotSupportedException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>CloneNotSupportedException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IllegalAccessException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IllegalAccessException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/InstantiationException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>InstantiationException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/InterruptedException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>InterruptedException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NoSuchFieldException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NoSuchFieldException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NoSuchMethodException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NoSuchMethodException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/RuntimeException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>RuntimeException</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ArithmeticException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ArithmeticException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ArrayStoreException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ArrayStoreException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ClassCastException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ClassCastException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/EnumConstantNotPresentException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>EnumConstantNotPresentException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IllegalArgumentException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IllegalArgumentException</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IllegalThreadStateException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IllegalThreadStateException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NumberFormatException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NumberFormatException</b></a></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IllegalMonitorStateException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IllegalMonitorStateException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IllegalStateException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IllegalStateException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/IndexOutOfBoundsException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>IndexOutOfBoundsException</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/ArrayIndexOutOfBoundsException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>ArrayIndexOutOfBoundsException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/StringIndexOutOfBoundsException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>StringIndexOutOfBoundsException</b></a></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NegativeArraySizeException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NegativeArraySizeException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/NullPointerException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>NullPointerException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/SecurityException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>SecurityException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/TypeNotPresentException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>TypeNotPresentException</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/UnsupportedOperationException.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>UnsupportedOperationException</b></a></li></ul><br></li></ul><br></li></ul><br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Void.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Void</b></a></li></ul><br></li></ul><br><h2><br>接口分层结构<br></h2><br><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Appendable.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>Appendable</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/CharSequence.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>CharSequence</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Cloneable.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>Cloneable</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>Comparable</b></a>&lt;T&gt;</li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Iterable.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>Iterable</b></a>&lt;T&gt;</li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Readable.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>Readable</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Runnable.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>Runnable</b></a></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Thread.UncaughtExceptionHandler.html" title="java.lang 中的接口" target="_blank" rel="noopener"><b>Thread.UncaughtExceptionHandler</b></a></li></ul><br><h2><br>注释类型分层结构<br></h2><br><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/SuppressWarnings.html" title="java.lang 中的注释" target="_blank" rel="noopener"><b>SuppressWarnings</b></a> (implements java.lang.annotation.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/annotation/Annotation.html" title="java.lang.annotation 中的接口" target="_blank" rel="noopener">Annotation</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Override.html" title="java.lang 中的注释" target="_blank" rel="noopener"><b>Override</b></a> (implements java.lang.annotation.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/annotation/Annotation.html" title="java.lang.annotation 中的接口" target="_blank" rel="noopener">Annotation</a>)<br></li><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Deprecated.html" title="java.lang 中的注释" target="_blank" rel="noopener"><b>Deprecated</b></a> (implements java.lang.annotation.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/annotation/Annotation.html" title="java.lang.annotation 中的接口" target="_blank" rel="noopener">Annotation</a>)<br></li></ul><br><h2><br>枚举分层结构<br></h2><br><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Object.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Object</b></a><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Enum.html" title="java.lang 中的类" target="_blank" rel="noopener"><b>Enum</b></a>&lt;E&gt; (implements java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Comparable.html" title="java.lang 中的接口" target="_blank" rel="noopener">Comparable</a>&lt;T&gt;, java.io.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/io/Serializable.html" title="java.io 中的接口" target="_blank" rel="noopener">Serializable</a>)<br><ul><li type="circle">java.lang.<a href="http://doc.javanb.com/javasdk-docs-1-5-0-api-cn/java/lang/Thread.State.html" title="java.lang 中的枚举" target="_blank" rel="noopener"><b>Thread.State</b></a></li></ul><br></li></ul><br></li></ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5w001zi4urqp7ykk3d0/" rel="next" title="基于Spring框架的WebSphere应用开发">
+                <i class="fa fa-chevron-left"></i> 基于Spring框架的WebSphere应用开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko57k00ui4urqtkz7pkzj/" rel="prev" title="java.lang包概述(1)">
+                java.lang包概述(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">接口分层结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">注释类型分层结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">枚举分层结构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

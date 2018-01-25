@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="B3log,Pipe,主题," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="开发步骤主题框架123456789101112131415161718192021222324252627282930313233343536373839404142434445464748pipe/theme                           // 主题目录|- comment                           // 评论组件目录|- head">
+<meta name="keywords" content="B3log,Pipe,主题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pipe 主题开发指南">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuiajkg0007jurq1ng8yzrf/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="开发步骤主题框架123456789101112131415161718192021222324252627282930313233343536373839404142434445464748pipe/theme                           // 主题目录|- comment                           // 评论组件目录|- head">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://7xo1ip.com1.z0.glb.clouddn.com//file/2017/12/56558533658d4f22a502a1714d2e8172-logo96.png">
+<meta property="og:updated_time" content="2018-01-25T13:36:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pipe 主题开发指南">
+<meta name="twitter:description" content="开发步骤主题框架123456789101112131415161718192021222324252627282930313233343536373839404142434445464748pipe/theme                           // 主题目录|- comment                           // 评论组件目录|- head">
+<meta name="twitter:image" content="https://7xo1ip.com1.z0.glb.clouddn.com//file/2017/12/56558533658d4f22a502a1714d2e8172-logo96.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuiajkg0007jurq1ng8yzrf/"/>
+
+
+
+
+
+  <title>Pipe 主题开发指南 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuiajkg0007jurq1ng8yzrf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Pipe 主题开发指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T00:52:35+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="//7xo1ip.com1.z0.glb.clouddn.com//file/2017/12/56558533658d4f22a502a1714d2e8172-logo96.png" alt="56558533658d4f22a502a1714d2e8172-logo96.png"></p>
+<h2 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h2><h3 id="主题框架"><a href="#主题框架" class="headerlink" title="主题框架"></a>主题框架</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">pipe/theme                           // 主题目录</span><br><span class="line">|- comment                           // 评论组件目录</span><br><span class="line">|- head                              // head 组件及第三方统计</span><br><span class="line">|- images                            // 通用图片目录</span><br><span class="line">|- js                                // JS 通用方法目录</span><br><span class="line">|  |- article.js                     // 文章页面</span><br><span class="line">|  |- common.js                      // 所有页面</span><br><span class="line">|  |- manifest.json                  // 清单</span><br><span class="line">|  |- symbol.js                      // svg 图标</span><br><span class="line">|- scss                              // 通用样式目录</span><br><span class="line">|- x                                 // 主题页面目录</span><br><span class="line">|  |- theme-name                     // 单个主题目录</span><br><span class="line">|  |  |- css                         // CSS 目录</span><br><span class="line">|  |  |  |- common.scss              // 主题样式，可按需引入 &apos;../../../scss/*&apos; 下的样式</span><br><span class="line">|  |  |  |- common.css               // 主题 css 文件</span><br><span class="line">|  |  |- js                          // JS 目录</span><br><span class="line">|  |  |  |- article.js               // 文章页面需要用的 JS 文件，可按需引入 &apos;../../../js/*&apos;</span><br><span class="line">|  |  |  |- article.min.js           // article.js 的压缩文件</span><br><span class="line">|  |  |  |- article.min.js.map       // article.min.js 的调试文件</span><br><span class="line">|  |  |  |- common.js                // 页面需要用的 JS 文件，可按需引入 &apos;../../../js/*&apos;</span><br><span class="line">|  |  |  |- common.min.js            // common.js 的压缩文件</span><br><span class="line">|  |  |  |- common.min.js.map        // common.min.js 的调试文件</span><br><span class="line">|  |  |- archive-articles.html       // 存档文章列表页面</span><br><span class="line">|  |  |- archives.html               // 存档页面</span><br><span class="line">|  |  |- article.html                // 文章页面</span><br><span class="line">|  |  |- author-articles.html        // 作者文章列表页面</span><br><span class="line">|  |  |- authors.html                // 作者页面</span><br><span class="line">|  |  |- categories.html             // 分类页面</span><br><span class="line">|  |  |- category-articles.html      // 分类文章列表页面</span><br><span class="line">|  |  |- define-article-list.html    // 定义文章列表</span><br><span class="line">|  |  |- define-footer.html          // 定义底部</span><br><span class="line">|  |  |- define-head.html            // 定义 head</span><br><span class="line">|  |  |- define-header.html          // 定义头部导航</span><br><span class="line">|  |  |- define-module-list.html     // 定义模块列表</span><br><span class="line">|  |  |- define-side.html            // 定义侧边栏</span><br><span class="line">|  |  |- index.html                  // 首页</span><br><span class="line">|  |  |- tag-articles.html           // 标签文章列表页面</span><br><span class="line">|  |  |- tags.html                   // 标签页面</span><br><span class="line">|  |  |- thumbnail.jpg               // 皮肤预览图</span><br><span class="line">|- .eslintrc.js                      // js 语法校验</span><br><span class="line">|- gulpfile.js                       // 开发、打包 gulp 脚本</span><br><span class="line">|- halt.html                         // 网站不可以用时展现的页面</span><br><span class="line">|- package.json                      // 项目信息及依赖</span><br><span class="line">|- package-lock.json                 // npm 依赖树</span><br><span class="line">|- sw.js                             // service worker 实现</span><br><span class="line">|- sw.min.js                         // sw.js 压缩文件</span><br><span class="line">|- themes.go                         // 皮肤加载</span><br><span class="line">|- yarn.lock                         // yarn 依赖树</span><br></pre></td></tr></table></figure>
+<h3 id="开发说明"><a href="#开发说明" class="headerlink" title="开发说明"></a>开发说明</h3><ol>
+<li>安装依赖 <code>npm install &amp;&amp; npm install --global gulp</code></li>
+<li>按照 <code>theme/x/Gina</code> 结构在 <code>theme/x</code> 下新建一个皮肤目录 <code>ThemeA</code></li>
+<li>开发过程中修改 js，scss 文件需进行热编译，请运行 <code>gulp watch --theme=ThemeA</code></li>
+<li>开发过程中可引入所需的 js 及 css</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// css 引入示例</span><br><span class="line">@import &apos;../../../scss/basic&apos;;</span><br><span class="line">@import &apos;../../../scss/github&apos;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// js 引入示例</span><br><span class="line">import $ from &apos;jquery&apos;</span><br><span class="line">import QRious from &apos;qrious&apos;</span><br><span class="line">import &#123;InitComment, InitToc, ShowEditor, InitHljs&#125; from &apos;../../../js/article&apos;</span><br><span class="line">import &apos;./common&apos;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>开发完成，请运行 <code>gulp</code> 进行打包</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>皮肤需满足自适应，以便移动端访问</li>
+<li>为保证文章或评论内容的展现，需在元素上添加 <code>class=&quot;pipe-content__reset&quot;</code></li>
+<li>定义模版时需带上皮肤名称，如 <code>&#123;&#123;define “ThemeA/head”}}&#123;&#123;end}}</code></li>
+<li>使用模版时需带上皮肤名称，如 <code>&#123;&#123;template “ThemeA/head” .}}</code></li>
+<li>使用模版时，支持多个参数传人，如：<code>&#123;&#123;template “ThemeA/module-list” dict “List” .RecentComments “Title” .I18n.RecentComment “UserCount” 2}}</code></li>
+<li><p>css 引入方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot;</span><br><span class="line">href=&quot;&#123;&#123;.Conf.StaticServer&#125;&#125;/theme/x/&amp;#123;&amp;#123;.Setting.ThemeName&#125;&#125;/css/common.css?&amp;#123;&amp;#123;.Conf.StaticResourceVersion&#125;&#125;&quot;/&gt;</span><br><span class="line">&lt;link rel=&quot;manifest&quot; href=&quot;&amp;#123;&amp;#123;.Conf.Server&#125;&#125;/theme/js/manifest.json&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js 引入方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;</span><br><span class="line">id=&quot;script&quot;</span><br><span class="line">data-isLogin=&quot;&#123;&#123;if eq .User.URole 0&#125;&#125;false&#123;&#123;else&#125;&#125;true&#123;&#123;end&#125;&#125;&quot;</span><br><span class="line">&#123;&#123;if .Article&#125;&#125;</span><br><span class="line">src=&quot;&#123;&#123;.Conf.StaticServer&#125;&#125;/theme/x/&#123;&#123;.Setting.ThemeName&#125;&#125;/js/article.min.js?&#123;&#123;.Conf.StaticResourceVersion&#125;&#125;&quot;</span><br><span class="line">&#123;&#123;else&#125;&#125;</span><br><span class="line">src=&quot;&#123;&#123;.Conf.StaticServer&#125;&#125;/theme/x/&#123;&#123;.Setting.ThemeName&#125;&#125;/js/common.min.js?&#123;&#123;.Conf.StaticResourceVersion&#125;&#125;&quot;</span><br><span class="line">&#123;&#123;end&#125;&#125;</span><br><span class="line">&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>底部请保留版权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Powered by &lt;a href=&quot;http://b3log.org/&quot; target=&quot;_blank&quot;&gt;B3log 开源&lt;/a&gt; • &lt;a href=&quot;https://hacpai.com/tag/Pipe&quot; target=&quot;_blank&quot;&gt;Pipe&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="模板变量"><a href="#模板变量" class="headerlink" title="模板变量"></a>模板变量</h2><h3 id="公共模板变量"><a href="#公共模板变量" class="headerlink" title="公共模板变量"></a>公共模板变量</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.I18n</td>
+<td>多语言，可使用 i18n/zh_CN.json 中的 key。注：key 首字母大写</td>
+</tr>
+<tr>
+<td>.Title</td>
+<td>页面 title</td>
+</tr>
+<tr>
+<td>.MetaKeywords</td>
+<td>页面 keywords</td>
+</tr>
+<tr>
+<td>.MetaDescription</td>
+<td>页面 description</td>
+</tr>
+<tr>
+<td>.FaviconURL</td>
+<td>favicon 地址</td>
+</tr>
+<tr>
+<td>.BlogURL</td>
+<td>博客地址</td>
+</tr>
+<tr>
+<td>.Conf</td>
+<td>配置项，具体属性参见 util/confs.go 中的 struct。注：属性首字母大写</td>
+</tr>
+<tr>
+<td>.Setting</td>
+<td>设置项，具体属性参见 model/setting.go。注：属性首字母大写</td>
+</tr>
+<tr>
+<td>.Statistic.StatisticArticleCount</td>
+<td>文章总数</td>
+</tr>
+<tr>
+<td>.Statistic.StatisticCommentCount</td>
+<td>评论总数</td>
+</tr>
+<tr>
+<td>.Statistic.StatisticViewCount</td>
+<td>浏览总数</td>
+</tr>
+<tr>
+<td>.UserCount</td>
+<td>博客用户数</td>
+</tr>
+<tr>
+<td>.MostUseTags</td>
+<td>使用最多的标签，有 URL 和 Title 属性</td>
+</tr>
+<tr>
+<td>.MostUseCategories</td>
+<td>使用最多的分类，有 URL 和 Title 属性</td>
+</tr>
+<tr>
+<td>.Year</td>
+<td>当前年份</td>
+</tr>
+<tr>
+<td>.LogoURL</td>
+<td>Logo 地址</td>
+</tr>
+<tr>
+<td>.Navigations</td>
+<td>自定义导航</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Navigations}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>导航地址</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Navigations}}&#123;&#123;.OpenMethod}}&#123;&#123;end}}</td>
+<td>导航打开方式</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Navigations}}&#123;&#123;.IconURL}}&#123;&#123;end}}</td>
+<td>导航图标地址</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Navigations}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>导航标题</td>
+</tr>
+<tr>
+<td>.User.URole</td>
+<td>用户角色：0-未登录；1-超级管理员；2-博客管理员；3-普通用户；4-被禁用户</td>
+</tr>
+<tr>
+<td>.User.AvatarURLWithSize n</td>
+<td>当前登录用户头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>.RecentComments</td>
+<td>最近评论，属性参见 define-module-list.html</td>
+</tr>
+<tr>
+<td>.MostCommentArticles</td>
+<td>评论最多的文章，属性参见 define-module-list.html</td>
+</tr>
+<tr>
+<td>.MostViewArticles</td>
+<td>访问最多的文章，属性参见 define-module-list.html</td>
+</tr>
+</tbody>
+</table>
+<h3 id="archive-articles-html"><a href="#archive-articles-html" class="headerlink" title="archive-articles.html"></a>archive-articles.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Archive.Title</td>
+<td>存档月份</td>
+</tr>
+<tr>
+<td>.Archive.ArticleCount</td>
+<td>存档月文章数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="archives-html"><a href="#archives-html" class="headerlink" title="archives.html"></a>archives.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Archives</td>
+<td>存档列表</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Archives}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>存档文章列表地址</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Archives}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>存档月份</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Archives}}&#123;&#123;.ArticleCount}}&#123;&#123;end}}</td>
+<td>存档月文章数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="article-html"><a href="#article-html" class="headerlink" title="article.html"></a>article.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.PreviousArticle.Title</td>
+<td>上一篇文章标题</td>
+</tr>
+<tr>
+<td>.PreviousArticle.URL</td>
+<td>上一篇文章链接</td>
+</tr>
+<tr>
+<td>.PreviousArticle.Author.Name</td>
+<td>上一篇文章作者姓名</td>
+</tr>
+<tr>
+<td>.PreviousArticle.Author.AvatarURLWithSize n</td>
+<td>上一篇文章作者头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>.NextArticle.Title</td>
+<td>下一篇文章标题</td>
+</tr>
+<tr>
+<td>.NextArticle.URL</td>
+<td>下一篇文章链接</td>
+</tr>
+<tr>
+<td>.NextArticle.Author.Name</td>
+<td>下一篇文章作者姓名</td>
+</tr>
+<tr>
+<td>.NextArticle.Author.AvatarURLWithSize n</td>
+<td>下一篇文章作者头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>.Article</td>
+<td>文章对象</td>
+</tr>
+<tr>
+<td>.Article.Abstract</td>
+<td>文章摘要</td>
+</tr>
+<tr>
+<td>.Article.ThumbnailURL</td>
+<td>文章配图</td>
+</tr>
+<tr>
+<td>.Article.URL</td>
+<td>文章地址</td>
+</tr>
+<tr>
+<td>.Article.Topped</td>
+<td>文章是否置顶</td>
+</tr>
+<tr>
+<td>.Article.Title</td>
+<td>文章标题</td>
+</tr>
+<tr>
+<td>.Article.Author.URL</td>
+<td>文章作者链接</td>
+</tr>
+<tr>
+<td>.Article.Author.Name</td>
+<td>文章作者姓名</td>
+</tr>
+<tr>
+<td>.Article.Author.AvatarURLWithSize n</td>
+<td>文章作者头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>.Article.CreatedAt</td>
+<td>文章创建时间</td>
+</tr>
+<tr>
+<td>.Article.ViewCount</td>
+<td>文章浏览数</td>
+</tr>
+<tr>
+<td>.Article.CommentCount</td>
+<td>文章评论数</td>
+</tr>
+<tr>
+<td>.Article.Editable</td>
+<td>是否可以编辑文章</td>
+</tr>
+<tr>
+<td>.Article.ID</td>
+<td>文章 ID</td>
+</tr>
+<tr>
+<td>.Article.Tags</td>
+<td>文章标签</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Article.Tags}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>标签链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Article.Tags}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>标签标题</td>
+</tr>
+<tr>
+<td>.Article.Content</td>
+<td>文章内容</td>
+</tr>
+<tr>
+<td>.RecommendArticles</td>
+<td>推荐文章</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.ThumbnailURL}}&#123;&#123;end}}</td>
+<td>推荐文章缩略图</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>推荐文章链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>推荐文章标题</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.Abstract}}&#123;&#123;end}}</td>
+<td>推荐文章摘要</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.Author.AvatarURLWithSize n}}&#123;&#123;end}}</td>
+<td>推荐文章作者头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.Author.URL}}&#123;&#123;end}}</td>
+<td>推荐文章作者链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.Author.Name}}&#123;&#123;end}}</td>
+<td>推荐文章作者姓名</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.CreatedAt}}&#123;&#123;end}}</td>
+<td>推荐文章创建时间</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .RecommendArticles}}&#123;&#123;.CommentCount}}&#123;&#123;end}}</td>
+<td>推荐文章评论数</td>
+</tr>
+<tr>
+<td>.Toc</td>
+<td>文章目录</td>
+</tr>
+</tbody>
+</table>
+<h3 id="author-articles-html"><a href="#author-articles-html" class="headerlink" title="author-articles.html"></a>author-articles.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Author.Name</td>
+<td>作者名称</td>
+</tr>
+<tr>
+<td>.Author.ArticleCount</td>
+<td>作者所写文章数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="authors-html"><a href="#authors-html" class="headerlink" title="authors.html"></a>authors.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Authors</td>
+<td>作者列表</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Authors}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>作者链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Authors}}&#123;&#123;.AvatarURLWithSize n}}&#123;&#123;end}}</td>
+<td>作者头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Authors}}&#123;&#123;.Name}}&#123;&#123;end}}</td>
+<td>作者姓名</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Authors}}&#123;&#123;.ArticleCount}}&#123;&#123;end}}</td>
+<td>作者文章数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="categories-articles-html"><a href="#categories-articles-html" class="headerlink" title="categories-articles.html"></a>categories-articles.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Category.Title</td>
+<td>分类名称</td>
+</tr>
+<tr>
+<td>.Category.ArticleCount</td>
+<td>分类文章数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="categories-html"><a href="#categories-html" class="headerlink" title="categories.html"></a>categories.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Categories</td>
+<td>分类列表</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Categories}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>分类链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Categories}}&#123;&#123;.Description}}&#123;&#123;end}}</td>
+<td>分类描述</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Categories}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>分类标题</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Categories}}&#123;&#123;.ArticleCount}}&#123;&#123;end}}</td>
+<td>分类文章数</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Categories}}&#123;&#123;.Tags}}&#123;&#123;end}}</td>
+<td>分类标签列表，有 URL 和 Title 属性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="define-article-list-html"><a href="#define-article-list-html" class="headerlink" title="define-article-list.html"></a>define-article-list.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Articles</td>
+<td>文章列表</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.ThumbnailURL}}&#123;&#123;end}}</td>
+<td>缩略图</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.Author.Name}}&#123;&#123;end}}</td>
+<td>作者名称</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.Author.AvatarURLWithSize n}}&#123;&#123;end}}</td>
+<td>作者头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.Author.URL}}&#123;&#123;end}}</td>
+<td>作者链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.Topped}}&#123;&#123;end}}</td>
+<td>是否置顶</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>标题</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.Tags}}&#123;&#123;end}}</td>
+<td>标签列表，有 URL 和 Title 属性</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.CreatedAt}}&#123;&#123;end}}</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.ViewCount}}&#123;&#123;end}}</td>
+<td>浏览数</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.CommentCount}}&#123;&#123;end}}</td>
+<td>评论数</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.Abstract}}&#123;&#123;end}}</td>
+<td>摘要</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Articles}}&#123;&#123;.ID}}&#123;&#123;end}}</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>.Pagination.PageNums</td>
+<td>分页列表</td>
+</tr>
+<tr>
+<td>.Pagination.PreviousPageNum</td>
+<td>上一页页码</td>
+</tr>
+<tr>
+<td>.Pagination.FirstPageNum</td>
+<td>第一页页码</td>
+</tr>
+<tr>
+<td>.Pagination.CurrentPageNum</td>
+<td>当前页码</td>
+</tr>
+<tr>
+<td>.Pagination.LastPageNum</td>
+<td>最后一页页码</td>
+</tr>
+<tr>
+<td>.Pagination.PageCount</td>
+<td>总页数</td>
+</tr>
+<tr>
+<td>.Pagination.NextPageNum</td>
+<td>下一页页码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="define-module-list-html"><a href="#define-module-list-html" class="headerlink" title="define-module-list.html"></a>define-module-list.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Title</td>
+<td>模块名称</td>
+</tr>
+<tr>
+<td>.List</td>
+<td>模块列表</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .List}}&#123;&#123;.Author.URL}}&#123;&#123;end}}</td>
+<td>作者地址</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .List}}&#123;&#123;.Author.Name}}&#123;&#123;end}}</td>
+<td>作者姓名</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .List}}&#123;&#123;.Author.AvatarURLWithSize n}}&#123;&#123;end}}</td>
+<td>作者头像地址，n 为头像大小</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .List}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .List}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>标题</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .List}}&#123;&#123;.CreatedAt}}&#123;&#123;end}}</td>
+<td>创建时间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tag-articles-html"><a href="#tag-articles-html" class="headerlink" title="tag-articles.html"></a>tag-articles.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Tag.Title</td>
+<td>标签名称</td>
+</tr>
+<tr>
+<td>.Tag.ArticleCount</td>
+<td>标签文章数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tags-html"><a href="#tags-html" class="headerlink" title="tags.html"></a>tags.html</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.Tags</td>
+<td>标签列表</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Tags}}&#123;&#123;.URL}}&#123;&#123;end}}</td>
+<td>标签链接</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Tags}}&#123;&#123;.Title}}&#123;&#123;end}}</td>
+<td>标签标题</td>
+</tr>
+<tr>
+<td>&#123;&#123;range .Tags}}&#123;&#123;.ArticleCount}}&#123;&#123;end}}</td>
+<td>标签文章数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://github.com/b3log/pipe-themes" target="_blank" rel="noopener">https://github.com/b3log/pipe-themes</a></p>
+<h3 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h3><p><a href="https://pipe.hacpai.com" target="_blank" rel="noopener">https://pipe.hacpai.com</a></p>
+<h3 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h3><ul>
+<li><p>Gina <a href="https://github.com/b3log/pipe/blob/master/theme/x/Gina/thumbnail.jpg" target="_blank" rel="noopener">缩略图</a></p>
+</li>
+<li><p>Next <a href="https://github.com/b3log/pipe/blob/master/theme/x/Next/thumbnail.jpg" target="_blank" rel="noopener">缩略图</a></p>
+</li>
+<li><p>Koma <a href="https://github.com/b3log/pipe/blob/master/theme/x/Koma/thumbnail.jpg" target="_blank" rel="noopener">缩略图</a></p>
+</li>
+<li><p>Medium <a href="https://github.com/b3log/pipe/blob/master/theme/x/Medium/thumbnail.jpg" target="_blank" rel="noopener">缩略图</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/B3log/" rel="tag"># B3log</a>
+          
+            <a href="/blog/tags/Pipe/" rel="tag"># Pipe</a>
+          
+            <a href="/blog/tags/主题/" rel="tag"># 主题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj7l00tjxwrq3zo3znay/" rel="next" title="文章复制添加版权【更新 - fixed text/html bug】">
+                <i class="fa fa-chevron-left"></i> 文章复制添加版权【更新 - fixed text/html bug】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzilb0075xwrqmtp95fb1/" rel="prev" title="JS 查看三角套利（币币交易）是否有赚头">
+                JS 查看三角套利（币币交易）是否有赚头 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发步骤"><span class="nav-number">1.</span> <span class="nav-text">开发步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主题框架"><span class="nav-number">1.1.</span> <span class="nav-text">主题框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发说明"><span class="nav-number">1.2.</span> <span class="nav-text">开发说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">1.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板变量"><span class="nav-number">2.</span> <span class="nav-text">模板变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公共模板变量"><span class="nav-number">2.1.</span> <span class="nav-text">公共模板变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#archive-articles-html"><span class="nav-number">2.2.</span> <span class="nav-text">archive-articles.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#archives-html"><span class="nav-number">2.3.</span> <span class="nav-text">archives.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#article-html"><span class="nav-number">2.4.</span> <span class="nav-text">article.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#author-articles-html"><span class="nav-number">2.5.</span> <span class="nav-text">author-articles.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#authors-html"><span class="nav-number">2.6.</span> <span class="nav-text">authors.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#categories-articles-html"><span class="nav-number">2.7.</span> <span class="nav-text">categories-articles.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#categories-html"><span class="nav-number">2.8.</span> <span class="nav-text">categories.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#define-article-list-html"><span class="nav-number">2.9.</span> <span class="nav-text">define-article-list.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#define-module-list-html"><span class="nav-number">2.10.</span> <span class="nav-text">define-module-list.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tag-articles-html"><span class="nav-number">2.11.</span> <span class="nav-text">tag-articles.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tags-html"><span class="nav-number">2.12.</span> <span class="nav-text">tags.html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题"><span class="nav-number">3.</span> <span class="nav-text">主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载"><span class="nav-number">3.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#体验"><span class="nav-number">3.2.</span> <span class="nav-text">体验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预览"><span class="nav-number">3.3.</span> <span class="nav-text">预览</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

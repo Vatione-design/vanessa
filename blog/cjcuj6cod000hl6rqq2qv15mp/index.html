@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Seam," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者简介: Michael Yuan，技术专家，《JBossSeam: Simplicity and Power Beyond Java EE》、《Lightweight Java WebApplication Development》等书的作者，软件顾问，目前就职于JBoss。摘要: 本文介绍了JBoss Seam如何集成业务流程、使用iText和任务调度，并且总结了Seam编程模型中的关键要素">
+<meta name="keywords" content="Seam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JBoss Seam：一个深度集成框架》一文的最后一部分。">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuj6cod000hl6rqq2qv15mp/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者简介: Michael Yuan，技术专家，《JBossSeam: Simplicity and Power Beyond Java EE》、《Lightweight Java WebApplication Development》等书的作者，软件顾问，目前就职于JBoss。摘要: 本文介绍了JBoss Seam如何集成业务流程、使用iText和任务调度，并且总结了Seam编程模型中的关键要素">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T20:49:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JBoss Seam：一个深度集成框架》一文的最后一部分。">
+<meta name="twitter:description" content="作者简介: Michael Yuan，技术专家，《JBossSeam: Simplicity and Power Beyond Java EE》、《Lightweight Java WebApplication Development》等书的作者，软件顾问，目前就职于JBoss。摘要: 本文介绍了JBoss Seam如何集成业务流程、使用iText和任务调度，并且总结了Seam编程模型中的关键要素">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuj6cod000hl6rqq2qv15mp/"/>
+
+
+
+
+
+  <title>《JBoss Seam：一个深度集成框架》一文的最后一部分。 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuj6cod000hl6rqq2qv15mp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《JBoss Seam：一个深度集成框架》一文的最后一部分。</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-03-05T14:56:00+08:00">
+                2009-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>作者简介</strong><strong>: </strong>Michael Yuan，技术专家，《JBoss<br>Seam: Simplicity and Power Beyond Java EE》、《Lightweight Java Web<br>Application Development》等书的作者，软件顾问，目前就职于JBoss。</p><br><p><strong>摘要:</strong> 本文介绍了JBoss Seam如何集成业务流程、使用iText和任务调度，并且总结了Seam编程模型中的关键要素。</p><br><p>本文是《JBoss Seam：一个深度集成框架》一文的最后一部分。</p><br><h2>在Web应用中集成业务流程</h2><br><p>大部分企业级应用存在许多业务流程和规则。例如，在一个简单的电子商务网站（以&rdquo;在线购物&rdquo;为例）中，客户登录后进行购物流程，商店管理人员登录后<br>进行审批流程，仓库职员登录后进行发货流程。不同的人员站在不同的角度，去执行不同的任务，然而，他们又同时合作完成同一个业务场景。</p><br><p>在企业级应用中，业务分析人员通常定义业务流程和规则。他们使用专业的业务流程软件绘制这些流程和规则，然后应用开发人员实现这些设计。</p><br><p>然而，由于大部分Web应用框架没有集成流行的业务流程和规则引擎，开发人员只能通过自己的方式进行业务流程的整合。这样势必会造成开发人员和业务分析人员工作的脱节，使得业务分析人员很难去审核和验证。</p><br><p>Seam通过jBPM和JBoss Rules（以前的Drools）对业务流程和规则的整合提供了极好的支持。</p><br><p>在Seam应用中，你可以指定UI动作（例如按钮点击）来触发业务流程。你只需要通过@CreateProcess注解来标记UI事件处理方法。业<br>务流程是不同的用户以相应顺序来完成的一系列任务。你可以用@BeginTask和@EndTask标注任务的开始和结束。当前任务结束时，jBPM引擎<br>将自动把进程前移，进行下一个任务。</p><br><p><em>@Name(&rdquo;ticketSystem&rdquo;)</em></p><br><p><em>public class TicketSystemAction {</em></p><br><p><em>@CreateProcess(definition=&rdquo;TicketProcess&rdquo;)</em></p><br><p><em>public String newTicket() {</em></p><br><p><em>return &ldquo;home&rdquo;;</em></p><br><p><em>}</em></p><br><p><em>@BeginTask</em></p><br><p><em>public String reply() {</em></p><br><p><em>return &ldquo;reply&rdquo;;</em></p><br><p><em>}</em></p><br><p><em>@EndTask</em></p><br><p><em>public String sendAnswer() {</em></p><br><p><em>System.out.println(&rdquo;Answered&rdquo;);</em></p><br><p><em>return &ldquo;home&rdquo;;</em></p><br><p><em>}</em></p><br><p><em>}</em></p><br><p>Seam让每个用户可以查看他/她的当前任务列表以及完成任务的下一个动作。这些任务列表是基于当前登录的用户角色生成的，并且通过用户认证和授权的方式紧密地整合到Seam安全框架中。</p><br><p><em>&lt;h1&gt;Assigned Tickets - #{login.user.username}&lt;/h1&gt;</em></p><br><p><em>&lt;h:dataTable value=&rdquo;#{taskInstanceList}&rdquo; var=&rdquo;task&rdquo;&gt;</em></p><br><p><em>&lt;h:column&gt;#{task.description}&lt;/h:column&gt;</em></p><br><p><em>&lt;h:column&gt;Title: #{ticket.title}&lt;/h:column&gt;</em></p><br><p><em>&lt;h:column&gt;</em></p><br><p><em>&lt;h:commandLink action=&rdquo;#{ticketSystem.reply}&rdquo;&gt;</em></p><br><p><em>&lt;h:commandButton value=&rdquo;Reply&rdquo;/&gt;</em></p><br><p><em>&lt;f:param name=&rdquo;taskId&rdquo; value=&rdquo;#{task.id}&rdquo;/&gt;</em></p><br><p><em>&lt;/h:commandLink&gt;</em></p><br><p><em>&lt;/h:column&gt;</em></p><br><p><em>&lt;/h:dataTable&gt;</em></p><br><p>在整合jBPM/JBoss Rules的Seam应用中，开发人员可以直接使用Seam注解和组件驱动业务流程和规则引擎，而不需要单独掌握特定的jBPM和JBoss Rules的Java APIs。</p><br><h2>使用iText生成不同的视图</h2><br><p>iText库是一套被广泛用于生成PDF文档的开源Java库。然而，使用iText API创建PDF文档是十分耗时的（想想用DOM创建XML文档或者用Swing写UI的经历）。</p><br><p>Seam整洁地整合了iText、JSF和Facelets，开发人员可以通过和生成JSF页面一样简单的方式，将动态的内容生成PDF页面，你甚至可以在PDF页面中使用模板。</p><br><p>Seam为PDF元素创建了特殊的XHTML标记库，然后在生成页面的时候透明地调用iText。下面的示例显示了如何在Seam应用中，生成有数字签名支持的PDF页面。</p><br><p><em>&lt;p:document &hellip; title=&rdquo;Why Seam&rdquo; keywords=&rdquo;mykeyword&rdquo;</em></p><br><p><em>subject=&rdquo;seam&rdquo; author=&rdquo;Seam Team&rdquo; creator=&rdquo;Seam PDF example app&rdquo;&gt;</em></p><br><p><em>&lt;p:image alignment=&rdquo;right&rdquo; wrap=&rdquo;true&rdquo; value=&rdquo;/jboss.jpg&rdquo; /&gt;</em></p><br><p><em>&lt;p:font size=&rdquo;24&Prime;&gt;&lt;p:paragraph spacingBefore=&rdquo;16&Prime; spacingAfter=&rdquo;40&Prime;&gt;</em></p><br><p><em>Order #{currentOrder.orderId}</em></p><br><p><em>&lt;/p:paragraph&gt;&lt;/p:font&gt;</em></p><br><p><em>&lt;p:paragraph&gt;Dear #{currentOrder.customerName},&lt;/p:paragraph&gt;</em></p><br><p><em>&lt;p:paragraph&gt;&hellip; &lt;/p:paragraph&gt;</em></p><br><p><em>&lt;p:barCode type=&rdquo;code128&Prime; code=&rdquo;My BarCode&rdquo; /&gt;</em></p><br><p><em>&lt;p:signature field=&rdquo;My Signature&rdquo; size=&rdquo;200 200 400 400&Prime; /&gt;</em></p><br><p><em>&lt;/p:document&gt;</em></p><br><p>通过代码，我们可以看到整合是无缝的，页面不依赖于iText。实际上，将iText替换成其他的商业PDF库，页面仍然可以工作，这就是Seam整合的魅力。</p><br><h2>高级任务调度程序</h2><br><p>在许多企业级应用中，对自动重复任务的支持是相当重要的。在标准的EJB中，你可以使用EJB Timer API在固定的时间间隔内调度重复的事件。然而，在实际的应用中，我们需要比固定的时间间隔触发更高级的调度服务。</p><br><p>目前流行的开源Java调度库是Quartz库。但是如果要使用Quartz的话，开发人员仍需要自己写&rdquo;胶水&rdquo;代码来整合Quartz特定的APIs和对象模型。</p><br><p>Seam整合了Quartz，用于调度异步重复任务。你只需要在重复工作的方法上添加@Asynchronous注解。你可以传入任务的开始/结束<br>时间、间隔或者克龙表达式(cron<br>string)的字符串作为参数，也可以在方法定义中注解这些特定目的的参数。指定的方法将返回QuartzTriggerHandler对象，你可以稍<br>后使用这个QuartzTriggerHandler对象暂停或取消任务，你也可以将这个QuartzTriggerHandler对象保存到数据库，以<br>供稍后使用。</p><br><p><em>@Asynchronous</em></p><br><p><em>public QuartzTriggerHandle schedulePayment(</em></p><br><p><em>@Expiration Date when,</em></p><br><p><em>@IntervalCron String cron,</em></p><br><p><em>@FinalExpiration Date stoptime</em></p><br><p><em>&hellip; any other call parameters &hellip;) {</em></p><br><p><em>// do the repeating or long running task</em></p><br><p><em>}</em></p><br><p>下面的例子中，schedulePayment()方法设定在下午2点10分和三月每个星期三的下午2点44分运行。你可以在Web UI事件处理方法中加入这段调用的代码，这样当按钮按下时，重复事件将被安排到调度程序中。</p><br><p><em>QuartzTriggerHandle handle =</em></p><br><p><em>processor.schedulePayment(payment.getPaymentDate(),</em></p><br><p><em>&ldquo;0 10,44 14 ? 3 WED&rdquo;,</em></p><br><p><em>payment.getPaymentEndDate(),</em></p><br><p><em>payment);</em></p><br><p><em>payment.setQuartzTriggerHandle( handle );</em></p><br><p><em>// Save payment to DB</em></p><br><p><em>// later &hellip;</em></p><br><p><em>// Retrieve payment from DB</em></p><br><p><em>// Cancel the remaining scheduled tasks</em></p><br><p><em>payment.getQuartzTriggerHandle().cancel();</em></p><br><p>从例子可以看出，开发人员不需要手动启动Quartz调度程序、创建Quartz触发器和任务，而只需要使用Seam注解POJOs就可以了。</p><br><h2>统一的编程模型</h2><br><p>目前为止，我们已经介绍了很多Seam通过一致的编程模型整合不同框架的例子。除了上面介绍的这些，还有许多其他的框架。但是限于篇幅，我们不可能介绍所有的框架。下面我们将总结一下Seam整合这些框架的方法。Seam编程模型中关键的三要素是：</p><br><p><strong>注解POJOs</strong>：Seam应用中所有的Java组件都是注解的POJO类。Seam通过双向依赖注入管理它们之间的交互。除此之外，Seam中没有其他的组件模型。</p><br><p><strong>XHTML</strong><strong>显示页面</strong>：所有视图(UI)页面都是通过XHTML文件显示出来，除去标准JSF标签，Seam还定义了许多自己的UI标签，包括PDF UI标签等。Seam同时也加入了Ajax JSF库，比如Ajax4jsf、RichFaces和IceFaces。</p><br><p><strong>表达式语言</strong>：XHTML页面通过JSF表达式语言(EL)引用Seam中的Java组件。Seam增强了标准的EL语法，使它支持方法参数等，并且使EL可以用于所有的XML配置文件和测试脚本。</p><br><p>有了这些Cool的特性，Seam的编程模型将变成异常简便。只要有一些JSF基础，你的学习曲线将非常平坦。</p><br><p>下载Seam，看看实例，快乐地编写Seam代码，一切就这样简单！</p><br><p>&nbsp;</p><br><p>转自：<a href="http://www.dojochina.com/index.php?q=blog/8377" target="_blank" rel="noopener">http://www.dojochina.com/index.php?q=blog/8377</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Seam/" rel="tag"># Seam</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzifr0011xwrqzrmcmkdv/" rel="next" title="CIO：老IT系统是改造还是替换">
+                <i class="fa fa-chevron-left"></i> CIO：老IT系统是改造还是替换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzjhw01a5xwrq0c4o4mxo/" rel="prev" title="jsf组件 -1">
+                jsf组件 -1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">在Web应用中集成业务流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">使用iText生成不同的视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">高级任务调度程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">统一的编程模型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

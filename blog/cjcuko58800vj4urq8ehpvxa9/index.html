@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript是一种垃圾收集式语言，这就是说，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。JavaScript的垃圾收集机制本身并没有问题，但浏览器在为 DOM 对象分配和恢复内存的方式上却有些出入。Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM对象处理内存。在引用计数系统，每个所引用的对象都会保留一个计数，">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js内存泄露问题">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko58800vj4urq8ehpvxa9/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="JavaScript是一种垃圾收集式语言，这就是说，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。JavaScript的垃圾收集机制本身并没有问题，但浏览器在为 DOM 对象分配和恢复内存的方式上却有些出入。Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM对象处理内存。在引用计数系统，每个所引用的对象都会保留一个计数，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T08:27:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js内存泄露问题">
+<meta name="twitter:description" content="JavaScript是一种垃圾收集式语言，这就是说，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。JavaScript的垃圾收集机制本身并没有问题，但浏览器在为 DOM 对象分配和恢复内存的方式上却有些出入。Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM对象处理内存。在引用计数系统，每个所引用的对象都会保留一个计数，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko58800vj4urq8ehpvxa9/"/>
+
+
+
+
+
+  <title>js内存泄露问题 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko58800vj4urq8ehpvxa9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js内存泄露问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-06-04T03:11:00+08:00">
+                2010-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="blog_content"><br><div class="we_630_des_con"><br><p><a name="N1007C"><br></a><br></p><br><p>JavaScript<br>是一种垃圾收集式语言，这就是说，内存是根据对象的创建分配给该对象的，并会在没有对该对象的引用时由浏览器收回。JavaScript<br>的垃圾收集机制本身并没有问题，但浏览器在为 DOM 对象分配和恢复内存的方式上却有些出入。</p><br><p>Internet Explorer 和 Mozilla Firefox 均使用引用计数来为 DOM<br>对象处理内存。在引用计数系统，每个所引用的对象都会保留一个计数，以获悉有多少对象正在引用它。如果计数为零，该对象就会被销毁，其占用的内存也会返回<br>给堆。虽然这种解决方案总的来说还算有效，但在循环引用方面却存在一些盲点。</p><br><p>&nbsp;</p><br><p><a name="N10088"><span class="smalltitle"><strong><span style="font-size: small;">循环引用的问题何在？</span><br></strong><br></span><br></a><br></p><br><p>当两个对象互相引用时，就构成了循环引用，其中每个对象的引用计数值都被赋<br>1。在纯垃圾收集系统中，循环引用问题不大：若涉及到的两个对象中的一个对象被任何其他对象引用，那么这两个对象都将被垃圾收集。而在引用计数系统，这两<br>个对象都不能被销毁，原因是引用计数永远不能为零。在同时使用了垃圾收集和引用计数的混合系统中，将会发生泄漏，因为系统不能正确识别循环引用。在这种情<br>况下，DOM 对象和 JavaScript 对象均不能被销毁。清单 1 显示了在 JavaScript 对象和 DOM<br>对象间存在的一个循环引用。</p><br><p>&nbsp;</p><br><p><a name="listing1"><strong>清单 1. 循环引用导致了内存泄漏</strong><br></a><br></p><br>&nbsp;<br><pre name="code" class="brush:java;" cols="50" rows="15">&lt;html&gt;<br>    &lt;body&gt;<br>        &lt;mce:script type=&quot;text/javascript&quot;&gt;&lt;!–<br>         document.write(&quot;circular references between JavaScript and DOM!&quot;);<br>         var obj;<br>         window.onload = function(){<br>            obj=document.getElementById(&quot;DivElement&quot;);<br>       document.getElementById(&quot;DivElement&quot;).expandoProperty=obj;<br>       obj.bigString=new Array(1000).join(new Array(2000).join(&quot;XXXXX&quot;));<br>                };<br><br>// –&gt;&lt;/mce:script&gt;<br>        &lt;div id=&quot;DivElement&quot;&gt;Div Element&lt;/div&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;</pre><br>&nbsp;<br><p>如上述清单中所示，JavaScript 对象 <code><span>obj</span><br></code><br> 拥有到 DOM 对象的引用，表示为 <code><span>DivElement</span><br></code><br>。而 DOM 对象则有到此 JavaScript 对象的引用，由 <code><span>expandoProperty</span><br></code><br> 表示。可见，JavaScript 对象和 DOM 对象间就产生了一个循环引用。由于 DOM<br>对象是通过引用计数管理的，所以两个对象将都不能销毁。</p><br><p>&nbsp;</p><br><p><a name="N100AA"><span class="smalltitle"><strong><span style="font-size: small;">另一种内存泄漏模式</span><br></strong><br></span><br></a><br></p><br><p>在清单 2 中，通过调用外部函数 <code><span>myFunction</span><br></code><br> 创建循环引用。同样，JavaScript 对象和 DOM 对象间的循环引用也会导致内存泄漏。</p><br><p>&nbsp;</p><br><p><a name="listing2"><strong>清单 2. 由外部函数调用引起的内存泄漏</strong><br></a><br></p><br><p><strong><pre name="code" class="brush:java;" cols="50" rows="15">&lt;html&gt;<br>    &lt;head&gt;<br>    &lt;mce:script type=&quot;text/javascript&quot;&gt;&lt;!–<br>    document.write(&quot; object s between JavaScript and DOM!&quot;);<br>    function myFunction(element){<br>        this.elementReference = element;<br>        // This code forms a circular reference here<br>        //by DOM–&gt;JS–&gt;DOM<br>        element.expandoProperty = this;<br>    }<br>    function Leak() {<br>        //This code will leak<br>        new myFunction(document.getElementById(&quot;myDiv&quot;));<br>    }<br><br>// –&gt;&lt;/mce:script&gt;<br>    &lt;/head&gt;<br>    &lt;body onload=&quot;Leak()&quot;&gt;<br>    &lt;div id=&quot;myDiv&quot;&gt;&lt;/div&gt;<br>    &lt;/body&gt;<br>    &lt;/html&gt;</pre><br> </strong><br></p><br><p><strong><br><br></strong><br></p><br><p>正如这两个代码示例所示，循环引用很容易创建。在 JavaScript 最为方便的编程结构之一：闭包中，循环引用尤其突出。</p><br><p>&nbsp;</p><br><p><strong><a name="N100C7"><span class="atitle">JavaScript 中的闭包</span><br></a><br></strong><br></p><br><p>JavaScript 的过人之处在于它允许函数嵌套。一个嵌套的内部函数可以继承外部函数的参数和变量，并由该外部函数私有。清单 3<br>显示了内部函数的一个示例。</p><br><p><br><br><a name="listing3"><strong>清单 3. 一个内部函数</strong><br></a><br></p><br><p><strong><pre name="code" class="brush:java;" cols="50" rows="15">    function parentFunction(paramA)<br>    {<br>            var a = paramA;<br>            function childFunction()<br>            {<br>            return a + 2;<br>            }<br>            return childFunction();<br>    }</pre><br> </strong><br></p><br><p><strong><br><br></strong><br></p><br><p>JavaScript 开发人员使用内部函数来在其他函数中集成小型的实用函数。如清单 3 所示，此内部函数 <code><span>childFunction</span><br></code><br> 可以访问外部函数 <code><span>parentFunction</span><br></code><br> 的变量。当内部函数获得和使用其外部函数的变量时，就称其为一个<em>闭包</em><br>。</p><br><p><a name="N100E8"><span class="smalltitle"><strong><span style="font-size: small;">了解闭包</span><br></strong><br></span><br></a><br></p><br><p>考虑如清单 4 所示的代码片段。</p><br><p><br><br><a name="listing4"><strong>清单 4. 一个简单的闭包</strong><br></a><br></p><br><p><strong><pre name="code" class="brush:java;" cols="50" rows="15">&lt;html&gt;<br>    &lt;body&gt;<br>    &lt;mce:script type=&quot;text/javascript&quot;&gt;&lt;!–<br>    document.write(&quot;Closure Demo!!&quot;);<br>    window.onload=<br>    function  closureDemoParentFunction(paramA)<br>    {<br>           var a = paramA;<br>           return function closureDemoInnerFunction (paramB)<br>           {<br>                 alert( a +&quot; &quot;+ paramB);<br>           };<br>    };<br>    var x = closureDemoParentFunction(&quot;outer x&quot;);<br>    x(&quot;inner x&quot;);<br><br>// –&gt;&lt;/mce:script&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;</pre><br> </strong><br></p><br><p><strong><br><br></strong><br></p><br><p>在上述清单中，<code><span>closureDemoInnerFunction</span><br></code><br> 是在父函数 <code><span>closureDemoParentFunction</span><br></code><br> 中定义的内部函数。当用<em>外部的 x</em><br> 对 <code><span>closureDemoParentFunction</span><br></code><br> 进行调用时，外部函数变量 <em>a</em><br> 就会被赋值为<em>外部的 x</em><br>。函数会返回指向内部函数 <code><span>closureDemoInnerFunction</span><br></code><br> 的指针，该指针包括在变量 <em>x</em><br> 内。</p><br><p>外部函数 <code><span>closureDemoParentFunction</span><br></code><br> 的本地变量 <em>a</em><br> 即使在外部函数返回时仍会存在。这一点不同于 C/C++ 这样的编程语言，在 C/C++ 中，一旦函数返回，本地变量也将不复存在。在<br>JavaScript 中，在调用 <code><span>closureDemoParentFunction</span><br></code><br> 的时候，带有属性 <em>a</em><br> 的范围对象将会被创建。该属性包括值 <em>paramA</em><br>，又称为<em>&ldquo;外部 x&rdquo;</em><br>。同样地，当 <code><span>closureDemoParentFunction</span><br></code><br> 返回时，它将会返回内部函数 <code><span>closureDemoInnerFunction</span><br></code><br>，该函数包括在变量 <em>x</em><br> 中。</p><br><p>由于内部函数持有到外部函数的变量的引用，所以这个带属性 <em>a</em><br> 的范围对象将不会被垃圾收集。当对具有参数值 <em>inner x</em><br> 的 <em>x</em><br> 进行调用时，即 <code><span>x(&quot;inner x&quot;)</span><br></code><br>，将会弹出警告消息，表明 &ldquo;<em>outer x innerx</em><br>&rdquo;。</p><br><p><a href="http://www.ibm.com/developerworks/cn/web/wa-memleak/#listing4" target="_blank" rel="noopener"><span style="color: #996699;">清单 4</span><br></a><br> 简要解释了 JavaScript<br>闭包。闭包功能非常强大，原因是它们使内部函数在外部函数返回时也仍然可以保留对此外部函数的变量的访问。不幸的是，闭包非常易于隐藏<br>JavaScript 对象 和 DOM 对象间的循环引用。</p><br><p>&nbsp;</p><br><p><strong><a name="N10156"><span class="atitle">闭包和循环引用</span><br></a><br></strong><br></p><br><p>在清单 5 中，JavaScript 对象（<code><span>obj</span><br></code><br>）包含到 DOM 对象的引用（通过 id <code><span>&quot;element&quot;</span><br></code><br> 被引用）。而 DOM 元素则拥有到 JavaScript <code><span>obj</span><br></code><br> 的引用。这样建立起来的 JavaScript 对象和 DOM 对象间的循环引用将会导致内存泄漏。</p><br><p><br><br><a name="listing5"><strong>清单 5. 由事件处理引起的内存泄漏模式</strong><br></a><br></p><br><p><strong><pre name="code" class="brush:java;" cols="50" rows="15">&lt;html&gt;<br>    &lt;body&gt;<br>    &lt;mce:script type=&quot;text/javascript&quot;&gt;&lt;!–<br>    document.write(&quot;Program to illustrate memory leak via closure&quot;);<br>    window.onload=function outerFunction(){<br>        var obj = document.getElementById(&quot;element&quot;);<br>        obj.onclick=function innerFunction(){<br>        alert(&quot;Hi! I will leak&quot;);<br>        };<br>        obj.bigString=new Array(1000).join(new Array(2000).join(&quot;XXXXX&quot;));<br>        // This is used to make the leak significant<br>    };<br><br>// –&gt;&lt;/mce:script&gt;<br>    &lt;button id=&quot;element&quot;&gt;Click Me&lt;/button&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;</pre><br> </strong><br></p><br><p><strong><br><br></strong><br></p><br><p><strong><a name="N10175"><span class="atitle">避免内存泄漏</span><br></a><br></strong><br></p><br><p>幸好，JavaScript<br>中的内存泄漏是可以避免的。当确定了可导致循环引用的模式之后，正如我们在上述章节中所做的那样，您就可以开始着手应对这些模式了。这里，我们将以上述的<br> <a href="http://www.ibm.com/developerworks/cn/web/wa-memleak/#listing5" target="_blank" rel="noopener"><span style="color: #996699;">由事件处理引起的内存泄漏模式</span><br></a><br> 为例来展示三种应对已知内存泄漏的方式。</p><br><p>一种应对 <a href="http://www.ibm.com/developerworks/cn/web/wa-memleak/#listing5" target="_blank" rel="noopener"><span style="color: #996699;">清单 5</span><br></a><br> 中的内存泄漏的解决方案是让此 JavaScript 对象 <code><span>obj</span><br></code><br> 为空，这会显式地打破此循环引用，如清单 6 所示。</p><br><p><br><br><a name="listing6"><strong>清单 6. 打破循环引用</strong><br></a><br></p><br><p><strong><pre name="code" class="brush:java;" cols="50" rows="15">&lt;html&gt;<br>    &lt;body&gt;<br>    &lt;mce:script type=&quot;text/javascript&quot;&gt;&lt;!–<br>    document.write(&quot;Avoiding memory leak via closure by breaking the circular<br>    reference&quot;);<br>        window.onload=function outerFunction(){<br>        var obj = document.getElementById(&quot;element&quot;);<br>        obj.onclick=function innerFunction()<br>        {<br>            alert(&quot;Hi! I have avoided the leak&quot;);<br>            // Some logic here<br>        };<br>        obj.bigString=new Array(1000).join(new Array(2000).join(&quot;XXXXX&quot;));<br>        obj = null; //This breaks the circular reference<br>        };<br><br>// –&gt;&lt;/mce:script&gt;<br>    &lt;button id=&quot;element&quot;&gt;&quot;Click Here&quot;&lt;/button&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;</pre><br> </strong><br></p><br><p><strong><br><br></strong><br></p><br><p>清单 7 是通过添加另一个闭包来避免 JavaScript 对象和 DOM 对象间的循环引用。</p><br><p><br><br><a name="listing7"><strong>清单 7. 添加另一个闭包</strong><br></a><br></p><br><p><strong><pre name="code" class="brush:java;" cols="50" rows="15">&lt;html&gt;<br>    &lt;body&gt;<br>    &lt;mce:script type=&quot;text/javascript&quot;&gt;&lt;!–<br>    document.write(&quot;Avoiding a memory leak by adding another closure&quot;);<br>     window.onload=function outerFunction(){<br>    var anotherObj = function innerFunction()<br>             {<br>                // Some logic here<br>                alert(&quot;Hi! I have avoided the leak&quot;);<br>               };<br>         (function anotherInnerFunction(){<br>            var obj =  document.getElementById(&quot;element&quot;);<br>            obj.onclick=anotherObj })();<br>            };<br><br>// –&gt;&lt;/mce:script&gt;<br>    &lt;button id=&quot;element&quot;&gt;&quot;Click Here&quot;&lt;/button&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;</pre><br> </strong><br></p><br><p><strong><br><br></strong><br></p><br><p>清单 8 则通过添加另一个函数来避免闭包本身，进而阻止了泄漏。</p><br><p><br><br><a name="listing8"><strong>清单 8. 避免闭包自身</strong><br></a><br></p><br><p><pre name="code" class="brush:java;" cols="50" rows="15">&lt;html&gt;<br>    &lt;head&gt;<br>    &lt;mce:script type=&quot;text/javascript&quot;&gt;&lt;!–<br>    document.write(&quot;Avoid leaks by avoiding closures!&quot;);<br>    window.onload=function()<br>    {<br>        var obj = document.getElementById(&quot;element&quot;);<br>        obj.onclick = doesNotLeak;<br>    }<br>    function doesNotLeak()<br>    {<br>        //Your Logic here<br>        alert(&quot;Hi! I have avoided the leak&quot;);<br>    }<br><br>// –&gt;&lt;/mce:script&gt;<br>    &lt;/head&gt;<br>    &lt;body&gt;<br>    &lt;button id=&quot;element&quot;&gt;&quot;Click Here&quot;&lt;/button&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;</pre><br></p><br><p><strong><br><br></strong><br></p><br><p><a name="N101BA"><span class="atitle">结束语</span><br></a><br></p><br><p>本文解释了循环引用是如何导致 JavaScript 中的内存泄漏的 &mdash;&mdash;<br>尤其是在结合了闭包的情况下。您还了解了涉及到循环引用的一些常见内存泄漏模式以及应对这些泄漏模式的几种简单方式</p><br></div><br></div><br><div class="attachments"><br><br><br><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/10718583-8e51-31c9-9b18-b00a71b143f8" target="_blank" rel="noopener">Drip-0.5.rar</a><br> (135.3 KB)</li><br></ul><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/ac9e9923-1c95-3d4f-aa7c-0c3c6e0ffe11" target="_blank" rel="noopener">sIEve-0.0.8.exe.zip</a><br> (195.4 KB)</li><br></ul><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/5090e88f-69d6-30a7-a537-98963447a69b" target="_blank" rel="noopener">test_ie.html.zip</a><br> (1.4 KB)</li><br></ul><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/0446e6b1-9649-3caa-9bce-573f457c957b" target="_blank" rel="noopener">extpatch.rar</a><br> (562.3 KB)</li><br></ul><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/e0f775a7-88d7-3435-bc38-2e03e7db22b1" target="_blank" rel="noopener">Understanding_and_Solving_Internet_Explorer_Leak_Patterns.rar</a><br> (43 KB)</li><br></ul><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/d3606b43-8d21-32b0-a233-40ae910d109c" target="_blank" rel="noopener">理<br>解并解决IE的内存泄漏方式.rar</a><br> (23.1 KB)</li><br></ul><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/13d0b4de-fc9d-3dda-ac40-9c205842fdc6" target="_blank" rel="noopener">JSLeaksDetector.msi.zip</a><br> (216.6 KB)</li><br></ul><br><ul><br><li><a href="http://dl.javaeye.com/topics/download/f019c9e7-1327-3a9d-b3be-6dab9ad34356" target="_blank" rel="noopener">winleak_1.1.3.zip</a><br> (22.6 KB)</li><br></ul><br>转自：<a href="http://wv1124.javaeye.com/blog/524896" target="_blank" rel="noopener">http://wv1124.javaeye.com/blog/524896</a></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4qy00154urqk56xnejx/" rel="next" title="14 Rules for Faster-Loading Web Sites 详解">
+                <i class="fa fa-chevron-left"></i> 14 Rules for Faster-Loading Web Sites 详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5vj01z84urqqt8055be/" rel="prev" title="前端优化方案-CSS 优化方案">
+                前端优化方案-CSS 优化方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

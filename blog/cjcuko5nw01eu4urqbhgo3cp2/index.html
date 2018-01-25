@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这里所谓终极，是指公司有新的任务了，而且很紧迫，这个就没时间弄了。经测试可以在任何浏览器中实现。HOHO！！！&amp;nbsp;功能参见http://blog.csdn.net/Vanessa219/archive/2009/04/27/">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="终极版image缩放，旋转，拖拽">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5nw01eu4urqbhgo3cp2/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这里所谓终极，是指公司有新的任务了，而且很紧迫，这个就没时间弄了。经测试可以在任何浏览器中实现。HOHO！！！&amp;nbsp;功能参见http://blog.csdn.net/Vanessa219/archive/2009/04/27/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://2.bp.blogspot.com/_cpAysU-3LSM/SgPe4pamAFI/AAAAAAAAALE/EGFRSrK2goM/s320/QQ%E6%88%AA%E5%9B%BE%E6%9C%AA%E5%91%BD%E5%90%8D.bmp">
+<meta property="og:updated_time" content="2018-01-19T01:06:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="终极版image缩放，旋转，拖拽">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这里所谓终极，是指公司有新的任务了，而且很紧迫，这个就没时间弄了。经测试可以在任何浏览器中实现。HOHO！！！&amp;nbsp;功能参见http://blog.csdn.net/Vanessa219/archive/2009/04/27/">
+<meta name="twitter:image" content="http://2.bp.blogspot.com/_cpAysU-3LSM/SgPe4pamAFI/AAAAAAAAALE/EGFRSrK2goM/s320/QQ%E6%88%AA%E5%9B%BE%E6%9C%AA%E5%91%BD%E5%90%8D.bmp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5nw01eu4urqbhgo3cp2/"/>
+
+
+
+
+
+  <title>终极版image缩放，旋转，拖拽 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5nw01eu4urqbhgo3cp2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">终极版image缩放，旋转，拖拽</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-05-09T07:21:00+08:00">
+                2009-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://2.bp.blogspot.com/_cpAysU-3LSM/SgPe4pamAFI/AAAAAAAAALE/EGFRSrK2goM/s1600-h/QQ%E6%88%AA%E5%9B%BE%E6%9C%AA%E5%91%BD%E5%90%8D.bmp" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" target="_blank" rel="noopener"><img id="BLOGGER_PHOTO_ID_5333351448508235858" style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px; height: 170px;" src="http://2.bp.blogspot.com/_cpAysU-3LSM/SgPe4pamAFI/AAAAAAAAALE/EGFRSrK2goM/s320/QQ%E6%88%AA%E5%9B%BE%E6%9C%AA%E5%91%BD%E5%90%8D.bmp" border="0" alt=""></a></p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>这里所谓终极，是指公司有新的任务了，而且很紧迫，这个就没时间弄了。经测试可以在任何浏览器中实现。HOHO！！！</p><br><p>&nbsp;</p><br><p>功能参见<a href="http://blog.csdn.net/Vanessa219/archive/2009/04/27/4130250.aspx" target="_blank" rel="noopener">http://blog.csdn.net/Vanessa219/archive/2009/04/27/4130250.aspx</a></p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>index.html</p><br><p>&nbsp;</p><br><p><pre name="code" class="brush:java;" cols="50" rows="15">&lt;iframe width=”50%” height=”50%” src=”image.html” mce_src=”image.html”&gt;&lt;/iframe&gt;</pre>&nbsp;</p><br><p>&nbsp;</p><br><p>image.xhtml</p><br><p><pre name="code" class="brush:java;" cols="50" rows="15">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>    &lt;head&gt;<br>        &lt;!–link type=”text/css” href=”<a href="http://jqueryui.com/latest/themes/base/ui.all.css" target="_blank" rel="noopener">http://jqueryui.com/latest/themes/base/ui.all.css</a>“ rel=”stylesheet” /–&gt;<br>        &lt;link type=”text/css” href=”style/resize.css” mce_href=”style/resize.css” rel=”stylesheet” /&gt;<br>        &lt;mce:script type=”text/javascript” src=”resources/jquery.min.js” mce_src=”resources/jquery.min.js”&gt;&lt;/mce:script&gt;<br>        &lt;mce:script type=”text/javascript” src=”resources/ui.core.js” mce_src=”resources/ui.core.js”&gt;&lt;/mce:script&gt;<br>        &lt;mce:script type=”text/javascript” src=”resources/ui.resizable.js” mce_src=”resources/ui.resizable.js”&gt;&lt;/mce:script&gt;<br>        &lt;mce:script type=”text/javascript” src=”resources/ui.draggable.js” mce_src=”resources/ui.draggable.js”&gt;&lt;/mce:script&gt;<br>        &lt;mce:script type=”text/javascript” src=”resources/raphael.js” mce_src=”resources/raphael.js”&gt;&lt;/mce:script&gt;<br>        &lt;mce:script type=”text/javascript” src=”resources/image.js” mce_src=”resources/image.js”&gt;&lt;/mce:script&gt;<br>        &lt;mce:script type=”text/javascript”&gt;&lt;!–<br>            $(document).ready(function(){<br>                $(“#image_canvas”).resizable().draggable();<br>                $(“#ok”).click(function(){<br>                    $(“#image_canvas”).paint(“./image/GG.bmp”,$(“#image_canvas”).width(), $(“#image_canvas”).height(),$(“#angle”).val(),$(“#img_property”).val());<br>                });<br>            });<br><br>// –&gt;&lt;/mce:script&gt;<br>    &lt;/head&gt;<br>    &lt;body&gt;<br>        angle of rotation:<br>        &lt;input id=”angle” type=”text” value=”0”/&gt;<br>        &lt;select name=”img_property” id=”img_property”&gt;<br>            &lt;option value=”customize”&gt;customize&lt;/option&gt;<br>            &lt;option value=”actual size”&gt;actual size&lt;/option&gt;<br>            &lt;option value=”fit width”&gt;fit width&lt;/option&gt;<br>            &lt;option value=”fit height”&gt;fit height&lt;/option&gt;<br>            &lt;option value=”fit image”&gt;fit image&lt;/option&gt;<br>        &lt;/select&gt;<br>        &lt;input id=”ok” type=”button” value=”OK”&gt;<br>        &lt;div id=”image_canvas” style=”height:100px;width:200px;background-color:#888888”&gt;&lt;/div&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;<br></pre></p><br><p>&nbsp;</p><br><p>image.js</p><br><p><pre name="code" class="brush:java;" cols="50" rows="15">jQuery.fn.paint = function(source, canvas_width, canvas_height, angle, img_property){<br>    $(“svg”).remove();<br>    $(“#image_canvas”).find(“div”).each(function(i) {<br>        if(i==0){<br>            $(this).html(“”);<br>        }<br>    });<br>    var r_image = new Image();<br>    r_image.src = source;<br>    var image_width = r_image.width,<br>    image_height = r_image.height,<br>    r_ration = image_width/image_height,<br>    ration = canvas_width/canvas_height;<br>    if(img_property == “customize”){<br>        var paper = Raphael(“image_canvas”, canvas_width, canvas_height),<br>        image = paper.image(source, 0, 0, canvas_width, canvas_height);<br>    }else if(img_property == “actual size”){<br>        var paper = Raphael(“image_canvas”, canvas_width, canvas_height),<br>        image = paper.image(source, 0, 0, image_width, image_height);<br>    }else if(img_property==”fit image”){<br>        var paper = Raphael(“image_canvas”, canvas_width, canvas_height);<br>        if(r_ration &gt; ration){<br>            var image = paper.image(source, 0, 0, canvas_width, canvas_width/r_ration);<br>        }else{<br>            var image = paper.image(source, 0, 0, canvas_height <em> r_ration, canvas_height);<br>        }<br>    }else if(img_property == “fit height”){<br>        var paper = Raphael(“image_canvas”, canvas_width, canvas_height),<br>        image = paper.image(source, 0, 0, canvas_height </em> r_ration, canvas_height);<br>    }else{<br>        var paper = Raphael(“image_canvas”, canvas_width, canvas_height),<br>        image = paper.image(source, 0, 0, canvas_width, canvas_width/r_ration);<br>    };<br>    image.rotate(angle);<br>};</pre> </p><br><p>&nbsp;</p><br><p>resize.css</p><br><p><pre name="code" class="brush:java;" cols="50" rows="15">/<em><br>Document   : ui.all<br>Created on : 2009-5-5, 11:01:04<br>Author     : liyuan.li<br>Description:<br>Purpose of the stylesheet follows.
+</em>/<br>/<em><br>TODO customize this sample style<br>Syntax recommendation <a href="http://www.w3.org/TR/REC-CSS2/" target="_blank" rel="noopener">http://www.w3.org/TR/REC-CSS2/</a>
+</em>/<br>.ui-resizable { position: relative;}<br>.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}<br>.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }<br>.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0px; }<br>.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0px; }<br>.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0px; height: 100%; }<br>.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0px; height: 100%; }<br>.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }<br>.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }<br>.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }<br>.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}</pre> </p><br><p>&nbsp;</p><br><p>其余的js代码可以jquery和raphael上找到，这里不再贴出。</p><br><p>&nbsp;</p><br><p>下个星期一就要开始做wizard，都不知道具体要求和技术，还是老大亲自带，惨啊。。。。</p><br><p>&nbsp;</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4w600bl4urq8zklzdpo/" rel="next" title="IE和Firefox之间的JavaScript差异">
+                <i class="fa fa-chevron-left"></i> IE和Firefox之间的JavaScript差异
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5mw01dr4urqcd6d6vmq/" rel="prev" title="界面需求分析方法-用户为中心的体验 UCD">
+                界面需求分析方法-用户为中心的体验 UCD <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

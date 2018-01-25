@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Code,OpenSource,B3log,GAE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="GAE 博客 &amp;mdash;&amp;mdash;&amp;nbsp;B3LOG Solo 0.4.0 将于 2 月 19 日发布！这是 0.4.0 的正式版，主要是加入了移动皮肤支持，并修复了一些 Bugs。&amp;nbsp;b3log.org 二级域名由于网络原因，是不能直接访问 GAE 提供的二级域名（*.appspot.com）的。部署了 Solo 的同学可以邮件至 DL88250#gmail.com">
+<meta name="keywords" content="Code,OpenSource,B3log,GAE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAE 博客 —— B3LOG Solo 0.4.0 将于 2 月 19 日发布！">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4uq008b4urq7bgoy2yz/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="GAE 博客 &amp;mdash;&amp;mdash;&amp;nbsp;B3LOG Solo 0.4.0 将于 2 月 19 日发布！这是 0.4.0 的正式版，主要是加入了移动皮肤支持，并修复了一些 Bugs。&amp;nbsp;b3log.org 二级域名由于网络原因，是不能直接访问 GAE 提供的二级域名（*.appspot.com）的。部署了 Solo 的同学可以邮件至 DL88250#gmail.com">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://code.google.com/p/b3log-solo/logo?cct=1287802701">
+<meta property="og:image" content="http://vanessa.b3log.org/images/alipay-me.png">
+<meta property="og:updated_time" content="2018-01-24T20:44:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GAE 博客 —— B3LOG Solo 0.4.0 将于 2 月 19 日发布！">
+<meta name="twitter:description" content="GAE 博客 &amp;mdash;&amp;mdash;&amp;nbsp;B3LOG Solo 0.4.0 将于 2 月 19 日发布！这是 0.4.0 的正式版，主要是加入了移动皮肤支持，并修复了一些 Bugs。&amp;nbsp;b3log.org 二级域名由于网络原因，是不能直接访问 GAE 提供的二级域名（*.appspot.com）的。部署了 Solo 的同学可以邮件至 DL88250#gmail.com">
+<meta name="twitter:image" content="http://code.google.com/p/b3log-solo/logo?cct=1287802701">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4uq008b4urq7bgoy2yz/"/>
+
+
+
+
+
+  <title>GAE 博客 —— B3LOG Solo 0.4.0 将于 2 月 19 日发布！ | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4uq008b4urq7bgoy2yz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GAE 博客 —— B3LOG Solo 0.4.0 将于 2 月 19 日发布！</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-01-31T19:09:38+08:00">
+                2012-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><div class="article-body"></div></p>
+<p><div class="article-abstract"></div></p>
+<p><div class="article-body"></div></p>
+<p><div class="article-abstract"></div></p>
+<p><img style="float: left;" src="http://code.google.com/p/b3log-solo/logo?cct=1287802701" alt="B3log Logo" width="150" height="55"></p><br><p><span><span>GAE 博客 &mdash;&mdash;&nbsp;</span><a style="text-decoration: none;" href="http://b3log-solo.googlecode.com/" target="_blank"><span style="color: orange;">B</span><span style="color: blue;"><sup>3</sup></span><span style="color: green;">L</span><span style="color: red;">O</span><span style="color: blue;">G</span> <span style="color: orangered; font-weight: bold;">Solo</span></a><span> 0.4.0 将于 2 月 19 日发布！<br></span></span></p><br><p><span>这是 0.4.0 的正式版，主要是加入了<a href="https://code.google.com/p/b3log-solo/issues/detail?id=307" target="_blank">移动皮肤支持</a>，并修复了一些 Bugs。</span></p><br><p>&nbsp;</p><br><br><br><br><br><h2>b3log.org 二级域名</h2><br><p>由于网络原因，是不能直接访问 GAE 提供的二级域名（*.appspot.com）的。</p><br><p>部署了 Solo 的同学可以邮件至 DL88250#gmail.com 申请<a href="http://88250.b3log.org/apply-b3log-domain.html" target="_blank" rel="noopener">免费使用 b3log.org 二级域名</a>。</p><br><h2>项目</h2><br><p>如果在使用、测试中发现任何问题，如果您有任何意见或建议，请告知我们 :-)</p><br><ul><br><li>项目地址：<a href="http://code.google.com/p/b3log-solo/" target="_blank">http://code.google.com/p/b3log-solo/</a></li><br><li>下载：<a href="https://b3log-solo.googlecode.com/files/b3log-solo-0.4.0-beta2.zip" target="_blank">http://b3log-solo.googlecode.com/files/b3log-solo-0.4.0-beta2.zip</a></li><br><li>Bug/特性提交：<a href="http://code.google.com/p/b3log-solo/issues/list" target="_blank">http://code.google.com/p/b3log-solo/issues/list</a></li><br></ul><br><h3>加入我们</h3><br><p>B3log 团队欢迎任何人的加入，看<a href="http://code.google.com/p/b3log-solo/wiki/join_us" target="_blank">这里</a>了解如何加入吧。</p><br><p>P.S. 长期需求美工、测试….</p><br><h2>QQ 群</h2><br><p>欢迎加入 QQ 群 13139268 讨论 B3log，研究 <a href="http://code.google.com/appengine/docs/java/overview.html" target="_blank">Google&nbsp; App Engine Java</a>。</p><br><p>验证信息：b3log</p><br><h3>作者博客</h3><br><ul><br><li><a href="http://88250.b3log.org/" target="_blank">简约设计の艺术</a></li><br><li><a href="http://vanessa.b3log.org/" target="_blank">Vanessa</a></li><br><li><a href="http://lamb.b3log.org/" target="_blank">羔羊&lt;&gt;沉默</a></li><br><li><a href="http://jiangzezhou.b3log.org/" target="_blank">jboat</a></li><br><li><a href="http://love.b3log.org/" target="_blank" rel="noopener">mainlove</a></li><br><li><a href="http://dx.b3log.org/" target="_blank">DX</a></li><br></ul><br><p>访问<a href="http://code.google.com/p/b3log-solo/wiki/about_us" target="_blank">这里</a>了解他们。</p><br><h3>发布历史</h3><br><ol><br><li><span><span><a href="http://vanessa.b3log.org/b3log-solo-release-040-beta2" target="_blank" rel="noopener">GAE 博客&mdash;&mdash;B3log Solo 0.4.0 Beta2 发布了！</a></span></span></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-040-beta1.html" target="_blank" rel="noopener">GAE 博客&mdash;&mdash;B3log Solo 0.4.0 Beta1 发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-035.html" target="_blank" rel="noopener">GAE 博客&mdash;&mdash;B3log Solo 0.3.5 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-031.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.3.1 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-030.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.3.0 正式版发布了！ </a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-026.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.2.6 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-025.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.2.5 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-025-beta2.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.2.5 Beta2 发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-025-beta1.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.2.5 Beta1 发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-release-021.html" target="_blank" rel="noopener">GAE 博客&mdash;&mdash;B3log Solo 0.2.1 发布了！</a></li><br><li><a href="http://88250.b3log.org/articles/2010/11/11/1289491357284.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.2.0 发布了！</a></li><br><li><a href="http://88250.b3log.org/articles/2010/10/26/1288097886428.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.1.1 发布了！</a></li><br><li><a href="http://88250.b3log.org/articles/2010/10/13/1286980002007.html" target="_blank">B3log Solo 0.1.0 发布了！</a></li><br><li><a href="http://88250.b3log.org/articles/2010/09/26/1285519372666.html" target="_blank">B3log Solo 0.1.0-preview2 发布了！</a></li><br><li><a href="http://88250.b3log.org/articles/2010/09/08/1283986560000.html" target="_blank">Solo 0.1.0-Preview1 发布了</a></li><br></ol><br><p>&nbsp;</p><br><p><a href="http://me.alipay.com/b3log" rel="noopener" target="_blank"><img src="http://vanessa.b3log.org/images/alipay-me.png" alt="" width="126" height="24"></a> <a href="http://me.alipay.com/b3log" rel="noopener" target="_blank">http://me.alipay.com/b3log</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Code/" rel="tag"># Code</a>
+          
+            <a href="/blog/tags/OpenSource/" rel="tag"># OpenSource</a>
+          
+            <a href="/blog/tags/B3log/" rel="tag"># B3log</a>
+          
+            <a href="/blog/tags/GAE/" rel="tag"># GAE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4qa00054urqspxhtuqv/" rel="next" title="10 个顶级 JavaScript 动画框架推荐">
+                <i class="fa fa-chevron-left"></i> 10 个顶级 JavaScript 动画框架推荐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko50h00jj4urqbuqj3p3o/" rel="prev" title="NetBeans Weekly News # 179 - Jan 31, 2012">
+                NetBeans Weekly News # 179 - Jan 31, 2012 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">b3log.org 二级域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">加入我们</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">QQ 群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">作者博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">发布历史</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

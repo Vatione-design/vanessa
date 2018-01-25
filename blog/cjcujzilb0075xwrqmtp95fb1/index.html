@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,套利,数字货币," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概念币币交易用一种数字资产去直接换取另一种数字资产，中间不涉及任何法币结算，就是我们所说的币币交易。如 OKEX 币币交易 或者 火币币币交易 三角套利用两个市场（比如 MANA/USDT，BTC/USDT）的价格相除计算出 MANA/BTC 价格，如果该价格和实际的 MANA/BTC 价格不一致，那么就可以从中赚取差价。 案例注：由于人民币无法直接兑换为数字货币，因此我们选用价格稳定的 USDT">
+<meta name="keywords" content="JavaScript,套利,数字货币">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 查看三角套利（币币交易）是否有赚头">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzilb0075xwrqmtp95fb1/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="概念币币交易用一种数字资产去直接换取另一种数字资产，中间不涉及任何法币结算，就是我们所说的币币交易。如 OKEX 币币交易 或者 火币币币交易 三角套利用两个市场（比如 MANA/USDT，BTC/USDT）的价格相除计算出 MANA/BTC 价格，如果该价格和实际的 MANA/BTC 价格不一致，那么就可以从中赚取差价。 案例注：由于人民币无法直接兑换为数字货币，因此我们选用价格稳定的 USDT">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xo1ip.com1.z0.glb.clouddn.com/4748eb8e12f74bc88041df2fee2c945f.png">
+<meta property="og:image" content="http://7xo1ip.com1.z0.glb.clouddn.com/606218ee4a4d4338a154c24235f2600b.png">
+<meta property="og:updated_time" content="2018-01-25T08:21:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 查看三角套利（币币交易）是否有赚头">
+<meta name="twitter:description" content="概念币币交易用一种数字资产去直接换取另一种数字资产，中间不涉及任何法币结算，就是我们所说的币币交易。如 OKEX 币币交易 或者 火币币币交易 三角套利用两个市场（比如 MANA/USDT，BTC/USDT）的价格相除计算出 MANA/BTC 价格，如果该价格和实际的 MANA/BTC 价格不一致，那么就可以从中赚取差价。 案例注：由于人民币无法直接兑换为数字货币，因此我们选用价格稳定的 USDT">
+<meta name="twitter:image" content="http://7xo1ip.com1.z0.glb.clouddn.com/4748eb8e12f74bc88041df2fee2c945f.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzilb0075xwrqmtp95fb1/"/>
+
+
+
+
+
+  <title>JS 查看三角套利（币币交易）是否有赚头 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzilb0075xwrqmtp95fb1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS 查看三角套利（币币交易）是否有赚头</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T21:18:51+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="币币交易"><a href="#币币交易" class="headerlink" title="币币交易"></a>币币交易</h3><p>用一种数字资产去直接换取另一种数字资产，中间不涉及任何法币结算，就是我们所说的币币交易。如 <a href="https://www.okex.com/spot/trade/index.do" target="_blank" rel="noopener">OKEX 币币交易</a> 或者 <a href="https://www.huobipro.com/zh-cn/coin_coin/exchange/#btc_usdt" target="_blank" rel="noopener">火币币币交易</a></p>
+<h3 id="三角套利"><a href="#三角套利" class="headerlink" title="三角套利"></a>三角套利</h3><p>用两个市场（比如 MANA/USDT，BTC/USDT）的价格相除计算出 MANA/BTC 价格，如果该价格和实际的 MANA/BTC 价格不一致，那么就可以从中赚取差价。</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>注：由于人民币无法直接兑换为数字货币，因此我们选用价格稳定的 USDT 替代 CNY。使用 MANA、BTC、USDT（MANA/USDT，BTC/USDT，BTC/MANA）来进行进行演示。</p>
+<p>假设 BTC/USDT = 15872.0400，MANA/USDT = 0.1320，MANA/BTC = 0.000009，此时计算出的 MANA/BTC（.000008317）价格小于实际价格 0.000009</p>
+<ol>
+<li>使用 13.2 个 USDT 买入 100 个 MANA，手续费 0.0132 USDT</li>
+<li>使用 100 个 MANA 买入 0.0009 个 BTC，手续费 0.1 MANA</li>
+<li>使用 0.0009 个 BTC 买入 14.284836 个 USDT，手续费 0.0000009 BTC</li>
+</ol>
+<p>整个过程中，BTC 和 MANA 的数量不变，而增加的 1.084836 - (0.0132 * 2 + 0.014284836) = 1.072720836 个 USDT 就是我们的盈利</p>
+<p>当然如果实际计算出的价格大于实际价格时，我们只要方向操作也时可以盈利的</p>
+<p>假设 BTC/USDT = 15872.0400，MANA/USDT = 0.1320，MANA/BTC = 0.000008，此时计算出的 MANA/BTC（.000008317）价格大于实际价格 0.000008</p>
+<ol>
+<li>使用 12.697632 个 USDT 买入 0.0008 个 BTC，手续费 0.0000008 BTC</li>
+<li>使用 0.0008 个 BTC 买入 100 个 MANA，手续费 0.1 MANA </li>
+<li>使用 100 个 MANA 买入 13.2 个 USDT，手续费 0.0132 USDT</li>
+</ol>
+<p>整个过程中，BTC 和 MANA 的数量不变，而增加的 0.502368 - (0.012697632 * 2 + 0.0132) = 0.463772736 个 USDT 就是我们的盈利</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ol>
+<li><kbd>F12/option+cmd+i</kbd> 打开开发者工具，选择 Sources -&gt; Snippets，点击 +New snippet 分别创建 math，okex，huobi 三个 snippet。如下图所示</li>
+</ol>
+<p><img src="http://7xo1ip.com1.z0.glb.clouddn.com/4748eb8e12f74bc88041df2fee2c945f.png" alt="1B10D44A-E639-4C33-B42B-2E7CBE40FBF0.png"></p>
+<ol>
+<li><p>在 snippet 中对应贴入文章末尾代码，然后 <kbd>ctrl+s/cmd+s</kbd> 进行保存</p>
+</li>
+<li><p>打开 <a href="https://www.okex.com/api/v1/depth.do?symbol=mana_btc" target="_blank" rel="noopener">https://www.okex.com/api/v1/depth.do?symbol=mana_btc</a> 页面。右键点击 math，选择运行；然后在右键点击 okex，选择运行即可出 OKEX 币币交易盈利结果</p>
+</li>
+</ol>
+<p><img src="http://7xo1ip.com1.z0.glb.clouddn.com/606218ee4a4d4338a154c24235f2600b.png" alt="CFA0FCBA-1587-4DD3-96A9-65C096A35B06.png"></p>
+<ol>
+<li>同理右键点击 huobi，选择运行，即可出现 huobi 币币交易盈利结果</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="okex"><a href="#okex" class="headerlink" title="okex"></a>okex</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">var getATicker = async function(sm) &#123;</span><br><span class="line">    const response = await fetch(`https://www.okex.com/api/v1/depth.do?symbol=$&#123;sm&#125;&amp;size=2`).then(function (response)&#123;return response.text();&#125;)</span><br><span class="line">    const responseJSON = JSON.parse(response)</span><br><span class="line">    if (responseJSON.error_code) &#123;</span><br><span class="line">        console.error(`Error Code: $&#123;responseJSON.error_code&#125;, URL: https://www.okex.com/api/v1/depth.do?symbol=$&#123;sm&#125;&amp;step=1; Info: https://www.okex.com/rest_request.html`)</span><br><span class="line">        return null</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">        ask: responseJSON.asks.pop(),</span><br><span class="line">        bid: responseJSON.bids[0]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var hasBenefit = async function(coin, mainCoin) &#123;</span><br><span class="line">    const mainCoin2usdt = await getATicker(`$&#123;mainCoin&#125;_usdt`)</span><br><span class="line">    if (!mainCoin2usdt) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    const coin2usdt = await getATicker(`$&#123;coin&#125;_usdt`)</span><br><span class="line">    if (!coin2usdt) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    const coin2mainCoin = await getATicker(`$&#123;coin&#125;_$&#123;mainCoin&#125;`)</span><br><span class="line">    if (!coin2mainCoin) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    let putCount = Math.min(coin2usdt.ask[1], coin2mainCoin.bid[1])</span><br><span class="line">    if (mainCoin2usdt.bid[1] &lt; math.eval(`$&#123;putCount&#125; * $&#123;coin2mainCoin.bid[0]&#125;`)) &#123;</span><br><span class="line">        putCount = math.eval(`$&#123;mainCoin2usdt.bid[1]&#125; / $&#123;coin2mainCoin.bid[0]&#125;`)</span><br><span class="line">    &#125;</span><br><span class="line">    if (putCount &gt;= 0.01) &#123;</span><br><span class="line">        const moreUsdt = math.eval(`$&#123;mainCoin2usdt.bid[0]&#125; * $&#123;coin2mainCoin.bid[0]&#125; * $&#123;putCount&#125; - $&#123;coin2usdt.ask[0]&#125; * $&#123;putCount&#125;`)</span><br><span class="line">        const serviceCharge = math.eval(`($&#123;coin2usdt.ask[0]&#125; * 2 + $&#123;coin2mainCoin.bid[0]&#125; * $&#123;mainCoin2usdt.bid[0]&#125;) * $&#123;putCount&#125; * 0.001`)</span><br><span class="line">        if (moreUsdt &gt; serviceCharge) &#123;</span><br><span class="line">            // MANA/BTC 市场卖出一定数量 Q3 的 MANA，同时在 MANA/USDT 市场买入数量为 Q3 的 MANA，在 BTC/USDT 市场卖出数量为 P3 * Q3 的 BTC</span><br><span class="line">            // Trade(`$&#123;coin&#125;_$&#123;mainCoin&#125;`, &apos;sell&apos;, coin2mainCoin.bid[0], putCount) </span><br><span class="line">            // Trade(`$&#123;coin&#125;_usdt`, &apos;buy&apos;, coin2usdt.ask[0], putCount) </span><br><span class="line">            // Trade(`$&#123;mainCoin&#125;_usdt`, &apos;sell&apos;, mainCoin2usdt.bid[0], math.eval(`$&#123;putCount&#125; * $&#123;coin2mainCoin.bid[0]&#125;`)) </span><br><span class="line">            console.log(`$&#123;coin&#125;-$&#123;mainCoin&#125;：需 $&#123;putCount&#125; USDT，赚：`, math.eval(`$&#123;moreUsdt&#125; - $&#123;serviceCharge&#125;`) + &apos; USDT，百分比：&apos;, math.eval(`($&#123;moreUsdt&#125; - $&#123;serviceCharge&#125;) / $&#123;putCount&#125; * 100`))</span><br><span class="line">            console.log(Math.min(coin2usdt.ask[1], coin2mainCoin.bid[1]), putCount)</span><br><span class="line">            return</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    let putCount1 = Math.min(coin2usdt.bid[1], coin2mainCoin.ask[1])</span><br><span class="line">    if (mainCoin2usdt.ask[1] &lt; math.eval(`$&#123;putCount1&#125; * $&#123;coin2mainCoin.ask[0]&#125;`)) &#123;</span><br><span class="line">        putCount1 = math.eval(`$&#123;mainCoin2usdt.ask[1]&#125; / $&#123;coin2mainCoin.ask[0]&#125;`)</span><br><span class="line">    &#125;</span><br><span class="line">    if (putCount1 &lt; 0.01) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    const moreUsdt1 = math.eval(`$&#123;coin2usdt.bid[0]&#125; * $&#123;putCount1&#125; - $&#123;mainCoin2usdt.ask[0]&#125; * $&#123;coin2mainCoin.ask[0]&#125; * $&#123;putCount1&#125;`)</span><br><span class="line">    const serviceCharge1 = math.eval(`($&#123;coin2usdt.bid[0]&#125; + $&#123;coin2mainCoin.ask[0]&#125; * $&#123;mainCoin2usdt.ask[0]&#125; * 2) * $&#123;putCount1&#125; * 0.001`)</span><br><span class="line">    if (moreUsdt1 &gt; serviceCharge1) &#123;</span><br><span class="line">        // 就在 MANA/BTC 市场买入一定数量 Q3 的 MANA，同时在 MANA/USDT 市场卖出数量为 Q3 的 MANA，在 BTC/USDT 市场买入数量为 P3 * Q3 的 BTC</span><br><span class="line">        // Trade(`$&#123;coin&#125;_$&#123;mainCoin&#125;`, &apos;buy&apos;, coin2mainCoin.ask[0], putCount1) </span><br><span class="line">        // Trade(`$&#123;coin&#125;_usdt`, &apos;sell&apos;, coin2usdt.bid[0], putCount1) </span><br><span class="line">        // Trade(`$&#123;mainCoin&#125;_usdt`, &apos;buy&apos;, mainCoin2usdt.ask[0], math.eval(`$&#123;putCount1&#125; * $&#123;coin2mainCoin.ask[0]&#125;`)) </span><br><span class="line">        console.log(`反向 $&#123;coin&#125;-$&#123;mainCoin&#125;：需 $&#123;putCount1&#125; USDT，赚：`, math.eval(`$&#123;moreUsdt1&#125; - $&#123;serviceCharge1&#125;`) + &apos; USDT，百分比：&apos;, math.eval(`($&#123;moreUsdt1&#125; - $&#123;serviceCharge1&#125;) / $&#123;putCount1&#125; * 100`))</span><br><span class="line">        console.log(Math.min(coin2usdt.bid[1], coin2mainCoin.ask[1]), putCount1)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var coins = [&quot;ltc&quot;, &quot;avt&quot;, &quot;cmt&quot;, &quot;edo&quot;, &quot;san&quot;, &quot;pro&quot;, &quot;itc&quot;, &quot;nuls&quot;, &quot;lrc&quot;, &quot;mco&quot;, &quot;dgd&quot;, &quot;gnt&quot;, &quot;storj&quot;, &quot;snt&quot;, &quot;pay&quot;, &quot;act&quot;, &quot;eos&quot;, &quot;omg&quot;, &quot;dash&quot;, &quot;xrp&quot;, &quot;zec&quot;, &quot;neo&quot;, &quot;gas&quot;, &quot;hsr&quot;, &quot;qtum&quot;, &quot;iota&quot;, &quot;xuc&quot;, &quot;etc&quot;, &quot;ctr&quot;, &quot;link&quot;, &quot;salt&quot;, &quot;1st&quot;, &quot;wtc&quot;, &quot;sngls&quot;, &quot;snm&quot;, &quot;zrx&quot;, &quot;bnt&quot;, &quot;cvc&quot;, &quot;mana&quot;, &quot;vee&quot;]</span><br><span class="line">// coins = [&apos;avt&apos;]</span><br><span class="line">for (var i = 0, iMax = coins.length; i &lt; iMax; i++) &#123;</span><br><span class="line">    hasBenefit(coins[i], &apos;btc&apos;)</span><br><span class="line">    hasBenefit(coins[i], &apos;eth&apos;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var getCoins = function() &#123;</span><br><span class="line">    var coins = [];</span><br><span class="line">    $(&apos;#ethCurrencyPair li&apos;).each(function() &#123;</span><br><span class="line">        coins.push(this.getAttribute(&apos;data-symbol&apos;).replace(&apos;_eth&apos;, &apos;&apos;))</span><br><span class="line">    &#125;)</span><br><span class="line">    return coins;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="huobi"><a href="#huobi" class="headerlink" title="huobi"></a>huobi</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">var getATicker = async function(sm) &#123;</span><br><span class="line">    const response = await fetch(`https://api.huobi.pro/market/detail/merged?symbol=$&#123;sm&#125;`).then(function (response)&#123;return response.text();&#125;)</span><br><span class="line">    const responseJSON = JSON.parse(response)</span><br><span class="line">    if (responseJSON.status === &apos;error&apos;) &#123;</span><br><span class="line">        console.error(`Error Code: $&#123;responseJSON.err_msg&#125;, URL: https://api.huobi.pro/market/detail/merged?symbol=$&#123;sm&#125;`)</span><br><span class="line">        return null</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">        ask: responseJSON.tick.ask,</span><br><span class="line">        bid: responseJSON.tick.bid</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var hasBenefit = async function(coin, mainCoin) &#123;</span><br><span class="line">    const mainCoin2usdt = await getATicker(`$&#123;mainCoin&#125;usdt`)</span><br><span class="line">    if (!mainCoin2usdt) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    const coin2usdt = await getATicker(`$&#123;coin&#125;usdt`)</span><br><span class="line">    if (!coin2usdt) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    const coin2mainCoin = await getATicker(`$&#123;coin&#125;$&#123;mainCoin&#125;`)</span><br><span class="line">    if (!coin2mainCoin) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    const putCount = Math.min(mainCoin2usdt.bid[1], coin2usdt.ask[1], coin2mainCoin.bid[1])</span><br><span class="line">    const moreUsdt = math.eval(`$&#123;mainCoin2usdt.bid[0]&#125; * $&#123;coin2mainCoin.bid[0]&#125; * $&#123;putCount&#125; - $&#123;coin2usdt.ask[0]&#125; * $&#123;putCount&#125;`)</span><br><span class="line">    const serviceCharge = math.eval(`($&#123;coin2usdt.ask[0]&#125; * 2 + $&#123;coin2mainCoin.bid[0]&#125; * $&#123;mainCoin2usdt.bid[0]&#125;) * $&#123;putCount&#125; * 0.004`)</span><br><span class="line">    if (moreUsdt &gt; serviceCharge) &#123;</span><br><span class="line">        // MANA/BTC 市场卖出一定数量 Q3 的 MANA，同时在 MANA/USDT 市场买入数量为 Q3 的 MANA，在 BTC/USDT 市场卖出数量为 P3 * Q3 的 BTC</span><br><span class="line">        console.log(`$&#123;coin&#125;-$&#123;mainCoin&#125;：需 $&#123;putCount&#125; USDT，赚：`, math.eval(`$&#123;moreUsdt&#125; - $&#123;serviceCharge&#125;`) + &apos; USDT，百分比：&apos;, math.eval(`($&#123;moreUsdt&#125; - $&#123;serviceCharge&#125;) / $&#123;putCount&#125; * 100`))</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.warn(`$&#123;coin&#125;-$&#123;mainCoin&#125;：需 $&#123;putCount&#125; USDT，亏：`, math.eval(`$&#123;moreUsdt&#125; - $&#123;serviceCharge&#125;`) + &apos; USDT，百分比：&apos;, math.eval(`($&#123;moreUsdt&#125; - $&#123;serviceCharge&#125;) / $&#123;putCount&#125; * 100`))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const putCount1 = Math.min(mainCoin2usdt.ask[1], coin2usdt.bid[1], coin2mainCoin.ask[1])</span><br><span class="line">    const moreUsdt1 = math.eval(`$&#123;coin2usdt.bid[0]&#125; * $&#123;putCount1&#125; - $&#123;mainCoin2usdt.ask[0]&#125; * $&#123;coin2mainCoin.ask[0]&#125; * $&#123;putCount1&#125;`)</span><br><span class="line">    const serviceCharge1 = math.eval(`($&#123;coin2usdt.bid[0]&#125; + $&#123;coin2mainCoin.ask[0]&#125; * $&#123;mainCoin2usdt.ask[0]&#125; * 2) * $&#123;putCount1&#125; * 0.004`)</span><br><span class="line">    if (moreUsdt1 &gt; serviceCharge1) &#123;</span><br><span class="line">        // 就在 MANA/BTC 市场买入一定数量 Q3 的 MANA，同时在 MANA/USDT 市场卖出数量为 Q3 的 MANA，在 BTC/USDT 市场买入数量为 P3 * Q3 的 BTC</span><br><span class="line">        console.log(`反向 $&#123;coin&#125;-$&#123;mainCoin&#125;：需 $&#123;putCount1&#125; USDT，赚：`, math.eval(`$&#123;moreUsdt1&#125; - $&#123;serviceCharge1&#125;`) + &apos; USDT，百分比：&apos;, math.eval(`($&#123;moreUsdt1&#125; - $&#123;serviceCharge1&#125;) / $&#123;putCount1&#125; * 100`))</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.warn(`反向 $&#123;coin&#125;-$&#123;mainCoin&#125;：需 $&#123;putCount1&#125; USDT，亏：`, math.eval(`$&#123;moreUsdt1&#125; - $&#123;serviceCharge1&#125;`) + &apos; USDT，百分比：&apos;, math.eval(`($&#123;moreUsdt1&#125; - $&#123;serviceCharge1&#125;) / $&#123;putCount1&#125; * 100`))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var coins = [&apos;eos&apos;, &apos;bcc&apos;, &apos;eth&apos;, &apos;xrp&apos;, &apos;ltc&apos;, &apos;dash&apos;, &apos;etc&apos;, &apos;eos&apos;, &apos;omg&apos;, &apos;zec&apos;, &apos;qtum&apos;]</span><br><span class="line">// coins = [&apos;eos&apos;, &apos;bcc&apos;, &apos;eth&apos;, &apos;xrp&apos;, &apos;ltc&apos;, &apos;dash&apos;, &apos;etc&apos;, &apos;eos&apos;, &apos;omg&apos;, &apos;zec&apos;]</span><br><span class="line">for (var i = 0, iMax = coins.length; i &lt; iMax; i++) &#123;</span><br><span class="line">    hasBenefit(coins[i], &apos;btc&apos;)</span><br><span class="line">    // hasBenefit(coins[i], &apos;eth&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="math"><a href="#math" class="headerlink" title="math"></a>math</h3><p><a href="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.18.0/math.min.js" target="_blank" rel="noopener">https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.18.0/math.min.js</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上仅供参考娱乐。想要用于实际赚钱，除了手续费以外我们还需要考虑更多的实际情况，诸如挂单失败、挂单无法交易、货币不足等等。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/套利/" rel="tag"># 套利</a>
+          
+            <a href="/blog/tags/数字货币/" rel="tag"># 数字货币</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuiajkg0007jurq1ng8yzrf/" rel="next" title="Pipe 主题开发指南">
+                <i class="fa fa-chevron-left"></i> Pipe 主题开发指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzjdh00yjxwrqudi5bz3x/" rel="prev" title="迁移到 Pipe">
+                迁移到 Pipe <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#币币交易"><span class="nav-number">1.1.</span> <span class="nav-text">币币交易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三角套利"><span class="nav-number">1.2.</span> <span class="nav-text">三角套利</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例"><span class="nav-number">2.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方式"><span class="nav-number">3.</span> <span class="nav-text">使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">3.1.</span> <span class="nav-text">准备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#okex"><span class="nav-number">4.1.</span> <span class="nav-text">okex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#huobi"><span class="nav-number">4.2.</span> <span class="nav-text">huobi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#math"><span class="nav-number">4.3.</span> <span class="nav-text">math</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

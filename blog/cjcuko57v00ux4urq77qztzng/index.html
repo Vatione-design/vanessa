@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="完了，没看懂。。。试了下倒是很ok。。。         要想写出跨浏览器的javascript，就必须懂得嗅探技术。这是浏览器大战遗留下的大地雷，事已如此，只好认命，乖乖写分支结构吧，函数就是这样不知不觉中变长的。先看单一浏览器的判断，我们没有必须去找navigator.userAgent的麻烦，我在国外的博客网站收集了如下hack，短小精悍： ie = !+&amp;quot;">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript判断浏览器类型与版本">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko57v00ux4urq77qztzng/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="完了，没看懂。。。试了下倒是很ok。。。         要想写出跨浏览器的javascript，就必须懂得嗅探技术。这是浏览器大战遗留下的大地雷，事已如此，只好认命，乖乖写分支结构吧，函数就是这样不知不觉中变长的。先看单一浏览器的判断，我们没有必须去找navigator.userAgent的麻烦，我在国外的博客网站收集了如下hack，短小精悍： ie = !+&amp;quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T16:02:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript判断浏览器类型与版本">
+<meta name="twitter:description" content="完了，没看懂。。。试了下倒是很ok。。。         要想写出跨浏览器的javascript，就必须懂得嗅探技术。这是浏览器大战遗留下的大地雷，事已如此，只好认命，乖乖写分支结构吧，函数就是这样不知不觉中变长的。先看单一浏览器的判断，我们没有必须去找navigator.userAgent的麻烦，我在国外的博客网站收集了如下hack，短小精悍： ie = !+&amp;quot;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko57v00ux4urq77qztzng/"/>
+
+
+
+
+
+  <title>javascript判断浏览器类型与版本 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko57v00ux4urq77qztzng/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javascript判断浏览器类型与版本</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-10-21T08:37:00+08:00">
+                2009-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h2><br>            <a id="ctl04_TitleUrl" href="http://www.cnblogs.com/rubylouvre/archive/2009/10/14/1583362.html" target="_blank" rel="noopener">完了，没看懂。。。试了下倒是很ok。。。<br><br></a><br>        </h2><p></p>
+<p>要想写出跨浏览器的javascript，就必须懂得嗅探技术。这是浏览器大战遗留下的大地雷，事已如此，只好认命，乖乖写分支结构吧，函数就是这样不知不觉中变长的。</p><br><p>先看单一浏览器的判断，我们没有必须去找navigator.userAgent的麻烦，我在国外的博客网站收集了如下hack，短小精悍：</p><br><pre class="brush:css;gutter:false;toolbar:false"> <br><br>ie = !+&quot;\v1&quot; ;<br><br>ie =’\v’==’v’ ;<br><br>ie = 0//@cc_on+1;<br><br>ie = !!top.execScript;<br><br>ie = /<em>@cc_on!@</em>/!1;<br><br>ie8 = !!window.XDomainRequest;<br><br><br><br>//我自创的，如果是IE，会返回6,7,8代表ie6,ie7,ie8，否则返回1<br><br>IEVersion = (&quot; &quot; + (/<em>@cc_on @_jscript_version  @</em>/-1)).slice(-1)<br><br><br><br>//基于条件编译的嗅探脚本，还有如下几个：<br><br>IE8=@cc_on @_jscript_version == 5.8 ? true : @false<br><br>IE7=@cc_on @_jscript_version == 5.7 ? true : @false<br><br>IE6=@cc_on @_jscript_version == 5.6 ? true : @false<br><br>IE55=@cc_on @_jscript_version == 5.5 ? true : @false<br><br><br><br><br><br>ff = /a/[-1]==’a’;<br><br>ff3 = (function  x(){})[-5]==’x’;<br><br>ff2 = (function x(){})[-6]==’x’;<br><br><br><br>safari=/a/.<strong>proto</strong>==’//‘;<br><br>safari = window.openDatabase;<br><br><br><br>chrome=/source/.test((/a/.toString+’’));<br><br><br><br>opera=!!window.opera ;<br><br>opera=/^function (/.test([].sort);<br><br></pre><br><p>还有判断maxthon的：</p><br><pre class="brush:css;gutter:false;toolbar:false"> <br><br>//出处：<a href="http://www.cnblogs.com/xiarugu/archive/2009/02/02/1382293.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiarugu/archive/2009/02/02/1382293.html</a><br><br>function IsMaxthon()<br><br>{<br><br>    try{<br><br>        window.external.max_invoke(&quot;GetHotKey&quot;);<br><br>        return true;<br><br>    }catch(ex){<br><br>        return false;<br><br>    }<br><br>}<br><br>alert(IsMaxthon());<br><br></pre><br><pre class="brush:css;gutter:false;toolbar:false"> <br><br>//出处：<a href="http://bbs.maxthon.cn/archiver/?tid-148353.html" target="_blank" rel="noopener">http://bbs.maxthon.cn/archiver/?tid-148353.html</a><br><br>try{<br><br>        if(external.max_version.indexOf(&quot;1.&quot;)==0){<br><br>                var isMaxthon1 = 1;<br><br>        }else{<br><br>                var isMaxthon1 = 0;<br><br>        }<br><br>}catch(e){<br><br>        var isMaxthon1 = 0;<br><br>}<br><br></pre><br><p>如果是想搞比较复杂的UI或者类库，对于浏览器的判断就要更严格一些，不能像上面那样游兵散勇。</p><br><pre class="brush:css;gutter:false;toolbar:false"> <br><br>B=(function x(){})[-5]==’x’?’FF3’:(function x(){})[-6]==’x’?’FF2’:/a/[-1]==’a’?’FF’:’\v’==’v’?’IE’:/a/.<strong>proto</strong>==’//‘?’Saf’:/s/.test(/a/.toString)?’Chr’:/^function (/.test([].sort)?’Op’:’Unknown’<br><br></pre><br><p>在Ext3的源码中能找出如下现整的嗅探脚本：</p><br><pre class="brush:css;gutter:false;toolbar:false"> <br><br>       ua = navigator.userAgent.toLowerCase(),<br><br>        check = function(r){<br><br>            return r.test(ua);<br><br>        },<br><br>        isOpera = check(/opera/),<br><br>        isChrome = check(/chrome/),<br><br>        isWebKit = check(/webkit/),<br><br>        isSafari = !isChrome &amp;&amp; check(/safari/),<br><br>        isSafari2 = isSafari &amp;&amp; check(/applewebkit\/4/), // unique to Safari 2<br><br>        isSafari3 = isSafari &amp;&amp; check(/version\/3/),<br><br>        isSafari4 = isSafari &amp;&amp; check(/version\/4/),<br><br>        isIE = !isOpera &amp;&amp; check(/msie/),<br><br>        isIE7 = isIE &amp;&amp; check(/msie 7/),<br><br>        isIE8 = isIE &amp;&amp; check(/msie 8/),<br><br>        isIE6 = isIE &amp;&amp; !isIE7 &amp;&amp; !isIE8,<br><br>        isGecko = !isWebKit &amp;&amp; check(/gecko/),<br><br>        isGecko2 = isGecko &amp;&amp; check(/rv:1.8/),<br><br>        isGecko3 = isGecko &amp;&amp; check(/rv:1.9/),<br><br></pre><br><p>好了，基本就是这样了，如果你有什么发现，也敬请拿出来分享一下！</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4qs000v4urqz9w9ajd6/" rel="next" title="11款极酷Chrome浏览器插件推荐">
+                <i class="fa fa-chevron-left"></i> 11款极酷Chrome浏览器插件推荐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4s8003p4urqfge8yqbg/" rel="prev" title="50款CSS工具：网格和布局工具，CSS 优化工具….">
+                50款CSS工具：网格和布局工具，CSS 优化工具…. <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">            完了，没看懂。。。试了下倒是很ok。。。        </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

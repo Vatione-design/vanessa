@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTML,HTML5," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在公司都是纠结各种 IE, 很久没看 HTML5了。下文不错转自：http://webapptrend.iteye.com/blog/1386423Rich Clark 是一位 HTML5 专家，他非常了解 HTML5 规范中的 APIs ，这篇文章中，他将介绍这些 APIs 的用途以及最新进展情况。有关HTML5中的语法元素相信大家已经看到过不少介绍了，但是关于HTML5的APIs的介绍就不那么">
+<meta name="keywords" content="HTML,HTML5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5 APIs程序员指南">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4vl00a84urqh6wmiq7b/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="在公司都是纠结各种 IE, 很久没看 HTML5了。下文不错转自：http://webapptrend.iteye.com/blog/1386423Rich Clark 是一位 HTML5 专家，他非常了解 HTML5 规范中的 APIs ，这篇文章中，他将介绍这些 APIs 的用途以及最新进展情况。有关HTML5中的语法元素相信大家已经看到过不少介绍了，但是关于HTML5的APIs的介绍就不那么">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.webapptrend.com/wp-includes/js/tinymce/plugins/wordpress/img/trans.gif">
+<meta property="og:image" content="http://www.webapptrend.com/wp-content/uploads/2012/01/01.jpg">
+<meta property="og:image" content="http://www.webapptrend.com/wp-content/uploads/2012/01/02-1024x898.jpg">
+<meta property="og:updated_time" content="2018-01-22T11:51:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5 APIs程序员指南">
+<meta name="twitter:description" content="在公司都是纠结各种 IE, 很久没看 HTML5了。下文不错转自：http://webapptrend.iteye.com/blog/1386423Rich Clark 是一位 HTML5 专家，他非常了解 HTML5 规范中的 APIs ，这篇文章中，他将介绍这些 APIs 的用途以及最新进展情况。有关HTML5中的语法元素相信大家已经看到过不少介绍了，但是关于HTML5的APIs的介绍就不那么">
+<meta name="twitter:image" content="http://www.webapptrend.com/wp-includes/js/tinymce/plugins/wordpress/img/trans.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4vl00a84urqh6wmiq7b/"/>
+
+
+
+
+
+  <title>HTML5 APIs程序员指南 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4vl00a84urqh6wmiq7b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML5 APIs程序员指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-02-06T22:51:01+08:00">
+                2012-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在公司都是纠结各种 IE, 很久没看 HTML5了。下文不错</p><br><p>转自：<a href="http://webapptrend.iteye.com/blog/1386423" target="_blank" rel="noopener">http://webapptrend.iteye.com/blog/1386423</a><strong></strong></p><br><p><strong><br></strong></p><br><p><strong>Rich Clark</strong> <strong>是一位</strong> <strong>HTML5</strong> <strong>专家，他非常了解</strong> <strong>HTML5</strong> <strong>规范中的</strong> <strong>APIs</strong> <strong>，这篇文章中，他将介绍这些</strong> <strong>APIs</strong> <strong>的用途以及最新进展情况。</strong></p><br><p>有关HTML5中的语法元素相信大家已经看到过不少介绍了，但是关于HTML5的APIs的介绍就不那么常见了，而HTML5规范主要就是由这些APIs构成的。</p><br><p>相信大家都知道，HTML5的标准有两个版本，一个是由W3C发布的，另一个则是由WHATWG发布的。WHATWG现有的HTML5标准中补充了一些W3C标准中没有的APIs（这些APIs其实W3C也有涉及，只是被单独列在一个补充标准中了）。<br><img class="mceWPmore" title="更多..." src="http://www.webapptrend.com/wp-includes/js/tinymce/plugins/wordpress/img/trans.gif" alt=""></p><br><p>除了规范中介绍的APIs以外，还有一些相关的APIs也遵循了HTML5的标准，并常常也声称自己是HTML5的API。有些APIs已经被采用了一段时间了，但是仍然没有被明确列入规范之中，而有些HTML5则着手准备对其进行改进。</p><br><p>这篇文章并不准备从代码的角度去介绍这些APIs，而是会分析他们的用途以及进展情况。还会给出一些参考信息方便读者更加深入地了解自己感兴趣的内容。</p><br><p><img class="aligncenter size-full wp-image-1576" src="http://www.webapptrend.com/wp-content/uploads/2012/01/01.jpg" alt="" width="595" height="325"></p><br><div><br><h2>HTML5标准中的APIs</h2><br></div><br><p>首先看看W3C的HTML5规范中的APIs。</p><br><h3>多媒体API</h3><br><p>多媒体API是HTML5的多媒体元素中的一部分，其中包括<strong>视频</strong> 和<strong>音频</strong> 元素。这些元素本身实现起来并不复杂，但是这些APIs可以使用JavaScript方法，这是很多人不太了解的。其中包括<code><strong>play()</strong> </code> &nbsp;，<strong>pause()</strong> &nbsp;，<code><strong>load()</strong> </code> &nbsp;以及<code><strong>canPlayType()</strong> </code> 这些方法。许多方法不仅可以使用多媒体类型属性，还可以使用许多其他的属性（例如<code><strong>poster</strong> </code> <code>属性</code> ），这些方法在<strong>视频</strong> 元素中尤其常见。通过在API中使用合适的事件和属性，开发者能够实现多媒体的自定义控制。</p><br><p>想要了解更多信息，可以看看下面的文章。</p><br><ul><br><li><a href="http://dev.w3.org/html5/spec/the-iframe-element.html#media-elements" target="_blank" rel="noopener">Media Elements, W3C</a></li><br><li><a href="http://dev.opera.com/articles/view/everything-you-need-to-know-about-html5-video-and-audio/" target="_blank" rel="noopener">Everything you need to know about HTML5 video and audio, dev.opera, Simon Pieters</a></li><br><li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/html5-audio-and-video-what-you-must-know/" target="_blank" rel="noopener">HTML5 audio and video: what you must know, NetTuts (a chapter from&nbsp;Introducing HTML5), Bruce Lawson and Remy Sharp</a></li><br></ul><br><h3>文本轨迹 API</h3><br><p>文本轨迹 API（编者译，原文为text tracks API）常常和多媒体API一起配合使用。这个API可以与<strong>视频</strong> 和<strong>音频</strong> 元素的text tracks（例如副标题或是字幕）交互。你可以获取一个多媒体元素的文本轨迹长度或是数量，或者是它的文本轨迹（副标题，字幕，描述，章节以及元数据）<strong>类型</strong> （<code><strong>kind</strong> </code> &nbsp;）、<strong>语言</strong> （<code><strong>language</strong> </code> ）、<strong>状态</strong> （<code><strong>readyState</strong> </code> ）、<strong>模式</strong> （<code><strong>mode</strong> </code> &nbsp;）和<strong>标签</strong> （<code><strong>label</strong> </code> ）。</p><br><p>当浏览器使用本地字幕时，这个API就派上用场了，WebVTT就是一个很好的例子。你还可以快速浏览以下这些资源：</p><br><ul><br><li><a href="http://www.w3.org/TR/html5/video.html#text-track-api" target="_blank" rel="noopener">Text Track API, W3C</a></li><br><li><a href="http://www.w3.org/community/texttracks/" target="_blank" rel="noopener">Web Media Text Tracks Community Group</a></li><br><li><a href="http://www.w3.org/WAI/PF/HTML/wiki/Media_Multiple_Text_Tracks_API" target="_blank" rel="noopener">Media Multiple Text Tracks API Wiki, W3C</a></li><br><li><a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/events/io/2011/static/presofiles/the_youtube_caption_api_speech_recognition_and_webvtt_captions_for_html5.pdf" target="_blank" rel="noopener">The YouTube Caption API, Speech Recognition, and WebVTT Captions for HTML5, Google I/O 2011, Naomi Black, Cynthia Boedihardjo, and Jeffrey Posnick</a></li><br><li><a href="http://captionatorjs.com/" target="_blank" rel="noopener">Captionator.js Polyfill</a></li><br><li><a href="http://www.iandevlin.com/blog/2011/05/html5/webvtt-and-video-subtitles" target="_blank" rel="noopener">WebVTT and video subtitles, Ian Devlin</a></li><br><li><a href="http://html5doctor.com/video-subtitling-and-webvtt/" target="_blank" rel="noopener">Video subtitling and WebVTT, HTML5 Doctor, Tom Leadbetter</a></li><br></ul><br><h3>拖放功能</h3><br><p>拖放API一直<a href="http://www.quirksmode.org/blog/archives/2009/09/the_html5_drag.html" target="_blank" rel="noopener">受到很多关注</a> 。它最初是由Microsoft的IE5推出的，现在Firefox，Safari 和Chrome都已经支持这一功能了。那么这个API究竟是做什么的呢？</p><br><p>就像它的名字所说的，这个APi在浏览器中实现本地的拖放功能。只需要将一个<strong>可拖放</strong> 属性设置为<strong>true</strong> ，用户就可以移动浏览器中任意一个元素了。你还可以目标区域加入一些事件句柄，用来告诉浏览器哪些区域能够放置用户拖放的元素。</p><br><p>如果不局限在浏览器内部看这一功能，这个API的作用将更加凸显。使用拖放API，用户可以将桌面上的一副图像直接拖入浏览器中，或是将浏览器中的一个新建图标拖到桌面上，并且能够自动加载相应的内容信息形成一个新的应用程序快捷方式。</p><br><p>下面的文章更加深入地介绍了这一拖放功能。</p><br><ul><br><li><a href="http://dev.w3.org/html5/spec/dnd.html#dnd" target="_blank" rel="noopener">Drag and drop API, W3C</a></li><br><li><a href="http://html5doctor.com/native-drag-and-drop/" target="_blank" rel="noopener">Native, Drag and Drop, HTML5 Doctor, Remy Sharp</a></li><br><li><a href="https://developer.mozilla.org/en/DragDrop/Drag_and_Drop" target="_blank" rel="noopener">Drag and Drop, MDN</a></li><br><li><a href="http://www.html5laboratory.com/drag-and-drop.php" target="_blank" rel="noopener">The drag and drop API, HTML5 Laboratory, Ian Devlin</a></li><br></ul><br><h3>离线Web Apps/Apps缓存</h3><br><p>随着native apps（包括移动和桌面版本）和web apps的界限变得越来越模糊，应用程序支持离线访问已经成为大势所趋。离线Web应用程序（Offline Web Applications）规范详细介绍了这一技术，即应用程序缓存功能。</p><br><p>应 用程序缓存功能是通过一个简单的列表文件实现的，该文件列出了应用程序离线工作所需的文件。这样发布者就能够确保他们的网站可以支持离线访问了。这个列表 文件能够引导浏览器保留一份文件的副本，这样用户下次就可以脱机访问这些内容了。当用户没有连入网络时，浏览器就将本地的副本显示给用户。理论上讲，即使 是在地铁或是其他网络不佳的环境下，你也能完成邮件编写工作了，甚至还可以玩web版的愤怒小鸟。</p><br><p>现在浏览器已经对这一功能有了很好的支持，尤其是在移动领域（Firefox, Safari, Chrome, Opera, iPhone, 和Android），你现在就可以使用这一功能了。下面是一些相关的资料：</p><br><ul><br><li><a href="http://dev.w3.org/html5/spec/offline.html#offline" target="_blank" rel="noopener">Offline Web Applications, W3C</a></li><br><li><a href="http://diveinto.html5doctor.com/offline.html" target="_blank" rel="noopener">Let’s take this offline, Dive into HTML5, Mark Pilgrim</a></li><br><li><a href="http://dev.opera.com/articles/view/offline-applications-html5-appcache/" target="_blank" rel="noopener">Running your web applications offline with HTML5 AppCache, dev.opera, Shwetank Dixit</a></li><br><li><a href="http://html5doctor.com/go-offline-with-application-cache/" target="_blank" rel="noopener">Go offline with application cache, HTML5 Doctor, Mike Robinson</a></li><br><li><a href="http://www.sitepoint.com/offline-browsing-in-html5-with-applicationcache/" target="_blank" rel="noopener">Offline Browsing in HTML5 with ApplicationCache, Sitepoint, Malcolm Sheridan</a></li><br><li><a href="http://www.webdirections.org/blog/get-offline/" target="_blank" rel="noopener">Get off(line), Web Directions, John Allsopp</a></li><br></ul><br><h3>UI</h3><br><p>和离线功能一样，UI也是HTML5核心标准的一部分。其中有些功能有必要在这里提一提，比如<code><strong>contenteditable</strong> </code> &nbsp;属性，在创建web apps就非常有用。IE浏览器从5.5版本推出以后就一直支持这一属性，还有其他五大主流浏览器都支持这一属性。将该属性设置为true表示相应的元素是可编辑的。发布者可以在本地存储中加入这一属性，从而跟踪文档的变化。</p><br><p>想了解更多信息，可以查看<a href="http://dev.w3.org/html5/spec/Overview.html#editing" target="_blank" rel="noopener">最新的标准</a> ，但是其中有些部分已经被划分给<a href="http://dvcs.w3.org/hg/editing/raw-file/tip/editing.html" target="_blank" rel="noopener">HTML Editing APIs</a> 了。</p><br><h3>历史</h3><br><p>浏览器的后退按钮是一个使用非常频繁的工具。HTML5的历史API（History API）可以帮助开发者管理用户的浏览器会话的历史状态。</p><br><p>HTML5 以前的历史API只是帮用户回到之前的页面或是之后的页面，以及检查历史信息的长度。而HTML5则加入了增删用户历史信息的方法，可以保存部分数据用于 重构一个页面状态，或是更新URL时无需刷新页面。这个API使用起来非常简单，并且可以用它开发非常复杂的应用程序。</p><br><p>关于历史API的更多信息：</p><br><ul><br><li>&nbsp;<a href="http://dev.w3.org/html5/spec/history.html#history" target="_blank" rel="noopener">History API, W3C</a></li><br><li><a href="http://diveinto.html5doctor.com/history.html" target="_blank" rel="noopener">Manipulating History for Fun &amp; Profit, Dive into HTML5, Mark Pilgrim</a></li><br><li><a href="http://dev.opera.com/articles/view/introducing-the-html5-history-api/" target="_blank" rel="noopener">Introducing the HTML5 History API, dev.opera, Mike Taylor &amp; Chris Mills</a></li><br><li><a href="https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history" target="_blank" rel="noopener">Manipulating the browser history, MDN</a></li><br></ul><br><h3>MIME类型和协议处理程序注册</h3><br><p>这个API允许网站将自己注册成为一些方案的处理程序。下面是一个使用了<code><strong>registerProtocolHandler</strong> </code> &nbsp;方法的例子：</p><br><p>一个在线电话消息服务可以将自己注册成一个sms方案的处理程序，这样当用户点击这个链接以后，就能访问它的Web网站（<a href="http://dev.w3.org/html5/spec/timers.html#custom-handlers" target="_blank" rel="noopener">W3C HTML协议</a> ）了。</p><br><p><strong>sms</strong> 、<strong>tel</strong> 和<strong>irc</strong> 这类方案被列入白名单。网站还可以使用<code><strong>registerContentHandler</strong> </code> &nbsp;方法将自己注册为特定内容的处理程序。</p><br><p>想要了解MIME类型和协议处理程序注册方法，可以先看看<a href="http://dev.w3.org/html5/spec/timers.html#custom-handlers" target="_blank" rel="noopener">HTML5规范</a> 。</p><br><div><br><h2>WHATWG规范中的APIs</h2><br></div><br><p>现在，已经介绍过W3C和WHATWG两个版本HTML5协议中共有的一些标准了。接着将介绍一些附加的APIs，这些APIs被WHATWG收录在正式的协议文档中，而W3C则将他们细分为一些更加易于管理的协议。这两个版本中的APIs用途和主要内容都是相同的。</p><br><ul><br><li><strong>Canvas 2D</strong> <strong>环境</strong> &mdash;&mdash; 可以用来在浏览器中绘图。如果不使用2D Context API，canvas&nbsp;将无法绘图。它就像是刷子、调色板和颜料，将所有这些绘图工具都集成在了一起。这个API是非常常用的，几乎所有的canvas的 文章中都有它的不同方法和事件的介绍。这里还有更加详细的介绍。<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#2dcontext" target="_blank" rel="noopener">WHATWG Canvas Element, 2D Context</a> &nbsp;以及<a href="http://dev.w3.org/html5/2dcontext/" target="_blank" rel="noopener">W3C HTML Canvas 2D Context Spec</a> 。</li><br><li><strong>跨文档和通道的消息通讯</strong> &mdash;&mdash;跨文档通讯定义了一种在文档之间通讯的方法，它不受源区域的限制。同样的，通道消息传递使用了独立的代码实现直接通讯。<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#crossDocumentMessages" target="_blank" rel="noopener">WHATWG HTML, Cross document messaging</a> ，<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#channel-messaging" target="_blank" rel="noopener">WHATWG HTML Cross channel messaging</a> 以及<a href="http://dev.w3.org/html5/postmsg/" target="_blank" rel="noopener">W3C HTML5 Web Messaging spec</a> 。</li><br><li><strong>Microdata</strong> &mdash;&mdash;在文档中新增了一个语义层，方便搜索引擎，浏览器等可以使用提取网页信息并提高浏览器的服务质量。&nbsp;<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#microdata" target="_blank" rel="noopener">WHATWG HTML, Microdata</a> 以及<a href="http://dev.w3.org/html5/md/" target="_blank" rel="noopener">W3C Microdata spec</a> 。</li><br><li><strong>Web Workers</strong> &mdash;&mdash;这是一个在后台运行的JavaScript调用API。它能够在不影响前端界面的情况下长期运行任务，从而避免任务执行造成的页面响应延迟。<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html" target="_blank" rel="noopener">WHATWG HTML, Web Workers</a> 和<a href="http://dev.w3.org/html5/workers/" target="_blank" rel="noopener">W3C Web Workers Spec</a> 。</li><br><li><strong>Web</strong> <strong>存储</strong> &mdash;&mdash;有点类似于cookies。<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webstorage.html" target="_blank" rel="noopener">WHATWG HTML, Web Storage</a> 和<a href="http://dev.w3.org/html5/webstorage/" target="_blank" rel="noopener">W3C Web Storage spec</a> 。</li><br><li><strong>Web Sockets</strong> &mdash;&mdash;允许页面使用WebSocket协议在浏览器和服务器间发送两路消息。<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/network.html" target="_blank" rel="noopener">WHATWG Web Sockets</a> 和<a href="http://dev.w3.org/html5/websockets/" target="_blank" rel="noopener">W3C Web Socket API</a> 。</li><br><li><strong>Server sent events</strong> <strong>服务器端发送事件</strong> &nbsp;&mdash;&mdash;允许服务器以DOM事件的形式向浏览器发送推送通知。<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#server-sent-events" target="_blank" rel="noopener">WHATWG HTML, Server-sent events</a> 和<a href="http://dev.w3.org/html5/eventsource/" target="_blank" rel="noopener">W3C Server-Sent Events</a> 。</li><br></ul><br><div><br><h2>遵循HTML5规范的APIs</h2><br></div><br><p>由 于篇幅的限制，这里不会将所有与HTML5相关的APIs都列举出来。其中一些常常被误以为是HTML5标准APIs的内容有地理位置 （Geolocation），索引数据库（Indexed DB），选择器(Selectors)，以及文件系统API(Filesystem API)。</p><br><p>W3C成员<a href="http://twitter.com/sideshowbarker" target="_blank" rel="noopener">Mike Smith</a> 编著了一个全方位介绍<a href="http://platform.html5.org/" target="_blank" rel="noopener">web平台和浏览器技术</a> 的综合列表，非常值得一读。</p><br><p style="text-align: center;"><img class="aligncenter size-large wp-image-1575" src="http://www.webapptrend.com/wp-content/uploads/2012/01/02-1024x898.jpg" alt="" width="574" height="503"></p><br><div><br><h2>演示示例和浏览器的支持情况</h2><br></div><br><p>文章之前提到了部分APIs目前得到浏览器支持的情况，但是浏览器对APIs的支持是在不断变化的，想要了解最新的进展，可以查看<a href="http://caniuse.com/" target="_blank" rel="noopener">caniuse</a> 。如果你发现有些APIs目前浏览器尚不支持，也不必灰心。这里还有一个补充功能用来帮助你模拟本地行为。可以查看<a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills" target="_blank" rel="noopener">HTML5 Cross Browser Polyfills</a> 了解这一功能。</p><br><p>可以看看<a href="http://twitter.com/rem" target="_blank" rel="noopener">Remy Sharp的</a> <a href="http://html5demos.com/" target="_blank" rel="noopener">HTML5 Demos</a> ,通过查看这些源码进一步了解文章介绍的APIs。</p><br><div><br><h2>总结</h2><br></div><br><p>这 里只是粗略地介绍了一下这些非常有用而且功能强大的APIs。如果想要更加深入地了解这些APIs的细节，你需要通过代码去学习。这将给你带来不一样的体 验。有些APIs目前还没有完全成熟，希望这篇文章能够让你对此更加有兴趣，并对这些将加入到浏览器中的功能更感兴趣。</p><br><p>文章来源：<a href="http://www.netmagazine.com/features/developer-s-guide-html5-apis" target="_blank" rel="noopener">The developer’s guide tothe HTML5 APIs</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/HTML/" rel="tag"># HTML</a>
+          
+            <a href="/blog/tags/HTML5/" rel="tag"># HTML5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5hz01894urqk9z6lyz9/" rel="next" title="感悟-给明年依然年轻的我们">
+                <i class="fa fa-chevron-left"></i> 感悟-给明年依然年轻的我们
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5qi01hr4urqzafvelns/" rel="prev" title="超过 20 个强大的 HTML5 Web 应用">
+                超过 20 个强大的 HTML5 Web 应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">HTML5标准中的APIs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">多媒体API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">文本轨迹 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">拖放功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">离线Web Apps/Apps缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.</span> <span class="nav-text">UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.6.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.7.</span> <span class="nav-text">MIME类型和协议处理程序注册</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">WHATWG规范中的APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">遵循HTML5规范的APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">演示示例和浏览器的支持情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

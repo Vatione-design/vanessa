@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="微信小程序,经验,审核," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景元旦开车回家的路上（12月31日）和 D 讨论起对书籍的看法（其实是 D 和我讨论了，不过这并不重要），然后联想到被炒的很火的小程序。1月1日，D 书写了 疯狂的想法 C：书籍共享计划。1月2日，在回家的路上，又继续讨论了一下，一到家就开始找各种精品分析：  摆摆书架 青番茄 书巢 丢书大作战 很多社区的书籍交换  为什么他们都不曾脱引而出？为什么他们都纷纷倒下？我们还有实现的必要么？经过一个">
+<meta name="keywords" content="微信小程序,经验,审核">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序从注册到审核通过遇到的那些坑">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5g701674urqskeyd7c0/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="背景元旦开车回家的路上（12月31日）和 D 讨论起对书籍的看法（其实是 D 和我讨论了，不过这并不重要），然后联想到被炒的很火的小程序。1月1日，D 书写了 疯狂的想法 C：书籍共享计划。1月2日，在回家的路上，又继续讨论了一下，一到家就开始找各种精品分析：  摆摆书架 青番茄 书巢 丢书大作战 很多社区的书籍交换  为什么他们都不曾脱引而出？为什么他们都纷纷倒下？我们还有实现的必要么？经过一个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img.hacpai.com/file/2017/1/87c2d42a83964f15ad16dcc59498cf4d.png">
+<meta property="og:updated_time" content="2018-01-25T09:30:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小程序从注册到审核通过遇到的那些坑">
+<meta name="twitter:description" content="背景元旦开车回家的路上（12月31日）和 D 讨论起对书籍的看法（其实是 D 和我讨论了，不过这并不重要），然后联想到被炒的很火的小程序。1月1日，D 书写了 疯狂的想法 C：书籍共享计划。1月2日，在回家的路上，又继续讨论了一下，一到家就开始找各种精品分析：  摆摆书架 青番茄 书巢 丢书大作战 很多社区的书籍交换  为什么他们都不曾脱引而出？为什么他们都纷纷倒下？我们还有实现的必要么？经过一个">
+<meta name="twitter:image" content="https://img.hacpai.com/file/2017/1/87c2d42a83964f15ad16dcc59498cf4d.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5g701674urqskeyd7c0/"/>
+
+
+
+
+
+  <title>小程序从注册到审核通过遇到的那些坑 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5g701674urqskeyd7c0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小程序从注册到审核通过遇到的那些坑</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-10T23:52:17+08:00">
+                2017-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>元旦开车回家的路上（12月31日）和 D 讨论起对书籍的看法（其实是 D 和我讨论了，不过这并不重要），然后联想到被炒的很火的小程序。1月1日，D 书写了 <a href="https://hacpai.com/article/1483240295087" target="_blank" rel="noopener">疯狂的想法 C：书籍共享计划</a>。1月2日，在回家的路上，又继续讨论了一下，一到家就开始找各种精品分析：</p>
+<ul>
+<li>摆摆书架</li>
+<li>青番茄</li>
+<li>书巢</li>
+<li>丢书大作战</li>
+<li>很多社区的书籍交换</li>
+</ul>
+<p>为什么他们都不曾脱引而出？为什么他们都纷纷倒下？我们还有实现的必要么？<br>经过一个晚上的挣扎，最终还是觉定试一试，想让人们再次对信任重新燃起火花。以进一步推动社区的理念 - <strong> Feel easy about trust</strong></p>
+<h2 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h2><ul>
+<li>1月3日下班后吃完晚饭便开始进行产品细节规划（本来是计划写年终的）… 到晚上 10 点，差不多构思好了，便开始建项目，一直弄到凌晨 2 点，差不多就 OK 啦。上手还是很快的，主要是功能比较简单：登录、扫码、共享。</li>
+<li>1月4日 16:42 抽空体验了下提交审核步骤，很简单，一分钟就搞定啦。由于写的急促，晚上回去后重构了下代码，完善了下细节</li>
+<li>1月5日 22:56 审核被驳回了。第一次完全是希望审核不要被通过，HOHO，速查小程序运营文档，改了改。然后顺手开源了一下  <a href="https://github.com/b3log/symphony-weapp" target="_blank" rel="noopener">https://github.com/b3log/symphony-weapp</a></li>
+<li>1月6日 00:12 再次提交了审核，还发自肺腑的写一份邮件给小程序审核人员</li>
+<li>1月7日 16:05 第二次被驳回了，整个人都绝望了，看了还有2天。。。还能怎么办？改呗！ 20:52 又再次提交了审核</li>
+<li>1月8日 抱着一颗平常的心等待，该干嘛干嘛。然而还是被测试账号骚扰到了。</li>
+<li>1月9日 守到了零点，小程序准时发布了。然而我们的审核结果还没有出来。睡觉睡觉。夜里居然梦见审核通过了，第二天一起来就立马打开手机确认，好开心，美梦成真！是在 01:55 的时候通过了审核滴 :smile:</li>
+<li>1月10日 激动的边吃早点边打开电脑点击确认发布。虽然没有进行宣传，不过<a href="https://hacpai.com/article/1483598914214" target="_blank" rel="noopener">前期的体验者</a> 还比较认同，也比较有爱心，<a href="https://hacpai.com/tag/book_share" target="_blank" rel="noopener">捐赠了许多书</a>，还有帮忙推广，谢谢你们！最终结果如下：<br><img src="https://img.hacpai.com/file/2017/1/87c2d42a83964f15ad16dcc59498cf4d.png" alt="87c2d42a83964f15ad16dcc59498cf4d.png"> </li>
+</ul>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><ul>
+<li>个人是不可以注册小程序的，只有团体和公司。但是你可以通过 淘宝 进行购买，只需 299 就可以拥有一个能发布小程序的账号了，要支付功能的话就需要支付 599 啦</li>
+<li>公司注册，如果不需要微信支付、卡券的功能，是不需要交 300 元进行认证的。所以我省了 300</li>
+<li>团体的话，要分为基金会、国外政府机构驻华代表处和其他。为什么要这么分呢？因为 基金会、国外政府机构驻华代表处 是不收认证审核的费用。除此外的其他团体是需要交 300 元认证费后才可以发布 小程序。要不然小程序是不会让你提交审核的</li>
+<li>只想让20个人体验又不需要发布的话就比较简单了，直接用没有注册过小程序的邮箱注册一个账号，选择团体，就可以 Next，Next，Next</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/微信小程序/" rel="tag"># 微信小程序</a>
+          
+            <a href="/blog/tags/经验/" rel="tag"># 经验</a>
+          
+            <a href="/blog/tags/审核/" rel="tag"># 审核</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5gb016c4urqkphb6dpo/" rel="next" title="小程序最全类目整理">
+                <i class="fa fa-chevron-left"></i> 小程序最全类目整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5h9017i4urq3nhtrs4a/" rel="prev" title="微信程序如何灰度发布">
+                微信程序如何灰度发布 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经历"><span class="nav-number">2.</span> <span class="nav-text">经历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">3.</span> <span class="nav-text">遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册"><span class="nav-number">3.1.</span> <span class="nav-text">注册</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

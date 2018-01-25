@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="These rules are the key to speeding up your web pages.They’ve been tested on some of the most popular sites on the Internetand have successfully reduced the response times of those pages by25-50%.The">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="14 Rules for Faster-Loading Web Sites 详解">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuj6d4k003bl6rqnf6gdtig/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="These rules are the key to speeding up your web pages.They’ve been tested on some of the most popular sites on the Internetand have successfully reduced the response times of those pages by25-50%.The">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T12:25:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="14 Rules for Faster-Loading Web Sites 详解">
+<meta name="twitter:description" content="These rules are the key to speeding up your web pages.They’ve been tested on some of the most popular sites on the Internetand have successfully reduced the response times of those pages by25-50%.The">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuj6d4k003bl6rqnf6gdtig/"/>
+
+
+
+
+
+  <title>14 Rules for Faster-Loading Web Sites 详解 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuj6d4k003bl6rqnf6gdtig/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">14 Rules for Faster-Loading Web Sites 详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-06-03T07:50:00+08:00">
+                2010-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><br>These rules are the key to speeding up your web pages.<br>They’ve been tested on some of the most popular sites on the Internet<br>and have successfully reduced the response times of those pages by<br>25-50%.<br></p><br><p><br>The key insight behind these best practices is the realization that<br>only 10-20% of the total end-user response time is spent getting the<br>HTML document to the browser.<br>You need to focus on the other 80-90% if you want to make your pages<br>noticeably faster.<br>These rules are the best practices for optimizing the way servers and<br>browsers handle that 80-90% of the user experience.<br></p><br><p><br>These pages are the companion web site for the book <a href="http://www.amazon.com/gp/product/0596529309?ie=UTF8&amp;tag=stevsoud-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596529309" target="_blank" rel="noopener">High<br> Performance Web Sites</a><br>.<br>The examples referenced in the book are hosted here.<br>Navigate through the rules listed below to find the associated examples.<br>Each rule page also contains a link to the <a href="http://developer.yahoo.com/performance/rules.html" target="_blank" rel="noopener">Yahoo!<br>Developer Network Performance Blog</a><br>.<br>There you will find a brief summary of the rule along with comments.<br></p><br><ul style="padding-top: 0px; margin-top: 4px; list-style: none outside none;"><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-min-http.php" target="_blank" rel="noopener">Rule<br> 1 - Make Fewer HTTP Requests</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-cdn.php" target="_blank" rel="noopener">Rule 2 - Use a Content<br>Delivery Network</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-expires.php" target="_blank" rel="noopener">Rule 3 - Add an<br>Expires Header</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-gzip.php" target="_blank" rel="noopener">Rule 4 - Gzip<br>Components</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-css-top.php" target="_blank" rel="noopener">Rule 5 - Put<br>Stylesheets at the Top</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-js-bottom.php" target="_blank" rel="noopener">Rule 6 - Put<br>Scripts at the Bottom</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-expr.php" target="_blank" rel="noopener">Rule 7 - Avoid CSS<br>Expressions</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-inline.php" target="_blank" rel="noopener">Rule 8 - Make<br>JavaScript and CSS External</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-dns.php" target="_blank" rel="noopener">Rule 9 - Reduce DNS<br>Lookups</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-minify.php" target="_blank" rel="noopener">Rule 10 - Minify<br>JavaScript</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-redir.php" target="_blank" rel="noopener">Rule 11 - Avoid<br>Redirects</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-js-dupes.php" target="_blank" rel="noopener">Rule 12 - Remove<br>Duplicate Scripts</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-etags.php" target="_blank" rel="noopener">Rule 13 - Configure<br>ETags</a><br>  </li><br><li> <a class="noline" href="http://stevesouders.com/hpws/rule-ajax.php" target="_blank" rel="noopener">Rule 14 - Make AJAX<br>Cacheable</a><br></li><br></ul><br><p style="margin-bottom: 0pt;">Read more:<br></p><br><ul style="margin-top: 0pt;"><br><li> <a href="http://stevesouders.com/hpws/index.php" target="_blank" rel="noopener">how these rules<br>came about</a><br>  </li><br><li> <a href="http://developer.yahoo.com/yslow/" target="_blank" rel="noopener">YSlow</a><br>,<br>Yahoo’s performance analysis tool<br>  </li><br><li> <a href="http://developer.yahoo.com/performance/" target="_blank" rel="noopener">YDN<br>Performance Blog</a><br>  </li><br><li> <a href="http://yuiblog.com/blog/category/performance" target="_blank" rel="noopener">YUI<br>Performance Blog</a><br>  </li><br><li> <a href="http://stevesouders.com/hpws/links.php" target="_blank" rel="noopener">links from<br>the book</a><br>  </li><br><li> <a href="http://stevesouders.com/hpws/sleep.txt" target="_blank" rel="noopener"><code>sleep.cgi</code><br></a><br> source code<br></li><br></ul><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p><strong>法则 1. 减少 HTTP 请求次数</strong><br><br><br>80%的最终用户响应时间花在前端程序上，而其大部分时间则花在各种页面元素， 如图像、 样式表、 脚本和 Flash 等，的下载上。<br>减少页面元素将会减少 HTTP 请求 次数。这是快速显示页面的关键所在。 一种减少页面元素个数的方法是简化页面设计。<br>但是否存在其他方式，能做到既 有丰富内容，又能获得快速响应时间呢？以下是这样一些技术： Image maps<br>组合多个图片到一张图片中。总文件大小变化不大，但减少了 HTTP 请求次数从而加快了页面显示速度。 该方式只适合图片连续的情况；同时坐标的<br>定义是烦人又容易出错的工作。 CSS Sprites 是更好的方法。它可以组合页面中的图片到单个文件中，并使用 CSS 的<br>background-image 和 background-position 属性来现实所需的部分图片。 Inline images 使用<br>data: URL scheme 来在页面中内嵌图片。这将增大 HTML 文 件的大小。组合 inline images<br>到你的（缓存）样式表是既能较少 HTTP 请求， 又能避免加大 HTML 文件大小的方法。 Combined files<br>通过组合多个脚本文件到单一文件来减少 HTTP 请求次数。样式 表也可采用类似方法处理。 这个方法虽然简单，但没有得到大规模的使用。 大 10<br>美国网站每页平均有 7 个脚本文件和 2 个样式表。当页面之间脚本和样式表变化<br>很大时，该方式将遇到很大的挑战，但如果做到的话，将能加快响应时间。 减少 HTTP 请求次数是性能优化的起点。这最提高首次访问的效率起到很重要的<br> 作用。 Tenni Theurer 的文章 Browser Cache Usage &ndash; Exposed!描述，40-60% 据<br>的日常访问是首次访问，因此为首次访问者加快页面访问速度是用户体验的关 键。</p><br><p>&nbsp;</p><br><p><strong>法则 2. 使用 CDN(Content Delivery Network, 内容分发网络 )</strong><br></p><br><p>用户离 web server 的远近对响应时间也有很大影响。从用户角度看，把内容部 署到多个地理位置分散的服务器上将有效提高页面装载速度。<br> 但是该从哪里开始 呢？</p><br><p>作为实现内容地理分布的第一步，不要试图重构 web 应用以适应分布架构。 改变 架构将导致多个周期性任务，如同步 session<br>状态，在多个 server 之间复制数 据库交易。 这样缩短用户与内容距离的尝试可能被应用架构改版所延迟，或阻止。 我们还记得<br>80-90%的最终用户响应时间花在下载页面中的各种元素上，如图像 文件、 样式表、 脚本和 Flash 等。<br>与其花在重构系统这个困难的任务上，还不如先 分布静态内容。 这不仅能大大减少响应时间，而且由于 CDN 的存在，分布静态内 容非常容易实现。<br>CDN 是地理上分布的 web server 的集合，用于更高效地发布内容。 通常基于网络 远近来选择给具体用户服务的 web server。<br>一些大型网站拥有自己的 CDN，但是使用如 Akamai Technologies, Mirror Image Internet, 或<br>Limelight Networks 等 CDN 服务提供商的服务将是划算的。 在 Yahoo!把静态内容分布到 CDN 减少了用户影响时间<br>20%或更多。切换到 CDN 的 代码修改工作是很容易的，但能达到提高网站的速度。</p><br><p>&nbsp;</p><br><p><strong>法则 3. 增加 Expires Header</strong><br><br><br>网页内容正变得越来越丰富，这意味着更多的脚本文件、样式表、图像文件和 Flash。 首次访问者将不得不面临多次 HTTP 请求，但通过使用<br>Expires header， 您可以在客户端缓存这些元素。这在后续访问中避免了不必要的 HTTP 请求。 Expires header<br>最常用于图像文件，但是它也应该用于脚本文件、样式表和 Flash。 浏览器（和代理）使用缓存来减少 HTTP<br>请求的次数和大小，使得网页加速装载。 Web server 通过 Expires header 告诉客户端一个元素可以缓存的时间长度。<br>如果服务器是 Apache 的话，您可以使用 ExpiresDefault 基于当期日期来设置 过期日期，如： ExpiresDefault<br>&ldquo;access plus 10 years&rdquo; 设置过期时间为从请求时间开始 计算的 10 年。<br>请记住，如果使用超长的过期时间，则当内容改变时，您必须修改文件名称。 在 Yahoo!我们经常把改名作为 release<br>的一个步骤：版本号内嵌在文件名中，如 yahoo_2.0.6.js。</p><br><p>&nbsp;</p><br><p><strong>法则 4. 压缩页面元素</strong><br><br><br>通过压缩 HTTP 响应内容可减少页面响应时间。从 HTTP/1.1 开始，web 客户端在 HTTP 请求中通过<br>Accept-Encoding 头来表明支持的压缩类型，如：</p><br><p>Accept-Encoding: gzip, deflate. 如果 Web server 检查到 Accept-Encoding<br>头，它会使用客户端支持的方法来压 缩 HTTP 响应，会设置 Content-Encoding 头，如：Content-Encoding:<br>gzip。 Gzip 是目前最流行及有效的压缩方法。 其他的方式如 deflate，但它效果较差， 也不够流行。通过 Gzip，内容一般可减少<br>70%。如果是 Apache，在 1.3 版本下需 使用 mod_gzip 模块，而在 2.x 版本下，则需使用 mod_deflate。<br>Web server 根据文件类型来决定是否压缩。 大部分网站对 HTML 文件进行压缩。 但<br>对脚本文件和样式表进行压缩也是值得的。实际上，对包括 XML 和 JSON 在内的 任务文本信息进行压缩都是值得的。 图像文件和 PDF<br>文件不应该被压缩，因为它 们本来就是压缩格式保存的。对它们进行压缩，不但浪费 CPU，而且还可能增加 文件的大小。<br>因此，对尽量多的文件类型进行压缩是一种减少页面大小和提高用户体验的简 便方法。</p><br><p>&nbsp;</p><br><p><strong>法则 5. 把样式表放在头上</strong><br><br><br>我们发现把样式表移到 HEAD 部分可以提高界面加载速度，因此这使得页面元素 可以顺序显示。 在很多浏览器下，如 IE，把样式表放在<br>document 的底部的问题在于它禁止了网 页内容的顺序显示。 浏览器阻止显示以免重画页面元素，那用户只能看到空白页 了。Firefox<br>不会阻止显示，但这意味着当样式表下载后，有些页面元素可能需 要重画，这导致闪烁问题。 HTML 规范明确要求样式表被定义在 HEAD<br>中，因此，为避免空白屏幕或闪烁问题， 最好的办法是遵循 HTML 规范，把样式表放在 HEAD 中。</p><br><p>&nbsp;</p><br><p><strong>法则 6. 把脚本文件放在底部</strong><br><br><br>与样式文件一样，我们需要注意脚本文件的位置。 我们需尽量把它们放在页面的 底部，这样一方面能顺序显示，另方面可达到最大的并行下载。<br>浏览器会阻塞显示直到样式表下载完毕，因此我们需要把样式表放在 HEAD 部分。<br>而对于脚本来说，脚本后面内容的顺序显示将被阻塞，因此把脚本尽量放在底 部意味着更多内容能被快速显示。<br>脚本引起的第二个问题是它阻塞并行下载数量。HTTP/1.1 规范建议浏览器每个 主机的并行下载数不超过 2 个。<br>因此如果您把图像文件分布到多台机器的话，您</p><br><p>可以达到超过 2 个的并行下载。 但是当脚本文件下载时，浏览器不会启动其他的 并行下载，甚至其他主机的下载也不启动。<br>在某些情况下，不是很容易就能把脚本移到底部的。如，脚本使用 document.write 方法来插入页面内容。 同时可能还存在域的问题。<br>不过在很多情 况下，还是有一些方法的。 一个备选方法是使用延迟脚本（deferred script）。DEFER 属性表明脚本未包 含<br>document.write，指示浏览器刻继续显示。不幸的是，Firefox 不支持 DEFER 属性。 IE<br>中，脚本可能被延迟执行，但不一定得到需要的长时间延迟。 在 不过从 另外角度来说，如果脚本能被延迟执行，那它就可以被放在底部了。</p><br><p>&nbsp;</p><br><p><strong>法则 7. 避免 CSS 表达式</strong><br><br><br>CSS 表达式是功能强大的(同时也是危险的)用于动态设置 CSS 属性的方式。IE， 从版本 5 开始支持 CSS 表达式，如<br>backgourd-color: expression((new<br>Date()).getHours()%2?&rdquo;#B8D4FF&rdquo;:&rdquo;#F08A00&rdquo;)，即背景色每个小时切换一 次。 CSS<br>表达式的问题是其执行次数超过大部分人的期望。 不仅页面显示和 resize 时<br>计算表达式，而且当页面滚屏，甚至当鼠标在页面上移动时都会重新计算表达 式。 一种减少 CSS<br>表达式执行次数的方法是一次性表达式，即当第一次执行时就以 明确的数值代替表达式。如果必须动态设置的话，可使用事件处理函数代替。如 果您必须使用<br>CSS 表达式的话，请记住它们可能被执行上千次，从而影响页面 性能。</p><br><p>&nbsp;</p><br><p><strong>法则 8. 把 JavaScript和 CSS 放到外部文件中</strong><br></p><br><p>上述很多性能优化法则都基于外部文件进行优化。 现在，我们必须问一个问题： JavaScript 和 CSS<br>应该包括在外部文件，还是在页面文件中？ 在现实世界中，使用外部文件会加快页面显示速度，因为外部文件会被浏览器 缓存。如果内置<br>JavaScript 和 CSS 在页面中虽然会减少 HTTP 请求次数，但增大 了页面的大小。<br>另外一方面，使用外部文件，会被浏览器缓存，则页面大小会减 小，同时又不增加 HTTP 请求次数。 因此，一般来说，外部文件是更可行的方式。<br>唯一的例外是内嵌方式对主页更有 效，如 Yahoo!和 My Yahoo!都使用内嵌方式。一般来说，在一个 session 中，主<br>页访问此时较少，因此内嵌方式可以取得更快的用户响应时间。</p><br><p>&nbsp;</p><br><p><strong>法则 9. 减少 DNS 查询次数</strong><br><br><br>DNS 用于映射主机名和 IP 地址，一般一次解析需要 20～120 毫秒。 为达到更高的 性能，DNS 解析通常被多级别地缓存，如由 ISP<br>或局域网维护的 caching server，本地机器操作系统的缓存（如 windows 上的 DNS Client Service），<br>浏览器。 的缺省 DNS 缓存时间为 30 分钟，Firefox 的缺省缓冲时间是 1 分钟。 IE 减少主机名可减少 DNS<br>查询的次数，但可能造成并行下载数的减少。避免 DNS 查 询可减少响应时间，而减少并行下载数可能增加响应时间。 一个可行的折中是把<br>内容分布到至少 2 个，最多 4 个不同的主机名上。</p><br><p>&nbsp;</p><br><p><strong>法则 10. 最小化 JavaScript代码</strong><br></p><br><p>最小化 JavaScript 代码指在 JS 代码中删除不必要的字符，从而降低下载时间。 两个流行的工具是 JSMin 和 YUI<br>Compressor。 混淆是最小化于源码的备选方式。 象最小化一样，它通过删除注释和空格来减少 源码大小，同时它还可以对代码进行混淆处理。<br>作为混淆的一部分，函数名和变 量名被替换成短的字符串，这使得代码更紧凑，同时也更难读，使得难于被反 向工程。Dojo Compressor<br>(ShrinkSafe)是最常见的混淆工具。 最小化是安全的、直白的过程，而混淆则更复杂，而且容易产生问题。从对美国 10<br>大网站的调查来看，通过最小化，文件可减少 21%，而混淆则可减少 25%。 除了最小化外部脚本文件外，内嵌的脚本代码也应该被最小化。<br>即使脚本根据法 则 4 被压缩后传输，最小化脚本刻减少文件大小 5%或更高。</p><br><p>&nbsp;</p><br><p><strong>法则 11. 避免重定向</strong><br><br><br>重定向功能是通过 301 和 302 这两个 HTTP 状态码完成的，如： HTTP/1.1 301 Moved Permanently<br>Location: <a href="http://example.com/newuri" target="_blank" rel="noopener">http://example.com/newuri</a> Content-Type: text/html 浏览器自动重定向请求到<br>Location 指定的 URL 上，重定向的主要问题是降低了 用户体验。 一种最耗费资源、经常发生而很容易被忽视的重定向是 URL<br>的最后缺少/，如访 问 <a href="http://astrology.yahoo.com/astrology" target="_blank" rel="noopener">http://astrology.yahoo.com/astrology</a> 将被重定向到</p><br><p><a href="http://astrology.yahoo.com/astrology/。在" target="_blank" rel="noopener">http://astrology.yahoo.com/astrology/。在</a> Apache 下，可以通过<br>Alias，mod_rewrite 或 DirectorySlash 等方式来解决该问题。</p><br><p>&nbsp;</p><br><p><strong>法则 12. 删除重复的脚本文件</strong><br><br><br>在一个页面中包含重复的 JS 脚本文件会影响性能，即它会建立不必要的 HTTP 请求和额外的 JS 执行。 不必要的 HTTP 请求发生在 IE<br> 下，而 Firefox 不会产生多余的 HTTP 请求。 额外的 JS 执行，不管在 IE 下，还是在 Firefox 下，都会发生。<br>一个避免重复的脚本文件的方式是使用模板系统来建立脚本管理模块。 除了防止 重复的脚本文件外，该模块还可以实现依赖性检查和增加版本号到脚本文件名<br>中，从而实现超长的过期时间。</p><br><p>&nbsp;</p><br><p><strong>法则 13. 配置 ETags</strong><br><br><br>ETags 是用于确定浏览器缓存中元素是否与 Web server 中的元素相匹配的机制， 它是比 last-modified date<br>更灵活的元素验证机制。ETag 是用于唯一表示元素 版本的字符串，它需被包括在引号中。Web server 首先在 response 中指定<br>ETag： HTTP/1.1 200 OK &lt; 03:03:59 2006 Dec 12&gt;<br>10c24bc-4ab-457e1c1f&rdquo; Content-Length: 12195 后来，如果浏览器需要验证某元素，它使用<br>If-None-Match 头回传 ETag 给 Web server，如果 ETag 匹配，则服务器返回 304 代码，从而节省了下载时间：<br>GET /i/yahoo.gif HTTP/1.1 Host: us.yimg.com &lt; 03:03:59 2006 Dec<br>12&gt; 10c24bc-4ab-457e1c1f&rdquo; HTTP/1.1 304 Not Modified ETags<br>的问题在于它们是基于服务器唯一性的某些属性构造的，如 Apache1.3 和 2.x，其格式是 inode-size-timestamp，而在<br>IIS5.0 和 6.0 下，其格式是 Filetimestamp:ChangeNumber。这样同一个元素在不同的 web server<br>上，其 ETag 是不一样的。这样在多 Web server 的环境下，浏览器先从 server1 请求某 元素，后来向 server2<br>验证该元素，由于 ETag 不同，所以缓存失效，必须重新 下载。</p><br><p>因此，如果您未用到 ETags 系统提供的灵活的验证机制，最好删除 ETag。删除 ETag 会减少 http response<br>及后续请求的 HTTP 头的大小。微软支持文章描述了 如何删除 ETags，而在 Apache 下，只要在配置文件中设置 FileETag<br>none 即可。</p><br><p>&nbsp;</p><br><p><strong>法则 14. 缓存 Ajax</strong><br><br><br>性能优化法则同样适用于 web 2.0 应用。提高 Ajax 的性能最重要的方式是使得 其 response 可缓存，就象&ldquo;法则 3 增加<br>Expires Header&rdquo;讨论的那样。以下其 他法则同样适用于 Ajax，当然法则 3 是最有效的方式:</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6j42007xl6rq47q45tu6/" rel="next" title="从Reddit学到的七条经验">
+                <i class="fa fa-chevron-left"></i> 从Reddit学到的七条经验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujziyc00ldxwrq7jrj1o3r/" rel="prev" title="js内存泄露问题">
+                js内存泄露问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

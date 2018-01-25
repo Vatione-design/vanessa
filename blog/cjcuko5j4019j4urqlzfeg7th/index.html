@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="导读： 　　新一篇: vb.net 与 C# 比较 | 旧一篇: MFC 超级链接的控件类 　　英文原文：http://www.agilemodeling.com/essays/modelStorming.htm 　　 　　Model Storming是一种实时的建模方式：你找到了一个需要解决的问题，你马上抓起一小撮团队里可以帮助你的同事，这个小组一起研讨解决这个问题，接下来每个人像刚才一样继续工">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="敏捷开发最佳实践:Model Storming">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5j4019j4urqlzfeg7th/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="导读： 　　新一篇: vb.net 与 C# 比较 | 旧一篇: MFC 超级链接的控件类 　　英文原文：http://www.agilemodeling.com/essays/modelStorming.htm 　　 　　Model Storming是一种实时的建模方式：你找到了一个需要解决的问题，你马上抓起一小撮团队里可以帮助你的同事，这个小组一起研讨解决这个问题，接下来每个人像刚才一样继续工">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/uiSketchStudentEdit.jpg">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/sequenceDiagramServiceLevel.jpg">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/crcCardExample.jpg">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/flowChart.jpg">
+<meta property="og:updated_time" content="2018-01-09T07:17:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="敏捷开发最佳实践:Model Storming">
+<meta name="twitter:description" content="导读： 　　新一篇: vb.net 与 C# 比较 | 旧一篇: MFC 超级链接的控件类 　　英文原文：http://www.agilemodeling.com/essays/modelStorming.htm 　　 　　Model Storming是一种实时的建模方式：你找到了一个需要解决的问题，你马上抓起一小撮团队里可以帮助你的同事，这个小组一起研讨解决这个问题，接下来每个人像刚才一样继续工">
+<meta name="twitter:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/uiSketchStudentEdit.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5j4019j4urqlzfeg7th/"/>
+
+
+
+
+
+  <title>敏捷开发最佳实践:Model Storming | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5j4019j4urqlzfeg7th/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">敏捷开发最佳实践:Model Storming</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-08-05T15:18:00+08:00">
+                2008-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>导读： <br>　　新一篇: vb.net 与 C# 比较<strong> | </strong>旧一篇: MFC 超级链接的控件类 <br>　　英文原文：<a href="http://www.agilemodeling.com/essays/modelStorming.htm" target="_blank" rel="noopener">http://www.agilemodeling.com/essays/modelStorming.htm</a> <br>　　 <br>　　Model Storming是一种实时的建模方式：你找到了一个需要解决的问题，你马上抓起一小撮团队里可以帮助你的同事，这个小组一起研讨解决这个问题，接下来每个人像刚才一样继续工作。这对于敏捷项目来说是很普遍的事情。使用极限编程的人称这个为站立的设计会议(stand-up design session)或者客户的问答会议(customer Q&amp;A session)，并且在传统的项目中也同样普遍。我们是时候开始探讨一下model storm,我们可以找到某种方式让这个过程变得更好。 <br>　　我的经验是大多数的建模会议应该只有少量的人员参与，一般来说2到3位，这些人员讨论问题并且将草图画到纸或者白板上。这些model storming session基本上是一种即兴的事，一个项目团队成员让另一个人去和他一起建模，一般来说大概持续5到10分钟（model storm几乎很少超过30分钟）。人们在围着共享的建模工具（例如白板），一起去探索直到他们满意的理解这个问题，接下来他们继续工作（经常是coding）. <br>　　<strong></strong><strong>Analysis Model Storming</strong> <br>　　你将用model storm去分析需求。For example，一个项目相关人员可能告诉你你要构建的这个系统必须能够编辑学生的信息（译者：够俗的例子）。和组员们一起建立了草图，在屏幕上可以看到，see Figure 1。画了很多示例直到你们都理解了什么事你们需要构建的。这种草图是一种inclusive models 因为你们用了简单的工具和建模技术，这将允许项目相关人员的参与敏捷建模实践。 <br>　　<strong>Figure 1. Screen sketches.</strong> <br><img height="480" alt="" src="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/uiSketchStudentEdit.jpg" width="305">　　 <br>　　 <br>　　 <br>　　<strong>Design Model Storming</strong> <br>　　敏捷开发者，包括XPer。当他们一旦选择了一个需求去完成，一般并不直接去编码（与敏捷开发的诋毁者告诉你的相反，译:外国人也勾心斗角）。这是因为model storming对于架构和设计也很常用。java程序员在编写复杂的代码之前经常草草绘制一张UML sequence图（见Figure 2），XPer将建立CRC cards（Class Responsibility Collaborator ）在索引卡片上（见Figure 3）用来揭示结构设计的一些细节问题，VB程序员可能选择画流程图(Flow charts)来为一个复杂的业务规则建模（见Figure 4）。无论你建立的是哪种模型，你一直在model storming。 <br>　　<strong>Figure 2. Service-level</strong><strong>sequence diagram.</strong> <br>　　<img height="375" src="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/sequenceDiagramServiceLevel.jpg" width="676"> <br>　　 <br>　　 <br>　　<strong>Figure 3. Hand-drawn CRC Cards.</strong><strong>Figure 3. Hand-drawn CRC Cards.</strong> <br>　　 <br>　　<img height="838" src="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/crcCardExample.jpg" width="600"> <br>　　 <br>　　 <br>　　<strong>Figure 4. Flowchart for enrolling in the University.</strong> <br>　　<img height="499" src="http://p.blog.csdn.net/images/p_blog_csdn_net/smalllixin/flowChart.jpg" width="658"> <br>　　 <br>　　有一点很重要你必须理解，model storm并不一定必须是在白板上，你只需要一个共享的、包容性的工具(inclusive tool) 可以令人们在一起容易工作。举个例子，CRC卡片（Figure 3）被写到索引卡片上而不是白板上。 <br>　　<strong>Why Dose This Work? </strong><strong>（为什么这样做）</strong> <br>　　为什么model storming这种实时的工作比试图事前设计好所有的一切要好（model everything up front）? <br>　　有很多原因： <br>　　1. 无论我们喜不喜欢，在整个项目过程中需求总是变化的。 <br>　　2. 等到需要时再随即分析细节，比在项目一开始就做这些你有了更多的领域知识。举个例子，如果一个需求要加入在项目中并在三个月内实现，对于研究一些需求的细节如果你有了三个月的领域知识会多于在项目开始，因此你能提出更多睿智的问题。 <br>　　3. 如果你已经经常性的交付你的软件，那么项目相关者就会有三个月的对系统使用的经验。话句话说，他们可以给你更好的建议。 <br>　　4. 事先设计细节常常会出现一个巨大浪费的结果。是的，尽管在敏捷开发中，在第0次迭代你想去做一些初始化需求的猜想和一些初始化架构的猜想，但是他们并不意味着你需要跳入细节的沼泽中。 <br>　　话虽如此，当在为复杂的需求建模，或者为遗留下来的系统(legacy)建模的时候，有时你还是需要事先实现一些设计。这种情况实际上很少发生（不管传统的建模者可能对这种事情的期望），但是偶尔也会有。(This is actually a rare occurrence, regardless of what traditional modelers may hope for, but it does happen every so often.) <br>　　<strong>Adopting Model Storming</strong> <br>　　在你的工作环境中如何去推荐model storming呢？首先，越多的白板空间越好。一些公司不愿意去放置白板，很显然他们更关心内部的装饰,比如一个吸引人的打印出来的东西在墙上，这比起另软件开发团队更有效率的工作来讲对他们更重要。我的建议是不但要有很多的白板可供人使用，并且你还需要确定当他们背对着工作区的时候是否能看见，这可以令他们可以使用白板更easy的工作。 <br>　　你可能需要为使用白板制定一种协议，特别当要擦掉一些东西的时候。你的团队文化同样对你的成功有着举足轻重的作用，团队必须可以接受其他人要求帮助，并且可以让其他人一起建模。你需要认识到这是正常的并且是有效的工作方式。我不能记得我们不用model storm时的项目，同样我也不能记起关于这个技术的很多细节的读书或者文章。如果it产业开始谈论我们在实践中实际做了什么而不是我们想我们应该做事情不会更精彩么？ <br>　　 <br>　　翻译的水平很有限，有不当的地方请指正，转载请注明译者：李鑫 <br>　　 <br><br>本文转自 <br><a href="http://blog.csdn.net/smalllixin/archive/2007/11/16/1888049.aspx" target="_blank" rel="noopener">http://blog.csdn.net/smalllixin/archive/2007/11/16/1888049.aspx</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko54500pe4urqcig3h6eu/" rel="next" title="Springside3.0 低调发布">
+                <i class="fa fa-chevron-left"></i> Springside3.0 低调发布
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko52h00mp4urqp4xviha5/" rel="prev" title="Netbeans 插件模块（Plugin Module）的开发">
+                Netbeans 插件模块（Plugin Module）的开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Knowledge,Information," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="认识ITIL标准 ITIL是英国政府中央计算机与电信管理中心（CCTA）在20世纪90年代初期发布的一套IT服务管理最佳实践指南，旨在解决IT服务质量不佳的情况。 ITIL所强调的核心思想是应该从客户（业务）而不是IT 服务提供方（技术）的角度理解IT服务需求。也就是说，在提供IT服务的时候，我们首先应该考虑业务需求，根据业务需求来确定IT需求。业务管理这个模块指导业务管理者以自己习惯的思维模式分">
+<meta name="keywords" content="Knowledge,Information">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ITIL简介">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4w700bn4urqn0ksov6u/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="认识ITIL标准 ITIL是英国政府中央计算机与电信管理中心（CCTA）在20世纪90年代初期发布的一套IT服务管理最佳实践指南，旨在解决IT服务质量不佳的情况。 ITIL所强调的核心思想是应该从客户（业务）而不是IT 服务提供方（技术）的角度理解IT服务需求。也就是说，在提供IT服务的时候，我们首先应该考虑业务需求，根据业务需求来确定IT需求。业务管理这个模块指导业务管理者以自己习惯的思维模式分">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T05:16:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ITIL简介">
+<meta name="twitter:description" content="认识ITIL标准 ITIL是英国政府中央计算机与电信管理中心（CCTA）在20世纪90年代初期发布的一套IT服务管理最佳实践指南，旨在解决IT服务质量不佳的情况。 ITIL所强调的核心思想是应该从客户（业务）而不是IT 服务提供方（技术）的角度理解IT服务需求。也就是说，在提供IT服务的时候，我们首先应该考虑业务需求，根据业务需求来确定IT需求。业务管理这个模块指导业务管理者以自己习惯的思维模式分">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4w700bn4urqn0ksov6u/"/>
+
+
+
+
+
+  <title>ITIL简介 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4w700bn4urqn0ksov6u/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ITIL简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-12-07T00:59:00+08:00">
+                2008-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><span class="font14"><p><strong>认识ITIL标准</strong></p></span></p>
+<p></p><p>ITIL是英国政府中央计算机与电信管理中心（CCTA）在20世纪90年代初期发布的一套IT服务管理最佳实践指南，旨在解决IT服务质量不佳的情况。</p><p></p>
+<p></p><p>ITIL所强调的核心思想是应该从客户（业务）而不是IT 服务提供方（技术）的角度理解IT<br>服务需求。也就是说，在提供IT服务的时候，我们首先应该考虑业务需求，根据业务需求来确定IT需求。业务管理这个模块指导业务管理者以自己习惯的思维模<br>式分析IT问题，深入了解IT基础架构支持业务流程的能力，以及IT服务管理在提供端到端IT<br>服务过程中的作用，以?助他们更好地处理与服务提供方之间的关系，帮助他们获得商业利益。</p><p></p>
+<p></p><p>因此，IT服务管理的国标标准是ITIL，此标准是独立于任何厂商，基本与组织性质和业务性质无关，并且只总结IT服务管理领域最重要的实践部分。<br>可以说ITIL只是IT服务管理实践的合理抽象，它仅明确指出应该做什么，但不讲如何做。当企业或其它组织具体实施ITIL时，就可以把标准具体化，建立<br>自己的方法论。企业在运用内含着质量管理思想的ITIL所提供的流程和最佳实践进行内部IT服务管理时，不仅可以提供用户满意的服务从而改善客户体验，还<br>可以确保这个过程符合成本效益的规则。</p><p><br></p><p style="text-indent: 2em;">ITIL v3顺应行业发展方向，引入了更为丰富的最佳实践指导。</p><p></p>
+<p></p><p style="text-indent: 2em;">英国商务部于今年5月底隆重推出了全面更新的ITIL v3版本。基于全球信息技术服务管理和控制的最新发展与实践，ITIL新版本相应做出了重大调整，现在就让我们来揭开她神秘的面纱。</p><p></p>
+<p></p><p style="text-indent: 2em;"><b>v3背后的推力</b></p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL(Information Technology Infrastructure Library，IT基础设施库)是国际上公认的IT服务管理的最佳实践，被管理领先的跨国公司普遍采用。</p><p></p>
+<p></p><p style="text-indent: 2em;">随着时间的推移，行业及技术都发生了很大变化。既然ITIL是最佳实践经验总结，那么近五六年的经验应该更为宝贵，因此需要融入近年来的实践经验，从而保障ITIL本身的活力。</p><p></p>
+<p></p><p style="text-indent: 2em;">于2005年12月颁布的ISO<br>20000国际标准是评测IT服务管理和改善IT服务质量的基础，它定义了针对提供IT服务组织的基本质量要求，并且能够帮助IT服务组织确定自己的工作<br>是否符合可接受的IT服务管理标准。ISO 20000标准是一个完整的体系，这就迫使ITIL必须改变以适应ISO<br>20000及其他IT管控体系的要求。</p><p></p>
+<p></p><p style="text-indent: 2em;">很多服务提供商在实施IT服务项目的过程中，总结出不少宝贵的经验和深具价值的行业实施方案，值得将其提炼并加入ITIL的最佳实践库中。此外，IT服务管理项目的实施也需要有更好的组织方式，能够按照实施生命周期来进行规划和实践。</p><p></p>
+<p></p><p style="text-indent: 2em;"><b>v3的5个生命周期</b></p><p></p>
+<p></p><p style="text-indent: 2em;">在保留原版本的关键概念和相关主题的基础上，ITIL v3从结构到内容都发生了一些变化。新版本ITIL的推出旨在为企业提供更新、更有针对性的IT服务管理指导，帮助IT组织创造更多的价值，使得IT服务管理能够与业务的规划与发展保持一致。</p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3定义了服务生命周期的5个阶段：服务战略(Service<br>Strategies)、服务设计(Service Design)、服务转化(Service Transition)、服务运营(Service<br>Operation)、持续改进(Continual Service Improvement)，它包含了生命周期内管理服务需要的流程。</p><p></p>
+<p></p><p style="text-indent: 2em;">服务战略</p><p></p>
+<p></p><p style="text-indent: 2em;">服务战略阶段涵盖了服务管理的实践、服务原则、服务评估、服务战略流程、服务管理的财务模型等内容，从整体业务目标和管理层期望出发，保证IT发展战略与业务相一致。这个阶段的显著特点就是将CIO和企业管理层期望与整个IT服务的生命周期相结合。</p><p></p>
+<p></p><p style="text-indent: 2em;">服务设计</p><p></p>
+<p></p><p style="text-indent: 2em;">服务设计阶段介绍了服务设计的原则和服务设计流程等要素，以为制定和维护IT战略、架构提供文档化的相关指导，用于设计符合当前及具有创新性的IT服务<a class="channel_keylink" href="http://www.ciw.com.cn/Search.asp?Field=Title&amp;keyword=%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" target="_blank">解决方案</a>。</p><p></p>
+<p></p><p style="text-indent: 2em;">服务转化</p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3的服务转化阶段提供将IT服务应用到生产环境时的变更管理、风险和质量保证的指导和流程活动。其目标在于实施服务设计，从而以可控方式管理IT服务和基础设施，同时对业务呈现的影响最小化。</p><p></p>
+<p></p><p style="text-indent: 2em;">服务运营</p><p></p>
+<p></p><p style="text-indent: 2em;">服务运营阶段是对服务支持与服务交付两大模块内容的更新和整合，提供的是一套整合了服务生命周期范围最佳实践的指导，介绍并深入探讨服务交付和服务控制活动，以确保稳定运作的最佳效果。</p><p></p>
+<p></p><p style="text-indent: 2em;">持续改进</p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3的持续改进阶段通过对技术矩阵、流程矩阵和服务矩阵的介绍来强调服务持续改进的重要性，还针对服务引退做了介绍，以此形成完整的IT服务生命周期管理体系，满足不断变化的业务需求。</p><p></p>
+<p></p><p style="text-indent: 2em;"><b>新版VS.老版</b></p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3在原有的v2版本上引入的变化主要有以下几个方面：</p><p></p>
+<p></p><p style="text-indent: 2em;">引入服务战略</p><p></p>
+<p></p><p style="text-indent: 2em;">由于IT行业开始包含更多完整的服务管理实践，ITIL v3在原有关注运营层面的基础上，对核心内容进行了扩充，增加了服务管理战略实践部分，包括计划、设计、引入、运营、改进等。</p><p></p>
+<p></p><p style="text-indent: 2em;">以服务生命周期为主要框架</p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3核心读物由5本书组成。ITIL<br>v3的整体组织结构以服务生命周期为主要框架，跟踪服务产生到消亡的整个过程，将各个阶段的最佳实践有机融合在一起，形成一个逻辑清晰的整体。ITIL<br>v3包含了从服务战略、服务设计、服务转化、服务运营到持续改进的5大主题/阶段，通过这种现实的、逻辑化的组织结构，帮助读者更加直观地理解IT服务管<br>理的最佳实践。</p><p></p>
+<p></p><p style="text-indent: 2em;">更强调IT服务的业务价值</p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3更强调IT与业务的一致性和IT在企业中的业务价值。保持IT目标和业务目标的高度一致性、将IT服务整合到业务本身中去、像管理业务一样管理IT服务的理念贯穿整个ITIL v3。</p><p></p>
+<p></p><p style="text-indent: 2em;">强化了合规性</p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3中提供了相应指导，帮助读者在实施IT服务管理过程中确保符合现有法律法规(如SOX、BaselII等)的要求。</p><p></p>
+<p></p><p style="text-indent: 2em;">与其他标准更加一致</p><p></p>
+<p></p><p style="text-indent: 2em;">ITIL v3加强了与诸如ISO/IEC 20000、CobiT、Six Sigma等标准、框架和最佳实践的一致性，同时提供了更多的接口和指导，使读者能够更容易地实施和建立整合的IT服务管理方案。</p><p></p>
+<p></p><p style="text-indent: 2em;">更有针对性的实践<a class="channel_keylink" href="http://www.ciw.com.cn/Search.asp?Field=Title&amp;keyword=%E6%A1%88%E4%BE%8B" target="_blank">案例</a></p><p></p>
+<p></p><p style="text-indent: 2em;">在原有行业内所有组织模型的基础上，ITIL v3提供了一些现行的实际实施<a class="channel_keylink" href="http://www.ciw.com.cn/Search.asp?Field=Title&amp;keyword=%E6%A1%88%E4%BE%8B" target="_blank">案例</a>，反映了当今组织内业务、运营、流程和环境的现实状况以及在这样的条件下ITIL的应用情况，从而更加贴合不同行业读者的需要，帮助读者理解ITIL实施中的转变过程。</p><p></p>
+<p></p><p style="text-indent: 2em;">应该看到，ITIL v3是ITIL<br>v2之上的升级，其核心内容保持了与v2的一致性，把原来v2的10个流程和一个职能单位按照服务的生命周期进行重新组合及更新，没有兼容性的冲突。由于<br>ITIL v3刚发布不久，其适用性、有效性及成熟度还需要在长期实践中进一步观察与强化，因此，对于已经参照ITIL<br>v2实施IT服务管理流程体系的组织来说，并不需要有遗憾和落后的惊恐。毕竟，IT服务管理是一个长期的过程，是不断体现价值的自我完善和发展的生命过<br>程。</p><p></p>
+<p></p><p style="text-indent: 2em;"><b>如何应对新版及认证</b></p><p></p>
+<p></p><p style="text-indent: 2em;">新版本发布后，ITIL的认证体系也将随之作出调整。IT服务管理国际权威认证组织EXIN即将推出新的IT服务管理资格认证，包括IT服务管理基础认证2007和ITIL v3基础认证。</p><p></p>
+<p></p><p style="text-indent: 2em;">新的认证考试将在未来逐渐取代原有的基于ITIL v2的IT Service<br>Management Foundation考试。鉴于ITIL<br>v2对大多数企业在一段时间内仍有很好的指导作用，所以EXIN在2008年底之前保留原有的IT Service Management<br>Foundation认证考试和资质认证的发放。</p><p></p>
+<p></p><p style="text-indent: 2em;">面对ITIL v3，使用者应该如何去应对呢？</p><p></p>
+<p></p><p style="text-indent: 2em;">1.认知、学习ITIL v3，理解并执行基于ITIL v3的IT服务管理、控制领域的语言、概念和方法，从而为实现组织高绩效目标奠定基础。</p><p></p>
+<p></p><p style="text-indent: 2em;">2.通过实施ITIL v3建立IT服务管理体系。基于ITIL新版本的最佳实践指导，对组织进行服务规划与设计，运用ITIL改进和完善流程管理，帮助IT组织有效并且高效地运行维护，确保服务成本与质量的平衡，提升服务的价值。</p><p></p>
+<p></p><p style="text-indent: 2em;">3.健全ITIL v3的内审机制。协助组织确保已设计并运行的信息管理流程、技术基础设施的控制手段，其设计是有效的和完整执行的，以有效管理企业信息及技术风险。</p><p></p>
+<p></p><p style="text-indent: 2em;">可以说,ITIL新版本在保留了原有版本关键概念的基础上，顺应行业发展方向，引入了更为丰<br>富的最佳实践指导，内建了更多接口和支持，精确地将ITIL在整个服务管理中进行了定位。在当今高速发展变化的环境下，IT组织如何运用新的规范、将其有<br>机融入企业文化中，帮助组织建立有效和高效的服务管理体系是ITIL v3给我们带来的新挑战。</p><span class="font14"></span><p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Knowledge/" rel="tag"># Knowledge</a>
+          
+            <a href="/blog/tags/Information/" rel="tag"># Information</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5au00z74urqhtmjcz72/" rel="next" title="亲身体验Sun JavaFX开发组件预览版">
+                <i class="fa fa-chevron-left"></i> 亲身体验Sun JavaFX开发组件预览版
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5iz019e4urqnvuz92lz/" rel="prev" title="揭秘XML：XML到底是什么？">
+                揭秘XML：XML到底是什么？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

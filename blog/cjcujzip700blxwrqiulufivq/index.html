@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NetBeans," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2010-02-11NetBeans IDE 6.8补丁1发布  NetBeans团队已经发布了新的补丁，这是NetBeans  IDE 6.8的更新。该补丁修正了一些错误。安装和运行NetBeans IDE 6.8bug就可以被修复。使用IDE的插件管理器也可以获取补丁。Edit2010-02-11PHP新功能中的反馈信息：Error badges  NetBeans PHP开发小组希望在Net">
+<meta name="keywords" content="NetBeans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NetBeans Weekly Newa-Issue # 426 - Feb 09, 2010">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzip700blxwrqiulufivq/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="2010-02-11NetBeans IDE 6.8补丁1发布  NetBeans团队已经发布了新的补丁，这是NetBeans  IDE 6.8的更新。该补丁修正了一些错误。安装和运行NetBeans IDE 6.8bug就可以被修复。使用IDE的插件管理器也可以获取补丁。Edit2010-02-11PHP新功能中的反馈信息：Error badges  NetBeans PHP开发小组希望在Net">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T21:00:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NetBeans Weekly Newa-Issue # 426 - Feb 09, 2010">
+<meta name="twitter:description" content="2010-02-11NetBeans IDE 6.8补丁1发布  NetBeans团队已经发布了新的补丁，这是NetBeans  IDE 6.8的更新。该补丁修正了一些错误。安装和运行NetBeans IDE 6.8bug就可以被修复。使用IDE的插件管理器也可以获取补丁。Edit2010-02-11PHP新功能中的反馈信息：Error badges  NetBeans PHP开发小组希望在Net">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzip700blxwrqiulufivq/"/>
+
+
+
+
+
+  <title>NetBeans Weekly Newa-Issue # 426 - Feb 09, 2010 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzip700blxwrqiulufivq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NetBeans Weekly Newa-Issue # 426 - Feb 09, 2010</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-02-12T03:27:00+08:00">
+                2010-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table class="colapse" border="0"><br><tbody><br><tr><br><td class="valign-top">2010-02-11</td><br><td><strong>NetBeans IDE 6.8补丁1发布</strong> <br> NetBeans团队已经发布了新的补丁，这是NetBeans  IDE 6.8的更新。该补丁修正了一些错误。安装和运行NetBeans IDE 6.8bug就可以被修复。使用IDE的插件管理器也可以获取补丁。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4009',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-02-11</td><br><td><strong>PHP新功能中的反馈信息：Error badges</strong> <br> NetBeans PHP开发小组希望在NetBeans  6.9中添加反馈信息这一实验性的功能：Error  badges。如果您有任何错误的PHP文件，该文件在项目窗口中可以被直接标记。让开发小组知道它是否是一个有用的功能？</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4010',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-02-11</td><br><td><strong>JavaFX应用支持RTSP</strong> <br> 自从JavaFX SDK  1.2版本以来，实时流协议（RTSP）的支持便可被使用。这份文件阐明了哪些平台支持此功能，并在您的应用程序中提供了可用流媒体的基本推荐。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4011',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-02-11</td><br><td><strong>Java和NetBeans的Swinging和Tweeting</strong> <br> 在Packt出版指南中，作者Alfonso  Romero概述了如何使用Java和NetBeans，而不是使用标准的网络接口来建立一个Twitter的自定义应用程序。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4012',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-02-11</td><br><td><strong>在Java应用程序中添加一个文件选择器</strong> <br> 了解如何使用javax.swing.JFileChooser组件和 NetBeans GUI Builder在Java应用程序中添加一个文件选择器。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4013',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-02-11</td><br><td><strong>JavaFX设计器&mdash;&mdash;JavaFX的一大步？</strong> <br> JavaFX设计器对于NetBeans  6.8来说是一个新的可视化编辑器插件（类似于项目Matisse中的Swing）。DZone采访了JavaFX的开发小组成员，了解到了用户对这个工 具的反馈信息。更多像JavaFX设计器的工具可能导致JavaFX应用程序的高增加，例如在2010年冬季奥运会中的奖牌实物应用网站。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4014',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-02-11</td><br><td><strong>视频：2010年Jfokus &mdash;&mdash;NetBeans IDE和JavaFX</strong> <br> 在Epsilon的开发人员，也就是 瑞典的技术和系统顾问组织都是JavaFX和Netbeans  IDE的爱好者。在2010年的jfokus展会上，他们演示了一个项目并且讨论了这两种技术的使用。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4015',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-02-11</td><br><td><strong>创建您自己的窗口系统</strong> <br> 你知道你可以根据NetBeans窗口系统的API创建一个自定义的窗口系统吗？一个可以集 成其他NetBeans的方法？在来自Geertjan Wielenga和Toni Epple的博客中你可以了解到更多信息。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4016',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-02-11</td><br><td><strong>使用NetBeans IDE连接Oracle数据库</strong> <br> Arun  Gupta的第107届&ldquo;日积月累&rdquo;中介绍了如何使用NetBeans IDE连接Oracle数据库并优于所有Java  EE应用程序开发，Rails和其他IDE所提供的全部特性。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4017',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br></tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/NetBeans/" rel="tag"># NetBeans</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzij3004nxwrqjmnhtbp3/" rel="next" title="HTML 5通过sandbox属性提升iFrame的安全性">
+                <i class="fa fa-chevron-left"></i> HTML 5通过sandbox属性提升iFrame的安全性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j9l00b3l6rqsb2i2fl9/" rel="prev" title="工作中的纠结——区分于底层OR界面">
+                工作中的纠结——区分于底层OR界面 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

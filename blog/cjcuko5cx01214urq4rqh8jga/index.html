@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaEE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.为Structs应用配置Web.xml文件第一步:配置ActionServlet          &amp;lt;servlet&amp;gt;　　&amp;lt;servlet-name&amp;gt;action&amp;lt;/servlet-name&amp;gt;　　&amp;lt;servlet-class&amp;gt;org.appache.structs.ActionServlet&amp;lt;/servlet-class&amp;gt;　　&amp;lt;">
+<meta name="keywords" content="JavaEE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初学者入门：Structs中基本配置入门">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5cx01214urq4rqh8jga/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="1.为Structs应用配置Web.xml文件第一步:配置ActionServlet          &amp;lt;servlet&amp;gt;　　&amp;lt;servlet-name&amp;gt;action&amp;lt;/servlet-name&amp;gt;　　&amp;lt;servlet-class&amp;gt;org.appache.structs.ActionServlet&amp;lt;/servlet-class&amp;gt;　　&amp;lt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T11:51:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初学者入门：Structs中基本配置入门">
+<meta name="twitter:description" content="1.为Structs应用配置Web.xml文件第一步:配置ActionServlet          &amp;lt;servlet&amp;gt;　　&amp;lt;servlet-name&amp;gt;action&amp;lt;/servlet-name&amp;gt;　　&amp;lt;servlet-class&amp;gt;org.appache.structs.ActionServlet&amp;lt;/servlet-class&amp;gt;　　&amp;lt;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5cx01214urq4rqh8jga/"/>
+
+
+
+
+
+  <title>初学者入门：Structs中基本配置入门 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5cx01214urq4rqh8jga/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初学者入门：Structs中基本配置入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-28T02:40:00+08:00">
+                2008-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><span id="zoom" class="a14c"><p style="text-indent: 2em;">1.为Structs应用配置Web.xml文件<br></p><p style="text-indent: 2em;">第一步:配置ActionServlet<br><br></p><center><ccid_nobr></ccid_nobr></center></span></p>
+<p><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"></table></p>
+<p><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;servlet&gt;<br>　　&lt;servlet-name&gt;action&lt;/servlet-name&gt;<br>　　&lt;servlet-class&gt;<br>org.appache.structs.ActionServlet<br>&lt;/servlet-class&gt;<br>　　&lt;/servlet&gt;<br>　　<br>　　&lt;servlet-mapping&gt;<br>　　&lt;servlet-name&gt;action&lt;/servlet-name&gt;<br>　　&lt;uri-pattern&gt;*.do&lt;/url-pattern&gt;<br>　　&lt;/servlet-mapping&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody><br>　　</p>
+<p style="text-indent: 2em;">注意:不管应用中包含多少个子应用,都只需配置一个ActionServlet,因为ActionServlet支持多线程,目前的Structs框架只允许在应用中配置一个ActionServlet。<br></p><p style="text-indent: 2em;">第二步：初始化参数对Servlet的运行环境进行初始化配置。<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;servlet&gt;<br>　　&lt;servlet-name&gt;<br>action<br>&lt;/servlet-name&gt;<br>　　&lt;servlet-class&gt; <br>org.appache.structs.ActionServlet <br>&lt;/servlet-class&gt;<br>　　&lt;init-param&gt;<br>　　&lt;param-name&gt;config&lt;/param-name&gt;<br>　　&lt;param-value&gt;<br>/WEB-INF/structs-config.xml<br>&lt;/param-value&gt;<br>　　&lt;/init-param&gt;<br>　　&lt;/servlet&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">Struts1.1中用到的初始化参数<br></p><p style="text-indent: 2em;">config<br></p><p style="text-indent: 2em;">以相对路径的方式指明Struts应用程序的配置文件位置。如不设置，则默认值为/WEB-INF/struts-config.xml。<br></p><p style="text-indent: 2em;">config/sub1　　 以相对路径的方式指明子应用程序的配置文件位置，一般来说，很少用到子应用程序，在此不多描述。<br></p><p style="text-indent: 2em;">debug　　　　　 设置Servlet的debug级别，控制日志记录的详细程度。默认为0，记录相对最少的日志信息。<br></p><p style="text-indent: 2em;">detail　　　　<br></p><p style="text-indent: 2em;">设置Digester的debug级别，Digester是Struts框架所使用的用来解析xml配置文件的一个框架，通过该设置，可以查看不同详细等级的解析日志。默认为0，记录相对最少的日志信息。 <br></p><p style="text-indent: 2em;"><span id="zoom" class="a14c"><p style="text-indent: 2em;">第三步：配置欢迎清单<br></p><p style="text-indent: 2em;">当客户访问Web应用时，如果仅仅给出Web应用的Root URL，没用指定具体的文件名，Web容器会自动调用Web应用的欢迎文件。<br><br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;welcome-file-list&gt;<br>　　&lt;welcome-file&gt;<br>welcome.jsp<br>&lt;/welcome-file&gt;<br>　　&lt;welcome-file&gt;<br>index.jsp<br>&lt;/welcome-file&gt;<br>　　&lt;/welcome-fiel-list&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">说明：<welcome-file-list>可以包含多个<welcome-file>子元素，首先查找第一个<welcome-file>文件。<br></welcome-file></welcome-file></welcome-file-list></p><p style="text-indent: 2em;">由于<welcome-file-list>元素中不能配置Servlet映射，因此不能直接把Structs的Action作为欢迎文件，可以采用一种变通的方法来实现在欢迎文件中调用Structs Action。首先，在Structs配置文件中为被调用的Action创建一个全局的转发项，例如：<br></welcome-file-list></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;global-forwards&gt;<br>　　&lt;forward name=”welcome” <br>path=”HelloWord.do”/&gt;<br>　　&lt;/global-forwords&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center><br><p style="text-indent: 2em;">创建一个welcome.jsp的文件<br></p><p style="text-indent: 2em;">最后在web.xml文件中把welcome.jsp文件配置为欢迎文件，代码如下：<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;welcome-file-list&gt;<br>　　&lt;welcome-file&gt;welcome.jsp&lt;/welcome-file&gt;<br>　　&lt;/welcome-file-list&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center><br><p style="text-indent: 2em;">第四步：配置错误处理<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;error-page&gt;<br>　　&lt;error-code&gt;404&lt;/error-code&gt;<br>　　&lt;location&gt;/commom/404.jsp&lt;/location&gt;<br>　　&lt;/error-page&gt;<br>　　&lt;error-page&gt;<br>　　&lt;error-code&gt;505&lt;/error-code&gt;<br>　　&lt;location&gt;/commom/505.jsp&lt;/location&gt;<br>　　&lt;/error-page&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">也可以为Web容器捕获的Java异常配置<error-page>,需要设置<exception-type>子元素，它用于指定Java异常类。Web容器可能捕获如下异常：<br></exception-type></error-page></p><p style="text-indent: 2em;">RuntimeException或Error　<br></p><p style="text-indent: 2em;">ServletException或它的子类　<br></p><p style="text-indent: 2em;">IOException或它的子类<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;error-page&gt;<br>　　&lt;exception-type&gt;<br>java.io.IOException<br>&lt;/exception-type&gt;<br>　　&lt;location&gt;<br>/common/system_ioerror.jsp<br>&lt;/location&gt;<br>　　&lt;/error-page&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">第五步：配置Structs标签库<br></p><p style="text-indent: 2em;">使用客户化的标签库，要配置它们<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;taglib&gt;<br>　　&lt;tag-uri&gt;<br>/WEB-INF/structs-html.tld<br>&lt;tag-uri&gt;<br>　　&lt;taglib-location&gt;<br>/WEB-INF/structs-html.tld<br>&lt;/taglib-location&gt;<br>　　&lt;/taglib&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;"><tag-uri>用于指定标签库的相对或者绝对URI地址，Web应用根据这一URI来访问标签库。<br></tag-uri></p><p style="text-indent: 2em;"><taglib-location>指定标签描述文件在文件资源系统中的物理位置。 <br></taglib-location></p></span></p><p style="text-indent: 2em;">2.Structs配置文件<br></p><p style="text-indent: 2em;">Structs框架在启动时会读入其配置文件，根据它来创建和配置各种Structs组件。<br></p><p style="text-indent: 2em;">1<structs-config>元素<br></structs-config></p><p style="text-indent: 2em;"><structs-config>元素是Structs配置文件的根元素，<structs-cofig>元素有8个子元素。它的DTD定义如下：<br><br></structs-cofig></structs-config></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;!ELEMENT structs-config(data-sources?,formbean?,<br>global-exeception?,global-forward?,<br>action-mapping,controller?,<br>message-resources<em>,plug-in</em>)&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">在Struts配置中，必须按照以上的DTD指定的先后顺序来配置<structs-config>元素的各个子元素，如果颠倒了这些元素的配置文件中的位置，在Structs应用启动时会生成错误。<br></structs-config></p><p style="text-indent: 2em;">1.<data-sources>元素<br></data-sources></p><p style="text-indent: 2em;"><data-sources>元素包含零个、一个或者多个<data-sources>子元素，<data-sources>用于配置特定的数据源，它可以包含多个<set-property>子元素，用于设置数据源的各种属性。<br></set-property></data-sources></data-sources></data-sources></p><p style="text-indent: 2em;">配置了数据源后，就可以在Action类中访问数据源，在org.apache.structs.action.Action类中定义了getDataSource(HttpRequrst)方法，它用于获取数据源对象的引用。<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>DataSource　dataSource;<br>Connection　connection;<br>dataSource =getDataSource(request);<br>connection=dataSource.getConnection();</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">也可以在配置文件中声明多个数据源，此时需要为每一个数据源分配唯一的key值，通过改值来标识特定的数据源。<br></p><p style="text-indent: 2em;">2.<form-beans>元素<br></form-beans></p><p style="text-indent: 2em;"><form-beans>元素用来配置多个ActionForm Bean，<form-beans>包含多个<forom-bean>子元素，每个<from-bean>包含多个属性，ClassName,name,type<br></from-bean></forom-bean></form-beans></form-beans></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;form-beans&gt;<br>　　&lt;form-bean name=”HelloForm”<br>type=”hello.HelloForm”/&gt;<br>　　&lt;/form-beans&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">注意：配置动态ActionForm Bean，还必须配置<form-bean>元素的<form-property>元素。<br></form-property></form-bean></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;form-beans&gt;<br>　　&lt;form-bean name=”HelloForm” <br>type=”hello.HelloForm”/&gt;<br>　　&lt;form-bean name=”userForm” <br>type=”org.apache.structs.action.DynaAction”&gt;<br>　　&lt;from-property name=”firstname” <br>type=”java.lang.String”/&gt;<br>　　&lt;form-property name=”secondname” <br>type=”java.lang.String”&gt;<br>　　&lt;form-property name=”age” <br>type=”java.Integer” initial=”18”&gt;<br>　　&lt;/form-beans&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">3.<global-exception>元素<br></global-exception></p><p style="text-indent: 2em;"><global-exception>用于配置异常处理，<global-exception>元素可以包含零个或者多个<exception>元素。<br></exception></global-exception></global-exception></p><p style="text-indent: 2em;"><exception>元素用来设置java异常和异常处理类org.apache.structs.action,Exception　Hander之间的映射。<br></exception></p><p style="text-indent: 2em;">4.<gloable-forwards>元素<br></gloable-forwards></p><p style="text-indent: 2em;"><global-forwards>元素用来声明全局的转发关系，<global-forwards>有零个或多个<forward>元素组成。<forward>元素用于把一个逻辑映射到特定的URL<br></forward></forward></global-forwards></global-forwards></p><p style="text-indent: 2em;">className　　<br></p><p style="text-indent: 2em;">和<forward>元素对应的配置类，默认为org.apache.structs.action.ActionForWard<br></forward></p><p style="text-indent: 2em;">name　　　　<br></p><p style="text-indent: 2em;">转发路径的逻辑名，此项时必须的<br></p><p style="text-indent: 2em;">path　　　　<br></p><p style="text-indent: 2em;">指定或者重定向的URI。此项时必须的，必须以”/”开头<br></p><p style="text-indent: 2em;">redirect　　<br></p><p style="text-indent: 2em;">此项是true，表示是执行重定向的操作，此项是false时，表示请求转发。<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;global-forwards&gt;<br>　　&lt;forward name=”forward1” <br>path=”/Action1.do”/&gt;<br>　　&lt;forward name=”forward1” <br>path=”/Action2.do”/&gt;<br>　　&lt;/global-forwards&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">如果jsp1.jsp把请求转发给Action1,可以使用以下代码：<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;html:link forward=”forward1”&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">或者<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;logic:forward name=”forward1”&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center><br><p style="text-indent: 2em;">如果Action1的execute（）方法把请求转发给JSP2.jsp，可以使用一下代码：<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>return(mapping.findForward(“forward2”))</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center><br>              <p align="center"><br><br>              <span class="content01"></span></p><span id="zoom" class="a14c"><p style="text-indent: 2em;"><span id="zoom" class="a14c"></span></p></span><span id="zoom" class="a14c"><p style="text-indent: 2em;">5.<action-mapping>元素<br></action-mapping></p><p style="text-indent: 2em;"><action-mapping>元素包含零个或者多个<action>元素。<action>元素描述了从特定的请求路径到相应的Action类的映射。<br></action></action></action-mapping></p><p style="text-indent: 2em;">6.<controller>元素<br></controller></p><p style="text-indent: 2em;"><controller>元素用于配置ActionServlet。<br></controller></p><p style="text-indent: 2em;">7.&lt; message-resources&gt;元素<br></p><p style="text-indent: 2em;"><message-resources>元素用于配置Resource Bundle，Resource Budle用于存放本地化消息文件。<br></message-resources></p><p style="text-indent: 2em;">base　　　　　　　　<br></p><p style="text-indent: 2em;">包装HTML的base元素<br></p><p style="text-indent: 2em;">button　　　　　　　<br></p><p style="text-indent: 2em;">包装HTML的 button类型的input元素<br></p><p style="text-indent: 2em;">cancel　　　　　　　<br></p><p style="text-indent: 2em;">包装HTML cancel 按钮<br></p><p style="text-indent: 2em;">checkbox　　　　　　<br></p><p style="text-indent: 2em;">包装HTML checkbox 类型的输入域<br></p><p style="text-indent: 2em;">errors　　　　　　　<br></p><p style="text-indent: 2em;">有条件地显示一些error消息，显示ActionErrors信息<br></p><p style="text-indent: 2em;">file　　　　　　　　<br></p><p style="text-indent: 2em;">包装HTML文件上传输入域<br></p><p style="text-indent: 2em;">form　　　　　　　　<br></p><p style="text-indent: 2em;">定义HTML form 元素<br></p><p style="text-indent: 2em;">frame　　　　　　　　<br></p><p style="text-indent: 2em;">包装HTML frame 元素<br></p><p style="text-indent: 2em;">hidden　　　　　　　<br></p><p style="text-indent: 2em;">包装HTML hidden 输入域<br></p><p style="text-indent: 2em;">html　　　　　　　　<br></p><p style="text-indent: 2em;">包装 HTML中的 html 元素<br></p><p style="text-indent: 2em;">image　　　　　　　　<br></p><p style="text-indent: 2em;">包装 “image”类型的输入域<br></p><p style="text-indent: 2em;">img　　　　　　　　　<br></p><p style="text-indent: 2em;">包装HTML的 img 元素<br></p><p style="text-indent: 2em;">javascript　　　　　<br></p><p style="text-indent: 2em;">包装根据ValidatorPlugIn提供的校验规则所提供的javascript校验脚本<br></p><p style="text-indent: 2em;">link　　　　　　　　<br></p><p style="text-indent: 2em;">包装超链接<br></p><p style="text-indent: 2em;">messages　　　　　　<br></p><p style="text-indent: 2em;">有条件地显示一些提示信息，显示ActionMessages信息<br></p><p style="text-indent: 2em;">multibox　　　　　　<br></p><p style="text-indent: 2em;">包装多选输入框<br></p><p style="text-indent: 2em;">option　　　　　　　<br></p><p style="text-indent: 2em;">包装一个选择输入框<br></p><p style="text-indent: 2em;">options　　　　　　　<br></p><p style="text-indent: 2em;">包装一批选择输入框<br></p><p style="text-indent: 2em;">optionsCollection　　<br></p><p style="text-indent: 2em;">包装一批选择输入框集<br></p><p style="text-indent: 2em;">password　　　　　　<br></p><p style="text-indent: 2em;">包装密文输入框<br></p><p style="text-indent: 2em;">radio　　　　　　　　<br></p><p style="text-indent: 2em;">包装单选输入框<br></p><p style="text-indent: 2em;">reset　　　　　　　　<br></p><p style="text-indent: 2em;">包装“重置”功能的按钮<br></p><p style="text-indent: 2em;">rewrite　　　　　　　<br></p><p style="text-indent: 2em;">包装一个URL<br></p><p style="text-indent: 2em;">select　　　　　　　<br></p><p style="text-indent: 2em;">包装一个选择输入框<br></p><p style="text-indent: 2em;">submit　　　　　　　<br></p><p style="text-indent: 2em;">包装一个提交按钮<br></p><p style="text-indent: 2em;">text　　　　　　　　<br></p><p style="text-indent: 2em;">包装一个文本输入框<br></p><p style="text-indent: 2em;">textarea　　　　　　<br></p><p style="text-indent: 2em;">包装一个备注输入框<br></p><p style="text-indent: 2em;">ActionForm<br></p><p style="text-indent: 2em;">ActionForm 的要求<br></p><p style="text-indent: 2em;">创建一个ActionForm 并不困难，但是你的类必须符合一些要求：<br></p><p style="text-indent: 2em;">ActionForm 必须扩展自org.apache.struts.ActionForm。基类ActionForm 是不能实例化的。ActionForm 必须为每个应该从请求中收集的HTML控件定义一个公共属性。<br></p><p style="text-indent: 2em;">(Struts 1.0 要求每个属性都要mutator 和accessor 。Struts 1.1 则没有如此严格)<br></p><p style="text-indent: 2em;">ActionForm还可能要符合一些可选的要求:<br></p><p style="text-indent: 2em;">如果你要求ActionForm 在传递属性到Action之前校验它们，你就必须实现validate<br></p><p style="text-indent: 2em;">方法；<br></p><p style="text-indent: 2em;">如果想在组装前初始化属性，必须实现reset，它在ActionForm 组装前被调用。<br>              </p></span><p style="text-indent: 2em;">动态ActionForm<br></p><p style="text-indent: 2em;">ActionForm 作为类型转换器<br></p><p style="text-indent: 2em;">ActionForm的一个强制点是应该使用String<br>和boolean属性。实际上，这意味着属性必须得从一种转换到另一种类型。大部分应用也需要一些属性，比如电话号码或者数量，以一种格式化的方式出现。<br>核心Java 包提供一些工具来做这种事情，但是要清楚地将他们集成到应用中仍然是一个挑战。<br></p><p style="text-indent: 2em;">Struts 开发人员经常在ActionForm中包含helper方法，来进行类型转换。helper 方法可以有很多种实现方式，我们将在后面叙述。<br></p><p style="text-indent: 2em;">5.2.6 ActionForm 作为防火墙<br></p><p style="text-indent: 2em;">当请求提交时，ActionServlet<br>使用一个自动组装机制来从请求参数中设置请求的，ActionForm属性。这让你可以通过控制哪个ActionForm<br>属性被暴露来控制哪个请求参数。是可接受的。这也意味着如果你的ActionForm<br>的粗心设计你可能失去控制哪个参数可以接受的能力。ActionForm 一定不能包含看起来像是一个JavaBean 属性，但不能从HTTP<br>请求设置的属性方法。<br></p><p style="text-indent: 2em;">5.3.4 ActionForm 可以嵌套其它bean<br></p><p style="text-indent: 2em;">因为Struts 标签扩展和自动组装机制都支持点号语法来从ActionForm访问其它bean。这是一个方便的方式，可以通过ActionForm来组装存在的bean。在JSP 页面你可以象这样引用一个嵌套的bean：<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>&lt;html:text<br>　　propety=”values.telephoneText”<br>　　size=”14”<br>　　maxlength=”14”/&gt;</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center>　　<br><p style="text-indent: 2em;">分发（Dispatch ）<br></p><p style="text-indent: 2em;">Struts 开发人员通常使用同一个Action处理相关的操作。一个通常做法来选择操作是在HTML表单中使用隐藏属性。BaseForm 的dispatch 属性也可用作这个目的：<br></p><center><ccid_nobr><br><table bordercolorlight="black" bordercolordark="#FFFFFF" width="400" align="center" border="1" cellpadding="2" cellspacing="0"><br><tbody><tr><br>    <td class="code" style="font-size: 9pt;" bgcolor="#e6e6e6"><br>    <pre><ccid_code>public void setDispatch(String dispatch);<br>public String getDispatch();</ccid_code></pre><br>   </td><br>  </tr><br></tbody></table><br></ccid_nobr></center><br><p style="text-indent: 2em;">Struts 配置提供连个级别嵌套的ActionForward:<br></p><p style="text-indent: 2em;">Global （全局） ActionForward对整个应用中的所有Action 对象均有效；<br></p><p style="text-indent: 2em;">Local （局部） ActionForward 则在ActionMapping 元素中定义。仅对那些在这个<br></p><p style="text-indent: 2em;">ActionMapping中调用的Action对象有效。<br></p><p style="text-indent: 2em;">从Action 对象内部来看，forward 通常像这样来选择：<br></p>
+
+
+<pre><code>&lt;table bordercolorlight=&quot;black&quot; bordercolordark=&quot;#FFFFFF&quot; width=&quot;400&quot; align=&quot;center&quot; border=&quot;1&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;code&quot; style=&quot;font-size: 9pt;&quot; bgcolor=&quot;#e6e6e6&quot;&gt;
+&lt;pre&gt;&lt;ccid_code&gt;ActionForward forward = &lt;br&gt;mapping.findForward(&quot;continue&quot;);&lt;/ccid_code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;转自：http://java.ccidnet.com/art/3737/20051212/391299_5.html&lt;br&gt;
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaEE/" rel="tag"># JavaEE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko59t00xv4urq2q849lco/" rel="next" title="《2008胡润IT富豪榜》">
+                <i class="fa fa-chevron-left"></i> 《2008胡润IT富豪榜》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5y801zs4urqaqzlu1hh/" rel="prev" title="安装 jBPM 的 Eclipse 开发插件">
+                安装 jBPM 的 Eclipse 开发插件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

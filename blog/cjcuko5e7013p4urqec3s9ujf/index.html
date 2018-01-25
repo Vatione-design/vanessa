@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="WebToolkit,Browser," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在 2011-03-02 下定决心使用 Chrome，并安装了一系列插件准备长期备战，谁知就在 03-22 日 Firefox 4 终于发布了，并且获得了不错的好评。纠结了2天，终于再次换回 Firefox。并且安装了如下插件，其余的都卸载了， very good。非常的好用。Addons Manager: &amp;nbsp;&amp;nbsp;&amp;nbsp; 插件，皮肤，扩展管理。个人比较喜欢到官网上直接去淘。">
+<meta name="keywords" content="WebToolkit,Browser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回归 Firefox 4, 喜欢了喜欢的插件">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5e7013p4urqec3s9ujf/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="在 2011-03-02 下定决心使用 Chrome，并安装了一系列插件准备长期备战，谁知就在 03-22 日 Firefox 4 终于发布了，并且获得了不错的好评。纠结了2天，终于再次换回 Firefox。并且安装了如下插件，其余的都卸载了， very good。非常的好用。Addons Manager: &amp;nbsp;&amp;nbsp;&amp;nbsp; 插件，皮肤，扩展管理。个人比较喜欢到官网上直接去淘。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://vanessa.b3log.org/datastore-file-access.do?oId=1301038333459">
+<meta property="og:updated_time" content="2018-01-23T15:57:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="回归 Firefox 4, 喜欢了喜欢的插件">
+<meta name="twitter:description" content="在 2011-03-02 下定决心使用 Chrome，并安装了一系列插件准备长期备战，谁知就在 03-22 日 Firefox 4 终于发布了，并且获得了不错的好评。纠结了2天，终于再次换回 Firefox。并且安装了如下插件，其余的都卸载了， very good。非常的好用。Addons Manager: &amp;nbsp;&amp;nbsp;&amp;nbsp; 插件，皮肤，扩展管理。个人比较喜欢到官网上直接去淘。">
+<meta name="twitter:image" content="http://vanessa.b3log.org/datastore-file-access.do?oId=1301038333459">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5e7013p4urqec3s9ujf/"/>
+
+
+
+
+
+  <title>回归 Firefox 4, 喜欢了喜欢的插件 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5e7013p4urqec3s9ujf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">回归 Firefox 4, 喜欢了喜欢的插件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2011-03-26T00:54:15+08:00">
+                2011-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 2011-03-02 下定决心<a title="Chrome plugin" href="http://vanessa.b3log.org/getting-started-chrome" target="_blank">使用 Chrome</a>，并安装了一系列插件准备长期备战，谁知就在 03-22 日 Firefox 4 终于发布了，并且获得了不错的好评。</p><br><p>纠结了2天，终于再次换回 Firefox。并且安装了如下插件，其余的都卸载了， very good。非常的好用。</p><br><p><strong>Addons Manager: </strong></p><br><p>&nbsp;&nbsp;&nbsp; 插件，皮肤，扩展管理。个人比较喜欢到<a title="Firefox" href="http://mozcom-cdn.mozilla.net/" target="_blank">官网</a>上直接去淘。</p><br><p><strong>Awesome screenshot:</strong></p><br><p>&nbsp;&nbsp;&nbsp; 网页截图，可以进行简单的标识。非常的好用，强力推荐。</p><br><p><strong>DownThemAll: </strong></p><br><p>&nbsp;&nbsp;&nbsp; 下载管理。一直都用它，习惯了，速度也不错。</p><br><p><strong>Firebug: </strong></p><br><p>&nbsp;&nbsp;&nbsp; 开发人员都知道，不是开放人员的话，也用不上 ^^</p><br><p><strong>Google Dictionary and Google Translate:</strong></p><br><p>&nbsp;&nbsp;&nbsp; 翻译。配置好后源和目标，在页面中双击单词便可获取目标语言。</p><br><p><strong>Google Toolbar for Firefox:</strong></p><br><p>&nbsp;&nbsp;&nbsp; Google 工具栏。每天都要使用 Gmail 和 Google bookmark，一个插件搞定。注：在 Addons Manager 上搜死都搜不到，要到官网上按照。</p><br><p><strong>Java Console:</strong></p><br><p>&nbsp;&nbsp;&nbsp; 。。。</p><br><p><strong>Page Speed:</strong>&nbsp;&nbsp;</p><br><p>&nbsp;&nbsp;&nbsp; 分析网页加载状况，并给出相关建议及优化后的文件。直接点击还可跳转到相应优化的文档，很有用。</p><br><p><strong>YSlow:</strong></p><br><p>&nbsp;&nbsp;&nbsp; 为什么慢？ Yahoo 告诉你。按照著名的 <a title="Yahoo 35 practices" href="http://developer.yahoo.com/performance/rules.html#num_http" target="_blank">Yahoo 7 大类中的 35 个最佳实践</a> 为你的网站进行评估和提示。</p><br><p><strong>SeoQuake: </strong></p><br><p>&nbsp;&nbsp;&nbsp; SEO。对 SEO 了解甚浅，大概看了下，感觉不错，先收藏着。有空好好优化下 <a title="b3log solo" href="http://b3log-solo.googlecode.com/" target="_blank">b3log solo</a> 和 <a title="b3log symphony" href="http://symphony.b3log.org" target="_blank">b3log symphony</a>.</p><br><p><strong>dynaTrace AJAX Edition Agent:</strong></p><br><p>&nbsp;&nbsp;&nbsp; 监视整个页面，然后做出详细的分析。以下废话，可略过。</p><br><ul><br><li>开始使用 Leak Monitor, 一开始没看懂。后来一知半解，但老弹出窗口，烦，卸载了。</li><br></ul><br><ul><br><li>后来使用 <a title="javascript debugger" href="https://addons.mozilla.org/en-US/firefox/addon/javascript-debugger/" target="_blank">JavaScript Debugger(Venkman)</a>，貌似不兼容，一用插件就报错，无奈之卸载。</li><br></ul><br><ul><br><li>最后看了下以前安装过的 dynaTrace (for IE)，<a title="dynaTrace" href="http://ajax.dynatrace.com/ajax/en/download/processdownload.aspx?file=beta3" target="_blank">下载新版本</a>，重新安装。Firefox 也被强行安装上此插件，但一用还是有问题。不过还好 IE 上正常。花了半个多小时用，看着详细的分析结果，还是半知半解。但感觉很强大，很有用（难道是没用懂的幻觉？）。</li><br></ul><br><p>&nbsp;</p><br><p><img title="Firefox 4 plugin" src="http://vanessa.b3log.org/datastore-file-access.do?oId=1301038333459" alt="Firefox 4 plugin" width="536" height="757"></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/WebToolkit/" rel="tag"># WebToolkit</a>
+          
+            <a href="/blog/tags/Browser/" rel="tag"># Browser</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5he017p4urqyj5ofud3/" rel="next" title="微软宣布IE9正式版发布日期">
+                <i class="fa fa-chevron-left"></i> 微软宣布IE9正式版发布日期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko52600m64urqronmc0n8/" rel="prev" title="NetBeans 时事通讯（刊号 # 142 - Apr 14, 2011）">
+                NetBeans 时事通讯（刊号 # 142 - Apr 14, 2011） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

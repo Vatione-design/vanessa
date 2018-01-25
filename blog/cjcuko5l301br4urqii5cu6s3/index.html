@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Frameworks,JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="大学时代说道 MVC，那只会觉得是服务器端代码，如今随着互联网的发展，JavaScript 也开始 MVC 了。懒惰的我偏向简洁、快速、易上手、原生态的东西。对于各种新事物也只是停留在关注层面，不到万不得已是懒得去使用的 ^^（部分框架里面的功能总有你永远也用不上的。不过 Nginx 就比较好了，不要的模块可以删了）前不久弄 CSS 框架的时候也不想着用什么其它的东东，后面要弄合并，压缩之类的。还">
+<meta name="keywords" content="Frameworks,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈《12种 JavaScript MVC 框架之比较》之感">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5l301br4urqii5cu6s3/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="大学时代说道 MVC，那只会觉得是服务器端代码，如今随着互联网的发展，JavaScript 也开始 MVC 了。懒惰的我偏向简洁、快速、易上手、原生态的东西。对于各种新事物也只是停留在关注层面，不到万不得已是懒得去使用的 ^^（部分框架里面的功能总有你永远也用不上的。不过 Nginx 就比较好了，不要的模块可以删了）前不久弄 CSS 框架的时候也不想着用什么其它的东东，后面要弄合并，压缩之类的。还">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T04:33:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈《12种 JavaScript MVC 框架之比较》之感">
+<meta name="twitter:description" content="大学时代说道 MVC，那只会觉得是服务器端代码，如今随着互联网的发展，JavaScript 也开始 MVC 了。懒惰的我偏向简洁、快速、易上手、原生态的东西。对于各种新事物也只是停留在关注层面，不到万不得已是懒得去使用的 ^^（部分框架里面的功能总有你永远也用不上的。不过 Nginx 就比较好了，不要的模块可以删了）前不久弄 CSS 框架的时候也不想着用什么其它的东东，后面要弄合并，压缩之类的。还">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5l301br4urqii5cu6s3/"/>
+
+
+
+
+
+  <title>浅谈《12种 JavaScript MVC 框架之比较》之感 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5l301br4urqii5cu6s3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅谈《12种 JavaScript MVC 框架之比较》之感</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-06-03T03:29:46+08:00">
+                2012-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>大学时代说道 MVC，那只会觉得是服务器端代码，如今随着互联网的发展，JavaScript 也开始 MVC 了。</p><br><p>懒惰的我偏向简洁、快速、易上手、原生态的东西。对于各种新事物也只是停留在关注层面，不到万不得已是懒得去使用的 ^^（部分框架里面的功能总有你永远也用不上的。不过 <a target="_blank" href="http://nginx.com/">Nginx</a> 就比较好了，不要的模块可以删了）</p><br><p>前不久弄 CSS 框架的时候也不想着用什么其它的东东，后面要弄合并，压缩之类的。还是把 LESS 翻出来了（<a target="_blank" href="http://vanessa.b3log.org/install-less-in-windows-linux">LESS 环境搭建</a>）</p><br><p>废话许久，大周末的，游戏打累了，胡言乱语思路不清晰了。又想接着玩了。。。</p><br><p>总的说来，尽量选择小巧、稳定的框架进行使用。什么级别的前端项目才能用到 JavaScript MVC 框架呢？要用都可以去用，只是没有必要把简单的事情复杂化。</p><br><p>例如在你引入 jQuery 后，你只需写一些 jQuery 的插件来进行辅助，写一些业务逻辑代码去进行处理就应该 ok 了。</p><br><p>但假如你要自己去写 js 框架，然后又需要什么按需加载，减少文件引入数目，那就不得不用一些辅助工具了。如：<a href="https://github.com/mishoo/UglifyJS" target="_blank" rel="noopener">uglify-js</a>，jslint 等等之类的。</p><br><p>呃，好像也都可以不用 JavaScript MVC 框架。今天读到下面这篇文章，首先觉得谈的太范了，其次觉得有一半是陌生的。看来真的对这方面不感兴趣啊 o(&cap;_&cap;)o</p><br><p>收工，求每日首胜去了</p><br><p>&nbsp;</p><br><p>如果你对 JavaScript MVC 有兴趣不妨继续往下阅读</p><br><p>下文转自：<a href="http://www.infoq.com/cn/news/2012/05/js-mvc-framework" rel="noopener" target="_blank">12种 JavaScript MVC 框架之比较</a></p><br><p>Gordon L. Hempton 是西雅图的一位黑客和设计师，他花费了几个月的时间研究和比较了12种流行的JavaScript MVC框架，并<a href="http://codebrief.com/2012/01/the-top-10-javascript-mvc-frameworks-reviewed/" target="_blank" rel="noopener">在博客中总结</a>了每种框架的优缺点，最终的结果是，<a href="http://emberjs.com/" target="_blank" rel="noopener">Ember.js</a>胜出。</p><br><p>此次比较针对的特性标准有四种，分别是：</p><br><ul><br><li>UI绑定（UI Bindings）</li><br><li>复合视图（Composed Views）</li><br><li>Web表现层（Web Presentation Layer）</li><br><li>与其他框架良好协作（Plays Nicely with Others）</li><br></ul><br><p>对于各种JavaScript MVC框架，Gordon都总结了优缺点：</p><br><ol><br><li><a href="http://backbonejs.org/" target="_blank" rel="noopener">Backbone.js</a>&mdash;&mdash;优点：强大的社区，强劲的势头；缺点：抽象较弱，很多功能亟待增加。</li><br><li><a href="http://sproutcore.com/" target="_blank" rel="noopener">SproutCore</a>&mdash;&mdash;优点：对绑定的支持，可靠的社区，大量特性；缺点：过度规范，难以和不需要的特性解耦。</li><br><li><a href="http://sammyjs.org/" target="_blank" rel="noopener">Sammy.js</a>&mdash;&mdash;优点：易于学习，更容易和现存的服务端应用程序整合；缺点：过于简单，无法应用于大型应用程序中。</li><br><li><a href="http://spinejs.com/" target="_blank" rel="noopener">Spine.js</a>&mdash;&mdash;优点：轻量级，文档很完备；缺点：它的核心概念&ldquo;spine&rdquo;是异步的用户界面，这意味着理想状况用户界面永远不会发生堵塞，而这个基础有缺陷。</li><br><li><a href="http://cappuccino.org/" target="_blank" rel="noopener">Cappuccino</a>&mdash;&mdash;优点：大型深思熟虑后的框架，良好的社区，很棒的继承模型；缺点：由iOS开发者创建，使用JavaScript模拟Objective-C。</li><br><li><a href="http://knockoutjs.com/" target="_blank" rel="noopener">Knockout.js</a>&mdash;&mdash;优点：对绑定的支持，完备的文档和教程；缺点：绑定语法拙劣，缺少统一的视图组件层级关系。</li><br><li><a href="http://javascriptmvc.com/" target="_blank" rel="noopener">Javascript MVC</a>&mdash;&mdash;优点：可靠的社区；缺点：基于字符串的继承模型很差，控制器与视图关系过密而缺少绑定。</li><br><li><a href="http://code.google.com/webtoolkit/" target="_blank" rel="noopener">GWT（Google Web Toolkit）</a>&mdash;&mdash;优点：全面的框架，良好的社区，可靠的基于Java的组件继承模型；缺点：可能无法经受时间的考验，另外，Java在客户端上的抽象有些笨拙。</li><br><li><a href="http://code.google.com/closure/" target="_blank" rel="noopener">Google Closure</a>&mdash;&mdash;优点：很好的基于组件的UI组合系统。缺点：缺少UI绑定支持。</li><br><li><a href="http://emberjs.com/" target="_blank" rel="noopener">Ember.js</a>&mdash;&mdash;优点：很丰富的模板系统，拥有复合视图和UI绑定；缺点：相对较新，文档不够完备。</li><br><li><a href="http://docs.angularjs.org/" target="_blank" rel="noopener">Angular.js</a>&mdash;&mdash;优点：对模板范围和控制器设计有很好的考虑，拥有依赖注入系统，支持丰富的UI绑定语法。缺点：代码的模块性不强，视图的模块化也不够。</li><br><li><a href="http://batmanjs.org/" target="_blank" rel="noopener">Batman.js</a>&mdash;&mdash;优点：代码清晰，绑定、持久化的方法简单；缺点：使用了单例控制器。</li><br></ol><br><p>经过对以上各种 Javascript MVC 框架特性的比较，Gordon认为只有 <a href="http://emberjs.com/" target="_blank" rel="noopener">Ember.js </a>能够完全满足他的要求，从而成为他最终选用的框架。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Frameworks/" rel="tag"># Frameworks</a>
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5c501144urqki9ry8vk/" rel="next" title="信息图形中的颜色探讨—面向色盲人士友好的设计解决方案">
+                <i class="fa fa-chevron-left"></i> 信息图形中的颜色探讨—面向色盲人士友好的设计解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5qf01hp4urqe76rqb08/" rel="prev" title="超级简单的公告逐条循环滚动 ^^">
+                超级简单的公告逐条循环滚动 ^^ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

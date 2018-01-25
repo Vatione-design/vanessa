@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者：李丽媛联系方式：lly219#gmail.com日期：2010-2-26前言本文主要正对key event，changeevent，代理的focus event，移动设备上event测试的初次结果进行讲解，但在开始之前，我觉得大家还是有必要再温故一下js中的事件。一般事件&amp;nbsp;事件&amp;nbsp;浏览器支持&amp;nbsp;描 述&amp;nbsp;onClick IE3|N2|O3&amp;nbsp;鼠标点击">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 事件">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzim00083xwrqwhmvkmk4/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者：李丽媛联系方式：lly219#gmail.com日期：2010-2-26前言本文主要正对key event，changeevent，代理的focus event，移动设备上event测试的初次结果进行讲解，但在开始之前，我觉得大家还是有必要再温故一下js中的事件。一般事件&amp;nbsp;事件&amp;nbsp;浏览器支持&amp;nbsp;描 述&amp;nbsp;onClick IE3|N2|O3&amp;nbsp;鼠标点击">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_51g4cqp4hn_b">
+<meta property="og:updated_time" content="2018-01-25T00:48:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 事件">
+<meta name="twitter:description" content="作者：李丽媛联系方式：lly219#gmail.com日期：2010-2-26前言本文主要正对key event，changeevent，代理的focus event，移动设备上event测试的初次结果进行讲解，但在开始之前，我觉得大家还是有必要再温故一下js中的事件。一般事件&amp;nbsp;事件&amp;nbsp;浏览器支持&amp;nbsp;描 述&amp;nbsp;onClick IE3|N2|O3&amp;nbsp;鼠标点击">
+<meta name="twitter:image" content="http://docs.google.com/File?id=d7dc7j4_51g4cqp4hn_b">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzim00083xwrqwhmvkmk4/"/>
+
+
+
+
+
+  <title>JavaScript 事件 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzim00083xwrqwhmvkmk4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript 事件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-02-27T11:25:00+08:00">
+                2010-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><br><br><br><br><span style="font-size: large;"><span style="font-size: x-small;"><span style="font-size: small;">作者：李丽媛<br><br>联系方式：lly219#gmail.com<br><br>日<br>期：2010-2-26<br><br></span><br><br><br></span><br><strong>前言</strong><br></span><br><br><br><span style="font-size: small;">本文主要正对key event，change<br>event，代理的focus event，移动设备上event测试的初次结果进行讲解，<br><br>但在开始之前，我觉得大家还是有必要再温故一下js中<br>的事件。<br><br><br><br></span><br><br><span style="font-family: 宋体;"><span style="color: #292929;"><span style="font-size: x-small;"><span style="font-size: small;"><strong><span style="font-family: 宋体;"><span style="color: #292929;">一般事件</span><br></span><br>&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">事件</span><br></span><br>&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">浏<br>览器支持</span><br></span><br>&nbsp;描 述&nbsp;<br><br></strong><br>onClick IE3|N2|O3&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">鼠标点击事件，多用在某个对象控制的范围内的鼠标点击</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;<br><br> onDblClick IE4|N4|O&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">鼠标双击事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;<br><br> onMouseDown IE4|N4|O&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">鼠标上的按钮被按下了</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;<br><br> onMouseUp IE4|N4|O&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">鼠标按下后，松开时激发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;<br><br> onMouseOver IE3|N2|O3&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">当鼠标移动到某对象范围的上方时触发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;<br><br> onMouseMove IE4|N4|O&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">鼠标移动时触发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;<br><br> onMouseOut IE4|N3|O3&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">当鼠标离开某对象范围时触发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;<br><br> onKeyPress IE4|N4|O&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">当键盘上某个键被按下并且释放时触发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">.[</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">注意</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">:</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">页面内<br>必须有被聚焦的对象</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">]&nbsp;<br><br><br>onKeyDown IE4|N4|O&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">当<br>键盘上某个按键被按下时触发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">[</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">注意</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">:</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">页面<br>内必须有被聚焦的对象</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">]&nbsp;<br><br> onKeyUp IE4|N4|O&nbsp;</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">当键<br>盘上某个按键被按放开时触发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">[</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">注意</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">:</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">页面<br>内必须有被聚焦的对象</span><br></span><br>]&nbsp;<br><br><br><br><strong>页面相关事件&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">事件</span><br></span><br>&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">浏<br>览器支持</span><br></span><br>&nbsp;描述&nbsp;<br><br></strong><br>onAbort IE4|N3|O 图片在下载时被用户中断&nbsp;<br><br><br>onBeforeUnload IE4|N|O 当前页面的内容将要被改变时触发的事件&nbsp;<br><br> onError IE4|N3|O<br>捕抓当前页面因为某种原因而出现的错误，如脚本错误与外部数据引用的错误&nbsp;<br><br> onLoad IE3|N2|O3<br>页面内空完成传送到浏览器时触发的事件，包括外部文件引入完成&nbsp;<br><br> onMove IE|N4|O 浏览器的窗口被移动时触发的事件&nbsp;<br><br><br>onResize IE4|N4|O 当浏览器的窗口大小被改变时触发的事件&nbsp;<br><br> onScroll IE4|N|O<br>浏览器的滚动条位置发生变化时触发的事件&nbsp;<br><br> onStop IE5|N|O 浏览器的停止按钮被按下时触发的事件或者正在下载的文件被中断&nbsp;<br><br> onUnload IE3|N2|O3 当前页面将被改变时触发的事件&nbsp;<br><br><br><br><strong>表单相关事件&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">事件</span><br></span><br>&nbsp;浏览器支 持 描述&nbsp;<br><br></strong><br>onBlur IE3|N2|O3&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">当前元素失去焦点时触发的事件</span><br></span><br>&nbsp;[鼠标与键盘的触发均<br>可]&nbsp;<br><br> onChange IE3|N2|O3&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">当前元素失去焦<br>点并且元素的内容发生改变而触发的事件</span><br></span><br>&nbsp;[鼠标与键盘的触发均可]&nbsp;<br><br> onFocus IE3|N2|O3<br>当某个元素获得焦点时触发的事件&nbsp;<br><br> onReset IE4|N3|O3&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">当表单中</span><br></span><br>RESET的属性被激发时触发的事件&nbsp;<br><br> onSubmit<br>IE3|N2|O3 一个表单被递交时触发的事件&nbsp;<br><br><br><br><strong>滚动字幕事件&nbsp;</strong><br><span style="font-family: 宋体;"><span style="color: #292929;"><strong>事件</strong><br></span><br></span><br><strong>&nbsp;浏览器支持 描述&nbsp;<br><br></strong><br>onBounce<br>IE4|N|O&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">在</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">Marquee</span><br></span><br>内的内容移动至Marquee显<br>示范 围之外时触发的事件&nbsp;<br><br> onFinish IE4|N|O 当Marquee元素完成需要显示的内容后触发的事件&nbsp;<br><br><br>onStart IE4|N|O 当Marquee元素开始显示内容时触发的事件&nbsp;<br><br><br><br><strong>编辑事件 事件 浏览器支持 描述&nbsp;<br><br></strong><br>onBeforeCopy<br> IE5|N|O 当页面当前的被选择内容将要复制到浏览者系统的剪贴板前触发的事件&nbsp;<br><br> onBeforeCut IE5|N|O&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">当页面中的一部分或者全部的内容将被移离当前页面</span><br></span><br>[剪<br>贴]并移动到浏览者的系统剪贴板时 触发的事件&nbsp;<br><br> onBeforeEditFocus IE5|N|O 当前元素将要进入编辑状态&nbsp;<br><br><br>onBeforePaste IE5|N|O&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">内容将要从浏览者的系统剪<br>贴板传送</span><br></span><br>[粘贴]到页面中时触发的事件&nbsp;<br><br> onBeforeUpdate IE5|N|O<br>当浏览者粘贴系统剪贴板中的内容时通知目标对象&nbsp;<br><br> onContextMenu IE5|N|O&nbsp;<span style="font-family: 宋体;"><span style="color: #292929;">当浏览者按下鼠标右键出现菜单时或者通过键盘的按键触发页面菜单时触发的事件</span><br></span><br><span style="font-family: tahoma;"><span style="color: #292929;">&nbsp;[</span><br></span><br><span style="font-family: 宋体;"><span style="color: #292929;">试试在页面中的</span><br></span><br>&lt;body&gt;<br>中加入onContentMenu=&quot;return false&quot;就可禁止使用鼠标右键了]&nbsp;<br><br> onCopy IE5|N|O<br>当页面当前的被选择内容被复制后触发的事件&nbsp;<br><br> onCut IE5|N|O 当页面当前的被选择内容被剪切时触发的事件&nbsp;<br><br> onDrag<br> IE5|N|O 当某个对象被拖动时触发的事件 [活动事件]&nbsp;<br><br> onDragDrop IE|N4|O<br>一个外部对象被鼠标拖进当前窗口或者帧&nbsp;<br><br> onDragEnd IE5|N|O 当鼠标拖动结束时触发的事件，即鼠标的按钮被释放了&nbsp;<br><br><br>onDragEnter IE5|N|O 当对象被鼠标拖动的对象进入其容器范围内时触发的事件&nbsp;<br><br> onDragLeave IE5|N|O<br>当对象被鼠标拖动的对象离开其容器范围内时触发的事件&nbsp;<br><br> onDragOver IE5|N|O<br>当某被拖动的对象在另一对象容器范围内拖动时触发的事件&nbsp;<br><br> onDragStart IE4|N|O 当某对象将被拖动时触发的事件&nbsp;<br><br><br>onDrop IE5|N|O 在一个拖动过程中，释放鼠标键时触发的事件&nbsp;<br><br> onLoseCapture IE5|N|O<br>当元素失去鼠标移动所形成的选择焦点时触发的事件&nbsp;<br><br> onPaste IE5|N|O 当内容被粘贴时触发的事件&nbsp;<br><br> onSelect<br>IE4|N|O 当文本内容被选择时的事件&nbsp;<br><br> onSelectStart IE4|N|O 当文本内容选择将开始发生时触发的事件&nbsp;<br><br><br><br><strong>数<br>据绑定 事 件 浏览器支持 描述&nbsp;<br><br></strong><br>onAfterUpdate IE4|N|O 当数据完成由数据源到对象的传送时触发的事件&nbsp;<br><br> onCellChange IE5|N|O 当数据来源发生变化时&nbsp;<br><br> onDataAvailable IE4|N|O<br>当数据接收完成时触发事件&nbsp;<br><br> onDatasetChanged IE4|N|O 数据在数据源发生变化时触发的事件&nbsp;<br><br><br>onDatasetComplete IE4|N|O 当来子数据源的全部有效数据读取完毕时触发的事件&nbsp;<br><br> onErrorUpdate<br>IE4|N|O 当使用onBeforeUpdate事件触发取消了数据传送时，代替 onAfterUpdate事件&nbsp;<br><br> onRowEnter<br> IE5|N|O 当前数据源的数据发生变化并且有新的有效数据时触发的事件&nbsp;<br><br> onRowExit IE5|N|O<br>当前数据源的数据将要发生变化时触发的事件&nbsp;<br><br> onRowsDelete IE5|N|O 当前数据记录将被删除时触发的事件&nbsp;<br><br><br>onRowsInserted IE5|N|O 当前数据源将要插入新数据记录时触发的事件 <br><br> onAfterPrint IE5|N|O<br>当文档被打印后触发的事件&nbsp;<br><br> onBeforePrint IE5|N|O 当文档即将打印时触发的事件&nbsp;<br><br><br>onFilterChange IE4|N|O 当某个对象的滤镜效果发生变化时触发的事件&nbsp;<br><br> onHelp IE4|N|O<br>当浏览者按下F1或者浏览器的帮助选择时触发的事件&nbsp;<br><br> onPropertyChange IE5|N|O<br>当对象的属性之一发生变化时触发的事件&nbsp;<br><br> onReadyStateChange IE4|N|O&nbsp;</span><br><br><br><br><br><br><br><span style="font-family: 宋体;"><span style="color: #292929;"><span style="font-size: small;">当对象的初始化属性值发生变化时触发的事件<br><br><br><br><img style="height: 484.396px; width: 648px;" src="http://docs.google.com/File?id=d7dc7j4_51g4cqp4hn_b" alt=""><br><br><br>更多请参见<a href="http://quirksmode.org/dom/events/" target="_blank" rel="noopener">http://quirksmode.org/dom/events/</a><br><br></span><br><br><span style="font-size: large;"><br><br></span><br><span style="font-size: large;"><strong>正文<br><br></strong><br></span><br></span><br></span><br></span><br></span><br></span><br></p><br><div id="vh5." style="text-align: left;"><span style="font-size: small;"><strong>1.key<br> event<br><br></strong><br>key event包含了keydown<br>，keypress<br>和keyup<br><br><br><br><br>当你按下键时，产生了两种属性:<br><br>keyCode and<br>charCode<br><br><br><br>在每一种属性中又分为两个bits的数据:<br><br>- the key code<br><br>- the<br>character code<br><br><br><br>从而我们可以看出在keyCode属性中：<br><br>- onkeydown: key code<br><br>-<br> onkeypress: character code<br><br><em>浏览器支持</em><br>：IE，FireFox，Safari，Opera<br><br><br><br>在<br>charCode属性中：<br><br>- onkeydown: 0<br><br>- onkeypress: character code<br><br><em>浏览器<br>支持</em><br>：FireFox，Safari<br><br><br><br>当你需要获取keyCode属性时，可以这样：<br><br>el.onkeydown =<br>function (e) {<br><br>&nbsp;&nbsp; &nbsp;e = e || window.event;&nbsp;&nbsp; &nbsp;//good custom<br><br>&nbsp;&nbsp; &nbsp;var<br> realKey = e.keyCode;<br><br>}<br><br><em>浏览器支持</em><br>：IE，FireFox，Safari，Opera<br><br><br><br><br>当<br>你需要获取charCode属性时，可以这样:<br><br>el.onkeypress = function (e) {<br><br>&nbsp;&nbsp; &nbsp;e = e ||<br> window.event;<br><br>&nbsp;&nbsp; &nbsp;var char = e.keyCode || e.charCode;&nbsp;&nbsp;&nbsp; //浏览器兼容<br><br>}<br><br><em>浏览器支持</em><br>：IE，FireFox，Safari，Opera<br><br><br><br><br>如何阻止默认的<br>action?<br><br>el.onkeydown = function (e) {<br><br>&nbsp;&nbsp; &nbsp;e = e || window.event;<br><br>&nbsp;&nbsp;<br> &nbsp;var key = e.keyCode;<br><br>&nbsp;&nbsp; &nbsp;if (key is incorrect) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;//<br>cancel default action<br><br>&nbsp;&nbsp; &nbsp;}<br><br>}<br><br><em>浏览器支持</em><br>：IE，FireFox，Safari<br><br><br><br><br><br><strong>2.change<br> event<br><br></strong><br>当一个可接受输入的控件发生变化时将会触发change<br>event事件。这是一个非常有用的事件，因为它只在用户改变它的时候发生，而不是当焦点在它上面的时候就触发事件。<br><br><br><br>- text<br>fields<br><br>当把焦点移到上面，但不做任何输入上的改变时，焦点离开将不会触发事件。<br><br>只有当焦点移到上面，输入改变，焦点离开后才会触发<br>事件。<br><br><em>浏览器支持</em><br>：IE，FireFox，Safari，Opera<br><br><br><br><br>-<br> select boxes<br><br>使用鼠标：<br><br>当鼠标选中，点击了另外一个选项时，触发事件。<br><br><em>浏览<br>器支持</em><br>：IE，FireFox，Safari，Opera<br><br><br><br><br>使用键盘：<br><br>当焦点在此控件上时，使用上下键选择<br>另外一个选项时，触发事件。<br><br><em>浏览器支持</em><br>：IE，Opera<br><br><br><span style="color: #ff0000;">喜剧的是这本不应该产生事件，这是一个bug，然而IE和Opera却支持了它。<br><br><br style="color: #000000;"><br></span><br><span style="color: #000000;">当<br>焦点在此控件上时，使用上下键选择另外一个选项且焦点离开时，触发事件。<br></span><br><br style="color: #000000;"><br><em>浏览器支持</em><br>：FireFox，Safari<br><br><br><br><br>-<br> checkboxes and radios<br><br>点击<br>，使是否选中的属性发生变化时，触发事件。<br><br><em>浏览器支持</em><br>：FireFox，Safari，Opera<br><br><br><br>点<br>击<br>，使是否选中的属性发生变化且焦点离开时，触发事件。<br><br><em>浏览器支持</em><br>：IE<br><br><span style="color: #ff0000;">喜剧的是这本不应该产生事件，这是一个bug，然而IE却支持了它。</span><br><br><strong><br><br><br><br>3.<br>事件代理<br><br></strong><br>&lt;ul&gt;<br><br>&nbsp;&nbsp; &nbsp;&lt;li&gt;&lt;a<br>href=&rdquo;#&rdquo;&gt;Multimedialize&lt;/a&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;ul&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br> &nbsp;&lt;li&gt;&lt;a href=&rdquo;#&rdquo;&gt;Sound&lt;/a&gt;&lt;/li&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;&lt;li&gt;&lt;a href=&rdquo;#&rdquo;&gt;Java applets&lt;/a&gt;&lt;/li&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br> &nbsp;&lt;/ul&gt;<br><br>&nbsp;&nbsp; &nbsp;&lt;/li&gt;<br><br>&nbsp;&nbsp; &nbsp;&lt;li&gt;&lt;a<br>href=&rdquo;#&rdquo;&gt;Ajaxify&lt;/a&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;ul&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;&lt;li&gt;&lt;a href=&rdquo;#&rdquo;&gt;Web 2.0&lt;/a&gt;&lt;/li&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;&lt;li&gt;&lt;a href=&rdquo;#&rdquo;&gt;Web 3.0&lt;/a&gt;&lt;/li&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;&lt;li&gt;&lt;a href=&rdquo;#&rdquo;&gt;Web 4.0b&lt;/a&gt;&lt;/li&gt;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;&lt;/ul&gt;<br><br>&nbsp;&nbsp; &nbsp;&lt;/li&gt;<br><br>&lt;/ul&gt;<br></span><br></div><br><div style="text-align: left;"><span style="font-size: large;"><span style="font-size: small;"><br><br>当a和li，ul有着相同种类的事件<br>（如：mouseover, mouseout, click, keydown,<br>keypress）时，当触发a上的事件的时候，li和ul上的事件也会产生。<br><br>至于事件产生的顺序将和浏览器的实现相关。FireFox中的顺序<br>为从内到外，a-li-ul（以下称之为<em>冒泡</em><br>）。<br><br>当此情况产生时，事件都要进行冒泡，那为什么不绑定到最外面一层呢？那样将节省了<br>很多事件的绑定。<br><br>var dropdown = {<br><br>&nbsp;&nbsp; &nbsp;init: function<br>(dropdown) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onmouseover = mouseOver;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.onmouseout = mouseOut;<br><br>&nbsp;&nbsp; &nbsp;}<br><br>}<br><br><em>浏览器支持</em><br><br>：所有<br><br>用此方法绑定到最外面一层，其余的ul，li和a就不需要再进行绑定^^<br>，这是因为在执行没用绑定方法的元素的事件时，它产生了<em>冒泡</em><br>，可以触发最外一层的同种类的事件（不知道讲清楚没有，不懂得自己动作做下就应<br>该知道了，讲的我累啊^^）。<em><br><br><br><br></em><br>但是有一些东西根本不支持鼠标，如果使用键盘，菜单要怎么折叠呢？<br><br>我们需要事件来告<br>诉我们用户是否把焦点移到或离开了链接。<br><br>也许你认为可以像下面这样写，但它根本不工作，因为focus和blur不属于<em>冒泡</em><br>,它不<br>能触发最外一层的同种类的事件<br>。<br><br>var dropdown = {<br><br>&nbsp;&nbsp; &nbsp;init:<br>function (dropdown) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onmouseover =<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.onfocus = this.mouseOver;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onmouseout =<br><br>&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onblur = this.mouseOut;<br><br>&nbsp;&nbsp; &nbsp;}<br><br>}<br><br><br><br>在这要介绍一点知<br>识，我们才能继续前进：<br><br>1)鼠标和按键事件<br><br>当用户启动一个设备的具体行动时将被触发。<br><br>mouseover, mouseout,<br> click, keydown, keypress<br><br>一般情况下都<em>冒泡</em><br><br><br><br><br>2）界面事件<br><br>当某一事件发生时，不<br>管它是怎样初始化的，都将被触发<br><br>load, change, submit, focus, blur<br><br>一般情况下，它们并不<em>冒泡</em><br><br><br><br><br>由<br>于focus, blur不冒泡，<br>这样一来的话，它的事件单独绑定在最外一层是就没有了作用，因此需要单独<br>给每一个都绑定上。<br><br>var dropdown = {<br><br>&nbsp;&nbsp; &nbsp;init: function (dropdown) {<br><br>&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp; &nbsp;dropdown.onmouseover = this.mouseOver;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.onmouseout = this.mouseOut;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;var x =<br>dropdown.getElementsByTagName(‘a’);<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (var<br>i=0;i&lt;x.length;i++) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;x[i].onfocus = this.mouseOver;<br><br>&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;x[i].onblur = this.mouseOut;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br><br>&nbsp;&nbsp; &nbsp;}<br><br>}<br><br><br><br><br><br>这<br>样看上去看不雅观，或许我们也可以这样实现。<br><br>采用事件捕获来弥补。<br><br>事件捕获是一种和<em>冒泡</em><br>相反的事件，它被符合W3C标准的<br>浏览器所支持<em>。<br><br>浏览器支持：<br></em><br>FireFox，Safari，Opera<br><br><em>冒<br>泡</em><br>：addEventListener(‘click’,fn,false)<br><br>事件捕<br>获：addEventListener(‘click’,fn,true)<br><br><br><br>问题是，如果你捕获了一个focus事件，在目标元素的父亲将<br>会被执行事件绑定<br><br><br><br><em>冒泡</em><br>：<br><br>a上的Focus事件触发时: a.onfocus将被执行<br><br><br><br>事件捕获：<br><br>a上的Focus事件触发时<br>: ul.onfocus, li.onfocus和a.onfocus将被执行<br><br><br><br>哎，<br>为什么会这样呢？我也很奇怪。<br><br>也许在这个场景下他们是一样的，目前是没发现什么意义 ，不过也许它是有用的.<br><br><br><br><br>var<br> dropdown = {<br><br>&nbsp;&nbsp; &nbsp;init: function (dropdown) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.onmouseover = this.mouseOver;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onmouseout =<br> this.mouseOut;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.addEventListener(‘focus’,this.mouseOver,true);<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.addEventListener(‘blur’,this.mouseOut,true);<br><br>&nbsp;&nbsp; &nbsp;}<br><br>}<br><br><br><br>var dropdown = {<br><br>&nbsp;&nbsp; &nbsp;init: function (dropdown) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.onmouseover = this.mouseOver;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onmouseout =<br> this.mouseOut;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if (dropdown.addEventListener) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp; &nbsp;dropdown.addEventListener(‘focus’,this.mouseOver,true);<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp; &nbsp;dropdown.addEventListener(‘blur’,this.mouseOut,true);<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br><br>&nbsp;&nbsp;<br> &nbsp;}<br><br>}<br><br><br><em>浏览器支持</em><br>：FireFox，Safari，Opera<br><br><br><br><br>杯<br>具的IE怎么办呢？它并不支持addEventListener,但是幸运的是它支持focusin和focusout事件，这两个事件类似于focus<br>和blur,可喜的是它们并不是<em>冒泡</em><br>.<br><br><br><br>var dropdown = {<br><br>&nbsp;&nbsp; &nbsp;init: function<br>(dropdown) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onmouseover = this.mouseOver;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br> &nbsp;dropdown.onmouseout = this.mouseOut;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if<br>(dropdown.addEventListener) {<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.addEventListener(‘focus’,this.mouseOver,true);<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.addEventListener(‘blur’,this.mouseOut,true);<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br><br>&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp; &nbsp;dropdown.onfocusin = this.mouseOver;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>&nbsp;dropdown.onfocusout = this.mouseOut;<br><br>&nbsp;&nbsp; &nbsp;}<br><br>}<em><br><br></em><br><em>浏览器支持</em><br>：IE，FireFox，Safari，Opera<br><br><br><br><strong><br><br>4.<br>移动设备上事件的初次测试</strong><br><br><br></span><br><br><span style="font-size: x-small;"><span style="font-size: small;"><strong>移动的web时代来临了</strong><br>。<br><br>在移动电话上有<br>3中输入模式:<br><br>- 触摸<br><br>- 光标(或者说，假光标)<br><br>- 上下左右按键导航<br><br><br><br>Opera Mini 4.2 on<br>Nokia E71<br><br>假光标输入模式<br><br><br><br>Opera Mobile 8.00 on Motorola V3xx<br><br>上下左右导航<br><br><br><br>NetFront<br> on Sony Ericsson K770i<br><br>上下左右导航<br>，但是如何选择一个连接，去点击它<br>呢？<br><br><strong><br><br>移动电话的事件</strong><br><br><br>在这样一个环境中，&ldquo;mouseover&rdquo; 意味着什么，那mouseout,<br>mousemove, mousedown, mouseup又意味着什么呢？<br><br>还有点击呢？<br><br><br><br>在一个&lt;div&gt;元素中<br>添加了一个&ldquo;click&rdquo;事件，让我们来看看会有什么情况发生。<br><br><em>首先呢，有一些好消息：</em><br><br><br>S60 WebKit on<br>Nokia E71<br><br>输入模式：假光标<br><br>和桌面浏览器效果一样。<br><br><br><br>Opera<br>Mobile 9.5 on HTC Touch Diamond<br><br>输入模式：触摸<br><br>和iPhone的效果一样。<br><br><br><br>因此<br>Nokia 的光标输入模式的行为和台式电脑一样，然而最新的Opera行为和iPhone的一样。<br><br>iPhone/Opera模式:<br><br>当用<br>户触摸某个元素&mdash;&mdash;mouseover, mousemove, mousedown, mouseup以及点击的触发和:hover<br>style将被应用。<br><br>当用户触摸另外一个元素时，mouseout事件的触发和 :hover 样式将被移走。<br><br><br><br><em>现在呢，让<br>我们来看一下坏消息吧：</em><br><br><br>Blackberry Storm<br><br>输入模式：假光标<br><br>没<br>有mouseover,mouse<br>out,  mouse<br>move<br><br><br><br>NetFront<br> on Samsung F700<br><br>输入模式：触摸<br><br>点击在哪里呢？<br><br><br><br>在这里只<br>列出了19种浏览器中的4种，然而现在移动电话上有一大堆的浏览器。<br><br>不过对移动手机来说，可以给出<strong>一般的事件规则</strong><br>：<br><br>-使用<br>点击事件（让我们礼貌而坚定的拒绝那些按键浏览器）<br><br>-忘记鼠标事件吧<br><br>-使用resize和orientationchange事件<br><br>orientationchange<br>只被iPhone和Blackberry所支持<br><br>resize只被Opera和所有的WebKits所支持<br><br>NetFront没有被任何所支<br>持&mdash;&mdash;太糟糕了。<br><br>-使用按键事件去设置一般允许的按键；而不是显示出用户输入的表单字段.你应该显示出字段的值。</span><br><br><br><br><br><br><br><br></span><br><strong>参<br>考</strong><br><br><br><span style="font-size: small;">JavaScript Event By PPk<br><br>W3C<br><br></span><br><br></span><br></div><br><p>&nbsp;</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6jad00c5l6rq8c8p3zhv/" rel="next" title="好听的歌曲~~~推荐">
+                <i class="fa fa-chevron-left"></i> 好听的歌曲~~~推荐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j2x0069l6rqv3rqub2o/" rel="prev" title="悲哀莫过于心死">
+                悲哀莫过于心死 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

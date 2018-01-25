@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NetBeans," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者：IT168 东方蜘蛛译&amp;nbsp;&amp;nbsp;&amp;nbsp;　　【IT168 分析评论】最近Sun公司推出了它的JavaFX框架的第一个公测版，使用它可以利用JavaFX编程语言来开发富互联网应用程序(RIA)。这个新开发组件有许多令人惊喜的地方。它的功能非常丰富，对于Java开发者来说，它的类Java语法可以让人们非常轻松的动手开发富互联网应用程序。但是它面临两个重量级的竞争对手，Adobe">
+<meta name="keywords" content="NetBeans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="亲身体验Sun JavaFX开发组件预览版">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj1700nzxwrq5xksds8n/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者：IT168 东方蜘蛛译&amp;nbsp;&amp;nbsp;&amp;nbsp;　　【IT168 分析评论】最近Sun公司推出了它的JavaFX框架的第一个公测版，使用它可以利用JavaFX编程语言来开发富互联网应用程序(RIA)。这个新开发组件有许多令人惊喜的地方。它的功能非常丰富，对于Java开发者来说，它的类Java语法可以让人们非常轻松的动手开发富互联网应用程序。但是它面临两个重量级的竞争对手，Adobe">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-22T12:32:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="亲身体验Sun JavaFX开发组件预览版">
+<meta name="twitter:description" content="作者：IT168 东方蜘蛛译&amp;nbsp;&amp;nbsp;&amp;nbsp;　　【IT168 分析评论】最近Sun公司推出了它的JavaFX框架的第一个公测版，使用它可以利用JavaFX编程语言来开发富互联网应用程序(RIA)。这个新开发组件有许多令人惊喜的地方。它的功能非常丰富，对于Java开发者来说，它的类Java语法可以让人们非常轻松的动手开发富互联网应用程序。但是它面临两个重量级的竞争对手，Adobe">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj1700nzxwrq5xksds8n/"/>
+
+
+
+
+
+  <title>亲身体验Sun JavaFX开发组件预览版 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj1700nzxwrq5xksds8n/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">亲身体验Sun JavaFX开发组件预览版</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-12-06T07:57:00+08:00">
+                2008-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作者：IT168 东方蜘蛛译&nbsp;&nbsp;&nbsp;<br></p><p>　　【<b>IT168 分析评论</b>】最近Sun公司推出了它的JavaFX框架的第一个公测<br>版，使用它可以利用JavaFX编程语言来开发富互联网应用程序(RIA)。这个新开发组件有许多令人惊喜的地方。它的功能非常丰富，对于Java开发者<br>来说，它的类Java语法可以让人们非常轻松的动手开发富互联网应用程序。但是它面临两个重量级的竞争对手，Adobe和微软，它们分别推出了<br>Flex/AIR和Silverlight，来帮助程序员开发富互联网程序，它们不仅更加成熟，而且还包括了非常好用的工具来拉近设计者和编程者之间的距<br>离。</p><p>　　JavaFX开发组件预览版可以免费下载，下载地址为：<a href="http://www.javafx.com/，它包含以下组件：" target="_blank" rel="noopener">http://www.javafx.com/，它包含以下组件：</a></p><p>　　JavaFX预览版 SDK：提供JavaFX编译器和运行时工具、用于创建高度互动的桌面和浏览器应用的2D图形和媒体库，还包括教程、API文档和实例代码。</p><p>　　集成了JavaFX插件的NetBeans(TM) 6.1 IDE：提供了一个构建、预览和调试JavaFX应用的先进的开发环境。</p><p>　　Nile：一个非常方便的工具，它可以从Adobe Photoshop和Adobe Illustrator导出一些创造性的资源到JavaFX应用。</p><p>　　Java(TM) Runtime Environment 6 Update 10 Beta: 提供了一个高性能运行时环境，带有一个新的浏览器插件，能够把一个正在运行的applet从网络浏览器中直接拖拽出来，并动态转化成一个运行在桌面系统的程序。</p><p>　　另外，为了帮助用户入门，Sun还在里面包含了大量的编程实例和模板。</p><p>　<br>　JavaFX脚本的新语法是Java与JavaScript的混合产物，掌握起来并不困难，只是有些细小的改动，例如它不像Java那样支持接口。<br>JavaFX开发组件预览版让我惊叹不已的功能包括：强大的数据绑定功能、漂亮的工具库等。它还包含了对矢量对象和透明图片的关键支持，但是3-D库和基<br>于真实路径的动画它还不支持。</p><p>　　Java开发者一定会发现快速用户界面开发要进行声明语法，还有比单调的Swing调用更吸引人的界面。<br>有意思的是，Sun取消了基于XML的概念，而这一点是其它主流RIA厂商选择使用的。尽管我更喜欢XML清晰的界面定义，但是JavaFX中采用的更加<br>简洁、以代码为中心的方式也有可称道之处。</p><p>　　为了实现设计和开发的同步，Sun提供了一个Adobe<br>Illustrator插件来导出JavaFX资源，另外一个Photoshop插件正在开发中。不过对于基本的可视化布局工具，设计者需要借助于第三方<br>工具，诸如ReportMill的JFXBuilder。显然在这一方面Adobe和微软要表现的更好。</p><p>　　与Adobe<br>Flex和微软的Silverlight相比，JavaFX的效率也相对较低。在我的测试过程中，即时实现一个简单的应用也要编写大量的程序，而且启动一<br>个应用程序的速度也比较慢，需要运行时和代码库的下载。JavaFX还占用大量的处理器资源;尽管我运行的是一个简单的动画应用，还是占用了我的3GHz<br>英特尔双核处理器32%的资源。</p><p>　　除此之外还有一些让人失望之处。JavaFX应用不能被直接嵌入到HTML中，而必须作为<br>applets启动，或者通过Java Web<br>Start从桌面发布。另外预览版SDK缺少流视频编码器，但是在最终版中On2技术将被加入来弥补这个缺憾。和Adobe<br>AIR不同的是，JavaFX不支持对主机文件系统的访问。还有，现在它只支持Windows和Mac OS X操作系统。</p><p>　　但是，这个<br>JavaFX开发工具包还处于预览阶段，今年秋天将发布它的1.0版，Sun依然有时间来打磨完善这个项目。可以与现有Java应用轻松集成，会让<br>JavaFX成为创建企业应用的一个有吸引力的选择，会给Java带来流行的因素。在与Adobe和微软的竞争中，Sun成功的技术组合和Java的长远<br>影响究竟会给JavaFX带来多大帮助还需拭目以待，但是毫无疑问的是Java阵营最终将在富互联网应用竞争中占有一席之地。</p><p><br></p><p>转自：<a href="http://tech.sina.com.cn/s/2008-12-05/0957901290.shtml" target="_blank" rel="noopener">http://tech.sina.com.cn/s/2008-12-05/0957901290.shtml</a><br></p><p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/NetBeans/" rel="tag"># NetBeans</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziw400j5xwrqvfzco7lx/" rel="next" title="applet 不能显示解决方法">
+                <i class="fa fa-chevron-left"></i> applet 不能显示解决方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzikf0063xwrqasns4qr5/" rel="prev" title="ITIL简介">
+                ITIL简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

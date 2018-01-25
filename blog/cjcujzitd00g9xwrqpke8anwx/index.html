@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="级别： 中级Dan Allen (dan.allen@mojavelinux.com), 高级 Java 工程师, CodeRyte, Inc.2007 年  5 月  21 日JavaServerFaces (JSF) 是用于 Java? Web 应用程序的第一个标准化的用户界面框架。而 Seam 是一个扩展 JSF的强大的应用程序框架。在这个由三部分组成的新系列中的第一篇文章中，发现这两种框架">
+<meta name="keywords" content="JSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seam - 无缝集成 JSF，第 1 部分: 为 JSF 量身定做的应用程序框架">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzitd00g9xwrqpke8anwx/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="级别： 中级Dan Allen (dan.allen@mojavelinux.com), 高级 Java 工程师, CodeRyte, Inc.2007 年  5 月  21 日JavaServerFaces (JSF) 是用于 Java? Web 应用程序的第一个标准化的用户界面框架。而 Seam 是一个扩展 JSF的强大的应用程序框架。在这个由三部分组成的新系列中的第一篇文章中，发现这两种框架">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/fw.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/developerworks/i/p-dallen.jpg">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:updated_time" content="2018-01-21T07:33:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Seam - 无缝集成 JSF，第 1 部分: 为 JSF 量身定做的应用程序框架">
+<meta name="twitter:description" content="级别： 中级Dan Allen (dan.allen@mojavelinux.com), 高级 Java 工程师, CodeRyte, Inc.2007 年  5 月  21 日JavaServerFaces (JSF) 是用于 Java? Web 应用程序的第一个标准化的用户界面框架。而 Seam 是一个扩展 JSF的强大的应用程序框架。在这个由三部分组成的新系列中的第一篇文章中，发现这两种框架">
+<meta name="twitter:image" content="http://www.ibm.com/i/c.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzitd00g9xwrqpke8anwx/"/>
+
+
+
+
+
+  <title>Seam - 无缝集成 JSF，第 1 部分: 为 JSF 量身定做的应用程序框架 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzitd00g9xwrqpke8anwx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Seam - 无缝集成 JSF，第 1 部分: 为 JSF 量身定做的应用程序框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-26T08:28:00+08:00">
+                2008-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td width="100%"><br><p>级别： 中级</p><p><a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#author" target="_blank" rel="noopener">Dan Allen</a> (<a href="mailto:dan.allen@mojavelinux.com?subject=%E4%B8%BA%20JSF%20%E9%87%8F%E8%BA%AB%E5%AE%9A%E5%81%9A%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6" target="_blank" rel="noopener">dan.allen@mojavelinux.com</a>), 高级 Java 工程师, CodeRyte, Inc.<br></p><p>2007 年  5 月  21 日</p><blockquote>JavaServer<br>Faces (JSF) 是用于 Java? Web 应用程序的第一个标准化的用户界面框架。而 Seam 是一个扩展 JSF<br>的强大的应用程序框架。在这个由三部分组成的新系列中的第一篇文章中，发现这两种框架之间的互补性。Dan Allen 介绍了 Seam 对 JSF<br>生命周期的增强，包括上下文状态管理、<br>RESTful URL、Ajax remoting、适当的异常处理和约定优于配置。</blockquote><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><!-- include java script once we verify teams wants to use this and it will work on dbcs and cyrillic characters --></td></tr></tbody></table></p>
+<!--END RESERVED FOR FUTURE USE INCLUDE FILES-->
+<pre><code>&lt;p&gt;JSF 正开始凭借其 Java Web 标准的地位主导 Java Web 应用程序市场。随着更多的开发人员受托使用 JSF 作为基础来架构应用程序，他们发现 JSF 的核心规范中清楚地说明： 
+</code></pre><p>JSF 不是为成为一个完整的 Web 应用程序框架而设计的。相反，它提供一个健壮的、事件驱动的 API 和 UI 组件库，用于构建更复杂的应用程序框架。</p><p></p>
+<pre><code>&lt;p&gt;我在寻找用于弥补 JSF 的组件驱动架构的扩展时，发现 Shale 和 Struts 2 都有不足之处。我排除了 
+</code></pre><p>Struts 2，因为它将 JSF 看作是面向更大范围的设计。而<br>Shale 似乎更靠近一些，它基本上是基于 JSF，但是 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#shale" target="_blank" rel="noopener">对此我持保留意见</a>。相反，JBoss Seam 是一个全面的应用程序框架，它构建在 JSF 的基础上，但是并没有损害它的核心目标。</p><p></p>
+<pre><code>&lt;p&gt;这个由三部分组成的系列将介绍 Seam 应用程序框架，演示它的优点，并希望使您相信它与 JSF 是开发 Java 企业应用程序的极好的组合。
+</code></pre><p>在阅读本系列之前，如果您想下载 Seam，那么请阅读 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#resources" target="_blank" rel="noopener">参考资料</a> 一节。</p><br>            <p><a name="N1007E"><span class="atitle">寻找 Seam</span></a></p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="shale"><b>关于 Shale</b></a><br><br>                <p>Shale 有一段并不美妙的历史。它因 Struts-JSF 集成包而生，但是后来受到 Struts 开发人员的冷落。如今，它成了专用于 JSF 的一个顶级 Apache 项目。</p><br>                <p>我认为 Shale 的问题在于将自身定位为一组松散耦合的服务，这等于将集成的负担压在了开发人员肩上。Shale 的<br>Java 5 语言增强是不错，但是它们都被包装在一个扩展包中。视图控制器通过命名约定与一个模板耦合，这也带来很多限制。<br>Shale 应用程序控制器和对话框管理器都是大型增件，它们似乎为标准 JSF 生命周期减轻了很多负担。</p><br>                <p>Seam 可以提供 Shale 中所有的特性，而且将这些特性放在一个良好集成的、紧密耦合的包中。</p><br>            </td></tr></tbody></table></td></tr></tbody></table><br>            <p>刚刚阅读到关于<br>JBoss Seam 的文章（见 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#resources" target="_blank" rel="noopener">参考资料</a>）<br>的第一页，我就知道 Seam 正是我要找的项目。Seam 的开发人员，尤其是 Gavin King，在经过足够多的、实际的开发之后，知道一个<br>Web 应用程序框架必须从一开始就攻破难题，包括上下文状态管理、RESTful 和用户友好的 URL、Ajax<br>remoting、适当的异常处理和约定优于配置。令 Java 开发人员欣喜的是，Seam<br>可以满足所有这些需求，甚至可以满足更多需求。如果您正使用 JSF，并且还没听说过<br>Seam，那么我强烈建议您看看 Seam 的参考文档（见 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#resources" target="_blank" rel="noopener">参考资料</a>）。Seam 附带的手册就是最好的资料！</p><br>            <p>尽管 Seam 显然非常适合作为 JSF 的补充，但是在激烈的竞争环境中，它遭到了一定程度的轻视。当今市场中充斥着各种各样的 Web 应用程序框架 —— 包括 Shale 和 Struts 2，新来者往往不受重视，Seam 还没有在主流行列站稳脚跟。<br>Seam 没有很快流行的另一个原因是关于这种框架的某些流言使 Java 开发人员没能认识到它的直接优点。</p><br>            <p>我<br>要粉碎的一个流言是：Seam 只有和 EJB 3 一起使用时才有用，或者说在使用 Seam 开发应用程序时需要一个 EJB3<br>容器。实际上，Seam 的文档清楚地驳斥了这种误解：”Seam 并不要求组件是 EJB，甚至在没有兼容 EJB 3.0 的容器时也能使用。”<br>如果说只有在使用 EJB 3 的同时才能使用 Seam，那么无异于说只有在使用 Hibernate 的同时才能使用<br>Spring。虽然这两对都有很强的互补性，但是每一对的两者之间都不是相互依赖的。</p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="N100AA"><b>JBoss Seam 与 JSR 299</b></a><br><br>                <p>JBoss Seam 是一种开源应用程序框架，其目的是提高 JSF 与业务组件（例如 EJB 3 和 Spring bean）之间的集成。Seam<br>能够跨 Web 环境中的不同上下文管理组件，并且几乎避免了在开发 JSF 应用程序时进行 XML 配置。该项目是 Hibernate 的创立者 Gavin King 的杰作，目前还在 JBoss 实验室中。</p><br>                <p>最近，JBoss 向 JCP 提交了一个建议，要求标准化 Seam 背后的概念。该建议被接受为 JSR 299, Web Beans。这个规范的目的是统一 JSF 管理的 bean 组件模型和<br>EJB3 组件模型，形成一种明显简化的用于基于 Web 的应用程序编程模型。</p><br>            </td></tr></tbody></table></td></tr></tbody></table><br>            <p><a name="N100B6"><span class="smalltitle">对 EJB3 的考虑</span></a></p><br>            <p>正如我将要解释的那样，Seam 通过一些有价值的 hook 和组件管理进程 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#figure3" target="_blank" rel="noopener">扩展默认 JSF<br>生命周期</a>。还可以完全独立于 EJB3 使用 Seam。但是要记住，和 EJB3 一样，Seam 依赖于 JDK 5 注释元数据进行组件声明，因此使用 Seam 时，还需要同时使用兼容 Java 5 的 JVM。图 1<br>显示了一个 Seam POJO 实现的应用程序堆栈：</p><p></p>
+<pre><code>    &lt;br&gt;&lt;a name=&quot;figure1&quot;&gt;&lt;b&gt;图 1. 一个 Seam POJO 应用程序堆栈&lt;/b&gt;&lt;/a&gt;&lt;br&gt;
+    &lt;img alt=&quot;Seam POJO 架构图&quot; src=&quot;http://www.ibm.com/developerworks/cn/java/j-seam1/stack.gif&quot; width=&quot;211&quot; height=&quot;270&quot;&gt;
+&lt;br&gt;
+&lt;p&gt;实际上，即使完全不引用 EJB 3 jar 或描述符文件，也可以使用 Seam 的很多功能。当和 POJO 一起使用 Seam 时，该框架保留对组件实例化的完全控制，并且不要求任何专门的配置。Seam 负责大多数 Java 5
+</code></pre><p>注释处理，而不需要依赖于 EJB 3 中的任何机制。<i>的确</i> 依赖于 EJB3 容器的一组有限的注释则是专用于那个环境的。在某些情况下，将 Seam 集成到一个没有 EJB 3 耦合的 IT 投资中可以获得更好的成本效益。如何使用 Seam 视个人偏好而定。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N100D8"><span class="atitle">配置并使用</span></a></p><br>            <p>如今有那么多种 Java 框架，每天只有有限的那么多小时，显然，如果 Seam 难于集成的话，它就无立足之地。幸运的是，将 Seam 添加到项目中很简单。因为<br>JSF 生命周期仍然是 Seam 应用程序的中心部分，所以不需要经历一个再训练时期。只需添加 4 个 jar 文件，注册一个 servlet 监听器和一个 JSF<br>phase 监听器，最后再加上一个空白的 Java 属性文件。完成这些设置后，就可以一次性地将本地 JSF<br>应用程序转移到 Seam 管理的 bean 上。</p><p></p>
+<pre><code>&lt;p&gt;要开始使用 Seam，首先需要将所需的 jar 文件添加到项目中。如果您当前不是使用 Hibernate，或者还没有升级到最新的版本，那么在设置时需要执行一个额外的步骤。这里需要包含来自 &lt;a href=&quot;http://www.ibm.com/developerworks/cn/java/j-seam1/#resources&quot;&gt;Hibernate 3.2 distribution&lt;/a&gt;
+</code></pre><p>的 jar，以及它的众多的依赖项。Seam 还使用 Hibernate 注释用于数据验证，所以除了主 Hibernate jar<br>之外，还必须包括那个扩展 jar。需要的 Seam 发行版中的库有 jboss-seam.jar 和<br>jboss-seam-ui.jar，以及两个支持库：Javassist（用于 Java 的加载时反射系统）和 Java Persistence<br>API。图 2 中的项目树说明了一个 Seam 项目中的 jar 集合。该图中显示的大多数附加库支持 JSF 的 MyFaces 实现。</p><p></p>
+<pre><code>    &lt;br&gt;&lt;a name=&quot;figure2&quot;&gt;&lt;b&gt;图 2. Seam 项目中的 jar 库&lt;/b&gt;&lt;/a&gt;&lt;br&gt;
+    &lt;img alt=&quot;JAR 文件清单&quot; src=&quot;http://www.ibm.com/developerworks/cn/java/j-seam1/libraries.jpg&quot; width=&quot;308&quot; height=&quot;566&quot;&gt;
+&lt;br&gt;
+&lt;p&gt;&lt;a name=&quot;N100F7&quot;&gt;&lt;span class=&quot;smalltitle&quot;&gt;配置 Seam&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;接下来的步骤是在 web.xml 文件中安装 servlet 监听器类。该监听器在部署应用程序时初始化 Seam。&lt;/p&gt;
+&lt;br&gt;&lt;a name=&quot;listing1&quot;&gt;&lt;b&gt;清单 1. Seam servlet 监听器配置&lt;/b&gt;&lt;/a&gt;&lt;br&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;code-outline&quot;&gt;&lt;pre class=&quot;displaycode&quot;&gt;                &lt;br&gt;&amp;lt;listener&amp;gt;&lt;br&gt;  &amp;lt;listener-class&amp;gt;org.jboss.seam.servlet.SeamListener&amp;lt;/listener-class&amp;gt;&lt;br&gt;&amp;lt;/listener&amp;gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;br&gt;
+
+&lt;p&gt;接下来，将 JSF phase 监听器添加到 faces-config.xml 文件中，如清单 2 所示。该监听器将 Seam 集成到标准 JSF
+</code></pre><p>生命周期中。（<a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#figure3" target="_blank" rel="noopener">图 3</a> 大致描绘了集成到这个生命周期中的 Seam 增强。）</p><br>            <br><a name="listing2"><b>清单 2. Seam phase 监听器配置</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                <br>&lt;lifecycle&gt;<br>  &lt;phase-listener&gt;org.jboss.seam.jsf.SeamPhaseListener&lt;/phase-listener&gt;<br>&lt;/lifecycle&gt;<br></pre></td></tr></tbody></table><br><br>            <p>最后，将一个空的 seam.properties 文件放在<br>类路径的根下，以便指示 Seam 进行加载，如清单 3 所示。这个空白文件被用作一个 JVM 类加载器优化，使 Seam 在类路径下更小的区域内搜索组件，从而大大减少加载时间。</p><br>            <br><a name="listing3"><b>清单 3. Seam 属性文件</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                <br># The mere presence of this file triggers Seam to load<br># It can also be used to tune parameters on configurable Seam components<br></pre></td></tr></tbody></table><br><p></p>
+<pre><code>&lt;p&gt;当然，在这种最小设置中，Seam 的很多特性是不可用的。以上说明只是为了演示 Seam 很少涉足入门级使用。例如，Seam 包括一个 servlet
+</code></pre><p>过滤器，该过滤器扩展 JSF 生命周期以外的 Seam 特性。<br>servlet 过滤器的用法包括与非 JSF 请求集成，通过重定向传播 conversation，以及管理文件上传。请参阅 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#resources" target="_blank" rel="noopener">参考资料</a>，看看 Seam 参考文档，其中讨论了用于控制附加功能的配置文件 ——<br>特别是 EJB3 集成。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N1012F"><span class="atitle">与 Seam 关联</span></a></p><p></p>
+<pre><code>&lt;p&gt;与典型的 JSF 配置过程相比，使用 Seam 开发受管 bean 非常容易。为了将 bean 暴露到 JSF
+</code></pre><p>生命周期中，只需在类定义的上面添加一个简单的注释 <code>@Name</code>。然后，Seam 会负责控制组件的可见性和生命周期。最妙的是，<i>不需要在 faces-config.xml 文件中定义这个 bean</i>。</p><br>            <p>清单 4 显示了 <code>@Name</code> 注释以及 <code>@DataModel</code>、<code>@DataModelSelection</code>、<code>@In</code>、<code>@Out</code> 和 <code>@Factory</code>。这些注释使变量能够在视图模板和 Seam 组件之间双向流动。</p><br>            <p> 在 Seam 用语中，这个动作被称作<i>双射</i>（bijection，即<br>bidirectional injection 的简称）。当<i>注出（outject）</i>属性数据时，视图可以通过名称找到它。在 postback 或者组件初始化时，数据被<i>注入（inject）</i>到<br>一个组件中。后者是著名的控制反转（inversion of control，IOC）模式的一种实现，可用于连接委托对象。传统 IOC 与<br>Seam 的双射之间的主要不同点在于，双射使长期作用域中的组件可以引用短期作用域中的组件。可以进行这种连接是因为 Seam<br>在调用组件时（而不是启动容器时）解析依赖项。双射是有状态组件开发的基础。</p><br>            <p>显然，清单 4 中的 POJO bean 只是简单地演示了 Seam 的用法。随着本系列讨论的继续，我将探索另外的方法来实现 Seam。</p><br>            <br><a name="listing4"><b>清单 4. 一个典型的 Seam POJO bean</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                <br>@Name(“addressManager”)<br>public class AddressManagerBean {<br>    <br>    @DataModel<br>    private List&lt;Address&gt; addresses;<br><br>    @DataModelSelection<br>    @Out( required = false )<br>    private Address selectedAddress;<br><br>    @Factory( value = “addresses” )<br>    public void loadAddress() {<br>        // logic to load addresses into this.addresses<br>    }<br><br>    public String showDetail() {<br>        // no work needs to be done to prepare the selected address<br>        return “/address.jspx”;<br>    }<br><br>    public String list() {<br>        return “/addresses.jspx”;<br>    }<br>}</pre></td></tr></tbody></table><br><br>            <p><a name="N10174"><span class="smalltitle">Spring 的注入</span></a></p><p></p>
+<pre><code>&lt;p&gt;为
+</code></pre><p>了使用由一个已有的 Spring 容器管理的服务层对象中的投资，需要将所有处理相关业务逻辑的 Spring bean 注入到 Seam<br>组件中。首先需要确保已经配置了 Spring-JSF 集成，它由 Spring 框架附带的一个定制变量解析器进行处理（见 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#resources" target="_blank" rel="noopener">参考资料</a>）。有了这座桥梁，Spring 与 Seam 的集成就很简单，只需使用 <code>@In</code> Java 5 注释和一个值绑定表达式，以表明 Seam 组件的哪些属性应该接收一个 Spring bean 的注入，如清单 5 所示。（将来版本的 Seam<br>将包括用于 Spring 的一个定制的名称空间，以满足值绑定表达式的需要。）</p><br>            <br><a name="listing5"><b>清单 5. 注入一个 Spring bean</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                <br>@Name(“addressManager”)<br>public class AddressManagerBean {<br>    @In(“#{addressService}”)<br>    private AddressService addressService;<br>}<br></pre></td></tr></tbody></table><br><br>            <p>这个例子设置支持使用以轻量级容器（这里就是 Spring）配置的无状态服务和数据访问（DAO）层。因为不需要 EJB3，所以部署的目标可以是任何基本的 servlet 容器。</p><br>            <p>现在，您对 Seam-JSF 实现有了一个初步的印象，接下来我将更深入地探讨我在使用 JSF 时遇到的挑战，以及 Seam 如何缓解这些挑战。</p><br>            <p><a name="N10195"><span class="atitle">再谈 JSF</span></a></p><br>            <p>为了充分理解 Seam 为 JSF 带来了什么，就需要理解 JSF 与其他流行的基于 Web 的编程方法有何不同。JSF 是实现传统的<br>Model-View-Controller (MVC) 架构的一种 Web 框架。不同之处在于，它采用该模式的一种特别丰富的实现。与 Model 2 或者 Struts、WebWork 和<br>Spring MVC 之类的框架中使用的 “push-MVC” 方法相比，JSF 中的 MVC 实现更接近于传统的 GUI 应用程序。前面那些框架被归类为<i>基于动作的（action-based）</i>，而 JSF 则属于基于<i>组件模型<br></i> 的新的框架家族中的一员。</p><br>            <p>如果将基于动作的框架想象为使用 “push”<br>模型，而将组件框架想象为使用 “pull”<br>模型，那么这种区别就很容易理解了。组件框架中的控制器不是预先处理页面请求（在基于动作的框架中控制器就是这么做的），而是在请求生命周期中作出让步，<br>在视图中调用数据提供方法。此外，页面上的元素，即组件被绑定到事件，这些事件可以触发服务器端对象（激活后）的方法调用，从而导致重新显示相同的视图，<br>或者转换到另一个页面。因此，组件框架也被归类为<i>事件驱动的</i>。组件框架抽象出用于事件通信的底层请求－响应协议。</p><br>            <p>事件驱动方法的优点是可以减少单个方法在呈现视图时需要预先做的工作。在组件框架中，UI 事件或解析的值绑定表达式直接导致方法调用。</p><br>            <p>一<br>个应用程序即使只达到中度成熟，它通常也需要在任何给定页面上使用很多不相关的活动。如果将对所有这些信息的管理全部放入一个动作或者一个动作链中，那么<br>势必给维护带来极大的困扰。因此，开发人员常常发现他们的代码偏离了面向对象模型的轨道，反而陷入了过程编程模型的泥潭。相反，组件框架将这种工作隔离出<br>来，更自然地加强了对象的角色和责任。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N101B0"><span class="atitle">Seam 与 JSF</span></a></p><br>            <p>对<br>于 JSF 和组件框架的基础已经介绍得差不多了。实际上 —— 很多 Java 开发人员最近发现 —— 转移到 JSF<br>并非总是一帆风顺。采用组件模型会带来一些全新的问题，首要的一个问题是您通常需要试着使应用程序符合基于动作的 Web。很多时候，JSF<br>需要具有像基于动作的框架那样的行为，但是在标准 JSF 中这是不可行的，至少不为每个请求使用 phase 监听器就不行。</p><br>            <p>JSF<br>的其他主要缺点还包括对 HTTP 会话的依赖过重（尤其是在一序列的页面之间传播数据时），简陋的异常处理，缺少书签支持，以及太多的 XML<br>配置。<br>通过与 JSF 自然地集成，同时加入 JSF 规范委员会放弃的或者忽略掉的新功能，Seam 解决了很多这样的问题。Seam<br>的框架鼓励使用紧凑的、易读的、可重用的代码，并且避免了所有为解决上述问题而常常加入的 “粘连（glue）” 逻辑。图 3 涵盖了 JSF<br>生命周期中用于简化应用程序代码的大多数 Seam 扩展点：</p><p></p>
+<pre><code>    &lt;br&gt;&lt;a name=&quot;figure3&quot;&gt;&lt;b&gt;图 3. Seam 生命周期增强&lt;/b&gt;&lt;/a&gt;&lt;br&gt;
+    &lt;img alt=&quot;Seam 生命周期图&quot; src=&quot;http://www.ibm.com/developerworks/cn/java/j-seam1/lifecycle.gif&quot; width=&quot;523&quot; height=&quot;662&quot;&gt;
+&lt;br&gt;
+&lt;p&gt;让我们来考虑其中一些增强，因为它们适用于 JSF 开发中一些常见的挑战。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;N101CE&quot;&gt;&lt;span class=&quot;smalltitle&quot;&gt;并不复杂的配置&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Seam 演示了 Java 5 注释的一个非常实用的用法。Seam 的部署扫描程序检查所有包含 seam.properties 文件的归档文件，并为所有标有 &lt;code&gt;@Name&lt;/code&gt;
+</code></pre><p>注释的类创建一个 Seam 组件。由于 Java 语言缺乏用于在代码级添加元数据的一种公共语法，因此需要设计很多 XML 配置。当 Java<br>5 规范中加入注释后，就获得了一个更好的解决方案。由于大多数 backing bean 是为了在特定应用程序中使用而开发的，因此没有理由将这些<br>bean 的配置 “抽象” 到类本身以外的任何文件中。附带的好处是，您可以少处理一个文件。Seam 提供了一组完整的注释来帮助将 bean<br>集成到 JSF 生命周期中。<a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#listing4" target="_blank" rel="noopener">清单 4</a> 显示了其中一些。</p><br>            <p><a name="N101DF"><span class="smalltitle">页面动作和 RESTful URL</span></a></p><p></p>
+<pre><code>&lt;p&gt;在
+</code></pre><p>不使用组件框架的情况下，另一个必须解决的熟悉的问题是预先处理每个请求，就像在基于动作的框架中那样。受此影响的用例是 RESTful<br>URL、书签支持、通过 URL 模式获得的安全性以及页面流验证等。这也是学习使用 JSF 的开发人员容易感到困惑的主要原因之一。有些 JSF<br>供应商通过用开发人员工具提供 onPageLoad 功能来绕过这个问题（见 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#resources" target="_blank" rel="noopener">参考资料</a>），但这不是核心规范的一部分。 </p><br>            <p>当<br>用户直接从书签（比如）请求一个商品详细信息屏幕时，通常会发生什么事情呢？由于 JSF<br>控制器采取被动方式，当页面开始呈现时，即使明显没有目标数据，也不能将用户重新带到逻辑流的开始处。相反，这种情况下只能显示一个空页面，其中只有一些<br>空值或其他可能存在的假信号。</p><br>            <p>首先，您可能会本能地想要在页面的主 backing bean 上实现一个<br>“prerender” 方法。然而，在组件框架中，backing bean 与页面之间的关系并不一定都是一对一的。每个页面可能依赖于多个<br>backing bean，每个那样的 bean 也可能在多个不同的页面上使用。必须用某种方式将一个视图 ID（例如<br>/user/detail.jspx）与一个或多个方法关联起来，当选择呈现相应的视图模板时就调用这个（些）方法。您可以使用<br>phase-listener<br>方法，但是这仍然需要定制的逻辑来确定对于当前视图和阶段是否应该执行该功能。这种解决方案不但会导致很多冗余逻辑，而且会将视图<br>ID（很可能是应用程序中最不确定的部分）硬编码到编译后的 Java 代码中。</p><br>            <p><a name="N101F2"><span class="smalltitle">页面动作来帮忙</span></a></p><br>            <p>Seam<br>的页面动作可以帮助您预先拦截呈现的假信号。页面动作是使用方法绑定指定的，方法绑定在进入页面时、Render Response<br>阶段之前执行。对于 /WEB-INF/pages.xml 配置文件中一个给定的视图<br>ID，可以配置任意数量的方法绑定。（或者，可以通过将它们放在视图模板邻近的一个文件中，复制它的名称，但是将文件扩展名换为<br><em>.page.xml，从而分解每个页面的定义）。<i>对于页面动作，XML 是有必要的，因为视图 ID 非常容易变化。</i>就像 JSF<br>通过 Apply Request<br>Values 阶段的值绑定将 post 数据映射到模型对象一样，<br>Seam 可以通过执行页面动作之前的值绑定将任意请求参数映射到模型对象。这些请求参数注入的配置嵌套在页面动作 XML<br>声明中。如果页面动作方法调用返回一个非空字符串值，则 Seam<br>将其当作一个导航事件。因此，不必迁移到一个完整的基于动作的框架中，仍然可以比得上最特别的特性。Seam<br>包括很多内置的页面动作，它们通常跨应用程序使用。其中包括用于验证 conversation 是否建立的一个动作；可以启动、嵌套和结束<br>conversation 的动作；处理预期异常的动作；以及确保适当的凭证的动作。</em></p><br>            <p>页面动作是启用对 JSF 的书签支持的关键。Seam 的创立者允许在进入页面时请求参数 <code>actionMethod</code> 触发一个方法调用，从而利用了这一特性。更妙的是，您不需要做任何额外的工作就能为书签创建链接。<br>Seam 提供了两个组件标记：<code>s:link</code> 和 <code>s:button</code>，用以处理细节。这两个标记分别对应于 JSF 中的 <code>h:commandLink</code> 和 <code>h:commandButton</code>。不同之处在于，Seam 组件标记组装的链接使用一个 <code>HTTP GET</code> 操作发出请求，而不是使用 JSF 的 <code>HTTP POST</code> 表单提交模型表示。因此，Seam 创建的链接对书签更 “友好”，对于开发人员来说更方便。</p><br>            <p>您<br>可能还注意到，当使用页面动作时，地址栏中的 URL 对应于正在显示的页面，而不总是背后的一个页面。（后一种情况之所以会发生，是因为 JSF<br>将表单配置为 post 回生成它们的 URL。地址栏没有更新，以反映执行动作后的新视图，因为 JSF<br>通过一个服务器端重定向使之前进。）如果您想演示页面动作的灵活性，那么可以使用它们来创建 RESTful URL（例如<br>/faces/product/show/10）。为此，将页面动作方法映射到视图 ID“/product/show/”，其中 /faces<br>前缀是 JSF servlet 映射部分。然后，该页面动作方法利用请求<br>URL，以判断数据类型和数据标识符，加载数据，然后导航到适当的模板。这个例子很明显地演示了 JSF 请求 URL<br>与视图模板之间并不一定存在一对一的关系。</p><br>            <p><a name="N10220"><span class="smalltitle">工厂组件</span></a></p><br>            <p>JSF 最大的一个失败是没有在用户触发的动作或动作监听器方法以外的其他地方提供可靠的机会来为视图准备数据。将逻辑放在一个动作方法中并不能保证该逻辑在视图呈现之前得到执行，因为页面视图并不总是在用户触发的事件之后。</p><br>            <p>例<br>如，当一个 JSF 应用程序的 URL 第一次被请求时，会发生什么情况？如果需要在该页面上显示从服务层获得的一组数据，那么在 JSF<br>生命周期中始终没有好的机会来取数据。您可能会认为，可以将逻辑放在映射到视图中值绑定表达式的 backing bean 的 getter<br>方法中。但是，每当 JSF 解析那个表达式时，就会触发另一个调用，新的调用又会访问服务层。即使页面上只有少数几个组件，getter<br>方法也可能被推后数次执行。显然，就性能而言这不是最优的。即使通过使用受管 bean<br>上的私有属性维护状态，每当面对那样的情况时，仍然必须增加额外的管道。一种解决方案是使用 Seam<br>的页面动作。但是由于这种任务是如此常见，Seam 提供了一个更加容易的解决方案。</p><p></p>
+<pre><code>&lt;p&gt;Seam 引入了&lt;i&gt;工厂数据提供者（factory data
+</code></pre><p>provider）的概念，工厂数据提供者由 <code>@Factory</code><br>Java 5 注释指定。虽然有两种方法配置工厂，但是最终结果是同样的数据只需在第一次被请求时准备一次。<br>Seam 确保随后对相同数据的请求将直接返回之前创建的结果集，而不必再一次触发对查找方法的调用。通过与 conversation<br>相结合，工厂数据提供者成为实现数据短期缓存的非常强大的特性，否则，取这些数据的代价可能较高。在 JSF<br>不负责减少它解析一个值绑定表达式的次数的情况下，Seam 的工厂特性常常变得非常方便。</p><br>            <p><a name="N10236"><span class="smalltitle">有状态 conversation </span></a></p><p></p>
+<pre><code>&lt;p&gt;关
+</code></pre><p>于 JSF 很容易引起困惑的一个地方是它的状态管理功能。JSF 规范解释了在接收一个动作之后页面是如何 “恢复（restored）”<br>的，在此期间时间事件要进行排队，选择要注册。仔细研究规范中的用词可以发现，虽然在 postback 上恢复了组件树，但是那些组件使用的<br>backing bean 数据并没有被恢复。组件只是以字符串文字的形式存储值绑定（使用 <code>#{value}</code> 语法的 EL 表达式），只在运行时解析底层数据。这意味着如果一个值是短期作用域存储的，例如页面或请求作用域，那么当 JSF 生命周期到达 Restore View 阶段时，这个值将消失。</p><br>            <p>不将值绑定数据存储在组件树中的一个最值得注意的不利方面是虚幻事件效果（见 <a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#resources" target="_blank" rel="noopener">参考资料</a>），这是由 <code>UIData</code><br>家族中的临时父组件导致的。如果一个值绑定表达式引用的模型数据不再可用，或者在组件树被恢复之前发生了更改，那么组件树的一些部分将被撤销。如果在这些<br>被撤销的分支中，有一个组件中触发了一个事件，那么它将不能被发现，而且这种事件丢失情况是难于觉察的。（只是队列开发人员可能会惊呼<br>“为什么我的动作没有被调用？”）</p><br>            <p>虽然丢失的事件看上去像是异常状况，但并不会导致 JSF 生命周期中出现红色标志。因为这些组件依赖底层数据，以保持稳定和适当地被恢复，所以 JSF 难于知道丢失了什么。</p><p></p>
+<pre><code>&lt;p&gt;不
+</code></pre><p>幸的是，JSF 规范天真地引导开发人员将大多数 backing bean 放入 conversation 作用域中 —— 甚至可以在<br>“方便的” 作用域内调用它。然后，服务器管理员则必须处理由此导致的 “内存溢出”<br>错误，集群环境中的服务器相似性，以及服务器重启时的串行化异常。MyFaces<br>Tomahawk 项目通过 <code>t:saveState</code> 标记的形式提供了对虚幻事件的一个解决方案。MyFaces<br>标记允许将数据（包括整个 backing<br>bean）存储为组件树的一部分，而仅仅是值绑定。然而，这种解决方案有些简陋，很像使用隐藏的表单字段在请求之间传递值。<br>它还造成视图与控制器之间紧密耦合。Seam 的创立者意识到，Java Servlet<br>规范中三个内置的上下文（请求、会话和应用程序）不足以构成数据驱动的 Web 应用程序的全部作用域。在 Seam 中，他们引入了<br>conversation 作用域，这是一个有状态作用域，由页面流的起止点界定。</p><br>            <p><a name="N10258"><span class="smalltitle">Seam 的 conversation 作用域</span></a></p><br>            <p>“Seam<br>强调使用有状态组件。” Seam 参考文档中的这句话体现了 Seam 的核心思想。很长一段时间内，关于 Web<br>应用程序的看法是，它们是无状态的<br>—— 这种思想一定程度上要归因于 HTTP 协议的无状态性质。大多数框架为了迎合这一点，在结束页面呈现之前提供<br>one-shot-processing。这种方法导致很大的阻力，因为任何大的应用程序都需要长时间运行的 conversation<br>来满足某些用例。需要有状态上下文的应用程序的例子有很多，例如存储检查过程、产品定制、多页表单向导和很多其他基于线形交互的应用程序。虽然其中有些例<br>子可以通过使用 URL 参数（<i>aka</i> RESTful URL）和隐藏字段在页面之间迁移数据，但是这样做对于开发人员来说有些繁杂。而且，如今这种做法已经过时了。因为大多数 Web 框架仍然在无状态模型下操作，所以您常常发现自己走出了这种框架，而 “开辟” 出定制解决方案。</p><br>            <p>JSF<br>大量依赖于 HTTP 会话，试图引入有状态上下文。实际上，当和会话作用域的 backing bean 一起使用时，JSF<br>组件的行为要好得多。如果不小心设计，过度使用 HTTP 会话会导致严重的内存泄漏、性能瓶颈和安全问题。此外，在多标签浏览器环境中，使用<br>HTTP 会话可能导致非常奇怪的行为，破坏用户神圣的 Back 按钮。值得注意的是，JSF 只是与您互作让步：它是一个有状态<br>UI，处理保存和恢复组件树的所有细节，但是它在保存和恢复数据方面没有提供帮助。因此，JSF 带来有状态<br>UI，而您则带来有状态数据。不幸的是，需要由您来负责确保它们是相符的。</p><br>            <p>在 Seam 之前，使用有状态数据的惟一方便的方式是依赖于 HTTP 会话。Seam 纠正了这个问题，它通过建立一个全新的 <i>conversation 作用域</i>，<br>完善了 JSF 的状态管理。随着将 Seam 添加到 JSF 生命周期中，conversation<br>上下文与一个浏览器窗口（或标签页）联系在一起，这个浏览器窗口（或标签页）由随每个请求提交的一个标志来标识。conversation 作用域使用<br>HTTP 会话的一个单独的区段在页面之间迁移数据。记住，Seam 使用 HTTP 会话用于 conversation<br>持久性这一点是完全透明的。<br>Seam 并不是不负责任地将组件推卸到 HTTP 会话中，使其茫然地呆在那里。相反，Seam 小心地管理那个区段的会话数据的生命周期，并且当<br>conversation 终止时，自动清除它们。Seam 聪明地使用双射来允许以一种新的说明性方式使数据流入和流出一个 “Web<br>conversation” 的每个页面。<br>Seam 的 conversation 作用域同时还克服了 HTTP 会话的限制，帮助开发人员放弃使用 HTTP 会话。</p><br>            <p><a name="N1026D"><span class="smalltitle">异常处理</span></a></p><p></p>
+<pre><code>&lt;p&gt;Seam 的创立者曾说过：“在异常处理方面，JSF 非常有限”。这一点显然毫无争议。
+</code></pre><p>JSF 规范完全忽视异常管理，将责任完全放在 servlet 容器上。允许 servlet 容器处理异常的问题在于，这严重限制了错误页面上显示的内容，并且禁止了事务回滚。由于错误页面是在请求分发器转发之后显示的，<code>FacesContext</code> 不再在作用域中，因此这时执行业务逻辑就太迟了。您的最后一线希望是使用 Servlet API，并抓住 <code>javax.servlet.error.*</code> 请求属性，以搜索能表明出错处的信息。</p><p></p>
+<pre><code>&lt;p&gt;这一点上，Seam 再次扮演救世主，它提供了优雅的、说明性方式的异常处理。异常管理可以通过注释指定，或者在配置文件中指定。可以将注释 &lt;code&gt;@HttpError&lt;/code&gt;、&lt;code&gt;@Redirect&lt;/code&gt; 和
+</code></pre><p><code>@ApplicationException</code><br>放在异常类的上面，表明当异常被抛出时应该采取的动作。对于那些不能修改的异常类，可以使用 XML 配置选项。Seam 中的异常管理器负责发送<br>HTTP 状态码、执行重定向、促使页面呈现、终止 conversation 和定制出现异常时的用户消息。由于在开始呈现响应之后，JSF<br>不能改变动作的过程，一些固有的限制规定了何时才能处理这些异常。通过适当使用其他 Seam<br>特性，例如页面动作，可以确保大多数异常情况在呈现响应之前得到解决。</p><br>            <p><a name="N1028D"><span class="smalltitle">Ajax remoting</span></a></p><p></p>
+<pre><code>&lt;p&gt;由于最后发行的 JSF 规范几乎与 Ajax 重合，JSF 框架在异步 JavaScript 和局部页面呈现（partial page rendering）方面帮助不大。在某些时候，甚至这两种类型的编程甚至不一致。
+</code></pre><p>最终的解决办法是建议使用 JSF <code>PhaseListener</code> 或组件 <code>Renderer</code> 来处理局部页面更新。即使如此，这一点仍然很明显：JSF 使得 Ajax 比过去更难于采用。有些项目，例如 ICEfaces，甚至用一个更好的、专为页面－服务器通信设计的技术（即 direct-to-DOM rendering）来替代 JSF 生命周期。</p><p></p>
+<pre><code>&lt;p&gt;Seam
+</code></pre><p>为 JavaScript remoting（常常记在 Ajax 名下的一种技术）提供了一种独特的方式，该方式与 Direct<br>Web Remoting (DWR) 库的方式大致相似。Seam 通过允许 JavaScript<br>直接调用服务器组件上的方法，将客户机与服务器连在一起。Seam<br>remoting 比 DWR 更强大，因为它可以访问丰富的上下文组件模型，而不仅仅是一个孤立的端点。这种交互构建在 JSF<br>的事件驱动设计的基础上，所以它可以更严格地遵从 Swing<br>范例。最妙的是，提供这个功能的同时并没有增加开发方面的负担。只需在组件的方法上加一个简单的注释<br><code>@WebRemote</code>，JavaScript 就可以访问该方法。当服务器组件的状态被修改之后，Ajax4JSF 组件库就可以处理局部呈现。简言之：Seam<br>remoting 库使 JSF 可以实现它的创立者一向期望的交互设计。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N102A5"><span class="atitle">结束语</span></a></p><br>            <p>根据您目前在<a href="http://www.ibm.com/developerworks/cn/java/j-seam/" target="_blank" rel="noopener"><br>                    <i>无缝集成 JSF 系列</i></a></p>
+<pre><code>&lt;/a&gt; 中了解到的内容，可以毫不牵强地说在使用 JSF 的开发中不使用 Seam 是反常的。作为进一步的证明，只需看看 JSR 299, Web Beans 的投票结果（见 &lt;a href=&quot;http://www.ibm.com/developerworks/cn/java/j-seam1/#resources&quot;&gt;参考资料&lt;/a&gt;）。
+</code></pre><p>显然，在不久的将来，Seam 会成为一个官方规范，Java EE 栈最终将提供 “显著简化的基于 Web 的应用程序编程模型”。这对 JSF<br>开发人员和 Seam 来说是一个好消息。但是，即使没有声明要成为一个 Java 标准，Seam 也是 JSF 的一个有价值的补充。</p><br>            <p>Seam 只需很少的设置就可以开始用于 JSF —— 而正是这一点小小的付出，就能解决 JSF 开发中的一些最麻烦的难题。回报胜于付出 ——<br>这里讨论的 Seam 的优点还只是一个开始。</p><br>        <br><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam1/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><span class="atitle"><a name="download">下载</a></span></p><table class="data-table-1" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th scope="col">描述</th><th scope="col">名字</th><th scope="col">大小</th><th scope="col">下载方法</th></tr><tr><th class="tb-row" scope="row">Barebones Seam 项目<sup>1</sup></th><td nowrap="nowrap">j-seam1.zip</td><td nowrap="nowrap">13KB</td><td nowrap="nowrap"><a class="fbox" href="http://download.boulder.ibm.com/ibmdl/pub/software/dw/java/j-seam1.zip" target="_blank" rel="noopener"><b>HTTP</b></a></td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td colspan="5"><img alt="" src="http://www.ibm.com/i/c.gif" width="12" border="0" height="12"></td></tr><tr><td><img alt="" src="http://www.ibm.com/i/v14/icons/fw.gif" width="16" height="16"></td><td><a class="fbox" href="http://www.ibm.com/developerworks/cn/whichmethod.html" target="_blank" rel="noopener">关于下载方法的信息</a></td><td><img alt="" src="http://www.ibm.com/i/c.gif" width="50" height="1"></td></tr></tbody></table><p><b>注意：</b></p><ol><li>该项目框架使用 Maven 2 构建基础设施。当构建执行时，所有依赖项都将按需获取。</li></ol><br><br><p><a name="resources"><span class="atitle">参考资料 </span></a></p><b>学习</b><br><ul><li>您可以参阅本文在 developerWorks 全球站点上的 <a href="http://www.ibm.com/developerworks/java/library/j-seam1/?S_TACT=105AGX52&amp;S_CMP=cn-a-j" target="_blank">英文原文</a> 。<br><br></li><li>“<a href="http://www.ibm.com/developerworks/cn/rational/06/1205_kats_rad2/index.html" target="_blank" rel="noopener">JSF 和 Ajax：使用 Rational Application Developer V7 轻松实现 Web 2.0 应用程序</a>”（Yury Kats，developerWorks，2006 年 12 月）：学习如何在 Rational Application Developer V7 中结合使用 Ajax 和 JSF。<br><br></li><li>“<a href="http://www.ibm.com/developerworks/cn/java/j-jsf1/" target="_blank" rel="noopener">怀疑论者的 JSF: 消除关于 JSF 的 FUD</a>”（Richard Hightower，developerWorks，2005 年 2 月）：这是一个由 4 部分组成的系列，该系列在拥护 JSF 的同时，探索了 JSF 编程中的一些问题。该系列对 JSF 生命周期也作了很好的介绍。<br><br></li><li>“<a href="http://www.ibm.com/developerworks/cn/java/j-facelets/index.html" target="_blank" rel="noopener">Facelets 非常适合 JSF</a>”（Richard Hightower，developerWorks，2006 年 2 月）：介绍 Facelets 这个当前较好的用于 Seam 应用程序的视图处理程序。<br><br></li><li><br>                <a href="http://docs.jboss.com/seam/latest/reference/en/html/index.html" target="_blank" rel="noopener">The Seam Reference Documentation</a>：文档真的是 Seam 的强项 —— 自己看吧！<br><br></li><li>“<a href="https://rhstack.108.redhat.com/articles/2006/09/18/jboss-seam-the-next-generation-web-framework.html" target="_blank" rel="noopener">The Next Generation Web Framework</a>”（Michael Juntao Yuan，Red Hat Application Stack，2006 年 9 月）：对 Seam 的一个正面的、超前的评论。<br><br></li><li>“<a href="http://java.sys-con.com/read/180363.htm" target="_blank" rel="noopener">Seam: The Next Step in the Evolution of Web Applications</a>”（Norman Richards，Java Developers Journal，2006 年 2 月）：解释 Seam 如何帮助开发人员脱离 HTTP 会话。<br><br></li><li><br>                <a href="http://wiki.apache.org/myfaces/FAQ#MissingInAction" target="_blank" rel="noopener">The MyFaces Wiki FAQ</a>：讨论 UIData 组件中触发的事件中可能出现的所谓的虚幻事件。<br><br></li><li>“<a href="http://www.jsfcentral.com/listings/A20018" target="_blank" rel="noopener">Creating onPageLoad functionality for JavaServer Faces using Facelets</a>”（Alyssar，JSFCentral，2007 年 3 月）：JSF 应用程序中的另一种请求处理方法。<br><br></li><li><br>                <a href="http://www.ibm.com/developerworks/cn/java/" target="_blank" rel="noopener">developerWorks Java 技术专区</a>：这里有数百篇关于 Java 编程方方面面的文章。<br><br></li></ul><br><b>获得产品和技术</b><br><ul><li><br>                <a href="http://www.ibm.com/developerworks/downloads/r/rad/JAVATACTIC?S_TACT=105AGX52&amp;S_CMP=cn-a-j" target="_blank" rel="noopener">Rational Application Developer</a>：下载一个免费试用版。<br><br></li><li><br>                <a href="http://labs.jboss.com/portal/jbossseam/download/index.html" target="_blank" rel="noopener">下载 JBoss<br>Seam</a>：获得完整的发行版，包括附带的例子应用程序。<br><br></li><li><br>                <a href="http://maven.apache.org/" target="_blank" rel="noopener">下载 Maven 2</a>：本文源代码示例中用到的构建基础设施。<br><br></li></ul><br><b>讨论</b><br><ul><li><br>                <a href="http://www.jcp.org/en/jsr/detail?id=299" target="_blank" rel="noopener">JSR 299, Web Beans</a>：共同致力于标准化 JSF 和 EJB3 集成。<br><br></li><li><br>                <a href="http://www.ibm.com/developerworks/blogs/?S_TACT=105AGX52&amp;S_CMP=cn-a-j" target="_blank" rel="noopener">developerWorks blogs</a>：加入 <a href="http://www.ibm.com/developerworks/community?S_TACT=105AGX52&amp;S_CMP=cn-a-j" target="_blank" rel="noopener">developerWorks 社区</a>。</li></ul><br><br><p><a name="author"><span class="atitle">关于作者</span></a></p><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="3"><img alt="" src="http://www.ibm.com/i/c.gif" width="100%" height="5"></td></tr><tr valign="top" align="left"><td><p><img alt="Dan Allen" src="http://www.ibm.com/developerworks/i/p-dallen.jpg" valign="top" align="left"></p></td><td><img alt="" src="http://www.ibm.com/i/c.gif" width="4" height="5"></td><td width="100%"><p>Dan Allen 目前是 CodeRyte 的一名高级 Java 工程师。他还是一名热情的开放源码拥护者，每当他看到企鹅时就会有一点疯狂。<br>从 Cornell 大学毕业并获得材料科学与工程学位，Dan 对 Linux 和开放源码软件非常着迷。从那以后，他就沉浸在 Web 应用程序领域，最近几年则专攻 Java 相关的技术，包括<br>Spring、Hibernate、Maven 2 和丰富的 JSF 堆栈。您可以在 <a href="http://www.mojavelinux.com/" target="_blank" rel="noopener">http://www.mojavelinux.com</a> 订阅 Dan 的 blog，以跟踪他的开发经验。</p></td></tr></tbody></table><br><br>转自：<a href="http://www.ibm.com/developerworks/cn/java/j-seam1/" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-seam1/</a><p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JSF/" rel="tag"># JSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziwy00jvxwrqdt2jvog2/" rel="next" title="jBPM入门简介">
+                <i class="fa fa-chevron-left"></i> jBPM入门简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzjho019zxwrq4hzbi30s/" rel="prev" title="Seam - 无缝集成 JSF，第 2 部分: 借助 Seam 进行对话">
+                Seam - 无缝集成 JSF，第 2 部分: 借助 Seam 进行对话 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

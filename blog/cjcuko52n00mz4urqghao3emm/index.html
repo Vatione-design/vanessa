@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Node.js,Web,WebToolkit,PerformanceOptimization," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="继 grunt 初识 后，发现 B3log 上面用他太过于强大了，在 CSS 方面也没研究出怎么用他来进行压缩。B3log 主要是需要一些压缩，批量替换的版本号的功能。既然自己学习了 Node.js，何不学以致用呢？1. 代码压缩https://github.com/b3log/b3log-solo-skins/blob/0.5.0/helper/tools/compress.js2. 批量替换h">
+<meta name="keywords" content="Node.js,Web,WebToolkit,PerformanceOptimization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 小工具">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko52n00mz4urqghao3emm/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="继 grunt 初识 后，发现 B3log 上面用他太过于强大了，在 CSS 方面也没研究出怎么用他来进行压缩。B3log 主要是需要一些压缩，批量替换的版本号的功能。既然自己学习了 Node.js，何不学以致用呢？1. 代码压缩https://github.com/b3log/b3log-solo-skins/blob/0.5.0/helper/tools/compress.js2. 批量替换h">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-25T13:35:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 小工具">
+<meta name="twitter:description" content="继 grunt 初识 后，发现 B3log 上面用他太过于强大了，在 CSS 方面也没研究出怎么用他来进行压缩。B3log 主要是需要一些压缩，批量替换的版本号的功能。既然自己学习了 Node.js，何不学以致用呢？1. 代码压缩https://github.com/b3log/b3log-solo-skins/blob/0.5.0/helper/tools/compress.js2. 批量替换h">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko52n00mz4urqghao3emm/"/>
+
+
+
+
+
+  <title>Node.js 小工具 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko52n00mz4urqghao3emm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js 小工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-07-26T05:40:40+08:00">
+                2012-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>继 <a rel="noopener" href="http://vanessa.b3log.org:80/start-to-grunt" target="_blank">grunt 初识</a><span> 后，发现 B3log 上面用他太过于强大了，在 CSS 方面也没研究出怎么用他来进行压缩。</span></p><br><p><span>B3log 主要是需要一些压缩，批量替换的版本号的功能。既然自己学习了 Node.js，何不学以致用呢？<br></span></p><br><p><span>1. 代码压缩<br></span></p><br><p><a target="_blank" href="https://github.com/b3log/b3log-solo-skins/blob/0.5.0/helper/tools/compress.js"><span>https://github.com/b3log/b3log-solo-skins/blob/0.5.0/helper/tools/compress.js</span></a></p><br><p><span>2. 批量替换<br></span></p><br><p><a target="_blank" href="https://github.com/b3log/b3log-solo-skins/blob/0.5.0/helper/tools/update-version.js"><span>https://github.com/b3log/b3log-solo-skins/blob/0.5.0/helper/tools/update-version.js</span></a></p><br><p><span>&nbsp;</span></p><br><p><span>今天写起来就比较顺手了，剩余的时间还研究了下 <a target="_blank" href="https://github.com/stubbornella/csslint">csslint</a>，感觉一般 CSS 文件在 errors 上只需要使用<br></span></p><br><p><span>duplicate-properties,known-properties,empty-rules 这几个就 ok 了。其余错误显示出来也基本改不动。<br></span></p><br><p>The following rules point out potential errors in your CSS.</p><br><ul><br><li><a class="internal present" href="https://github.com/stubbornella/csslint/wiki/Beware-of-box-model-size" target="_blank" rel="noopener">Beware of box model size</a></li><br><li><a class="internal present" href="https://github.com/stubbornella/csslint/wiki/Require-properties-appropriate-for-display" target="_blank" rel="noopener">Require properties appropriate for display</a></li><br><li><a class="internal present" href="https://github.com/stubbornella/csslint/wiki/Disallow-duplicate-properties" target="_blank" rel="noopener">Disallow duplicate properties</a></li><br><li><a class="internal present" href="https://github.com/stubbornella/csslint/wiki/Disallow-empty-rules" target="_blank" rel="noopener">Disallow empty rules</a></li><br><li><a class="internal present" href="https://github.com/stubbornella/csslint/wiki/Require-use-of-known-properties" target="_blank" rel="noopener">Require use of known properties</a></li><br></ul><br><p>具体可参见 <a target="_blank" href="https://github.com/stubbornella/csslint/wiki/Rules">csslint 官方规则</a></p><br><p><span>&nbsp;</span></p><br><p><span>另外还发现语句后面多分号（e.g: .left { float: left;;} ），csslint 并不会对其进行错误提示。</span></p><br><p><span>这时， <a target="_blank" href="https://github.com/cloudhead/less.js">less</a> 就可以派上用场了，在使用 lessc -compress [filename] 就会提醒你了。都不知道自己怎么会打出两个分号来 <del>囧</del><br></span></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/blog/tags/WebToolkit/" rel="tag"># WebToolkit</a>
+          
+            <a href="/blog/tags/PerformanceOptimization/" rel="tag"># PerformanceOptimization</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko56o00td4urqnsp23j77/" rel="next" title="grunt 初识">
+                <i class="fa fa-chevron-left"></i> grunt 初识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko52p00n24urq8c0m1gro/" rel="prev" title="Node.js 小工具—— CSS 基本语法检查">
+                Node.js 小工具—— CSS 基本语法检查 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

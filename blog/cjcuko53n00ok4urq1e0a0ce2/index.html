@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            陈金洲            发布于            2009年3月11日 下午10时7分        社区.NET,Agile,Java主题RIA,富客户端/桌面标签原则3 事件管理事件管理应当是整个RichClient/RIA开发中的最难以把握的部分。这部分控制的好，你的程序用起来将如行云流水，用户的思维不会被打断。任何一 个做Ric">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RichClient&#x2F;RIA原则与实践（下）">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko53n00ok4urq1e0a0ce2/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            陈金洲            发布于            2009年3月11日 下午10时7分        社区.NET,Agile,Java主题RIA,富客户端/桌面标签原则3 事件管理事件管理应当是整个RichClient/RIA开发中的最难以把握的部分。这部分控制的好，你的程序用起来将如行云流水，用户的思维不会被打断。任何一 个做Ric">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/1.JPG">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/2.JPG">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/3.JPG">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/4.JPG">
+<meta property="og:updated_time" content="2018-01-25T09:04:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RichClient&#x2F;RIA原则与实践（下）">
+<meta name="twitter:description" content="作者            陈金洲            发布于            2009年3月11日 下午10时7分        社区.NET,Agile,Java主题RIA,富客户端/桌面标签原则3 事件管理事件管理应当是整个RichClient/RIA开发中的最难以把握的部分。这部分控制的好，你的程序用起来将如行云流水，用户的思维不会被打断。任何一 个做Ric">
+<meta name="twitter:image" content="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/1.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko53n00ok4urq1e0a0ce2/"/>
+
+
+
+
+
+  <title>RichClient/RIA原则与实践（下） | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko53n00ok4urq1e0a0ce2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RichClient/RIA原则与实践（下）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-03-25T03:15:00+08:00">
+                2009-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>            作者<br>            <strong>陈金洲</strong><br>            发布于<br>            2009年3月11日 下午10时7分<br>        </p><br><dl class="tags2"><dt class="community">社区</dt><dd><a id="740" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="dotnet" href="http://www.infoq.com/cn/dotnet" target="_blank" rel="noopener">.NET</a>,</dd><dd><a id="743" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="agile" href="http://www.infoq.com/cn/agile" target="_blank" rel="noopener">Agile</a>,</dd><dd><a id="739" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="java" href="http://www.infoq.com/cn/java" target="_blank" rel="noopener">Java</a></dd><dt class="topics">主题</dt><dd><a id="777" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="ria" href="http://www.infoq.com/cn/ria" target="_blank" rel="noopener">RIA</a>,</dd><dd><a id="830" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="rich-client-desktop" href="http://www.infoq.com/cn/rich-client-desktop" target="_blank" rel="noopener">富客户端/桌面</a></dd><dt class="topics">标签</dt><dd><a id="4,681" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="Principles" href="http://www.infoq.com/cn/Principles" target="_blank" rel="noopener">原则</a></dd></dl><br><h2>3 事件管理</h2><br><p>事件管理应当是整个RichClient/RIA开发中的最难以把握的部分。这部分控制的好，你的程序用起来将如行云流水，用户的思维不会被打断。<br>任何一 个做RichClient开发的程序员，可以对其他方面毫无所知，但这部分应当非常熟悉。事件是RichClient的核心，是&ldquo;<strong>一切皆异步</strong>&rdquo;的终极实现。前面所说的例子，实际上可以被抽象为事件，例如第一个，获取股票数据，从事件的观点看，应该是：</p><br><p>&nbsp;</p><br><ul><br><li>数据失败</li><br></ul><br><p>看起来相当复杂。然而这样去考虑的时候，你可以将执行计算与界面展现清晰的分开。界面只需要响应事件，运算可以在另外的地方<br>悄悄的进行，并当任务完成或者失败的是时候报告相应的事件。从经验看来，往往同样的数据会在不同的地方进行不同的展示，例如skype在通话的时候这个人<br>的头像会显示为占线，而具体的通话窗口中又是另外不同的展现；MSN的个人签名在好友列表窗口中显示为一个点击可以编辑控件，而同时在聊天窗口显示为一个<br>不能点击只能看的标签。这是RichClient的特性，你永远不知道同一份数据会以什么形式来展现，更要命的是，当数据在一个地方更新的时候，其他所有<br>能展现的地方都需要同时做相应的更新。如果我们仍然以第一部分的例子，简单采用<code>runInAnoterThread</code>是完全不能解决这个问题的。</p><br><p>我们曾经犯过一些很严重的错误，导致最终即便重构都积重难返。无视事件的抽象带来的影响是架构级别的，小修小补将无济于事。</p><br><p>事件的实现方式可以有很多种。对于没有事件支持的语言，接口或者干脆某一个约束的方法就可以。有事件支持的语言能够享受到好处，但仍然是语法级别的，根本 是一样的。观察者模式在这里很好用。仍然以股票为例，被观察的对象就是获取股票数据对象<code>StockDataRetriver</code>，观察的就是<code>StockWindow</code>：</p><br><pre>StockDataRetriver {<br>    observers: []<br>   <br>    retrieve() {<br>        try {<br>            theData = …// 从远程获取数据<br>            observers.each {|o| o.stockDataReady(theData)}  // 触发数据获取成功事件<br>        } catch {<br>            observers.each { |o| o.stockDataFailed() }  // 触发事件获取失败事件<br>        }<br>    }   <br>}<br><br><br>StockDataRetriver.observers.add(StockWindow)  // 将StockWindow加入到观察者队列<br><br><br>StockWindow {<br>    stockDataReady(theData) {<br>        showDataInUIThread(); // 在UI线程显示数据  <br>    }<br>    stockDataFailed() {<br>        showErrorInUIThread(); // 在UI线程显示错误<br>    }<br>}<br></pre><br><p>你会发现代码变得简单。UI与计算之间的耦合被事件解开，并且区分UI线程与运算线程之间也变得容易。当尝试以事件的视角去观察整个应用程序的时候，你会更关注于用户与界面之间的交互。</p><br><p>让我们继续抽象。如果把&ldquo;获取股票数据&rdquo;这个按钮点击，让<code>StockDataRetriver</code>去获取数据当作事件来处理，应该怎么写呢？将按钮作为被观察 者，<code>StockDataRetriver</code>作为观察者显然不好，好不容易分开的耦合又黏在一起。引入一个中间的<code>Events</code>看起来不错：</p><br><pre>Events {<br>    listeners: {}   <br><br>    register(eventId, listener) {<br>        listeners[eventId].add(listener)<br>    }<br><br>    broadcast(eventId) {<br>        listeners[eventId].observers.each{|o| o.doSomething(); }<br>    }<br>}<br></pre><br><p><code>Events</code>中维护了一个<code>listeners</code>的列表，它是一个简单的Hash结构，key是<code>eventId</code>，value是<code>observer</code>的列表；它提供了两个方法，用来注册事件监听以及通知事件产生。对于上面的案例，可以先注册<code>StockDataRetriver</code>为一个观察者，观察<code>start_retrive_stock_data</code>事件：</p><br><pre>Events.register(‘start_retrive_stock_data’, StockDataRetriever)</pre><br><p>当点击&ldquo;获取股票数据&rdquo;按钮的时候，可以是这样：</p><br><pre>Events.broadcast(‘start_retrive_stock_data’)</pre><br><p>你会发现<code>StockDataRetriver</code>能够老老实实的开始获取数据了。</p><br><p>需要注意的是，并非将所有事件定义为全局事件是一个好的实践。在更大规模的系统中，将事件进行有效整理和分级是有好处的。在强类型的语言（如 Java/C#）中，抽象出强类型的<code>EventId</code>，能够帮助理解系统和进行编程，避免到处进行强制类型转换。例如，<code>StockEvent</code>：</p><br><pre>StockDataLoadedEvent {<br>    StockData theData;<br>    StockDataLoadedEvent(StockData theData);<br>}<br><br>Event.broadcast(new StockDataLoadedEvent(loadedData))<br></pre><br><p>这个事件的监听者能够不加类型转换的获得<code>StockData</code>数据。上面的例子是不支持事件的语言，C#语言支持自定义强类型的事件，用起来要自然一些：</p><br><pre>delegate void StockDataLoaded(StockData theData)</pre><br><p>事件管理原则我相信并不难理解。然而困难的是具体实现。对一个新的UI框架不熟悉的时候，我们经常在&ldquo;代码的优美&rdquo;与&ldquo;界面提供的特性&rdquo;之间徘徊。<br>实现这<br>样的一个事件架构需要在项目一开始就稍具雏形，并且所有的事件都有良好的命名和管理。避免在命名、使用事件的时候的随意性，对于让代码可读、应用稳定有非<br>常大的意义。一个好的事件管理、通知机制是一个良好RichClient应用的根本基础。一般说来，你正在使用的编程平台如Swing/WinForm<br>/WPF/Flex等能够提供良好的事件响应机制，即监听事件、onXXX等，但一般没有统一的事件的监听和管理机制。对于架构师，对于要使用的编程平台<br>对于这些的原生支持要了熟于心，在编写这样的事件架构的时候也能兼顾这些语言、平台提供给你的支持。</p><br><p>采用了事件的事件后，你不得不同时实践&ldquo;<strong>线程管理</strong>&rdquo;，因为事件一般来说意味着将耗时的操作放到别的地方完成，当完成的时候进行事件通知。简单的模式下，你可以在所有需要进行异步运算的地方，将运算放到另外一个线程，如<code>ThreadPool.QueueUserWorkItem</code>, 在运算完成的时候通知事件。但从资源的角度考虑，将这些线程资源有效的管理也是很重要的，在&ldquo;线程管理&rdquo;部分有详细的阐述。另外，如果能将你的应用转变为 数据驱动的，你需要关注&ldquo;<strong>缓存以及本地存储</strong>&rdquo;。</p><br><h2>4 线程管理</h2><br><p>在WEB开发几乎无需考虑线程，所有的页面渲染由浏览器完成，浏览器会异步的进行文字和图片的渲染。我们只需要写界面和JavaScript就好。如果你认同&ldquo;一切皆异步&rdquo;，你一定得考虑线程管理。</p><br><p>毫无管理的线程处理是这样的：凡是需要进行异步调用的地方，都新起一个线程来进行运算，例如前面提到的<code>runInThread</code>的实现。这种方式如果托管在 在&ldquo;事件管理&rdquo;之下，问题不大，只会给测试带来一些麻烦：你不得不wait一段时间来确定是否耗时操作完成。这种方式很山寨，也无法实现更高级功能。更好 的的方式是将这些线程资源进行统筹管理。</p><br><p>线程的管理的核心功能是用来统一化所有的耗时操作，最简单的<code>TaskExecutor</code>如下：</p><br><pre>TaskExecutor {<br>    void pendTask(task) { //task: 耗时操作任务<br>        runInThread {<br>            task.run(); // 运行任务<br>        }<br>    }<br>}<br><br>RetrieveStockDataTask extends Task {<br>    void run() {<br>        theData = … // 直接获取远程数据，不用在另外线程中执行<br>        Events.broadcast(new StockDataLoadedEvent(theData)) // 广播事件<br>    }<br>}<br></pre><br><p>需要进行这个操作的时候，只需要执行类似于下面的代码：</p><br><pre>TaskExecutor.pendTask(new RetrieveStockDataTask())</pre><br><p>好处很明显。通过引入<code>TaskExecutor</code>，所有线程管理放在同一个地方，耗时操作不需要自行维护线程的生命周期。你可以在<code>TaskExecutor</code>中灵活定义线程策略实现一些有趣的效果，如暂停执行，监控任务状况等，如果你愿意，为了更好的进行调试跟踪，你甚至可以将所有的任务以同步的方式执行。</p><br><p>耗时任务的定义与执行被分开，使得在任务内部能够按照正常的方式进行编码。测试也很容易写了。</p><br><p>不同的语言平台会提供不同的线程管理能力。.NET2.0提供了<code>BackgroundWorker</code>, 提供了一序列对多线程调用的封装，事件如开始调用，调用，跨线程返回值，报告运算进度等等。它内部也实现了对线程的调度处理。在你要开始实现类似的TaskExecutor时，参考一下它的API设计会有参考价值。Java 6提供的Executor也不错。</p><br><p>一个完善的<code>TaskExecutor</code>可以包含如下功能：</p><br><ul><br><li><code>Task</code>的定义：一个通用的任务定义。最简单的就是<code>run()</code>，复杂的可以加上生命周期的管理：<code>start()</code>、<code>end()</code>、<code>success()</code>、<code>fail()</code>..取决于要控制到多么细致的粒度。</li><br><li><code>pendTask</code>，将任务放入运算线程中</li><br><li><code>reportStatus</code>，报告运算状态</li><br><li>事件：任务完成</li><br><li>事件：任务失败</li><br></ul><br><p>写这样的一个线程管理的不难。最简单的实现就是每当<code>pendTask</code>的时候新开线程，当运算结束的时候报告状态。或者使用像<code>BackgroundWorker</code>或者<code>Executor</code>这样的高级API。对于像ActionScript/JavaScript这样的，只能用伪线程， 或者干脆将无法拆解的任务扔到服务器端完成。</p><br><h2>5 缓存与本地存储</h2><br><p>纯粹的B/S结构，浏览器不持有任何数据，包括基本不变的界面和实际展现的数据。RichClient的一大进步是将界面部分本地持有，与服务器只作数据通讯，从而降低数据流量。像《魔兽世界》10多G的超大型客户端，在普通的拨号网络都可以顺畅的游戏。</p><br><p>缓存与本地存储之间的差别在于，前者是在线模式下，将一段时间不变的数据缓存，最少的与服务器进行交互，更快的响应客户；后者是在离线模式下，应用<br>仍然能<br>够完成某些功能。一般来说，凡是需要类似于&ldquo;查看XXX历史&rdquo;功能的，需要&ldquo;点击列表查看详细信息&rdquo;的，都会存在本地存储的必要，无论这个功能是否需要向<br>用户开放。</p><br><p>无论是缓存还是本地存储，最需要处理的问题如何处理本地数据与服务器数据之间的更新机制。当新数据来的时候，当旧数据更新的时候，当数据被删除的时<br>候，等 等。一般来说，引入这个实践，最好也实现基于数据变化的&ldquo;事件管理&rdquo;。如果能够实现&ldquo;客户机-服务器数据交互模式&rdquo;那就更完美了。</p><br><p>我们犯过这样一个错误。系统启动的时候，将当前用户的联系人列表读取出来，放到内存中。当用户双击这个联系人的时候，弹出这个联系人的详细信息窗口。由于 没有本地存储，由于采用了Navigator方式的导航，于是很自然的采用了<code>Navigator.goTo(‘ContactDetailWindow’, theContactInfo)</code>。由于列表页面一般是不变的，因此显示出来的永远是那份旧的数据。后来有了编辑联系人信息的功能，为了总是显示更新的数 据，我们将调用更改为<code>Navigator.goTo(‘ContactDetailWindow’, ‘contactId’)</code>，然后在<code>ContactDetailWindow</code>中按照<code>contactId</code>把联系人信息重新读取一次。远在南非的用户抱怨慢。还 好我没养狗，没有狗离开我。后来我们慢慢的实现了本地存储，所有的数据读取都从这个地方获得。当数据需要更新的时候，直接更新这个本地存储。</p><br><p>本地存储会在根本上影响RichClient程序的架构。除非本地不保存任何信息，否则本地存储一定需要优先考虑。某些编程平台需要你在本地存储界<br>面和数 据，如Google Gears的本地存储，置于Adobe<br>Air的AJAX应用等，某些编程平台只需要存储数据，因为界面完全是本地绘制的，如Java/JavaFX/WinForm/WPF等。缓存界面与缓存<br>数据在实现上差别很大。</p><br><p>本地存储的存储机制最好是采用某一种基于文件的关系数据库，如SQLite、H2（HypersonicSQL）、Firebird等。一旦确定要<br>采用本地存储，就从成熟的数据库中选择一个，而不要尝试着自己写基于文件的某种缓存机制。你会发现到最后你实现了一个山寨版的数据库。</p><br><p>在没有考虑本地存储之前，与远端的数据访问是直接连接的：</p><br><p class="image-wide"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/1.JPG" alt=""></p><br><p>我们上面的例子说明，一旦考虑使用本地存储，就不能直接访问远程服务器，那么就需要一个中间的数据层：</p><br><p class="image-wide"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/2.JPG" alt=""></p><br><p>数据层的主要职责是维护本地存储与远程服务器之间的数据同步，并提供与应用相关的数据缓存、更新机制。数据更新机制有两种，一种是Proxy（代理）模式，一种是自动同步模式。</p><br><p>代理模式比较容易理解。每当需要访问数据的时候，将请求发送到这个代理。这个代理会检查本地是否可用，如果可用，如缓存处于有效期，那么直接从本地<br>读取数<br>据，否则它会真正去访问远端服务器，获取数据，更新缓存并返回数据。这种手工处理同步的方式简单并且容易控制。当应用处于离线模式的时候仍然可以工作的很<br>好。</p><br><p class="image-wide"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/3.JPG" alt=""></p><br><p>自动同步模式下，客户端变成都针对本地数据层。有一个健壮的自动同步机制与服务器的保持长连接，保证数据一直都是更新的。这种方式在应用需要完全本地可运行的时候工作的非常好。如果设计得好，自动同步方式健壮的话，这种方式会给编程带来极大的便利。</p><br><p class="image-wide"><img src="http://www.infoq.com/resource/articles/thoughtworks-practice-partiii-ii/zh/resources/4.JPG" alt=""></p><br><p>说到同步，很多人会考虑数据库自带的自动同步机制。我完全不推荐数据库自带的机制。他们的设计初衷本身是为了数据库备份，以及可扩展性<br>（Scalability）的考虑。在应用层面，数据库的同步机制往往不知道具体应用需要进行哪些数据的同步，同步周期等等。更致命的是，这种机制或多或<br>少会要求客户端与服务器端具备类似的数据库表结构，迁就这样的设计会给客户端的缓存表设计带来很大的局限。另外，它对客户机-服务器连接也存在一定的局限<br>性，例如需要开放特定端口，特定服务等等。对于纯粹的Internet应用，这种方式更是完全不可行的，你根本不知道远程数据库的结构，例如<br>Flickr, Google Docs.</p><br><p>当本地存储+自动同步机制与&ldquo;事件管理&rdquo;都实现的时候，应用会是一种全新的架构：基于数据驱动的事件结构。对于所有本地数据的增删改都定义为事件，<br>将关心 这些数据的视图都注册为响应的观察者，彻底将数据的变化于展现隔离。界面永远只是被动的响应数据的变化，在我看来，这是最极致的方式。</p><br><h2>结尾</h2><br><p>限于篇幅，这篇文章并没有很深入的讨论每一种原则/实践。同时还有一些在RichClient中需要考虑的东西我们并没有讨论：</p><br><ul><br><li><strong>纯Internat应用离线模式的实现</strong>。像AdobeAir/Google Gears都有离线模式和本地存储的支持，他们的特点是缓存的不仅仅是数据，还包括界面。虽然常规的企业应用不太可能包含这些特性，但也具备借鉴意义。</li><br><li><strong>状态的控制</strong>。<br>例如管理员能够看到编辑按钮而普通用户无法看见，例如不同操作系统下的快捷键不同。简单情况下，通过if-else或者对应编程平台下提供的绑定能够完<br>成，然而涉及到更复杂的情况时，特别是网络游戏中大量互斥状态时，一个设计良好的分层状态机模型能够解决这些问题。如何定义、分析这些状态之间的互斥、并<br>行关系，也是处理超复杂</li><br><li><strong>测试性</strong>。如何对RichClient进行测试？特别是像WPF、JavaFX、<br>Adobe<br>Air等用Runtime+编程实现的框架。它们控制了视图的创建过程，并且倾向于绑定来进行界面更新。采用传统的MVP/MVC方式会带来巨大的不必要<br>的工作量（我们这么做过！），而且测试带来的价值并没有想象那么高。</li><br><li><strong>客户机-服务器数据交互模式</strong>。如何进行<br>客户机服务器之间的数据交互？最简单的方式是类似于Http<br>Request/Response。这种方式对于单用户程序工作得很好，但当用户之间需要进行交互的时候，会面临巨大挑战。例如，股票代理人关注亚洲银行<br>板块，刚好有一篇新的关于这方面的评论出现，股票代理人需要在最多5分钟内知道这个消息。如果是Http Request/Response,<br>你不得不做每隔5分钟刷一次的蠢事，虽然大多数时候都不会给你数据。项目一旦开始，就应当仔细考虑是否存在这样的需求来选择如何进行交互。这部分与本地存<br>储也有密切的关系。</li><br><li><strong>部署方式</strong>。RichClient与B/S<br>直接最大的差异就是，它需要本地安装。如何进行版本检测以及自动升级？如何进行分发？在大规模访问的时候如何进行服务器端分布式部署？这些问题有些被新技<br>术解决了，例如Adobe Air以及Google<br>Gears，但仍然存在考虑的空间。如果是一个安全要求较高的应用，还需要考虑两端之间的安全加密以及客户端正确性验证。新的UI框架层出不穷。开始一个<br>新的RichClient项目的时候，作为架构师/Tech<br>Lead首先应当关注的不是华丽的界面和效果，应当观察如何将上述原则和时间华丽的界面框架结合起来。就像我们开始一个web项目就会考虑domain<br>层、持久层、服务层、web层的技术选型一样，这些原则和实践也是项目一开始就考虑的问题。</li><br></ul><br><h2>感谢</h2><br><p>感谢我的同事周小强、付莹在我写作过程中提供的无私的建议和帮助。小强推荐了介绍Google Gears架构的链接，让我能够写作&ldquo;本地存储&rdquo;部分有了更深的体会。</p><br><p>这篇文章是我近两年来在RichClient工作、网络游戏、WebGame众多思考的一个集合。我尝试过JavaFX/WPF/AdobAir<br>以及相关的文章，然而大多数的例子都是从华丽的界面入手，没有实践相关的内容。有意思的反而是《大型多人在线游戏开发》这本书，给了我在企业<br>RichClient开发很多启发。我们曾经犯了很多错误，也获得了许多经验，以后我们应当能做得更好。</p><br><h2>参考</h2><br><ul><br><li>.NET的BackgroundWorker定义：<a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.backgroundworker.aspx" target="_blank">http://msdn.microsoft.com/en-us/library/system.componentmodel.backgroundworker.aspx</a></li><br><li>ActionScript的伪线程：<a href="http://blogs.adobe.com/aharui/2008/01/threads_in_actionscript_3.html" target="_blank">http://blogs.adobe.com/aharui/2008/01/threads_in_actionscript_3.html</a></li><br><li>Google Gears架构：<a href="http://code.google.com/apis/gears/architecture.html" target="_blank">http://code.google.com/apis/gears/architecture.html</a></li><br></ul><br><p><strong>相关阅读：</strong></p><br><p>[ ThoughtWorks实践集锦（1）] <a href="http://www.infoq.com/cn/articles/thoughtworks-practice-parti" target="_blank">我和敏捷团队的五个约定</a>。</p><br><p>[ ThoughtWorks实践集锦（2）] <a href="http://www.infoq.com/cn/articles/thoughtworks-practice-partii" target="_blank">如何在敏捷开发中做好数据迁移</a>。</p><br><p>[ ThoughtWorks实践集锦（3）] <a href="http://www.infoq.com/cn/articles/thoughtworks-practice-partiii" target="_blank">RichClient/RIA原则与实践（上）</a>。</p><br><hr><br><p><strong>作者介绍</strong>：陈金洲，Buffalo Ajax Framework作者，ThoughtWorks咨询师，现居北京。目前的工作主要集中在RichClient开发，同时一直对Web可用性进行观察，并对其实现保持兴趣。</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>转自：<a href="http://www.infoq.com/cn/articles/thoughtworks-practice-partiii-ii" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/thoughtworks-practice-partiii-ii</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4w500bi4urqz2pk18v2/" rel="next" title="IBM收购Sun对Glassfish、NetBeans和JavaFX未来的影响">
+                <i class="fa fa-chevron-left"></i> IBM收购Sun对Glassfish、NetBeans和JavaFX未来的影响
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5fo015j4urqnf08lgca/" rel="prev" title="如果爱，请深爱～">
+                如果爱，请深爱～ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">3 事件管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">4 线程管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">5 缓存与本地存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">感谢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="UserExperience,Web,HTML5,CSS3," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HTML5 的采用策略：一个浏览器也不放弃。下载示例代码：http://code.msdn.microsoft.com/mag201109HTML5HTML5 有许多激动人心的特性，有了新的标签、新的 CSS 能力和新的 JavaScript API，Web 的能力范围有了大的飞跃。除了浏览器厂商的士气高涨之外，令人激动的新功能列表几乎每天都在增加。从&amp;ldquo;nightly builds&amp;r">
+<meta name="keywords" content="UserExperience,Web,HTML5,CSS3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让你的网站在低版本浏览器上同样显示出色">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5pj01gr4urqvq4kpvrr/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="HTML5 的采用策略：一个浏览器也不放弃。下载示例代码：http://code.msdn.microsoft.com/mag201109HTML5HTML5 有许多激动人心的特性，有了新的标签、新的 CSS 能力和新的 JavaScript API，Web 的能力范围有了大的飞跃。除了浏览器厂商的士气高涨之外，令人激动的新功能列表几乎每天都在增加。从&amp;ldquo;nightly builds&amp;r">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image034.png">
+<meta property="og:image" content="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image035.png">
+<meta property="og:image" content="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image036.png">
+<meta property="og:image" content="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image037.png">
+<meta property="og:image" content="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image038.png">
+<meta property="og:updated_time" content="2018-01-24T22:13:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="让你的网站在低版本浏览器上同样显示出色">
+<meta name="twitter:description" content="HTML5 的采用策略：一个浏览器也不放弃。下载示例代码：http://code.msdn.microsoft.com/mag201109HTML5HTML5 有许多激动人心的特性，有了新的标签、新的 CSS 能力和新的 JavaScript API，Web 的能力范围有了大的飞跃。除了浏览器厂商的士气高涨之外，令人激动的新功能列表几乎每天都在增加。从&amp;ldquo;nightly builds&amp;r">
+<meta name="twitter:image" content="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image034.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5pj01gr4urqvq4kpvrr/"/>
+
+
+
+
+
+  <title>让你的网站在低版本浏览器上同样显示出色 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5pj01gr4urqvq4kpvrr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">让你的网站在低版本浏览器上同样显示出色</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-01-16T22:56:15+08:00">
+                2013-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div><br><p>HTML5 的采用策略：一个浏览器也不放弃。</p><br><p>下载示例代码：<a href="http://code.msdn.microsoft.com/mag201109HTML5" target="_blank">http://code.msdn.microsoft.com/mag201109HTML5</a></p><br><p>HTML5 有许多激动人心的特性，有了新的标签、新的 CSS 能力和新的 JavaScript API，Web 的能力范围有了大的飞跃。除了浏览器厂商的士气高涨之外，令人激动的新功能列表几乎每天都在增加。从&ldquo;nightly builds&rdquo;（每夜都构建一版）到开发渠道发行版和正常的平台预览版，浏览器在飞速变化，世界各地Web开发人员们正在加入这个狂欢。</p><br><p>但是，尽管开发和浏览器社区正在把 HTML5 的喧嚣推到一个极度兴奋的高潮，网上的大多数人却不像我们一样使用最新的浏览器和最新版本。如果你是一个大型开发机构的Web开发人员或者是拥有庞大用户 群的大企业，那你对此可能很清楚。即使你为通过Web提供服务的小型机构或新创立的企业工作，你可能也要花上大量时间来确保自己的网站能够支持尽可能多的 浏览器和浏览器版本。</p><br><p>基于这一现实，很容易看出，HTML5 还谈不到它是否已为当今的使用做好准备，而是你是否为它做好了准备。例如，假设你用一些新的语法标签（例如&lt;header&gt; 和&lt;article&gt;）新建了一个页面，添加了一些新的 CSS 功能，例如圆角（border-radius）和阴影（box-shadow），甚至添加了一个&lt;canvas&gt;元素在页面上绘制出一个 HTML5 标识。</p><br><p>在较新的浏览器上，例如 Internet Explorer 9、Firefox 4 及以上版本、或者 Google Chrome 上，这个页面的显示如<strong>图1</strong>所示。但如果尝试在 Internet Explorer 8 或更早的浏览器上加载页面，很有可能看到的是<strong>图2</strong>所示的效果：一个残缺不全的页面。</p><br><div><img src="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image034.png" alt="" height="300"><br> <strong>图1</strong> 使用 HTML5 语法、样式和&lt;canvas&gt;元素的简单页面在 IE9 中显示的效果</div><br><div><img src="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image035.png" alt="" height="300"><br> <strong>图2</strong> 同一个页面，在IE8中显示时，没有样式，也没有&lt;canvas&gt;</div><br><p>如果你在研究 HTML5 的所有强大功能却得到上述体验之后告诉自己说：最好还是等等，那么我不会对你有任何责怪。如果我问你准备好了吗？你很容易得出这样的结论：HTML5 还没有为你或你的用户做好准备。</p><br><p>在你决定等到2022年再考虑HTML5的之前，我建议你继续阅读本文的后面部分，我将向你提供一些实用的策略，让你现在就能采用HTML5技术，同时避免出现图2所示的糟糕的降级情况。我将从下面三个主题进行详细地介绍：</p><br><ul><br><li>功能检测与用户代理（UA）嗅探比较</li><br><li>用JavaScript实现填补（Polyfill）</li><br><li>优雅降级</li><br></ul><br><p>这些应该可以教会你很多构建支持各种浏览器的网站所需要了解的知识。在本文结束时，你会拥有一个可靠的策略，可以充满自信、毫不犹豫地采用 HTML5 技术。你还会拥有一些工具在手，可以逐步地为新浏览器增强网站，同时更好地适应旧的浏览器。</p><br><h3>功能检测的重要性</h3><br><div><br><p>为了提供跨浏览器的稳定且一致的体验，开发人员经常需要获得一些关于用户浏览器的信息。以前的普遍做法是像下面这样用 JavaScript 检测这些信息：</p><br><pre class="prettyprint lang-js">varuserAgent = navigator.userAgent; if (userAgent.indexOf(‘MSIE’) &gt;= 0) {<br>  console.log(“Hello, IE user”);<br>} else if (userAgent.indexOf(‘Firefox’) &gt;= 0) {<br>  console.log(“Hello, Firefox user”);<br>} else if (userAgent.indexOf(‘Chrome’) &gt;= 0) {<br>  console.log(“Hello, Chrome user”);<br>}</pre><br><p>这个技术称为用户代理（UA）嗅探，广泛地用于判断正在请求页面的是哪个浏览器。这里的思路是：知道了用户的浏览器（例如 IE7），就能在运行的时候决定启用或禁用网站的哪项功能。UA 嗅探就相当于对浏览器说：&ldquo;你是谁？&rdquo;（对 UA 嗅探以及其他检测技术的深入分析，请参阅 <a href="http://jibbering.com/faq/notes/detect-browser/" target="_blank">jibbering.com/faq/notes/detect-browser/</a>。）</p><br><p>这种做法的问题在于，浏览器会撒谎。UA 字符串是一个用户可以配置的信息，并不会提供100%正确的浏览器信息。而且，随着这一技术的广泛采用，许多浏览器厂商在自己的 UA 字符串中增加了额外内容，用来欺骗脚本，让脚本对于实际使用的浏览器做出错误判断，从而避免检测。现在有些浏览器甚至提供小工具，允许用户只要轻轻点击几 下鼠标，就能修改 UA 字符串。</p><br><p>UA 嗅探的目的从来就不是确定用户的浏览器和版本。而且它肯定也不是为了在你不喜欢用户使用的浏览器时，让你可以告诉用户说&ldquo;请下载另一个浏览器&rdquo;&mdash;&mdash;即使有 些人就是这样使用 UA 嗅探技术的。用户有权选择自己使用什么浏览器，开发人员的职责则是提供最可靠且一致的体验，不要把浏览器的偏好强加给用户。UA 嗅探的目标是让你能够准确地了解在用户当前的浏览器中，有哪些能力或功能可以利用。对浏览器本身的了解，只是获得这些信息的一个途径。</p><br><p>目前有一些 UA 嗅探的替代技术，其中一项正在日益流行的技术称为对象检测或功能检测。这两个术语多数时候可以互换使用，但本文统一使用&ldquo;功能检测&rdquo;（feature detection）。</p><br><p>功能检测的目标是判断某项功能或能力在用户当前的浏览器中是否受支持。如果 UA 嗅探是问浏览器&ldquo;你是谁&rdquo;，&ldquo;功能检测&rdquo;就是问浏览器&ldquo;你能干什么&rdquo;，这个问题更直接，对于根据条件向用户提供功能来说，这种方法也更可靠。如果功能检测 脚本实现正确，用户或浏览器将很难造假或错报功能支持。</p><br></div><br><h3>手动功能检测</h3><br><div><br><p>那么，与 UA 嗅探的示例相比，功能检测到底是什么样呢？为了回答这个问题，我们先来看看如果在 Internet Explorer 8 中查看前面的 HTML5 页面（如<strong>图1</strong>所示），如何解决出现的问题。这个页面的标签内容如<strong>代码段1</strong>所示。</p><br><pre class="brush: xml">&lt;!DOCTYPE html&gt;<br>&lt;htmllang=”en”&gt;<br> &lt;head&gt;<br>     &lt;meta charset=”utf-8” /&gt;<br>     &lt;title&gt;My Awesome Site&lt;/title&gt;<br>     &lt;style&gt;<br>         body { font-size: 16px; font-family: arial,helvetica,clean,sans-serif; }<br>         header h1 { font-size: 36px; margin-bottom: 25px; }<br>         article { background: lightblue; margin-bottom: 10px; padding: 5px; border-radius: 10px; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); }<br>         article h1 { font-size: 12px; }<br>     &lt;/style&gt;<br> &lt;/head&gt;<br> &lt;body&gt;<br>     &lt;header&gt;<br>         &lt;h1&gt;My Awesome Site&lt;/h1&gt;<br>     &lt;/header&gt;<br>     &lt;article&gt;<br>        &lt;header&gt;<br>           &lt;h1&gt;An Article&lt;/h1&gt;<br>        &lt;/header&gt;<br>        &lt;p&gt;Isn’t this awesome?&lt;/p&gt;<br>     &lt;/article&gt;<br>     &lt;canvas width=”250” height=”500”&gt;&lt;/canvas&gt;<br> &lt;/body&gt;<br>    &lt;script src=”../js/html5CanvasLogo.js” type=”text/javascript”&gt;&lt;/script&gt;<br> &lt;/html&gt;<br> </pre><br><p><span>&nbsp;</span></p><br><p><strong>代码段1</strong> 带有 HTML5 新语义标签的页面</p><br><p>如<strong>图1</strong>和<strong>图2</strong>所示，Internet Explorer 9 和 Internet Explorer 8 的显示效果有很大的差别。对于初学者来说，我的页面完全没有样式，因为这个页面的CSS并不存在。而且，页面底部丢失了好玩的 HTML5 盾牌。每个问题都可以轻松解决，而功能检测则是明确问题的第一步。</p><br><p>两个问题的原因都很简单：对于 Internet Explorer 8 来说，&lt;header&gt;、&lt;article&gt;和&lt;canvas&gt;都不是有效的 HTML 元素，所以无法使用。要解决&lt;canvas&gt;问题，我们不用 UA 嗅探来判断所使用的浏览器/版本，而要通过 JavaScript 询问浏览器是否支持&lt;canvas&gt;元素和它的 JavaScript API，对 Canvas 的功能检测如下所示：</p><br><pre class="prettyprint lang-js">!!document.createElement(‘canvas’).getContext</pre><br><p>这条语句做了好几件事：首先，它使用两个否定（!!）操作符强行将未定义的值显式地设为 false；然后，它手动新建一个canvas元素，并将它加到DOM中；最后，它调用 getContext 函数，这是&lt;canvas&gt;元素的一个新函数，是通过 JavaScript 操纵 Canvas API 的途径。如果使用 IE9，则这条语句会返回 true。如果使用 IE8，则 getContext 会返回&ldquo;undefined&rdquo;（未定义），会被前面的两个否定操作符强行变为 false。</p><br><p>这是最基本的功能检测。利用这条语句以及其他类似语句，就有了查询浏览器所支持功能的更可靠方法。关于手动功能检测的更多信息，请参阅 <a href="http://diveintohtml5.info/everything.html" target="_blank">diveintohtml5.info/everything.html</a>。</p><br></div><br><h3>使用Modernizr进行功能检测</h3><br><div><br><p>手动功能检测肯定是对UA嗅探的提高，但这种做法仍然需要你做大量工作来检测功能是否可用，以及在功能不存在的时候决定做什么。虽然 Canvas 示例很简单，只需要一行代码，但不是每个要检测的功能都这么简单&mdash;&mdash;不同浏览器的检测代码也各不相同。例如，要检测是否支持前面使用的 CSS3 模块（border-radius和box-shadow）就有些麻烦。</p><br><p>值得庆幸的是，Modernizr (<a href="http://modernizr.com" target="_blank">modernizr.com</a>) 提供了更好的方法。Modernizr 是一个 JavaScript 库&ldquo;&hellip;&hellip;检测下一代 Web 技术（即源于 HTML5和 CSS3 规范的功能）的本地实现是否可用&rdquo;。在页面上添加对 Modernizr 的引用可以提供四大功能：</p><br><ol><br><li>全面列出支持的功能，智能地加入标签，从而实现 CSS 的条件定义。</li><br><li>一个 JavaScript 对象，方便进行基于脚本的功能检测。</li><br><li>在运行的时候将全部 HTML5 新标签加入 DOM，方便 IE8 和之前的 IE 浏览器（稍后就会知道不仅如此）。</li><br><li>一个脚本加载器，可以根据条件将 polyfill 加载到页面中。</li><br></ol><br><p>本文对第1项不做进一步介绍，但鼓励你访问 modernizr.com 网站，学习这一功能及其余功能的文档。</p><br><p>上面的第2项功能，可以将下面的代码：</p><br><pre class="prettyprint lang-js">!!document.createElement(‘canvas’).getContext</pre><br><p>改为这行代码：</p><br><pre class="prettyprint lang-js">Modernizr.canvas</pre><br><p>这行代码会返回一个布尔值，表明页面是否支持 Canvas 元素。使用 Modernizr 比自行执行功能检测的好处是，Modernizr 是一个经过良好测试、健壮的、广为采用的库，它已经完成了许多繁重的工作。Twitter、Google、Microsoft 以及无数其他机构和开发人员都在使用 Modernizr，你当然也可以使用。在 ASP.NET MVC 3 工具更新（2011年4月发布）中，Microsoft 甚至随新的 ASP.NET MVC 应用程序一起配备了 Modernizr。当然，我们迄今为止所做的，不过是检测是否支持&lt;canvas&gt;元素。通过功能检测知道了浏览器是否支持某一功能之后， 接下来通常是创建一些条件逻辑，在功能不存在的时候阻止特定代码的执行或者换个路径来执行，例如：</p><br><pre class="prettyprint lang-js">if (Modernizr.canvas) { // 这里执行canvas代码。 }</pre><br><p>根据附加的浏览器功能是否存在来给网站增加功能，这种做法称为&ldquo;渐进式增强&rdquo;，因为体验增强针对的能力更强的浏览器。另一方面是&ldquo;优雅降 级&rdquo;，即某项功能的缺失不会造成浏览器出错或发生故障，而是应该向用户提供一些削弱的功能或替代能力。对于旧版浏览器来说，不必将优雅降级作为默认选择。 在许多情况下，甚至可能不是最佳选择。相反，在 Modernizr 的帮助下，你通常可以使用许多可用的浏览器 polyfill，将类似于 HTML5 的功能添加到不支持 HTML5 的浏览器中。</p><br></div><br><h3>什么是 Polyfill</h3><br><div><br><p>根据 Modernizr 网站的说法，polyfill 是&ldquo;在旧版浏览器上复制标准 API 的 JavaScript 补充&rdquo;。&ldquo;标准API&rdquo;指的是 HTML5 技术或功能，例如 Canvas。&ldquo;JavaScript补充&rdquo;指的是可以动态地加载 JavaScript 代码或库，在不支持这些标准 API 的浏览器中模拟它们。例如，geolocation（地理位置）polyfill 可以在 navigator 对象上添加全局的 geolocation 对象，还能添加 getCurrentPosition 函数以及&ldquo;坐标&rdquo;回调对象，所有这些都是 W3C 地理位置 API 定义的对象和函数。因为 polyfill 模拟标准 API，所以能够以一种面向所有浏览器未来的方式针对这些 API 进行开发，最终目标是：一旦对这些 API 的支持变成绝对大多数，则可以方便地去掉 polyfill，无需做任何额外工作。</p><br><p>通过在页面上添加对 Modernizr 的引用，我就得到了与<strong>代码段1</strong>示例相关的 polyfill 的直接好处。页面显示没有样式，是因为 IE8 不认识&lt;article&gt;和&lt;header&gt;标签。因为它不认识这些标签，所以没将它们加入DOM，而CSS选择元素要发挥样式作用，需要在 DOM 中有这些元素。</p><br><p>当我在页面上添加&lt;script&gt;标签和对Modernizr的引用时，结果就有了样式，如<strong>图3</strong>所示。我之所以得到这个好处，是因为Modernizr用JavaScript（document.CreateElement(&lsquo;nav&rsquo;)）手动地将所有HTML5的新标签添加到DOM，这样CSS就能选择标签并给标签加上样式。</p><br><img src="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image036.png" alt=""><br><p><strong>图3</strong> HTML5 页面在 Modernizr 协助下在 IE8 中显示的效果</p><br><p>除了在 Internet Explorer 中添加对新的 HTML5 元素的支持外，Modernizr 库默认不提供任何额外的 polyfill。额外的 polyfill 需要自行提供，或者使用自己的脚本，或者从 Modernizr 网站上日益增加的选项列表中选择一个。在2.0版中，Modernizr 提供了一个条件脚本加载器（基于 yepnope.js&mdash;yepnopejs.com），可以帮助你只在需要的时候异步下载 polyfill 库。使用 Modernizr 配合一个或多个 polyfill 库来提供需要的功能，是一个强大的组合。</p><br></div><br><h3>使用 Polyfill 模拟 HTML5 功能</h3><br><div><br><p>对于 Canvas 来说，在 Modernizr 和 JavaScript 库 excanvas 的帮助下，用 polyfill 可以在 IE8 及之前的版本中实现 Canvas 支持，可以在 IE6、IE7 和 IE8 上添加 API 级别的 Canvas 支持。可以从 <a href="https://code.google.com/p/explorercanvas/" target="_blank">code.google.com/p/explorercanvas/</a> 下载 excanvas，将它添加到自己的脚本文件夹，然后在页面的脚本块中添加一些代码，如<strong>代码段2</strong>所示。</p><br><pre class="prettyprint lang-js">Modernizr.load({<br>    test: Modernizr.canvas,<br>    nope: ‘../js/excanvas.js’,<br>    complete: function () { Modernizr.load(‘../js/html5CanvasLogo.js’);<br>    }<br>}]);</pre><br><p><strong>代码段2</strong> 用 Modernizr 和 Polyfill 实现 Canvas 支持</p><br><p>在这里，我使用 Modernizr 脚本加载器指定了三件事：</p><br><ol><br><li>用来测试的 Boolean 表达式。</li><br><li>表达式测试为 false 时，加载脚本的路径。</li><br><li>检查或脚本加载完成时运行的回调。</li><br></ol><br><p>对于 Canvas 来说，在应用程序中要添加的智能处理和 polyfill 就是这些了。Modernizr 会异步加载 excanvas.js，而且只会为那些不支持 Canvas 的浏览器加载，然后加载脚本库，在页面上绘制出 HTML5 标识。</p><br><p>下面来看另外一个示例来理解 Modernizr 的价值. 重视细节的你可能已经注意到，<strong>图3</strong>中网站的样式与<strong>图1</strong>中在 Internet Explorer 9 中显示的原始页面相同。这个页面在 Internet Explorer 8 中显示时没有阴影和圆角，而我不可能让网站在没有这两个效果的情况下丑陋地交付出去，所以我们再次求助于 Modernizr。</p><br><p>同处理 Canvas 一样，Modernizr 可以告诉我 CSS 模块不受支持，但提供一个填补（polyfill）这些 CSS 模块的库，要我来做。幸运的是，有个名为 PIE(<a href="http://css3pie.com" target="_blank">css3pie.com</a>) 的库在一个库中提供了这两个模块。</p><br><p>为了增加对圆角和阴影的支持，在下载了 PIE 之后，我可以将<strong>代码段3</strong>中的代码加入脚本。这次，我要测试是否支持圆角或阴 影模块（而不是假定两者都支持或都不支持），如果有哪个模块不支持，则动态地加载 PIE.js。PIE 加载完成后，我再执行一段 jQuery 代码选择全部&lt;article&gt;标签，并调用 PIE.attach 函数，添加 CSS 中已经定义的圆角和阴影样式。最终结果如<strong>图4</strong>所示。</p><br><pre class="prettyprint lang-js">Modernizr.load({<br>  test: Modernizr.borderradius || Modernizr.boxshadow,<br>  nope: ‘../js/PIE.js’,<br>  callback: function () { $(‘article’).each(function () { PIE.attach(this);<br>    });<br>  }<br>});</pre><br><p><strong>代码段3</strong> 用 Modernizr 和 PIE 添加 CSS3 支持</p><br><img src="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image037.png" alt=""><br><p><strong>图4</strong> Modernizr 和 PIE 实现的 CSS3 支持</p><br></div><br><h3>使用 Polyfill 协助进行优雅降级</h3><br><div><br><p>除了使用这里讨论的 polyfill 技术，在希望应用程序优雅降级的地方也可以借助于 Modernizr，而不是用另一个库进行填补（polyfill）。</p><br><p>假设网页上有一个 Bing Maps 控件，而且我希望使用 Geolocation 来确定用户当前位置，然后将这个位置作为大头钉放在地图控件上。</p><br><p>虽然新版本的浏览器都支持 Geolocation，但在旧版浏览器中并不支持。纯粹使用 JavaScript 提供完整的 Geolocation 支持还确实有些麻烦，即使有针对 Geolocation 的填补（polyfill）实现起来也不轻松，所以我决定要对自己的应用程序进行优雅降级。当用户的浏览器不支持 Geolocation 时，我会提供一个表单，用户可以在表单中手动输入位置，我将用用户输入的位置定位和固定地图。</p><br><p>通过 Modernizr，只要用一个简单的加载脚本，调用我创建的两个脚本中的一个即可，如代码段4所示。在这个示例中，我测试的是 Modernizr.geolocation 属性。如果为 true（&ldquo;yep&rdquo;分支），就加载 fullGeolocation.js 脚本，这个脚本使用 Geolocation API 定位（要得到用户许可），并将位置放在地图上，如<strong>图5</strong>所示。如果测试为 false（&ldquo;nope&rdquo;分支），则加载备用脚本，在页面上显示一个地址表单。用户提交表单时，我会使用用户提供的地址将地图居中并固定，如<strong>图6</strong>所示。这样，我的页面为最新的浏览器提供了优秀的体验，同时对旧版浏览器提供了降级到合理替代品的优雅方式。</p><br><pre class="prettyprint lang-js">Modernizr.load({<br>    test: Modernizr.geolocation,<br>    yep: ‘../js/fullGeolocation.js’,<br>    nope: ‘../js/geolocationFallback.js’ });</pre><br><p><strong>代码段4</strong> 用 Modernizr 提供优雅降级</p><br><img src="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/images/res/image038.png" alt=""><br><p><strong>图6</strong> 提供 Geolocation 的后备支持</p><br><p>在面对庞大的用户群仍然使用旧版浏览器的时候，很容易认为 HTML5 的一些高级功能对你的网站不适用。但是现在已经有了很好的解决方案，不仅能够帮助你优雅地降级，还能提升旧版浏览器的能力，让你的用户立即就能体验到 HTML5 的能力。在本文中，你看到了功能检测、 Modernizr 和 polyfill，所以你可以毫不迟疑地采用 HTML5，既满足日益增长的使用最新浏览器的用户，又不会丢失使用旧版浏览器的庞大用户群。</p><br><p>转自： <a href="http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/" target="_blank" rel="noopener">http://www.beautyoftheweb.cn/Content/zh-CN/Developers/ie10whitepaper/</a></p><br></div><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/UserExperience/" rel="tag"># UserExperience</a>
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/blog/tags/HTML5/" rel="tag"># HTML5</a>
+          
+            <a href="/blog/tags/CSS3/" rel="tag"># CSS3</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4tb005j4urqguacalhg/" rel="next" title="B3log 加入 404 页面公益活动">
+                <i class="fa fa-chevron-left"></i> B3log 加入 404 页面公益活动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4sk00484urqw1sh5o1x/" rel="prev" title="5款书签类型的测试工具">
+                5款书签类型的测试工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">功能检测的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">手动功能检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">使用Modernizr进行功能检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">什么是 Polyfill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">使用 Polyfill 模拟 HTML5 功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">使用 Polyfill 协助进行优雅降级</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

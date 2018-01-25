@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web,WebToolkit," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        Dionysios G. Synodinos            译者            侯伯薇        发布于        2010年5月21日 下午9时38分    Akshell是一种云服务，它使用服务端的JavaScript和在线的IDE帮助开发者进行快速应用程序开发。 它还提供云托管，所以部署是即时的。 它的创建者将其描述为&amp;ldquo;">
+<meta name="keywords" content="Web,WebToolkit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Akshell: 基于JavaScript和在线IDE的RAD云">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzifc000lxwrq49e4p6us/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        Dionysios G. Synodinos            译者            侯伯薇        发布于        2010年5月21日 下午9时38分    Akshell是一种云服务，它使用服务端的JavaScript和在线的IDE帮助开发者进行快速应用程序开发。 它还提供云托管，所以部署是即时的。 它的创建者将其描述为&amp;ldquo;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T07:16:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Akshell: 基于JavaScript和在线IDE的RAD云">
+<meta name="twitter:description" content="作者        Dionysios G. Synodinos            译者            侯伯薇        发布于        2010年5月21日 下午9时38分    Akshell是一种云服务，它使用服务端的JavaScript和在线的IDE帮助开发者进行快速应用程序开发。 它还提供云托管，所以部署是即时的。 它的创建者将其描述为&amp;ldquo;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzifc000lxwrq49e4p6us/"/>
+
+
+
+
+
+  <title>Akshell: 基于JavaScript和在线IDE的RAD云 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzifc000lxwrq49e4p6us/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Akshell: 基于JavaScript和在线IDE的RAD云</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-05-24T14:31:00+08:00">
+                2010-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>        作者<br><br><br><br>        <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=Dionysios-G.-Synodinos" target="_blank" rel="noopener"><br>Dionysios G. Synodinos</a><br></strong><br><br><br><br><br>            译者<br>            <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E4%BE%AF%E4%BC%AF%E8%96%87" target="_blank" rel="noopener"><br>侯伯薇</a><br></strong><br><br>        发布于<br>        2010年5月21日 下午9时38分<br>    </p><br><!--  AddThis Button BEGIN --><br><p><a href="http://www.akshell.com/" target="_blank" rel="noopener">Akshell</a><br>是一种云服务，它使用服务端的<br>JavaScript和在线的IDE帮助开发者进行快速应用程序开发。 它还提供云托管，所以部署是即时的。 它的创建者将其描述为&ldquo;<em>web应用<br>网络</em><br><em>&rdquo;。</em><br></p><br><!--  AddThis Button BEGIN --><!--  AddThis Button END --><br><p>Akshell的核心会使用Google V8<br>JavaScript引擎来执行应用程序，它会将JavaScript代码编译成本地代码以提高性能。<br>为了处理请求，Akshell核心会评估应用程序的main.js文件，并执行它所导出的app()函数，将请求对象传递给这个函数。 这个架构符合<a href="http://www.akshell.com/docs/0.2/glossary/#term-jsgi" target="_blank" rel="noopener"><em>JSGI</em><br></a><br>规<br>范。</p><br><p>应用程序是Akshell环境的基本单元。 每个应用程序都拥有唯一的名称，并从属与appName.akshell.com域。<br>每个Akshell用户都可以创建应用程序，但是当前只提供了对免费的非商业应用程序的支持，并且这样的应用程序代码必须基于BSD许可来提供。</p><br><p>InfoQ对Akshell的创始人Anton Korenyushkin进行了简短的采访。</p><br><p><strong>InfoQ: 您创建Akshell的动机是什么呢？它是如何帮助开发者的呢？</strong><br></p><br><blockquote><br><p><strong>Anton: </strong><br>关键的动机是能够让开发者专注于任务，而不是对所有web应用程序都通用的东西。<br>对我来说，当我说到系统编程的时候，Web开发看起来有些不好控制。 即便是为了编写不重要的站点，一个人也需要了解与站点的主要目的无关的一大堆知识。<br> 我们一次又一次地发明轮子。 在经历这些麻烦之后，我们还需要管理服务器。</p><br><p>Akshell是我要改变这一切所做的努力；它借用了UNIX的哲学： 每个程序只把一件事做好。</p><br></blockquote><br><p><strong>InfoQ: 能否请你为我们概述一下使用Akshell构建的程序的架构呢？ 它的主要组件是什么呢？</strong><br></p><br><blockquote><br><p><strong>Anton: </strong><br>Akshell应用程序应该只执行它的主任务；辅助任务应该由其它应用程序来处理。<br>Akshell为他们提供了交互的方法。 每个应用程序都可以是一个类库，即可以与其它应用分享它的代码。<br>最基本的Akshell类库叫做ak，它提供了一个模型-视图-控制器的框架。 使用该框架创建的应用程序有三个主要的组件：<br>数据库模型、HTML模板（来源于Django）以及处理请求的JavaScript代码。</p><br><p>这个基本类库是可选的；任何人都可以创建框架来替换它。 Akshell符合JSGI规范；因此我们可以在其中使用一些已有的框架。</p><br></blockquote><br><p><strong>InfoQ: 你如何来处理持久性问题？</strong><br></p><br><blockquote><br><p><strong>Anton: </strong><br>每个应用程序都能够访问一个文件存储和一个关系型数据库。 前者是很常用的。<br>而数据库存取是通过专门为嵌入到JavaScript设计的<a href="http://www.akshell.com/docs/0.2/guide/db-and-fs/#database" target="_blank" rel="noopener">面向对象的<br>API</a><br>和<a href="http://www.akshell.com/docs/0.2/ref/core/db/#query-language" target="_blank" rel="noopener">查询语言</a><br>所<br>提供的。 它和SQL一样强大，但更易于使用。 数据库是由Postgres支持的，因此很稳定。</p><br></blockquote><br><p><strong>InfoQ: 对于使用Akshell的团队，开发过程和工具应该是怎样的呢？<br>其中有没有与整合某些版本控制或者项目管理软件和服务（像SVN、Git等等）呢？</strong><br></p><br><blockquote><br><p><strong>Anton: </strong><br>应用程序管理员可以请开发者一起协作；Akshell会处理它们的访问权限。当前还没有SCM的<br>支持，但是我计划与git和GitHub整合。 现在团队可以使用任何SCM系统和<a href="http://www.akshell.com/docs/0.2/guide/using/#tool" target="_blank" rel="noopener">Akshell工具</a><br>来与<br>Akshell的本地文件进行同步。</p><br></blockquote><br><p><strong>InfoQ: 你认为服务端的JavaScript会在将来的几年中成为主流吗？ 对于CommanJS你的想法如何？</strong><br></p><br><blockquote><br><p>&nbsp;<strong>Anton: </strong><br>我非常相信JavaScript会在服务器端流行起来，因为：</p><br><ol><br><li>每个web开发者都了解它。</li><br><li>它的解释器真的很快，并且会变得更快。</li><br><li>它比带有复杂的标准类库的语言更适合沙盒环境；我想平台即服务（Platforms as a Service）是将来的趋势。</li><br><li>它是一门很棒的语言，我非常喜欢！:)</li><br></ol><br><p>CommonJS非常有用；我希望它会成功。 但是设计这样的东西需要某种BDFL，而这似乎不会在JavaScript社区中出现。</p><br></blockquote><br><p><strong>InfoQ: 你认为在线的IDE会是将来开发者使用的方式吗？ 你考虑过使用Bespin吗？</strong><br></p><br><blockquote><br><p><strong>Anton: </strong><br>我讨厌任何一种管理；因此我希望并且相信大多数程序都会到网络上，包括IDE。我考虑过<br>Bespin，但最终选择的是EditArea。</p><br></blockquote><br><p><strong>InfoQ: 你下一步的打算和方向是什么呢？</strong><br></p><br><blockquote><br><p><strong>Anton: </strong><br>我会继续改善用户界面（UI）： 在编辑器中支持tab，在其中添加对输入的评估和控制台。<br>让所有这些都在一页中，这会使得开发过程更简单。 并且我计划将GitHub整合到Akshell中。</p><br></blockquote><br><p>如果想要得到更多信息，你可以访问Akshell的<a href="http://www.akshell.com/docs/0.2/" target="_blank" rel="noopener">在线<br>文档</a><br>或者查看<a href="http://www.akshell.com/apps/" target="_blank" rel="noopener">示例应用</a><br>。</p><br><p><strong>查看英文原文：</strong><br><a href="http://www.infoq.com/news/2010/05/akshell" target="_blank" rel="noopener">Akshell:<br> A RAD Cloud Service based on server-side JavaScript and an Online IDE</a><br></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/blog/tags/WebToolkit/" rel="tag"># WebToolkit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6j39006rl6rqbw6rkldy/" rel="next" title="不应忽视的HTML优化">
+                <i class="fa fa-chevron-left"></i> 不应忽视的HTML优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6d4c0039l6rqd96edb8r/" rel="prev" title="15 个用户体验设计剖析">
+                15 个用户体验设计剖析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

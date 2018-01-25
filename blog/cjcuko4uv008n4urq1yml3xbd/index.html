@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="B3log,GAE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="GAE 博客 &amp;mdash;&amp;mdash;&amp;nbsp;B3LOG Solo 0.2.1 正式发布了。该版本除了修复 Bugs，还增加了自定义文章/页面链接，改进了缓存，以及加入了新皮肤 favourite。在 0.2.1 开发之际，Lamb&amp;nbsp;童鞋加入了&amp;nbsp;B3LOG Solo&amp;nbsp;开发团队（成员列表），并给我们带来了新皮肤 favourite。新特性评论表情自定义文章链接自">
+<meta name="keywords" content="B3log,GAE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAE 博客——B3log Solo 0.2.1 发布了！">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4uv008n4urq1yml3xbd/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="GAE 博客 &amp;mdash;&amp;mdash;&amp;nbsp;B3LOG Solo 0.2.1 正式发布了。该版本除了修复 Bugs，还增加了自定义文章/页面链接，改进了缓存，以及加入了新皮肤 favourite。在 0.2.1 开发之际，Lamb&amp;nbsp;童鞋加入了&amp;nbsp;B3LOG Solo&amp;nbsp;开发团队（成员列表），并给我们带来了新皮肤 favourite。新特性评论表情自定义文章链接自">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://code.google.com/p/b3log-solo/logo?cct=1287802701">
+<meta property="og:updated_time" content="2018-01-23T07:50:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GAE 博客——B3log Solo 0.2.1 发布了！">
+<meta name="twitter:description" content="GAE 博客 &amp;mdash;&amp;mdash;&amp;nbsp;B3LOG Solo 0.2.1 正式发布了。该版本除了修复 Bugs，还增加了自定义文章/页面链接，改进了缓存，以及加入了新皮肤 favourite。在 0.2.1 开发之际，Lamb&amp;nbsp;童鞋加入了&amp;nbsp;B3LOG Solo&amp;nbsp;开发团队（成员列表），并给我们带来了新皮肤 favourite。新特性评论表情自定义文章链接自">
+<meta name="twitter:image" content="http://code.google.com/p/b3log-solo/logo?cct=1287802701">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4uv008n4urq1yml3xbd/"/>
+
+
+
+
+
+  <title>GAE 博客——B3log Solo 0.2.1 发布了！ | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4uv008n4urq1yml3xbd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GAE 博客——B3log Solo 0.2.1 发布了！</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-12-03T05:25:36+08:00">
+                2010-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="article-body"><br><p><img style="float: left;" src="http://code.google.com/p/b3log-solo/logo?cct=1287802701" alt="B3log Logo" width="150" height="55"><span>GAE 博客 &mdash;&mdash;&nbsp;</span><a style="text-decoration: none;" href="http://b3log-solo.googlecode.com/" target="_blank"><span style="color: orange;">B</span><span style="color: blue;"><sup>3</sup></span><span style="color: green;">L</span><span style="color: red;">O</span><span style="color: blue;">G</span> <span style="color: orangered; font-weight: bold;">Solo</span></a><span> 0.2.1 正式发布了。</span></p><br><p><span>该版本除了修复 Bugs，</span><span>还增加了自定义文章/页面链接，改进了缓存，以及加入了新皮肤 favourite。</span></p><br><p>在 0.2.1 开发之际，<a href="http://lamb.b3log.org/" target="_blank">Lamb</a>&nbsp;童鞋加入了<a style="text-decoration: none;" href="http://b3log-solo.googlecode.com/" target="_blank">&nbsp;<span style="color: orange;">B</span><span style="color: blue;"><sup>3</sup></span><span style="color: green;">L</span><span style="color: red;">O</span><span style="color: blue;">G</span> <span style="color: orangered; font-weight: bold;">Solo</span></a><span>&nbsp;开发团队（<a href="http://code.google.com/p/b3log-solo/people/list" target="_blank">成员列表</a>），并给我们带来了新皮肤 favourite。</span></p><br><h2>新特性</h2><br><ul><br><li>评论表情</li><br><li>自定义文章链接</li><br><li>自定义页面链接</li><br><li>新皮肤&mdash;&mdash;favourite</li><br><li>加入了&ldquo;初始化&rdquo;功能（/init.do）</li><br></ul><br><h2>Bug 修复</h2><br><ul><br><li>修复了偏好设定与统计数据丢失</li><br><li>修复了皮肤显示错误</li><br><li>修复了按标签/存档查看文章时排序的错误</li><br><li>修复了站外相关阅读显示站内文章问题</li><br></ul><br><h2>改进</h2><br><ul><br><li>提交评论/回复后只刷新评论列表</li><br><li>&rdquo;最新评论&ldquo;/统计信息使用模板生成</li><br><li>编辑器加入了中文配置</li><br><li>调整一些页面链接后缀为 .html</li><br><li>改进了页面缓存</li><br></ul><br><p>具体改动<a href="http://code.google.com/p/b3log-solo/issues/list?can=1&amp;q=Release%3D0.2.1+&amp;colspec=ID+Type+Status+Priority+Release+Owner+Summary&amp;cells=tiles" target="_blank">看这里</a>。</p><br><h2>升级</h2><br><p>如果您是 0.2.0 的用户，那么请在部署完 0.2.1 后登录后台，访问 <a href="http://${application-id}.appspot.com/upgrade/v020-v021.do" target="_blank" rel="noopener">http://${application-id}.appspot.com/upgrade/v020-v021.do</a> 进行升级。</p><br><p>该升级程序主要是对页面自定义链接特性进行数据一致性升级。</p><br><h2>项目</h2><br><p>如果在使用、测试中发现任何问题，如果您有任何意见或建议，请告知我们 :-)</p><br><ul><br><li>项目地址：<a href="http://code.google.com/p/b3log-solo/" target="_blank">http://code.google.com/p/b3log-solo/</a></li><br><li>下载地址：<a href="http://code.google.com/p/b3log-solo/downloads/list" target="_blank">http://code.google.com/p/b3log-solo/downloads/list</a></li><br><li>Bug/特性提交：<a href="http://code.google.com/p/b3log-solo/issues/list" target="_blank">http://code.google.com/p/b3log-solo/issues/list</a></li><br></ul><br><h3>作者博客</h3><br><ul><br><li><a href="http://88250.b3log.org/" target="_blank">简约设计の艺术</a></li><br><li><a href="http://vanessa.b3log.org/" target="_blank">Vanessa</a></li><br><li><a href="http://lamb.b3log.org/" target="_blank">羔羊&lt;&gt;沉默</a></li><br></ul><br><h3>发布历史</h3><br><ol><br><li><a href="http://88250.b3log.org/articles/2010/11/11/1289491357284.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.2.0 发布了！</a></li><br><li><a href="http://88250.b3log.org/articles/2010/10/26/1288097886428.html" target="_blank">GAE 博客&mdash;&mdash;B3log Solo 0.1.1 发布了！</a></li><br><li><a href="http://b3log-88250.appspot.com/articles/2010/10/13/1286980002007.html" target="_blank">B3log Solo 0.1.0 发布了！</a></li><br><li><a href="http://b3log-88250.appspot.com/articles/2010/09/26/1285519372666.html" target="_blank">B3log Solo 0.1.0-preview2 发布了！</a></li><br><li><a href="http://b3log-88250.appspot.com/articles/2010/09/08/1283986560000.html" target="_blank">Solo 0.1.0-Preview1 发布了</a></li><br></ol><br><p>&nbsp;</p><br><p>转自：<a href="http://88250.b3log.org/b3log-solo-release-021.html" target="_blank">http://88250.b3log.org/b3log-solo-release-021.html</a></p><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/B3log/" rel="tag"># B3log</a>
+          
+            <a href="/blog/tags/GAE/" rel="tag"># GAE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko54s00qc4urq96tybtar/" rel="next" title="Tiny MCE Syntaxhl 插件多语言中文版">
+                <i class="fa fa-chevron-left"></i> Tiny MCE Syntaxhl 插件多语言中文版
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5jq01a94urq169b06af/" rel="prev" title="数据之美（上）">
+                数据之美（上） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Bug 修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">作者博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.2.</span> <span class="nav-text">发布历史</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

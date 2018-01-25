@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,WebToolkit,Debug," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="下文转自：http://www.oschina.net/news/28670/5-highly-useful-javascript-debugging-tools 原文出处： http://webinsightlab.com/development/5-highly-useful-javascript-debugging-tools/&amp;nbsp;JavaScript被称作以原型(prototype">
+<meta name="keywords" content="JavaScript,WebToolkit,Debug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5 个非常有用的 JavaScript 调试工具">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4sc003w4urqzlj01tp2/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="下文转自：http://www.oschina.net/news/28670/5-highly-useful-javascript-debugging-tools 原文出处： http://webinsightlab.com/development/5-highly-useful-javascript-debugging-tools/&amp;nbsp;JavaScript被称作以原型(prototype">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://technotab.com/wp-content/uploads/2012/02/drosera.png">
+<meta property="og:image" content="http://technotab.com/wp-content/uploads/2012/02/dragonfly-e1329930406521.png">
+<meta property="og:image" content="http://technotab.com/wp-content/uploads/2012/02/firebug-e1329932731366.png">
+<meta property="og:image" content="http://technotab.com/wp-content/uploads/2012/02/Screen-shot-2012-02-23-at-12.16.52-AM-e1329936719837.png">
+<meta property="og:image" content="http://technotab.com/wp-content/uploads/2012/02/Screen-shot-2012-02-23-at-12.23.08-AM.png">
+<meta property="og:updated_time" content="2018-01-23T00:12:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5 个非常有用的 JavaScript 调试工具">
+<meta name="twitter:description" content="下文转自：http://www.oschina.net/news/28670/5-highly-useful-javascript-debugging-tools 原文出处： http://webinsightlab.com/development/5-highly-useful-javascript-debugging-tools/&amp;nbsp;JavaScript被称作以原型(prototype">
+<meta name="twitter:image" content="http://technotab.com/wp-content/uploads/2012/02/drosera.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4sc003w4urqzlj01tp2/"/>
+
+
+
+
+
+  <title>5 个非常有用的 JavaScript 调试工具 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4sc003w4urqzlj01tp2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">5 个非常有用的 JavaScript 调试工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-05-09T17:28:15+08:00">
+                2012-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>下文转自：<a href="http://www.oschina.net/news/28670/5-highly-useful-javascript-debugging-tools" target="_blank" rel="noopener">http://www.oschina.net/news/28670/5-highly-useful-javascript-debugging-tools</a> <br>原文出处： <a href="http://webinsightlab.com/development/5-highly-useful-javascript-debugging-tools/" target="_blank" rel="noopener">http://webinsightlab.com/development/5-highly-useful-javascript-debugging-tools/</a></p><br><p>&nbsp;</p><br><p>JavaScript被称作以原型(prototype)为基础的语言。这种语言有很多特色，比如动态和弱类型，它还有一等函数（first class function）。另一个特点是它是一个多范型(multi-paradigm)语言，支持面向对象、声明式、函数式的编程风格。</p><br><p>JavaScript最初被用作客户端语言，浏览器实现它用来提供增强的用户接口。JavaScript在很多现代的网站和Web应用程序中都有应 用。JavaScript的一个很棒的功能也很重要，就是我确实可以用它来提高或改善网站的用户体验。JavaScript也可以提供丰富的功能和交互的 组件。</p><br><p>JavaScript在这技术高速发展的同时变得非常受欢迎。因为受欢迎JavaScript也改进了许多，修改JavaScript脚本有很多事要做。这次我们为开发者带来了几个非常有用的JavaScript调试工具。</p><br><p>&nbsp;</p><br><h3>1) <a href="http://www.webkit.org/blog/61/introducing-drosera/" target="_blank">Drosera</a></h3><br><p>&nbsp;可以调试任何WebKit程序，不仅仅是Safari浏览器。</p><br><p style="text-align: center;"><a href="http://technotab.com/wp-content/uploads/2012/02/drosera.png" target="_blank" rel="noopener"><img class="aligncenter size-full wp-image-3400" title="drosera" src="http://technotab.com/wp-content/uploads/2012/02/drosera.png" alt="" width="285" height="355"></a></p><br><h3 style="text-align: left;">2) <a href="http://www.opera.com/dragonfly/" target="_blank">Dragonfly</a></h3><br><p style="text-align: left;">&nbsp;源代码视图有语法高亮，可以设置断点。强大的搜索功能，支持正则表达式。</p><br><p style="text-align: center;"><a href="http://technotab.com/wp-content/uploads/2012/02/dragonfly.png" target="_blank" rel="noopener"><img class="aligncenter size-full wp-image-3401" title="dragonfly" src="http://technotab.com/wp-content/uploads/2012/02/dragonfly-e1329930406521.png" alt="" width="550" height="423"></a></p><br><h3 style="text-align: left;">3) <a href="http://getfirebug.com/" target="_blank">Getfirebug</a></h3><br><p>&nbsp;可以在任何网页编辑、调试和实时监视CSS、HTML和JavaScript。</p><br><p style="text-align: center;"><a href="http://technotab.com/wp-content/uploads/2012/02/firebug.png" target="_blank" rel="noopener"><img class="aligncenter size-full wp-image-3402" title="firebug" src="http://technotab.com/wp-content/uploads/2012/02/firebug-e1329932731366.png" alt="" width="550" height="183"></a></p><br><h3 style="text-align: left;">4) <a href="http://www.debugbar.com/" target="_blank">Debugbar</a></h3><br><p>&nbsp;</p><br><p style="text-align: center;"><a href="http://technotab.com/wp-content/uploads/2012/02/Screen-shot-2012-02-23-at-12.16.52-AM.png" target="_blank" rel="noopener"><img class="aligncenter size-full wp-image-3404" title="debugbar" src="http://technotab.com/wp-content/uploads/2012/02/Screen-shot-2012-02-23-at-12.16.52-AM-e1329936719837.png" alt="" width="550" height="275"></a></p><br><h3 style="text-align: left;">5) <a href="https://developer.mozilla.org/en/Venkman" target="_blank">Venkman</a></h3><br><p>&nbsp;Venkman是Mozilla的JavaScript调试器名称。它旨在为以Mozilla为基础的浏览器（Firefox, Netscape 7.x/9.x and SeaMonkey）提供一个强大的JavaScript调试环境。</p><br><p style="text-align: center;"><img class="aligncenter size-full wp-image-3405" title="venkman" src="http://technotab.com/wp-content/uploads/2012/02/Screen-shot-2012-02-23-at-12.23.08-AM.png" alt="" width="453" height="194"></p><br><p style="text-align: center;">&nbsp;</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/WebToolkit/" rel="tag"># WebToolkit</a>
+          
+            <a href="/blog/tags/Debug/" rel="tag"># Debug</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4y800fr4urq2iv3os5x/" rel="next" title="Java 开源博客——B3log Solo 0.4.1 正式版发布了！">
+                <i class="fa fa-chevron-left"></i> Java 开源博客——B3log Solo 0.4.1 正式版发布了！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4xk00eh4urqlurs7t84/" rel="prev" title="JavaScript,HTML,CSS 规范小结">
+                JavaScript,HTML,CSS 规范小结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1) Drosera</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2) Dragonfly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3) Getfirebug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4) Debugbar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">5) Venkman</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

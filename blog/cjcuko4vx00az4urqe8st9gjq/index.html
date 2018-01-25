@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Frameworks,JavaScript,CSS,Test,PerformanceOptimization,Security," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="I have been doing research on what are some of the UI frameworks that are used at twitter.com. Following is a list of those UI frameworks, primarily Javascript. Please feel free to shout if you happen">
+<meta name="keywords" content="Frameworks,JavaScript,CSS,Test,PerformanceOptimization,Security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Home     Research Areas     Freshers Guide     Submit for Technology Review  What Javascript Frameworks are used at Twitter.com?">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4vx00az4urqe8st9gjq/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="I have been doing research on what are some of the UI frameworks that are used at twitter.com. Following is a list of those UI frameworks, primarily Javascript. Please feel free to shout if you happen">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T18:37:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Home     Research Areas     Freshers Guide     Submit for Technology Review  What Javascript Frameworks are used at Twitter.com?">
+<meta name="twitter:description" content="I have been doing research on what are some of the UI frameworks that are used at twitter.com. Following is a list of those UI frameworks, primarily Javascript. Please feel free to shout if you happen">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4vx00az4urqe8st9gjq/"/>
+
+
+
+
+
+  <title>Home     Research Areas     Freshers Guide     Submit for Technology Review  What Javascript Frameworks are used at Twitter.com? | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4vx00az4urqe8st9gjq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Home     Research Areas     Freshers Guide     Submit for Technology Review  What Javascript Frameworks are used at Twitter.com?</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-04T19:50:26+08:00">
+                2014-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p>I have been doing research on what are some of the UI frameworks that are used at twitter.com. Following is a list of those UI frameworks, primarily Javascript. Please feel free to shout if you happen to know that one or more of the following frameworks ain&rsquo;t actually used:</p><p></p>
+<ul><br><li><strong>Testing</strong><br><ul><br><li><a href="https://github.com/pivotal/jasmine" target="_blank" rel="nofollow">Jasmine</a>: This is a javascript library. A behavior-driven development <strong>framework for testing JavaScript code</strong>. It does not depend on any other JavaScript frameworks. It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests.</li><br></ul><br></li><br><li><strong>UI-based</strong><br><ul><br><li><a href="http://sizzlejs.com/" target="_blank" rel="nofollow">Sizzle</a>:&nbsp;A pure-<strong>JavaScript CSS selector engine</strong> designed to be easily dropped in to a host library.</li><br><li><a href="http://getbootstrap.com/" target="_blank" rel="nofollow">Bootstrap</a>:&nbsp;As mentioned on the website, Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web.</li><br><li><a href="http://html2canvas.hertzen.com/" target="_blank" rel="nofollow">Html2Canvas</a>: HTML2Canvas script&nbsp;allows one to take &ldquo;screenshots&rdquo; of webpages or parts of it, directly on the users browser. The screenshot is based on the DOM and thus, &nbsp;may not be 100% accurate to the real representation. This is because it does not make an actual screenshot, but builds the screenshot based on the information available on the page.</li><br><li><a href="http://jquery.com/" target="_blank" rel="nofollow">JQuery</a>: A&nbsp;fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers</li><br></ul><br></li><br><li><strong>Security</strong><br><ul><br><li><a href="https://github.com/mdp/gibberish-aes" target="_blank" rel="nofollow">Gibberish-AES</a>:&nbsp;A Javascript library for OpenSSL compatible AES encryption</li><br></ul><br></li><br><li><strong>Performance-based</strong><br><ul><br><li><a href="https://github.com/danwrong/loadrunner" target="_blank" rel="nofollow">Loadrunner</a>:&nbsp;A generic <strong>dependency manager</strong> that you can build on to<strong> manage any type of asynchronous dependency</strong> from CSS templates to DOM events to cache loading.&nbsp;It does include build in support for loading regular JavaScript files, AMD modules and its own, more elegant (IMHO) flavour of modules</li><br><li><a href="https://github.com/yahoo/boomerang" target="_blank" rel="nofollow">Boomerang</a>:&nbsp;A Javascript library that measures a whole bunch of <strong>performance characteristics of your user&rsquo;s web browsing experience</strong>. All that is needed is stick it into your web pages and call the init() method.</li><br></ul><br></li><br><li><strong>Communication</strong><br><ul><br><li><a href="https://github.com/necolas/xdm.js" target="_blank" rel="nofollow">Xdm</a>: Used for <strong>cross-domain messaging over postMessage</strong>, based on the JSON-RPC 2.0 protocol. It is a stripped down and slightly modified version of <a href="https://github.com/oyvindkinsey/easyXDM/" target="_blank" rel="nofollow">easyXDM</a>, a&nbsp;Javascript library that enables the developers to overcome the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API&rsquo;s across domain boundaries.</li><br></ul><br><p>转自 ：<a href="http://vitalflux.com/ui-frameworks-used-twitter-com/" target="_blank" rel="noopener">http://vitalflux.com/ui-frameworks-used-twitter-com/</a></p><br></li><br></ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Frameworks/" rel="tag"># Frameworks</a>
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="/blog/tags/Test/" rel="tag"># Test</a>
+          
+            <a href="/blog/tags/PerformanceOptimization/" rel="tag"># PerformanceOptimization</a>
+          
+            <a href="/blog/tags/Security/" rel="tag"># Security</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko51500kn4urq1xerq3ph/" rel="next" title="NetBeans Weekly News Issue # 276 - Mar 11, 2014">
+                <i class="fa fa-chevron-left"></i> NetBeans Weekly News Issue # 276 - Mar 11, 2014
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko51700kq4urqeb40h3j5/" rel="prev" title="NetBeans Weekly News Issue # 280 - Apr 15, 2014">
+                NetBeans Weekly News Issue # 280 - Apr 15, 2014 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

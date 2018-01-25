@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Frameworks,JavaScript,Mobile,HTML5,CSS3," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="与手工编码比起来，HTML5框架在准确性和正确率方面给予了保证。大多数HTML5框架都会有一个组合或者包含一些额外的组件，比如jQuery Scripts。CSS3样式表则以改善多媒体特征的功能性和响应式的Web布局为主。    如果你有一个根据固定流程进行的特定项目，为了保证项目刚开始就能有较高的正确率，那么你可以利用HTML5框架来提升整个开发过程，并且让网站拥有一致性结构。    伴">
+<meta name="keywords" content="Frameworks,JavaScript,Mobile,HTML5,CSS3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加速Web开发的9款知名HTML5框架">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuj6jbf00dbl6rqnd68g5n4/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="与手工编码比起来，HTML5框架在准确性和正确率方面给予了保证。大多数HTML5框架都会有一个组合或者包含一些额外的组件，比如jQuery Scripts。CSS3样式表则以改善多媒体特征的功能性和响应式的Web布局为主。    如果你有一个根据固定流程进行的特定项目，为了保证项目刚开始就能有较高的正确率，那么你可以利用HTML5框架来提升整个开发过程，并且让网站拥有一致性结构。    伴">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639k05fs78rx5szt5j5.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639mehhuvv3queevtwp.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639viszl4f54wq5lztp.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639s5cpxjp79uac7cxj.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640i643wlq2pk414oph.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640miq3f3bkasqmq0m1.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640czrre7iswr2r2rzo.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640wgdj0oyhvm5hrd1z.jpg">
+<meta property="og:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640gbl441allubw5uru.jpg">
+<meta property="og:updated_time" content="2018-01-25T03:20:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="加速Web开发的9款知名HTML5框架">
+<meta name="twitter:description" content="与手工编码比起来，HTML5框架在准确性和正确率方面给予了保证。大多数HTML5框架都会有一个组合或者包含一些额外的组件，比如jQuery Scripts。CSS3样式表则以改善多媒体特征的功能性和响应式的Web布局为主。    如果你有一个根据固定流程进行的特定项目，为了保证项目刚开始就能有较高的正确率，那么你可以利用HTML5框架来提升整个开发过程，并且让网站拥有一致性结构。    伴">
+<meta name="twitter:image" content="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639k05fs78rx5szt5j5.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuj6jbf00dbl6rqnd68g5n4/"/>
+
+
+
+
+
+  <title>加速Web开发的9款知名HTML5框架 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuj6jbf00dbl6rqnd68g5n4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">加速Web开发的9款知名HTML5框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-02-02T00:10:56+08:00">
+                2013-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><br>    与手工编码比起来，HTML5框架在准确性和正确率方面给予了保证。大多数HTML5框架都会有一个组合或者包含一些额外的组件，比如jQuery Scripts。CSS3样式表则以改善多媒体特征的功能性和响应式的Web布局为主。<br></p><br><p><br>    如果你有一个根据固定流程进行的特定项目，为了保证项目刚开始就能有较高的正确率，那么你可以利用HTML5框架来提升整个开发过程，并且让网站拥有一致性结构。<br></p><br><p><br>    伴随着智能手机正在席卷整个移动市场，在移动设备上开发出兼容性高的网站已变的非常重要，相信所有的网站所有者都希望自己的网站能够兼容所有的智能手机平台，HTML5框架可以轻松解决这种跨平台问题。<br></p><br><p><br>    如果你是一名Web设计师，你肯定有兴趣开发出杀手级的应用，那么使用下面推荐的HTML5框架将会对你的开发过程产生巨大的帮助，帮你搭建跨平台网站。<br></p><br><p><br>    <strong>1.<a href="http://lungo.tapquo.com/" target="_blank">&nbsp;LungoJS</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639k05fs78rx5szt5j5.jpg" alt="" height="167" width="500"><br></p><br><p><br>    这 个是被认为开发移动网站最好的HTML5开发框架，使用 HTML5/CSS3 和 JavaScript 技术。可帮助创建基于 iOS、 Android、 Blackberry 和 WebOS 平台的应用程序。该框架可利用当前移动设备的高级特性，可捕捉事件包括滑动、触屏、长按等。无需使用图片，全部采用向量声称。<br></p><br><p><br>    Lungo.JS 无需服务器端支持，可帮助实现 HTML5 特性，包括 WebSQL、Geolocation、 History、 Device orientation 等等。这是一个完全可定制的框架，可用来创建应用、游戏等程序。<br></p><br><p><br>    <strong>2.<a href="http://www.kendoui.com/" target="_blank">Kendo UI</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639mehhuvv3queevtwp.jpg" alt="" height="167" width="500"><br></p><br><p><br>    Kendo UI是一个HTML5平台，开发者利用它可以开发新颖的、交互的移动应用程序和网站。该框架提供了大量的动画和丰富的拖拽功能、模板功能以及提供了将近10款客户端常用的数据绑定小部件，如图表、组合框以及常用表格。<br></p><br><p><br>    <strong>3.<a href="http://www.sencha.com/learn/touch/" target="_blank">Sencha Touch</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639viszl4f54wq5lztp.jpg" alt="" height="167" width="500"><br></p><br><p><br>    Sencha Touch是第一个基于HTML5的移动应用框架，利用JavaScript、HTML5和CSS3来构建移动应用程序，该框架利用本地代理存储离线数据，具体使用HTML5来渲染视频和音频组件。<br></p><br><p><br>    可以让你的Web App看起来就像本地应用程序一样。美丽的用户界面组件和丰富的数据管理，全部基于最新的HTML5和CSS3的Web标准，全面兼容Android和Apple iOS设备。<br></p><br><p><br>    <strong>4.<a href="http://joapp.com/" target="_blank">Jo</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132639s5cpxjp79uac7cxj.jpg" alt="" height="167" width="500"><br></p><br><p><br>    该框架可以创建像本地一样的应用，并且兼容任何操作系统，无论是Blackberry、iOS还是Android。并且提供许多HTML5小部件。使用它可以解决任何动画设计方面的问题。<br></p><br><p><br>    <strong>5.<a href="http://www.52framework.com/" target="_blank">52 Framework</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640i643wlq2pk414oph.jpg" alt="" height="167" width="500"><br></p><br><p><br>    52 Framework拥有16列的网格模板。该框架来自于CSS3样式里的新“Selection”、阴影、圆角以及有效的HTML5标记。该框架还提供了一些特殊的脚本和样式用于IE6。<br></p><br><p><br>    <strong>6.&nbsp;<a href="http://framework.gregbabula.info/" target="_blank">G5 Framework</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640miq3f3bkasqmq0m1.jpg" alt="" height="167" width="500"><br></p><br><p><br>    如 果你想要快速实现Web开发，并且想要重用ant主题或应用程序或网站项目，那么G5 框架是您最好的选择，因为该框架旨在提升开发效率、减少代码。该框架采用特色的PHP激活类、SEO优化技术。除了G5自身所带的这些功能特性外，它还集 成其他许多功能，例如Orbit Slider、CSS3 PIE、Reveal Modals、CSS3 Buttons和Tipsy Tooltips等。<br></p><br><p><br>    <strong>7.<a href="http://www.limejs.com/" target="_blank">LimeJS</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640czrre7iswr2r2rzo.jpg" alt="" height="167" width="500"><br></p><br><p><br>    LimeJS 是一个 JavaScript 游戏开发框架，用于快速构建运行于触屏设备和桌面浏览器的游戏。允许开发者创建基于 HTML5 的游戏，支持主流浏览器包括iOS。<br></p><br><p><br>    <strong>8.<a href="http://jquerymobile.com/" target="_blank">jQuery Mobile</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640wgdj0oyhvm5hrd1z.jpg" alt="" height="388" width="459"><br></p><br><p><br>    jQuery Mobile（jQueryMobile）是 jQuery在手机上和平板设备上的版本。jQuery Mobile 不仅会给主流移动平台带来jQuery核心库，而且会发布一个完整统一的jQuery移动UI框架。支持全球主流的移动平台。jQuery Mobile开发团队说：能开发这个项目，我们非常兴奋。移动Web太需要一个跨浏览器的框架，让开发人员开发出真正的移动Web网站。我们将尽全力去满 足这样的需求。<br></p><br><p><br>    <strong>9.<a href="http://www.phonegap.cn/" target="_blank">Phone Gap</a></strong><br></p><br><p style="text-align:center;"><br>    <img src="http://www.w3cfuns.com/data/attachment/portal/201302/01/132640gbl441allubw5uru.jpg" alt="" height="331" width="412"><br></p><br><p><br>    PhoneGap 是一个开源的开发框架，使用HTML，CSS和JavaScript来构建跨平台的的移动应用程序。它使开发者能够利用 iPhone，Android，Palm，Symbian，Blackberry，Windows Phone和Beda智能手机的核心功能——包括地理定位，加速器，联系人，声音和振动等。<br></p><br><p><br>    <br><br>转自：<a target="_blank" href="http://www.w3cfuns.com/article-987-1.html">http://www.w3cfuns.com/article-987-1.html</a><br></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Frameworks/" rel="tag"># Frameworks</a>
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/Mobile/" rel="tag"># Mobile</a>
+          
+            <a href="/blog/tags/HTML5/" rel="tag"># HTML5</a>
+          
+            <a href="/blog/tags/CSS3/" rel="tag"># CSS3</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6coe000jl6rqmvevwk1w/" rel="next" title="【CF 应用开发大赛】B3log Symphony 社区">
+                <i class="fa fa-chevron-left"></i> 【CF 应用开发大赛】B3log Symphony 社区
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzjac00vvxwrqomxxi9no/" rel="prev" title="用于展现图表的50种JavaScript库">
+                用于展现图表的50种JavaScript库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Knowledge,Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="表象化状态转变（英文：Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。 目前在三种主流的Web服务实现方案中，因为REST模式的Web服务与复杂的SOAP和XML-RPC对比来讲明显的更加简洁，越来越多的web服务开始采用REST风格设计和实现。例如，Amazon.com提供接近REST">
+<meta name="keywords" content="Knowledge,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="REST">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko53100no4urqe2gf4jph/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="表象化状态转变（英文：Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。 目前在三种主流的Web服务实现方案中，因为REST模式的Web服务与复杂的SOAP和XML-RPC对比来讲明显的更加简洁，越来越多的web服务开始采用REST风格设计和实现。例如，Amazon.com提供接近REST">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T09:42:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="REST">
+<meta name="twitter:description" content="表象化状态转变（英文：Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。 目前在三种主流的Web服务实现方案中，因为REST模式的Web服务与复杂的SOAP和XML-RPC对比来讲明显的更加简洁，越来越多的web服务开始采用REST风格设计和实现。例如，Amazon.com提供接近REST">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko53100no4urqe2gf4jph/"/>
+
+
+
+
+
+  <title>REST | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko53100no4urqe2gf4jph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">REST</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-14T09:39:00+08:00">
+                2008-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p><b>表象化状态转变</b>（英文：<b><span xml:lang="en" lang="en">Representational State Transfer</span></b>，简称<b>REST</b>）是<a href="http://zh.wikipedia.org/w/index.php?title=Roy_Fielding&amp;action=edit&amp;redlink=1" class="new" title="Roy Fielding (尚未撰写)" target="_blank" rel="noopener">Roy Fielding</a>博士在2000年他的博士论文中提出来的一种<a href="http://zh.wikipedia.org/w/index.php?title=%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84&amp;variant=zh-cn" title="软件架构" target="_blank" rel="noopener">软件架构</a>风格。</p><p></p>
+<p></p><p>目前在三种主流的<a href="http://zh.wikipedia.org/w/index.php?title=Web%E6%9C%8D%E5%8A%A1&amp;variant=zh-cn" title="Web服务" target="_blank" rel="noopener">Web服务</a>实现方案中，因为REST模式的<a href="http://zh.wikipedia.org/w/index.php?title=Web%E6%9C%8D%E5%8A%A1&amp;variant=zh-cn" title="Web服务" target="_blank" rel="noopener">Web服务</a>与复杂的<a href="http://zh.wikipedia.org/w/index.php?title=SOAP&amp;variant=zh-cn" title="SOAP" target="_blank" rel="noopener">SOAP</a>和<a href="http://zh.wikipedia.org/w/index.php?title=XML-RPC&amp;action=edit&amp;redlink=1" class="new" title="XML-RPC (尚未撰写)" target="_blank" rel="noopener">XML-RPC</a>对比来讲明显的更加简洁，越来越多的web服务开始采用REST风格设计和实现。例如，<a href="http://zh.wikipedia.org/w/index.php?title=Amazon.com&amp;variant=zh-cn" title="Amazon.com" target="_blank" rel="noopener">Amazon.com</a>提供接近REST风格的Web服务进行图书查找；<a href="http://zh.wikipedia.org/w/index.php?title=%E9%9B%85%E8%99%8E&amp;variant=zh-cn" title="雅虎" target="_blank" rel="noopener">雅虎</a>提供的Web服务也是REST风格的。</p><script type="text/javascript">//&lt;![CDATA[<br> if (window.showTocToggle) { var tocShowText = “显示”; var tocHideText = “隐藏”; showTocToggle(); }<br>//]]&gt;<br></script><p></p>
+<p></p><p><a name=".E5.AE.97.E6.97.A8"></a></p><p></p>
+<p></p><h2><span class="editsection"></span> <span class="mw-headline">宗旨</span></h2><p></p>
+<p></p><p>REST 从资源的角度来观察整个网络，分布在各处的资源由<a href="http://zh.wikipedia.org/w/index.php?title=URI&amp;variant=zh-cn" title="URI" class="mw-redirect" target="_blank" rel="noopener">URI</a>确定，而客户端的应用通过URI来获取资源的表形。获得这些表形致使这些应用程序转变了其状态。随着不断获取资源的表形，客户端应用不断地在转变着其状态，所谓表形化的状态转变（Representational State Transfer）。</p><p></p>
+<p></p><p>这一观点不是凭空臆造的，而是通过观察当前Web互联网的运作方式而抽象出来的。Roy Fielding 认为，</p><p></p>
+<p><table style="border-style: none; margin: auto; border-collapse: collapse; background-color: transparent;" class="cquote"></table></p>
+<p><tbody><tr></tr></tbody></p>
+<p><td style="padding: 10px; color: rgb(178, 183, 242); font-size: 35px; font-family: 'Times New Roman',serif; font-weight: bold; text-align: left;" valign="top" width="20">“</td></p>
+<p><td style="padding: 4px 10px;" valign="top">设计良好的网络应用表现为一系列的网页，这些网页可以看作的虚拟的<a href="http://zh.wikipedia.org/w/index.php?title=%E7%8A%B6%E6%80%81%E6%9C%BA&amp;variant=zh-cn" title="状态机" class="mw-redirect" target="_blank" rel="noopener">状态机</a>，用户选择这些链接导致下一网页传输到用户端展现给使用的人，而这正代表了状态的转变。</td></p>
+<p><td style="padding: 10px; color: rgb(178, 183, 242); font-size: 36px; font-family: 'Times New Roman',serif; font-weight: bold; text-align: right;" valign="bottom" width="20">”</td><br><br></p>
+<p></p><p><a name=".E8.A6.81.E7.82.B9.E5.8F.8A.E6.A0.87.E5.87.86"></a></p><p></p>
+<p></p><h2><span class="editsection"></span><span class="mw-headline">要点及标准</span></h2><p></p>
+<p></p><p>需要注意的是，REST是一种设计风格而<b>不是</b>一个标准。REST通常基于使用<a href="http://zh.wikipedia.org/w/index.php?title=HTTP&amp;variant=zh-cn" title="HTTP" class="mw-redirect" target="_blank" rel="noopener">HTTP</a>，<a href="http://zh.wikipedia.org/w/index.php?title=URI&amp;variant=zh-cn" title="URI" class="mw-redirect" target="_blank" rel="noopener">URI</a>，和<a href="http://zh.wikipedia.org/w/index.php?title=XML&amp;variant=zh-cn" title="XML" class="mw-redirect" target="_blank" rel="noopener">XML</a>以及<a href="http://zh.wikipedia.org/w/index.php?title=HTML&amp;variant=zh-cn" title="HTML" target="_blank" rel="noopener">HTML</a>这些现有的广泛流行的协议和标准。</p><p></p>
+<ul><li>资源是由URI来指定。</li><li>对资源的操作包括获取、创建、修改和删除资源，这些操作正好对应HTTP协议提供的GET、POST、PUT和DELETE方法。</li><li>通过操作资源的表形来操作资源。</li><li>资源的表现形式则是XML或者HTML，取决于是读者是机器还是人，消费web服务的客户软件还是web浏览器。当然也可以是任何其他的格式。</li></ul><br><p><a name="REST.E7.9A.84.E8.A6.81.E6.B1.82" id="REST.E7.9A.84.E8.A6.81.E6.B1.82"></a></p><br><h3><span class="editsection"></span><span class="mw-headline">REST的要求</span></h3><br><ul><li>客户端和服务器结构</li><li>连接协议具有无状态性</li><li>能够利用Cache机制增进性能</li><li>层次化的系统</li><li>Code On Demand - Javascript</li></ul><br><p><a name=".E5.85.B3.E4.BA.8E.E7.8A.B6.E6.80.81"></a></p><br><h3><span class="editsection"></span><span class="mw-headline">关于状态</span></h3><br><p>应该注意区别应用的状态和连接协议的状态。REST对于连接的无状态性实际上要求每次经过无状态的连接协议传送的信息必须包含应用中所有的状态信息。</p><br><p><a name=".E5.AE.9E.E7.8E.B0.E4.B8.BE.E4.BE.8B"></a></p><br><h2><span class="editsection"></span> <span class="mw-headline">实现举例</span></h2><br><p>例如，一个简单的网络商店应用，</p><br><p>列举所有商品，</p><br><pre>GET <a href="http://www.store.com/products" target="_blank" rel="noopener">http://www.store.com/products</a><br></pre><br><p>具体某一件商品，</p><br><pre>GET <a href="http://www.store.com/product/12345" target="_blank" rel="noopener">http://www.store.com/product/12345</a><br></pre><br><p>下单购买，</p><br><pre>POST <a href="http://www.store.com/order，" target="_blank" rel="noopener">http://www.store.com/order，</a><br>&lt;purchase-order&gt;<br>  &lt;item&gt; … &lt;/item&gt;<br>&lt;/purchase-order&gt;<br></pre><br><p><a name="REST.E7.9A.84.E4.BC.98.E7.82.B9" id="REST.E7.9A.84.E4.BC.98.E7.82.B9"></a></p><br><h2><span class="editsection"></span> <span class="mw-headline">REST的优点</span></h2><br><ul><li>可以利用缓存Cache来提高响应速度</li><li>通讯本身的无状态性可以让不同的服务器的处理一系列请求中的不同请求，提高服务器的扩展性</li><li>浏览器即可作为客户端，简化软件需求</li><li>相对与其他叠加在<a href="http://zh.wikipedia.org/w/index.php?title=%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE&amp;variant=zh-cn" title="超文本传输协议" target="_blank" rel="noopener">HTTP协议</a>之上的机制，REST的软件依赖性更小</li><li>不需要额外的资源发现机制</li><li>在软件技术演进中的长期的兼容性更好</li></ul><br><p><a name=".E5.AE.9E.E7.8E.B0"></a></p><br><h2><span class="editsection"></span><span class="mw-headline">实现</span></h2><br><ul><li><a href="http://zh.wikipedia.org/w/index.php?title=Ruby_on_Rails&amp;variant=zh-cn" title="Ruby on Rails" target="_blank" rel="noopener">Ruby on Rails</a>1.2以后的版本支持<a href="http://weblog.rubyonrails.org/2007/1/19/rails-1-2-rest-admiration-http-lovefest-and-utf-8-celebrations" class="external text" title="http://weblog.rubyonrails.org/2007/1/19/rails-1-2-rest-admiration-http-lovefest-and-utf-8-celebrations" rel="noopener" target="_blank">REST model</a>.</li></ul><br><p><a name=".E5.8F.82.E8.80.83.E8.B5.84.E6.96.99"></a></p><br><h2><span class="editsection"></span> <span class="mw-headline">参考资料</span></h2><br><ul><li><a href="http://www.restfulwebservices.cn/" class="external text" title="http://www.restfulwebservices.cn/" rel="noopener" target="_blank">《RESTful Web Services 中文版》</a>：<a href="http://www.restfulwebservices.cn/" class="external free" title="http://www.restfulwebservices.cn/" rel="noopener" target="_blank">http://www.restfulwebservices.cn/</a></li><li><a href="http://www.ics.uci.edu/%7Efielding/pubs/dissertation/top.htm" class="external free" title="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" rel="noopener" target="_blank">http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm</a> Roy Fielding的博士论文《Architectural Styles and the Design of Network-based Software Architectures》</li><li><a href="http://www.xml.com/pub/a/2002/02/06/rest.html" class="external free" title="http://www.xml.com/pub/a/2002/02/06/rest.html" rel="noopener" target="_blank">http://www.xml.com/pub/a/2002/02/06/rest.html</a> 第二代web服务，Paul Prescod。</li></ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Knowledge/" rel="tag"># Knowledge</a>
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4v8009h4urqy6zdvwr6/" rel="next" title="Give up">
+                <i class="fa fa-chevron-left"></i> Give up
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko54900pl4urqup6nz7tr/" rel="prev" title="Sun宣布裁员6000人 软件业务重组分三部分">
+                Sun宣布裁员6000人 软件业务重组分三部分 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"> 宗旨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">要点及标准</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">REST的要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">关于状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text"> 实现举例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text"> REST的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text"> 参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

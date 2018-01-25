@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在朋友的强烈推荐下，开始看JSF2.0。看了第一部分。感觉不是太大。接下来继续学习，应该会有不错的体验。。。&amp;nbsp;使用 JSF 2 简化导航、免除 XML 配置并轻松访问资源级别： 中级David Geary, 总裁, Clarity Training, Inc.2009 年  6 月  15 日随着 2.0 版本的发布，Java&amp;trade;Server Faces (JSF) 现在可以轻">
+<meta name="keywords" content="JSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSF 2 简介，第 1 部分: 流线化 Web 应用程序开发">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4ww00cy4urqefs4aqu3/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="在朋友的强烈推荐下，开始看JSF2.0。看了第一部分。感觉不是太大。接下来继续学习，应该会有不错的体验。。。&amp;nbsp;使用 JSF 2 简化导航、免除 XML 配置并轻松访问资源级别： 中级David Geary, 总裁, Clarity Training, Inc.2009 年  6 月  15 日随着 2.0 版本的发布，Java&amp;trade;Server Faces (JSF) 现在可以轻">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/places-places.jpg">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/zoom-levels.jpg">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/place.jpg">
+<meta property="og:image" content="https://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/resources.jpg">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/v14/icons/fw.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/developerworks/i/p-dgeary.jpg">
+<meta property="og:image" content="https://www.ibm.com/i/c.gif">
+<meta property="og:updated_time" content="2018-01-23T20:57:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSF 2 简介，第 1 部分: 流线化 Web 应用程序开发">
+<meta name="twitter:description" content="在朋友的强烈推荐下，开始看JSF2.0。看了第一部分。感觉不是太大。接下来继续学习，应该会有不错的体验。。。&amp;nbsp;使用 JSF 2 简化导航、免除 XML 配置并轻松访问资源级别： 中级David Geary, 总裁, Clarity Training, Inc.2009 年  6 月  15 日随着 2.0 版本的发布，Java&amp;trade;Server Faces (JSF) 现在可以轻">
+<meta name="twitter:image" content="https://www.ibm.com/i/c.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4ww00cy4urqefs4aqu3/"/>
+
+
+
+
+
+  <title>JSF 2 简介，第 1 部分: 流线化 Web 应用程序开发 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4ww00cy4urqefs4aqu3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSF 2 简介，第 1 部分: 流线化 Web 应用程序开发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-08-14T03:07:00+08:00">
+                2009-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr valign="top"><br><td width="100%"><br><h1><span style="color: #999999;"><br><br></span><br></h1><br><p id="subtitle">在朋友的强烈推荐下，开始看JSF2.0。看了第一部分。感觉不是太大。接下来继续学习，应该会有不错的体验。。。</p><br><p>&nbsp;</p><br><p><em>使用 JSF 2 简化导航、免除 XML 配置并轻松访问资源</em><br></p><br><img class="display-img" src="https://www.ibm.com/i/c.gif" alt="" width="1" height="6"><br></td><br><td class="no-print" width="192"><br><br></td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr valign="top"><br><td width="10"><img src="https://www.ibm.com/i/c.gif" alt="" width="10" height="1"><br></td><br><td width="100%"><br><table class="no-print" border="0" cellspacing="0" cellpadding="0" width="160" align="right"><br><tbody><br><tr><br><td width="10"><img src="https://www.ibm.com/i/c.gif" alt="" width="10" height="1"><br></td><br><td><br><table style="height: 7px;" border="0" cellspacing="0" cellpadding="0" width="44"><br><tbody><br><tr><br><td class="v14-header-1-small"></td><br></tr><br></tbody><br></table><br><table class="v14-gray-table-border" border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td class="no-padding" width="150"></td><br></tr><br></tbody><br></table><br><!-- START RESERVED FOR FUTURE USE INCLUDE FILES--><!--  this content will be automatically generated across all content areas --><!-- END RESERVED FOR FUTURE USE INCLUDE FILES--><br><br></td><br></tr><br></tbody><br></table><br><p>级别： 中级</p><br><p><a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#author" target="_blank" rel="noopener">David Geary</a><br>, 总裁, Clarity Training, Inc.</p><br><p>2009 年  6 月  15 日</p><br><blockquote><br>随着 2.0 版本的发布，Java&trade;Server Faces (JSF) 现在可以轻松地实现健壮的、Ajax 风格的 Web<br>应用程序。本文是共三部分的系列文章的开篇，JSF 2.0 专家组成员 David Geary 将展示如何利用 JSF 2<br>中的新特性。在这期文章中，您将了解到如何使用 JSF 2 流线化开发，您将使用注释和约定代替 XML<br>配置，简化导航，并轻松访问资源。并且您将看到如何在您的 JSF 应用程序中使用 Groovy。<br></blockquote><br><!-- START RESERVED FOR FUTURE USE INCLUDE FILES--><!--  include java script once we verify teams wants to use this and it will work on dbcs and cyrillic characters --><br><!-- END RESERVED FOR FUTURE USE INCLUDE FILES--><br><p>有关 Web 应用程序框架的最佳发源地，人们一直争论不休：是象牙塔（由理论家空想而来）还是现实世界。在后一种情况下，框架的诞生经受了实际需求的严酷考验。凭直觉判断，经受了实际需求的考验要胜过理论家的空想，并且我认为这种直觉完全经得起更进一步的检验。</p><br><p>JSF<br>1 就是在象牙塔中开发的，因此，它的出现并没有引起太大的轰动。但是，JSF 做对了一件事情 &mdash;<br>它使市场上出现了大量来自实际开发的创新。早些时候，Facelets 的初次登场成为了 JavaServer Pages (JSP)<br>的强有力候补。然后出现了 Rich Faces，一个出色的 JSF Ajax 库；接着是 ICEFaces，将 Ajax 和 JSF<br>联合起来的新颖方法；还有 Seam、Spring Faces、Woodstock 组件、JSF Templating，等等。所有这些开源<br>JSF 项目都是由开发人员根据自己需要的功能构建的。</p><br><p>JSF 2.0<br>专家组实际上对来自这些开源项目的最佳特性进行了标准化。尽管 JSF 2<br>规范确实是由一些理论家编写的，但它也受到了来自实际开发的创新的驱动。回想起来，专家组的工作其实非常轻松，因为我们正站在巨人的肩膀上，比如<br>Gavin King (Seam)、Alexandr Smirnov (Rich Faces)、Ted Goddard (ICEFaces)<br>和 Ken Paulson (JSF Templating)。实际上，所有这些巨人都是 JSF 2 专家组的成员。因此，JSF 2<br>在许多方面都结合了象牙塔和真实世界的长处。并且它展示了这一点。JSF 2 是对 JSF 1 的重大改进。</p><br><p>本文是共三部分的系列文章的开篇，主要有两个目标：展示激动人心的 JSF 2 新特性，展示如何最佳地利用这些特性，这样您就能够利用 JSF 2 提供的功能。通过演示 JSF 2 的应用并伴随一些最佳使用技巧，我将阐述前面两个问题。下面是本文将要介绍的技巧：</p><br><ul><br><li>技巧 1：去除 XML 配置</li><br><li>技巧 2：简化导航</li><br><li>技巧 3：使用 Groovy</li><br><li>技巧 4：利用资源处理程序</li><br></ul><br><p>但是，我将首先介绍贯穿整个系列文章的示例应用程序。本文的应用程序源代码可以 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#download" target="_blank" rel="noopener">下载</a><br> 获得。</p><br><p><a name="N100A5"><span class="atitle">基于强制映射的 Web 服务 mashup 示例</span><br></a><br></p><br><p>图 1 展示了一个 JSF mashup &mdash; 我将它称为 places 应用程序 &mdash; 它使用 Yahoo! Web 服务将地址转换为地图，并显示缩放级别和天气预报：</p><br><br><br><a name="fig1"><strong>图 1. 从 Yahoo! Web Services 中查看地图和天气信息</strong><br></a><br><br><br>            <img src="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/places-places.jpg" alt="从 Yahoo! Web Services 中查看地图和天气信息" width="572" height="452"><br>            <br><br><p>要创建一个地点，需要填写地址表单，激活 Go 按钮，然后应用程序将把地址发送给两个 Web 服务：Yahoo! Maps 和 Yahoo! Weather。</p><br><p> Map 服务在 Yahoo! 服务器上返回指向地址映射的 11 个地图 URL，使用不同的缩放级别。Weather 服务返回一些预先组装的 HTML。图像 URL 和 HTML 内容都轻松地显示在一个 JSF 视图中，这要分别感谢 <code>&lt;h:graphicImage&gt;</code><br> 和 <code>&lt;h:outputText&gt;</code><br>。</p><br><p>places 应用程序使您能够输入任意数量的地址。您甚至可以多次使用同一个地址 ，如图 2 所示，它实际上演示了缩放级别：</p><br><br><br><a name="fig2"><strong>图 2. 缩放级别</strong><br></a><br><br><br>            <img src="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/zoom-levels.jpg" alt="缩放级别" width="572" height="553"><br><p><a name="N100DD"><span class="smalltitle">应用程序的关键点</span><br></a><br></p><br><p>places 应用程序有 4 个托管 bean（managed bean），如 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#table1" target="_blank" rel="noopener">表 1</a><br> 所示：</p><br><br><br><a name="table1"><strong>表 1. places 应用程序中的托管 bean</strong><br></a><br><br><br><br><table class="data-table-1" border="0" cellspacing="0" cellpadding="2" width="100%" summary="The managed beans in the places application"><br><tbody><br><tr><br><th scope="col">托管 bean 名称</th><br><th width="40%" scope="col">类</th><br><th scope="col">范围</th><br></tr><br><tr><br><td><br>                        <code>mapService</code><br>                    </td><br><td><br>                        <code>com.clarity.MapService</code><br>                    </td><br><td>应用程序</td><br></tr><br><tr><br><td><br>                        <code>weatherService</code><br>                    </td><br><td><br>                        <code>com.clarity.WeatherService</code><br>                    </td><br><td>应用程序</td><br></tr><br><tr><br><td><br>                        <code>places</code><br>                    </td><br><td><br>                        <code>com.clarity.Places</code><br>                    </td><br><td>会话</td><br></tr><br><tr><br><td><br>                        <code>place</code><br>                    </td><br><td><br>                        <code>com.clarity.Place</code><br>                    </td><br><td> 请求</td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="0" width="40%" align="right"><br><tbody><br><tr><br><td width="10"><img src="https://www.ibm.com/i/c.gif" alt="" width="10" height="1"><br></td><br><td><br><table border="1" cellspacing="0" cellpadding="5" width="100%"><br><tbody><br><tr><br><td bgcolor="#eeeeee"><br>                <a name="N1015B"><strong>运行 places 应用程序</strong><br></a><br><br><br><p>要运行 places 应用程序，需要访问 <a href="http://developer.yahoo.com/maps/ajax" target="_blank" rel="noopener">developer.yahoo.com/maps/ajax</a><br>，从 Yahoo! 获得一个应用程序 ID，这样才能使用 Yahoo! Web 服务。单击 Yahoo! Maps Web Service 中的 <strong>Get an App ID</strong><br> 按钮。得到 ID 后，在 <code>MapService.java</code><br> 和 <code>WeatherService.java</code><br> 中用您的 ID 替换 <code>YOUR_ID_HERE</code><br>。</p><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><p>应用程序在会话范围内存储了一组 <code>Place</code><br>，如 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#fig1" target="_blank" rel="noopener">图 1</a><br> 所示，并在请求范围内维护了一个 <code>Place</code><br>。应用程序还分别使用应用程序范围内的 <code>mapService</code><br> 和 <code>weatherService</code><br> 托管 beans 为 Yahoo! 的 map 和 weather Web 服务提供了简单的 API。</p><br><p>创建地点非常简单。清单 1 显示了 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#fig1" target="_blank" rel="noopener">图 1</a><br> 中的视图所含的地址表单的代码： </p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p><br>            <br><br><a name="listing1"><strong>清单 1. 地址表单</strong><br></a></p><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;h:form&gt;<br><br>  &lt;h:panelGrid columns=&quot;2&quot;&gt;<br><br>    #{msgs.streetAddress} &lt;h:inputText value=&quot;#{<span class="boldcode">place</span><br>.streetAddress}&quot; size=&quot;15&quot;/&gt;<br><br>    #{msgs.city}          &lt;h:inputText value=&quot;#{<span class="boldcode">place</span><br>.city}&quot;          size=&quot;10&quot;/&gt;<br><br>    #{msgs.state}         &lt;h:inputText value=&quot;#{<span class="boldcode">place</span><br>.state}&quot;         size=&quot;2&quot;/&gt;<br><br>    #{msgs.zip}           &lt;h:inputText value=&quot;#{<span class="boldcode">place</span><br>.zip}&quot;           size=&quot;5&quot;/&gt;<br><br><br><br>    &lt;<span class="boldcode">h:commandButton</span><br> value=&quot;#{msgs.goButtonText}&quot;<br><br>        style=&quot;font-family:Palatino;font-style:italic&quot;<br><br>        <span class="boldcode">action=&quot;#{place.fetch}&quot;</span><br>/&gt;<br><br><br><br>  &lt;/h:panelGrid&gt;<br><br>&lt;/h:form&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p>当用户激活 Go 按钮并提交表单后，JSF 将调用按钮的操作方法：<code>place.fetch()</code><br>。该方法将信息从 Web 服务发送到 <code>Place.addPlace()</code><br>，后者创建一个新的 <code>Place</code><br> 实例，使用传递给方法的数据初始化实例，并将其存储在请求范围内。 </p><br><p>清单 2 展示了 <code>Place.fetch()</code><br>：</p><br><br><br><a name="listing2"><strong>清单 2. <code>Place.fetch()</code><br> 方法</strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>public class Place {<br><br>  …<br><br>  private String[] mapUrls<br><br>  private String weather<br><br>  …<br><br>  public String fetch() {<br><br>    FacesContext fc = FacesContext.getCurrentInstance()<br><br>    ELResolver elResolver = fc.getApplication().getELResolver()<br><br><br><br>    // Get maps<br><br><br><br>    MapService ms = elResolver.getValue(<br><br>      fc.getELContext(), null, &quot;mapService&quot;)<br><br><br><br>    <span class="boldcode">mapUrls = ms.getMap(streetAddress, city, state)</span><br><br><br><br><br>    // Get weather<br><br><br><br>    WeatherService ws = elResolver.getValue(<br><br>      fc.getELContext(), null, &quot;weatherService&quot;)<br><br><br><br>    <span class="boldcode">weather = ws.getWeatherForZip(zip, true)</span><br><br><br><br><br>    // Get places<br><br><br><br>    Places places = elResolver.getValue(<br><br>      fc.getELContext(), null, &quot;places&quot;)<br><br><br><br>    // Add new place to places<br><br><br><br>    <span class="boldcode">places.addPlace(streetAddress, city, state, mapUrls, weather)</span><br><br><br><br><br>    return null<br><br>  }<br><br>}<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p><br>                <code>Place.fetch()</code><br> 使用 JSF 的变量分解器（resolver）查找 <code>mapService</code><br> 和 <code>weatherService</code><br> 托管 bean，并且使用这些托管 bean 从 Yahoo! Web 服务获得地图和天气信息。随后 <code>fetch()</code><br> 调用 <code>places.addPlace()</code><br>，后者使用地图和天气信息以及地址，在请求范围内创建一个新的 <code>Place</code><br>。</p><br><p>注意 <code>fetch()</code><br> 返回 <code>null</code><br>。由于 <code>fetch()</code><br> 是一个与按钮有关的操作方法，<code>null</code><br> 返回值使得 JSF 重新加载同一个视图，其中显示用户会话中的所有位置，如清单 3 所示：</p><br><br><br><a name="listing3"><strong>清单 3. 在视图中显示位置</strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;ui:composition xmlns=&quot;<a href="http://www.w3.org/1999/xhtml&amp;quot" target="_blank" rel="noopener">http://www.w3.org/1999/xhtml&amp;quot</a>;<br><br>    xmlns:f=&quot;<a href="http://java.sun.com/jsf/core&amp;quot" target="_blank" rel="noopener">http://java.sun.com/jsf/core&amp;quot</a>;<br><br>    xmlns:h=&quot;<a href="http://java.sun.com/jsf/html&amp;quot" target="_blank" rel="noopener">http://java.sun.com/jsf/html&amp;quot</a>;<br><br>    xmlns:ui=&quot;<a href="http://java.sun.com/jsf/facelets&quot;&amp;gt" target="_blank" rel="noopener">http://java.sun.com/jsf/facelets&quot;&amp;gt</a>;<br><br><br><br>  &lt;h:form&gt;<br><br>    &lt;!– <span class="boldcode">Iterate over the list of places</span><br> –&gt;<br><br>    &lt;ui:repeat value=&quot;#{<span class="boldcode">places.placesList</span><br>}&quot; var=&quot;<span class="boldcode">place</span><br>&quot;&gt;<br><br><br><br>      &lt;div class=&quot;placeHeading&quot;&gt;<br><br>        &lt;h:panelGrid columns=&quot;1&quot;&gt;<br><br><br><br>          &lt;!– <span class="boldcode">Address at the top</span><br> –&gt;<br><br>          &lt;h:panelGroup&gt;<br><br>            &lt;div style=&quot;padding-left: 5px;&quot;&gt;<br><br>              &lt;i&gt;&lt;h:outputText value=&quot;#{<span class="boldcode">place.streetAddress</span><br>}&quot;/&gt;&lt;/i&gt;, <br><br>              &lt;h:outputText value=&quot;#{<span class="boldcode">place.city</span><br>}&quot;/&gt;<br><br>              &lt;h:outputText value=&quot;#{<span class="boldcode">place.state</span><br>}&quot;/&gt;<br><br>              &lt;hr/&gt;<br><br>            &lt;/div&gt;<br><br>          &lt;/h:panelGroup&gt;<br><br><br><br>          &lt;!– <span class="boldcode">zoom level prompt and drop down</span><br> –&gt;<br><br>          &lt;h:panelGrid columns=&quot;2&quot;&gt;<br><br>            &lt;!– <span class="boldcode">prompt</span><br> –&gt;<br><br>            &lt;div style=&quot;padding-right: 10px;margin-bottom: 10px;font-size:14px&quot;&gt;<br><br>              #{msgs.zoomPrompt}<br><br>            &lt;/div&gt;<br><br><br><br>            &lt;!– <span class="boldcode">dropdown</span><br> –&gt;<br><br>            &lt;h:selectOneMenu <span class="boldcode">onchange=&quot;submit()</span><br>&quot;<br><br>                 value=&quot;#{<span class="boldcode">place.zoomIndex</span><br>}&quot;<br><br>                 valueChangeListener=&quot;#{<span class="boldcode">place.zoomChanged</span><br>}&quot;<br><br>                 style=&quot;font-size:13px;font-family:Palatino&quot;&gt;<br><br><br><br>              &lt;f:selectItems value=&quot;#{places.zoomLevelItems}&quot;/&gt;<br><br><br><br>            &lt;/h:selectOneMenu&gt;<br><br>          &lt;/h:panelGrid&gt;<br><br><br><br>          &lt;!– <span class="boldcode">The map</span><br> –&gt;<br><br>          &lt;h:graphicImage url=&quot;#{<span class="boldcode">place.mapUrl</span><br>}&quot; style=&quot;border: thin solid gray&quot;/&gt;<br><br><br><br>        &lt;/h:panelGrid&gt;<br><br><br><br>        &lt;!– <span class="boldcode">The weather</span><br> –&gt;<br><br>        &lt;div class=&quot;placeMap&quot;&gt;<br><br>          &lt;div style=&quot;margin-top: 10px;width:250px;&quot;&gt;<br><br>            &lt;h:outputText style=&quot;font-size: 12px;&quot;<br><br>              value=&quot;#{<span class="boldcode">place.weather</span><br>}&quot;<br><br>              escape=&quot;false&quot;/&gt;<br><br>          &lt;/div&gt;<br><br>        &lt;/div&gt;<br><br>      &lt;/div&gt;<br><br><br><br>    &lt;/ui:repeat&gt;<br><br>  &lt;/h:form&gt;<br><br><br><br>&lt;/ui:composition&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p><br>                <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing3" target="_blank" rel="noopener">清单 3</a><br> 中的代码使用 Facelets <code>&lt;ui:repeat&gt;</code><br> 标记迭代用户会话中存储的位置列表。对于每个位置，输出应当如图 3 所示：</p><br><br><br><a name="fig3"><strong>图 3. 视图中显示的位置</strong><br></a><br><br><br>            <img src="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/place.jpg" alt="视图中显示的位置" width="336" height="640"><br><p><a name="N1026D"><span class="smalltitle">修改缩放级别</span><br></a><br></p><br><p>zoom 菜单（参见 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#fig3" target="_blank" rel="noopener">图 3</a><br> 和 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing3" target="_blank" rel="noopener">清单 3</a><br>）有一个 <code>onchange=&quot;submit()&quot;</code><br> 属性，因此当用户选择某个缩放级别时，JavaScript <code>submit()</code><br> 函数提交菜单的环绕（surrounding）表单。提交表单后，JSF 调用菜单的相关值修改侦听器 &mdash;<br>                <code>Place.zoomChanged()</code><br> 方法，如清单 4 所示：</p><br><br><br><a name="listing4"><strong><br>清单 4. <code>Place.zoomChanged()</code><br>                </strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>public void zoomChanged(ValueChangeEvent e) {<br><br>  String value = e.getComponent().getValue()<br><br>  <span class="boldcode">zoomIndex</span><br> = (new Integer(value)).intValue()<br><br>}<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p><br>                <code>Place.zoomChanged()</code><br> 在一个名为 <code>zoomIndex</code><br> 的 <code>Place</code><br> 类的成员变量中存储缩放级别。由于导航不会受到与服务器通信的影响，JSF 将重新加载页面，并且地图使用新的缩放级别进行更新，如下所示：<code>&lt;h:graphicImage url=&quot;<span class="boldcode">#{place.mapUrl}</span><br>…&quot;/&gt;</code><br>。当绘制地图时，JSF 调用 <code>Place.getMapUrl()</code><br>，它返回当前缩放级别下的地图 URL，如清单 5 所示：</p><br><br><br><a name="listing5"><strong><br>清单 5. <code>Place.getMapUrl()</code><br>                </strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>public String getMapUrl() {<br><br>  return mapUrls == null ? &quot;&quot; : mapUrls[<span class="boldcode">zoomIndex</span><br>]<br><br>}<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p><a name="N102C8"><span class="smalltitle">使用少量 Facelets</span><br></a><br></p><br><p>如<br>果曾经使用过 JSF 1，那么很可能会注意到本文的 JSF 2 代码中存在一些细微的差别。首先，我使用了 JSF 2 的新的显示技术 &mdash;<br>Facelets &mdash; 而不是 JSP。您将从本系列后续文章中看到，Facelets<br>提供了许多强大的特性来帮助您实现健壮、灵活和可扩展的用户界面。但是在前面的代码清单中，我并没有过多利用这种功能。然而，Facelets 为<br>JSF 带来的众多微小改进之一便是能够将 JSF 值表达式直接放入到 XHTML 页面；例如，在 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing1" target="_blank" rel="noopener">清单 1</a><br> 中，我将 <code>#{msgs.city}</code><br> 等表达式直接放入页面中。如果使用 JSF 1，则必须将表达式封装到 <code>&lt;h:outputText&gt;</code><br> 中，例如 <code>&lt;h:outputText value=&quot;#{msgs.city}&quot;/&gt;</code><br>。但要注意，出于安全考虑，必须始终将来自用户输入的文本进行转义，例如，在 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing3" target="_blank" rel="noopener">清单 3</a><br> 中我使用了 <code>&lt;h:outputText&gt;</code><br>，它在默认情况下转义其文本来显示位置信息。 </p><br><p>从 Facelets 角度来讲，还需要注意 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing3" target="_blank" rel="noopener">清单 3</a><br> 中的 <code>&lt;ui:composition&gt;</code><br> 标记。该标记指定清单 3 中的 XHTML 页面将被包含到其他 XHTML 页面中。Facelets composition 是 Facelets <em>templating</em><br> 的中心组件，类似于流行的 Apache Tiles 框架。在本文的后续文章中，我将讨论 Facelets 模板并展示如何根据 <em>Composed Method</em><br> Smalltalk 模式构建您的视图。 </p><br><p>目前为止，前面的代码并没有使用 Facelets，与 JSF 1 相比没有出现显著的变化。现在，我将展示更加大的差异。第一个比较大的差异体现在将要为 JSF 2 应用程序编写的 XML 配置的数量方面。 </p><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td><img src="https://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><br><br><img src="https://www.ibm.com/i/c.gif" border="0" alt="" width="8" height="6"><br></td><br></tr><br></tbody><br></table><br><table class="no-print" border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr align="right"><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"><img src="https://www.ibm.com/i/v14/icons/u_bold.gif" border="0" alt="" width="16" height="16"><br><br><br></td><br><td align="right" valign="top"><a class="fbox" href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#main" target="_blank" rel="noopener"><strong>回页首</strong><br></a><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><br><br><br><br><p><a name="tip1"><span class="atitle">技巧 1：去掉 XML 配置</span><br></a><br></p><br><p>Web 应用程序的 XML 配置始终是个麻烦问题 &mdash; 它非常冗长并且容易出现错误，因此最好将 XML 配置委托给一个框架，比如通过注释、约定或特定于领域的语言。作为开发人员，我们应该能够集中精力实现一些操作，而不是将浪费时间在冗长的 XML 方面。</p><br><p>作为一个典型的例子，清单 6 展示了在使用 JSF 1 的情况下，在 places 应用程序中声明托管 bean 所需的 20 行 XML 代码： </p><br><br><br><a name="listing6"><strong>清单 6. JSF 1 的托管 bean 声明 </strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;managed-bean&gt;<br><br>  &lt;managed-bean-class&gt;com.clarity.MapService&lt;/managed-bean-class&gt;<br><br>  &lt;managed-bean-name&gt;mapService&lt;/managed-bean-name&gt;<br><br>  &lt;managed-bean-scope&gt;application&lt;/managed-bean-scope&gt;<br><br>&lt;/managed-bean&gt;<br><br><br><br>&lt;managed-bean&gt;<br><br>  &lt;managed-bean-class&gt;com.clarity.WeatherService&lt;/managed-bean-class&gt;<br><br>  &lt;managed-bean-name&gt;weatherService&lt;/managed-bean-name&gt;<br><br>  &lt;managed-bean-scope&gt;application&lt;/managed-bean-scope&gt;<br><br>&lt;/managed-bean&gt;<br><br><br><br>&lt;managed-bean&gt;<br><br>  &lt;managed-bean-class&gt;com.clarity.Places&lt;/managed-bean-class&gt;<br><br>  &lt;managed-bean-name&gt;places&lt;/managed-bean-name&gt;<br><br>  &lt;managed-bean-scope&gt;session&lt;/managed-bean-scope&gt;<br><br>&lt;/managed-bean&gt;<br><br><br><br>&lt;managed-bean&gt;<br><br>  &lt;managed-bean-class&gt;com.clarity.Place&lt;/managed-bean-class&gt;<br><br>  &lt;managed-bean-name&gt;place&lt;/managed-bean-name&gt;<br><br>  &lt;managed-bean-scope&gt;request&lt;/managed-bean-scope&gt;<br><br>&lt;/managed-bean&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p>对于 JSF 2，XML 消失了，您将对类使用注释，如清单 7 所示：</p><br><br><br><a name="listing7"><strong><br>清单 7. JSF 2 的托管 bean 注释</strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>@ManagedBean(eager=true)<br><br>public class MapService {<br><br>  …<br><br>}<br><br><br><br>@ManagedBean(eager=true)<br><br>public class WeatherService {<br><br>  …<br><br>}<br><br><br><br>@ManagedBean()<br><br>@SessionScoped<br><br>public class Places {<br><br>  …<br><br>}<br><br><br><br>@ManagedBean()<br><br>@RequestScoped<br><br>public class Place {<br><br>  …<br><br>}<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p>按照约定，托管 bean 的名称与类名相同，类名的第一个字母被转换为小写。例如，<a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing7" target="_blank" rel="noopener">清单 7</a><br> 中创建的托管，从上到小依次为：<code>mapService</code><br>、<code>weatherService</code><br>、<code>places</code><br> 和 <code>place</code><br>。也可以使用 <code>ManagedBean</code><br> 注释的 <code>name</code><br> 属性显式地指定一个托管 bean，比如：<code>@ManagedBean(name = &quot;place&quot;)</code><br>。</p><br><p>在 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing7" target="_blank" rel="noopener">清单 7</a><br> 中，我对 <code>mapService</code><br> 和 <code>webService</code><br> 托管 bean 使用 <code>eager</code><br> 属性。当 <code>eager</code><br> 属性为 <code>true</code><br> 时，JSF 将在启动时创建托管 bean 并将其放入应用程序范围。 </p><br><p>也可以使用 <code>@ManagedProperty</code><br> 注释设置托管 bean 属性。<a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#table2" target="_blank" rel="noopener">表 2</a><br> 展示了 JSF 2 托管 bean 注释的完整列表： </p><br><br><br><a name="table2"><strong>表 2. JSF 2 托管 bean 注释（<code>@…Scoped</code><br> 注释只对 <code>@ManagedBean</code><br> 有效）</strong><br></a><br><br><br><br><table class="data-table-1" border="0" cellspacing="0" cellpadding="0" width="100%" summary="JSF 2 Managed-bean annotations"><br><tbody><br><tr><br><th scope="col">托管 bean 注释</th><br><th scope="col">描述</th><br><th scope="col">属性</th><br></tr><br><tr><br><td class="tb-row"><br>                        <code>@ManagedBean</code><br>                    </td><br><td><br><p>以托管 bean 的形式注册一个类实例，然后将其放入到使用其中一个 <code>@…Scoped</code><br> 注释指定的范围内。如果没有指定任何范围，JSF 将把此 bean 放入请求范围，如果没有指定任何名称，JSF 将把类名的第一个字母转换为小写，形成一个托管 bean 名称；例如，如果类名为 <code>UserBean</code><br>，那么 JSF 将创建一个托管 bean，其名为 <code>userBean</code><br>。<code>eager</code><br> 和 <code> name</code><br> 属性都是可选的。</p><br><p>注释必须结合使用一个实现零参数构造器的 Java 类。 </p><br></td><br><td><br>                        <code>eager</code><br>，<code>name</code><br>                    </td><br></tr><br><tr><br><td class="tb-row"><br>                        <code>@ManagedProperty</code><br>                    </td><br><td><br><p>为托管 bean 设置一个属性。注释必须放在类成员变量的声明之前。<code>name</code><br> 属性指定特性的名称，默认情况下为成员变量的名称。<code>value</code><br> 属性是特性的值，可以是一个字符串，也可以是一个 JSF 表达式，比如 <code>#{…}</code><br>。</p><br></td><br><td><br>                        <code>value</code><br>，<code>name</code><br>                    </td><br></tr><br><tr><br><td class="tb-row"><br>                        <code>@ApplicationScoped</code><br>                    </td><br><td>在应用程序范围内存储托管 bean。</td><br><td></td><br></tr><br><tr><br><td><br>                        <code>@SessionScoped</code><br>                    </td><br><td>在会话范围内存储托管 bean。</td><br><td></td><br></tr><br><tr><br><td class="tb-row"><br>                        <code>@RequestScoped</code><br>                    </td><br><td>在请求范围内存储托管 bean。</td><br><td></td><br></tr><br><tr><br><td class="tb-row"><br>                        <code>@ViewScoped</code><br>                    </td><br><td>在视图范围内存储托管 bean。</td><br><td></td><br></tr><br><tr><br><td class="tb-row"><br>                        <code>@NoneScoped</code><br>                    </td><br><td>将托管 bean 指定为没有范围。无范围的托管 bean 在被其他 bean 引用时比较有用。 </td><br><td></td><br></tr><br><tr><br><td class="tb-row"><br>                        <code>@CustomScoped</code><br>                    </td><br><td><br><p>在定制范围内存储托管 bean。</p><br><p>定制范围就是指可以由页面创建者访问的地图。可以通过编程的方式控制定制范围内的 bean 的可视性和生命周期。<code>value</code><br> 属性指向一个地图。</p><br></td><br><td><br>                        <code>value</code><br>                    </td><br></tr><br></tbody><br></table><br><p>从 faces-config.xml 中移除托管 bean 声明将极大地减少 XML，但是在 JSF 2 中，通过使用注释（如我对托管 bean 所做的一样）或是约定（比如 JSF 2 的简化的导航处理），几乎可以去掉所有的 XML 内容。</p><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td><img src="https://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><br><br><img src="https://www.ibm.com/i/c.gif" border="0" alt="" width="8" height="6"><br></td><br></tr><br></tbody><br></table><br><table class="no-print" border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr align="right"><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"><img src="https://www.ibm.com/i/v14/icons/u_bold.gif" border="0" alt="" width="16" height="16"><br><br><br></td><br><td align="right" valign="top"><a class="fbox" href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#main" target="_blank" rel="noopener"><strong>回页首</strong><br></a><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><br><br><br><br><p><a name="2"><span class="atitle">技巧 2：简化导航</span><br></a><br></p><br><p>在 JSF 1 中，导航使用 XML 指定。比如，要从 login.xhtml 转到 places.xhtml，可能使用清单 8 所示的导航规则： </p><br><br><br><a name="listing8"><strong><br>清单 8. JSF 1 中的导航配置规则和用例</strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;navigation-rule&gt;<br><br>  &lt;navigation-case&gt;<br><br>    &lt;from-view-id&gt;/pages/login.xhtml&lt;/from-view-id&gt;<br><br>    &lt;outcome&gt;places&lt;/outcome&gt;<br><br>    &lt;to-view-id&gt;/pages/places.xhtml&lt;/to-view-id&gt;<br><br>  &lt;/navigation-case&gt;<br><br>&lt;/navigation-rule&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p>要去除 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing8" target="_blank" rel="noopener">清单 8</a><br> 中的 XML，可以利用 JSF 2 的导航约定：JSF 将 .xhtml 添加到按钮操作的末尾并加载该文件。这意味着不需要使用注释或其他内容，只需要使用约定就可以完整地避免编写导航规则的需求。在清单 9 在，按钮的操作是 <code>places</code><br>，因此 JSF 加载 places.xhtml：</p><br><br><br><a name="listing9"><strong><br>清单 9. 通过约定进行导航<br></strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;h:commandButton id=&quot;loginButton&quot;<br><br>  value=&quot;#{msgs.loginButtonText}&quot;<br><br>  action=&quot;<span class="boldcode">places</span><br>&quot;/&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p>对于 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing9" target="_blank" rel="noopener">清单 9</a><br> 来说，不需要任何导航 XML。清单 9 中的按钮加载 places.xhtml，但是前提是该文件和按钮所在的文件处于同一个目录中。如果操作并没有以斜杠（<code>/</code><br>）开头，那么 JSF 认为这是一个相对路径。如果需要更加明确一点，可以指定一个绝对路径，如清单 10 所示： </p><br><br><br><a name="listing10"><strong><br>清单 10. 使用绝对路径的导航</strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;h:commandButton id=&quot;loginButton&quot;<br><br>  value=&quot;#{msgs.loginButtonText}&quot;<br><br>  action=&quot;<span class="boldcode">/pages/places</span><br>&quot;/&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p>当用户激活 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing10" target="_blank" rel="noopener">清单 10</a><br> 中的按钮时，JSF 将加载 /pages/places.xhtml 文件。</p><br><p>默认情况下，JSF 将从一个 XHTML 页面转至另一个 XHTML 页面，但是通过指定 <code>faces-redirect</code><br> 参数可以重定向，如清单 11 所示：</p><br><br><br><a name="listing11"><strong><br>清单 11. 通过重定向进行导航</strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;h:commandButton id=&quot;loginButton&quot;<br><br>  value=&quot;#{msgs.loginButtonText}&quot;<br><br>  action=&quot;places<span class="boldcode">?faces-redirect=true</span><br>&quot;/&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br>            <br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td><img src="https://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><br><br><img src="https://www.ibm.com/i/c.gif" border="0" alt="" width="8" height="6"><br></td><br></tr><br></tbody><br></table><br><table class="no-print" border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr align="right"><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"><img src="https://www.ibm.com/i/v14/icons/u_bold.gif" border="0" alt="" width="16" height="16"><br><br><br></td><br><td align="right" valign="top"><a class="fbox" href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#main" target="_blank" rel="noopener"><strong>回页首</strong><br></a><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><br><br><br><br><p><a name="3"><span class="atitle">技巧 3：使用 Groovy</span><br></a><br></p><br><p>Java<br>技术的最大优势并不是 Java 语言，而是 Java 虚拟机（JVM）。在 JVM 上运行着强大、新颖和创新的语言，比如<br>Scala、JRuby 和 Groovy，这使您在编写代码时拥有了更多选择。Groovy 这个名字有些奇怪，但是功能非常强大，融合了<br>Ruby、Smalltalk 和 Java 语言，它是这些语言中最为流行的一种语言（参见 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#resources" target="_blank" rel="noopener">参考资料</a><br>）。</p><br><p>使用 Groovy 的理由有很多。首先，它要比 Java 语言更加简洁、功能更加强大。还有两个原因：不使用分号，不需要强制转换（casting）。 </p><br><p>您可能还没有注意到，在 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing2" target="_blank" rel="noopener">清单 2</a><br> 中，<code>Place</code><br> 类是使用 Groovy 编写的。这一点可以通过代码中没有使用分号看出来，但是注意下面这行代码：<code>MapService ms = elResolver.getValue(…)</code><br>。对于 Java 代码，我必须强制转换 <code>ElResolver.getValue()</code><br> 的结果，因为该方法返回类型 <code>Object</code><br>。Groovy 可以为我自动完成转换。</p><br><p>可<br>以将 Groovy 用于任何使用 Java 代码编写的 JSF 工件 &mdash; 例如，组件、呈现器、验证器和转换器。事实上，这对于 JSF 2<br>来说并不新鲜 &mdash; 因为 Groovy 源文件编译为 Java 字节码，您只需使用 Groovy 生成的 .class 文件，就好象它们是由 <code>javac</code><br> 生成的一样。当然，Groovy 生成的 .class 文件可以正常工作后，需要了解如何热部署 Groovy 源代码，并且对于 Eclipse 用户，答案非常简单：下载并安装 Groovy Eclipse 插件（参见 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#resources" target="_blank" rel="noopener">参考资料</a><br>）。Mojarra 是 Sun 的 JSF 实现，从版本 1.2_09 之后提供了对 Groovy 的明确支持（参见 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#resources" target="_blank" rel="noopener">参考资料</a><br>）。</p><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td><img src="https://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><br><br><img src="https://www.ibm.com/i/c.gif" border="0" alt="" width="8" height="6"><br></td><br></tr><br></tbody><br></table><br><table class="no-print" border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr align="right"><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"><img src="https://www.ibm.com/i/v14/icons/u_bold.gif" border="0" alt="" width="16" height="16"><br><br><br></td><br><td align="right" valign="top"><a class="fbox" href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#main" target="_blank" rel="noopener"><strong>回页首</strong><br></a><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><br><br><br><br><p><a name="4"><span class="atitle">技巧 4：利用资源处理程序</span><br></a><br></p><br><p>JSF 2 提供了定义和访问资源的标准机制。您将自己的资源放到名为 resources 的顶级目录下，并使用一些 JSF 2 标记来在视图中访问这些资源。例如，图 4 展示了 places 应用程序的资源： </p><br><br><br><a name="fig4"><strong>图 4. places 应用程序的资源</strong><br></a><br><br><br>            <img src="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/resources.jpg" alt="places 应用程序的资源" width="186" height="202"><br>            <br><br><p>对资源的惟一需求是它必须位于 resources 目录或 resources 目录的子目录中。可以随意命名 resources 目录的子目录。 </p><br><p>在您的视图代码中，可以使用两个 JSF 2 标记访问资源：<code>&lt;h:outputScript&gt;</code><br> 和 <code>&lt;h:outputStylesheet&gt;</code><br>。这些标记可以结合用于 JSF 2 的 <code>&lt;h:head&gt;</code><br> 和 <code>&lt;h:body&gt;</code><br> 标记，如清单 12 所示：</p><br><br><br><a name="listing12"><strong><br>清单 12. 在 XHTML 中访问资源<br></strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;html xmlns=&quot;<a href="http://www.w3.org/1999/xhtml&amp;quot" target="_blank" rel="noopener">http://www.w3.org/1999/xhtml&amp;quot</a>;<br><br>    xmlns:ui=&quot;<a href="http://java.sun.com/jsf/facelets&amp;quot" target="_blank" rel="noopener">http://java.sun.com/jsf/facelets&amp;quot</a>;<br><br>    xmlns:h=&quot;<a href="http://java.sun.com/jsf/html&quot;&amp;gt" target="_blank" rel="noopener">http://java.sun.com/jsf/html&quot;&amp;gt</a>;<br><br><br><br>  &lt;<span class="boldcode">h:head</span><br>&gt;<br><br>    …<br><br>  &lt;/<span class="boldcode">h:head</span><br>&gt;<br><br><br><br>  &lt;<span class="boldcode">h:body</span><br>&gt;<br><br>    &lt;<span class="boldcode">h:outputStylesheet</span><br> library=&quot;css&quot; name=&quot;styles.css&quot; target=&quot;body&quot;/&gt;<br><br>    &lt;<span class="boldcode">h:outputScript</span><br> library=&quot;javascript&quot; name=&quot;util.js&quot; target=&quot;head&quot;/&gt;<br><br>    …<br><br>  &lt;/<span class="boldcode">h:body</span><br>&gt;<br><br>&lt;/html&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><p><br>                <code>&lt;h:outputScript&gt;</code><br> 和 <code>&lt;h:outputStylesheet&gt;</code><br> 标记有两个属性，分别指定了脚本或样式表：<code>library</code><br> 和 <code>name</code><br>。<code>library</code><br> 名称对应于 resources 目录下的子目录，这是保存资源的位置。例如，如果在 resources/css/en 目录中有一个样式表，那么 <code>library</code><br> 将为 <code>css/en</code><br>。<code>name</code><br> 属性是资源本身的名称。 </p><br><p><a name="N10564"><span class="smalltitle">可重新定位的资源</span><br></a><br></p><br><p>开<br>发人员需要能够在页面中指定想要呈现他们的资源的位置。例如，如果将 JavaScript 放在页面体中，浏览器将在加载页面时执行<br>JavaScript。另一方面，如果将 JavaScript 放到页面的头部，那么 JavaScript<br>只有在得到调用时才会被执行。由于资源的放置位置会影响它的使用方式，因此需要能够指定希望在哪些位置显示资源。 </p><br><p>JSF 2 资源是<em>可重新定位的</em><br>，这意味着您可以在页面中指定希望放置资源的位置。您将使用 <code>target</code><br> 属性指定位置；比如，在 <a href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#listing12" target="_blank" rel="noopener">清单 12</a><br> 中，我将 CSS 放到页面体中，而将 JavaScript 放到页面头部中。 </p><br><p>有些情况下，需要使用 JSF 表达式语言（EL）访问资源。比如，清单 13 展示了如何使用 <code>&lt;h:graphicImage&gt;</code><br> 访问一个图像：</p><br><br><br><a name="listing13"><strong><br>清单 13. 使用 JSF 表达式语言访问资源<br></strong><br></a><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td class="code-outline"><br><pre class="displaycode">                <br><br>&lt;h:graphicImage value=&quot;#{<span class="boldcode">resource[‘images:cloudy.gif’]</span><br>}&quot;/&gt;<br><br></pre><br></td><br></tr><br></tbody><br></table><br><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="40%" align="right"><br><tbody><br><tr><br><td width="10"><img src="https://www.ibm.com/i/c.gif" alt="" width="10" height="1"><br></td><br><td><br><table border="1" cellspacing="0" cellpadding="5" width="100%"><br><tbody><br><tr><br><td bgcolor="#eeeeee"><br>                <a name="N10592"><strong>清单 13 的非 EL 备选方法</strong><br></a><br><br><br><p>无可否认，清单 13 中的语法不是很直观。它访问了一个 JSF 为了存储资源而创建的地图，因此很少需要使用这种语法。实际上，可以使用 <code>&lt;h:graphicImage/&gt;</code><br> 访问图像，而不需要使用 EL，比如：<code>&lt;h:graphicImage library=&quot;images&quot; name=&quot;cloudy.gif&quot;/&gt;</code><br>                </p><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><p>在 EL 表达式内访问资源的语法是 <code>resource[‘<em>LIBRARY</em><br>:<em>NAME</em><br>‘]</code><br>，其中 <em><br>                    <code>LIBRARY</code><br>                </em><br> 和 <em><br>                    <code>NAME</code><br>                </em><br> 对应于 <code>&lt;h:outputScript&gt;</code><br> 和 <code>&lt;h:outputStylesheet&gt;</code><br> 标记的 <code>library</code><br> 和 <code>name</code><br> 属性。 </p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td><img src="https://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><br><br><img src="https://www.ibm.com/i/c.gif" border="0" alt="" width="8" height="6"><br></td><br></tr><br></tbody><br></table><br><table class="no-print" border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr align="right"><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"><img src="https://www.ibm.com/i/v14/icons/u_bold.gif" border="0" alt="" width="16" height="16"><br><br><br></td><br><td align="right" valign="top"><a class="fbox" href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#main" target="_blank" rel="noopener"><strong>回页首</strong><br></a><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><br><br><br><br><p><a name="N105DF"><span class="atitle">结束语</span><br></a><br></p><br><p>到目前为止，我仅仅触及了 JSF 2 特性中最浅显的内容，包括托管 bean、注释、简化导航和资源支持。在本系列随后的两篇文章中，我将探讨 Facelets、JSF 2 的复合组件以及对 Ajax 的内置支持。 </p><br><br><br><br><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td><img src="https://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><br><br><img src="https://www.ibm.com/i/c.gif" border="0" alt="" width="8" height="6"><br></td><br></tr><br></tbody><br></table><br><table class="no-print" border="0" cellspacing="0" cellpadding="0" align="right"><br><tbody><br><tr align="right"><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><br><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="middle"><img src="https://www.ibm.com/i/v14/icons/u_bold.gif" border="0" alt="" width="16" height="16"><br><br><br></td><br><td align="right" valign="top"><a class="fbox" href="https://www.ibm.com/developerworks/cn/java/j-jsf2fu1/#main" target="_blank" rel="noopener"><strong>回页首</strong><br></a><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table><br><br><br><br><br><p><span class="atitle"><a name="download">下载</a><br></span><br></p><br><table class="data-table-1" border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><th scope="col">描述</th><br><th scope="col">名字</th><br><th scope="col">大小</th><br><th scope="col">下载方法</th><br></tr><br><tr><br><th class="tb-row" scope="row">源代码</th><br><td>jsf2fu1.zip</td><br><td>1.9MB</td><br><td><a class="fbox" onclick="sa_onclick(this.href)" onkeypress="sa_onclick(this.href)" href="http://download.boulder.ibm.com/ibmdl/pub/software/dw/java/jsf2fu1.zip" target="_blank" rel="noopener"><strong>HTTP</strong><br></a><br></td><br></tr><br></tbody><br></table><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr valign="top"><br><td colspan="5"><img src="https://www.ibm.com/i/c.gif" border="0" alt="" width="12" height="12"><br></td><br></tr><br><tr><br><td><img src="https://www.ibm.com/i/v14/icons/fw.gif" alt="" width="16" height="16"><br></td><br><td><a class="fbox" href="https://www.ibm.com/developerworks/cn/whichmethod.html" target="_blank" rel="noopener">关于下载方法的信息</a><br></td><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="50" height="1"><br></td><br></tr><br></tbody><br></table><br><br><br><br><br><p><a name="resources"><span class="atitle">参考资料 </span><br></a><br></p><br><strong>学习</strong><br><br><br><ul><br><li><br>                <a href="https://javaserverfaces.dev.java.net/" target="_blank" rel="noopener">JSF 主页</a><br>：找到有关使用 JSF 开发的更多资源。 <br><br></li><br><li>&ldquo;<a href="http://blogs.sun.com/rlubke/entry/groovy_mojarra" target="_blank" rel="noopener">Groovy+Mojarra</a><br>&rdquo;（Ryan Lubke 的博客，2008 年 4 月）：Sun 工程师 Lubke 讨论了如何结合使用 Groovy 和 Mojarra 1.2_09。<br><br></li><br><li><br>&ldquo;<a href="http://weblogs.java.net/blog/edburns/archive/2009/03/response_to_a_c.html" target="_blank" rel="noopener">Public Access to JSF 2.0 JSR-314-EG Discussions Now Available</a><br>&rdquo;（Ed Burns 的博客，java.net，2009 年 3 月）：了解如何注册 JSF 2 专家组邮件列表。 <br><br></li><br><li><br>                <a href="http://weblogs.java.net/blog/rogerk/" target="_blank" rel="noopener">Roger Kitain 的博客</a><br>：Roger Kitain 和 Ed Burns 是 JSF 2.0 规范的主要撰写者。<br><br></li><br><li><br>                <a href="http://weblogs.java.net/blog/driscoll/" target="_blank" rel="noopener">Jim Driscoll 的博客</a><br>：将发现大量有关 JSF 2 的内容。<br><br></li><br><li><br>                <a href="http://blogs.sun.com/rlubke" target="_blank" rel="noopener">Ryan Lubke 的博客</a><br>：Ryan Lubke 从事 JSF 2 参考实现的工作。<br><br></li><br><li><br>                <a href="http://www.ibm.com/developerworks/cn/java/j-pg/" target="_blank" rel="noopener"><br>                    <em>Practically Groovy</em><br>                </a><br>（Andrew Glover 和 Scott Davis，developerWorks）：了解 Groovy 的最新动向。<br><br></li><br><li><br>                <a href="http://www.ibm.com/developerworks/cn/java/" target="_blank" rel="noopener">developerWorks Java 技术专区</a><br>：可以找到几百篇关于 Java 编程的各个方面的文章。<br><br><br></li><br></ul><br><br><br><strong>获得产品和技术</strong><br><br><br><ul><br><li><br>                <a href="https://javaserverfaces.dev.java.net/servlets/ProjectDocumentList" target="_blank" rel="noopener">JSF</a><br>：下载 JSF 2.0。<br><br></li><br><li><br>                <a href="http://groovy.codehaus.org/Eclipse+Plugin" target="_blank" rel="noopener">Groovy Eclipse Plugin</a><br>：使用该插件简化 Groovy 开发。<br><br></li><br></ul><br><br><br><strong>讨论</strong><br><br><br><ul><br><li><br>参与 <a href="http://www.ibm.com/developerworks/blogs/" target="_blank" rel="noopener">developerWorks blogs</a><br> 并加入 <a href="http://www.ibm.com/developerworks/community/" target="_blank" rel="noopener">developerWorks 社区</a><br>。<br></li><br></ul><br><br><br><br><br><p><a name="author"><span class="atitle">关于作者</span><br></a><br></p><br><table border="0" cellspacing="0" cellpadding="0" width="100%"><br><tbody><br><tr><br><td colspan="3"><img src="https://www.ibm.com/i/c.gif" alt="" width="100%" height="5"><br></td><br></tr><br><tr align="left" valign="top"><br><td><br><p><img src="http://www.ibm.com/developerworks/i/p-dgeary.jpg" alt="David Geary" align="left"><br></p><br></td><br><td><img src="https://www.ibm.com/i/c.gif" alt="" width="4" height="5"><br></td><br><td width="100%"><br><p>David Geary 是一名作家、演讲家和顾问，也是 <a href="http://corewebdevelopment.com/" target="_blank" rel="noopener">Clarity Training, Inc.</a><br>的总裁，他指导开发人员使用 JSF 和 Google Web Toolkit (GWT) 实现 Web 应用程序。他是 JSTL 1.0 和<br>JSF 1.0/2.0 专家组的成员，与人合作编写了 Sun 的 Web Developer 认证考试的内容，并且为多个开源项目作出贡献，包括<br>Apache Struts 和 Apache Shale。David 的 <em>Graphic Java Swing</em><br> 一直是有关 Java 的畅销书籍，而 <em>Core JSF</em><br>（与<br>Cay Horstman 合著）是有关 JSF 的畅销书。David 经常在各大会议和用户组发表演讲。他从 2003 年开始就一直是 NFJS<br>tour 的固定演讲人，并且在 Java University 教授课程，两次当选为 JavaOne 之星。 </p><br></td><br></tr><br></tbody><br></table><br></td><br></tr><br></tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JSF/" rel="tag"># JSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4va009l4urqthf4ud94/" rel="next" title="Google Gear 基本使用方法">
+                <i class="fa fa-chevron-left"></i> Google Gear 基本使用方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4xx00f34urqucotqiq6/" rel="prev" title="JavaScript继承详解（一）">
+                JavaScript继承详解（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

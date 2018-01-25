@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在为新应用程序选择 GUI 工具包时应该考虑哪些因素？Barry Feigenbaum (feigenba@us.ibm.com), 编程顾问, IBM本文通过对 Eclipse 的 SWT 和 Java Swing、Abstract Windows Toolkit（AWT）GUI工具包进行比较，可以帮助新应用程序的开发人员从中选择适当的工具。您可以通过本文了解对每个工具包的基本特性的介绍，以及使">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SWT、Swing 或 AWT：哪个更适合您？">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5v401yy4urqgwy3805e/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="在为新应用程序选择 GUI 工具包时应该考虑哪些因素？Barry Feigenbaum (feigenba@us.ibm.com), 编程顾问, IBM本文通过对 Eclipse 的 SWT 和 Java Swing、Abstract Windows Toolkit（AWT）GUI工具包进行比较，可以帮助新应用程序的开发人员从中选择适当的工具。您可以通过本文了解对每个工具包的基本特性的介绍，以及使">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+<meta property="og:updated_time" content="2018-01-21T07:21:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SWT、Swing 或 AWT：哪个更适合您？">
+<meta name="twitter:description" content="在为新应用程序选择 GUI 工具包时应该考虑哪些因素？Barry Feigenbaum (feigenba@us.ibm.com), 编程顾问, IBM本文通过对 Eclipse 的 SWT 和 Java Swing、Abstract Windows Toolkit（AWT）GUI工具包进行比较，可以帮助新应用程序的开发人员从中选择适当的工具。您可以通过本文了解对每个工具包的基本特性的介绍，以及使">
+<meta name="twitter:image" content="http://dolive.javaeye.com/images/icon_copy.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5v401yy4urqgwy3805e/"/>
+
+
+
+
+
+  <title>SWT、Swing 或 AWT：哪个更适合您？ | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5v401yy4urqgwy3805e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SWT、Swing 或 AWT：哪个更适合您？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-12-03T01:49:00+08:00">
+                2008-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在为新应用程序选择 GUI 工具包时应该考虑哪些因素？<br><br><br>Barry Feigenbaum (feigenba@us.ibm.com), 编程顾问, IBM<br><br>本文通过对 Eclipse 的 SWT 和 Java Swing、Abstract Windows Toolkit（AWT）GUI<br>工具包进行比较，可以帮助新应用程序的开发人员从中选择适当的工具。您可以通过本文了解对每个工具包的基本特性的介绍，以及使用每个工具包的优缺点。<br><br>简介<br><br><br><br>developerWorks 上另外一些作者已经展示了如何在 Swing 和 SWT 之间很好地进行迁移（参见 参考资料）。本文的目标是帮助您在开始开发项目之前确定选择使用哪个 GUI 工具包。<br><br><br><br>但是首先我们要弄清一个问题：为什么会有多个 Java? GUI 工具包呢？最好的答案是，一个工具包并不能满足所有的要求，最近也不会开发一个可以满足所有要求的 GUI 工具包。每个工具包都有各自的优缺点，这样就可以根据自己的需求和目标用户来选择适当的工具包。<br><br><br><br>下面就让我们来学习有关这些工具包的知识。<br><br><br><br><br><br>AWT 概述<br><br><br><br>Abstract Windows Toolkit（AWT）是最原始的 Java GUI 工具包。AWT 的主要优点是，它在 Java<br>技术的每个版本上都成为了一种标准配置，包括早期的 Web 浏览器中的 Java<br>实现；另外它也非常稳定。这意味着我们不需要单独安装这个工具包，在任何一个 Java 运行环境中都可以使用它，这一点正是我们所希望的特性。<br><br><br><br>AWT 是一个非常简单的具有有限 GUI 组件、布局管理器和事件的工具包（参见 清单 1、清单 2 和 清单 3）。这是因为 Sun<br>公司决定为 AWT 使用一种最小公分母（LCD）的方法。因此它只会使用为所有 Java 主机环境定义的 GUI<br>组件。最终的结果非常不幸，有些经常使用的组件，例如表、树、进度条等，都不支持。对于需要更多组件类型的应用程序来说，我们需要从头开始创建这些组件。<br>这是一个很大的负担。<br><br><br><br><br><br>清单 1. 基本的 AWT Class 树（全部在 java.awt 包中， “<em>” 表示抽象）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span>Object&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;CheckboxGroup&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li></ol></div></em>Component&nbsp;&nbsp;<li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canvas&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CheckBox&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choice&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Container&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panel&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applet&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScrollPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Window&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frame&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextComponent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextArea&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextField&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;MenuComponent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MenuItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CheckboxMenuItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PopupMenu&nbsp;&nbsp;</span></li><pre style="display: none;" name="code" class="java">Object<br>    CheckboxGroup<br>    <em>Component<br>        Button<br>        Canvas<br>        CheckBox<br>        Choice<br>        Container<br>            Panel<br>                Applet<br>            ScrollPane<br>            Window<br>                Dialog<br>                Frame<br>        Label<br>        List<br>        TextComponent<br>            TextArea<br>            TextField<br>    MenuComponent<br>        MenuItem<br>            CheckboxMenuItem<br>            Menu<br>                PopupMenu</em></pre><br><br><br><br><br><br>注意：另外几个包中还有其他一些 AWT 组件，但是这是基本的组件集。<br><br><br><br><br><br>清单 2. AWT 提供了下面的布局管理器（全部在 java.awt 包中，“” 表示接口）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span><em>LayoutManager&nbsp;&nbsp;</em></span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;FlowLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;GridLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;LayoutManager2&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BorderLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CardLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GridBagLayout&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java"><em>LayoutManager<br>    FlowLayout<br>    GridLayout
+    </em>LayoutManager2<br>        BorderLayout<br>        CardLayout<br>        GridBagLayout</pre><br><br><br><br><br><br>注意：另外几个包中还有一些 AWT 布局管理器，很多都是为它们进行布局的容器专门定制的，但是这是基本的布局管理器集。<br><br><br><br><br><br>清单 3. AWT 提供了以下事件（大部分在 java.awt.events 包中）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span>Object&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;EventObject&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AWTEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ActionEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AdjustmentEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ComponentEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ContainerEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FocusEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KeyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MouseEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MouseWheelEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PaintEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WindowEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HierarchyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputMethodEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InvocationEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ItemEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextEvent&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java">Object<br>    EventObject<br>        AWTEvent<br>            ActionEvent<br>            AdjustmentEvent<br>            ComponentEvent<br>                ContainerEvent<br>                FocusEvent<br>                InputEvent<br>                    KeyEvent<br>                    MouseEvent<br>                        MouseWheelEvent<br>                PaintEvent<br>                WindowEvent<br>            HierarchyEvent<br>            InputMethodEvent<br>            InvocationEvent<br>            ItemEvent<br>            TextEvent</pre><br><br><br><br><br><br>注意：其他几个包中还有另外一些 AWT 事件，但是这是基本的事件集。这些是从更通用的事件生成的具体事件。<br><br><br><br>通常对于 AWT 来说（也适用于 Swing 和 SWT），每个事件类型都有一个相关的 XxxListener<br>接口（XxxAdapter 的实现可能为空），其中 Xxx 是去掉 Event 后缀的事件名（例如，KeyEvent 事件的接口是<br>KeyListener），用来把事件传递给处理程序。应用程序会为自己感兴趣处理的事件的事件源（GUI<br>组件或部件）进行注册。有时监听接口要处理多个事件。<br><br><br><br>AWT 的一个很好的特性是它通常可以对 GUI 组件自动进行销毁。这意味着您几乎不需要对组件进行销毁。一个例外是高级组件，例如对话框和框架。如果您创建了耗费大量主机资源的资源，就需要手动对其进行销毁。<br><br><br><br>AWT 组件是 “线程安全的（thread-safe）”，这意味着我们不需要关心在应用程序中是哪一个线程对 GUI 进行了更新。这个特性可以减少很多 GUI 更新的问题，不过使 AWT GUI 运行的速度更慢了。<br><br><br><br>AWT 让我们可以以自顶向下（top-down） 或自底向上（bottom-up） 或以任意组合顺序来构建<br>GUI。自顶向下的意思是在创建子组件之前首先创建容器组件；自底向上的意思是在创建容器（或父）组件之前创建子组件。在后一种情况中，组件的存在并不依<br>赖于父容器，其父容器可以随时改变。<br><br><br><br>通常来说，AWT GUI 都是不可访问的。系统并没有为 AWT 程序员提供 API<br>来指定可访问性信息。可访问性（accessibility）处理的是残疾人可以怎样使用应用程序的问题。一个应用程序要想有很好的可访问性，必须与运行<br>平台一起，让残疾人可以通过使用适当的辅助技术（提供其他用户接口的工具）来使用这些应用程序。很多政府和企业都有一些强制要求应用程序为实现可访问性而<br>采用的标准。<br><br><br><br>Sun 希望 Java 语言能够成为一种 “编写一次就可以随处运行（write once, run everywhere，即<br>WORE）” 的环境。这意味着可以在一台机器上开发和测试 Java 代码（例如在 Windows? 上），然后不经测试就可以在另外一个<br>Java 主机上运行同样的 Java 代码。对于大部分情况来说，Java 技术都可以成功实现这种功能，但是 AWT 却是一个弱点。由于 AWT<br>要依赖于主机 GUI 的对等体（peer）控件（其中每个 AWT 组件都有一个并行的主机控件或者对等体）来实现这个 GUI，这个 GUI<br>的外观和行为（这一点更重要）在不同的主机上会有所不同。这会导致出现 “编写一次随处测试（write once, test<br>everywhere，即 WOTE）” 的情况，这样就远远不能满足我们的要求了。<br><br><br><br>AWT 提供了一个丰富的图形环境，尤其是在 Java V1.2 及其以后版本中更是如此。通过 Graphics2D 对象和<br>Java2D、Java3D 服务，我们可以创建很多功能强大的图形应用程序，例如画图和制表包；结合使用<br>JavaSound，我们还可以创建非常有竞争力的交互式游戏。<br><br><br><br><br><br><br><br><br><br>Swing 概述<br><br><br><br>Java Swing 是 Java Foundation Classes（JFC）的一部分，它是试图解决 AWT 缺点的一个尝试。在<br>Swing 中，Sun 开发了一个经过仔细设计的、灵活而强大的 GUI 工具包。不幸的是，这意味着我们又要花一些时间来学习 Swing<br>了，对于常见的情况来说，Swing 有些太复杂了。<br><br><br><br>Swing 是在 AWT 组件基础上构建的。所有 Swing 组件实际上也是 AWT 的一部分。Swing 使用了 AWT<br>的事件模型和支持类，例如 Colors、Images 和 Graphics。Swing 组件、布局管理器以及事件总结如下（参见 清单 4、清单<br>5 和 清单 6）。正如您可以看到的一样，这些组件集比 AWT 提供的组件集更为广泛，与 SWT 组件集相比也毫不逊色。<br><br><br><br><br><br>清单 4. 基本的 Swing Class 树（全部在 javax.swing 包或其子包中，“<em>” 表示抽象类）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span>Object&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li></ol></div></em>Component&nbsp;&nbsp;<li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Container&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>JComponent&nbsp;&nbsp;</em></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AbstractButton&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JButton&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JMenuItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JCheckBonMenuItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JMenu&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JRadioButonMenuItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>JToggleButton&nbsp;&nbsp;</em></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JCheckBox&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JRadioButton&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Box&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Filler&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JColorChooser&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JComboBox&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JDesktopIcon&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JFileChooser&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JInternalFrame&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JLabel&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JLayeredPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JDesktopPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JList&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JMenuBar&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JOptionPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JPanel&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JPopupMenu&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JProgressBar&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JRootPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JScrollBar&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JScrollPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSeparator&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSlider&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSplitPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JTabbedPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JTable&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JTableHeader&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JTextComponent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JEditorPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FrameEditorPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JTextPane&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JTextArea&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JtextField&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JPasswordField&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JToolBar&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JToolTip&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JTree&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JViewport&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScrollableTabViewport&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panel&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applet&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JApplet&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Window&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JDialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frame&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JFrame&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JWindow&nbsp;&nbsp;</span></li><pre style="display: none;" name="code" class="java">Object<br>    <em>Component<br>        Container
+            </em>JComponent<br>                <em>AbstractButton<br>                    JButton<br>                    JMenuItem<br>                        JCheckBonMenuItem<br>                        JMenu<br>                        JRadioButonMenuItem
+                    </em>JToggleButton<br>                        JCheckBox<br>                        JRadioButton<br>                Box<br>                Filler<br>                JColorChooser<br>                JComboBox<br>                JDesktopIcon<br>                JFileChooser<br>                JInternalFrame<br>                JLabel<br>                JLayeredPane<br>                    JDesktopPane<br>                JList<br>                JMenuBar<br>                JOptionPane<br>                JPanel<br>                JPopupMenu<br>                JProgressBar<br>                JRootPane<br>                JScrollBar<br>                JScrollPane<br>                JSeparator<br>                JSlider<br>                JSplitPane<br>                JTabbedPane<br>                JTable<br>                JTableHeader<br>                <em>JTextComponent<br>                    JEditorPane<br>                        FrameEditorPane<br>                        JTextPane<br>                    JTextArea<br>                    JtextField<br>                        JPasswordField<br>                JToolBar<br>                JToolTip<br>                JTree<br>                JViewport<br>                    ScrollableTabViewport<br>            Panel<br>                Applet<br>                    JApplet<br>            Window<br>                Dialog<br>                    JDialog<br>                Frame<br>                    JFrame<br>                JWindow</em></pre><br><br><br><br><br><br>注意：在另外几个包中还有其他一些 Swing 组件，但是这是基本的组件集。<br><br><br><br><br><br>清单 5. Swing 提供了以下 LayoutManagers（全部在 javax.swing 包或其子包中，“” 表示接口）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span><em>LayoutManager&nbsp;&nbsp;</em></span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;CenterLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;LayoutManager2&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BoxLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OverlayLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SpringLayout&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java"><em>LayoutManager<br>    CenterLayout
+    </em>LayoutManager2<br>        BoxLayout<br>        OverlayLayout<br>        SpringLayout</pre><br><br><br><br><br><br>注意：在另外几个包中还有其他一些 Swing 布局管理器，很多都是为它们所布局的容器而专门定制的，但是这是基本的布局管理器集。<br><br><br><br><br><br>清单 6. Swing 提供了以下事件（大部分在 javax.swing.events 包及其子包中）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span>Object&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;EventObject&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AWTEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AncestorEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ComponentEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KeyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MenuKeyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MouseEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MenuDragMouseEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InternalFrameEvent&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java">Object<br>    EventObject<br>        AWTEvent<br>            AncestorEvent<br>            ComponentEvent<br>                InputEvent<br>                    KeyEvent<br>                        MenuKeyEvent<br>                    MouseEvent<br>                        MenuDragMouseEvent<br>            InternalFrameEvent</pre><br><br><br><br><br><br>注意：在另外几个包中还有其他一些 AWT 事件，但是这是基本的事件集。这些是从更通用的事件生成的 “高级” 事件。<br><br><br><br>为了克服在不同主机上行为也会不同的缺点，Swing 将对主机控件的依赖性降至了最低。实际上，Swing 只为诸如窗口和框架之类的顶层<br>组件使用对等体。大部分组件（JComponent 及其子类）都是使用纯 Java 代码来模拟的。这意味着 Swing<br>天生就可以在所有主机之间很好地进行移植。因此，Swing<br>通常看起来并不像是本地程序。实际上，它有很多外观，有些模拟（尽管通常并不精确）不同主机的外观，有些则提供了独特的外观。<br><br><br><br>Swing<br>对基于对等体的组件使用的术语是重量级（heavyweight），对于模拟的组件使用的术语是轻量级（lightweight）。实际上，Swing<br>可以支持在一个 GUI 中混合使用重量级组件和轻量级组件，例如在一个 JContainer 中混合使用 AWT 和 Swing<br>控件，但是如果组件产生了重叠，就必须注意绘制这些控件的顺序。<br><br><br><br>Swing 无法充分利用硬件 GUI 加速器和专用主机 GUI 操作的优点。结果是 Swing 应用程序可能比本地 GUI<br>的程序运行速度都慢。Sun 花费了大量的精力来改进最近版本的 Swing （Java V1.4 和<br>1.5）的性能，这种缺点正在变得日益微弱。由于 Swing 的设计更加健壮，因此其代码基础也更坚实。这意味着它可以在一台健壮的机器上比 AWT<br>和 SWT 上运行得更好。<br><br><br><br>除了具有更多的组件、布局管理器和事件之外，Swing 还有很多特性使得自己比 AWT 的功能更加强大。下面是更为重要的几个特性：<br><br><br><br>模型与视图和控件分离<br><br>对于这个模型中的所有组件（例如按钮、列表、表、树、富文本）来说，模型都是与组件分离的。这样可以根据应用程序的需求来采用模型，并在多个视图之间进行共享。为了方便起见，每个组件类型都提供有默认的模型。<br><br>可编程外观<br><br>每个组件的外观（外表以及如何处理输入事件）都是由一个单独的、可动态替换的实现来进行控制的。这样我们就可以改变基于 Swing 的 GUI 的部分或全部外观。<br><br>呈现器和编辑器<br><br>大部分显示模型内容的组件，例如列表、表和树，都可以处理几乎所有类型的模型元素。这可以通过为每种组件类型和模型类型映射一个渲染器或编辑器来<br>实现。例如，一个具有包含 java.util.Date 值的列的表可以有一些专用的代码来呈现数据值和编辑数据值。每一列都可以有不同的类型。<br><br>可访问性<br><br>创建一个残疾人可以访问的 GUI 是非常重要的。Swing 为实现具有可访问性的 GUI 提供了丰富的基础设施和 API。这种支持是单独的，但是如果主机上具有可访问性支持，那么它们应该集成在一起。<br><br>与 AWT 一样，Swing 可以支持 GUI 组件的自动销毁。Swing 还可以支持 AWT 的自底向上和自顶向下的构建方法。<br><br><br><br>与 AWT 不同，Swing 组件不是线程安全的，这意味着您需要关心在应用程序中是哪个线程在更新 GUI。如果在使用线程时出现了错误，就可能会出现不可预测的行为，包括用户界面故障。有一些工具可以帮助管理线程的问题。<br><br><br><br>与 AWT 类似，Swing 的一个优点是，它也是 Java 技术的一种标准配置。这意味着您不需要自己来安装它了。不幸的是，Swing<br>已经有了很大的变化，因此它很容易变得依赖于最新版本的 Java 语言所提供的特性，这可能会强制用户更新自己的 Java 运行时环境。<br><br><br><br><br><br><br><br><br><br>SWT 概述<br><br><br><br>与 AWT 的概念相比，SWT 是一个低级的 GUI 工具包。JFace 是一组用来简化使用 SWT 构建 GUI<br>的增强组件和工具服务。SWT 的构建者从 AWT 和 Swing<br>实现中学习了很多经验，他们试图构建一个集二者优点于一体而没有二者的缺点的系统。从很多方面来说，他们已经成功了。<br><br><br><br>SWT 也是基于一个对等体实现的，在这一点上它与 AWT 非常类似。它克服了 AWT 所面临的 LCD<br>的问题，方法如下：定义了一组控件，它们可以用来构建大部分办公应用程序或开发者工具，然后可以按照逐个主机的原则，为特定主机所没有提供的控件创建模拟<br>控件（这与 Swing 类似）。对于大部分现代主机来说，几乎所有的控件都是基于本地对等体的。这意味着基于 SWT 的 GUI<br>既具有主机外观，又具有主机的性能。这样就避免了使用 AWT 和 Swing 而引起的大部分问题。特定的主机具有一些低级功能控件，因此 SWT<br>提供了扩充（通常是模拟的）版本（通常使用 “C” 作为名字中的第一个字母），从而可以产生更一致的行为。<br><br><br><br>在对等体工作方式上，SWT 与 AWT 不同。在 SWT 中，对等体只是主机控件上的一些封装程序而已。在 AWT<br>中，对等体可以提供服务来最小化主机之间的差异（就是在这里，AWT 碰到了很多行为不一致的问题）。这意味着 SWT<br>应用程序实际上就是一个主机应用程序，它必然会全部继承主机的优点和缺点。这还意味着 SWT 不能完全实现 WORE 的目标；它更像是一种<br>WOTE 解决方案。这就是说，SWT 尽管不如 Swing 那么优秀，但是它在创建可移植解决方案方面是很杰出的。<br><br><br><br>SWT 部件、布局和事件总结如下（参见 清单 7、清单 8 和 清单 9）。正如您可以看到的一样，这些组件集比 AWT 提供的组件集更为广泛，与 Swing 组件集相比也毫不逊色。<br><br><br><br><br><br>清单 7. 基本的 SWT Class 树（大部分在 org.ecipse.swt.widgets 或 org.eclipse.swt.custom 包或子包中，“<em>” 表示抽象类，“!” 表示在 custom 包中，“~” 表示在其他包中）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span>Object&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li></ol></div></em>Dialog&nbsp;&nbsp;<li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ColorDialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DirectoryDialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FileDialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FontDialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MessageDialog&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PrintDialog&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<em>Widget&nbsp;&nbsp;</em></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoolItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!CTabItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MenuItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TableColumn&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TableItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TableTreeItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToolItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrayItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TreeColumn&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TreeItem&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Control&nbsp;&nbsp;</em></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProgressBar&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sash&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scale&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scrollable&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Composite&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Browser&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canvas&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~AbstractHyperlink&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Hyperlink&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ImageHyperlink&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>~ToggleHyperline&nbsp;&nbsp;</em></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~TreeNode&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Twistie&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AnimatedProgress&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!CLabel&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Decorations&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shell&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FormText&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StyledText&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TableCursor&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!CBanner&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!CCombo&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combo&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoolBar&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!CTabFolder&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ExpandableComposite&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Section&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~FilteredList&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~FilteredTree&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Form&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Group&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~PageBook&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProgressIndicator&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!SashForm&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!ScrolledComposite&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabFolder&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TableTree&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToolBar&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tray&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tree&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ViewForm&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slider&nbsp;&nbsp;</span></li><pre style="display: none;" name="code" class="java">Object
+    Dialog<br>         ColorDialog<br>         DirectoryDialog<br>         FileDialog<br>         FontDialog<br>         MessageDialog<br>         PrintDialog<br>    <em>Widget<br>        Menu
+        </em>Item<br>            CoolItem<br>            !CTabItem<br>            MenuItem<br>            TabItem<br>            TableColumn<br>            TableItem<br>            TableTreeItem<br>            ToolItem<br>            TrayItem<br>            TreeColumn<br>            TreeItem<br>        <em>Control<br>            Button<br>            Label<br>            ProgressBar<br>            Sash<br>            Scale<br>            Scrollable<br>                Composite<br>                    ~Browser<br>                    Canvas
+                        </em>~AbstractHyperlink<br>                            ~Hyperlink<br>                                ~ImageHyperlink<br>                            <em>~ToggleHyperline<br>                                ~TreeNode<br>                                ~Twistie<br>                        AnimatedProgress<br>                        !CLabel<br>                        Decorations<br>                            Shell<br>                        FormText<br>                        StyledText<br>                        TableCursor<br>                    !CBanner<br>                    !CCombo<br>                    Combo<br>                    CoolBar<br>                    !CTabFolder<br>                    ~ExpandableComposite<br>                        ~Section<br>                    ~FilteredList<br>                    ~FilteredTree<br>                    ~Form<br>                    Group<br>                    ~PageBook<br>                    ProgressIndicator<br>                    !SashForm<br>                    !ScrolledComposite<br>                    TabFolder<br>                    Table<br>                    TableTree<br>                    ToolBar<br>                    Tray<br>                    Tree<br>                    ViewForm<br>                List<br>                Text<br>            Slider</em></pre><br><br><br><br><br><br>注意：在另外几个包中还有其他一些 SWT 部件，但是这是基本的部件集。<br><br><br><br>与 AWT 和 Swing 布局管理器类似，SWT<br>也提供了非常丰富的布局部件集。布局系统与嵌套容器一起使用，可以生成所需要的任何布局算法。所有这 3 个 GUI<br>库也可以支持对部件的定位实现绝对控制。SWT 没有等效的 BorderLayout 部件，这一点非常令人失望。FormLayout<br>对于创建表单基本输入来说非常好用。我认为 SWT 的布局机制比 AWT/Swing 布局部件集的使用更难学习。<br><br><br><br><br><br>清单 8. SWT 提供了以下布局管理器（大部分在 org.eclipse.swt.layout 和 org.eclipse.swt.custom 包或子包中，“” 表示接口，“!” 表示在 custom 包中）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span><em>Layout&nbsp;&nbsp;</em></span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;FillLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;FormLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;GridLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;RowLayout&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;!StackLayout&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java">Layout<br>    FillLayout<br>    FormLayout<br>    GridLayout<br>    RowLayout<br>    !StackLayout</pre><br><br><br><br><br><br>注意：在另外几个包中还有其他一些 SWT 布局管理器，很多都是为它们所布局的容器而专门定制的，但是这是基本的布局管理器集。<br><br><br><br>与 AWT 和 Swing 事件系统一样，SWT 提供了非常丰富的事件集。尽管这些事件并不能与 AWT/Swing<br>的事件一一对应（例如 AWT 和 Swing 的按钮都会产生 ActionEvent 事件，而 SWT 的按钮产生的则是<br>SelectionEvent 事件），但是它们通常都是等价的。<br><br><br><br><br><br>清单 9. SWT 提供了以下事件（大部分在 org.eclipse.swt.events 包或 org.eclipse.swt.custom 包或其子包中，“*” 表示抽象，“!” 表示在 custom 包中）<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span>Object&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;EventObject&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SWTEventObject&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TypedEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AimEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!BidiSegmentEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ControlEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!CTabFlolderEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DisposeEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DragSourceEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DragTargetEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!ExtendedModifyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focusEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HelpEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KeyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TraverseEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!LineBackgroundEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!LineStyleEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MenuEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModifyEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MouseEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PaintEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelectionEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TreeEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ShellEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!TextChangedEvent&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!TextChangingEvent&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java">Object<br>    EventObject<br>        SWTEventObject<br>            TypedEvent<br>                AimEvent<br>                !BidiSegmentEvent<br>                ControlEvent<br>                !CTabFlolderEvent<br>                DisposeEvent<br>                DragSourceEvent<br>                DragTargetEvent<br>                !ExtendedModifyEvent<br>                focusEvent<br>                HelpEvent<br>                KeyEvent<br>                    TraverseEvent<br>                    VerifyEvent<br>                !LineBackgroundEvent<br>                !LineStyleEvent<br>                MenuEvent<br>                ModifyEvent<br>                MouseEvent<br>                PaintEvent<br>                SelectionEvent<br>                    TreeEvent<br>                ShellEvent<br>                !TextChangedEvent<br>                !TextChangingEvent</pre><br><br><br><br><br><br>注意：在另外几个包中还有其他一些 SWT 事件，但是这是基本的事件集。这些是从更通用的事件生成的具体事件。<br><br><br><br>很多 Swing 组件，例如 JTable，都有自己的模型。对应的 SWT 控件（例如<br>Table）则没有；不过它们有自己的条目。条目通常用来限制显示文本或通常很小的图像（例如图标）。为了提供一种类 Swing 的模型接口，SWT<br>使用了 JFace ContentProviders。这些组件可以在应用程序提供的模型（例如 List 或 Table 使用的<br>java.util.Array ）和用作视图的控件之间充当一个桥梁。为了将任意模型对象格式化成条目，SWT 使用了 JFace<br>LabelProviders，它们可以为任何模型对象生成一个文本或图标格式。这可以对复杂模型对象的混合显示进行限制。其他类似组件，例如<br>ColorProviders 和 LabelDecorators，可以增强对这些条目的显示。对于 Tables 的特例来说，SWT 提供了<br>CellEditor，它可以临时将任意 SWT 控件链接到一个 Table 单元格上，从而当作这个单元格的编辑器使用。<br><br><br><br>SWT 不支持 GUI 控件的自动销毁。这意味着我们必须显式地销毁所创建的任何控件和资源，例如颜色和字体，而不能利用 API 调用来实现这种功能。这种工作从某种程度上来说得到了简化，因为容器控制了其子控件的自动销毁功能。<br><br><br><br>使用 SWT 只能自顶向下地构建 GUI。因此，如果没有父容器，子控件也就不存在了；通常父容器都不能在以后任意改变。这种方法不如<br>AWT/Swing 灵活。控件是在创建时被添加到父容器中的，在销毁时被从父容器中删除的。而且 SWT 对于 style<br>位的使用只会在构建时进行，这限制了有些 GUI 控件的灵活性。有些风格只是一些提示性的，它们在所有平台上的行为可能并不完全相同。<br><br><br><br>与 Swing 类似，SWT 组件也不是线程安全的，这意味着您必须要关心在应用程序中是哪个线程对 GUI 进行了更新。如果在使用线程时发生了错误，就会抛出异常。我认为这比不确定的 Swing 方法要好。有一些工具可以帮助管理线程的问题。<br><br><br><br>如果所支持的操作系统提供了可访问性服务，那么 SWT GUI 通常也就具有很好的可访问性。当默认信息不够时，SWT 为程序员提供了一个基本的 API 来指定可访问性信息。<br><br><br><br>SWT 提供了一个有限的图形环境。到目前为止，它对于 Java2D 和 Java3D 的支持还不怎么好。Eclipse 使用一个名为<br>Draw2D 的组件提供了另外一种单独的图形编辑框架（Graphical Editing<br>Framework，GEF），它可以用来创建一些绘图应用程序，例如 UML 建模工具。不幸的是，GEF 难以单独（即在整个 Eclipse<br>环境之外）使用。<br><br><br><br>与 AWT 和 Swing 不同，SWT 和 JFace 并不是 Java 技术的标准配置。它们必须单独进行安装，这可以当作是<br>Eclipse 安装的一部分，也可以当作是单独的库进行安装。Eclipse 小组已经使它的安装变得非常简单，并且 SWT 可以与<br>Eclipse 分开单独运行。所需要的 Java 档案文件（JAR）和动态链接库（DLL）以及 UNIX? 和 Macintosh<br>上使用的类似库可以从 Eclipse Web 站点上单独下载。JFace 库需要您下载所有的 Eclipse 文件，并拷贝所需要的 JAR<br>文件。在下载所需要的文件之后，我们还需要将这些 JAR 文件放到 Java CLASSPATH 中，并将 DLL 文件放到系统 PATH 中。<br><br><br><br><br><br><br><br><br><br><br><br><br><br>特性的比较<br><br><br><br>下表对 AWT、SWT 和 Swing 库的很多特性进行了比较，这种比较并没有按照任何特定顺序来进行。尽管没有完全列出所有特性，但是列出了很多最重要的特性。<br><br><br><br><br><br>表 1. SWT 、AWT 和 Swing 特性的比较<br><br><br><br><div class="dp-highlighter"><div class="bar"><div class="tools">Java代码 <a href="http://dolive.javaeye.com/blog/202641#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;" title="复制代码" target="_blank" rel="noopener"><img src="http://dolive.javaeye.com/images/icon_copy.gif" alt="复制代码"></a></div></div><ol class="dp-j" start="1"><li><span><span>表&nbsp;</span><span class="number">1</span><span>.&nbsp;SWT&nbsp;、AWT&nbsp;和&nbsp;Swing&nbsp;特性的比较&nbsp;&nbsp;</span></span></li><li><span>功能/角色/外表&nbsp;AWT&nbsp;Swing&nbsp;SWT（风格）&nbsp;&nbsp;&nbsp;</span></li><li><span>显示静态文本&nbsp;&nbsp;Label&nbsp;&nbsp;JLabel&nbsp;&nbsp;Label,&nbsp;CLabel&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示多行静态文本&nbsp;&nbsp;Multiple&nbsp;Labels&nbsp;&nbsp;具有&nbsp;HTML&nbsp;内容的&nbsp;Multiple&nbsp;JLabels&nbsp;或&nbsp;JLabel&nbsp;&nbsp;具有新行的&nbsp;Multiple&nbsp;Labels&nbsp;或&nbsp;Label&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示多行格式化静态文本&nbsp;&nbsp;具有不同字体的&nbsp;Multiple&nbsp;Labels&nbsp;&nbsp;具有&nbsp;HTML&nbsp;内容的&nbsp;JLabel&nbsp;&nbsp;具有不同字体的&nbsp;Multiple&nbsp;Labels&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>单行文本输入&nbsp;&nbsp;TextField&nbsp;&nbsp;JTextField&nbsp;&nbsp;Text(SWT.SINGLE)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>多行文本输入&nbsp;&nbsp;TextArea&nbsp;&nbsp;JTextArea&nbsp;&nbsp;Text(SWT.MULTI)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示图像&nbsp;&nbsp;N/A&nbsp;&nbsp;JLabel&nbsp;&nbsp;Label&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示文本和图像&nbsp;&nbsp;N/A&nbsp;&nbsp;JLabel&nbsp;&nbsp;CLabel&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>提示弹出帮助&nbsp;&nbsp;N/A&nbsp;&nbsp;组件的&nbsp;setToolTip，JToolTip&nbsp;子类&nbsp;&nbsp;控件的&nbsp;setToolTip&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>风格化的文本输入&nbsp;&nbsp;N/A&nbsp;&nbsp;JEditorPane&nbsp;&nbsp;StyledText&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>从条目列表中进行选择&nbsp;&nbsp;List&nbsp;&nbsp;JList&nbsp;&nbsp;List&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>简单按下具有文本的按钮&nbsp;&nbsp;Button&nbsp;&nbsp;JButton&nbsp;&nbsp;Button(SWT.PUSH)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>简单按下具有文本或图像的按钮&nbsp;&nbsp;N/A&nbsp;&nbsp;JButton&nbsp;&nbsp;Button(SWT.PUSH)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>绘图区域；可能用于定制控件&nbsp;&nbsp;Canvas&nbsp;&nbsp;JPanel&nbsp;&nbsp;Canvas&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>选中/取消复选框&nbsp;&nbsp;CheckBox&nbsp;&nbsp;JCheckBox&nbsp;&nbsp;Button(SWT.CHECK)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>单选按钮选择&nbsp;CheckBoxGroup&nbsp;&nbsp;ButtonGroup&nbsp;和&nbsp;Menu&nbsp;&nbsp;Group&nbsp;和&nbsp;Menu&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>从一个下拉列表中选择&nbsp;&nbsp;Choice&nbsp;&nbsp;JComboBox&nbsp;&nbsp;Combo、CCombo&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>输入文本或从下拉列表中选择&nbsp;&nbsp;N/A&nbsp;&nbsp;JComboBox&nbsp;&nbsp;Combo、CCombo&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>可滚动区域&nbsp;&nbsp;ScrollPane&nbsp;&nbsp;JScrollPane&nbsp;&nbsp;创建&nbsp;Scrollable&nbsp;子类&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>顶层窗口&nbsp;&nbsp;Dialog、Frame、Window&nbsp;&nbsp;JDialog、JFrame、JWindow&nbsp;&nbsp;具有不同风格的&nbsp;Shell&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>通用窗口&nbsp;&nbsp;Window&nbsp;&nbsp;JWindow&nbsp;&nbsp;Shell&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>框架窗口&nbsp;&nbsp;Frame&nbsp;&nbsp;JFrame&nbsp;&nbsp;Shell(SWT.SHELL_TRIM)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>对话框窗口&nbsp;&nbsp;Dialog&nbsp;&nbsp;JDialog&nbsp;&nbsp;Shell(SWT.DIALOG_TRIM)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>菜单&nbsp;&nbsp;Menu&nbsp;&nbsp;JMenu&nbsp;&nbsp;Menu&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>MenuItem&nbsp;&nbsp;MenuItem&nbsp;&nbsp;JMenuItem&nbsp;&nbsp;MenuItem&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>菜单快捷键&nbsp;&nbsp;通用击键&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;依赖于主机的快捷键&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>弹出菜单&nbsp;&nbsp;PopupMenu&nbsp;&nbsp;JPopupMenu&nbsp;&nbsp;Menu(SWT.POPUP)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>菜单条&nbsp;&nbsp;MenuBar&nbsp;&nbsp;JMenuBar&nbsp;&nbsp;Menu(SWT.BAR)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示插入符号&nbsp;&nbsp;N/A&nbsp;&nbsp;Caret&nbsp;&nbsp;Caret&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>Web&nbsp;浏览器&nbsp;&nbsp;N/A&nbsp;&nbsp;JTextPane（HTML&nbsp;<span class="number">3.2</span><span>）&nbsp;&nbsp;Browser（通过嵌入式浏览器）&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>Web&nbsp;页面中的嵌入式控件&nbsp;&nbsp;Applet&nbsp;&nbsp;JApplet&nbsp;&nbsp;主机控件（例如&nbsp;OLE）&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>其他控件的通用容器&nbsp;&nbsp;Panel&nbsp;&nbsp;JPanel&nbsp;&nbsp;Composite&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>其他控件的有边界通用容器&nbsp;&nbsp;Panel（如果是手工画的）&nbsp;&nbsp;具有&nbsp;Border&nbsp;的&nbsp;JPanel&nbsp;&nbsp;Composite(SWT.BORDER)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>其他控件的有边界和标题的通用容器&nbsp;&nbsp;N/A&nbsp;&nbsp;具有&nbsp;TitledBorder&nbsp;的&nbsp;JPanel&nbsp;&nbsp;Group&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>单选按钮（一个被选中）&nbsp;&nbsp;Checkbox&nbsp;&nbsp;JRadioButton&nbsp;&nbsp;Button(SWT.RADIO)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>单选按钮的控件扩充&nbsp;&nbsp;CheckboxGroup&nbsp;&nbsp;RadioButtonGroup&nbsp;&nbsp;Group&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>箭头按钮&nbsp;&nbsp;N/A&nbsp;&nbsp;具有图像的&nbsp;JButton&nbsp;&nbsp;Button(SWT.ARROW)&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>支持文本显示方向&nbsp;&nbsp;通过&nbsp;ComponentOrientation&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;很多组件都可以支持这种风格&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>焦点切换&nbsp;&nbsp;Policy&nbsp;和&nbsp;Manager&nbsp;对象&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;下一个控件&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>定制对话框&nbsp;&nbsp;Dialog&nbsp;子类&nbsp;&nbsp;JDialog&nbsp;子类&nbsp;&nbsp;Dialog&nbsp;子类&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>访问系统事件&nbsp;&nbsp;EventQueue&nbsp;服务&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;Display&nbsp;服务（不如&nbsp;AWT&nbsp;健壮）&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>系统访问对话框&nbsp;&nbsp;FileDialog&nbsp;&nbsp;JColorChooser、JFileChooser&nbsp;&nbsp;ColorDialog、DirectoryDialog、FileDialog、FontDialog、PrintDialog&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示简单消息对话框&nbsp;&nbsp;N/A（必须是&nbsp;Dialog&nbsp;子类）&nbsp;&nbsp;JOptionPane&nbsp;静态方法&nbsp;&nbsp;具有很多风格的&nbsp;MessageBox&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示简单提示对话框&nbsp;&nbsp;N/A（必须是&nbsp;Dialog&nbsp;子类）&nbsp;&nbsp;JOptionPane&nbsp;静态方法&nbsp;&nbsp;N/A（JFace&nbsp;中用来实现这种功能的子类）&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>布<br>局管理器&nbsp;&nbsp;BorderLayout、CardLayout、FlowLayout、GridLayout、GridBagLayout&nbsp;&nbsp;AWT&nbsp;加<br>上&nbsp;BoxLayout、CenterLayout、SpringLayout&nbsp;&nbsp;FillLayout、FormLayout、GridLayout、<br>RowLayout、StackLayout&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>基本的绘图控件&nbsp;&nbsp;Canvas&nbsp;&nbsp;JPanel&nbsp;&nbsp;Canvas&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>基本绘图&nbsp;&nbsp;Graphics&nbsp;和&nbsp;Graphics2D&nbsp;对象&nbsp;——&nbsp;基本形状和文本，任意&nbsp;Shapes&nbsp;和&nbsp;Strokes、Bezier&nbsp;以及文件&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;GC&nbsp;对象&nbsp;——&nbsp;基本形状和文本&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>绘图转换&nbsp;&nbsp;Affine，合成&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>离屏绘图（Off&nbsp;screen&nbsp;drawing）&nbsp;&nbsp;BufferedImage、drawImage&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;Image、drawImage&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>双缓冲区&nbsp;&nbsp;手工&nbsp;&nbsp;自动或手工&nbsp;&nbsp;除非由主机控件提供，否则就是手工&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>打印&nbsp;&nbsp;PrintJob&nbsp;和&nbsp;PrintGraphics&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;向&nbsp;Printer&nbsp;设备绘图&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>定制颜色&nbsp;&nbsp;Color&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;Color&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>定制字体&nbsp;&nbsp;Font、FontMetrics&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;Font&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>光标选择&nbsp;&nbsp;Cursor&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;Cursor&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>图像特性&nbsp;&nbsp;从文件中加载，动态创建，可扩充地编辑&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;从文件中加载，动态创建，基本编辑&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>输入自动化&nbsp;&nbsp;Robot&nbsp;&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示工具条&nbsp;&nbsp;N/A&nbsp;&nbsp;JToolBar&nbsp;&nbsp;ToolBar、CoolBar&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示进度条&nbsp;&nbsp;N/A&nbsp;&nbsp;JProgressBar&nbsp;&nbsp;ProgressBar&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>将空间划分成区域&nbsp;&nbsp;N/A&nbsp;&nbsp;JSplitPane&nbsp;&nbsp;Sash&nbsp;或&nbsp;SashForm&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示一个分标签页的区域&nbsp;&nbsp;N/A&nbsp;&nbsp;JTabbedPane&nbsp;&nbsp;TabFolder、CTabFolder&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示制表信息&nbsp;&nbsp;N/A&nbsp;&nbsp;JTable&nbsp;&nbsp;Table&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>格式化表的列&nbsp;&nbsp;N/A&nbsp;&nbsp;TableColumn&nbsp;&nbsp;TableColumn&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>显示层次化信息&nbsp;&nbsp;N/A&nbsp;&nbsp;JTree&nbsp;&nbsp;Tree&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>从一定范围的值中进行选择&nbsp;N/A&nbsp;JSlider&nbsp;Slider&nbsp;&nbsp;&nbsp;</span></li><li><span>从一组离散范围的值中进行选择&nbsp;N/A&nbsp;JSpinner&nbsp;Scale&nbsp;&nbsp;&nbsp;</span></li><li><span>对于基本显示的访问&nbsp;Toolkit、GraphicsConfiguration、GraphicsDevice&nbsp;与&nbsp;AWT&nbsp;相同&nbsp;Display&nbsp;&nbsp;&nbsp;</span></li><li><span>将条目添加到系统托盘（system&nbsp;tray）中&nbsp;N/A&nbsp;N/A&nbsp;Tray&nbsp;&nbsp;&nbsp;</span></li><li><span>关键：N/A&nbsp;——&nbsp;不适用。在很多情况中，这种特性都可以通过创建定制控件或控件容器或利用其他定制编程来实现，不过实现的难度会有所不同。&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java">表 1. SWT 、AWT 和 Swing 特性的比较<br>功能/角色/外表 AWT Swing SWT（风格）<br>显示静态文本  Label  JLabel  Label, CLabel<br>显示多行静态文本  Multiple Labels  具有 HTML 内容的 Multiple JLabels 或 JLabel  具有新行的 Multiple Labels 或 Label<br>显示多行格式化静态文本  具有不同字体的 Multiple Labels  具有 HTML 内容的 JLabel  具有不同字体的 Multiple Labels<br>单行文本输入  TextField  JTextField  Text(SWT.SINGLE)<br>多行文本输入  TextArea  JTextArea  Text(SWT.MULTI)<br>显示图像  N/A  JLabel  Label<br>显示文本和图像  N/A  JLabel  CLabel<br>提示弹出帮助  N/A  组件的 setToolTip，JToolTip 子类  控件的 setToolTip<br>风格化的文本输入  N/A  JEditorPane  StyledText<br>从条目列表中进行选择  List  JList  List<br>简单按下具有文本的按钮  Button  JButton  Button(SWT.PUSH)<br>简单按下具有文本或图像的按钮  N/A  JButton  Button(SWT.PUSH)<br>绘图区域；可能用于定制控件  Canvas  JPanel  Canvas<br>选中/取消复选框  CheckBox  JCheckBox  Button(SWT.CHECK)<br>单选按钮选择 CheckBoxGroup  ButtonGroup 和 Menu  Group 和 Menu<br>从一个下拉列表中选择  Choice  JComboBox  Combo、CCombo<br>输入文本或从下拉列表中选择  N/A  JComboBox  Combo、CCombo<br>可滚动区域  ScrollPane  JScrollPane  创建 Scrollable 子类<br>顶层窗口  Dialog、Frame、Window  JDialog、JFrame、JWindow  具有不同风格的 Shell<br>通用窗口  Window  JWindow  Shell<br>框架窗口  Frame  JFrame  Shell(SWT.SHELL_TRIM)<br>对话框窗口  Dialog  JDialog  Shell(SWT.DIALOG_TRIM)<br>菜单  Menu  JMenu  Menu<br>MenuItem  MenuItem  JMenuItem  MenuItem<br>菜单快捷键  通用击键  与 AWT 相同  依赖于主机的快捷键<br>弹出菜单  PopupMenu  JPopupMenu  Menu(SWT.POPUP)<br>菜单条  MenuBar  JMenuBar  Menu(SWT.BAR)<br>显示插入符号  N/A  Caret  Caret<br>Web 浏览器  N/A  JTextPane（HTML 3.2）  Browser（通过嵌入式浏览器）<br>Web 页面中的嵌入式控件  Applet  JApplet  主机控件（例如 OLE）<br>其他控件的通用容器  Panel  JPanel  Composite<br>其他控件的有边界通用容器  Panel（如果是手工画的）  具有 Border 的 JPanel  Composite(SWT.BORDER)<br>其他控件的有边界和标题的通用容器  N/A  具有 TitledBorder 的 JPanel  Group<br>单选按钮（一个被选中）  Checkbox  JRadioButton  Button(SWT.RADIO)<br>单选按钮的控件扩充  CheckboxGroup  RadioButtonGroup  Group<br>箭头按钮  N/A  具有图像的 JButton  Button(SWT.ARROW)<br>支持文本显示方向  通过 ComponentOrientation  与 AWT 相同  很多组件都可以支持这种风格<br>焦点切换  Policy 和 Manager 对象  与 AWT 相同  下一个控件<br>定制对话框  Dialog 子类  JDialog 子类  Dialog 子类<br>访问系统事件  EventQueue 服务  与 AWT 相同  Display 服务（不如 AWT 健壮）<br>系统访问对话框  FileDialog  JColorChooser、JFileChooser  ColorDialog、DirectoryDialog、FileDialog、FontDialog、PrintDialog<br>显示简单消息对话框  N/A（必须是 Dialog 子类）  JOptionPane 静态方法  具有很多风格的 MessageBox<br>显示简单提示对话框  N/A（必须是 Dialog 子类）  JOptionPane 静态方法  N/A（JFace 中用来实现这种功能的子类）<br>布局管理器  BorderLayout、CardLayout、FlowLayout、GridLayout、GridBagLayout  AWT 加上 BoxLayout、CenterLayout、SpringLayout  FillLayout、FormLayout、GridLayout、RowLayout、StackLayout<br>基本的绘图控件  Canvas  JPanel  Canvas<br>基本绘图  Graphics 和 Graphics2D 对象 —— 基本形状和文本，任意 Shapes 和 Strokes、Bezier 以及文件  与 AWT 相同  GC 对象 —— 基本形状和文本<br>绘图转换  Affine，合成  与 AWT 相同  N/A<br>离屏绘图（Off screen drawing）  BufferedImage、drawImage  与 AWT 相同  Image、drawImage<br>双缓冲区  手工  自动或手工  除非由主机控件提供，否则就是手工<br>打印  PrintJob 和 PrintGraphics  与 AWT 相同  向 Printer 设备绘图<br>定制颜色  Color  与 AWT 相同  Color<br>定制字体  Font、FontMetrics  与 AWT 相同  Font<br>光标选择  Cursor  与 AWT 相同  Cursor<br>图像特性  从文件中加载，动态创建，可扩充地编辑  与 AWT 相同  从文件中加载，动态创建，基本编辑<br>输入自动化  Robot  与 AWT 相同  N/A<br>显示工具条  N/A  JToolBar  ToolBar、CoolBar<br>显示进度条  N/A  JProgressBar  ProgressBar<br>将空间划分成区域  N/A  JSplitPane  Sash 或 SashForm<br>显示一个分标签页的区域  N/A  JTabbedPane  TabFolder、CTabFolder<br>显示制表信息  N/A  JTable  Table<br>格式化表的列  N/A  TableColumn  TableColumn<br>显示层次化信息  N/A  JTree  Tree<br>从一定范围的值中进行选择 N/A JSlider Slider<br>从一组离散范围的值中进行选择 N/A JSpinner Scale<br>对于基本显示的访问 Toolkit、GraphicsConfiguration、GraphicsDevice 与 AWT 相同 Display<br>将条目添加到系统托盘（system tray）中 N/A N/A Tray<br>关键：N/A —— 不适用。在很多情况中，这种特性都可以通过创建定制控件或控件容器或利用其他定制编程来实现，不过实现的难度会有所不同。 </pre></p>
+<p><br><br><br><br>（这是一个比较表，请参见原文）<br><br><br><br><br><br><br><br>结束语<br><br><br><br>本文对 Eclipse 的 Standard Windows Toolkit with JFace、Java 的 Swing 和<br>Abstract Windows Toolkit GUI 工具包进行了比较。通过此处提供的比较，您可以确定在自己的新应用程序中应该使用哪个<br>GUI 工具包。<br><br><br><br>在大部分情况中，决定都是在 Swing 与结合了 JFace 的 SWT<br>之间进行的。通常来说，每个工具包都非常完整且功能强大，足以构建功能完善的 GUI，但是 Swing 通常要比单独使用 SWT（不使用<br>JFace 时）更好。Swing 具有内嵌于 Java 技术的优点，是完全可移植的，无可争议地是一种更好的架构。Swing<br>也具有高级图形应用程序所需要的优点。SWT 具有可以作为本地应用程序实现的优点，这可以提高性能，并利用基于 SWT 的 GUI<br>来实现本地兼容性。<br><br><br><br>如果您只为一种平台来开发系统，那么 SWT 就具有主机兼容性方面的优点，包括与主机特性的集成，例如在 Windows 上对 ActiveX 控件的使用。<br><br>转自：<a href="http://dolive.javaeye.com/blog/202641" target="_blank" rel="noopener">http://dolive.javaeye.com/blog/202641</a><br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5y801zs4urqaqzlu1hh/" rel="next" title="安装 jBPM 的 Eclipse 开发插件">
+                <i class="fa fa-chevron-left"></i> 安装 jBPM 的 Eclipse 开发插件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5ea013t4urqvhc8osb2/" rel="prev" title="国人为什么这么轻视技术？">
+                国人为什么这么轻视技术？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

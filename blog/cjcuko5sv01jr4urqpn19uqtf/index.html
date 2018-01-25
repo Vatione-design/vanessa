@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            Tobias Komischke                译者刘申            发布于            2009年5月8日 下午11时53分        社区Architecture主题设计标签GUI顾名思义，GUIs（Graphical UserInterfaces，图形化用户界面）从视觉上展现了它们的特性与功能。人机">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="颜色与UI">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5sv01jr4urqpn19uqtf/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            Tobias Komischke                译者刘申            发布于            2009年5月8日 下午11时53分        社区Architecture主题设计标签GUI顾名思义，GUIs（Graphical UserInterfaces，图形化用户界面）从视觉上展现了它们的特性与功能。人机">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/Colors-UI/zh/resources/image1.gif">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/Colors-UI/zh/resources/image2.gif">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/Colors-UI/zh/resources/image3.jpg">
+<meta property="og:updated_time" content="2018-01-24T16:22:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="颜色与UI">
+<meta name="twitter:description" content="作者            Tobias Komischke                译者刘申            发布于            2009年5月8日 下午11时53分        社区Architecture主题设计标签GUI顾名思义，GUIs（Graphical UserInterfaces，图形化用户界面）从视觉上展现了它们的特性与功能。人机">
+<meta name="twitter:image" content="http://www.infoq.com/resource/articles/Colors-UI/zh/resources/image1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5sv01jr4urqpn19uqtf/"/>
+
+
+
+
+
+  <title>颜色与UI | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5sv01jr4urqpn19uqtf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">颜色与UI</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-05-14T02:03:00+08:00">
+                2009-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1><br></h1><p></p>
+<p class="info"><br>            作者<br><br><br><br>            <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=Tobias-Komischke" target="_blank" rel="noopener"><br>Tobias Komischke</a><br></strong><br><br><br><br><br>                译者<strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E5%88%98%E7%94%B3" target="_blank" rel="noopener"><br>刘申</a><br></strong><br><br>            发布于<br>            2009年5月8日 下午11时53分<br>        </p><br><dl class="tags2"><dt class="community">社区</dt><dd><a id="1,390" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="architecture" href="http://www.infoq.com/cn/architecture" target="_blank" rel="noopener">Architecture</a></dd><dt class="topics">主题</dt><dd><a id="859" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="Design" href="http://www.infoq.com/cn/Design" target="_blank" rel="noopener">设计</a></dd><dt class="topics">标签</dt><dd><a id="1,356" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="GUI" href="http://www.infoq.com/cn/GUI" target="_blank" rel="noopener">GUI</a></dd></dl><br><p>顾<br>名思义，GUIs（Graphical User<br>Interfaces，图形化用户界面）从视觉上展现了它们的特性与功能。人机交互在很大程度上是依赖于可视界面，寻找某个事物，并与图形化UI元素进行<br>交互。颜色是任何视觉画面的主要特征，这并不仅限于计算机屏幕，而是任何我们所看到的事物。因为在我们日常生活中，大多数所看到并进行交互的事物都是有颜<br>色的&mdash;&mdash;或许是看到的太多了，我们已对这点习以为常了。反过来说，如果你需要去阅读一个黑色按钮上的深灰色标签，那将是非常痛苦的。所以，颜色会潜移默化<br>的增强或削弱用户体验。本文将对用户体验的概念加以介绍，并着重探讨在UI设计中所推荐的颜色以及颜色感知等内容。</p><br><div class="vendor-content-box-float"><br><h3>相关<span class="vendor">厂商</span>内容</h3><br><p class="entrypdf"><br>            <a href="http://www.infoq.com/cn/vendorcontent/show.action?vcr=556" target="_blank"><br>                6月杭州&middot;第三届网络工程师侠客行大会开始免费报名<br>            </a><br>        </p><br></div><br><h2>用户体验</h2><br><p>用户体验（User<br>Experience，简称UX）是一个关于用户（users）以及交互（interactive）技术系统领域的整体概念。具体来说，它代表了一个网站<br>或者应用程序对其用户的可用性（usability）以及吸引程度。可用性高意味着交互产品能够让用户快速的实现他的目标。ISO<br>9241-110[1]以及Nielsen的研究[2]是这个领域中的&ldquo;圣经&rdquo;。</p><br><p>吸引力是指用户以及他所交互系统之间的情感。用户喜欢它吗？讨厌它吗？他们认为它是吸引人的、时尚的，还是为之着迷的？在交互的过程中，他们会为之<br>引以为豪吗？尽管吸引力并不能像可用性那样明确的对其进行定义，但是它对于一个产品的成功仍然至关重要，因为有吸引力的系统会让人使用起来更愉快，更加合<br>其所意，这都会增添产品的价值。</p><br><h2>颜色与UI</h2><br><p>颜色是360nm至720nm之间的光波刺激人类的眼睛并由视觉系统[3]进行处理后所触发的感知。我们的眼睛拥有三种类型的颜色接收器，分别用于<br>处理长波、中波、短波。它们分别被称为L-、M-和S-cones（译者注：cones是人眼的圆锥细胞）。如图1所示，一束530nm的光波会触发最多<br>的M- cones，其次是L-cones，只会触发很少的S-cones。这条光束最后被感知到的颜色即为绿色。</p><br><p><strong>图1：三种cone类型的光波被感知到的颜色（[4]）。</strong></p><br><p><img src="http://www.infoq.com/resource/articles/Colors-UI/zh/resources/image1.gif" alt=""></p><br><p>计算机屏幕中的颜色是由RGB颜色模型（R代表红色，G代表绿色，B代表蓝色）所定义的。这三种颜色被称为（三）原色（primary<br>colors），分别对应L-、M-和S-cone中最易接收的光波。三原色不能由其他颜色混合而生成。相反，通过混合三原色，可以生成其他所有的颜色。<br>屏幕上的每一个像素都是由一束红光、蓝光和绿光相互作用而生成的，它们挨的非常近，是无法分辨出来的。</p><br><h2>颜色对比度</h2><br><p>通常情况下，UI中的有色对象或区域并不是孤立存在的，都会与其他的对象或区域比邻或者重叠。这就产生了对比效果。没有足够的对比，我们是不能在屏<br>幕上分辨出不同的区域的。这也正是办公软件例如微软的Word、Powerpoint、Excel、Outlook为什么都会默认设置成白底黑字的原因了<br>&mdash;&mdash; 因为它会产生最强的对比度，以及最佳的可视度。</p><br><p>除此之外，颜色对比度通常被用于把浏览者的注意力引向某些传递关键信息或者需要输入的重要UI元素。</p><br><p>颜色对比度也会提高UI的视觉吸引力。实验研究显示，暖色调（比如红、黄、橙）非常适合作为冷色调（比如蓝、绿、紫）的背景，反之亦然。</p><br><p>对比效果同样会对用户体验产生不利的影响。下面讲的两个例子是比较有代表性的。通常情况下，任何视觉区域都会趋于临域的补色。比如，一个灰色的方<br>框，如果周围是红色，那它看起来就会发绿，如果周围是绿色，看起来就会发红。这种情况被称为同时对比（simultaneous color<br>contrast）【4】。在UI中，通常是一个控件，比如一个按钮，在不同的背景色下会产生完全不同的视觉效果。</p><br><p>另外一种对比度产生的问题是色差（chromatic<br>aberration）【5】。透镜（包括我们眼睛中的水晶体）会对不同的光波产生不同程度的折射。这种情况是因为不同的光源投射到视网膜中不同的地方所<br>引起的，比较明显的情况是紫色与红色的组合，还有蓝色与红色的组合（如图2），因为紫色与蓝色的光波位于光谱的一端，而红色位于另一端（如图1）。</p><br><p><img src="http://www.infoq.com/resource/articles/Colors-UI/zh/resources/image2.gif" alt=""></p><br><p><strong>图2：色差</strong></p><br><p>因此，图2中的文字看起来与背景相比，显得有些模糊。所以，在UI中应当避免红色和紫色/蓝色的对比。尽管如此，红-蓝组合仍然比比皆是，或许是因<br>为UI 设计者为了考虑色觉障碍（color<br>deficiency，下有详述）的问题而避免采用红-绿组合的替代选择。图3展示了生成良好对比度的不同前-背景色组合。</p><br><table border="1" cellspacing="0" cellpadding="9" width="100%" bordercolor="#000000"><br><tbody><br><tr valign="top"><br><td colspan="2" rowspan="2" width="113"><br><p>&nbsp;</p><br></td><br><td colspan="8" width="544"><br><p align="center"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">背景色</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="52"><br><p>黑</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="53"><br><p>白</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="63"><br><p>粉</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="48"><br><p>蓝</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="50"><br><p>青</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="53"><br><p>绿</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="58"><br><p>黄</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="41"><br><p>红</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td rowspan="7" width="36"><br><p style="margin-left: 0.2cm; margin-right: 0.2cm;" align="center"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">前景色<br><br>            </span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="58"><br><p>黑</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52" bgcolor="#000000"><br><p align="center">&nbsp;</p><br></td><br><td width="53"><br><p align="center"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center">&nbsp;</p><br></td><br><td width="48" bgcolor="#0000ff"><br><p align="center">&nbsp;</p><br></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="53" bgcolor="#00ff00"><br><p align="center"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="58" bgcolor="#ffff00"><br><p align="center"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="41" bgcolor="#ff0000"><br><p align="center">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="58"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">白</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52" bgcolor="#000000"><br><p align="center"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="53"><br><p align="center">&nbsp;</p><br></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center"><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br><td width="48" bgcolor="#0000ff"><br><p align="center"><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center">&nbsp;</p><br></td><br><td width="53" bgcolor="#00ff00"><br><p align="center">&nbsp;</p><br></td><br><td width="58" bgcolor="#ffff00"><br><p align="center">&nbsp;</p><br></td><br><td width="41" bgcolor="#ff0000"><br><p align="center"><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br></tr><br><tr valign="top"><br><td width="58"><br><p>粉</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52" bgcolor="#000000"><br><p align="center">&nbsp;</p><br></td><br><td width="53"><br><p align="center"><span style="color: #ff00ff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ff00ff;">        </span></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center">&nbsp;</p><br></td><br><td width="48" bgcolor="#0000ff"><br><p align="center">&nbsp;</p><br></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center">&nbsp;</p><br></td><br><td width="53" bgcolor="#00ff00"><br><p align="center">&nbsp;</p><br></td><br><td width="58" bgcolor="#ffff00"><br><p align="center"><span style="color: #ff00ff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ff00ff;">        </span></td><br><td width="41" bgcolor="#ff0000"><br><p align="center">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="58"><br><p>蓝</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52" bgcolor="#000000"><br><p align="center">&nbsp;</p><br></td><br><td width="53"><br><p align="center"><span style="color: #0000ff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #0000ff;">        </span></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center">&nbsp;</p><br></td><br><td width="48" bgcolor="#0000ff"><br><p align="center">&nbsp;</p><br></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center"><span style="color: #0000ff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #0000ff;">        </span></td><br><td width="53" bgcolor="#00ff00"><br><p align="center"><span style="color: #0000ff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #0000ff;">        </span></td><br><td width="58" bgcolor="#ffff00"><br><p><span style="color: #3399ff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">    </span></span></span><span style="color: #0000ff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #0000ff;">        </span></td><br><td width="41" bgcolor="#ff0000"><br><p align="center">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="58"><br><p>青</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52" bgcolor="#000000"><br><p align="center"><span style="color: #99ffcc;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #99ffcc;">        </span></td><br><td width="53"><br><p align="center">&nbsp;</p><br></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center">&nbsp;</p><br></td><br><td width="48" bgcolor="#0000ff"><br><p align="center"><span style="color: #99ffcc;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #99ffcc;">        </span></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center">&nbsp;</p><br></td><br><td width="53" bgcolor="#00ff00"><br><p align="center">&nbsp;</p><br></td><br><td width="58" bgcolor="#ffff00"><br><p align="center">&nbsp;</p><br></td><br><td width="41" bgcolor="#ff0000"><br><p align="center">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="58"><br><p>绿</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52" bgcolor="#000000"><br><p align="center"><span style="color: #00ff00;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #00ff00;">        </span></td><br><td width="53"><br><p align="center">&nbsp;</p><br></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center">&nbsp;</p><br></td><br><td width="48" bgcolor="#0000ff"><br><p align="center"><span style="color: #00ff00;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #00ff00;">        </span></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center">&nbsp;</p><br></td><br><td width="53" bgcolor="#00ff00"><br><p align="center">&nbsp;</p><br></td><br><td width="58" bgcolor="#ffff00"><br><p align="center">&nbsp;</p><br></td><br><td width="41" bgcolor="#ff0000"><br><p align="center">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="58"><br><p>黄</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52" bgcolor="#000000"><br><p align="center"><span style="color: #ffff00;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ffff00;">        </span></td><br><td width="53"><br><p align="center">&nbsp;</p><br></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center">&nbsp;</p><br></td><br><td width="48" bgcolor="#0000ff"><br><p align="center"><span style="color: #ffff00;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ffff00;">        </span></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center">&nbsp;</p><br></td><br><td width="53" bgcolor="#00ff00"><br><p align="center">&nbsp;</p><br></td><br><td width="58" bgcolor="#ffff00"><br><p align="center">&nbsp;</p><br></td><br><td width="41" bgcolor="#ff0000"><br><p align="center">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="36"><br><p>&nbsp;</p><br></td><br><td width="58"><br><p>红</p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="52"><br><p align="center">&nbsp;</p><br></td><br><td width="53"><br><p align="center"><span style="color: #ff0000;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ff0000;">        </span></td><br><td width="63" bgcolor="#ff00ff"><br><p align="center">&nbsp;</p><br></td><br><td width="48" bgcolor="#0000ff"><br><p align="center">&nbsp;</p><br></td><br><td width="50" bgcolor="#99ffcc"><br><p align="center"><span style="color: #ff0000;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ff0000;">        </span></td><br><td width="53" bgcolor="#00ff00"><br><p align="center">&nbsp;</p><br></td><br><td width="58" bgcolor="#ffff00"><br><p align="center"><span style="color: #ff0000;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">good</span></span></span></p><br><span style="color: #ff0000;">        </span></td><br><td width="41" bgcolor="#ff0000"><br><p align="center">&nbsp;</p><br></td><br></tr><br></tbody><br></table><br><p><strong>图3：良好对比度的不同前-背景色组合</strong></p><br><h2>色觉障碍</h2><br><p>当人们谈论色盲（color<br>blindness）的时候，通常是指对接收某种特定颜色存在障碍。而这种情况更准确的说，应为色觉障碍（color<br>deficiencies），因为大多数情况下，人们并不是完全不能接收某种颜色，只是他们的感知会有所误差【3】。色觉障碍是由视锥细胞类型（cone<br>type）的缺失或工作异常所导致。表1列出了由L-、M-、和S-cone所引起色觉障碍患者的比例。8%的男性以及0.4%的女性都存在不同程度的色<br>觉障碍。因为L-和M-cone的弧度非常接近（见图1），所以由L-和M-cone引起的色觉障碍症状非常相似。当L-和M-cone存在问题时，颜色<br>的呈现则大多都是基于蓝、黄两个色调，由此导致不能正确的接收值得推荐的红-绿配色。</p><br><table border="1" cellspacing="0" cellpadding="6" width="500" bordercolor="#000000"><br><col width="100">     <col width="150">     <col width="150">     <col width="100"><br><br><tbody><br><tr valign="top"><br><td width="143" height="13"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><strong>色觉障碍 <br><br>            </strong></span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="176"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><strong>原因</strong></span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><strong>颜色视觉 <br><br>            </strong></span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="121"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><strong>概率 [%] </strong></span></span></p><br></td><br></tr><br><tr valign="top"><br><td width="143" height="14"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">-</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="176"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">-             </span></span></p><br></td><br><td><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">能够看到所有颜色</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="121"><br><p align="right"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">男性:             92.0<br><br>            女性: 99.6</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="143" height="14"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">红绿色弱</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="176"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><span lang="en-US">L-cone缺失或不足</span></span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">- 能看见大部分颜色，除了蓝色与黄色 <br><br>            - 混淆红色与绿色</span></span></p><br><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">        </span></span></td><br><td width="121"><br><p style="margin-bottom: 0cm;" lang="de-DE" align="right"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><span lang="en-US">男性:             2.00<br><br>            女性: 0.04</span><span lang="en-US"> </span></span></span></p><br><p align="right">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="143" height="14"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">红绿色弱</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="176"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><span lang="en-US">M-cone缺失或不足<br><br>            </span></span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">- 能看见大部分颜色，除了蓝色与黄色<br><br>            - 混淆红色与绿色<br><br>            </span></span></p><br><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">        </span></span></td><br><td width="121"><br><p style="margin-bottom: 0cm;" lang="de-DE" align="right"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><span lang="en-US">男性:             6.00<br><br>            女性: 0.39</span><span lang="en-US"> </span></span></span></p><br><p align="right">&nbsp;</p><br></td><br></tr><br><tr valign="top"><br><td width="143" height="14"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">蓝黄色弱</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><span lang="en-US">S-cone</span></span></span><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><span lang="en-US">缺失或不足</span></span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">- 能看见大部分颜色，除了红色与绿色<br><br>            - 混淆蓝色与黄色<br><br>            </span></span></p><br><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">                     </span></span></td><br><td width="121"><br><p style="margin-bottom: 0cm;" align="right"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">男性:             0.004<br><br>            女性: 0.002</span></span></p><br><span style="font-family: Arial,sans-serif;">            </span><br><p align="right"><span style="font-family: Arial,sans-serif;"><br><br>            </span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="143" height="13"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">全色盲<br><br>            </span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="176"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">L-,             M-, S-cone缺失<br><br>            </span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">不能看到任何y<br><br>            </span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="121"><br><p align="right"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">男性:             0.003<br><br>            女性: 0.002</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br></tbody><br></table><br><p><strong>表1：色觉障碍与发生率</strong></p><br><p>由S-cone引起的色觉误差会导致颜色的接收都是基于红、绿色调，而深受赞誉的蓝、黄配色则无法感知。但这是一种非常罕见的情况，只有<br>0.004%的男性以及0.002%的女性会出现此类症状。还有一种非常罕见的情况&mdash;&mdash;全色盲，这是由完全缺失视锥细胞所导致的：只有0.003%的男性<br>以及0.002% 的女性看不见任何颜色，他们的视觉是非彩色的，完全基于黑、白、灰。</p><br><p>从表1可以看出，色觉障碍患者中最典型的一类人是无法接收红、绿两色的男性。非红-绿色觉障碍的患者比例非常低。实际上，由闪烁的UI元素引起癫痫的比例都要比非红-绿色觉障碍的比例高出400倍。</p><br><p>问题是，色觉障碍的程度为产品的可用性带来了巨大的挑战。这会因为应用程序的类型差异而有所不同。在所有对颜色的使用有美学要求的地方（比如大多数<br>公司的网站），它对色觉障碍的重要程度就远远低于某些表示状态的系统（比如控制系统和dashboards）。通常情况下，建议不要通过颜色来表明某些重<br>要信息。比如，通过红光或绿光表明系统状态，这会给红-绿色觉障碍者会带来麻烦。所以，最好提供一些有意义的文本标识（&ldquo;OK&rdquo; vs.<br>&ldquo;警告&rdquo;），或符号（&ldquo;对号&rdquo; vs. &ldquo;感叹号&rdquo;）代替有色码。</p><br><h2>颜色与视觉感染力</h2><br><p>颜色非常适合增强软件产品的视觉感染力。我们通常会赋予某些颜色以特定的涵义（表2）。这些对颜色的观念在设计UI的时候往往起到非常大的作用。举<br>个例子，一个基于白色的诊所软体应用程序是非常合情合理的，因为白色象征着&ldquo;整洁&rdquo;。再比如，联合国的主页是基于蓝色的，传达了一种&ldquo;和平&rdquo;的理念。</p><br><table border="1" cellspacing="0" cellpadding="6" width="500" bordercolor="#000000"><br><col width="150">     <col width="350"><br><br><tbody><br><tr valign="top"><br><td width="150" height="13"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><strong>颜色             </strong></span></span></p><br></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;"><strong>传达的感受<br><br>            </strong></span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#ff0000"><br><p>红</p><br><span style="color: #ffffff;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">热（hot）、停止（stop）、侵略（aggression）、错误（error）、警告（warning）、火（fire）、勇气（daring） </span></span></p><br></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#ff00ff"><br><p><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">粉</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">女性（female）、可爱（cute）、棉花糖（cotton-candy）</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#ff9900"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">橙</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">温暖（warm）、             秋天（autumnal）</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#ffff00"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">黄</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">幸福（happy）、明媚（sunny）、 快乐（cheerful）、减速（slow down）、小心（caution） </span></span></p><br></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#996600"><br><p><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">棕</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">温暖（warm）、秋天（fall）、肮脏（dirty） </span></span></p><br></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#33cc33"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">绿</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">嫉妒（envy）、 羡慕（jealousy）, 菜鸟（a novice）、 肥沃（fertile）、 田园（pastoral） </span></span></p><br></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#3399ff"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">蓝</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">平静（peaceful）、水（water）、男性（male）</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#990099"><br><p><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">紫</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">皇族（Royal）</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br></tr><br><tr valign="top"><br><td width="150" height="14"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">白</span></span></p><br><span style="font-family: Arial,sans-serif;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">纯洁（virginal）、干净（clean）、天真（innocent）、寒冷（cold） </span></span></p><br></td><br></tr><br><tr valign="top"><br><td width="150" height="14" bgcolor="#000000"><br><p><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">黑</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">邪恶（evil）、幽灵（ghostly）、死亡（death）、恐惧（fear）、哀痛（mourning） </span></span></p><br></td><br></tr><br><tr valign="top"><br><td width="150" height="13" bgcolor="#808080"><br><p><span style="color: #ffffff;"><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">灰</span></span></span></p><br><span style="color: #ffffff;">        </span></td><br><td width="512"><br><p><span style="font-family: Arial,sans-serif;"><span style="font-size: x-small;">阴暗（overcast）、忧郁（gloom）、晚年（old age） </span></span></p><br></td><br></tr><br></tbody><br></table><br><p><strong>表2：西方的颜色感知</strong></p><br><p>应当注意的是，表2中所列的这些对颜色的感知都起源于西方的文化。因为颜色观念是与文化密切相关的，他们在不同的区域会表示截然不同的涵义。比如红色，在埃及象征着&ldquo;死亡&rdquo;，而在印度却代表&ldquo;生命&rdquo;与&ldquo;创新&rdquo;，在中国则是代表&ldquo;幸福&rdquo;【9】。</p><br><p>有感染力的UI是由一组协调、相关的颜色所构成。创建配色方案（color scheme）也是一个技巧，而且是非常重要的，因为需要考虑很多因素，包括所要传达的公司品牌价值、强调的颜色感知（见表2），此外，还要考虑人类个体的问题（比如之前提到的对比度）。</p><br><p>无需图像设计师的帮助，有很多种方法可以用来创建简单的配色方案【10】。举个例子，你可以在12色环（color<br>wheel）中任选3个相邻的颜色（analogous color&mdash;&mdash;相似色，见图4）。或者选择完全相对的两个颜色（conplementary<br>color&mdash;&mdash;互补色）。不要忘记，红色与蓝色对红-绿色觉障碍者可不是很友好（详见前文&ldquo;色觉障碍&rdquo;）。</p><br><p><img src="http://www.infoq.com/resource/articles/Colors-UI/zh/resources/image3.jpg" alt=""></p><br><p><strong>图4：基于相似色的配色方案</strong></p><br><h2>关于作者</h2><br><p>Tobias Komischke博士已在用户体验领域工作超过10年。他是技术刊物、会议的评论家，发表论文超过30篇。在Infragistics，他负责用户体验的内（开发）、外（培训与咨询）工作。</p><br><h2>链接&amp; 文献</h2><br><p>[1]     ISO 9241-110 (2006). Ergonomics of     human-system interaction &ndash; Part 110: Dialog principles.     Berlin: Beuth.</p><br><p>[2] Nielsen, J. ().Nielsen, J. (1994). Heuristic evaluation. In<br>Nielsen, J., and Mack, R.L. (Eds.), Usability Inspection Methods. New<br>York City: John Wiley &amp; Sons.</p><br><p>[3]     Wyszecki, G, Stiles, W.S. (1982). Color     science. 2nd     edition. New York City: John Wiley &amp; Sons.</p><br><p>[4]     Gleitman, H. (1991). Psychology. 3rd Edition. New     York City: W.W. Norton &amp; Company.</p><br><p>[5]     Kaiser, P. K., Boynton, R. M. (1996). Human     Color Vision. Washington, D.C.: Optical     Society of America.</p><br><p>[6] Fisher R.S., Harding G., Erba G., Barkley G.L., Wilkins A.<br>(2005) Photic- and pattern-induced seizures: a review for the Epilepsy<br>Foundation of America Working Group Epilepsia, 46 (9), 1426-1441.</p><br><p>[7]     <a href="http://www.un.org/" target="_blank" rel="noopener">http://www.un.org/</a></p><br><p>[8]     Waters, C. (1996). Web Concept &amp; Design. Indianapolis: New     Riders Publishing.</p><br><p>[9]     Russo, P., &amp; Boor, S. (1993). How fluent is your interface?     Designing for international users. INTERCHI ‘93. 342-347.</p><br><p>[10]     Williams, R. (2008). The Non-Designer&rdquo;s Design Book. 3rd     Edition. New York City: Peachpit Press.</p><br><p><strong>查看英文原文</strong>：<a href="http://www.infoq.com/articles/Colors-UI" target="_blank">Colors and the UI</a>。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4t5005a4urqx6lgame8/" rel="next" title="Axure RP Pro 5.5或5 简体中文汉化包及注册序列号">
+                <i class="fa fa-chevron-left"></i> Axure RP Pro 5.5或5 简体中文汉化包及注册序列号
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5oo01fq4urq86bv7hoh/" rel="prev" title="职场交流：一位软件工程师的7年总结">
+                职场交流：一位软件工程师的7年总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.1.</span> <span class="nav-text">相关厂商内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">用户体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">颜色与UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">颜色对比度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">色觉障碍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.</span> <span class="nav-text">颜色与视觉感染力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.6.</span> <span class="nav-text">关于作者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.7.</span> <span class="nav-text">链接&amp; 文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

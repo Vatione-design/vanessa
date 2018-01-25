@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Maven," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="目前，绝大多数开发人员都把 Ant 当作 Java 编程项目的标准构建工具。遗憾的是，Ant 的项目管理工具（作为        make 的替代工具）不能满足绝大多数开发人员的需要。通过检查 Ant 构建文件，很难发现项目的相关性信息和其它元信息（如开发人员／拥有者、版本或站点主页）。                  Maven除了以程序构建能力为特色之外，还提供 Ant 所缺少的高级项目管理">
+<meta name="keywords" content="Maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目管理: Maven 让事情变得简单">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5s801jb4urqofoc2c83/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="目前，绝大多数开发人员都把 Ant 当作 Java 编程项目的标准构建工具。遗憾的是，Ant 的项目管理工具（作为        make 的替代工具）不能满足绝大多数开发人员的需要。通过检查 Ant 构建文件，很难发现项目的相关性信息和其它元信息（如开发人员／拥有者、版本或站点主页）。                  Maven除了以程序构建能力为特色之外，还提供 Ant 所缺少的高级项目管理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/developerworks/cn/java/j-maven/images/overview.gif">
+<meta property="og:updated_time" content="2018-01-23T04:13:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="项目管理: Maven 让事情变得简单">
+<meta name="twitter:description" content="目前，绝大多数开发人员都把 Ant 当作 Java 编程项目的标准构建工具。遗憾的是，Ant 的项目管理工具（作为        make 的替代工具）不能满足绝大多数开发人员的需要。通过检查 Ant 构建文件，很难发现项目的相关性信息和其它元信息（如开发人员／拥有者、版本或站点主页）。                  Maven除了以程序构建能力为特色之外，还提供 Ant 所缺少的高级项目管理">
+<meta name="twitter:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5s801jb4urqofoc2c83/"/>
+
+
+
+
+
+  <title>项目管理: Maven 让事情变得简单 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5s801jb4urqofoc2c83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">项目管理: Maven 让事情变得简单</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-12-06T05:25:00+08:00">
+                2008-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>目前，绝大多数开发人员都把 Ant 当作 Java 编程项目的标准构建工具。遗憾的是，Ant 的项目管理工具（作为<br>        <code>make</code> 的替代工具）不能满足绝大多数开发人员的需要。通过检查 Ant 构建文件，很难发现项目的相关性信息和其它元信息（如开发人员／拥有者、版本或站点主页）。<br>      </p><br>            <p>Maven<br>除了以程序构建能力为特色之外，还提供 Ant 所缺少的高级项目管理工具。由于 Maven 的缺省构建规则有较高的可重用性，所以常常用两三行<br>Maven 构建脚本就可以构建简单的项目，而使用 Ant 则需要十几行。事实上，由于 Maven 的面向项目的方法，许多 Apache<br>Jakarta 项目现在使用 Maven，而且公司项目采用 Maven 的比例在持续增长。</p><br>            <p><a name="1"><span class="atitle">Maven vs Ant</span></a></p><br>            <p><br>那么，Maven 和 Ant 有什么不同呢？在回答这个问题以前，我要强调一点：Maven 和 Ant 针对构建问题的两个不同方面。Ant 为<br>Java 技术开发项目提供跨平台构建任务。Maven 本身描述项目的高级方面，它从 Ant 借用了绝大多数构建任务。因此，由于 Maven 和<br>Ant 代表两个差异很大的工具，所以我将只说明这两个工具的等同组件之间的区别，如表 1 所示。</p><br>            <p><a name=" "><span class="smalltitle">表 1. Maven vs Ant</span></a></p><br>            <p><br>                </p><table border="1" cellpadding="3" cellspacing="0" width="600"><tbody><tr><td><br></td><td><br>                            <b>Maven</b><br>                        </td><td><br>                            <b>Ant</b><br>                        </td></tr><tr><td>标准构建文件</td><td>project.xml 和 maven.xml</td><td>build.xml</td></tr><tr><td>特性处理顺序</td><td><br>                            <ol><li>${maven.home}/bin/driver.properties</li><li>${project.home}/project.properties</li><li>${project.home}/build.properties</li><li>${user.home}/build.properties</li><li>通过 -D 命令行选项定义的系统特性</li></ol><br>                            <b>最后一个</b>定义起决定作用。<br>            </td><td><br>                            <ol><li>通过 -D 命令行选项定义的系统特性</li><li>由<br>                  <code>&lt;property&gt;</code> 任务装入的特性<br>                </li></ol><br>                            <b>第一个</b>定义最先被处理。<br>            </td></tr><tr><td>构建规则</td><td>构建规则更为动态（类似于编程语言）；它们是基于 Jelly 的可执行 XML。</td><td>构建规则或多或少是静态的，除非使用<br>              <code>&lt;script&gt;</code> 任务。（请参阅<br>              <a href="http://www.ibm.com/developerworks/cn/java/j-maven/#resources" target="_blank" rel="noopener">参考资料</a>以获得相关教程。）<br>            </td></tr><tr><td>扩展语言</td><td>插件是用 Jelly（XML）编写的。</td><td>插件是用 Java 语言编写的。</td></tr><tr><td>构建规则可扩展性</td><td>通过定义<br>              <code>&lt;preGoal&gt;</code> 和<br>              <code>&lt;postGoal&gt;</code> 使构建 goal 可扩展。<br>            </td><td>构建规则不易扩展；可通过使用<br>              <code>&lt;script&gt;</code> 任务模拟<br>              <code>&lt;preGoal&gt;</code> 和<br>              <code>&lt;postGoal&gt;</code> 所起的作用。<br>            </td></tr></tbody></table><br><br>            <br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" height="1" width="100%"><br><img alt="" src="http://www.ibm.com/i/c.gif" border="0" height="6" width="8"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" height="4" width="100%"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" border="0" height="16" width="16"><br></td><td align="right" valign="top"><a href="http://www.ibm.com/developerworks/cn/java/j-maven/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="2"><span class="atitle">Maven 的主要组件</span></a></p><br>            <p><br>既然您了解了 Maven 和 Ant 之间的区别，让我们来研究 Maven 的主要组件，如图 1 所示。</p>
+
+<pre><code>&lt;br&gt;&lt;a name=&quot;N100FB&quot;&gt;&lt;b&gt;图 1. Maven 的主要组件
+</code></pre><p><br><br>                <img alt="Maven 的主要组件" src="http://www.ibm.com/developerworks/cn/java/j-maven/images/overview.gif" height="183" width="458"><br>            <br><br>            </p><p><a name="N10108"><span class="smalltitle">项目对象模型</span></a></p><br>            <p>项<br>目对象模型（Project Object Model，POM）描述项目的各个方面。尽管对于 POM 的物理表示没有内在的限制，但 Maven<br>开发人员通常使用一个 XML 项目文件（project.xml）。该 XML 文件格式由位于 Maven 安装目录中的 XML<br>模式（maven-project.xsd）定义。</p><br>            <p>通常，project.xml 文件由三个主要部分组成：</p><br>            <ul><li>项目管理部分包括项目的组织、开发人员名单、源代码位置和错误跟踪系统 URL 等信息。<br></li><li>项目相关性部分包括关于项目相关性的信息。当前 Maven 实现（1.0 beta 测试版 8）仅支持 JAR 文件相关性。<br></li><li>项目构建和报告部分包含项目构建信息（如源代码目录、单元测试用例目录）和要在构建中生成的报告。</li></ul><br>            <p>清单 1 显示了带注释的样本 project.xml 文件。因为 project.xml 文件中的许多元素都是可选的，所以，随着您对 Maven 理解的加深，可以逐步使用不同的 Maven 特性。<br>        <i>注：在以下代码中，可选的元素都以“可选的（OPTIONAL）”标明。</i><br>            </p><p></p>
+<pre><code>      &lt;p&gt;主文档包含项目的唯一标识和组标识。事实证明，当项目包括多个子项目时，组标识非常有用。所有的子项目应共享同一组标识，但每个子项目应有不同的 
+  &lt;code&gt;&amp;lt;id&amp;gt;&lt;/code&gt; 。
+&lt;/p&gt;
+      &lt;br&gt;&lt;a name=&quot;N1012D&quot;&gt;&lt;b&gt;清单 1. 主 project.xml 框架&lt;/b&gt;&lt;/a&gt;&lt;br&gt;
+      &lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;code-outline&quot;&gt;&lt;pre class=&quot;displaycode&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;&lt;br&gt;&amp;lt;!-- A project file&apos;s root element --&amp;gt;&lt;br&gt;&amp;lt;project&amp;gt;&lt;br&gt;  &amp;lt;!-- The POM version. This tag is currently unused. --&amp;gt;&lt;br&gt;  &amp;lt;pomVersion&amp;gt;3&amp;lt;/pomVersion&amp;gt;&lt;br&gt;  &amp;lt;!-- A project group id. If present, the id serves as the project&apos;s&lt;br&gt;        directory name in the repository --&amp;gt;&lt;br&gt;  &amp;lt;groupId&amp;gt;crayola-group&amp;lt;/groupId&amp;gt;&lt;br&gt;  &amp;lt;!-- A unique project identifier. The project identifier and its&lt;br&gt;        version number often generate file/directory names during the&lt;br&gt;        build. For example, a project JAR file follows the&lt;br&gt;        &amp;lt;id&amp;gt;-&amp;lt;version&amp;gt; naming convention. --&amp;gt;&lt;br&gt;  &amp;lt;id&amp;gt;crayola&amp;lt;/id&amp;gt;&lt;br&gt;  &amp;lt;!-- A short name for the project --&amp;gt;&lt;br&gt;  &amp;lt;name&amp;gt;Crayola Professional&amp;lt;/name&amp;gt;&lt;br&gt;  &amp;lt;!-- The project version number. Maven does not enforce a particular&lt;br&gt;        version numbering scheme. --&amp;gt;&lt;br&gt;  &amp;lt;currentVersion&amp;gt;0.0.1&amp;lt;/currentVersion&amp;gt;&lt;br&gt;  ...&lt;br&gt;  &amp;lt;!-- &lt;br&gt;
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Maven/" rel="tag"># Maven</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4xg00e74urqailnjoi1/" rel="next" title="JavaFX尝鲜">
+                <i class="fa fa-chevron-left"></i> JavaFX尝鲜
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko56700sl4urqg3arj6h4/" rel="prev" title="applet 不能显示解决方法">
+                applet 不能显示解决方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

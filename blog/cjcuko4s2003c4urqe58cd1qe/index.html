@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="WebToolkit," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Google是支持开源运动的最大公司之一，它们现在总共发布有超过500个的开源项目（大部分都是利用它们的API来完成），本文将列举一些有趣的开源项目，其中很可能有不少你不知道的哦。　　文本文件处理：　　Google CRUSH (Custom Reporting Utilities for SHell)　　CRUSH是为命令行或shell scripts处理特定文字数据而制作的一系列工具，这里">
+<meta name="keywords" content="WebToolkit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="35个你也许不知道的Google开源项目">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4s2003c4urqe58cd1qe/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="Google是支持开源运动的最大公司之一，它们现在总共发布有超过500个的开源项目（大部分都是利用它们的API来完成），本文将列举一些有趣的开源项目，其中很可能有不少你不知道的哦。　　文本文件处理：　　Google CRUSH (Custom Reporting Utilities for SHell)　　CRUSH是为命令行或shell scripts处理特定文字数据而制作的一系列工具，这里">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-03T19:43:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="35个你也许不知道的Google开源项目">
+<meta name="twitter:description" content="Google是支持开源运动的最大公司之一，它们现在总共发布有超过500个的开源项目（大部分都是利用它们的API来完成），本文将列举一些有趣的开源项目，其中很可能有不少你不知道的哦。　　文本文件处理：　　Google CRUSH (Custom Reporting Utilities for SHell)　　CRUSH是为命令行或shell scripts处理特定文字数据而制作的一系列工具，这里">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4s2003c4urqe58cd1qe/"/>
+
+
+
+
+
+  <title>35个你也许不知道的Google开源项目 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4s2003c4urqe58cd1qe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">35个你也许不知道的Google开源项目</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-12-30T02:01:00+08:00">
+                2009-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　Google是支持开源运动的最大公司之一，它们现在总共发布有超过500个的开源项目（大部分都是利用它们的API来完成），本文将列举一些有趣的开源项目，其中很可能有不少你不知道的哦。<br><br><br><br>　　文本文件处理：<br><br><br><br>　　<strong>Google CRUSH</strong><br> (Custom Reporting Utilities for SHell)<br><br><br><br>　　CRUSH是为命令行或shell scripts处理特定文字数据而制作的一系列工具，这里有指南。<br><br><br><br>　　C++库和源代码：<br><br><br><br>　　<strong>Google Breakpad</strong><br><br><br><br><br>　　一个开源的多平台崩溃报告系统。<br><br><br><br>　　<strong>Google GFlags</strong><br><br><br><br><br>　　Gflags是一个命令行标记的处理库，它可以替代&ldquo;getopt()&rdquo;，其内置对C++的支持比如string。指南在此。<br><br><br><br>　　<strong>Google Glog</strong><br><br><br><br><br>　　Glog库可执行应用级的登陆，提供基于C++式的登陆API，可用于Linux、BSD和Windows。指南见此。<br><br><br><br>　　<strong>Google PerfTools</strong><br><br><br><br><br>　　这个工具可让开发创建更强大的应用程序，特别是那些用C++模版开发的多线程应用程序，包括TCMalloc, heap-checker, heap-profiler 和<a class="article" href="http://www.enet.com.cn/cpu/" target="_blank">cpu</a><br>-profiler。指南见此还有这里。<br><br><br><br>　　<strong>Google Sparse Hash</strong><br><br><br><br><br>　　非常节省内存的hash-map。指南见此。<br><br><br><br>　　<strong>Omaha &ndash; Google Update</strong><br><br><br><br><br>　　Omaha，也就是Google Update，它可以保证你的<a class="article" href="http://www.enet.com.cn/esoftware" target="_blank">软件</a><br>随时升级到最新版本，目前很多Windows下的Google软件都是用Omaha升级的，包括Google Chrome和Google Earth，当然你也可以用于自己的应用程序。指南看这里还有这里。<br><br><br><br>　　<strong>Protocol Buffers</strong><br><br><br><br><br>　　Protocol Buffers是一种可扩展编码序列数据的方式，Google在几乎所有内部RPC协议和文件格式都使用了Protocol Buffers。指南见此。它可以用于很多语言而且被一些IDE所支持，比如NetBeans。<br><br><br><br>　　互联网：<br><br><br><br>　　<strong>Google Code Pretiffy</strong><br><br><br><br><br>　<br>　这是一个Javascript模块和CSS文件，它可以让HTML页面里的部分源码高亮显示，支持C/C++, Java, Python,<br>Ruby, PHP, VisualBasic, AWK, Bash, SQL, HTML, XML, CSS, JavaScript,<br>Makefiles和部分Perl，不支持Smalltalk和所有的CAML。例子见此。<br><br><br><br>　　<strong>SpriteMe &ndash; easy &ldquo;CSS spirtes&rdquo;</strong><br><br><br><br><br>　　SpriteMe使你可以更轻松的创造CSS Sprites（俗称雪碧&hellip;&hellip;）就是把网站要用到的图片都堆在一张图片里，用CSS控制调用哪个区域。它有一个自己的官网在这里。<br><br><br><br>　　<strong>Redacisaurus</strong><br><br><br><br><br>　　Reducisaurus是一个压缩CSS和JS文件的网络服务，基于YUI压缩算法，运行于App Engine。<br><br><br><br>　　<strong>JaikuEngine</strong><br><br><br><br><br>　　JaikuEngine是一个运行于App Engine的微博系统，由jaiku.com运营。要查看移动客户端的源码可以看这里，这里还有介绍。<br><br><br><br>　　<strong>Selector Shell</strong><br><br><br><br><br>　　Selector Shell是一个基于浏览器的测试工具，它可以让你看到CSS在不同浏览器里的样式，用Javascript写的，你可以在这里测试。<br><br><br><br>　　<strong>Google Feed Server</strong><br><br><br><br><br>　　Google Feed Server是一个开源Atom发布协议服务，基于Apache Abdera框架，允许开发者快速为当前数据源（比如数据库）配置feed。指南见这里和这里。<br><br><br><br>　　<strong>Melange, the Spice of Creation</strong><br><br><br><br><br>　<br>　这个项目的目标是创建出一个适合开源贡献流程的框架，比如Google Summer of Code TM<br>(GSoC)项目。使用这个框架你就可以用Google App Engine来运行Google Summer of<br>Code项目，和其它类似项目比如Google Highly Open Participation TM Contest和GHOP。指南见此。<br><br><br><br>　　<strong>NameBench</strong><br><br><br><br><br>　　它可以查找最快的DNS服务器给你的电脑用，在Mac OS X、Windows和UNIX系统下都有命令行也有用户界面可以帮你测试，这是Google工程师用20%<a class="article" href="http://product.enet.com.cn/price/plist100_85732.shtml" target="_blank">自由</a><br>时间写出来的。<br><br><br><br>　　<strong>Rat Proxy</strong><br><br><br><br><br>　　一个半自动化的大型被动网络应用安全审查工具，专为精确的探测而优化，文档在此。<br><br><br><br>　　<strong>TopDraw</strong><br><br><br><br><br>　　Top Draw是一个图形生成程序，使用简单的文字脚本，基于JavaScript编程语言，Top Draw可以创造出非常复杂和有趣的图形。支持Mac OS 10.5以上系统，使用XCode开发。<br><br><br><br>　　<strong>etherpad</strong><br><br><br><br><br>　<br>　开源的EtherPad，这是一个基于网络的实时合作文档编辑器，这个项目主要是为了演示代码而开发，帮助那些想在自己服务器部署Etherpad的人<br>使用，这里有如何安装的指南。EtherPad使用JavaScript、Java和Comet服务器来建造实时协作服务。<br><br><br><br>　　<strong>Chromium</strong><br><br><br><br><br>　　Chromium是开源版的Chrome浏览器，Chromium的目标是建立一个新一代的强大网络应用程序，它与Chrome有很多不同之处。这里有指导如何在Linux上编译Chromium。<br><br><br><br>　　<strong>V8 Google&rsquo;s open source JavaScript engine</strong><br><br><br><br><br>　　V8是Google的开源JavaScript引擎，用C++写成，用于Chrome浏览器之上。V8使用ECMAScript的ECMA-262第三版可运行于Windows XP、Vista、Mac OS 10.5和使用IA-32或ARM<a class="article" href="http://product.enet.com.cn/price/plist20_2106.shtml" target="_blank">处理器</a><br>的Linux。V8可独立运行也可嵌入到任何C++程序里使用，这里有指南。<br><br><br><br>　　<strong>Chromium OS</strong><br><br><br><br><br>　　Chromium OS是开源版的Chrome OS操作系统，提供快速、简单而安全的网络体验，源码在此。<br><br><br><br>　　<strong>Android</strong><br><br><br><br><br>　　Android是第一个免费、开源而且可完全自定义的移动平台，提供完整的堆栈：一个操作系统、<a class="article" href="http://www.enet.com.cn/esoftware/" target="_blank">中间件</a><br>和重要的一用应用，它包含丰富的API可以让第三方开发者开发出强大的应用程序。<br><br><br><br>　　MySQL工具：<br><br><br><br>　　<strong>Google MySQL Tools</strong><br><br><br><br><br>　　各种管理、维护和改进MySQL数据库性能的工具，由Google编写，包括：<br><br><br><br>　　&bull;mypgrep.py：一个类似pgrep的工具来管理MySQL连接<br><br><br><br>　　&bull;compact_innodb.py：可导出和重载所有表格的密集型innodb数据文件<br><br><br><br>　　<strong>Google mMAIM</strong><br><br><br><br><br>　　mMAIM的目标是对MySQL的监控和分析更简单，且可以和任何环境整合使用。它可显示主/从同步状态，一些性能状态，可以返回大量&ldquo;show&rdquo;命令的状态等等。<br><br><br><br>　　其它：<br><br><br><br>　　<strong>Stressful Application Test (stressapptest)</strong><br><br><br><br><br>　　Stressful Application Test试图让来自处理器和I/O到内存的数据尽量随机化，以创造出模拟现实的环境来测试现在的硬件设备是否稳定，Google就在使用它，现在是Apache 2.0许可，这里有介绍、安装向导和指南。<br><br><br><br>　　<strong>Pop and IMAP Troubleshooter</strong><br><br><br><br><br>　　它用于诊断并解决客户端到邮件服务器的连接问题。<br><br><br><br>　　<strong>OpenDuckBill</strong><br><br><br><br><br>　　Openduckbill是一个Linux下简单的命令行备份工具，可用于监视文件/目录在有变化后是否标记为备份，并传输这些变化到本地备份目录、远程NFS导出分卷或是用rsync命令导出到远程SSH服务器。见安装向导。<br><br><br><br>　　<strong>ZXing</strong><br><br><br><br><br>　　ZXing（发音类似Zebra crossing）是Java的开源多格式1D/2D条码图像处理库，目的是使用内置在<a class="article" href="http://product.enet.com.cn/price/plist97.shtml" target="_blank">手机</a><br>上的摄像头拍照并对条码进行解码，而不必与服务器通讯，它被用于Android系统。这里有向导和支持的设备列表。<br><br><br><br>　　<strong>Tesseract OCR Engine</strong><br><br><br><br><br>　<br>　Tesseract OCR引擎是1995年UNLV<br>Accuracy测试的前三名之一，在1995和2006年之间它的进展不大，但依然是当前精度最高的OCR引擎。这个源码可读取二进制、灰阶或彩色图片<br>并输出文字，内置一个TIFF阅读器可读取非压缩的TIFF文件，增加libtiff后也可读取压缩图片。指南和问答。<br><br><br><br>　　<strong>Neatx &ndash; Open Source NX server</strong><br><br><br><br><br>　　Neatx是一个开源NX服务，类似NoMachine公司商业的NX服务。NX协议比VNX更强大，它们的区别主要在：<br><br><br><br>　　&bull;NX是X11客户端所以不会发送位图<br><br><br><br>　　&bull;NX可兼容X、VNC和Windows版的Remote Desktop<br><br><br><br>　　&bull;NX可缓存数据<br><br><br><br>　　&bull;NX安装简单<br><br><br><br>　　另外一个可选的项目可以看看Google的FreeNx。<br><br><br><br>　　<strong>PSVM</strong><br><br><br><br><br>　　它是这个文件的代码，这是一个SVM的&ldquo;支持所有核心&rdquo;的版本，可多机并行运行，实例见此。<br><br><br><br>　　<strong>GO</strong><br><br><br><br><br>　　Google开发的新编程语言，谷奥有报道。<br><br><br><br>　　The Google Collections Library for Java<br><br><br><br>　　这是一系列与Java 5以及更高版本有关的库，Google花钱给买过来了。<br><br><br><br>　　<strong>Google styleguide</strong><br><br><br><br><br>　　每个主流的开源项目都有它自己的向导形式，比如一系列的演示代码。如果这些代码都按照&ldquo;Style&rdquo;的形式来演示，会更友好。</p><br><div class="laiy font_gary"><a href="http://www.enet.com.cn/" target="_blank" rel="noopener">http://www.enet.com.cn</a><br> 2009年12月28日19：03<br><a href="http://www.enet.com.cn/" target="_blank"><span class="font_sred">eNet硅谷动力</span><br></a><br></div><br><div class="laiy font_gary"><br><br></div><br><p>　　<strong>Via 0&times;1fff Blog</strong><br>(来源：谷奥)</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/WebToolkit/" rel="tag"># WebToolkit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5nh01ec4urqmrjdc80q/" rel="next" title="用 HTML Canvas 创建一个图片浏览器">
+                <i class="fa fa-chevron-left"></i> 用 HTML Canvas 创建一个图片浏览器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5a800ye4urq33lbxrhj/" rel="prev" title="一个女中医的保养之道">
+                一个女中医的保养之道 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者：李丽媛邮件：lly219#gmail.com&amp;nbsp;前言在涉及JavaScript性能优化之前想和大家探讨一下：过早优化DonaldKnuth 曾经说过：&amp;ldquo;过早优化是万恶之源&amp;rdquo;（Premature optimization is the root of allevil）。在他的论文&amp;mdash;&amp;mdash;Structured Programming with">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拥抱Javascript性能">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj6z00szxwrql4dttjau/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者：李丽媛邮件：lly219#gmail.com&amp;nbsp;前言在涉及JavaScript性能优化之前想和大家探讨一下：过早优化DonaldKnuth 曾经说过：&amp;ldquo;过早优化是万恶之源&amp;rdquo;（Premature optimization is the root of allevil）。在他的论文&amp;mdash;&amp;mdash;Structured Programming with">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_37ddp3szhk_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_39df3b3sdc_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_40g2h9r85r_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_41fnfnmfdt_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_42f62hhbcz_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_43xt3zwndp_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_44fzqj6xfz_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_45hgwr8ff8_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_46hbh9qzhd_b">
+<meta property="og:image" content="http://docs.google.com/File?id=d7dc7j4_47fmp9zjhh_b">
+<meta property="og:updated_time" content="2018-01-23T21:00:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="拥抱Javascript性能">
+<meta name="twitter:description" content="作者：李丽媛邮件：lly219#gmail.com&amp;nbsp;前言在涉及JavaScript性能优化之前想和大家探讨一下：过早优化DonaldKnuth 曾经说过：&amp;ldquo;过早优化是万恶之源&amp;rdquo;（Premature optimization is the root of allevil）。在他的论文&amp;mdash;&amp;mdash;Structured Programming with">
+<meta name="twitter:image" content="http://docs.google.com/File?id=d7dc7j4_37ddp3szhk_b">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj6z00szxwrql4dttjau/"/>
+
+
+
+
+
+  <title>拥抱Javascript性能 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj6z00szxwrql4dttjau/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">拥抱Javascript性能</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-02-23T03:46:00+08:00">
+                2010-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作者：李丽媛</p><br><p>邮件：lly219#gmail.com</p><br><p>&nbsp;</p><br><p><strong><span style="font-size: small;">前言</span><br></strong><br></p><br><p>在涉及JavaScript性能优化之前想和大家探讨一<br>下：<strong>过早优化</strong><br></p><br><p><a href="http://c2.com/cgi/wiki?DonaldKnuth" target="_blank" rel="noopener">Donald<br>Knuth</a><br> 曾经说过：&ldquo;过早优化是万恶之源&rdquo;（<em>Premature optimization is the root of all<br>evil</em><br>）。</p><br><p>在他的论文&mdash;&mdash;<a id="mohk" title="Structured Programming with go to Statements" href="http://pplab.snu.ac.kr/courses/adv_pl05/papers/p261-knuth.pdf" target="_blank" rel="noopener">Structured<br> Programming with go to Statements</a><br>中，他写到&quot;编程者花费大量的时间去思考，担心，他们程序中并不占关键部<br>分的效率问题，然而这些在debugging和考虑程序维护的实际中有着很强的负面影响。我们应该忘记小的效率所带来的影响，比如说97%的时间：过早优<br>化是万恶之源。&quot;<br><br>也就是说我们不应该错过关键的3%，一个好的程序员不会花大量的时间在如何提高并不占关键部分的性能效率，他所关注的是关键部分<br>的代码；但这通常在代码确定后。<br><br>简而言之就是说：过早关注不重要的部分，而忽略行动和目标本身。以静态的思维来优化，殊不知，事务发展总是动态<br>的，&ldquo;优化&rdquo;是需要长期的实<br>践积累才可以获得。出发点是好的，但往往好心办坏事，折腾大量的时间，做了很多不该做的，而该做的、重要的反而没做。强化外部条件、工具等外在，而忽略内<br> 在因素和行动本身，或者，过多期望将来，而忽略当下眼前。</p><br><p>&ldquo;DO NOT, EVER, OPTIMIZE PREMATURELT!&rdquo;</p><br><p>&nbsp;</p><br><p><span style="font-size: small;"><strong>正文</strong><br></span><br></p><br><div id="nhds" style="text-align: left;"><img style="height: 273px; width: 357px;" src="http://docs.google.com/File?id=d7dc7j4_37ddp3szhk_b" alt=""><br></div><br><p><br><br><strong>1.避免函数调用</strong><br></p><br><div id="i7ba" style="text-align: left;">function methodCall(){<br><br>&nbsp;&nbsp;<br>&nbsp;function square(n){ return n<em>n };<br><br>&nbsp;&nbsp; &nbsp;var i=10000, sum = 0;<br><br>&nbsp;&nbsp;<br>&nbsp;while(i-&shy;‐) sum += square(i);<br><br>}<br><br><br><br>function inlinedMethod(){<br><br>&nbsp;&nbsp;<br> &nbsp;var i=10000, sum = 0;<br><br>&nbsp;&nbsp; &nbsp;while(i-&shy;‐) sum += i</em>i;<br><br>}<br><br><br><br></div><br><div id="qo1o" style="text-align: left;"><img style="height: 276px; width: 414px;" src="http://docs.google.com/File?id=d7dc7j4_39df3b3sdc_b" alt=""><br></div><br><p>注：在IE8中methodCall()将在1s后弹出警告框：A script on<br>this page is causing Internet Explorer to run slowly.If it continues to<br>run, your computer might become unrespensive.<br><br><br><br><strong>2.拥抱语言</strong><br><br><br><em>2.1</em><br><br><br>function<br> literals(){<br><br>&nbsp;&nbsp; &nbsp;var a = [], o = {};<br><br>}<br><br>function classic(){<br><br>&nbsp;&nbsp;<br> &nbsp;var a = new Array, o = new Object;<br><br>}</p><br><div id="t0_c" style="text-align: left;"><img style="height: 263px; width: 394px;" src="http://docs.google.com/File?id=d7dc7j4_40g2h9r85r_b" alt=""><br></div><br><p><br><br><em>2.2<br><br></em><br>parseInt(12.5);<em><br><br></em><br>~~(1<br> <em> &quot;12.5&quot;)<em><br><br><br><br></em><br></em></p><br><div id="vm41" style="text-align: left;"><img style="height: 303px; width: 384px;" src="http://docs.google.com/File?id=d7dc7j4_41fnfnmfdt_b" alt=""><br><br><br><br><br><strong>3循环</strong><br><em><br><br>3.1<br><br></em><br>var test =<br>‘’;<br><br>for (var i = 0;i&lt;10000;i++)<br><br>&nbsp;&nbsp; &nbsp;test = test + str;<br><br><br><br>var<br> test = ‘’, i = 10000;<br><br>while(i–) test = test + str;<em><br><br></em><br></div><br><p>&nbsp;</p><br><div id="osp5" style="text-align: left;"><img style="height: 262px; width: 387px;" src="http://docs.google.com/File?id=d7dc7j4_42f62hhbcz_b" alt=""><br></div><br><p><br><br><em>3.2</em><br><br><br>function normalLoop(){<br><br>var<br> i=60, j=0;<br><br>while(i-‐) j++;<br><br>}<br><br><br><br>function unrolledLoop(){<br><br>var<br> j=0;<br><br>j++; j++; j++; j++; j++; j++;<br><br>j++; j++; j++; j++; j++; j++;<br><br>j++;<br> j++; j++; j++; j++; j++;<br><br>j++; j++; j++; j++; j++; j++;<br><br>j++; j++;<br>j++; j++; j++; j++;<br><br>j++; j++; j++; j++; j++; j++;<br><br>j++; j++; j++;<br>j++; j++; j++;<br><br>j++; j++; j++; j++; j++; j++;<br><br>j++; j++; j++; j++;<br>j++; j++;<br><br>j++; j++; j++; j++; j++; j++;<br><br>}</p><br><div id="gann" style="text-align: left;"><img style="height: 265px; width: 394px;" src="http://docs.google.com/File?id=d7dc7j4_43xt3zwndp_b" alt=""><br></div><br><p><br><br><strong>4全局 cache</strong><br><br><br>function<br>uncached(){<br><br>var i = 10000;<br><br>while(i-&shy;‐) window.test = ‘test’;<br><br>}<br><br><br><br>function<br> cached(){<br><br>var w = window, i = 10000;<br><br>while(i-&shy;‐) w.test =<br>‘test’;</p><br><div id="ordu" style="text-align: left;"><img style="height: 305px; width: 388px;" src="http://docs.google.com/File?id=d7dc7j4_44fzqj6xfz_b" alt=""><br></div><br><p><br><br><strong>5表达式交换</strong><br><br><br>var b = false, n = 99;<br><br>function(){<br><br>return<br> nn &amp;&amp; b;<br><br>}<br><br><br><br>function(){<br><br>return b &amp;&amp; n*n;<br><br>}</p><br><div id="ny-a" style="text-align: left;"><img style="height: 256px; width: 378px;" src="http://docs.google.com/File?id=d7dc7j4_45hgwr8ff8_b" alt=""><br></div><br><p><br><br><strong>6不需要使用的部分</strong><br><br><br><em>6.1</em><br><br><br>function(){<br><br>var<br> obj = { prop: ‘test’, str: ‘’ };<br><br>&nbsp;&nbsp; &nbsp;with(obj){<br><br>&nbsp;&nbsp; &nbsp;var i =<br>10000;<br><br>&nbsp;&nbsp; &nbsp;while(i-&shy;‐) str += prop;<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return str;<br><br>&nbsp;&nbsp;<br>&nbsp;}<br><br>}<br><br>function(){<br><br>var obj = { prop: ‘test’, str: ‘’ }, i =<br>10000;<br><br>while(i-&shy;‐) obj.str += obj.prop;<br><br>return obj.str;<br><br>}</p><br><div id="ah4g" style="text-align: left;"><img style="height: 256px; width: 386px;" src="http://docs.google.com/File?id=d7dc7j4_46hbh9qzhd_b" alt=""><br></div><br><p><br><br><em>6.2</em><br><br><br>var a = 0;<br><br>function(){<br><br>&nbsp;&nbsp;<br> &nbsp;try{<br><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;a += 1;<br><br>&nbsp;&nbsp; &nbsp;} catch(e) {}<br><br>}<br><br><br><br>function(){<br><br>&nbsp;&nbsp;<br> &nbsp;a += 1;<br><br>}</p><br><div id="d_n4" style="text-align: left;"><img style="height: 258px; width: 380px;" src="http://docs.google.com/File?id=d7dc7j4_47fmp9zjhh_b" alt=""><br></div><br><p><br><br><br><br><br><br><span style="font-size: small;"><strong>参考文献：</strong><br></span><br><br><br>《Extreme<br> JavaScript Performance》<br><br><a href="http://c2.com/cgi/wiki?PrematureOptimization" target="_blank" rel="noopener">http://c2.com/cgi/wiki?PrematureOptimization</a><br><br><a href="http://www.watch-life.net/life-thinking/no-premature-optimization.html" target="_blank" rel="noopener">http://www.watch-life.net/life-thinking/no-premature-optimization.html</a><br><br><a href="http://pplab.snu.ac.kr/courses/adv_pl05/papers/p261-knuth.pdf" target="_blank" rel="noopener">http://pplab.snu.ac.kr/courses/adv_pl05/papers/p261-knuth.pdf</a></p><br><p>&nbsp;</p><br><p>转载请注明作者信息和出处，Thx</p><br><p> ：)</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6j9l00b3l6rqsb2i2fl9/" rel="next" title="工作中的纠结——区分于底层OR界面">
+                <i class="fa fa-chevron-left"></i> 工作中的纠结——区分于底层OR界面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuj6j9o00b7l6rqn0dq6mju/" rel="prev" title="工作中的唠叨——工作量的衡量">
+                工作中的唠叨——工作量的衡量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

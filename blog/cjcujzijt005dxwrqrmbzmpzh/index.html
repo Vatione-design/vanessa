@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web,Browser," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Internet Explorer 9 标准文档模式可在不同浏览器中启用相同标记和相同脚本。您应该使用 Internet  Explorer 9   标准文档模式，以充分利用在ECMAScript，第五版标准（ES5）和IE9的增强DOM编程的新功能。然而,为了保持旧版IE的功能,，在IE9 的 Quirks 模式、IE7 标准模式以及 IE8 标准模式下所支持的 JavaScript 功能和 I">
+<meta name="keywords" content="Web,Browser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE9的文档模式和JavaScript">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzijt005dxwrqrmbzmpzh/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="Internet Explorer 9 标准文档模式可在不同浏览器中启用相同标记和相同脚本。您应该使用 Internet  Explorer 9   标准文档模式，以充分利用在ECMAScript，第五版标准（ES5）和IE9的增强DOM编程的新功能。然而,为了保持旧版IE的功能,，在IE9 的 Quirks 模式、IE7 标准模式以及 IE8 标准模式下所支持的 JavaScript 功能和 I">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.iefans.net/wp-content/uploads/2011/07/7e8c_5127.clip_5F00_image002_5F00_0CDEE71B.jpg">
+<meta property="og:updated_time" content="2018-01-25T13:31:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IE9的文档模式和JavaScript">
+<meta name="twitter:description" content="Internet Explorer 9 标准文档模式可在不同浏览器中启用相同标记和相同脚本。您应该使用 Internet  Explorer 9   标准文档模式，以充分利用在ECMAScript，第五版标准（ES5）和IE9的增强DOM编程的新功能。然而,为了保持旧版IE的功能,，在IE9 的 Quirks 模式、IE7 标准模式以及 IE8 标准模式下所支持的 JavaScript 功能和 I">
+<meta name="twitter:image" content="http://www.iefans.net/wp-content/uploads/2011/07/7e8c_5127.clip_5F00_image002_5F00_0CDEE71B.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzijt005dxwrqrmbzmpzh/"/>
+
+
+
+
+
+  <title>IE9的文档模式和JavaScript | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzijt005dxwrqrmbzmpzh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IE9的文档模式和JavaScript</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2011-07-27T03:27:28+08:00">
+                2011-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="entry-content"><br><p>Internet Explorer 9 标准文档模式可在不同浏览器中启用相同标记和相同脚本。您应该使用 Internet  Explorer 9   标准文档模式，以充分利用在ECMAScript，第五版标准（ES5）和IE9的增强DOM编程的新功能。然而,为了保持旧版IE的功能,</p><br><p>，在IE9 的 Quirks 模式、<a href="http://www.iefans.net/internet-explorer-7-ie70-jiantizhongwenban-for-xp-sp2/" target="_blank" rel="noopener">IE7</a> 标准模式以及 <a href="http://www.iefans.net/ie8-zhongwenban-guanfang-xiazai/" target="_blank" rel="noopener">IE8</a> 标准模式下所支持的 JavaScript 功能和 IE9  标准模式有所不同。在你的时间日程安排下使用新的ES5新功能，你可以使用这些兼容模式和F12键下的开发工具来迁移你的网站，而网站继续在 IE9 下运行。<span id="more-10648">&nbsp;</span></p><br><p>在两篇博客文章（<a href="http://blogs.msdn.com/b/ie/archive/2010/10/19/testing-sites-with-browser-mode-vs-doc-mode.aspx" target="_blank">Testing  sites with Browser Mode vs. Doc Mode</a> 和 <a href="http://blogs.msdn.com/b/ie/archive/2010/06/16/ie-s-compatibility-features-for-site-developers.aspx" target="_blank">IE&rsquo;s  Compatibility Features for Site Developers</a>） 中，Marc Silbey 解释了如何利用 Internet  Explorer 9 的文档模式。他还讨论了如何利用浏览器模式和文档模式对  IE9 和之前的 IE  版本进行网站测试。在本文中，我们将讨论开发人员需要知道关于IE 9的文档模式中哪些影响 JavaScript 代码。</p><br><p>。</p><br><h4>文档模式和 JavaScript 支持</h4><br><p>如<a href="http://blogs.msdn.com/b/ie/archive/2010/04/13/running-today-s-different-markup.aspx" target="_blank">上一篇文章</a>所 述，您（开发人员）使用  DOCTYPE 和 X-UA-COMPUTER Meta 标签或 HTTP Header 来控制 IE  在显示网站时所使用的文档模式。Chakra（IE9 的新  JavaScript 引擎）采用文档模式，确定要支持哪些 JavaScript  功能。下表概括了四种 IE9 文档模式下 Chakra JavaScript  的支持情况。要有关如何设置文档模式的信息，请参见我们的文章 <a href="http://blogs.msdn.com/b/ie/archive/2010/06/16/ie-s-compatibility-features-for-site-developers.aspx" target="_blank">IE&rsquo;s  Compatibility Features for Site Developers</a> 和 <a href="http://ieblog.members.winisp.net/misc/How%20IE9%20Determines%20Document%20Mode.svg" target="_blank">Determining  Document Mode diagram for IE9</a>。</p><br><table border="0" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td width="159"><strong>文档模式</strong></td><br><td width="371"><strong>描述</strong></td><br></tr><br><tr><br><td width="159" valign="top">IE9 标准</td><br><td width="371">如果网页使用符合标准的 DOCTYPE 且未指定X-UA-COMPUTER元标签，则默认为 IE9 标准文档模式。在此模式下，IE 支持 <a href="http://www.ecmascript.org/docs.php" target="_blank" rel="noopener">ECMAScript, 第五版功能</a> (ES5) 和 <a href="http://blogs.msdn.com/b/ie/archive/2010/09/02/dup-exploring-ie9-s-enhanced-dom-capabilities.aspx" target="_blank">增强的  DOM 可编程性</a>，并<a href="http://blogs.msdn.com/b/ie/archive/2010/06/25/enhanced-scripting-in-ie9-ecmascript-5-support-and-more.aspx" target="_blank">消除</a>了  IE8 JavaScript 实施和 ECMAScript（第三版规范）之间的一些主要<a href="http://blogs.msdn.com/b/ie/archive/2010/03/26/standards-documentation-for-ie7-and-ie8.aspx" target="_blank">差异</a>。</td><br></tr><br><tr><br><td width="159" valign="top">IE8 标准</td><br><td width="371">IE8 标准文档模式支持 IE8 中的 JavaScript附加项，从而可实施随后起草的部分 ES5 标准，比如<a href="http://blogs.msdn.com/b/ie/archive/2008/09/10/native-json-in-ie8.aspx" target="_blank" rel="noopener">本机  JSON 支持</a>和<a href="http://msdn.microsoft.com/en-us/library/dd229916.aspx" target="_blank">对  DOM 对象的访问支持</a>。这种模式也支持在 IE8 中进行的<a href="http://blogs.msdn.com/b/jscript/archive/2009/04/17/versioning-language-features-in-jscript.aspx" target="_blank">更改</a>，修复由开发人员提出的一些重要问题。</td><br></tr><br><tr><br><td width="159" valign="top">IE7 标准</td><br><td width="371">IE7 标准模式支持 IE7 中可用的 JavaScript 功能，包括 IE7 和 IE8 中的 <a href="http://msdn.microsoft.com/en-us/library/ff521046.aspx" target="_blank">IE7  标准模式支持的微软扩展名</a>。</td><br></tr><br><tr><br><td width="159" valign="top">Quirks</td><br><td width="371">Quirks 模式支持 IE6 的 JavaScript 功能以及 IE7 和 IE8 的 Quirks  模式。</td><br></tr><br></tbody><br></table><br><p>您的 JavaScript 在不同的文档模式中的行为不同。此处的三个代码示例说明,由于我们遵循ES5标准,所提供的不同结果取决于文档模式。要获得其他有关  IE9 的兼容性指南和 JavaScript 功能更改，请参见 <a href="http://msdn.microsoft.com/en-us/library/ff986083.aspx" target="_blank">Compatibility  Cookbook on MSDN</a>、<a href="http://blogs.msdn.com/b/ie/archive/2010/06/25/enhanced-scripting-in-ie9-ecmascript-5-support-and-more.aspx" target="_blank">Enhanced  Scripting in IE9: ECMAScript 5 Support and More</a>、<a href="http://msdn.microsoft.com/en-us/library/ff520996.aspx" target="_blank">ES3 Standards  Support document</a> 以及 <a href="http://msdn.microsoft.com/en-us/library/ff521046.aspx" target="_blank">Microsoft JScript  extensions to the ES3 standard</a>。</p><br><h5>Arguments.caller</h5><br><p>IE9 标准文档模式并不支持 Arguments.caller，见ES5 10.6部分。因此，IE9 的 Quirks、Internet  Explorer  7 标准和 Internet Explorer 8 标准文档模式将以下代???标注为 &ldquo;1&rdquo;。Internet  Explorer 9  标准模式发布脚本错误&ldquo;无法获得属性&lsquo;长度&rsquo;值：对象缺失或未定义。&rdquo;</p><br><p>function alertCallerLength() {<br> alert(arguments.caller.length); // IE9  standards doc mode issues script error<br> }<br> function callingFunction() {<br> alertCallerLength();<br> }<br> callingFunction(1)</p><br><h5>间接 Eval</h5><br><p>ES5 标准要求间接 eval（通过使用名称而不是使用其他 &ldquo;eval&rdquo; 调用  eval()）在全局范围内解析，而不是在本地范围内解析。为使 IE9  和之前的 IE、Quirks、IE7 和 IE8  文档模式版本相兼容，将间接 eval 保持在本地范围，IE9 标准模式根据全局范围来解译这些  eval。</p><br><p>var x = &ldquo;Global Scope&rdquo;;<br> var myeval = eval;<br> function f() {<br> var  x = &ldquo;Local Scope&rdquo;;<br> alert(myeval(&rdquo;x&rdquo;));<br> }<br> f(); // IE9 doc mode  alerts &ldquo;Global Scope&rdquo;; other doc modes alert &ldquo;Local Scope&rdquo;</p><br><h5>字符串对象</h5><br><p>在 IE8 和 IE9 中，可为字符串对象增加索引属性。您可以利用 IE8 为所有索引创建这些属性，而不管字符串对象的长度如何。在 IE9   中，您可以创建索引属性，但只是针对大于字符串长度的属性。IE9 也为您提供对字符串本身的索引访问。在以下示例中，我们创建了一个 String   对象，并尝试着定义该对象的阵列索引值。 IE8 和 IE9 兼容文档模式支持我们创建和字符串对象具有相同变量名的数组对象；而 IE9  标准模式则不可以。因此，在  IE9 标准模式下，函数返回 &ldquo;H-e-l-l-o- -W-o-r-l-d&rdquo;。在其他文档模式下，函数返回  &ldquo;-1&mdash;-5&mdash;-9-&rdquo;。</p><br><p>function JoinDemo(){<br> var a = new String(&rdquo;Hello World&rdquo;);<br> a[1]=&rdquo;1&Prime;;<br> a[5]=&rdquo;5&Prime;;<br> a[9]=&rdquo;9&Prime;;<br> alert(Array.prototype.join.call(a, &ldquo;-&rdquo;));<br> }<br> JoinDemo();<br> // IE9  standards doc mode alerts &ldquo;H-e-l-l-o- -W-o-r-l-d&rdquo;<br> // IE8, IE7, Quirks doc  modes alert &ldquo;-1&mdash;-5&mdash;-9-&rdquo;</p><br><h4>在不同文档模式中测试 JavaScript</h4><br><p>随着您将网站迁移到 IE9 标准文档模式，您会发现一些脚本的行为与其在 Internet Explorer 8 中不同。Internet  Explorer  9 中的 F12 开发工具支持您在四种文档模式中测试脚本。通过 IE 的 F12  开发工具更改文档模式将刷新页面，并根据指定的文档模式指示 Chakra  JavaScript 引擎重新解析脚本。将代码迁移到 IE9  标准模式时，您可以使用这些文档模式对脚本进行调试。</p><br><p><img src="http://www.iefans.net/wp-content/uploads/2011/07/7e8c_5127.clip_5F00_image002_5F00_0CDEE71B.jpg" border="0" alt="Internet Explorer 9 文档模式"></p><br><h4>其他信息</h4><br><p>我们一直努力确保 IE9 的兼容文档模式支持我们在 IE8 中为这些模式确定的相同功能。然而，由于 Chakra 引擎不同于 IE8  中设定的引擎，因此必然存在一些差异。<a href="http://msdn.microsoft.com/en-us/library/ff986083.aspx" target="_blank">Internet Explorer 9  兼容性手册</a>解释了一些主要的差异。简单地说，下列内容受到影响：</p><br><ul><br><li>IE8 和 IE9的<a href="http://msdn.microsoft.com/en-us/library/gg622937.aspx" target="_blank">枚举顺序不同</a>。</li><br><li>Internet Explorer 9 直接处理<a href="http://msdn.microsoft.com/en-us/library/gg622936.aspx" target="_blank">具有大量指数的数组元素</a>。</li><br><li>IE8 和 IE9的<a href="http://msdn.microsoft.com/en-us/library/gg622938.aspx" target="_blank">数学精确程度有所不同</a>。</li><br></ul><br><p>如果您遇到其他兼容性问题，我们乐意倾听。请<a href="http://connect.microsoft.com/ie/" target="_blank">通过 Connect  将反馈发送给我们</a>。</p><br><p>我们也愿意为您提供一些创建的博客文章和 IE 测试驱动演示，解释或展示 Chakra 引入的新功能以及与 IE8 的一些差异。</p><br><ul><br><li><a href="http://blogs.msdn.com/b/ie/archive/2010/06/25/enhanced-scripting-in-ie9-ecmascript-5-support-and-more.aspx" target="_blank">Enhanced  Scripting in IE9: ECMAScript 5 Support and More</a> 介绍了 Chakra 和 IE9 中当前可用的新 ES  5 功能。</li><br><li><a href="http://blogs.msdn.com/b/ie/archive/2010/09/02/dup-exploring-ie9-s-enhanced-dom-capabilities.aspx" target="_blank">Exploring  IE9&rsquo;s Enhanced DOM Capabilities</a> 解释了增强的 IE9 DOM 可编程性支持，使得 DOM 对象更加类似于本地  JavaScript 对象。<a href="http://ie.microsoft.com/testdrive/HTML5/DOMCapabilities/Default.html" target="_blank">增强的  DOM 功能</a>演示展示了这些概念。</li><br><li><a href="http://blogs.msdn.com/b/ie/archive/2010/10/27/ecmascript-5-part-1-reusable-code.aspx" target="_blank">ECMAScript  5 Part 1: Reusable Code</a> 讨论了 ES5 引入的新 JavaScript 对象模型，以及开发人员如何使用新的 Object  反射功能来开发可控、可重复使用的组件。<a href="http://ie.microsoft.com/testdrive/HTML5/ECMAScript5Breakout/Default.html" target="_blank">ECMAScript5  Breakout</a> 和 <a href="http://ie.microsoft.com/testdrive/HTML5/TexasHoldem/Default.html" target="_blank">Texas  Hold&rsquo;em</a> 演示也展示了一些概念。</li><br><li><a href="http://blogs.msdn.com/b/ie/archive/2010/12/13/ecmascript-5-part-2-array-extras.aspx" target="_blank">ECMAScript  5 Part 2: Array Extras</a> 讨论了现已在 Chakra 内实施的一些常见的循环和数组方法。 <a href="http://ie.microsoft.com/testdrive/HTML5/TileSwitch/Default.html" target="_blank">ECMAScript5  Tile Game</a> 和 <a href="http://ie.microsoft.com/testdrive/HTML5/ECMAScript5Array/Default.html" target="_blank">ECMAScript5  Arrays</a> 演示了这项功能。</li><br></ul><br><p>总之，<a href="http://www.iefans.net/?tag=ie9" target="_blank" rel="noopener">IE9</a> 在不同文档模式下支持不同的 ECMAScript 标准和扩展名。新的 IE9 文档模式支持您根据日程安排来使用新的  ES5功能。我们希望您在调试代码和迁移到 IE9 文档模式所支持的 ES5 和 HTML5 功能时，会认为 F12 是有用的开发工具。</p><br><p>&mdash;Gaurav Seth 和 Paul Chapman，项目经理，JavaScript</p><br><p>原文：<a href="http://blogs.msdn.com/b/ie/archive/2011/03/24/ie9-s-document-modes-and-javascript.aspx" target="_blank">IE9&rsquo;s Document Modes and JavaScript</a></p><br><p>转自：<a href="http://www.iefans.net/ie9-wendangmoshi-javascript/" target="_blank" rel="noopener">http://www.iefans.net/ie9-wendangmoshi-javascript/</a></p><br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/blog/tags/Browser/" rel="tag"># Browser</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzjdr00ypxwrq7d947kc7/" rel="next" title="透明版蜗居来了~">
+                <i class="fa fa-chevron-left"></i> 透明版蜗居来了~
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzir900dxxwrqbra24clz/" rel="prev" title="NetBeans 时事通讯（# 157 - Jul 27, 2011）">
+                NetBeans 时事通讯（# 157 - Jul 27, 2011） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">文档模式和 JavaScript 支持</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">Arguments.caller</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">间接 Eval</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">字符串对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">在不同文档模式中测试 JavaScript</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">其他信息</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

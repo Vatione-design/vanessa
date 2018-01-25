@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="开发者在线 Builder.com.cn    更新时间:2008-04-22 本文关键词：    幕后  Java EE 5  JSF  JAVA   &amp;nbsp;三年前JSF就已经在Sun的实验室里诞生，但直到今天才伴随Java EE5，作为规范的一部分，从幕后走上前台。JSF是第一个以用户界面为核心的Java Web框架，与其他JavaWeb框架以&amp;ldquo;页面&amp;rdquo;为控制粒度不">
+<meta name="keywords" content="JSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSF伴随着Java EE 5从幕后走上前台">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujziky006nxwrqc1890hgx/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="开发者在线 Builder.com.cn    更新时间:2008-04-22 本文关键词：    幕后  Java EE 5  JSF  JAVA   &amp;nbsp;三年前JSF就已经在Sun的实验室里诞生，但直到今天才伴随Java EE5，作为规范的一部分，从幕后走上前台。JSF是第一个以用户界面为核心的Java Web框架，与其他JavaWeb框架以&amp;ldquo;页面&amp;rdquo;为控制粒度不">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T20:51:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSF伴随着Java EE 5从幕后走上前台">
+<meta name="twitter:description" content="开发者在线 Builder.com.cn    更新时间:2008-04-22 本文关键词：    幕后  Java EE 5  JSF  JAVA   &amp;nbsp;三年前JSF就已经在Sun的实验室里诞生，但直到今天才伴随Java EE5，作为规范的一部分，从幕后走上前台。JSF是第一个以用户界面为核心的Java Web框架，与其他JavaWeb框架以&amp;ldquo;页面&amp;rdquo;为控制粒度不">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujziky006nxwrqc1890hgx/"/>
+
+
+
+
+
+  <title>JSF伴随着Java EE 5从幕后走上前台 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujziky006nxwrqc1890hgx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSF伴随着Java EE 5从幕后走上前台</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-03-31T01:26:00+08:00">
+                2009-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h3 class="headaur"><a href="http://www.builder.com.cn/" target="_blank">开发者在线 Builder.com.cn</a>    更新时间:<cite>2008-04-22</cite></h3><p></p>
+<p></p><h2 class="headkeyw">本文关键词：    <a href="http://www.builder.com.cn/files/list-0-0-139092-1-1.htm" target="_blank">幕后</a>  <a href="http://www.builder.com.cn/files/list-0-0-109141-1-1.htm" target="_blank">Java EE 5</a>  <a href="http://www.builder.com.cn/files/list-0-0-66143-1-1.htm" target="_blank">JSF</a>  <a href="http://www.builder.com.cn/files/list-0-0-49141-1-1.htm" target="_blank">JAVA</a>  </h2><p></p>
+<p>&nbsp;</p><br><p>三年前JSF就已经在Sun的实验室里诞生，但直到今天才伴随Java EE<br>5，作为规范的一部分，从幕后走上前台。JSF是第一个以用户界面为核心的Java Web框架，与其他Java<br>Web框架以&ldquo;页面&rdquo;为控制粒度不同的是，JSF的控制粒度已经细化到页面上的&ldquo;组件&rdquo;，这是JSF简化Java<br>Web开发的关键点之一。虽然已经正式成为Java EE规范的一部分，并且获得越来越多程序员的青睐，但JSF的前途依然不容乐观。<br></p><br><p>　　<strong>1. 带着&ldquo;用户界面&rdquo;的烙印，JSF从幕后走上前台</strong></p><br><p>　　伴随着从J2EE 1.4向Java EE 5的升级，JSF作为Java企业应用规范的一部分，登上了Java<br>Web编程的舞台。雪藏了将近3年时间，经过Sun专家组的一次次修订，经过JSF支持者的一轮轮测试，经过Java<br>Web开发社区的一波波辩论，JSF终于从Sun的实验室走出，首次以规范的名义，出现在程序员的眼前。没有鲜花、没有掌声，Sun只是简单地将JSF推<br>上前台，如同它的很多前辈那样，Sun给予它生命，而此后漫长的成长之路，则完全要靠它自己去走。</p><br><p>　　刚刚踏上Java<br>Web热土的JSF，且顾且行，前方道路上的每一处拐角，似乎都隐藏着无数的未知。前途坎坷，除了Sun那鼓励中略带担忧的目光，JSF再也没有什么可以<br>依靠的了。正所谓生死有命，富贵在天，在危机四伏的Java Web世界里，JSF的未来，谁也无法预测。</p><br><p>　　JSF的全称是JavaServer<br>Faces，这是Sun的专家组赋予JSF的名称。JavaServer这个单词大家应该耳熟能详了，JSP中的&ldquo;JS&rdquo;也是JavaServer的缩<br>写，不过与JSP中的&ldquo;P&rdquo;所代表的&ldquo;Pages&rdquo;不同的是，JSF中的&ldquo;F&rdquo;是个称为&ldquo;Faces&rdquo;的新术语。虽然Sun没有对Faces的具体含义作<br>出官方的解释，但是，其隐含的意义非常明显，那就是&ldquo;界面&rdquo;。事实上，在Sun的JSF规范中，专家组正是将JSF定义为&ldquo;Java<br>Web应用的用户界面框架&rdquo;。这个定义虽然寥寥数语，十分简洁，但突出了JSF的&ldquo;用户界面&rdquo;特征，为JSF烙下了&ldquo;用户界面&rdquo;的烙印。</p><br><p>　　Java Web的程序员期待一个用户界面框架已经很久了。虽然Java<br>Web的框架五花八门，多不胜数，但真正以&ldquo;用户界面&rdquo;为核心和立足点的，JSF是第一个。多数Java<br>Web框架，不约而同地将&ldquo;页面&rdquo;作为用户界面的最小元素加以控制，而JSF将用户界面的最小元素聚焦到了页面上的&ldquo;组件&rdquo;。</p><br><p>　　相对于前者以页面为控制粒度的粗放模式，JSF以&ldquo;组件&rdquo;为控制粒度的细致模式，无疑给普通Java<br>Web程序员带来了更大的想象空间。更为重要的是，JSF细化了控制粒度，却并没有以加大Java Web编程的复杂度为代价，相反，作为Java<br>EE 5&ldquo;简化Java开发&rdquo;使命的担负者之一，JSF在Java<br>Web编程上极大地减轻了普通程序员的负担。这点我们将在后文中，通过一个具体的实例加以论证。</p><br><p><strong>2. 虽然名正言顺，JSF依然前途坎坷</strong></p><br><p>　　JSF对于上升为官方规范的期待，甚至比Java<br>Web程序员对用户界面框架的期待，还要久远。JSF的历史远不止三年，其生命历程的起点，可以追溯到5年前。2001年5月，Sun在JSR#127中<br>提出制订一个以用户界面框架为目标的规范，经过半个月的投票表决，SE/EE执行委员会以10票同意、5票反对和1票弃权的结果批准了JSR#127。从<br>此，JSF踏上了生命征途。2001年5月底，JSF专家组成立，着手制订规范文档。历经多次的讨论和修订，JSF的规范1.0版，在差不多三年后的<br>2004年3月，才得以面世。这标志着JSF可以被普通程序员正式使用了。</p><br><p>　　为了让JSF的程序员有一个沟通交流的场所，Sun在自己的网站上为JSF开辟了一个论坛。论坛为JSF的发展起到了极大的促进作用。来自世界<br>各地的JSF爱好者们，在论坛里讨论JSF的使用心得，发表疑问，寻求帮助，Sun专家组也定期不定期在论坛上露面，解答一些疑难问题。JSF1.0版的<br>很多Bug，就是在论坛中被发现和披露的。论坛中不乏Java高手，有一些高手在发现Bug后，甚至直接分析和修改Sun的JSF代码，给出自己的解决方<br>案，并在论坛中和其他开发者分享。</p><br><p>　　名不正则言不顺，三年来，未获J2EE官方规范青睐的JSF，在JSF社区虽然被炒得热火朝天，但离普通程序员一直很远。现在，JSF终于加入<br>了Java EE官方规范的行列，进入Java<br>Web编程领域已经名正言顺了。官方规范的号召力是巨大的，JSF正名也就半年时间，统计表明，JSF在这半年中吸引的开发者，超过了过去三年总和的一倍<br>有多。JSF的前途看上去一片光明。</p><br><p>　　那么，JSF的眼前真的是一马平川吗?现实并非如此!横亘在JSF前进道路上的障碍，不但有强大的JSP，还有Sun那令人失望的商业推广策略。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JSF/" rel="tag"># JSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6jbb00d5l6rq0lzeshal/" rel="next" title="极少人知道的手机隐藏功能和禁忌(必转篇)">
+                <i class="fa fa-chevron-left"></i> 极少人知道的手机隐藏功能和禁忌(必转篇)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzil6006zxwrqy7czwped/" rel="prev" title="JSP/Servlet/JSF：JavaEE 不再需要 Ajax">
+                JSP/Servlet/JSF：JavaEE 不再需要 Ajax <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">开发者在线 Builder.com.cn    更新时间:2008-04-22</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">本文关键词：    幕后  Java EE 5  JSF  JAVA  </span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

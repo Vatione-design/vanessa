@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JSF掀起你的盖头来 　　JSF为什么会受到如此大的青睐，IBM，orcale，包括国内领先的中间件厂商金蝶也投以关注目光。那么它又具有哪些与众不同的优势吸引众商家投怀送抱呢？下面我们就来揭开JSF的神秘面纱。　　JSF英文全称 JavaServer Faces （JSF） 是一种用于构建 Web 应用程序的新标准 Java 框架。它提供了一种以组件为中心来开发 Java Web 用户界面的方法，">
+<meta name="keywords" content="JSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="八大优势能否助JSF统一Web开发">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5ce011g4urqb6difx3i/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="JSF掀起你的盖头来 　　JSF为什么会受到如此大的青睐，IBM，orcale，包括国内领先的中间件厂商金蝶也投以关注目光。那么它又具有哪些与众不同的优势吸引众商家投怀送抱呢？下面我们就来揭开JSF的神秘面纱。　　JSF英文全称 JavaServer Faces （JSF） 是一种用于构建 Web 应用程序的新标准 Java 框架。它提供了一种以组件为中心来开发 Java Web 用户界面的方法，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T10:38:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="八大优势能否助JSF统一Web开发">
+<meta name="twitter:description" content="JSF掀起你的盖头来 　　JSF为什么会受到如此大的青睐，IBM，orcale，包括国内领先的中间件厂商金蝶也投以关注目光。那么它又具有哪些与众不同的优势吸引众商家投怀送抱呢？下面我们就来揭开JSF的神秘面纱。　　JSF英文全称 JavaServer Faces （JSF） 是一种用于构建 Web 应用程序的新标准 Java 框架。它提供了一种以组件为中心来开发 Java Web 用户界面的方法，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5ce011g4urqb6difx3i/"/>
+
+
+
+
+
+  <title>八大优势能否助JSF统一Web开发 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5ce011g4urqb6difx3i/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">八大优势能否助JSF统一Web开发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-19T07:50:00+08:00">
+                2008-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JSF掀起你的盖头来</p>
+<p>　　JSF为什么会受到如此大的青睐，IBM，orcale，包括国内领先的中间件厂商金蝶也投以关注目光。那么它又具有哪些与众不同的优势吸引众商家投怀送抱呢？下面我们就来揭开JSF的神秘面纱。</p><br><p>　　JSF英文全称 <a class="channel_keylink" href="http://java.chinaitlab.com/" target="_blank">Java</a>Server Faces （JSF） 是一种用于构建 Web 应用程序的新标准 <a class="channel_keylink" href="http://java.chinaitlab.com/" target="_blank">Java</a> 框架。它提供了一种以组件为中心来开发 Java Web 用户界面的方法，从而简化开发，也是Sun精心打造的一项技术。</p><br><p>　　JSF优势之一：UI组件（UI-component）</p><br><p>　　UI组件（UI-component）一直是桌面程序的专利，web程序中，虽然HTML定义了基本的UI标签，但要使这些UI标签像UI组件<br>那样工作，还需要很多代码片断来处理数据及其表现形式，而且有效地组织这些代码片断使其协调一致也是一件繁琐的工作。JSF的UI组件是真正意义上的UI<br>组件，能极大地简化程序员的工作，例如，在页面上放置一个文本输入框，这个输入框立即具备了数据填充、界面更新、事件侦听、动作触发、有效性检查和类型转<br>换的功能。更为重要的是，程序员只需根据业务逻辑编写核心业务代码，JSF会保证代码在合适的时候被执行，完全不用考虑代码与代码之间该如何来配合。</p><br><p>　　JSF优势之二：事件驱动模式</p><br><p>　　事件是面向对象方法的重要组成部分，对象之间通过事件进行沟通和交流，使得一个或多个对象能够对另一个对象的行为作出响应，共同合作去完成一项<br>业务逻辑。通常，编写Web程序时，程序员要为对象之间的沟通设计机制，编写代码。虽然沟通的内容属于业务逻辑，但沟通的机制显然与业务没有太大关系，程<br>序员因此为业务逻辑之外的功能浪费了时间。</p><br><p>　　JSF改变了这种状况。JSF的事件和侦听模式与大家熟悉的Javabean的事件模式类似，有Java基础的程序员并不需要学习任何新的东<br>西。JSF的UI组件可以产生事件，例如，当页面上一个文本输入框的内容被修改时，会发出一个“值改变事件”。另一个对象如果对“值改变事件”感兴趣，只<br>需注册为该对象的侦听者，并编写处理例程，即可命令JSF在事件发生时自动调用处理例程。JSF做了所有该做的事，留给程序员的只有业务逻辑代码的编写。</p><br><p>　　JSF优势之三：用户界面到业务逻辑的直接映射</p><br><p>　　举个例子，表单提交是Web编程最常见的任务，也是最复杂的任务之一。当用户在网页上点击“确定”按钮时，浏览器将生成一个HTTP请求，发往<a class="channel_keylink" href="http://server.chinaitlab.com/" target="_blank">服务器</a>端的某个Servlet，执行该Servlet的service方法。在service方法中，HTTP请求需要经历解码、类型转换、有效性验证、状态保存、数据更新等环节，处理这些环节的所有细节，对程序员来说是沉重的负担。</p><br><p>　　在JSF下，这些工作的很大一部分都由框架承担了，在程序员看来，这个过程是透明的，用户界面端的HTTP请求可以直接映射到后端的一个事件处理例程，JSF起到了承前启后的作用。</p><br><p>　　JSF优势之四：程序员和<a class="channel_keylink" href="http://webdesign.chinaitlab.com/" target="_blank">网页设计</a>人员的分工</p><br><p>　　在JSP中，程序员和<a class="channel_keylink" href="http://webdesign.chinaitlab.com/" target="_blank">网页设计</a>人<br>员的工作有时候是互相交织、无法区分的。这是因为JSP页面中掺入了网页设计人员所不熟悉的一些JSP标签，甚至是晦涩的Java代码。要求网页设计人员<br>理解这些标签和代码是不现实的，不符合分工合作的原则。在JSF中，框架为网页设计人员提供了一套标准的UI组件，在工具的支持下，可以通过拖放简单地添<br>加到网页上，然后设置某些显示属性来满足视觉要求。</p><br><p>　　网页设计人员不需要知道UI组件背后的复杂代码，那是程序员的事，而程序员也不需要再处理任何与视觉相关的细节，程序员所做的只是给UI组件绑<br>定类的属性或方法。虽然程序员和网页设计人员需要修改同一份文件，但他们各司其职，各得其所，互不干扰。程序员和网页设计人员工作的明确划分，是JSF在<br>易用性方面迈出的一大步。</p><p>JSF优势之五：请求处理生命周期的多阶段划分<br></p><p>　　虽然都是建立在Servlet基础之上，但JSF的生命周期要比JSP复杂得多。JSP的生命周期非常简单，页面被执行时，HTML标记立即被<br>生成了，生命周期随即结束。而一个完整的JSF请求-处理生命周期被精心规划为6个阶段，典型的JSF请求需要经历所有阶段，某些特殊的请求也可以跳过一<br>些阶段。阶段的细分，显然引入了更多的处理，但JSF框架会管理这一切，所以，程序员在获得更多控制能力的同时，工作量并没有增加。</p><br><p>　　JSF优势之六：伴随工具而生存</p><br><p>　　JSF带来了Web编程的巨大变革，变革的强烈程度超出了很多工具厂商的预料，以至于现在可供JSF使用的工具非常缺乏。缺乏工具支持的JSF<br>只会令人敬而远之，因此，JSF在设计之初就为工具厂商预留了用武之地。在为数不多的JSF工具中，sun的Java Studio<br>Creator是一个优秀的开发环境；Borland的Jbuilder在JSF1.1时曾经是非常好用的开发工具。</p><br><p>　　可惜现在对JSF1.2的支持没有跟上；Eclipse下JSF的插件很多，但真正支持所见即所得的JSF插件都是收费的，例如Bea的Workshop for JSF、Exadel的JSF Studio等等；此外，<a class="channel_keylink" href="http://oracle.chinaitlab.com/" target="_blank">Oracle</a>和IBM也有JSF的开发工具。随着工具的不断涌现，用JSF开发Web程序将会越来越方便和快速。</p><br><p>　　JSF优势之七：全面的用户自定义支持</p><br><p>　　前面提到，JSF将极大地简化Web程序的开发，作为一个相对复杂的框架，JSF是如何做到这点的呢？原来JSF为程序员提供了很多默认的组件<br>和类，通常情况下，JSF的这些默认组件和类足以满足Web开发的需要了。但是，考虑到在某些应用场合，框架的默认行为也许不符合业务的要求，JSF特别<br>允许程序员编写自己的组件和类，来满足客户的特殊需求。例如，程序员可以编写自己的UI组件，甚至可以创建自己的EL解释器，来支持非标准的EL表达语<br>言。</p><br><p>　　JSF优势之八：Web开发的官方标准之一</p><br><p>　　JSF的1.0版本发布于2004年2月份，当时是作为一项独立的Web技术推出的。经过1.1版到现在最新的1.2版，短短的两年多时<br>间，JSF终于在2006年年中成为Java EE 5的组成部分，上升为Web开发的官方标准之一。Java EE<br>5最重要的使命就是简化Java的开发，而JSF无疑为这一使命立下了汗马功劳。在Web框架层出不穷甚至有些泛滥成灾的今天，Sun以JSF来树立标<br>准，对Java的发展是有益的。Sun在Java领域的领袖地位不容动摇，对于Java程序员来说，始终追随业界领袖的步伐，也许是避免技术落伍的最好方<br>法。</p><br><p>　　JSF能否统一Web开发模式</p><br><p>　　上述的八大优势似乎没有改变JSF所处的尴尬境地，在J2EE下一代规范Java<br>EE5.0中，JSF技术虽然被放到了一个非常重要的地位，J2EE社区也试图通过JSF来统一Web应用的开模式与方法，<br>但是JSF能否担起Sun所赋予的重任？实现Web开发的统一？</p><br><p>　　很多开发人士都对JSF不抱乐观的态度，JSF的精英们都称JSF是Web开发世界的创举， JSF可谓墙里开花，墙外不红，是什么原因的造成如此大的反差呢？</p><br><p>　　1.获取方式</p><br><p>　　书是我们获取知识第一来源，一种技术的火爆程度，我们不用在网上去做任何调查，只要去一下图书城结果就一目了然，关于JSF的书籍简直是凤毛麟<br>角，难觅终影，这样在人们在获取JSF相关资料，JSF会大打折扣，比较经典《JSF in<br>Action》国内还没哪家出版社有翻译动向，证明图书厂商还没有对JSF投入太多关注度。</p><br><p>　　2.中文讨论区成熟度不够</p><br><p>　　除了图书方面，讨论区的热度也很重要，打开JSF官方讨论区，对JSF大唱赞歌人大有人在，为什么国内这种讨论却少之又少呢？一些国内比较知名的讨论区中没有看到JSF的相关技术讨论，这样从影响度上从知识的渴求度上，都限制了JSF前进脚步。</p><br><p>　　3.Sun商业策略</p><br><p>　　Sun的商业运作模式一直存在问题，我们在之前曾经预言过如果JSF不叫JSF，而叫JSP3.0那么现在结果会如何呢？Sun可以不费一兵一<br>卒从而实现JSP到JSF的合理过渡，同时也会有大批的JSP狂热者迅速的转向JSF，也可能有些人会认为两者是不同的两种技术，但是谁又能说Asp和<br>Asp.net是两种相同的技术吗？同样的策略微软用的很成功，难道Sun没有想到吗？</p><br><p>　　4.开发工具的支持程度</p><br><p>　　这次采访袁总的时候，也提到了JSF依赖开发工具的支持，Sun，IBM，Orcale都提出了对JSF开发工具的支持，但是这些开发工具在简<br>化开发方面是否做足了功课，宠大、全面、无所不能一直是众厂商炫耀技术的舞台，这次Apusic<br>Studio提出了简化，易用两方面特性，这点从程序员角度出发的开发工具，我们还是值得期待的。</p><br><p>　　5.扩大影响力</p><br><p>　　每一种技术都要有忠实狂热者，同时要让更多人的来应用和学习，Struts成功就是很好例证，一位着名IT人士曾经说过，“即使公司发生惨绝人<br>寰的人事大变动，产品经理也不必过于惊惶失措，茫茫人海中，有大批的Struts们可供选择，只需好好考虑好新员工的业务培训如何开展即可，而对于技术延<br>续性，则不必太过于担心，这就是Struts 带来的战略性优势。</p><br><p>　　也是Struts在今天技术落后的情况还能一直保持领先地位，这点还是值得反思的，JSF如何在影响上扩大学习者的基层人群，打消企业的后顾之忧，影响高层对JSF企业框架的应用选择，不知JSF是否做好了准备。</p><br><p>　　综上所述只是个人观点，如果JSF能在影响力和扩大人层基数上突破瓶颈，那么统一Web开发的格局将指日可待。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JSF/" rel="tag"># JSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko54900pl4urqup6nz7tr/" rel="next" title="Sun宣布裁员6000人 软件业务重组分三部分">
+                <i class="fa fa-chevron-left"></i> Sun宣布裁员6000人 软件业务重组分三部分
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5qq01hv4urqiub8amqw/" rel="prev" title="迁移到Linux平台应考虑的十个问题">
+                迁移到Linux平台应考虑的十个问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

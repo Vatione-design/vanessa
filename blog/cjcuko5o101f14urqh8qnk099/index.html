@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一：软件环境   1. Apache: apache 2.0.55 (由http://httpd.apache.org/进入下载)(点击下载apache 2.0.55)   2. Tomcat: Tomcat 5.5.25 (由http://tomcat.apache.org/进入下载)(点击下载Tomcat 5.5.25 zip版)  mod_jk: 在页面 http://tomcat.apac">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="结合Apache和Tomcat实现集群和负载均衡">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5o101f14urqh8qnk099/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="一：软件环境   1. Apache: apache 2.0.55 (由http://httpd.apache.org/进入下载)(点击下载apache 2.0.55)   2. Tomcat: Tomcat 5.5.25 (由http://tomcat.apache.org/进入下载)(点击下载Tomcat 5.5.25 zip版)  mod_jk: 在页面 http://tomcat.apac">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-21T05:46:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="结合Apache和Tomcat实现集群和负载均衡">
+<meta name="twitter:description" content="一：软件环境   1. Apache: apache 2.0.55 (由http://httpd.apache.org/进入下载)(点击下载apache 2.0.55)   2. Tomcat: Tomcat 5.5.25 (由http://tomcat.apache.org/进入下载)(点击下载Tomcat 5.5.25 zip版)  mod_jk: 在页面 http://tomcat.apac">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5o101f14urqh8qnk099/"/>
+
+
+
+
+
+  <title>结合Apache和Tomcat实现集群和负载均衡 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5o101f14urqh8qnk099/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">结合Apache和Tomcat实现集群和负载均衡</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-09-24T23:26:00+08:00">
+                2008-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一：软件环境<br>   1. Apache: apache 2.0.55 (由<a href="http://httpd.apache.org/进入下载)(点击下载apache" target="_blank" rel="noopener">http://httpd.apache.org/进入下载)(点击下载apache</a> 2.0.55)<br>   2. Tomcat: Tomcat 5.5.25 (由<a href="http://tomcat.apache.org/进入下载)(点击下载Tomcat" target="_blank" rel="noopener">http://tomcat.apache.org/进入下载)(点击下载Tomcat</a> 5.5.25 zip版)<br></p>
+<ol>
+<li>mod_jk: 在页面 <a href="http://tomcat.apache.org/" target="_blank" rel="noopener">http://tomcat.apache.org/</a> Download 标题下找到 Tomcat<br>Connectors 链接进入(<br>点击下载mod_jk-apache-2.0.55.so)，看起来像是个Unix/Linux下的动态库，实际应是个Win32 的 DLL<br>动态库，大概是为保持不同平台配置的一致性，才用了这个扩展名。<br><br>二：负载均衡<br>　用Apache进行分流，把请求按照权重以及当时负荷分tomcat1,tomcat2…去处理<br><br>1. 安装apache,tomcat<br>   我把Apache安装在D:\Apache Group\Apache2<br>　 解压两分Tomcat, 分别在 D:\Apache Group\Tomcat5_1，D:\Apache Group\Tomcat5_2<br>   如果把不同版本的Tomcat进行集群，目录就可用Tomcat4_3(版本为4.x的第三个tomcat服务器)，Tomcat6_4(版本为6.x的第三个tomcat服务器),这是Unmi本人的习惯。<br><br>2.修改Apache配置文件http.conf<br><br>   在apache安装目录下conf目录中找到http.conf，在文件最后加上下面一句话就可以了<br><br>   include conf\mod_jk.conf<br><br>3. http.conf 同目录下新建mod_jk.conf文件，内容如下<br><br><br>#加载mod_jk Module    <br>LoadModule jk_module modules/mod_jk-apache-2.0.55.so    <br>   <br>#指定 workers.properties文件路径    <br>JkWorkersFile conf/workers.properties    <br>   <br>#指定那些请求交给tomcat处理,”controller”为在workers.propertise里指定的负载分配控制器    <br>JkMount /<em>.jsp controller  <br><br>如果还要指定</em>.do也进行分流就再加一行<br>JkMount /<em>.do controller<br><br>如果你想对所有的请求进行分流只需要写成<br>JkMount /</em> controller<br><br>4. 在http.conf同目录下新建 workers.properties文件，内容如下<br><br><br>worker.list = controller,tomcat1,tomcat2  #server 列表    <br>#========tomcat1========    <br>worker.tomcat1.port=8009 #ajp13 端口号，在tomcat下server.xml配置,默认8009    <br>worker.tomcat1.host=localhost  #tomcat的主机地址，如不为本机，请填写ip地址    <br>worker.tomcat1.type=ajp13    <br>worker.tomcat1.lbfactor = 1   #server的加权比重，值越高，分得的请求越多    <br>   <br>#========tomcat2========    <br>worker.tomcat2.port=8109       #ajp13 端口号，在tomcat下server.xml配置,默认8009    <br>worker.tomcat2.host=localhost  #tomcat的主机地址，如不为本机，请填写ip地址    <br>worker.tomcat2.type=ajp13    <br>worker.tomcat2.lbfactor = 2   #server的加权比重，值越高，分得的请求越多    <br>   <br>#========controller,负载均衡控制器========    <br>worker.controller.type=lb    <br>worker.controller.balanced_workers=tomcat1,tomcat2   #指定分担请求的tomcat    <br>worker.controller.sticky_session=1  <br><br>5. 修改tomcat配置文件server.xml<br>如<br>果你是水平集群，即在不同电脑上安装tomcat,tomcat的安装数量为一个，可以不必修改tomcat配置文件.我这里是在同一台电脑上安装两个<br>tomcat,实现的是垂直集群方式，所以必须修改其中一个的设置，以避免端口冲突，按照参考文章是把原来以9开头的端口号改为以9开头端口号，但是在我<br>机器上如果以9开头的端口号，例如9080、9082会与我的WebSphere Application<br>Server配置冲突，所以我这里采取的策略是把原来端口号的第三位改为1，如8080改为8180。<br><br>打开tomcat2/conf/server.xml文件<br><br>1) 将关闭Tomcat的监听端口改成由8005改为8105<br>即把<br> <server port="8005" shutdown="SHUTDOWN"><br>改为<br> <server port="8105" shutdown="SHUTDOWN"><br><br>2) 把http服务端口号由8080改为8180<br>找到<br> <!-- Define a non-SSL HTTP/1.1 Connector on port 8080 --><br>    <connector port="8080"><br>把这里的8080改为8180<br><br>3) 把AJP端口号由8009改为8109<br>找到<br> <!-- Define an AJP 1.3 Connector on port 8009 --><br>    <connector port="8009"><br>把这里的8009改为8109<br><br>4) 把 HTTP 代理端口从8082改为8182(这个配置默认是被注释掉的，可跳过这一步)<br>找到<br><connector port="8082"><br>把这里的8082改为8182<br><br>5) 编写一个测试 jsp<br>建立一个目录TestCluster，里面新建一个test.jsp,内容为<br><br><br>&lt;%     <br>    System.out.println(“===========================”);     <br>%&gt;  <br><br>把TestCluster放到tomcat1,tomcat2的webapps下<br><br>6) 启动apache,tomcat1,tomcat2,进行测试<br>通<br>过 <a href="http://localhost/TestCluster/test.jsp" target="_blank" rel="noopener">http://localhost/TestCluster/test.jsp</a><br>访问，多刷新几次页面，查看Tomcat1和Tomcat2的窗口，你将可以看到打印了一行<br>行”===========================”，并且从统计上来说，大约在tomcat2打印的数量是在Tomcat1中的两倍，可以看<br>到请求会被tomcat1,tomcat2按照不同的权重分流处理,实现了负载均衡。<br><br>作下面的集群配置，请在workers.properties把tomcat1和tomcat2的权重改为一样的，使请求较平均分配，将有便于看到实验的效果。 <br><br>三：配置集群<br>  只配置负载均衡还不行，还要session复制，也就是说其中任何一个tomcat的添加的session，是要同步复制到其它tomcat， 集群内的tomcat都有相同的session<br><br>1. 修改tomcat1, tomcat2的server.xml,将集群部分配置，即对<cluster>节点的在注释符删掉,并将tomcat2的4001端口改为4002，以避免与tomcat冲突，当然，如果是两台电脑，是不用改端口的，去掉注释符即可<br>即取消对如下处<br><br><br><br>1  <cluster classname="org.apache.catalina.cluster.tcp.SimpleTcpCluster"><br>2           managerClassName=”org.apache.catalina.cluster.session.DeltaManager”<br>3           expireSessionsOnShutdown=”false”<br>4  <br>5      <clusterlistener classname="org.apache.catalina.cluster.session.ClusterSessionListener"><br>6  </clusterlistener><br>前后的注释标记<!--  -->，启用该项配置，实现服务器间的Session复制。<br><br>2. 为 Tomcat1和 Tomcat2 增加 jvmRoute(先跳过这一步，有精力可以试验一下)<br>在 Tomcat1 和 Tomcat2 的 server.xml 文件，找到<br> <engine name="Catalina" defaulthost="localhost"><br>分别改为<br> <engine name="Catalina" defaulthost="localhost" jvmroute="tomcat1"><br>和<br> <engine name="Catalina" defaulthost="localhost" jvmroute="tomcat2"><br><br>然而实际我配置的时候还不能加jvmRoute属性，配置了反而有问题。<br>刷新浏览器窗口总是在某一个tomcat控制台输出形如<br><br> SessionID:154678FA6D4D0ABD57658B750E7A3532.tomcat1  (在tomcat1窗口)<br>或者<br> SessionID:3800571A532AECEA7280F45361861AD4.tomcat2  (在tomcat2窗口)<br><br>由控制台打印的结果可以看出，SessionID在哪个tomcat上产生，那么后续该会话的请求将总是会这个tomcat来处理。<br><br>并且注意到SessionID的形式比通常情况多了一个后缀.tomcat1或.tomcat2，还搞不清楚是为什么。<br><br>配置时请视实际情况而取舍。<br><br>3. 修改测试项目 TestCluster<br>修改test.jsp,内容如下 <br><br><br>&lt;%@ page contentType=”text/html;  charset=GBK” %&gt;   <br>&lt;%@ page import=”java.util.*” %&gt;   <br><br>   <br>&lt;%     <br>   System.out.println(“SessionID:”  + session.getId());     <br>%&gt;   <br>Server Info:    <br>&lt;%    <br>out.println(request.getServerName() + “ : “ + request.getServerPort()+”<br>“); %&gt;   <br>&lt;%    <br>  out.println(“<br> ID “ + session.getId()+”<br>“);   // 如果有新的 Session 属性设置    <br>  String dataName = request.getParameter(“dataName”);     <br>  if (dataName != null &amp;&amp; dataName.length() &gt; 0) {    <br>     String dataValue = request.getParameter(“dataValue”);     <br>     session.setAttribute(dataName, dataValue);     <br>  }    <br>  out.print(“<b>Session 列表</b><br>“);       <br>  Enumeration e = session.getAttributeNames();     <br>  while (e.hasMoreElements()) {    <br>     String name = (String)e.nextElement();     <br>     String value = session.getAttribute(name).toString();     <br>     out.println( name + “ = “ + value+”<br>“);     <br>         System.out.println( name + “ = “ + value);     <br>   }    <br>%&gt;   <br>  <form action="test.jsp" method="post">   <br>    名称:<input size="20" name="dataName" type="text">   <br>     <br>   <br>    数值:<input size="20" name="dataValue" type="text">   <br>     <br>   <br>    <input type="submit">   <br>   </form>   <br><br><br><br>4. 配置Session复制<br>在TestCluster目录下新建WEB-INF目录，WEB-INF下新建web.xml,内容如下<br><br><br><web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">       <br>       <display-name>TomcatClusterDemo</display-name>       <br>       <distributable>       <br><web-app>  <br>也就是在需要集群的应用的web.xml中加上属性，表明该应用可多应用分流处理，能进行Session的复制<br><br>把TestCluster复制到Tomcat1、Tomcat2的webapps目录下，重启apache,tomcat1,tomcat2<br><br>5. 测试Session的复制<br>通<br>过 <a href="http://localhost/TestCluster/test.jsp" target="_blank" rel="noopener">http://localhost/TestCluster/test.jsp</a> 访问，输入名称为 name, 值为<br>Unmi，提交查询，多刷新几次浏览器窗口，你将会看到在两个Tomcat窗口都打印出相同的SessionID及其中的值，并且每次刷新后打印的结果都<br>一样的。<br><br>如果不为应用的web.xml加上 ，同样测试上面那个test.jsp页面，每次刷新分流到不同的tomcat上都会产生不一样的SessionID,在同一个tomcat上也是间隔出现不同的sessionID。<br><br>更切身的体验是一定要自己动手配置一遍，并仔细观察两个tomcat的控制上的输出。因本文是参考 轻松实现Apacjavascript:void(null);he,Tomcat集群和负载均衡 的实践经历，该本中有较多的贴图。<br><br>后记：<br>用<br>WebSphere Application Server ND<br>版配置过垂直和水平集群，但是自己试验集群环境下的应用却不想搬弄这个庞然大物。眼下急于想体验的就是 Quartz<br>如何适应集群环境，问题的焦点就是：Quartz 定时任务随 Web 应用启动，而 Web<br>应用部署在集群环境中，如何保证同一时刻只有一个同名的任务实例在跑。<br><br>所以会考虑用Apache+Tomcat配置一个轻量级的WEB应用集群，一般进行HTTP分流都是使用Apache,包括WAS集群也是，很少用IIS的。虽然单纯的用Tomcat的balancer应用也能配置进行负载分流，但那个性能应该好不到哪儿去。<br><br>用Apache+Tomcat配置的Web应用集群就是部署起来麻烦些，总是要保持双份的应用拷贝，WAS集群则不需要，不知道Jboss做WEB应用集群是怎么样一种情况。<br><br>好了，下面要进行该做的事情了,最后也希望能写个工具能完成从下载到安装配置，启动，停止，重启的全自动化，以及界面的人性化。</web-app></distributable></web-app></engine></engine></engine></cluster></cluster></connector></connector></connector></server></server></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4ua00774urq6tnm5nri/" rel="next" title="Change">
+                <i class="fa fa-chevron-left"></i> Change
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko54w00qj4urqotcb4d1c/" rel="prev" title="Tomcat 配置">
+                Tomcat 配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

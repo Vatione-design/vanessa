@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="具有以下功能：拖动：在一定范围内拖动到想要拖动的位置大小缩放：可以进行画布大小和图片大小的调整旋转：根据输入的角度进行旋转fit image：根据画布的大小选择最适合的尺寸进行缩放。但图片比例保持不变fit width：根据画布大小按画布宽度调整图片，但图片比例保持不变fit height：根据画布大小按画布高度调整图片，但图片比例保持不变customize：根据画布的大小，调整图片的大小actu">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于raphael 的图形变化">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5eo01494urquefjt7ts/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="具有以下功能：拖动：在一定范围内拖动到想要拖动的位置大小缩放：可以进行画布大小和图片大小的调整旋转：根据输入的角度进行旋转fit image：根据画布的大小选择最适合的尺寸进行缩放。但图片比例保持不变fit width：根据画布大小按画布宽度调整图片，但图片比例保持不变fit height：根据画布大小按画布高度调整图片，但图片比例保持不变customize：根据画布的大小，调整图片的大小actu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://2.bp.blogspot.com/_cpAysU-3LSM/SfVWWJQGL3I/AAAAAAAAAI8/gRgRtooLTwc/s320/%E5%8E%9F%E5%A7%8B.bmp">
+<meta property="og:image" content="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWn696pI/AAAAAAAAAJc/ecFLS7KS7N8/s320/fit+width.bmp">
+<meta property="og:image" content="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWUFugsI/AAAAAAAAAJU/4BzG3VYKkxA/s320/fit+height.bmp">
+<meta property="og:image" content="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWazaVtI/AAAAAAAAAJM/PgWgHAcAi_8/s320/customize.bmp">
+<meta property="og:image" content="http://1.bp.blogspot.com/_cpAysU-3LSM/SfVWWCzVWqI/AAAAAAAAAJE/JpHnoSdfTt4/s320/actual+size.bmp">
+<meta property="og:image" content="http://1.bp.blogspot.com/_cpAysU-3LSM/SfVZxqdTwII/AAAAAAAAAJk/B0JQXOm4734/s320/html.bmp">
+<meta property="og:updated_time" content="2018-01-23T20:53:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于raphael 的图形变化">
+<meta name="twitter:description" content="具有以下功能：拖动：在一定范围内拖动到想要拖动的位置大小缩放：可以进行画布大小和图片大小的调整旋转：根据输入的角度进行旋转fit image：根据画布的大小选择最适合的尺寸进行缩放。但图片比例保持不变fit width：根据画布大小按画布宽度调整图片，但图片比例保持不变fit height：根据画布大小按画布高度调整图片，但图片比例保持不变customize：根据画布的大小，调整图片的大小actu">
+<meta name="twitter:image" content="http://2.bp.blogspot.com/_cpAysU-3LSM/SfVWWJQGL3I/AAAAAAAAAI8/gRgRtooLTwc/s320/%E5%8E%9F%E5%A7%8B.bmp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5eo01494urquefjt7ts/"/>
+
+
+
+
+
+  <title>基于raphael 的图形变化 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5eo01494urquefjt7ts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于raphael 的图形变化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-04-28T06:44:00+08:00">
+                2009-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><br>具有以下功能：<a href="http://2.bp.blogspot.com/_cpAysU-3LSM/SfVWWJQGL3I/AAAAAAAAAI8/gRgRtooLTwc/s1600-h/%E5%8E%9F%E5%A7%8B.bmp" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" target="_blank" rel="noopener"><img id="BLOGGER_PHOTO_ID_5329260672503394162" style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px; height: 210px;" src="http://2.bp.blogspot.com/_cpAysU-3LSM/SfVWWJQGL3I/AAAAAAAAAI8/gRgRtooLTwc/s320/%E5%8E%9F%E5%A7%8B.bmp" border="0" alt=""></a><br><br><br><br><br><br><br><br><br><br><br><br><br><br>拖动：在一定范围内拖动到想要拖动的位置<br>大小缩放：可以进行画布大小和图片大小的调整<br>旋转：根据输入的角度进行旋转<br>fit image：<br>根据画布的大小选择最适合的尺寸进行缩放。但图片比例保持不变<br>fit width：根据画布大小按画布宽度调整图片，但图片比例保持不变<br><br><a href="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWn696pI/AAAAAAAAAJc/ecFLS7KS7N8/s1600-h/fit+width.bmp" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" target="_blank" rel="noopener"><img id="BLOGGER_PHOTO_ID_5329260680736270994" style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px; height: 191px;" src="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWn696pI/AAAAAAAAAJc/ecFLS7KS7N8/s320/fit+width.bmp" border="0" alt=""></a><br><br><br><br><br><br><br><br><br><br><br><br>fit height：根据画布大小按画布高度调整图片，但图片比例保持不变<br><br><a href="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWUFugsI/AAAAAAAAAJU/4BzG3VYKkxA/s1600-h/fit+height.bmp" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" target="_blank" rel="noopener"><img id="BLOGGER_PHOTO_ID_5329260675412689602" style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px; height: 167px;" src="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWUFugsI/AAAAAAAAAJU/4BzG3VYKkxA/s320/fit+height.bmp" border="0" alt=""></a><br><br><br><br><br><br><br><br><br><br>customize：根据画布的大小，调整图片的大小<br><a href="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWazaVtI/AAAAAAAAAJM/PgWgHAcAi_8/s1600-h/customize.bmp" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" target="_blank" rel="noopener"><img id="BLOGGER_PHOTO_ID_5329260677214918354" style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px; height: 176px;" src="http://3.bp.blogspot.com/_cpAysU-3LSM/SfVWWazaVtI/AAAAAAAAAJM/PgWgHAcAi_8/s320/customize.bmp" border="0" alt=""></a><br><br><br><br><br><br><br><br><br><br><br>actual size：图片大小不变。改变画布大小。<br><a href="http://1.bp.blogspot.com/_cpAysU-3LSM/SfVWWCzVWqI/AAAAAAAAAJE/JpHnoSdfTt4/s1600-h/actual+size.bmp" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" target="_blank" rel="noopener"><img id="BLOGGER_PHOTO_ID_5329260670772140706" style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px; height: 202px;" src="http://1.bp.blogspot.com/_cpAysU-3LSM/SfVWWCzVWqI/AAAAAAAAAJE/JpHnoSdfTt4/s320/actual+size.bmp" border="0" alt=""></a><br><br><br><br><br><br><br><br><br><br><br><br><br><br>备注：这里使用了raphael以及网上下载的drag和resize的javaScript<br>再次只给出自己写的js代码：<br>image.js<br>$(document).ready(function() {<br>   var canvans_width = 300,<br>   canvans_height = 200,<br>   image_width = $(“#rImg”).width(),<br>   image_height = $(“#rImg”).height(),<br>   ration_r = image_width/image_height;<br><br>   $(“#selectArea”).css({<br>       background:”#888888”,<br>       width:canvans_width,<br>       height:canvans_height<br>   });<br><br>   var paper = Raphael(“selectArea”, canvans_width, canvans_height),<br>   image = paper.image(“./image/GG.bmp”, 0, 0, image_width, image_height);<br><br>   $(“#ok”).click(function(){<br>       paper.setSize($(“#selectArea”).width(), $(“#selectArea”).height());<br>       pic_select = $(“#picSelect”).val();<br>       degree = $(“#degree”).val();<br>       image.rotate(degree);<br>       if(pic_select==”customize”){       <br>           image.attr({<br>               width:$(“#selectArea”).width(),<br>               height:$(“#selectArea”).height()<br>           });<br>       }<br>       if(pic_select==”actual size”){<br>           image.attr({<br>               width:image_width,<br>               height:image_height<br>           });<br>       }<br>       if(pic_select==”fit image”){<br>           var ration = $(“#selectArea”).width()/$(“#selectArea”).height();<br>           if(ration_r &gt; ration){<br>               image.attr({<br>                   width:$(“#selectArea”).width(),<br>                   height:$(“#selectArea”).width()/ration_r<br>               });<br>           }<br>           else{<br>               image.attr({<br>                   width:$(“#selectArea”).height()<em>ration_r,<br>                   height:$(“#selectArea”).height()<br>               });<br>           }<br>       }<br>       if(pic_select==”fit width”){<br>           image.attr({<br>               width:$(“#selectArea”).width(),<br>               height:$(“#selectArea”).width()/ration_r<br>           });<br>       }<br>       if(pic_select==”fit height”){<br>           image.attr({<br>               width:$(“#selectArea”).height()</em>ration_r,<br>               height:$(“#selectArea”).height()<br>           });<br>       }<br>   });<br>});<br><br>html代码如下图所示<br><a href="http://1.bp.blogspot.com/_cpAysU-3LSM/SfVZxqdTwII/AAAAAAAAAJk/B0JQXOm4734/s1600-h/html.bmp" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" target="_blank" rel="noopener"><img id="BLOGGER_PHOTO_ID_5329264443808530562" style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 298px; height: 320px;" src="http://1.bp.blogspot.com/_cpAysU-3LSM/SfVZxqdTwII/AAAAAAAAAJk/B0JQXOm4734/s320/html.bmp" border="0" alt=""></a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko55v00s44urqg7soatak/" rel="next" title="Web设计技巧：实现干净代码的12条定律">
+                <i class="fa fa-chevron-left"></i> Web设计技巧：实现干净代码的12条定律
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5ep014b4urqlrkl8xjy/" rel="prev" title="基于raphael 的图形变化（jQuery）">
+                基于raphael 的图形变化（jQuery） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

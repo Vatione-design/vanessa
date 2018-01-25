@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            Joel Confino译者            张凯峰            发布于            2008年12月12日 上午12时1分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你的第一杯Web 2.0 —— 快速浏览jQuery、Spring MVC和XStream&#x2F;Jettison">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj1l00odxwrq0zgyaivh/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            Joel Confino译者            张凯峰            发布于            2008年12月12日 上午12时1分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image1.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image2.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image2-1.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image3.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image4.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image5.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image6.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image7.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image8.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image9.jpg">
+<meta property="og:updated_time" content="2018-01-22T11:52:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你的第一杯Web 2.0 —— 快速浏览jQuery、Spring MVC和XStream&#x2F;Jettison">
+<meta name="twitter:description" content="作者            Joel Confino译者            张凯峰            发布于            2008年12月12日 上午12时1分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;">
+<meta name="twitter:image" content="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj1l00odxwrq0zgyaivh/"/>
+
+
+
+
+
+  <title>你的第一杯Web 2.0 —— 快速浏览jQuery、Spring MVC和XStream/Jettison | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj1l00odxwrq0zgyaivh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">你的第一杯Web 2.0 —— 快速浏览jQuery、Spring MVC和XStream/Jettison</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-12-18T06:07:00+08:00">
+                2008-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>            作者<br>            <strong>Joel Confino</strong>译者<br>            <strong>张凯峰</strong><br>            发布于<br>            2008年12月12日 上午12时1分<br>        </p>
+
+<pre><code>&lt;dl class=&quot;tags2&quot;&gt;&lt;dt class=&quot;community&quot;&gt;社区&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/java&quot; name=&quot;java&quot; id=&quot;739&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Java&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;主题&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/web2_0&quot; name=&quot;web2_0&quot; id=&quot;767&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Web 2.0&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/javascript&quot; name=&quot;javascript&quot; id=&quot;839&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;JavaScript&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;标签&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/jQuery&quot; name=&quot;jQuery&quot; id=&quot;1,376&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;jQuery&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/XStream&quot; name=&quot;XStream&quot; id=&quot;3,776&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;XStream&lt;/a&gt;&lt;/dd&gt;&lt;/dl&gt;
+
+   &lt;p&gt;&lt;strong&gt;不再有页面刷新：使用jQuery&lt;/strong&gt;&lt;/p&gt;
+</code></pre><div class="vendor-content-box-float"><a href="http://www.infoq.com/infoq/url.action?i=245&amp;t=f" target="_blank"></a><br>            在我参与创建的一些Web网站应用中，一直存在有对用户理所当然的抱歉：“哦，对不起，我不得不让你经受一些不必要的页面刷新。”哈，这就是我在今年年初听说jQuery后，我的脑子里一下闪过的念头。</div>
+
+
+
+
+
+<p></p><p>jQuery是个强大而非侵入式的JavaScript库，但它的名字起得很差劲。它的简洁而高可读性的语法再次激发了我编写JavaScript<br>代码的兴趣。它的非侵入性能让它只需要对既有代码做小小的修改，就能很容易为web应用添加一些丰富的功能——比如后台表单提交。当你工作在一个很大的代<br>码库，或者扩展性的重构无法取得成效时，非侵入的特性显得尤其重要。我的老板不会给我四周的时间推倒重来，为一个已经存在的网站添加一些视觉效果。但我也<br>许可以有四个小时的时间，而这对jQuery来说足够了。</p><p></p>
+<p></p><p>作为一个简单的例子，我们假设有一个汽车搜索功能，它会基于一个交通工具型号来返回结果。向文本框输入文本，点击提交，然后显示结果。JSP看起来会是这样：</p><p></p>
+<p></p><p><img src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image1.jpg" _href="img://image1.jpg" alt=""></p><p></p>
+<p></p><p>在用户输入名称并点击提交后，在页面刷新时整个屏幕会变白，然后就会显示出结果来。这不是一个好的用户体验。现在，让我们用jQuery来改善一下用户的体验，只刷新页面中那部分的确需要改变的部分。对这个既有页面所做的修改是：</p><p></p>
+<p><ol><li>把搜索表单和搜索结果分成两个单独的JSP页面，这样结果也可以独立的显示，而不需要重新渲染搜索的表单。</li><li>在搜索表单JSP上添加一个<br>    <div>占位符，来存放搜索的结果。</div><br>    </li><li>添加一行jQuery代码，来在后台使用AJAX提交搜索表单内容，并把结果存放在占位符<br>    <div>中。</div><br>    </li></ol></p>
+<p></p><p>修改后的代码是这样的：</p><p></p>
+<p></p><p><img src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image2.jpg" _href="img://image2.jpg" alt=""><br><br><br><br><img src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image2-1.jpg" _href="img://image2-1.jpg" alt=""></p><p></p>
+<p></p><p>当用户输入名称并点击了提交时，只有搜索结果的</p><br>会刷新。这样用户体验就得到了改善，而我们也不需要编写太多的JavaScript代码。让我们来深入一点研究下这段jQuery脚本：<p></p>
+<p></p><p>&nbsp;</p><p></p>
+<p></p><p>&nbsp;</p><p></p>
+<p></p><p><img src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image3.jpg" _href="img://image3.jpg" alt=""></p><p></p>
+<p></p><p>这段代码的意思是：</p><p></p>
+<p></p><p>第2行——“当页面加载完成时……”</p><p></p>
+<p></p><p>第3行——“找到一个id为searchForm的表单，并让它变成具备AJAX功能的表单（在后台提交）”</p><p></p>
+<p></p><p>第4行——“使用POST方法而不是GET”</p><p></p>
+<p></p><p>第5行——“把搜索的结果放在一个id为searchResults的DIV中”</p><p></p>
+<p></p><p>这几行jQuery代码以$()开始，并总是会选择某个元素来进行操作，比如“document”或者“#searchForm”。jQuery就像是个装饰器，可以让你为元素添加各种各样有趣的行为，比如具备AJAX提交功能的表单、可视化效果、拖拽等等。</p><p></p>
+<p></p><p>这个例子演示出几行代码所包含的众多功能，也表达了为什么我会喜欢jQuery：使用装饰器方法来增强既有的web应用，是非常理想而完美的。不需要重写既有的HTML，你使用jQuery就可以添加新的行为。</p><p></p>
+<p></p><h3>使用Spring MVC和XStream/Jettison返回数据而不是HTML</h3><p></p>
+<p></p><p>第一个例子中，jQuery是用在了客户端，而在服务器端没有什么显著的变化。我们仍然保留基本的流程，用户在浏览器上点击某个元素，创建一个服务器请求，然后返回HTML内容。当如果服务器端能返回JSON或者XML格式的数据，而不是HTML，会怎样呢？</p><p></p>
+<p></p><p>返回数据而不是可以展现的HTML，这可以让客户端缓存结果，从而减少服务器请求的次数。数据本身要比HTML简洁很多——这样也减小了返回结果的尺寸。请看下面的这个例子：</p><p></p>
+<p></p><p><img src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image4.jpg" _href="img://image4.jpg" alt=""></p><p></p>
+<p></p><p>在标准的流程中，三次用户与浏览器的交互会带来三次服务器请求。现在让我们看看一个优化过后，服务器只返回数据而不是HTML的流程：</p><p></p>
+<p></p><p><img src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image5.jpg" _href="img://image5.jpg" alt=""></p><p></p>
+<p></p><p>在优化后的流程中，三次用户交互只会产生一次服务器请求。</p><p></p>
+<p></p><p>还有许多潜在的可以由服务器返回的数据格式。具体选择哪种，可以根据情况而定。下面是一些选项以及选择的原因：</p><p></p>
+<p><table border="1" width="100%"><br>    <tbody><br>        <tr align="center"><br>            <td><small><strong>服务器请求格式</strong></small></td><br>            <td><small><strong>何时使用</strong></small></td><br>            <td><small><strong>使用频率</strong></small></td><br>        </tr><br>        <tr><br>            <td><small>完整HTML页面</small></td><br>            <td><small>初始页面加载</small></td><br>            <td><small>低</small></td><br>        </tr><br>        <tr><br>            <td><small>HTML片段</small></td><br>            <td><small>在服务器端展现更加容易而且有必要。比如使用流行的<displaytag>标签库来显示一个table。</displaytag></small></td><br>            <td><small>低</small></td><br>        </tr><br>        <tr><br>            <td><small>JSONB<br><br>            <br><br>            {<br><br>            &nbsp;    “car”: {<br><br>            &nbsp;    &nbsp; &nbsp;    “id”: “5”,<br><br>            &nbsp;    &nbsp; &nbsp;    “make”: “Acura”,<br><br>            &nbsp;    &nbsp; &nbsp;    “model”: “MDX”<br><br>            &nbsp; }<br><br>            } </small></td><br>            <td><small>在大多数服务器响应中都可以使用的数据格式。简洁，并且很容易跟JavaScript配合工作。</small></td><br>            <td><small>高</small></td><br>        </tr><br>        <tr><br>            <td><small>XML</small><br><br>            <br><br>            <small><car id="5"><br><br>            &nbsp;    &nbsp; &nbsp;<make>Acura</make><br><br>            &nbsp;    &nbsp; &nbsp;<model>MDX</model><br><br>            </car></small><small><car id="5"><model></model><br><br>            </car></small></td><br>            <td><small>复杂的无法轻松使用JSON表示的数据。XML的结果包括元素和属性，而JSON只包含元素。</small></td><br>            <td><small>低</small></td><br>        </tr><br>    </tbody><br></table></p>
+<p></p><p><img alt="" _href="img://image6.jpg" src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image6.jpg"></p><p></p>
+<p></p><p>让我们来看一个服务器返回JSON数据到浏览器的例子。我们把原来的汽车型号搜索页替换成一个新的页面，它包含一个制造商（make）和型号<br>（model）的下拉列表。当用户选择制造商时，对应那个制造商的所有模型就会自动更新。如果用户选择了一个型号，下面就会显示一张列满该可用型号年代的<br>表格。</p><p></p>
+<p></p><p>由服务器端开始，我们会看到我们如何使用Spring MVC以及XStream和Jettison来创建JSON数据。首先我们会构建一个Spring MVC控制器：</p><p></p>
+<p></p><p><img alt="" _href="img://image7.jpg" src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image7.jpg"></p><p></p>
+<p></p><p>第1行——@Controller注解告诉Spring MVC把这个类用作一个控制器。</p><p></p>
+<p></p><p>第4行——@RequestMapping注解将请求URL映射到处理方法上。</p><p></p>
+<p></p><p>第6行——创建ModelAndView对象，其中view名称为carselector，它将会映射到carselector.jsp。</p><p></p>
+<p></p><p>第7行——使用键值makeList将一个制造商（Make）列表添加到ModelAndView中。这个对象可以在JSP中通过${makeList}来取到。</p><p></p>
+<p></p><p>第11行——再一次，@RequestMapping注解将请求URL映射到处理方法上。</p><p></p>
+<p></p><p>第12行——@RequestParam将一个请求参数对应到一个方法参数上。</p><p></p>
+<p></p><p>第13行——通过我写的叫做JsonView的JSON视图类来创建ModelAndView对象。Spring MVC让编写自定义视图类变得非常简单，而JsonView中就包含了XStream的逻辑。</p><p></p>
+<p></p><p>第14行——使用JsonView所期望的键值将型号（Model）的列表添加到ModelAndView。</p><p></p>
+<p></p><p>总的来说，控制器会响应两个URL，“carselector.html”和“models.html”。它通过一个标准的JSP视图针对<br>“carselector.html”返回一个HTML页面。让我们来看看JsonView类，它针对“models.html”返回JSON结果：</p><p></p>
+<p></p><p><img alt="" _href="img://image8.jpg" src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image8.jpg"></p><p></p>
+<p></p><p>第4行——使用JettisonMappedXmlDriver来初始化XStream，从而输出JSON而不是XML。</p><p></p>
+<p></p><p>第6行——Spring MVC视图类必须实现render()方法。</p><p></p>
+<p></p><p>第9行——从model中取出之前由控制器创建的数据。</p><p></p>
+<p></p><p>第11行——实际生成JSON（尽管方法叫做toXML）。</p><p></p>
+<p></p><p>它就是那么简单。XStream库也包含一套注解，你可以将其放在你自己的域中或者传输对象上，来提示如何展现JSON，但一般来说这个库基本不需要什么配置。</p><p></p>
+<p></p><p>现在服务器端就生成了JSON，但客户端如何使用它呢？针对这个问题，我们需要再次来利用jQuery。请记住，我们需要处理两个事件：从“制造商<br>（make）”下拉列表中选择数值会更新“型号（model）”下拉列表中的数据。而选择型号（model）下拉列表中的数值会填充型号（model）年<br>代表格中的数据。下面是用jQuery的ready方法来绑定事件处理方法：</p><p></p>
+<p></p><p><img alt="" _href="img://image9.jpg" src="http://www.infoq.com/resource/articles/First-Cup-Web-2.0-Joel-Confino/zh/resources/image9.jpg"></p><br>“select[name^=make]”表达式看起来非常像CSS选择器，那是因为jQuery选择器是CSS选择器的一个超集（就好像CSS和<br>Regex有一个共同的孩子）。这些表达式相当强大，可以用来同时选择一个或多个对象。在这个例子中，表达式的意思是，“选择一个名字叫‘make’ 的<br><br><br>转自:<a href="http://www.infoq.com/cn/articles/First-Cup-Web-2.0-Joel-Confino" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/First-Cup-Web-2.0-Joel-Confino</a><br><p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj3j00q3xwrq7b5vczgz/" rel="next" title="历届奥斯卡最佳影片">
+                <i class="fa fa-chevron-left"></i> 历届奥斯卡最佳影片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzioc00apxwrqjw8kauul/" rel="prev" title="Maven copy研究">
+                Maven copy研究 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">使用Spring MVC和XStream/Jettison返回数据而不是HTML</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

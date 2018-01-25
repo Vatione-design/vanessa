@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;责任编辑：覃里作者：51cto&amp;nbsp;&amp;nbsp;            2009-10-30            &amp;nbsp;&amp;nbsp;来源：IT168网站                                                                                文本Tag：">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对决JavaScript HTML5脚本API预览">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5g401624urqia0ug5cp/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;nbsp;责任编辑：覃里作者：51cto&amp;nbsp;&amp;nbsp;            2009-10-30            &amp;nbsp;&amp;nbsp;来源：IT168网站                                                                                文本Tag：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T20:59:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对决JavaScript HTML5脚本API预览">
+<meta name="twitter:description" content="&amp;nbsp;责任编辑：覃里作者：51cto&amp;nbsp;&amp;nbsp;            2009-10-30            &amp;nbsp;&amp;nbsp;来源：IT168网站                                                                                文本Tag：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5g401624urqia0ug5cp/"/>
+
+
+
+
+
+  <title>对决JavaScript HTML5脚本API预览 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5g401624urqia0ug5cp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">对决JavaScript HTML5脚本API预览</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-11-03T07:00:00+08:00">
+                2009-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;<span><strong>责任编辑：</strong><br><a href="http://archive.it168.com/user/%f1%fb%c0%ef/" target="_blank">覃里</a><br></span><br>作者：<strong class="red">51cto</strong><br>&nbsp;&nbsp;<br>            <a href="http://archive.it168.com/10004/2009/2009-10-30.shtml" target="_blank">2009-10-30</a><br>            &nbsp;&nbsp;来源：<strong>IT168网站</strong><br></p><br><!--  文章分页--><br><br><br><br><br><br>            <!--   文章 --><br><br><br>                                                                    <!--   关键词 --><br><div class="gjc">文本Tag：<br>                                <a href="http://tech.it168.com/lists/8575/0/8575.shtml" target="_blank">IT业界</a><br><br>                                <a href="http://tech.it168.com/lists/6138/0/6138.shtml" target="_blank">Java</a><br><br>                                <a href="http://tech.it168.com/lists/11354/0/11354.shtml" target="_blank">Web 2.0</a><br><br>                                <a href="http://tech.it168.com/lists/10459/0/10459.shtml" target="_blank">html</a><br><br>                                <a href="http://tech.it168.com/lists/10422/0/10422.shtml" target="_blank">javascript</a><br><br>                                </div><br><p>　　【<strong>IT168 评论</strong><br>】HTML 5是万维网核心语言的第5个主要版本，早在2004年就由<a class="nounderline" title="网络" href="http://net.it168.com/" target="_blank">网络</a><br>富文本应用技术工作组(WHATWG)发起。虽然标准仍在制定之中，但有些浏览器已经能够支持一部分HTML 5的特性了，如Safari 4 beta;今天我们来看看在对JavaScript的支持和替代方面，HTML5有哪些进展。</p><br><p>　　<strong>HTML 5中的脚本API</strong><br></p><br><p>　　HTML5新增的特性充分地考虑了应用程序开发人员，HTML 5引入了大量的新的Javascript API。可以利用这些内容与对应的HTML元素相关联，它们包括：</p><br><p>　　◆二维绘图API，可以用在一个新的画布(Canvas)元素上以呈现图像、游戏图形或者其他运行中的可视图形。</p><br><p>　　◆一个允许web应用程序将自身注册为某个协议或MIME类型的API。</p><br><p>　　◆一个引入新的缓存机制以支持脱机web应用程序的API。</p><br><p>　　◆一个能够播放<a class="nounderline" title="视频" href="http://movie.it168.com/" target="_blank">视频</a><br>和音频的API，可以使用新的video和audio元素。</p><br><p>　　◆一个历史纪录API，它可以公开正在浏览的历史纪录，从而允许页面更好地支持AJAX应用程序中实现对后退功能。</p><br><p>　　◆跨文档的消息传递，它提供了一种方式，使得文档可以互相<a class="nounderline" title="通信" href="http://tele.it168.com/" target="_blank">通信</a><br>而不用考虑它们的来源域，在某种程度上，这样的设计是为了防止跨站点的脚本攻击。</p><br><p>　　◆一个支持拖放操作的API，用它可以与draggable特性相关联。</p><br><p>　　◆一个支持编辑操作的API，用它可以与一个新的全局contenteditable特性相关联。</p><br><p>　　◆一个新的网络API，它支持web应用程序在本地网络上互相通信，并在它们的源<a class="nounderline" title="服务器" href="http://server.it168.com/" target="_blank">服务器</a><br>上维持双向的通信。</p><br><p>　　◆使用JavaScript API的键/值对实现客户端的持久化<a class="nounderline" title="存储" href="http://storage.it168.com/" target="_blank">存储</a><br>，同时支持嵌入的SQL数据库。</p><br><p>　　◆<a class="nounderline" title="服务器" href="http://product.it168.com/files/0402search.shtml" target="_blank">服务器</a><br>发送的事件，通过它可以与新的事件源(event-source)元素关联，新的事件源元素有利于与远程数据源的持久性连接，而且极大地消除了在Web应用程序中对轮询的需求。</p><br><p>　　<strong>您可能会问，HTML5基本可以替代JavaScript了，有了HTML5，我们还需要JS吗?YUI开发团队成员Matt &amp; Eric对此解释说：</strong><br></p><br><p>　<br>　JavaScript框架的作用是利用更丰富的API和透明的跨浏览器支持来改善编程环境。YUI将会遵循HTML<br>5标准(特别是那些已经对浏览器产生影响的)，并添加对老版本浏览器的支持，以便让新的功能可以在标准实现和推广之前就得以应用。客户端存储API是一个<br>例子，YUI将要实现它以消除HTML 5和现有浏览器之间的不同。</p><br><p>　　HTML、CSS和JavaScript的组合已经被证明是非常实用和通用的，每一项技术都在积极的进步，没有必要替换掉它们。就像HTML5的改进一样，都会向在各自的应用场景下不断提高和发展。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4ts00684urqv09qhm0d/" rel="next" title="CSDN blog css -- 简约风格">
+                <i class="fa fa-chevron-left"></i> CSDN blog css -- 简约风格
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko56c00st4urqldld5a7j/" rel="prev" title="css—border， margin， padding-浏览器">
+                css—border， margin， padding-浏览器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            Ganesh Prasad, Peter Svensson译者            沙晓兰，审校者: 曹云飞            发布于            2009年1月30日 下午9时24分        简介多年来,由于各种原因,IT界已经习惯了一些很离谱的设计模式，这恰恰成为全新时代创建优秀分布式应用的巨大障碍，我们由此有必要更新对">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="表现层模式新探">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5pl01gt4urqul0goz8t/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            Ganesh Prasad, Peter Svensson译者            沙晓兰，审校者: 曹云飞            发布于            2009年1月30日 下午9时24分        简介多年来,由于各种原因,IT界已经习惯了一些很离谱的设计模式，这恰恰成为全新时代创建优秀分布式应用的巨大障碍，我们由此有必要更新对">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/rationalizing-presentation-tier/zh/resources/tsa1.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/rationalizing-presentation-tier/zh/resources/tsa2.jpg">
+<meta property="og:updated_time" content="2018-01-23T20:49:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="表现层模式新探">
+<meta name="twitter:description" content="作者            Ganesh Prasad, Peter Svensson译者            沙晓兰，审校者: 曹云飞            发布于            2009年1月30日 下午9时24分        简介多年来,由于各种原因,IT界已经习惯了一些很离谱的设计模式，这恰恰成为全新时代创建优秀分布式应用的巨大障碍，我们由此有必要更新对">
+<meta name="twitter:image" content="http://www.infoq.com/resource/articles/rationalizing-presentation-tier/zh/resources/tsa1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5pl01gt4urqul0goz8t/"/>
+
+
+
+
+
+  <title>表现层模式新探 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5pl01gt4urqul0goz8t/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">表现层模式新探</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-02-28T13:46:00+08:00">
+                2009-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>            作者<br>            <strong>Ganesh Prasad, Peter Svensson</strong>译者<br>            <strong>沙晓兰，审校者: 曹云飞</strong><br>            发布于<br>            2009年1月30日 下午9时24分<br>        </p><br><h2>简介</h2><br><p>多年来,由于各种原因,IT界已经习惯了一些很离谱的设计模式，这恰恰成为全新时代创建优秀分布式应用的巨大障碍，我们由此有必要更新对目前表现层<br>实现技术的一些看法。本文中，我们想要表述的观点是由web应用表现的整个瘦客户端其实很傻，应该摒弃。我们这么认为的原因，那还得从九十年代中<br>期，web刚刚兴起的时候开始说起。</p><br><div class="vendor-content-box-float"><br><h3>相关<span class="vendor">厂商</span>内容</h3><br></div><br><h2>历史</h2><br><p>随着Web的一夜兴起，几乎同时出现了两种背道相驰的开发： （1）作为无处不在的客户端&ldquo;应用平台&rdquo;成就了浏览器的绝对重要性，应用因此很容易部署；（2）各商家间的分裂剥夺了平台原本拥有的发展潜能。这第二条，说得直接点就是<a href="http://www.quirksmode.org/browsers/history.html" target="_blank" rel="noopener">Netscape和Microsoft之间的浏览器之战</a>。<br>这场著名的&ldquo;战役&rdquo;导致的最后结果是两个产品系列在显示web页面、执行JavaScript代码的时候所采用的方式大相径。web应用要么只能在这个产<br>品上运行，要么只能在另一个产品上运行，这样的事情很平常，但着实让人气愤。一方面，越来越多的应用需要采用Web方式向用户发布；另一方面，发布应用必<br>须的平台却是如此不可靠。这时候，企业该怎么办？</p><br><p>最常见的决策是仅依赖浏览器那些非常有限的基本功能&mdash;&mdash;显示格式简单的web页面、链接、提交表单等，而表现层的逻辑则转移到服务供应商能够控制的<br>系统部分&mdash;&mdash;Web服务器。很多服务器端的web框架开始提供一些功能来管理复杂的组合业务逻辑以及单一平台上的表现逻辑。Struts大概是这些框架中<br>最早的一个成功案例。如今，保守点说，起码有50多个类似的框架，几乎每个框架都表示自己拥有&ldquo;前辈&rdquo;所没有的特点。</p><br><p><img src="http://www.infoq.com/resource/articles/rationalizing-presentation-tier/zh/resources/tsa1.jpg" alt=""></p><br><p>然而，让我们坦率的来看待这些框架所带来的影响。尽管服务器端的表现逻辑都能够借助这些框架而更有条不紊、更合理，但它们无非都是在为保持一个不完<br>美的系统而服务。表现层的结构较为松散，整个表现逻辑由于额外原因不得不分割为浏览器和web服务器两部分来负责，而这个额外原因与成熟的构架毫不沾边。<br>同时，表现逻辑和服务器端业务逻辑间需要紧密的耦合。尤其是当前的web框架在server上通过各种服务器端模块、配置文件、注解或者类似工具来创建客<br>户端，本该非常直接的创建工作无形中变得非常复杂。如今，web框架不仅没什么用处，而且即使是把它们当作系统的组件都很大程度上阻碍我们创建更好的应<br>用。</p><br><h2>新型实现技巧</h2><br><p>最近，起码有三种开发方式是上文提到的历史的突破。</p><br><ol><br><li>一个&ldquo;老&rdquo;原则的重新兴起，或者说是&ldquo;面向服务构架（SOA）&rdquo;的流行，间接推动了表现层外观的改变。正如其所定义，SOA<br>更合理地组织业务逻辑，而且为实现整个逻辑提供统一接口。建立好构架的基础是囊括整个应用各个方面的各个互不相关的离散层，用户接口（UI）借助SOA能<br>够实现真正的表现层构架。这样的表现层没有业务逻辑，只有业务服务的客户。</li><br><li>由于浏览器分裂造成的前十年web应用无法跨浏<br>览器的&ldquo;创伤&rdquo;已经很大程度愈合了。几乎所有浏览器现在都符合工业标准。因此，开发不用再停留在尽量减小对<br>&ldquo;古怪&rdquo;平台依赖的策略上。我们完全可以把所有表现逻辑布置在浏览器平台上，这本该就是它们应该呆的地方，而且现在也不用担心浏览器供应商的不同实现方<br>式，各种浏览器都能够按照你所期望的方式运行。</li><br><li>XML已经成为个系统间数据交互的通用语。在我们看来，SOA某种程度上主<br>要就是XML文档交换的设计，其次是探究如何实现文档交换。已经有很多非常好的工具来处理XML，还有很多新兴语言（尤其是脚本语言）都开始将XML当作<br>原生数据类型来处理，XML的使用因此更为简便。由于新工具，SOA类型系统的创建尤为自然。</li><br></ol><br><p>所有这些开发其实都受益于同一个构架模型&mdash;&mdash;SOFEA（Service-Oriented Front-End构架）。有趣的是，很早之前的富客户样式，在经历了瘦客户端和web模式大行其道之时黯然失色之后，如今又重新映入人们的眼帘，而且指向更优秀的构架发展方向。</p><br><p>新模式的基本原则是区分表现层和业务逻辑所关注的问题。后者和SOA的原则完全一致，表现层因此必须和面向服务的业务层通过正确定义的服务接口而实<br>现兼容。假如仔细研究SOA在不同构架的领域（无论是市场部、财务部这样的应用领域还是构架&ldquo;层&rdquo;这样的技术领域）之间交换设计正确的结构化数据的话，就<br>会发现表现层根本没有理由脱离前面提到的那些原则。</p><br><p>实现兼容性的重要因素之一是保证数据在应用端到端间完整传递。也就是说，要使用XML文档形式来说明XML，XML文档可以应用于当前流行的任何service形式&mdash;&mdash;比方说，SOAP/WS-*和REST。</p><br><h2>新模式的元素</h2><br><p><img src="http://www.infoq.com/resource/articles/rationalizing-presentation-tier/zh/resources/tsa2.jpg" alt=""></p><br><p>上面这张图表现的是构架中主要的物理组件和逻辑处理件。应用容器（Application<br>Container）通常指的是客户端应用运行平台。需要注意的是它绝对不是服务器端组件。应用（Application）指代的是在该平台上运行的代<br>码。应用也不是应用容器的组成部分。</p><br><p>应用的代码存储在应用平台之外，代码在需要的时候及时加载到平台上。下载服务器（Download<br>Server）组件就负责为客户平台提供应用，因此可以在应用运行之前将其安装到本地。服务接口（Service<br>Interface）是服务层的标准接口，它支持应用表现层和业务逻辑层间交换XML文档需采用的简易机制。</p><br><p>客户端有三个基本处理过程。下载应用（Application<br>Download）是指在应用运行之前将应用下载到应用容器的过程。通常来说，这一过程只需一次完成，但有时候也可能采用&ldquo;懒&rdquo;机制，界面则只在调用的时<br>候才从下载服务器上下载。在后面这种&ldquo;懒&rdquo;下载机制中，系统的行为和由服务器端web框架驱动界面流程的传统web应用不同，而是由按需下载界面的客户应<br>用来领导整个流程。表现流（Presentation Flow）是指将界面（或其它特定方式的媒介）展示给用户的逻辑。数据交互（Data<br>Interchange）则是表现层和服务层之间的数据（XML格式和符合Schema的数据）交换。</p><br><h2>基础原理</h2><br><p>该模型的核心主题是分解正交的相关方面。一直以来都有人在提这样的要求，但从来有实现，而其中的障碍就是前文讲述的客户平台的限制。现在，应用的创<br>建形势终于向本该的方向发展。表现层变得越来越小、更加紧凑、更容易理解，也更容易维护，因为业务逻辑已经完全从表现层中剥除。服务端也同时受益匪浅，因<br>为它也不再与表现层逻辑有任何牵扯。</p><br><h2>新模式所蕴含的意义</h2><br><ul><br><li>精简的构架模型包含了表现层和业务逻辑层无阻抗失配的完美集成。</li><br><li>&ldquo;web服务器&rdquo;的角色（首次）更为合理。</li><br><li>支持MVC这个表现层最自然的设计模式。</li><br><li>保证应用间端对端数据的完整；统一了&ldquo;瘦客户&rdquo;和&ldquo;富客户&rdquo;模型。</li><br><li>支持无论是基于SOAP还是REST的服务。</li><br><li>服务器运行更加轻便，因为其不需再负累表现层相关逻辑。</li><br><li>降低了创建同组业务服务的多用户接口的开销。</li><br><li>复用表现层模块的压力骤降，如果业务层设计合理的话，从表现层调用正确的服务就能实现足够的复用。</li><br></ul><br><h2>技术案例</h2><br><p>Ajax框架（Dojo、jQuery、Ext等）， GWT、 TIBCO GI、XForms、Mozilla XUL、Microsoft<br>Silverlight/XAML、Java WebStart、JavaFX Script、Adobe Flex、OpenLaszlo等。</p><br><h2>结论</h2><br><p>本文提到的模式没有引进很多新的技术或是概念，却已足够说明陈旧的根深蒂固的折衷开发模式应该成为历史。我们试着展示的是新技术是如何在原本早应该发展的方向上推进应用的设计和创建。这一模式的发展时代终于来到了。</p><br><p><strong>阅读英文原文：</strong><a href="http://www.infoq.com/articles/rationalizing-presentation-tier" target="_blank" rel="noopener">Rationalizing the Presentation Tier</a>。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5rh01in4urq3l5z8seq/" rel="next" title="金融危机寒意逼人 关注09年最热门IT技术">
+                <i class="fa fa-chevron-left"></i> 金融危机寒意逼人 关注09年最热门IT技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5bf01014urqf2qf39h3/" rel="prev" title="从黑箱到企业: 管理，JMX 1.1 样式">
+                从黑箱到企业: 管理，JMX 1.1 样式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">相关厂商内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">新型实现技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">新模式的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">基础原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">新模式所蕴含的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">技术案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

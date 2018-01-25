@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Flex," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        Jon Rose            译者            张龙        发布于        2008年4月25日 上午10时7分    在这篇新闻中，Adobe的James Ward与InfoQ.com一起为你带来了Flex的另一种10大（Flex最新的10大）。Flex是一个开源的应用开发框架，用来构建运行在web（使用 Flash Pla">
+<meta name="keywords" content="Flex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构建Flex应用的10大误区">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5kg01b24urq7xdkd29x/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        Jon Rose            译者            张龙        发布于        2008年4月25日 上午10时7分    在这篇新闻中，Adobe的James Ward与InfoQ.com一起为你带来了Flex的另一种10大（Flex最新的10大）。Flex是一个开源的应用开发框架，用来构建运行在web（使用 Flash Pla">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T20:57:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="构建Flex应用的10大误区">
+<meta name="twitter:description" content="作者        Jon Rose            译者            张龙        发布于        2008年4月25日 上午10时7分    在这篇新闻中，Adobe的James Ward与InfoQ.com一起为你带来了Flex的另一种10大（Flex最新的10大）。Flex是一个开源的应用开发框架，用来构建运行在web（使用 Flash Pla">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5kg01b24urq7xdkd29x/"/>
+
+
+
+
+
+  <title>构建Flex应用的10大误区 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5kg01b24urq7xdkd29x/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">构建Flex应用的10大误区</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-08-02T14:03:00+08:00">
+                2009-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1><br><br></h1><p></p>
+<p class="info"><br>        作者<br><br><br><br>        <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=Jon-Rose" target="_blank" rel="noopener"><br>Jon Rose</a><br></strong><br><br><br><br><br>            译者<br>            <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E5%BC%A0%E9%BE%99" target="_blank" rel="noopener"><br>张龙</a><br></strong><br><br>        发布于<br>        2008年4月25日 上午10时7分<br>    </p><br><p>在这篇新闻中，<a href="http://www.jamesward.org/wordpress/" target="_blank">Adobe的James Ward</a><br>与InfoQ.com一起为你带来了Flex的另一种10大（<a href="http://www.infoq.com/news/2007/12/top-10-flex-misconceptions" target="_blank">Flex最新的10大</a><br>）。Flex是一个开源的应用开发框架，用来构建运行在web（使用 Flash Player）或者桌面上（使用Adobe AIR）的富Internet应用。总之，Flex是一个强大易用的框架，但是今天让我们瞧瞧构建Flex应用时经常犯的错误。</p><br><p>对于Flex新手，请阅读InfoQ最近的<em><a href="http://www.infoq.com/news/2008/01/adobe-flex-basics" target="_blank">Adobe Flex Basics</a><br></em><br>以对该框架有一个快速的了解。下面是易犯的错误列表：</p><br><p><strong>1. 使用RIA框架去构建Web1.0应用（新技术换汤不换药）。</strong><br></p><br><p>从Web 1.0到RIA的过渡中最大的挑战之一来自思考方式的转变。Flex给予开发者一个高级的组件库，使其可以完成很多以前不可能完成的任务。但是很多时候，Flex的这种能力被忽略了，它仅仅被用来实现更加传统的Web 1.0应用。</p><br><p>构建Web 2.0应用不仅仅意味着页面的局部刷新和旋转的圆角图标。例如，Flex开发者应使用矢量图向用户提供数据的可视化表示，以及对于富应用流的高级控制。最近Stephan Janssen<a href="http://www.infoq.com/news/2008/03/stephan-janssen-parleys-ria" target="_blank">与InfoQ.com一起讨论了该议题</a><br>：</p><br><blockquote>作为一个Java开发者，对于面向对象的ActionScript和UI标记语言的学习简直就是小菜一碟。但是对于（Java）开发者来说真正的挑战在于我们不是设计师，并且这两个技术对于RIA来说是必不可少的。</blockquote><br><p><strong>2. 破坏标准的浏览器体验</strong><br></p><br><p>尽管Flex确实提供了一个优秀的平台以改善用户体验，但是保持用户习惯，如后退按钮、书签和自动完成也是相当重要的。</p><br><p>Flex 3包含了新的深层链接特性以支持后退按钮和书签。你可以访问<a href="http://labs.adobe.com/wiki/index.php/Flex_3:Feature_Introductions:_Deep_Linking" target="_blank">labs.adobe.com</a><br>来了解更多。那有很多组件能够实现自动完成。你可以使用来自于Adobe Exchange的<a href="http://www.adobe.com/cfusion/exchange/index.cfm?event=extensionDetail&amp;loc=en_us&amp;extid=1047291" target="_blank">AutoComplete Input</a><br>组件。</p><br><p><strong>3. 使用过多的容器导致应用变慢</strong><br></p><br><p>Flash Player使用了一个按层次显示的对象图，这一点与HTML的文档对象模型（DOM）很相似。容器嵌套的层次越深，渲染所花费的时间就越长。Adobe的Flex开发者中心有一篇文章讨论了关于Flex性能的最佳实践，包括了容器的使用细节：</p><br><blockquote>Flex最大的性能风险来自于对容器的滥用。嵌套太多的容器会影响应用的性能。这是Flex开发者面临的最严重的性能风险&mdash;&mdash;不过还好，它完全能被避免。</blockquote><br><p><strong>4. 使用XML而不是其他更优化的协议导致应用变慢</strong><br></p><br><p>Flex向开发者提供了多种选择以在Flex客户端和服务器之间进行数据传输，包括AMF3、XML、SOAP及直接的HTTP请求。Ward在他的<a href="http://www.jamesward.org/census/" target="_blank">人口普查应用</a><br>中阐述了这些技术的使用及性能。</p><br><p>对于后端使用Java的新项目来说，应该考虑一下BlazeDS。BlazeDS是<a href="http://www.infoq.com/news/2007/12/blazeds" target="_blank">Adobe最近的一个开源数据服务产品</a><br>，它使用了AMF3协议。AMF是一个二进制传输协议，很容易与Java集成，其性能要优于XML。对于所有主要的后端技术都有相应的AMF开源实现。</p><br><p>如果你不选择BlazeDS，那么你还可以选择Hessian。<a href="http://www.infoq.com/news/2007/09/hessian-flex" target="_blank">Hessian</a><br>对二进制的web services协议提供了ActionScript/Flex支持。</p><br><p><strong>5. 试图雇佣Flex开发者</strong><br></p><br><p>现在很难找到有经验的Flex开发者。Flex现在正处在上世纪90年代Java所处的位置。Flex开发者已经供不应求了。这就造成了难以寻觅<br>到有经验的Flex开发者的后果。然而，这给Java开发者创造了一个很好的机会以扩充技能，并且从事一种新兴且有趣的技术。很多寻找Flex开发者的公<br>司直接对Java或者其他web开发者进行几周的Flex培训，并且大获成功。对于熟悉Web和GUI编程的开发者来说，学习Flex语言和APIs易如<br>反掌。</p><br><p><strong>6. 特效的过度使用</strong><br></p><br><p>开发者可以很容易地通过Flash增加特效。但是要确保特效有意义并且与上下文是匹配的。否则他们只会让用户反感。特效的时间选择也很重要。交互设计器可以帮助我们决定何时应使用特效，何时不应该使用。交互设计器还能为我们推荐最佳的特效类型、间隔和最简化的功能。</p><br><p>关于特效的使用在<a href="http://laair.org/node/203" target="_blank">laair.org</a><br>上有一篇好文：</p><br><blockquote>大多数的特效简直太长了。它们不但长，而且还慢，甚至让人反感。关掉它。如果我遇到这种事情的话，我就会转身离去，因为我实在讨厌这种等待。 <br><br><br><br>千万不要误会我，我并不是反对特效。我只是反对为了目的而做的太长或者太过分的特效。每个特效都可以依照其目的进行分解。找到你要特效的目的，然后再使用它。 </blockquote><br><p><strong>7. 没有搭建企业生态系统</strong><br></p><br><p>就像其他的软件项目一样，为于你的Flex应用建立企业生态系统是非常重要的。</p><br><p>测试驱动开发（TDD）在当前是大多数企业项目的首选方案。对于Flex来说，<a href="http://code.google.com/p/as3flexunitlib/" target="_blank">FlexUnit</a><br>框架可用来编写单元测试。在Adobe的开发者网络上，<a href="http://www.adobe.com/devnet/flex/articles/unit_testing.html" target="_blank">Neil Webb讨论了面向Flex开发者的TDD及FlexUnit的使用</a><br>。此外，<a href="http://code.google.com/p/flexcover/" target="_blank">Flexcover</a><br>可用来度量代码覆盖率。</p><br><p>当多个开发者协同工作时，持续集成（<a href="http://martinfowler.com/articles/continuousIntegration.html" target="_blank">Continuous Integration</a><br>）被证明是良好的实践。与Java应用类似，也有相应的Ant和Maven插件对你的Flex应用进行持续集成。 </p><br><p><strong>8. 没有使用整个框架</strong><br></p><br><p>在Adobe Flex中有大量可选的特性，你应该考虑在你的应用中使用它们。例如，运行时共享库（<a href="http://www.adobe.com/devnet/flex/articles/client_perf_11.html" target="_blank">Runtime Shared Libraries</a><br>，即RSL）可用来减少应用的大小。 </p><br><blockquote>你可以将共享资源集成到单独的文件中，这样就可以在客户端单独下载和缓存了，通过这种手段可以减少应用产生<br>的SWF文件的大小。很多Flex应用可以在运行时加载这些共享资源，而每个客户端只需下载一次即可。这些共享资源叫做运行时共享库（Runtime<br>Shared Libraries）。</blockquote><br><p>框架的另一个特性是内建的辅助功能。你可以通过<a href="http://livedocs.adobe.com/flex/3/html/help.html?content=accessible_2.html" target="_blank">Adobe在线文档</a><br>了解更多的关于Flex的辅助功能的信息。除了内建的辅助功能外，框架还提供了对于本地化的内在支持。请访问<a href="http://learn.adobe.com/wiki/display/Flex/Getting+Started" target="_blank">Adobe新手上路</a><br>来了解最新的Flex3框架特性。</p><br><p><strong>9. 使用复杂的渲染器降低了DateGrid的速度</strong><br></p><br><p>针对DataGrid开箱即用的itemRenderer已经有过很好的优化了。误解#3讨论了嵌套过深的容器的性能问题。在Flex中有一个地<br>方很容易造成容器的深层次嵌套，那就是DataGrid的item渲染器。由DataGrid所渲染的item渲染器数量等于可见的行数乘以可见的列数。<br>定制的DataGrid和List<br>item渲染器应该经过非常好的优化才行。当需要在item渲染器中使用复杂的布局逻辑时，最好使用UIComponent（或者其他底层类）并且手工完<br>成该单元格内容的定位。</p><br><p><strong>10. 没有准备离线应用。</strong><br></p><br><p>RIAs的传统模型在于浏览器。然而像<a href="http://www.infoq.com/air" target="_blank">Adobe AIR</a><br>和<a href="http://www.infoq.com/news/2007/06/googlegears" target="_blank">Google Gears</a><br>这<br>样的技术使得应用可以离线运行。如果用户需要可以离线对应用时而你尚未准备好的话，那将你的应用改为支持离线特性将变得异常困难。典型地，在web应用<br>中，业务逻辑存在于服务器端。在离线RIAs中，业务逻辑必须转到客户端。为了使应用既支持离线，也支持在线，那就很有必要提前决定某些业务逻辑的位置。<br></p><br><p>查看<a href="http://www.infoq.com/flex" target="_blank">InfoQ.com上有关Flex的内容</a><br>以了解更多。</p><br><p><strong>查看英文原文：</strong><br><a href="http://www.infoq.com/news/2008/04/top-10-flex-mistakes" target="_blank">Top 10 Mistakes when building Flex Application</a><br></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Flex/" rel="tag"># Flex</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5bb00zu4urqvhzwjgh0/" rel="next" title="从Web0.2到2.0 那些与时俱进的Web技术">
+                <i class="fa fa-chevron-left"></i> 从Web0.2到2.0 那些与时俱进的Web技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko53x00p14urq2g9j8i3l/" rel="prev" title="Silverlight、JavaFX、Flex/Flash技术比较">
+                Silverlight、JavaFX、Flex/Flash技术比较 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

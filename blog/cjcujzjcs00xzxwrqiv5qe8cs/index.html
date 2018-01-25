@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        赵劼        发布于        2009年8月17日 上午10时27分    最近Stephan Schmidt在博客中发表了题为《下一代Java编程风格》的文章，阐述了他眼中Java编程风格的改变，以及未来的走向：许多公司和开发人员正在从Java转向其他编程语言：Ruby、Python、Grrovy、Erlang或Scala等等。不过你可能做不到这">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="讨论：Java编程风格的改变">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzjcs00xzxwrqiv5qe8cs/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        赵劼        发布于        2009年8月17日 上午10时27分    最近Stephan Schmidt在博客中发表了题为《下一代Java编程风格》的文章，阐述了他眼中Java编程风格的改变，以及未来的走向：许多公司和开发人员正在从Java转向其他编程语言：Ruby、Python、Grrovy、Erlang或Scala等等。不过你可能做不到这">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-25T06:39:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="讨论：Java编程风格的改变">
+<meta name="twitter:description" content="作者        赵劼        发布于        2009年8月17日 上午10时27分    最近Stephan Schmidt在博客中发表了题为《下一代Java编程风格》的文章，阐述了他眼中Java编程风格的改变，以及未来的走向：许多公司和开发人员正在从Java转向其他编程语言：Ruby、Python、Grrovy、Erlang或Scala等等。不过你可能做不到这">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzjcs00xzxwrqiv5qe8cs/"/>
+
+
+
+
+
+  <title>讨论：Java编程风格的改变 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzjcs00xzxwrqiv5qe8cs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">讨论：Java编程风格的改变</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-08-19T16:38:00+08:00">
+                2009-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1><br><br></h1><p></p>
+<p class="info"><br>        作者<br><br><br><br>        <strong><a class="editorlink" href="http://www.infoq.com/cn/bycategory.action?authorName=%E8%B5%B5%E5%8A%BC" target="_blank" rel="noopener"><br>赵劼</a><br></strong><br><br>        发布于<br>        2009年8月17日 上午10时27分<br>    </p><br><p>最近<a href="http://codemonkeyism.com/" target="_blank" rel="noopener">Stephan Schmidt</a><br>在博客中发表了题为《<a href="http://codemonkeyism.com/generation-java-programming-style/" target="_blank" rel="noopener">下一代Java编程风格</a><br>》的文章，阐述了他眼中Java编程风格的改变，以及未来的走向：</p><br><blockquote><br><p>许多公司和开发人员正在从Java转向其他编程语言：Ruby、Python、Grrovy、Erlang或Scala等等。不过你可能做不到这一<br>点。即便如此，你也可以改变你的编程风格，获取这些新语言的优势。事实上，在过去的15年中，Java编程风格也已经有明显变化了。</p><br></blockquote><br><p>Stephan在文章中提出了以下几点：</p><br><blockquote><br><ol><br><li><strong>尽可能地标注final：</strong><br>让所有东西不可变，把变量标为final可以阻止改变它的值。很多时候，重新为变量赋值会引入bug，你应该使用新的变量。除此之外，final可以提高代码的可读性。我针对这个话题还写过一篇文章：《<a href="http://codemonkeyism.com/all-variables-in-java-must-be-final/" target="_blank" rel="noopener">Java中所有变量都应该是final的</a><br>》</li><br><li><strong>没有setter：</strong><br>许多Java程序员会自然而然地为类中所有的字段加上setter。思考一下，真的每个字段都需要修改吗？更好的方法是创建包含改变后状态的新对象。此外，也试着去除getter，我们应该遵循&ldquo;<a href="http://www.pragprog.com/articles/tell-dont-ask" target="_blank" rel="noopener">Tell,      don’t ask</a><br>&rdquo;的思想。</li><br><li><strong>避免使用循环来操作List：</strong><br>从函数式编程那里获得的经验，循环并不是进行集合操作最好方法。例如，我们可以使用<a href="http://code.google.com/p/google-collections/" target="_blank" rel="noopener">Google      Collections</a><br>提供的<a href="http://google-collections.googlecode.com/svn/trunk/javadoc/com/google/common/collect/Iterables.html#filter%28java.lang.Iterable,%20com.google.common.base.Predicate%29" target="_blank" rel="noopener">过滤</a><br>功能。<br><pre> <br><br>Predicate canDrinkBeer = new Predicate() {<br><br>     public boolean apply(HasAge hasAge) {<br><br>         return hasAge.isOlderThan( 16 );<br><br>    }<br><br>};<br><br> <br><br>List&lt;Person&gt; beerDrinkers = filter(persons, canDrinkBeer);</pre><br></li><br><li><strong>使用单行代码：</strong><br>Java是一门繁杂（noisy）的语言，我们应该编写更精确的代码。尝试将代码写为一行。例如：<br><pre> <br><br>public int add(int a, int b) { return a + b; }</pre><br></li><br><li><strong>使用大量接口：</strong><br>领域驱动设计已经大行其道，一个应该拆分为多种&ldquo;角色&rdquo;，即实现多种接口，提高复用程度。方法应该面向&ldquo;角色&rdquo;，而不是面向特定的类。我在《<a href="http://codemonkeyism.com/generation-java-programming-style/" target="_blank" rel="noopener">不要在Java中使用String</a><br>》一文中讨论了更多这方面的内容。</li><br><li><strong>使用Erlang风格的并发：</strong><br>Java的并发特性（如lock和synchronized）过于低端，难以使用。Erlang风格的并发是一种更好的做法。Java平台上已经有了<a href="http://github.com/jboner/akka/tree/master" target="_blank" rel="noopener">Akka</a><br>和<a href="http://code.google.com/p/actorom/" target="_blank" rel="noopener">Actorom</a><br>。此外，也可以使用java.util.concurrent中的Join/Fork和数据结构进行编程。</li><br><li><strong>使用Fluent Interface：</strong><br>Fluent Interface可以使代码更短，更容易编写。Google      Collections中的MapMaker是个不错的示例：<br><pre> <br><br>ConcurrentMap graphs = new MapMaker()<br><br>    .concurrencyLevel(32)<br><br>    .softKeys()<br><br>    .weakValues()<br><br>    .expiration(30, TimeUnit.MINUTES)<br><br>    .makeComputingMap(<br><br>        new Function() {<br><br>            public Graph apply(Key key) {<br><br>                return createExpensiveGraph(key);<br><br>            }<br><br>        });</pre><br></li><br><li><strong>避免在DTO中创建getter和setter：</strong><br>如果你拥有简单的DTO（Data Transfer Object），不要耗费精力去编写getter和setter，直接使用公开的字段吧。不过在你无法完全控制代码的使用情况时，还是小心为上。</li><br></ol><br><br></blockquote><br><p>这篇文章发表之后，有许多人发表了不同的看法。其中<a href="http://beust.com/weblog/" target="_blank" rel="noopener">Cedric Otaku</a><br>发表了文章《<a href="http://beust.com/weblog/archives/000517.html" target="_blank" rel="noopener">下一代Java与现在差不多</a><br>》予以回应，其中反对了Stephan提出的大部分观点。</p><br><blockquote><br><ul><br><li><strong>尽可能final：</strong><br>太多final会降低代码的可读性，它无法代码额外的好处。我已经不记得上次因为重新给变量赋值而造成错误是什么时候了。值得一提的是，在字段以外的成员上标记final违反了Google的风格指南。</li><br><li><strong>避免setter：</strong><br>看上去不错，不过这不现实。有些时候你不愿把所有的参数都通过构造函数传入。此外，如果使用对象池的时候，可变的对象会让编程更为方便。Stephan不是第一个提出要将访问器（accessor）从OO编程中移除的人，不过这个说法<a href="http://beust.com/weblog/archives/000022.html" target="_blank" rel="noopener">很明显不可行</a><br>。</li><br><li><strong>避免循环：</strong><br>Java并不适合函数式编程风格，所以我认为使用Predicate的代码反而难以读懂。我估计大部分的Java程序员会同意我的观点，即使他们已经熟悉了闭包风格。</li><br><li><strong>单行代码：</strong><br>这要视情况而定。并引入临时变量把一个表达式拆开可以提高代码可读性，也容易为其设置断点。</li><br><li><strong>使用接口：</strong><br>不错的建议，但也不能过火。过去我也争论过类似的话题，不过引入太多接口会导致细小类型的爆炸，使你高端的类型意图变得模糊。</li><br><li><strong>Erlang风格并行：</strong><br>重申一点，使用Java设计以外的编程风格是危险的做法。java.util.concurrent中包含了非常有用的功能，我遇到过不少基于这些元素的Java抽象，它们要优于Erlang风格的actor架构。</li><br><li><strong>Fluent Interface：</strong><br>这个建议比较有趣，它与Stephan提出的另一个建议&ldquo;避免setter&rdquo;相违背。Fluent Interface只是setter的另一种形式，不是吗？</li><br><li><strong>使用公有字段：</strong><br>不，千万别这么做。你不会因为加了访问器而后悔，但是我能保证你会因为一时偷懒，使用了公有字段而后悔莫及。</li><br></ul><br></blockquote><br><p>在Cedric的文章之后，Stephan又对他的说法进行了补充：</p><br><blockquote><br><p>没有setter并不代表你不能修改这个对象，我只是说纯粹的setter不是面向对象的思维方式。例如，你觉得stop()和setStop(true)哪个更好一些？</p><br><p>（针对Predicate代码不易读）我认为你的假设有误。循环是&ldquo;程序化&rdquo;的代码，而Predicate是经过封装的，可以重用的，易于理解的&ldquo;对象&rdquo;。这里并没有函数式编程，这里是纯粹的OO  - 我提起FP只是因为我从那里&ldquo;引入&rdquo;了这个方式。</p><br></blockquote><br><p>还有许多人对Stephon和Cedric的文章发表了评论，例如有人支持Stephan的观点，认为final的可以更好的表示出代码的意图。甚至有人提出：</p><br><blockquote><br><p>更简单的解决方案是使用Scala :) -  不可变的状态、统一访问原则（字段、属性、方法看上去一样）、单行代码、使用monads或函数来替代循环&hellip;&hellip;这些特性都已经在Scala中优雅地体现出来了。</p><br></blockquote><br><p>您的Java编程风格是什么样的，和过去相比有什么改变吗？</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzjhc019rxwrqf3v8if8d/" rel="next" title="JSF 2 简介，第 2 部分: 模板及复合组件">
+                <i class="fa fa-chevron-left"></i> JSF 2 简介，第 2 部分: 模板及复合组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzinc009jxwrqimxq7dg2/" rel="prev" title="Javascript函数类型判断解决方案">
+                Javascript函数类型判断解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

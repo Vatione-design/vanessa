@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Test," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="看到这句话时居然有一种感动，&amp;ldquo;我是一名测试人员&amp;rdquo;是一种不健康的态度，&amp;ldquo;我是一名开发人员&amp;rdquo;也一样。只要人们不再过分受限于他们的角色，而是开始以（最终）产品为导向的时候，奇迹就会发生，每个人都应该聚焦于尽其所能做任何有利于开发出最好的产品的事情。 于是就转载之，下文转载自：http://www.infoq.com/cn/articles/how-goog">
+<meta name="keywords" content="Test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="采访和书评：Google如何做测试">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5r301i94urqbvehtaj3/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="看到这句话时居然有一种感动，&amp;ldquo;我是一名测试人员&amp;rdquo;是一种不健康的态度，&amp;ldquo;我是一名开发人员&amp;rdquo;也一样。只要人们不再过分受限于他们的角色，而是开始以（最终）产品为导向的时候，奇迹就会发生，每个人都应该聚焦于尽其所能做任何有利于开发出最好的产品的事情。 于是就转载之，下文转载自：http://www.infoq.com/cn/articles/how-goog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/how-google-tests-software/zh/resources/James-Whittaker.jpg">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/how-google-tests-software/zh/resources/jason-arbon.png">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/how-google-tests-software/zh/resources/Jeff-Carollo.jpg">
+<meta property="og:updated_time" content="2018-01-23T04:34:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="采访和书评：Google如何做测试">
+<meta name="twitter:description" content="看到这句话时居然有一种感动，&amp;ldquo;我是一名测试人员&amp;rdquo;是一种不健康的态度，&amp;ldquo;我是一名开发人员&amp;rdquo;也一样。只要人们不再过分受限于他们的角色，而是开始以（最终）产品为导向的时候，奇迹就会发生，每个人都应该聚焦于尽其所能做任何有利于开发出最好的产品的事情。 于是就转载之，下文转载自：http://www.infoq.com/cn/articles/how-goog">
+<meta name="twitter:image" content="http://www.infoq.com/resource/articles/how-google-tests-software/zh/resources/James-Whittaker.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5r301i94urqbvehtaj3/"/>
+
+
+
+
+
+  <title>采访和书评：Google如何做测试 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5r301i94urqbvehtaj3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">采访和书评：Google如何做测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-10-18T00:21:03+08:00">
+                2012-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p>看到这句话时居然有一种感动，&ldquo;我是一名测试人员&rdquo;是一种不健康的态度，&ldquo;我是一名开发人员&rdquo;也一样。只要人们不再过分受限于他们的角色，而是开始以（最终）产品为导向的时候，奇迹就会发生，每个人都应该聚焦于尽其所能做任何有利于开发出最好的产品的事情。</p><p></p>
+<p></p><p>于是就转载之，下文转载自：<a target="_blank" href="http://www.infoq.com/cn/articles/how-google-tests-software">http://www.infoq.com/cn/articles/how-google-tests-software</a></p><p></p>
+<p></p><p>&nbsp;</p><p></p>
+<p></p><p>《Google如何做测试》一书由<a href="http://blogs.msdn.com/b/jw_on_tech/" target="_blank" rel="noopener">James Whittaker</a>, <a href="https://twitter.com/jarbon/" target="_blank" rel="noopener">Jason Arbon</a> 和 <a href="C:_cds%5CStuff%5CInfoQ%5Cwww.linkedin.com%5Cpub%5Cjeff-carollo%5C1%5C6bb%5C54b" target="_blank" rel="noopener">Jeff Carollo</a> 三位作者合著而成，正如其封面上描述的那样，看起来充满了知识性和趣味性，在其背后则揭秘了大型技术公司Google，是如何应对和处理软件测试的复杂性的。</p><p></p>
+<p></p><p>此书概述了Google测试软件的方法，花费几个章节说明了测试的两个角色，即测试开发工程师（Software Engineer in Test）和测试工程师（Test Engineer），后面还有一个章节专门讲述了测试经理的职责。整书也包含许多Google工程师的访谈，并在最后一章着重介绍了关于对Google未 来测试方向的一些想法。<a href="http://www.albertosavoia.com/" target="_blank" rel="noopener">Alberto Savoia</a> （Google测试总监）在本书的前言部分给了很好的介绍，</p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>互联网的出现急剧地改变了许多软件设计、开发和发布的模式。许多曾经红极一时的测试书籍里提及的最佳测试实践，在当前的环境下，效率会大大地下降， 甚至毫无效率，在一些极端的情况下甚至会适得其反。《Google如何做测试》这本书会向你揭示出，这个世界上最成功增长速度最快的互联网公司之一是如何 应对21世纪软件测试的独特挑战的。</p><br><p></p>
+<p></p><p>此书的介绍部分还讲述了一些有趣的背景，包括那时Google为何要去改变其测试现状以及他们是怎样做的。所有在测试领域工作的人或者做测试管理的人，都需要去读一下这本书，正如<a href="http://patrickcopeland.org/" target="_blank" rel="noopener">Patrick Copeland</a> （Google高级工程总监）在其前言部分说的那样，</p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>如果想要去改变Google的测试，就要改变身为测试人员的意义所在。一个团队可以写出高质量软件的唯一方法是整个团队都对质量负责。我认为，最好 的办法是让测试人员有能力把测试作为产品的真实的功能写到代码库里，测试作为产品的一个功能应该和真实用户可以看到的其他功能一模一样。而完成这个功能的 技能要求和对开发人员的技能要求也几乎是一样的。开发工程师们似乎也被他们必须在测试上投入更大的精力这件事吓着了，反抗说&ldquo;这是测试人员的事情&rdquo;。在测 试人员中，大家的态度也很消极，因为许多人不愿意走出舒适区，维持现状的惯性很大，改变很难。</p><br><p></p>
+<p></p><p>Google解决这个问题的关键思路是，不要在团队中配备数量众多的测试人员，特别是当你要考虑到Google全线产品线时，包括网络应用、搜索引擎、操作系统、移动、社交和企业解决方案。对于这些产品，产品的高质量是它们成功的关键。</p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>不要再把开发和测试分成不同的学科，测试和开发需要齐头并进。写完一些代码后，立刻对这些代码做一些测试，然后再写更多的代码，再做更多的测试。测 试不是独立的实践活动，它是开发的一部分，是和开发并行的过程。测试也不等同于质量，质量是当你把开发和测试同时扔到搅拌器中搅拌直到他们分不清彼此的时 候才能达成。</p><br><p></p>
+<p></p><p>作者在&ldquo;测试开发工程师（SET）&rdquo;的一章中，阐述了这个角色创建和维护的框架与环境。在这一章里，揭露了大量技术和测试的细节，包括Google 一些有趣的背景，测试执行过程、持续集成和测试规模的定义，还包含一些关于Google测试认证计划的缘由，这个测试认证计划有助于引入开发测试文化，它 的另外一个特别的好处是，</p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>这样可以吸引很多优秀测试人员的注意力，并使得他们签署成为测试认证计划中的导师。在一个测试资源稀少的公司文化里，签约这个计划将会使产品团队得到比平时更多的测试资源。</p><br><p></p>
+<p></p><p>测试工程师（TE）这章是本书的主要部分，讲述了许多测试工程师的实践，包括他们是如何开展测试计划、ACC（Attribute Component Capability）分析、Google测试分析（Google Test Analytics ）和James Whittaker的十分钟测试计划。这章也讲述了一些关于风险，众包（译者注：关于crowd-sourcing, 众包，参见 <a href="http://zh.wikipedia.org/wiki/%E4%BC%97%E5%8C%85" target="_blank" rel="noopener">http://zh.wikipedia.org/wiki/%E4%BC%97%E5%8C%85</a>），测试用例，缺陷分析和一些他们用来解决测试问题的试验和工具。</p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>很少有学校系统地讲授软件测试，这样对于公司来说，招聘好的测试人员就变得非常有挑战，很好地掌握编码和测试技能的人真的太少了。测试工程师不是独 立的个体，他们虽是技术工种，但需要关心用户，从系统和端到端的最终用户的角度去理解产品。对于Google和其他在意测试的公司来说，能够雇佣到这样的 人将会是个意外的惊喜。</p><br><p></p>
+<p></p><p>在花费了一章的篇幅描述测试管理的角色及其在流程中的重要性之后，作者在最后一章尝试去讲Google未来测试的样子，着重介绍了产品、dogfooding（译者注：见如下链接，<a href="http://gz.focus.cn/msgview/20520/182243247.html" target="_blank" rel="noopener">http://gz.focus.cn/msgview/20520/182243247.html</a>）和众包。</p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>只要关心的焦点不在产品上，产品就将出现问题，毕竟软件开发的最终目的是构建一个产品，不是编码，不是测试，更不是文档。工程团队中的每个角色都服 务于整个产品，角色本身倒是次要的。健康组织的特征是，团队成员会说：&ldquo;我是为Chrome工作的。&rdquo;，而不是说：&ldquo;我是一名测试人员。&rdquo;</p><br><p></p>
+<p></p><p>尽管此书非常易读且整体易懂，但是此书还是有一个不足的地方，那就是不同的章节由不同的作者撰写而成，而且章节之间的风格明显不同。另外一个令人遗憾的是，三位作者在完成此书之后，先后相继离开了Google。</p><p></p>
+<p></p><p>整体上来说，这是一本值得所有涉及软件开发的人都应该阅读的一本书，特别是文中讨论的一些测试问题，对于其他公司也来说，无论是做网站、云或者移动 终端之上的应用，这些都是一些通用的问题。尽管文中涉及了比较多的软件工程师（SWE）的事宜，但本书还是一本从软件测试开发工程师和测试工程师角度出发 的，以测试为重点的书籍。里面充满了大量测试相关的经验和教训，特别是对那些正在寻求测试方法的测试人员与测试主管来说，将非常有意义。</p><p></p>
+<p></p><p>最近此书的作者们关于此书与InfoQ做了一次对话访谈。</p><p></p>
+<p></p><p><strong>InfoQ: 写著本书或与大家分享Google测试方法的主要动机是什么？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>一群在Google工程生产力团队（测试人员属于这个团队）的人，一直在讨论如何出一本书。我们已经召开过一次会议并有一个博客，所以写书的需求非 常清晰。但讨论如何写一本书总是比真正要去写一本要容易的多，因此我们一再推迟。最终我们三个意识到问题的严重性，并开始去写。有趣的是，当我们快要完成 的时候，更多的Google工程师也开始对如何参与进来产生了浓厚的兴趣，本书的&ldquo;Google工程师访谈&rdquo;部分就是他们的贡献，许多工程师还成为出版社 的官方审核人员。Google一直在云软件的测试方面处于领先，这本书的出版使得Google正式处于领先地位。</p><br><p></p>
+<p></p><p><strong>InfoQ: 本书重点详细地介绍了工程生产率和软件开发测试工程师这个角色， 这些从事这个角色的工程师工作在各自不同的项目中，主要从事可测试性和测试工具集的工作。你是否认为这是Google改善其测试实践的一项重要改变？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>其实有两个重要的变化。第一，正如你指出的那样，测试角色在其产品项目自身的集中管理之下。这样可以保持测试不被沦为二等公民，在工程生产力形成之 前。第二，是测试技术角色的集中管理。对于那些有这良好代码能力的人来说，Google使得测试成为一项开发任务，它得到开发者的尊重并让他们也参与进 来。无论如何，在你离这种模式走太远之前，读一下最后一章，一旦Google形成了面向质量的开发文化之后，工程生产力方面的需求就会改变，去创建这种文 化也就不再重要。</p><br><p></p>
+<p></p><p><strong>InfoQ: 整书花费比较大的篇幅介绍不同的测试技术与测试工具（既有公司内部的，也有开源的）。对于一个团队来说，创建自己工具背后的动力是什么？ 对于测试工程师或软件工程师来说，怎样时刻保持对最新测试方法和状态的了解？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>背后的动力非常简单，市场上根本不存在可以满足我们在自动化测试方面需求的工具。Google唯一全部从外界采纳的&ldquo;工具&rdquo;就是众包。我认为获取工 具的好途径是通过开源（Google也一直在支持开源）。商业的测试工具总是滞后半拍，因为其背后没有社区的强大支持。成为开源社区的一员，特别是要了解 Selenium、Web Driver和uTest他们在测试工具方面正在做什么，这也是跟随最新前沿测试状态的最好方法。</p><br><p></p>
+<p></p><p><strong>InfoQ: 整书很少提及敏捷的概念，尽管许多Google的工程方法都基于敏捷原则与实践。Google是如何看待其工程方法与广大敏捷社区的对比？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>Google不想成为敏捷社区的一员，也不没有使用Scrums，Scrum masters这些类似的术语。我们已经制定了快速变化的内部流程，这也是非常敏捷的流程，不能陷入别人关于什么是敏捷的想法中。当你必须停下来去定义什 么是敏捷和你的敏捷是属于哪一种的时候，你就已经变得不再敏捷了。</p><br><p></p>
+<p></p><p><strong>InfoQ：书中讲到的测试认证项目（Test Certified Program）貌似混合了游戏化和测试成熟度模型。对于这类项目如何激发人们的兴趣而获得成功、如何跟踪最新的测试技术和流程， 你有什么建议吗？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>给开发提建议的风险几乎不亚于评价他们的工作。测试认证两者兼顾，必须要谨慎行事。做成这件事的关键是，首先要有一个正确的模型，例如我们在这本书 里所提供的，经过实战、测试和优化的模型，可以作为你的起点。其次，确保用你们最好的测试人员去推广和执行这个项目，因为如果在落地过程中（由于执行不力 等原因而）失去开发团队的尊敬，那是我们所不能承受的。</p><br><p></p>
+<p></p><p><strong>InfoQ：测试工程师可能是最接近传统的、在很多组织中使用的测试分析师的角色，尽管有些人会提出反对意见，说这个角色仍然很技术化（所以和传统的测试分析师还是不同的）。会不会存在提高现有测试人员的技能去适应这个新角色的挑战，尤其是在技术技能方面？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>问题在于规模。两类技能兼备的人才一定有，但当然不是要多少有多少。实际上，雇到愿意学习编码的测试人员，比雇到愿意学习测试的开发人员要容易。</p><br><p></p>
+<p></p><p><strong>InfoQ：书中提到Google正走向&ldquo;免费测试&rdquo;的观点：测试的成本接近于零。这对Google的测试工程师意味着什么？这个想法离现实有多远？</strong></p><p></p>
+<p></p><p>这在很多团队是现实，但<span style="color: #222222; font-family: 宋体;">在达成目标的过程中，会遇到很多阻力</span>。有多少测试人员愿意把自己搞到失业？你的工作可以被自动化/众包，并不意味着<span style="color: #222222; font-family: 宋体;">你有勇气去这么做</span>。本书的最后一章对这个问题做了比较详细的回答，所以我就不赘述了。我只想说，任何对云/Web应用以及移动平台做大规模功能测试的人，都是在浪费时间，只会拖慢整个团队。</p><p></p>
+<p></p><p><strong>InfoQ：贯穿本书始终，你建议&ldquo;不要雇佣太多测试人员&rdquo;，未来测试工程师的角色在减少。对那些坚称你需要更多的测试人员、明确划分开发和质量保证的界线的组织，你想说什么？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>为什么需要这样一条界线呢？Google已经证明，当写代码和优化代码之间的界线模糊了之后，结果是开发的速度会更快、潜在的缺陷会更少。雇佣太多 的测试人员等于给开发更多的（质量上的）依赖，这对产品非常糟糕。我对于人们过分局限于他们的角色深感烦恼。&ldquo;我是一名测试人员&rdquo;是一种不健康的态度， &ldquo;我是一名开发人员&rdquo;也一样。只要人们不再过分受限于他们的角色，而是开始以（最终）产品为导向的时候，奇迹就会发生，每个人都应该聚焦于尽其所能做任何 有利于开发出最好的产品的事情。</p><br><p></p>
+<p></p><p><strong>InfoQ：一些读者可能会认为书中描述的很多方法难以推广，因为他们觉得你们能做到这个的唯一原因是&ldquo;因为你们是Google&rdquo;。对这类说法，你怎么看？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>Google是怎样成为今天这个样子的？通过更快的、更大规模的编写软件。并不是因为Google成就了好的测试，而是因为好的测试成就了Google。这仍然是Google的强项，它可以更快的开发Internet规模的产品。</p><br><p></p>
+<p></p><p><strong>InfoQ：对那些希望从事测试工作的测试分析师或者新的毕业生，如何应对测试角色的不断变化的技能要求，你有什么好的建议？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>把测试当开发。拿到CS学位，拿到好成绩。认证和培训只能教给你简单的东西。（自己）学习更难的东西并擅长之。那些投机取巧的测试人员注定只会抱怨被当成二等公民，毫无长进。不想被那样对待？那就去掌握一等的技能。</p><br><p></p>
+<p></p><p><strong>InfoQ：对那些看了这本书以后&ldquo;希望象Google一样测试&rdquo;的组织，你有什么建议？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>当规模还小的时候，就建立一个集中的测试组织。招聘拥有一等技术技能的人。复制Google所做的全部，使之成为你的软件工程DNA的一部分。关注产品，而不是你的角色。不断的思考如何自动化日常重复性的劳动。众包一切可能的工作。</p><br><p></p>
+<p></p><p><strong>InfoQ：这本书的主要读者是谁？你希望他们在读完本书之后学到哪些重点内容？</strong></p><p></p>
+<p><blockquote></blockquote></p>
+<p></p><p>软件开发相关的任何人、每个人。希望人们理解（通过实践本书所讲的技术）不会使你做到完美，但是可以做的更好。（OR：这本书难以做到完美，但本来可以写的更好）</p><br><p></p>
+<p></p><p>出版商提供了<a href="http://www.infoq.com/resource/articles/how-google-tests-software/en/resources/SampleChapter-Chapter3.pdf" target="_blank" rel="noopener">样章</a>供InfoQ读者免费获取。</p><p></p>
+<p></p><p>本Q&amp;A基于《How Google Tests Software》一书编写。该书作者是James Whittaker, Jason Arbon和 Jeff Carollo，由Pearson/Addison-Wesley Professional于2012年3月发行，ISBN 0321803027，copyright 2012 Pearson Education, Inc. 详情参见<a href="http://www.informit.com/title/0321803027" target="_blank" rel="noopener">出版商网站</a>。</p><p></p>
+<p></p><h2>关于作者</h2><p></p>
+<p></p><p><img style="float: left;" src="http://www.infoq.com/resource/articles/how-google-tests-software/zh/resources/James-Whittaker.jpg" alt=""></p><p></p>
+<div style="margin-left: 100px;"><strong>James Whittaker</strong>是一名技术高管，他的职业跨越学术界、创业公司和顶尖的技术公司。James是一个富于创新和激情的技术领袖，以其在测试、安全和开发工具等方面的贡献闻名于世。他发表了几十篇论文、五本书，在多个国际会议上获得最佳演说者奖。在供职于Google期间，他领导的团队包括<a href="https://www.google.com/intl/en/chrome/browser/" target="_blank" rel="noopener">Chrome</a>, <a href="https://maps.google.com/" target="_blank" rel="noopener">Google Maps</a>和<a href="http://plus.google.com/" target="_blank" rel="noopener">Google+</a>。他目前在<a href="http://www.microsoft.com/" target="_blank" rel="noopener">Microsoft</a>从事重新发明Web的工作。James的其它著作包括：《<a href="http://www.amazon.com/How-Break-Software-Practical-Testing/dp/0201796198" target="_blank" rel="noopener">How to Break Software</a>》，《<a href="http://www.amazon.com/Break-Software-Security-James-Whittaker/dp/0321194330" target="_blank" rel="noopener">How to Break Software Security</a> 》(与 <a href="http://en.wikipedia.org/wiki/Herbert_Hugh_Thompson" target="_blank" rel="noopener">Hugh Thompson</a>合著)，以及《 <a href="http://www.amazon.com/How-Break-Web-Software-Applications/dp/0321369440" target="_blank" rel="noopener">How to Break Web Software </a>》(与 Mike Andrews合著)。在Microsoft期间，James的很多测试想法都被开发成工具和技术，供开发和测试使用，并且写作了《<a href="http://www.amazon.com/Exploratory-Software-Testing-Tricks-Techniques/dp/0321636414" target="_blank" rel="noopener">Exploratory Software Testing</a>》。</div><br><div style="clear: both;">&nbsp;</div><br><p><img style="float: left;" src="http://www.infoq.com/resource/articles/how-google-tests-software/zh/resources/jason-arbon.png" alt=""></p><br><div style="margin-left: 100px;"><strong>Jason Arbon</strong> 对于软件质量和分析有很大的热情。Jason目前是<a href="http://www.utest.com/" target="_blank" rel="noopener">uTest.com</a>的 工程总监。这是一个众包测试服务公司，他在其中推动软件工具、分析和自动化等方面的创新。之前，Jason在Google做敏捷产品的工作，在 Chrome Browser、Chrome OS、Google Desktop和Google+等项目中管理Web搜索个性化团队以及工程生产力团队。再之前，Jason曾有在多个创业团队的经历，也曾供职于 Microsoft，参与了Exchange Server、BizTalk Server、Windows FileSystem、MSN和WindowsCE/IE4等项目。</div><br><div style="clear: both;">&nbsp;</div><br><p><img style="float: left;" src="http://www.infoq.com/resource/articles/how-google-tests-software/zh/resources/Jeff-Carollo.jpg" alt=""></p><br><div style="margin-left: 100px;"><strong>Jeff Carollo</strong> 目前是uTest.com的一名软件工程师，这是一家众包测试服务公司。在此之前，他是Google的一名高级软件测试工程师，参与了Chrome、Chrome OS 和多个服务器端项目，包括<a href="http://www.google.com/voice" target="_blank" rel="noopener">Google Voice</a>VoIP平台。Jeff毕业于Texas A&amp;M University，获得CS学位，他来自New Orleans，是新奥尔良圣徒队的超级粉。</div><br><div style="clear: both;">&nbsp;</div><br><div style="clear: both;">&nbsp;<strong>查看英文原文：</strong><a href="http://www.infoq.com/articles/how-google-tests-software" target="_blank">Interview and Book Review: How Google Tests Software</a></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Test/" rel="tag"># Test</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5eb013v4urquaupilz4/" rel="next" title="国外29个开发者实用的Web（CSS,HTML5,JS）工具和应用">
+                <i class="fa fa-chevron-left"></i> 国外29个开发者实用的Web（CSS,HTML5,JS）工具和应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko50j00jo4urq19yhku1a/" rel="prev" title="NetBeans Weekly News # 215 - Oct 23, 2012">
+                NetBeans Weekly News # 215 - Oct 23, 2012 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">关于作者</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

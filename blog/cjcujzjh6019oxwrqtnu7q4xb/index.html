@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文参看：http://blog.csdn.net/struts2 GWT是 Google Web Toolkit的简称。  GWT是一个以Java语言为工具，以类似Swing的方式编写UI组件，之后通过GWT Compiler编译 为JavaScritp和HTML在客户端浏览器中运行的一个开发工具和编程模型。 &amp;nbsp;GWT应用程序有两种方式运行：Hosted Model&amp;nbsp;&amp;nbs">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GWT 入门介绍">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzjh6019oxwrqtnu7q4xb/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="原文参看：http://blog.csdn.net/struts2 GWT是 Google Web Toolkit的简称。  GWT是一个以Java语言为工具，以类似Swing的方式编写UI组件，之后通过GWT Compiler编译 为JavaScritp和HTML在客户端浏览器中运行的一个开发工具和编程模型。 &amp;nbsp;GWT应用程序有两种方式运行：Hosted Model&amp;nbsp;&amp;nbs">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://docs.google.com/File?id=dd4s87gd_21gmbvwqxj">
+<meta property="og:image" content="http://docs.google.com/File?id=dd4s87gd_22fjnt9t6r">
+<meta property="og:image" content="http://docs.google.com/File?id=dd4s87gd_23c832r8rg">
+<meta property="og:image" content="http://docs.google.com/File?id=dd4s87gd_19hmr2cxgp">
+<meta property="og:updated_time" content="2018-01-18T11:41:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GWT 入门介绍">
+<meta name="twitter:description" content="原文参看：http://blog.csdn.net/struts2 GWT是 Google Web Toolkit的简称。  GWT是一个以Java语言为工具，以类似Swing的方式编写UI组件，之后通过GWT Compiler编译 为JavaScritp和HTML在客户端浏览器中运行的一个开发工具和编程模型。 &amp;nbsp;GWT应用程序有两种方式运行：Hosted Model&amp;nbsp;&amp;nbs">
+<meta name="twitter:image" content="http://docs.google.com/File?id=dd4s87gd_21gmbvwqxj">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzjh6019oxwrqtnu7q4xb/"/>
+
+
+
+
+
+  <title>GWT 入门介绍 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzjh6019oxwrqtnu7q4xb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GWT 入门介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-10-09T02:27:00+08:00">
+                2008-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><font color="#ff0000"><strong>原文参看：</strong></font><a href="http://blog.csdn.net/struts2" target="_blank" rel="noopener"><font color="#ff0000"><strong>http://blog.csdn.net/struts2</strong></font></a></p>
+<p><strong goog_ds_charindex="17"><span class="hilite1"><span class="hilite1">GWT</span></span>是 Google Web Toolkit的简称。</strong> </p>
+<p goog_ds_charindex="48"><span class="hilite1"><span class="hilite1">GWT</span></span>是一个以Java语言为工具，以类似Swing的方式编写UI组件，之后通过<span class="hilite1"><span class="hilite1">GWT</span></span> Compiler编译 </p><br><p goog_ds_charindex="104">为JavaScritp和HTML在客户端浏览器中运行的一个开发工具和编程模型。 </p><br><p goog_ds_charindex="146"><strong goog_ds_charindex="147"></strong>&nbsp;</p><br><p goog_ds_charindex="149"><strong goog_ds_charindex="150"><span class="hilite1"><span class="hilite1">GWT</span></span>应用程序有两种方式运行：</strong></p><br><p goog_ds_charindex="168">Hosted Model</p><br><p goog_ds_charindex="182">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Hosted Model方式下，Java程序并不会被编译成JavaScript，<span class="hilite1"><span class="hilite1">GWT</span></span>只是创造了一个类似</p><br><p goog_ds_charindex="242">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览器的环境，直接运行使用<span class="hilite1"><span class="hilite1">GWT</span></span>开发的程序。这种模式最具生产力（这种模式下可以Debug所有的Java代码），</p><br><p goog_ds_charindex="304">&nbsp;&nbsp;&nbsp;&nbsp; 所以开发环境通常使用Hosted Model，但是真正的程序执行不使用这种模式。</p><br><p goog_ds_charindex="351">Web Model&nbsp;</p><br><p goog_ds_charindex="363">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就是将使用<span class="hilite1"><span class="hilite1">GWT</span></span>编写的Java程序整整编译成JavaScript，在Web容器上运行，使用浏览器</p><br><p goog_ds_charindex="418">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;访问的模式，这种方式只有在测试或者运行的时候才使用，每次对Java类的修改必须重新编译</p><br><p goog_ds_charindex="468">&nbsp;&nbsp;&nbsp;&nbsp; 这些Java类，之后重新部署应用。所以生产力比较低。</p><br><p goog_ds_charindex="501">&nbsp;</p><br><p goog_ds_charindex="502"><strong goog_ds_charindex="503">安装<span class="hilite1"><span class="hilite1">GWT</span></span></strong></p><br><p goog_ds_charindex="511">从如下位置下载<span class="hilite1"><span class="hilite1">GWT</span></span>的最新版本：</p><br><p goog_ds_charindex="529"><a href="http://code.google.com/webtoolkit/download.html" goog_ds_charindex="530" target="_blank" rel="noopener">http://code.google.com/webtoolkit/download.html</a></p><br><p goog_ds_charindex="580">当前最新的Release版本为1.4.60， 上一个稳定的版本为1.3.3<br goog_ds_charindex="618"><br></p><br><p goog_ds_charindex="620">第一步，安装JDK， 1.4 以上的版本都可以。</p><br><p goog_ds_charindex="646">第二步，下载<span class="hilite1"><span class="hilite1">GWT</span></span>压缩文件，这里使用1.4.59 RC2（<span class="hilite1"><span class="hilite1">gwt</span></span>-windows-1.4.59.zip）</p><br><p goog_ds_charindex="700">第三布，将<span class="hilite1"><span class="hilite1">GWT</span></span>压缩文件解压缩到制定的目录，这里我使用的目录为，C:\程序开发\Java\<span class="hilite1"><span class="hilite1">gwt</span></span>-windows-1.4.59</p><br><p goog_ds_charindex="765">第四步，安装成功</p><br><p goog_ds_charindex="775">&nbsp;</p><br><p goog_ds_charindex="776">安装之后的目录结构为：</p><br><p goog_ds_charindex="789">C:\程序开发\Java\<span class="hilite1"><span class="hilite1">gwt</span></span>-windows-1.4.59</p><br><p goog_ds_charindex="822">&nbsp;&nbsp;&nbsp;&nbsp;doc（文档目录，开发文档和Java API文档）<br goog_ds_charindex="852"><br>&nbsp;&nbsp;&nbsp;&nbsp;samples（示例代码目录，非常有名的KitchenSink示例代码即在此目录中）</p><br><p goog_ds_charindex="900">&nbsp;&nbsp;&nbsp;&nbsp;about.html<br goog_ds_charindex="915"><br>&nbsp;&nbsp;&nbsp;&nbsp;about.txt<br goog_ds_charindex="929"><br>&nbsp;&nbsp;&nbsp;&nbsp;applicationCreator.cmd<br goog_ds_charindex="956"><br>&nbsp;&nbsp;&nbsp;&nbsp;benchmarkViewer.cmd<br goog_ds_charindex="980"><br>&nbsp;&nbsp;&nbsp;&nbsp;COPYING<br goog_ds_charindex="992"><br>&nbsp;&nbsp;&nbsp;&nbsp;COPYING.html<br goog_ds_charindex="1009"><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">gwt</span></span>-benchmark-viewer.jar<br goog_ds_charindex="1038"><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">gwt</span></span>-dev-windows.jar<br goog_ds_charindex="1062"><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">gwt</span></span>-ll.dll<br goog_ds_charindex="1077"><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">gwt</span></span>-module.dtd<br goog_ds_charindex="1096"><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">gwt</span></span>-servlet.jar<br goog_ds_charindex="1116"><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">gwt</span></span>-user.jar<br goog_ds_charindex="1133"><br>&nbsp;&nbsp;&nbsp;&nbsp;i18nCreator.cmd<br goog_ds_charindex="1153"><br>&nbsp;&nbsp;&nbsp;&nbsp;index.html<br goog_ds_charindex="1168"><br>&nbsp;&nbsp;&nbsp;&nbsp;junitCreator.cmd<br goog_ds_charindex="1189"><br>&nbsp;&nbsp;&nbsp;&nbsp;projectCreator.cmd<br goog_ds_charindex="1212"><br>&nbsp;&nbsp;&nbsp;&nbsp;release_notes.html<br goog_ds_charindex="1235"><br>&nbsp;&nbsp;&nbsp;&nbsp;swt-win32-3235.dll</p><br><p goog_ds_charindex="1259">&nbsp;</p><br><p goog_ds_charindex="1260"><strong goog_ds_charindex="1261">使用<span class="hilite1"><span class="hilite1">GWT</span></span>建立开发</strong></p><br><p goog_ds_charindex="1273"><span class="hilite1"><span class="hilite1">GWT</span></span>的安装目录下有一个名叫Samples的目录，里边有很多的例子，其中KitchenSink比较全面的展现了<span class="hilite1"><span class="hilite1">GWT</span></span>的Web组件。</p><br><p goog_ds_charindex="1340">&nbsp;</p><br><p goog_ds_charindex="1341">applicationCreator创建一个可以以Hosted Mode形式运行的<span class="hilite1"><span class="hilite1">GWT</span></span>应用程序，</p><br><p goog_ds_charindex="1392">以下命令将建立一个工程</p><br><p goog_ds_charindex="1405">&nbsp;</p><br><p goog_ds_charindex="1406">C:\程序开发\Java\<span class="hilite1"><span class="hilite1">gwt</span></span>-windows-1.4.59&gt;applicationCreator.cmd -eclipse <span class="hilite1"><span class="hilite1">GWT</span></span>Logon -out <span class="hilite1"><span class="hilite1">GWT</span></span>Logon com.jpleausre.<span class="hilite1"><span class="hilite1">gwt</span></span>.logon.client.<span class="hilite1"><span class="hilite1">GWT</span></span>Logon<br goog_ds_charindex="1533"><br>Created directory <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src<br goog_ds_charindex="1564"><br>Created directory <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src\com\jpleausre\<span class="hilite1"><span class="hilite1">gwt</span></span>\logon<br goog_ds_charindex="1619"><br>Created directory <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src\com\jpleausre\<span class="hilite1"><span class="hilite1">gwt</span></span>\logon\client<br goog_ds_charindex="1681"><br>Created directory <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src\com\jpleausre\<span class="hilite1"><span class="hilite1">gwt</span></span>\logon\public<br goog_ds_charindex="1743"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src\com\jpleausre\<span class="hilite1"><span class="hilite1">gwt</span></span>\logon\<span class="hilite1"><span class="hilite1">GWT</span></span>Logon.<span class="hilite1"><span class="hilite1">gwt</span></span>.xml<br goog_ds_charindex="1810"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src\com\jpleausre\<span class="hilite1"><span class="hilite1">gwt</span></span>\logon\public\<span class="hilite1"><span class="hilite1">GWT</span></span>Logon.html<br goog_ds_charindex="1881"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src\com\jpleausre\<span class="hilite1"><span class="hilite1">gwt</span></span>\logon\client\<span class="hilite1"><span class="hilite1">GWT</span></span>Logon.java<br goog_ds_charindex="1952"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\<span class="hilite1"><span class="hilite1">GWT</span></span>Logon.launch<br goog_ds_charindex="1990"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\<span class="hilite1"><span class="hilite1">GWT</span></span>Logon-shell.cmd<br goog_ds_charindex="2031"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\<span class="hilite1"><span class="hilite1">GWT</span></span>Logon-compile.cmd</p><br><p goog_ds_charindex="2075">&nbsp;</p><br><p goog_ds_charindex="2076">运行<span class="hilite1"><span class="hilite1">GWT</span></span>Logon-shell.cmd可以看到<span class="hilite1"><span class="hilite1">GWT</span></span>启动的服务端的Google Web Toolkit Development Shell，如下图：</p><br><div goog_ds_charindex="2153" id="img_14667160284636088" style="padding: 1em 0px; text-align: left;"><img goog_ds_charindex="2154" src="http://docs.google.com/File?id=dd4s87gd_21gmbvwqxj" alt=""></div><br><div goog_ds_charindex="2156" style="padding: 1em 0px; text-align: left;">和如下的Host Mode的浏览器：</div><br><div goog_ds_charindex="2176" style="padding: 1em 0px; text-align: left;"><br><div goog_ds_charindex="2177" id="img_7272890337866485" style="padding: 1em 0px; text-align: left;"><img class="magplus" title="点击查看原始大小图片" goog_ds_charindex="2178" src="http://docs.google.com/File?id=dd4s87gd_22fjnt9t6r" alt="" width="760" height="570"></div><br>点击其中的 Click Me 按钮，可以看到输出的Hello World！。&nbsp;</div><br><p goog_ds_charindex="2220">projectCreator建立一个基于ant构建的，或者基于eclipse的<span class="hilite1"><span class="hilite1">GWT</span></span>开发工程，</p><br><p goog_ds_charindex="2269">例如：</p><br><p goog_ds_charindex="2274">C:\程序开发\Java\<span class="hilite1"><span class="hilite1">gwt</span></span>-windows-1.4.59&gt;projectCreator.cmd -ant <span class="hilite1"><span class="hilite1">GWT</span></span>Logon -eclipse <span class="hilite1"><span class="hilite1">GWT</span></span>Logon -out <span class="hilite1"><span class="hilite1">GWT</span></span>Logon<br goog_ds_charindex="2371"><br>Created directory <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\src<br goog_ds_charindex="2402"><br>Created directory <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\test<br goog_ds_charindex="2434"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon\<span class="hilite1"><span class="hilite1">GWT</span></span>Logon.ant.xml<br goog_ds_charindex="2473"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon.project<br goog_ds_charindex="2504"><br>Created file <span class="hilite1"><span class="hilite1">GWT</span></span>Logon.classpath</p><br><p goog_ds_charindex="2538">&nbsp;</p><br><p goog_ds_charindex="2539">其中的<span class="hilite1"><span class="hilite1">GWT</span></span>Logon.ant.xml构建文件的内容为：</p><br><p goog_ds_charindex="2569">&nbsp;<!--l version="1.0" encoding="utf-8"--><br goog_ds_charindex="2610"><br><project name="GWTLogon" default="compile" basedir="."></project><br><br goog_ds_charindex="2666"><br>&nbsp; <description></description><br goog_ds_charindex="2682"><br>&nbsp;&nbsp;&nbsp; <span class="hilite1"><span class="hilite1">GWT</span></span>Logon build file.&nbsp; This is used to package up your project as a jar,<br goog_ds_charindex="2758"><br>&nbsp;&nbsp;&nbsp; if you want to distribute it.&nbsp; This isn’t needed for normal operation.<br goog_ds_charindex="2833"><br>&nbsp; </p><br><p goog_ds_charindex="2851">&nbsp; <!-- set classpath --><br goog_ds_charindex="2876"><br>&nbsp;<br><path id="project.class.path"></path><br><br goog_ds_charindex="2909"><br>&nbsp;&nbsp;&nbsp;<br><pathelement path="${java.class.path}/"></pathelement><br><br goog_ds_charindex="2955"><br>&nbsp;&nbsp;&nbsp;<br><pathelement path="C:/程序开发/Java/gwt-windows-1.4.59/gwt-user.jar"></pathelement><br><br goog_ds_charindex="3026"><br>&nbsp;&nbsp;&nbsp; <!-- Additional dependencies (such as junit) go here --><br goog_ds_charindex="3087"><br>&nbsp; </p><br><p goog_ds_charindex="3098">&nbsp; <target name="compile" description="Compile src to bin"></target><br goog_ds_charindex="3157"><br>&nbsp;&nbsp;&nbsp; <mkdir></mkdir><br goog_ds_charindex="3180"><br>&nbsp;&nbsp;&nbsp; <javac destdir="bin" srcdir="src:test" includes="**" debuglevel="lines,vars,source" debug="on" source="1.4"></javac><br goog_ds_charindex="3293"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <classpath refid="project.class.path"></classpath><br goog_ds_charindex="3339"><br>&nbsp;&nbsp;&nbsp; <br goog_ds_charindex="3352"><br>&nbsp; </p><br><p goog_ds_charindex="3365">&nbsp; <target name="package" description="Package up the project as a jar" depends="compile"></target><br goog_ds_charindex="3455"><br>&nbsp;&nbsp;&nbsp; <jar destfile="GWTLogon.jar"></jar><br goog_ds_charindex="3489"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <fileset></fileset><br goog_ds_charindex="3515"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <include name="**/*.class"></include><br goog_ds_charindex="3552"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br goog_ds_charindex="3569"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- Get everything; source, modules, html files --><br goog_ds_charindex="3628"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <fileset></fileset><br goog_ds_charindex="3654"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <include name="**"></include><br goog_ds_charindex="3683"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br goog_ds_charindex="3700"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <fileset></fileset><br goog_ds_charindex="3727"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <include name="**"></include><br goog_ds_charindex="3756"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br goog_ds_charindex="3773"><br>&nbsp;&nbsp;&nbsp; <br goog_ds_charindex="3784"><br>&nbsp; </p><br><p goog_ds_charindex="3797">&nbsp; <target name="clean"></target><br goog_ds_charindex="3821"><br>&nbsp;&nbsp;&nbsp; <!-- Delete the bin directory tree --><br goog_ds_charindex="3864"><br>&nbsp;&nbsp;&nbsp; <delete file="GWTLogon.jar"></delete><br goog_ds_charindex="3898"><br>&nbsp;&nbsp;&nbsp; <delete></delete><br goog_ds_charindex="3911"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <fileset includes="**/*.class"></fileset><br goog_ds_charindex="3960"><br>&nbsp;&nbsp;&nbsp; <br goog_ds_charindex="3974"><br>&nbsp; </p><br><p goog_ds_charindex="3987">&nbsp; <target name="all" depends="package"></target></p><br><p goog_ds_charindex="4029"><br goog_ds_charindex="4040"><br></p><br><p goog_ds_charindex="4042">&nbsp;</p><br><p goog_ds_charindex="4043">applicationCreator和projectCreator的区别是</p><br><p goog_ds_charindex="4082">applicationCreator创建了src目录和Demo代码，projectCreator不创建Demo代码，但是创建src目录和test目录。</p><br><p goog_ds_charindex="4159">applicationCreator创建了启动脚本<span class="hilite1"><span class="hilite1">GWT</span></span>Logon-shell.cmd和<span class="hilite1"><span class="hilite1">GWT</span></span>编译脚本<span class="hilite1"><span class="hilite1">GWT</span></span>Logon-compile.cmd，而projectCreator不创建。</p><br><p goog_ds_charindex="4252">applicationCreator创建了eclipse launch文件，而projectCreator创建.classpath和.project文件。</p><br><p goog_ds_charindex="4331">&nbsp;</p><br><p goog_ds_charindex="4332"><strong goog_ds_charindex="4333">通常情况下，我们先使用projectCreator创建按project，projectCreator创建的工程可以轻松的import到eclipse中，</strong></p><br><p goog_ds_charindex="4412"><strong goog_ds_charindex="4413">之后我们使用applicationCreator创建需要的Java示例代码，eclipse launch文件，启动脚本和编译脚本。</strong></p><br><p goog_ds_charindex="4481">&nbsp;</p><br><p goog_ds_charindex="4482">使用Eclipse导入的<span class="hilite1"><span class="hilite1">GWT</span></span>工程如下：</p><br><p goog_ds_charindex="4504">&nbsp;</p><br><div goog_ds_charindex="4505" id="img_1732648978168349" style="padding: 1em 0px; text-align: left;"><img class="magplus" title="点击查看原始大小图片" goog_ds_charindex="4506" src="http://docs.google.com/File?id=dd4s87gd_23c832r8rg" alt="" style="width: 1280px; height: 769px;" width="760" height="456"></div><br><p goog_ds_charindex="4508">&nbsp;</p><br><p goog_ds_charindex="4509"><strong goog_ds_charindex="4510">命令列表</strong>&nbsp;</p><br><p goog_ds_charindex="4518">projectCreator <br goog_ds_charindex="4534"><br>生成基本项目框架，可以选择使用eclipse或者使用ant构建文件</p><br><p goog_ds_charindex="4569">&nbsp;</p><br><p goog_ds_charindex="4570">applicationCreator <br goog_ds_charindex="4590"><br>生成代码示例和一个可运行的应用程序</p><br><p goog_ds_charindex="4609">&nbsp;</p><br><p goog_ds_charindex="4610">junitCreator <br goog_ds_charindex="4624"><br>生成一个JUnit测试Case</p><br><p goog_ds_charindex="4641">&nbsp;</p><br><p goog_ds_charindex="4642">i18nCreator </p><br><p goog_ds_charindex="4656">生成一个i18n属性文件和对应的Javascript脚本。</p><br><p goog_ds_charindex="4687"><br goog_ds_charindex="4688"><br>benchmarkViewer <br goog_ds_charindex="4705"><br>显示benchmark结果</p><br><p goog_ds_charindex="4720">&nbsp;</p><br><p goog_ds_charindex="4721"><strong goog_ds_charindex="4722">功能介绍（通用）</strong></p><br><p goog_ds_charindex="4733"><span class="hilite1"><span class="hilite1">GWT</span></span>体系结构</p><br><p goog_ds_charindex="4742">&nbsp;</p><br><div goog_ds_charindex="4743" id="img_12960921060538966" style="padding: 1em 0px; text-align: left;"><img goog_ds_charindex="4744" src="http://docs.google.com/File?id=dd4s87gd_19hmr2cxgp" alt=""></div><br><div goog_ds_charindex="4746" style="padding: 1em 0px; text-align: left;"><strong goog_ds_charindex="4747"><span class="hilite1"><span class="hilite1">GWT</span></span> Java-to-JavaScript Compiler</strong><br goog_ds_charindex="4780"><br>将Java程序翻译为JavaScript，通过<span class="hilite1"><span class="hilite1">GWT</span></span> Compiler可以让<span class="hilite1"><span class="hilite1">GWT</span></span>程序在Web 模式下运行</div><br><div goog_ds_charindex="4835" style="padding: 1em 0px; text-align: left;"><strong goog_ds_charindex="4836"><span class="hilite1"><span class="hilite1">GWT</span></span> Hosted Web Browser</strong><br goog_ds_charindex="4860"><br><span class="hilite1"><span class="hilite1">GWT</span></span> Hosted Web Brower让你的程序可以在Hosted模式下运行，在Hosted模式下运行的是Java代码而不是编译出来的JavaScript代码，在Hosted模式下可以轻松的做Debug。<br goog_ds_charindex="4965"><br></div><br><div goog_ds_charindex="4967" style="padding: 1em 0px; text-align: left;"><strong goog_ds_charindex="4968">JRE emulation library</strong><br goog_ds_charindex="4991"><br>可以称为JRE简化的类库。在客户端（用来编译成JavaScript代码的客户端Java代码）不是所有的java类库都被<span class="hilite1"><span class="hilite1">gwt</span></span>支持，只有部分被支持，这些类库是几乎所有的java.lang包，java.util包的一部分。</div><br><div goog_ds_charindex="5102" style="padding: 1em 0px; text-align: left;"><strong goog_ds_charindex="5103"><span class="hilite1"><span class="hilite1">GWT</span></span> Web UI class library</strong><br goog_ds_charindex="5129"><br>使用<span class="hilite1"><span class="hilite1">GWT</span></span> Web UI类库可以创建web 浏览器的组件，例如按钮，文本框，图片等。这是<span class="hilite1"><span class="hilite1">GWT</span></span>的核心UI类库。</div><br><p goog_ds_charindex="5186"><strong goog_ds_charindex="5187"></strong>&nbsp;</p><br><p goog_ds_charindex="5189"><strong goog_ds_charindex="5190"></strong>&nbsp;</p><br><p goog_ds_charindex="5192"><strong goog_ds_charindex="5193"></strong>&nbsp;</p><br><p goog_ds_charindex="5195"><strong goog_ds_charindex="5196">功能介绍（Web控件）</strong></p><br><p goog_ds_charindex="5210">Web控件是<span class="hilite1"><span class="hilite1">GWT</span></span>表示层的核心，通过使用<span class="hilite1"><span class="hilite1">GWT</span></span>提供的Web控件可以创建丰富的客户端画面。</p><br><p goog_ds_charindex="5256"><span class="hilite1"><span class="hilite1">GWT</span></span>的web组件主要分为两类：输入控件和Layout控件。</p><br><p goog_ds_charindex="5288"><br goog_ds_charindex="5289"><br></p><br><p goog_ds_charindex="5291">输入控件主要是指向服务器提交数据，处理操作，显示服务器数据的空间，主要包括：</p><br><p goog_ds_charindex="5331">Button，RadionButton，PushButton，ToggleButton，CheckBox，TextBox，PasswordBox</p><br><p goog_ds_charindex="5405">TextArea, HyperLink,ListBox,MenuBar,Tree,Table, TabBar,DialogBox, PopupPanel</p><br><p goog_ds_charindex="5483">RichTextArea, DisclosurePanel, SuggestBox<br goog_ds_charindex="5525"><br></p><br><p goog_ds_charindex="5527">Layout 空间主要用来有规律地放置输入控件，主要包括：</p><br><p goog_ds_charindex="5558">Stackpanel,HorizontalPanel,VerticalPanel, FlowPanel, VerticalSplitPanel, HorizontalSplitPanel,</p><br><p goog_ds_charindex="5654">DockPanel, TabPanel,</p><br><p goog_ds_charindex="5676"><strong goog_ds_charindex="5677"></strong><strong goog_ds_charindex="5678"></strong>&nbsp;</p><br><p goog_ds_charindex="5680"><strong goog_ds_charindex="5681">事件模型（Event &amp; Listener）<br goog_ds_charindex="5704"><br></strong>如何处理页面的事件呢，例如点击按钮，Textbox失去焦点等？</p><br><p goog_ds_charindex="5738">如下的代码建立了一个按钮，按钮的名字是“Click Me”，当你点击这个按钮的时候处罚一个Click事件，Click事件触发onClick(Widget sender)方法。</p><br><p goog_ds_charindex="5827">sender表示触发onClick方法的组件，这里只是简单的在页面上显示Hello World信息（相当于javascript的alert方法）。</p><br><p goog_ds_charindex="5902">&nbsp;Button b = new Button(“Click Me”);<br goog_ds_charindex="5938"><br>&nbsp;b.addClickListener(new ClickListener() {<br goog_ds_charindex="5980"><br>&nbsp; public void onClick(Widget sender) {<br goog_ds_charindex="6019"><br>&nbsp;&nbsp;&nbsp; Window.alert(“Hello World”);<br goog_ds_charindex="6052"><br>&nbsp; }<br goog_ds_charindex="6056"><br>});</p><br><p goog_ds_charindex="6061">常见的Listener如下：</p><br><p goog_ds_charindex="6077">ChangeListener <br goog_ds_charindex="6093"><br>ClickListener <br goog_ds_charindex="6108"><br>FocusListener<br goog_ds_charindex="6122"><br>KeyboardListener<br goog_ds_charindex="6139"><br>MouseListener<br goog_ds_charindex="6153"><br>MouseWheelListener<br goog_ds_charindex="6172"><br>PopupListener<br goog_ds_charindex="6186"><br>ScrollListener<br goog_ds_charindex="6201"><br>TableListener<br goog_ds_charindex="6215"><br>TreeListener</p><br><p goog_ds_charindex="6229">&nbsp;</p><br><p goog_ds_charindex="6230">&nbsp;</p><br><p goog_ds_charindex="6231"><strong goog_ds_charindex="6232">功能介绍（远过程调用RPC）</strong></p><br><p goog_ds_charindex="6249"><strong goog_ds_charindex="6250">&nbsp;&nbsp;&nbsp; 体系结构</strong></p><br><p goog_ds_charindex="6261"><span class="hilite1"><span class="hilite1">GWT</span></span>应用中页面一旦加载，就再也不会向服务器请求HTML内容，所有的画面迁移，转换都在客户端进行，但是数据还是会向服务器提交，或者从服务器获取。</p><br><p goog_ds_charindex="6335">服务器上负责处理数据的对象在<span class="hilite1"><span class="hilite1">GWT</span></span>中叫做Service，每个Service有三个类组成：服务方法定义接口（Service），异步调用接口（ServiceAsync）和服务器方法实现类ServiceImpl。</p><br><p goog_ds_charindex="6440">以Login为例子说明：</p><br><p goog_ds_charindex="6454">&nbsp;</p><br><p goog_ds_charindex="6455">// 服务方法定义接口</p><br><p goog_ds_charindex="6468">public interface LoginService extends RemoteService {<br goog_ds_charindex="6522"><br>&nbsp;&nbsp;&nbsp; public boolean login(LoginSO login) throws ApplicationException;<br goog_ds_charindex="6591"><br>}<br goog_ds_charindex="6593"><br></p><br><p goog_ds_charindex="6595">// 异步调用接口</p><br><p goog_ds_charindex="6606">public interface LoginServiceAsync {<br goog_ds_charindex="6643"><br>&nbsp;&nbsp;&nbsp; void login(LoginSO login, AsyncCallback async);<br goog_ds_charindex="6695"><br>}<br goog_ds_charindex="6697"><br></p><br><p goog_ds_charindex="6699">// 服务器方法实现类</p><br><p goog_ds_charindex="6712">&nbsp;public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {<br goog_ds_charindex="6798"><br>&nbsp;&nbsp;&nbsp; public boolean login(LoginSO login) throws ApplicationException {<br goog_ds_charindex="6868"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;…</p><br><p goog_ds_charindex="6881">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;&nbsp;&nbsp;</p><br><p goog_ds_charindex="6905">&nbsp;&nbsp;&nbsp; }<br goog_ds_charindex="6911"><br>}</p><br><p goog_ds_charindex="6914">&nbsp;</p><br><p goog_ds_charindex="6915">其中前两个接口在client包内部，最后一个实现在server包内部。</p><br><p goog_ds_charindex="6952">&nbsp;</p><br><p goog_ds_charindex="6953">客户端调用一个服务类的方法的代码如下：</p><br><p goog_ds_charindex="6974">&nbsp;</p><br><p goog_ds_charindex="6975">LoginServiceAsync ourInstance = (LoginServiceAsync) <span class="hilite1"><span class="hilite1">GWT</span></span>.create(LoginService.class); // <font goog_ds_charindex="7063" face="WingDings"></font><br goog_ds_charindex="7066"><br>((ServiceDefTarget) ourInstance).setServiceEntryPoint(<span class="hilite1"><span class="hilite1">GWT</span></span>.getModuleBaseURL() + “/LoginService”); // <font goog_ds_charindex="7167" face="WingDings"></font><br goog_ds_charindex="7170"><br></p><br><p goog_ds_charindex="7172">ourInstance.login(loginSO, new AsyncCallback() {&nbsp;&nbsp; //<font goog_ds_charindex="7226" face="WingDings"></font></p><br><p goog_ds_charindex="7230">&nbsp;&nbsp;&nbsp;&nbsp;public void onFailure(Throwable caught) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //<font goog_ds_charindex="7287" face="WingDings"></font><br goog_ds_charindex="7290"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(caught instanceof InvocationException) {<br goog_ds_charindex="7342"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // system exception<br goog_ds_charindex="7374"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br goog_ds_charindex="7391"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Window.alert(“ “ + <span class="hilite1"><span class="hilite1">GWT</span></span>ShowConstants.Messages.constants.maxQueryCount());<br goog_ds_charindex="7476"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// aplication exception<br goog_ds_charindex="7512"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><br><p goog_ds_charindex="7523">&nbsp;&nbsp;&nbsp;&nbsp;}</p><br><p goog_ds_charindex="7530">&nbsp;&nbsp;&nbsp;&nbsp;public void onSuccess(Object result) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //<font goog_ds_charindex="7587" face="WingDings"></font><br goog_ds_charindex="7590"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Window.alert(“success”);<br goog_ds_charindex="7623"><br>&nbsp;&nbsp;&nbsp;&nbsp;}</p><br><p goog_ds_charindex="7630">});</p><br><p goog_ds_charindex="7635">&nbsp;</p><br><p goog_ds_charindex="7636">// <font goog_ds_charindex="7640" face="WingDings"></font></p><br><p goog_ds_charindex="7644">&nbsp;</p><br><p goog_ds_charindex="7645">&nbsp;远程调用</p><br><p goog_ds_charindex="7652"><font goog_ds_charindex="7653" face="Wingdings"> </font><font goog_ds_charindex="7657" face="Verdana">获得服务器方法的调用接口（skeleton）。</font></p><br><p goog_ds_charindex="7683"><font goog_ds_charindex="7684" face="Wingdings"> </font><font goog_ds_charindex="7688" face="Verdana">设置服务位置。</font></p><br><p goog_ds_charindex="7698"><font goog_ds_charindex="7699" face="Wingdings"> </font><font goog_ds_charindex="7703" face="Verdana">远程调用服务器上的方法，注意这里是异步调用，在<font goog_ds_charindex="7727" face="Wingdings"></font>和<font goog_ds_charindex="7731" face="Wingdings"></font>调用之前<font goog_ds_charindex="7738" face="Wingdings"></font>代码可能先被调用了。</font></p><br><p goog_ds_charindex="7753"><font goog_ds_charindex="7754" face="Wingdings"> </font><font goog_ds_charindex="7758" face="Verdana">调用出错，或者调用方法抛出异常的时候调用的方法。</font></p><br><p goog_ds_charindex="7785"><font goog_ds_charindex="7786" face="Wingdings"> </font><font goog_ds_charindex="7790" face="Verdana">调用成功返回时候调用的方法。</font></p><br><p goog_ds_charindex="7807">&nbsp;</p><br><p goog_ds_charindex="7808">&nbsp;</p><br><p goog_ds_charindex="7809"><strong goog_ds_charindex="7810">&nbsp;&nbsp;&nbsp; 参数和返回值系列化类型</strong></p><br><p goog_ds_charindex="7828">这里的参数指的是Service方法调用的参数和返回值。</p><br><p goog_ds_charindex="7857">由于<span class="hilite1"><span class="hilite1">GWT</span></span>的客户端代码都是JavaScript，而服务器代码都是使用Java编写的，这就涉及到JavaScript调用Java方法的时候</p><br><p goog_ds_charindex="7927">如何传递参数，如何取得返回值的问题。</p><br><p goog_ds_charindex="7947">&nbsp;</p><br><p goog_ds_charindex="7948">&nbsp;可序列化的类型包括：</p><br><p goog_ds_charindex="7961">（1） 原始类型，例如：char, byte, short, int, long, boolean, float, double;</p><br><p goog_ds_charindex="8028">（2） String，java.util.Date，或者原始类型的包装类型，例如： &nbsp;Character, Byte, Short, Integer, Long, Boolean, Float, or Double; </p><br><p goog_ds_charindex="8139">（3） 可序列化类型数组（包含（4）和（5）定义的类型）</p><br><p goog_ds_charindex="8169">（4） 用户定义的可序列化类型</p><br><p goog_ds_charindex="8186">（5） 该类型至少有一个可序列化的子类型</p><br><p goog_ds_charindex="8208">&nbsp;</p><br><p goog_ds_charindex="8209">针对上述（4）中说明的，什么是用户自定义的可序列化类型呢？必须满足以下亮点：</p><br><p goog_ds_charindex="8249">第一，必须直接或者间接（例如，父类型实现了这个接口）的实现了IsSerializable接口</p><br><p goog_ds_charindex="8297">第二，所有非transient类型都是可序列化的（final类型的属性在<span class="hilite1"><span class="hilite1">GWT</span></span>中被视为transient类型）</p><br><p goog_ds_charindex="8354">&nbsp;</p><br><p goog_ds_charindex="8355">是否支持容器类型呢？那么又如何声明呢？</p><br><p goog_ds_charindex="8376">支持容器类型，<span class="hilite1"><span class="hilite1">GWT</span></span>可以使用Type 参数来表示容器类型内部的元素的类型，例如：</p><br><p goog_ds_charindex="8418">注意<span class="hilite1"><span class="hilite1">GWT</span></span>暂时不支持使用 JDK 5.0 的模板容器&nbsp;</p><br><p goog_ds_charindex="8447">&nbsp;</p><br><p goog_ds_charindex="8448">//用户自定义序列化类型</p><br><p goog_ds_charindex="8462">public class MyClass implements IsSerializable {<br goog_ds_charindex="8511"><br></p><br><p goog_ds_charindex="8513">&nbsp; /<strong><br goog_ds_charindex="8519"><br>&nbsp;&nbsp; <em> 这个Set中的元素的类型必须都是String类型<br goog_ds_charindex="8549"><br>&nbsp;&nbsp; </em> <br goog_ds_charindex="8555"><br>&nbsp;&nbsp; <strong goog_ds_charindex="8559"><em> @<span class="hilite1"><span class="hilite1">gwt</span></span>.typeArgs <java.lang.string></java.lang.string></em></strong><br goog_ds_charindex="8595"><br>&nbsp;&nbsp; /<br goog_ds_charindex="8601"><br>&nbsp; public Set setOfStrings;<br goog_ds_charindex="8628"><br><br goog_ds_charindex="8629"><br>&nbsp; /</strong><br goog_ds_charindex="8635"><br>&nbsp;&nbsp; <em> Map中的元素的Key和Value的类型都是String类型。<br goog_ds_charindex="8672"><br>&nbsp;&nbsp; </em> <br goog_ds_charindex="8678"><br>&nbsp;&nbsp; <strong goog_ds_charindex="8682"><em> @<span class="hilite1"><span class="hilite1">gwt</span></span>.typeArgs <br goog_ds_charindex="8734"><br></em></strong>&nbsp;&nbsp; /<br goog_ds_charindex="8741"><br>&nbsp; public Map mapOfStringToString;<br goog_ds_charindex="8775"><br>}<br goog_ds_charindex="8777"><br></p><br><p goog_ds_charindex="8779">// 服务器方法实现类<br goog_ds_charindex="8791"><br>public interface MyService extends RemoteService {<br goog_ds_charindex="8842"><br>&nbsp; /<strong></strong></p><br><p goog_ds_charindex="8849">&nbsp;&nbsp; <em>&nbsp;第一个类型参数表示方法的参数c是一个List，并且其中只能放置Integer类型。<br goog_ds_charindex="8896"><br>&nbsp;&nbsp; </em> 第二个类型参数表示返回值为List，并且其中的原书的类型为String类型。<br goog_ds_charindex="8940"><br>&nbsp;&nbsp; <em> <br goog_ds_charindex="8946"><br><strong goog_ds_charindex="8947">&nbsp;&nbsp; </strong></em> @<span class="hilite1"><span class="hilite1">gwt</span></span>.typeArgs c <java.lang.integer></java.lang.integer><br goog_ds_charindex="8988"><br>&nbsp;&nbsp; <em> @<span class="hilite1"><span class="hilite1">gwt</span></span>.typeArgs <java.lang.string></java.lang.string><br goog_ds_charindex="9027"><br>&nbsp;&nbsp; </em>/<br goog_ds_charindex="9033"><br>&nbsp; List reverseListAndConvertToStrings(List c);<br goog_ds_charindex="9080"><br>}<br goog_ds_charindex="9082"><br></p><br><p goog_ds_charindex="9084">&nbsp;</p><br><p goog_ds_charindex="9085"><strong goog_ds_charindex="9086"></strong>&nbsp;</p><br><p goog_ds_charindex="9088"><strong goog_ds_charindex="9089">&nbsp;&nbsp;&nbsp; 异常</strong></p><br><p goog_ds_charindex="9098">在调用方法的时候异常怎么处理呢？</p><br><p goog_ds_charindex="9116">调用方法的过程中的异常可以分为两类：第一类，调用方法的过程中出现了异常，例如网络故障，服务类不存在等。</p><br><p goog_ds_charindex="9169">第二类，服务器方法抛出了异常。</p><br><p goog_ds_charindex="9186">&nbsp;</p><br><p goog_ds_charindex="9187">&nbsp;在客户端调用的过程中这两种异常都在onFailure（Throwable caught）方法中处理，但是caught的类型有所区别，</p><br><p goog_ds_charindex="9256">第一种情况下，caught为InvocationException的子类，第二种情况下caught为用户自定义的异常。</p><br><p goog_ds_charindex="9317">&nbsp;</p><br><p goog_ds_charindex="9318">由于异常也需要在客户端（JavaScript）和服务器端（Java）传递，所以Exception的定义也要满足可序列化的要求。</p><br><p goog_ds_charindex="9383">但是在<span class="hilite1"><span class="hilite1">GWT</span></span>中已经定义了一个基本的异常类型来提一个Exception类的基础类，这个类是SerializableException，例如：</p><br><p goog_ds_charindex="9454">public class ApplicationException extends SerializableException {<br goog_ds_charindex="9520"><br>&nbsp;&nbsp;&nbsp; public ApplicationException() {<br goog_ds_charindex="9556"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super();<br goog_ds_charindex="9573"><br>&nbsp;&nbsp;&nbsp; }</p><br><p goog_ds_charindex="9580">&nbsp;&nbsp;&nbsp; public ApplicationException(String msg) {<br goog_ds_charindex="9626"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(msg);<br goog_ds_charindex="9646"><br>&nbsp;&nbsp;&nbsp; }</p><br><p goog_ds_charindex="9653">&nbsp;&nbsp;&nbsp; public Throwable getCause() {<br goog_ds_charindex="9687"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return super.getCause();<br goog_ds_charindex="9720"><br>&nbsp;&nbsp;&nbsp; }</p><br><p goog_ds_charindex="9727">&nbsp;&nbsp;&nbsp; public String getMessage() {<br goog_ds_charindex="9760"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return super.getMessage(); <br goog_ds_charindex="9796"><br>&nbsp;&nbsp;&nbsp; }</p><br><p goog_ds_charindex="9803">&nbsp;&nbsp;&nbsp; public Throwable initCause(Throwable cause) {<br goog_ds_charindex="9853"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return super.initCause(cause);<br goog_ds_charindex="9892"><br>&nbsp;&nbsp;&nbsp; }<br goog_ds_charindex="9898"><br>}</p><br><p goog_ds_charindex="9901">&nbsp;</p><br><p goog_ds_charindex="9902">异常消息内容建议，服务器端的错误消息内容在服务器保存，客户端的错误消息内容在客户端保存（参看后续的国际化部分），两个地方</p><br><p goog_ds_charindex="9964">都需要的，出于<span class="hilite1"><span class="hilite1">GWT</span></span>技术建议使用两份，分别放在客户端和服务器端。</p><br><p goog_ds_charindex="9998">为什么不能重用呢？</p><br><p goog_ds_charindex="10009">客户端的消息会被编译为JavaScript，所以服务器端通常无法使用。（还有另外的原因，参看后续的国际化部分）。</p><br><p goog_ds_charindex="10067"><strong goog_ds_charindex="10068"></strong>&nbsp;</p><br><p goog_ds_charindex="10070"><strong goog_ds_charindex="10071">功能介绍（集成JUnit）</strong></p><br><p goog_ds_charindex="10087"><strong goog_ds_charindex="10088"><span goog_ds_charindex="10089" style="font-weight: normal;">@TODO</span></strong></p><br><p goog_ds_charindex="10098"><strong goog_ds_charindex="10099"><span goog_ds_charindex="10100" style="font-weight: normal;"></span><br goog_ds_charindex="10101"><br></strong></p><br><p goog_ds_charindex="10104"><strong goog_ds_charindex="10105">功能介绍（国际化）</strong></p><br><p goog_ds_charindex="10117">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目开发过程中经常需要一些可配置的常量，例如查询最大条数，目录位置等。在传统的Java应用程序中这些内容通常会放在</p><br><p goog_ds_charindex="10181">属性文件中（Properties文件），但是使用属性文件有些弊端，第一，不支持类型，所有的内容都是String，第二是，只有在具体使用</p><br><p goog_ds_charindex="10250">的时候才能发现有些属性没有定义，而不能在编译的时候发现。</p><br><p goog_ds_charindex="10280">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么<span class="hilite1"><span class="hilite1">GWT</span></span>如何处理这个问题呢？<span class="hilite1"><span class="hilite1">GWT</span></span>中有一个特殊的接口com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.i18n.client.Constants可以使用这个接口达到</p><br><p goog_ds_charindex="10360">定义常量的效果，并且这些常量在编译的时候被绑定，而且可以支持类型。</p><br><p goog_ds_charindex="10395">&nbsp;&nbsp;&nbsp;&nbsp;使用<span class="hilite1"><span class="hilite1">GWT</span></span>主要有以下几步：</p><br><p goog_ds_charindex="10414">第一步，建立一个集成于Constants的接口，例如：</p><br><p goog_ds_charindex="10443">public interface NumberFormatConstants extends Constants {<br goog_ds_charindex="10502"><br>&nbsp; /<br goog_ds_charindex="10508"><br>&nbsp;&nbsp; <em> @return the localized decimal separator<br goog_ds_charindex="10553"><br>&nbsp;&nbsp; </em>/<br goog_ds_charindex="10559"><br>&nbsp; String decimalSeparator();</p><br><p goog_ds_charindex="10589">&nbsp; /<strong><br goog_ds_charindex="10595"><br>&nbsp;&nbsp; <em> @return the localized thousands separator<br goog_ds_charindex="10642"><br>&nbsp;&nbsp; </em>/<br goog_ds_charindex="10648"><br>&nbsp; String thousandsSeparator();<br goog_ds_charindex="10679"><br>}<br goog_ds_charindex="10681"><br></strong></p><br><p goog_ds_charindex="10683">第二步，根据接口中定义的方法定义一个跟接口同名的属性文件，例如：</p><br><p goog_ds_charindex="10717">#NumberFormatConstants.properties</p><br><p goog_ds_charindex="10752">decimalSeparator = ,<br goog_ds_charindex="10773"><br>thousandsSeparator = .</p><br><p goog_ds_charindex="10797">&nbsp;</p><br><p goog_ds_charindex="10798">第三步，获取文件中定义的内容，例如：</p><br><p goog_ds_charindex="10818">public void useNumberFormatConstants() {<br goog_ds_charindex="10859"><br>&nbsp; NumberFormatConstants constants = (NumberFormatConstants) <span class="hilite1"><span class="hilite1">GWT</span></span>.create(NumberFormatConstants.class);<br goog_ds_charindex="10960"><br>&nbsp; String decimalSep = constants.decimalSeparator();<br goog_ds_charindex="11012"><br>&nbsp; String thousandsSep = constants.thousandsSeparator();<br goog_ds_charindex="11068"><br>&nbsp; String msg = “Decimals are separated using ‘“ + decimalSep + “‘“;<br goog_ds_charindex="11136"><br>&nbsp; msg += “, and thousands are separated using ‘“ + thousandsSep + “‘“;<br goog_ds_charindex="11207"><br>&nbsp; showMessage(msg);<br goog_ds_charindex="11227"><br>}<br goog_ds_charindex="11229"><br></p><br><p goog_ds_charindex="11231">上述三步中在第二步和第三步中间隐含了伊特特殊的步骤，就是<span class="hilite1"><span class="hilite1">GWT</span></span>编译器结合接口文件和属性文件编译出了一个</p><br><p goog_ds_charindex="11284">类，这个类实现了这个接口，每一个方法返回属性文件中的值。</p><br><p goog_ds_charindex="11314">其中<span class="hilite1"><span class="hilite1">GWT</span></span>.create()方法可以获得生成的中间类的引用。</p><br><p goog_ds_charindex="11346">&nbsp;</p><br><p goog_ds_charindex="11347">通常情况下，接口方法明和属性文件中的名字相同，例如：</p><br><p goog_ds_charindex="11375">String decimalSeparator(); 和 thousandsSeparator = .</p><br><p goog_ds_charindex="11428">但是也可以自定义接口方法和属性文件中内容的映射，例如：</p><br><p goog_ds_charindex="11457">&nbsp;</p><br><p goog_ds_charindex="11458">&nbsp;public interface NumberFormatConstantsWithAltKey extends Constants {<br goog_ds_charindex="11528"><br>&nbsp; /<br goog_ds_charindex="11534"><br>&nbsp;&nbsp; <em> @<span class="hilite1"><span class="hilite1">gwt</span></span>.key fmt.sep.decimal<br goog_ds_charindex="11564"><br>&nbsp;&nbsp; </em> @return the localized decimal separator<br goog_ds_charindex="11609"><br>&nbsp;&nbsp; <em>/<br goog_ds_charindex="11615"><br>&nbsp; String decimalSeparator();</em></p><br><p goog_ds_charindex="11645">&nbsp; /**<br goog_ds_charindex="11651"><br>&nbsp;&nbsp;  @<span class="hilite1"><span class="hilite1">gwt</span></span>.key fmt.sep.decimal<br goog_ds_charindex="11681"><br>&nbsp;&nbsp; <em> @return the localized thousands separator<br goog_ds_charindex="11728"><br>&nbsp;&nbsp; </em>/<br goog_ds_charindex="11734"><br>&nbsp; String thousandsSeparator();<br goog_ds_charindex="11765"><br>}<br goog_ds_charindex="11767"><br></p><br><p goog_ds_charindex="11769">@<span class="hilite1"><span class="hilite1">gwt</span></span>.key fmt.sep.decimal 定义了属性文件中key的内容，所以属性文件应该为：</p><br><p goog_ds_charindex="11821">#NumberFormatConstants.properties</p><br><p goog_ds_charindex="11856">fmt.sep.decimal = .<br goog_ds_charindex="11876"><br>fmt.sep.thousands = ,<br goog_ds_charindex="11898"><br></p><br><p goog_ds_charindex="11900">Constants子接口中定义的方法必须满足如下形式：</p><br><p goog_ds_charindex="11929">&nbsp;</p><br><p goog_ds_charindex="11930">T methodName()</p><br><p goog_ds_charindex="11946">&nbsp;</p><br><p goog_ds_charindex="11947">这里T是一个返回值，T可以使用如下表中的所有类型：</p><br><p goog_ds_charindex="11974"><strong goog_ds_charindex="11975">T类型</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong goog_ds_charindex="12004">属性文件定义</strong><br goog_ds_charindex="12012"><br>String&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单的字符串 <br goog_ds_charindex="12049"><br>String[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用逗号分割的字符串，如果某个字符串中包含逗号需要使用\作为转移字符，例如：’\,’&nbsp; <br goog_ds_charindex="12125"><br>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int值，在编译的时候做类型检查 <br goog_ds_charindex="12174"><br>float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float值，在编译的时候做类型检查 <br goog_ds_charindex="12224"><br>double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double值，在编译的时候做类型检查 <br goog_ds_charindex="12273"><br>boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean值”true”&nbsp;或者 “false”),&nbsp;在编译的时候做类型检查 <br goog_ds_charindex="12342"><br>Map&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用逗号分隔的字符产，每一个字符产在属性文件中有一条定义，定义了一个Key-Value值</p><br><p goog_ds_charindex="12417">&nbsp;</p><br><p goog_ds_charindex="12418">Map示例：</p><br><p goog_ds_charindex="12426">a = X<br goog_ds_charindex="12432"><br>b = Y<br goog_ds_charindex="12438"><br>c = Z<br goog_ds_charindex="12444"><br>someMap = a, b, c</p><br><p goog_ds_charindex="12463">&nbsp;</p><br><p goog_ds_charindex="12464">Map someMap（）；方法得到的内容为：{a:X, b:Y, c:Z}<br goog_ds_charindex="12503"><br></p><br><br goog_ds_charindex="12505"><br><p goog_ds_charindex="12506" style="font-weight: bold;">ConstantsWithLookup</p><br><p goog_ds_charindex="12527">ConstantsWithLookup是Constants的子接口，用法一样，只不过ConstantsWithLookup有一组通过属性名字获取属性值的方法：</p><br><p goog_ds_charindex="12608">getBoolean(String)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 通过名字找到boolean型内容<br goog_ds_charindex="12651"><br>getDouble(String)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 通过名字找到double型内容<br goog_ds_charindex="12693"><br>getFloat(String)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 通过名字找到float型内容<br goog_ds_charindex="12736"><br>getInt(String)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 通过名字找到int型内容<br goog_ds_charindex="12777"><br>getMap(String)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 通过名字找到Map型内容<br goog_ds_charindex="12816"><br>getString(String)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 通过名字找到String型内容<br goog_ds_charindex="12859"><br>getStringArray(String)&nbsp;&nbsp; 通过名字找到String[]型内容</p><br><p goog_ds_charindex="12903"><br goog_ds_charindex="12904"><br></p><br><p goog_ds_charindex="12906">效率问题：Constants效率比ConstantsWithLookup高，为什么呢？Constants在编译的时候会生成对应的JavaScript代码，</p><br><p goog_ds_charindex="12985"><span class="hilite1"><span class="hilite1">GWT</span></span> Compiler会根据程序中是否使用了某些属性来决定这些内容是否会被编译为JavaScript，所以及时在Constants中声明</p><br><p goog_ds_charindex="13056">了某些方法，如果在代码中不使用的话，不会被编译为JavaScript代码的。</p><br><p goog_ds_charindex="13096">但是ConstantsWithLookup有根据属性名字查找属性内容的方法，所以，<span class="hilite1"><span class="hilite1">GWT</span></span> Compiler不能根据上述方法确定属性是否被使用，</p><br><p goog_ds_charindex="13169">所以所有的属性内容都回被编译为JavaScript代码。</p><br><span goog_ds_charindex="13199" style="font-weight: bold;">这是ConstantsWithLookup的优点，也是缺点！</span><br goog_ds_charindex="13231"><br><p goog_ds_charindex="13232"><br goog_ds_charindex="13233"><br></p><br><p goog_ds_charindex="13235" style="font-weight: bold;">Message类</p><br><p goog_ds_charindex="13245">在使用Constants（或者ConstantsWithLookup）的时候，我们只能使用预定义的消息，有些时候我们需要可变的消息。</p><br><p goog_ds_charindex="13313">例如：</p><br><p goog_ds_charindex="13318">&nbsp;&nbsp;&nbsp; 我们需要一个通用的消息再加上一个功能名字的参数怎么实现呢？</p><br><p goog_ds_charindex="13353"><br goog_ds_charindex="13354"><br></p><br><p goog_ds_charindex="13356">Message类相当于Java中的Properties，ResourceBundle和MessageFormat的联合体，例如：</p><br><br goog_ds_charindex="13422"><br><p goog_ds_charindex="13423">消息文件类：<br goog_ds_charindex="13430"><br></p><br><p goog_ds_charindex="13432">public interface GameStatusMessages extends Messages {<br goog_ds_charindex="13487"><br>&nbsp; /<strong><br goog_ds_charindex="13493"><br>&nbsp;&nbsp; <em> @param username the name of a player<br goog_ds_charindex="13535"><br>&nbsp;&nbsp; </em> @param numTurns the number of turns remaining<br goog_ds_charindex="13586"><br>&nbsp;&nbsp; <em> @return a message specifying the remaining turns for a player<br goog_ds_charindex="13653"><br>&nbsp;&nbsp; </em>/<br goog_ds_charindex="13659"><br>&nbsp; String turnsLeft(String username, int numTurns);<br goog_ds_charindex="13710"><br><br goog_ds_charindex="13711"><br>&nbsp; /</strong><br goog_ds_charindex="13717"><br>&nbsp;&nbsp; <em> @param numPoints the number of points<br goog_ds_charindex="13760"><br>&nbsp;&nbsp; </em> @return a message describing the current score for the current player<br goog_ds_charindex="13835"><br>&nbsp;&nbsp; <em>/<br goog_ds_charindex="13841"><br>&nbsp; String currentScore(int numPoints);<br goog_ds_charindex="13879"><br>}<br goog_ds_charindex="13881"><br></em></p><br><br goog_ds_charindex="13883"><br>属性文件定义：<br goog_ds_charindex="13891"><br>turnsLeft = Turns left for player ‘’{0}’’: {1}<br goog_ds_charindex="13938"><br>currentScore = Current score: {0}<br goog_ds_charindex="13972"><br><br goog_ds_charindex="13973"><br>使用：<br goog_ds_charindex="13977"><br>public void beginNewGameRound(String username) {<br goog_ds_charindex="14026"><br>&nbsp; GameStatusMessages messages = (GameStatusMessages) <span class="hilite1"><span class="hilite1">GWT</span></span>.create(GameStatusMessages.class);<br goog_ds_charindex="14117"><br><br goog_ds_charindex="14118"><br>&nbsp; // Tell the new player how many turns he or she has left.<br goog_ds_charindex="14178"><br>&nbsp; int turnsLeft = computeTurnsLeftForPlayer(username);<br goog_ds_charindex="14233"><br>&nbsp; showMessage(messages.turnsLeft(username, turnsLeft));<br goog_ds_charindex="14289"><br><br goog_ds_charindex="14290"><br>&nbsp; // Tell the current player his or her score.<br goog_ds_charindex="14337"><br>&nbsp; int currentScore = computeScore(username);<br goog_ds_charindex="14382"><br>&nbsp; setCurrentPlayer(username);<br goog_ds_charindex="14412"><br>&nbsp; showMessage(messages.currentScore(currentScore));<br goog_ds_charindex="14464"><br>}<br goog_ds_charindex="14466"><br><p goog_ds_charindex="14467"><br goog_ds_charindex="14468"><br></p><br>我们可以看到在使用的时候基本一致，但是，可以使用参数配置原有的消息。<br goog_ds_charindex="14504"><br><br goog_ds_charindex="14505"><br>另外Message的方法的格式为：<br goog_ds_charindex="14523"><br><p goog_ds_charindex="14524">&nbsp;&nbsp;&nbsp; String methodName(optional-params)</p><br><p goog_ds_charindex="14564" style="font-weight: bold;">从中我们也可以看出区别，Message只能使用String类型的参数。</p><br><p goog_ds_charindex="14601"><br goog_ds_charindex="14602"><br></p><br>Constants(或者ConstantsWithLookup)和Message的区别是：<br goog_ds_charindex="14649"><br>Constants用来定义系统的常量，支持多种类型。<br goog_ds_charindex="14676"><br>Message用来定义系统的消息，可以支持参数化消息，但是只支持String类型的内容。<br goog_ds_charindex="14721"><br><p goog_ds_charindex="14722"><br goog_ds_charindex="14723"><br></p><br>在使用Constants和Message的时候，可以将属性文件的编码设置为UTF-8这样，就不用<br goog_ds_charindex="14773"><br>使用Native2ascii将正常的文件转移为utf-8的替换文件了。<br goog_ds_charindex="14809"><br>当然如果你觉得不麻烦也可以使用传统的Java属性文件（使用native2ascii处理过得文件）。<br goog_ds_charindex="14859"><br><p goog_ds_charindex="14860"><br goog_ds_charindex="14861"><br></p><br><p goog_ds_charindex="14863"><br goog_ds_charindex="14864"><br></p><br><strong goog_ds_charindex="14866">功能介绍（JavaScript Native Interface）<br goog_ds_charindex="14900"><br><span goog_ds_charindex="14901" style="font-weight: normal;">JavaScript Native Interface</span> = JSNI<br goog_ds_charindex="14937" style="font-weight: normal;"><br><span goog_ds_charindex="14938" style="font-weight: normal;">JSNI定义了在<span class="hilite1"><span class="hilite1">GWT</span></span>环境下，Java与JavaScript交互的一种方法。<br goog_ds_charindex="14977"><br><br goog_ds_charindex="14978" style="font-weight: normal;"><br></span></strong><br><p goog_ds_charindex="14981"><strong goog_ds_charindex="14982" style="font-weight: normal;"></strong>虽然<span class="hilite1"><span class="hilite1">GWT</span></span>的一些核心的方法是用JavaScript编写的，但是这里还是不推荐使用JNI，应为这样做与<span class="hilite1"><span class="hilite1">GWT</span></span>的初衷相悖，</p><br><p goog_ds_charindex="15043">并且，有一定的难度，开发调试也相对困难。</p><br><br goog_ds_charindex="15065"><br><span goog_ds_charindex="15066" style="font-weight: bold;">Java调用JavaScript方法：</span><br goog_ds_charindex="15087"><br><p goog_ds_charindex="15088">JSNI方法定义需要使用native关键字，并且需要在参数列表之后，结尾的分号之前定义。JSNI方法的开始使用/-{</p><br><p goog_ds_charindex="15149">结尾使用}-<em>/，例如：</em></p><br><p goog_ds_charindex="15163"><br goog_ds_charindex="15164"><br></p><br><p goog_ds_charindex="15166">public static native void alert(String msg) /-{<br goog_ds_charindex="15215"><br>&nbsp; $wnd.alert(msg);<br goog_ds_charindex="15234"><br>}-<em>/;<br goog_ds_charindex="15240"><br></em></p><br><p goog_ds_charindex="15242"><br goog_ds_charindex="15243"><br></p><br><p goog_ds_charindex="15245">当上述方法在Java中调用的时候，实际上将会调用Window的alert方法，将传入的内容打印出来。</p><br><p goog_ds_charindex="15297">在Hosted Mode下，断点可以设置在上述方法中，可以方便的查看传入的参数。</p><br><br goog_ds_charindex="15339"><br><p goog_ds_charindex="15340" style="font-weight: bold;">JavaScript调用Java方法：</p><br><p goog_ds_charindex="15361">方法调用方式：<br goog_ds_charindex="15369"><br></p><br><p goog_ds_charindex="15371">&nbsp;&nbsp;&nbsp; [instance-expr.]@class-name::method-name(param-signature)(arguments)</p><br><p goog_ds_charindex="15445">属性访问方式：<br goog_ds_charindex="15453"><br></p><br><p goog_ds_charindex="15455">&nbsp;&nbsp;&nbsp; [instance-expr.]@class-name::field-name</p><br><p goog_ds_charindex="15500"><br goog_ds_charindex="15501"><br></p><br><p goog_ds_charindex="15503">[instance-expr.]</p><br><p goog_ds_charindex="15521">&nbsp;&nbsp;&nbsp; 用来区分实例方法调用还是静态方法调用。在调用实例方法的时候必须出现，在调用静态方法的时候不能出现。</p><br><p goog_ds_charindex="15576">class-name</p><br><p goog_ds_charindex="15588">&nbsp;&nbsp;&nbsp; 类的名字。</p><br><p goog_ds_charindex="15599">method-name</p><br><p goog_ds_charindex="15612">&nbsp;&nbsp;&nbsp; 方法的名字<br goog_ds_charindex="15622"><br></p><br><p goog_ds_charindex="15624">param-signature<br goog_ds_charindex="15640"><br></p><br><p goog_ds_charindex="15642">&nbsp;&nbsp;&nbsp; 方法的参数列表，这里使用的是内部形式（参考Java虚拟机Class格式），但是不需要写返回值类型。<br goog_ds_charindex="15696"><br>arguments<br goog_ds_charindex="15706"><br>&nbsp;&nbsp;&nbsp; 调用方法的实际参数。</p><br><p goog_ds_charindex="15722">例如：</p><br><p goog_ds_charindex="15727">public class JSNIExample {<br goog_ds_charindex="15754"><br><br goog_ds_charindex="15755"><br>&nbsp; String myInstanceField;<br goog_ds_charindex="15781"><br>&nbsp; static int myStaticField;<br goog_ds_charindex="15809"><br><br goog_ds_charindex="15810"><br>&nbsp; void instanceFoo(String s) {<br goog_ds_charindex="15841"><br>&nbsp;&nbsp;&nbsp; // use s<br goog_ds_charindex="15854"><br>&nbsp; }<br goog_ds_charindex="15858"><br><br goog_ds_charindex="15859"><br>&nbsp; static void staticFoo(String s) {<br goog_ds_charindex="15895"><br>&nbsp;&nbsp;&nbsp; // use s<br goog_ds_charindex="15908"><br>&nbsp; }</p><br><p goog_ds_charindex="15913"><br goog_ds_charindex="15914"><br></p><br><p goog_ds_charindex="15916">&nbsp; // 该方法被调用的时候将在JavaScript中执行，并且</p><br><p goog_ds_charindex="15950">&nbsp; // 可以使用JavaScript中的内容。<br goog_ds_charindex="15975"><br></p><br><p goog_ds_charindex="15977">&nbsp; public native void bar(JSNIExample x, String s) /-{<br goog_ds_charindex="16032"><br>&nbsp;&nbsp;&nbsp; // 调用这个实例本身的instanceFoo方法<br goog_ds_charindex="16062"><br>&nbsp;&nbsp;&nbsp; this.@com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.examples.JSNIExample::instanceFoo(Ljava/lang/String;)(s);<br goog_ds_charindex="16145"><br><br goog_ds_charindex="16146"><br>&nbsp;&nbsp;&nbsp; // 调用x实例（输入参数）上的instanceFoo实例方法<br goog_ds_charindex="16182"><br>&nbsp;&nbsp;&nbsp; x.@com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.examples.JSNIExample::instanceFoo(Ljava/lang/String;)(s);<br goog_ds_charindex="16262"><br><br goog_ds_charindex="16263"><br>&nbsp;&nbsp;&nbsp; // 调用静态方法 staticFoo()<br goog_ds_charindex="16289"><br>&nbsp;&nbsp;&nbsp; @com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.examples.JSNIExample::staticFoo(Ljava/lang/String;)(s);<br goog_ds_charindex="16365"><br><br goog_ds_charindex="16366"><br>&nbsp;&nbsp;&nbsp; // 读取这个实例的变量<br goog_ds_charindex="16383"><br>&nbsp;&nbsp;&nbsp; var val = this.@com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.examples.JSNIExample::myInstanceField;<br goog_ds_charindex="16457"><br><br goog_ds_charindex="16458"><br>&nbsp;&nbsp;&nbsp; // 设置x上的实例变量<br goog_ds_charindex="16475"><br>&nbsp;&nbsp;&nbsp; x.@com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.examples.JSNIExample::myInstanceField = val + “ and stuff”;<br goog_ds_charindex="16557"><br><br goog_ds_charindex="16558"><br>&nbsp;&nbsp;&nbsp; // Read static field (no qualifier)<br goog_ds_charindex="16598"><br>&nbsp;&nbsp;&nbsp; @com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.examples.JSNIExample::myStaticField = val + “ and stuff”;<br goog_ds_charindex="16676"><br>&nbsp; }-<em>/;<br goog_ds_charindex="16684"><br><br goog_ds_charindex="16685"><br>}<br goog_ds_charindex="16687"><br></em></p><br><br goog_ds_charindex="16689"><br><p goog_ds_charindex="16690" style="font-weight: bold;">Java和JavaScript之间参数的传递：</p><br><p goog_ds_charindex="16715">Java -&gt; JavaScript</p><br><p goog_ds_charindex="16735">Java type&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JavaScript Type<br goog_ds_charindex="16790"><br>numeric primitive&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a JavaScript numeric value, as in var x = 42;<br goog_ds_charindex="16874"><br>String&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a JavaScript string, as in var s = “my string”;<br goog_ds_charindex="16963"><br>boolean&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a JavaScript boolean value, as in var b = true;<br goog_ds_charindex="17051"><br>JavaScriptObject (see notes)&nbsp;&nbsp;&nbsp; a JavaScriptObject that must have<br>originated from JavaScript code, typically as the return value of some<br>other JSNI method<br goog_ds_charindex="17206"><br>Java array&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; an opaque value that can only be passed back into Java code<br goog_ds_charindex="17288"><br>any other Java Object&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; an opaque value accessible through special syntax<br goog_ds_charindex="17367"><br></p><br><p goog_ds_charindex="17369">&nbsp;</p><br><span goog_ds_charindex="17370" style="font-weight: bold;">异常</span><br goog_ds_charindex="17374"><br>调用JSNI方法的时候会抛出一个JavaScriptException的异常，但是由于JavaScript不是一个强类型的语言，所以<br goog_ds_charindex="17441"><br>无法想Java一样处理JavaScript异常。一个好的方式是在Java中处理Java异常，在JavaScript中处理JavaScript异常。<br goog_ds_charindex="17515"><br><br goog_ds_charindex="17516"><br>另外在JSNI方法，Java普通方法混掉的过程中，异常可以从最底层移植抛到最想的调用层，例如：<br goog_ds_charindex="17564"><br><br goog_ds_charindex="17565"><br>1. Java method foo() calls JSNI method bar()<br goog_ds_charindex="17610"><br>2. JavaScript method bar() calls Java method baz()<br goog_ds_charindex="17661"><br>3. Java method baz() throws an exception<br goog_ds_charindex="17702"><br>baz()中抛出的异常可以蔓延到bar方法，可以在foo方法中捕获。<br goog_ds_charindex="17737"><br><p goog_ds_charindex="17738"><br goog_ds_charindex="17739"><br></p><br><p goog_ds_charindex="17741"><br goog_ds_charindex="17742"><br></p><br><p goog_ds_charindex="17744"><strong goog_ds_charindex="17745">从Host Model到 Web Model</strong></p><br><p goog_ds_charindex="17770">在Host Model方式下，<span class="hilite1"><span class="hilite1">GWT</span></span>并不将Java代码编译为JavaScript，而是在<span class="hilite1"><span class="hilite1">GWT</span></span>环境中直接运行Java bytecode，</p><br><p goog_ds_charindex="17840">但是项目正式部署之后使用的是Web Model，那么如何从Host Model迁移到Web Model呢？</p><br><p goog_ds_charindex="17895">&nbsp;</p><br><p goog_ds_charindex="17896">首先需要将Java代码编译为JavaScript代码。</p><br><p goog_ds_charindex="17925">使用如下命令可以将Java代码编译为JavaScript代码：</p><br><p goog_ds_charindex="17958">java -cp “%~dp0\src;%~dp0\bin;%~dp0../../<span class="hilite1"><span class="hilite1">gwt</span></span>-user.jar;%~dp0../../<span class="hilite1"><span class="hilite1">gwt</span></span>-dev-windows.jar” com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.dev.<span class="hilite1"><span class="hilite1">GWT</span></span>Compiler -out “%~dp0\www” % com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.sample.hello.Hello</p><br><p goog_ds_charindex="18132">&nbsp;</p><br><p goog_ds_charindex="18133">-cp&nbsp; 指定源代码目录，Class目录，和<span class="hilite1"><span class="hilite1">GWT</span></span>的jar文件的路径</p><br><p goog_ds_charindex="18169">-out 指定JavaScript代码的输出路径</p><br><p goog_ds_charindex="18195">com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.sample.hello.Hello 指定编译的Module，一般是<span class="hilite1"><span class="hilite1">gwt</span></span>.xml文件中entry-point类去掉client之后的内容。</p><br><p goog_ds_charindex="18282">&nbsp;</p><br><p goog_ds_charindex="18283">当代码量比较大的时候，需要指定Java使用内存的大小，否则会内存溢出。</p><br><p goog_ds_charindex="18320">java <strong goog_ds_charindex="18326">-Xmx512m -Xms128m</strong>&nbsp;-cp “%~dp0\src;%~dp0\bin;%~dp0../../<span class="hilite1"><span class="hilite1">gwt</span></span>-user.jar;%~dp0../../<span class="hilite1"><span class="hilite1">gwt</span></span>-dev-windows.jar” com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.dev.<span class="hilite1"><span class="hilite1">GWT</span></span>Compiler -out “%~dp0\www” %* com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.sample.hello.Hello</p><br><p goog_ds_charindex="18514">&nbsp;</p><br><p goog_ds_charindex="18515">之后将编译成的JavaScript代码拷贝到Web项目的根目录中，与WEB-INF相同层次的目录。</p><br><p goog_ds_charindex="18566">&nbsp;</p><br><p goog_ds_charindex="18567">最后需要将<span class="hilite1"><span class="hilite1">gwt</span></span>.xml文件中定义的service编程对应的Servlet。</p><br><p goog_ds_charindex="18607"><servlet class="com.google.gwt.sample.dynatable.server.SchoolCalendarServiceImpl" path="/calendar"></servlet></p><br><p goog_ds_charindex="18709">&nbsp;</p><br><p goog_ds_charindex="18710">=&gt;</p><br><p goog_ds_charindex="18714">&nbsp;</p><br><p goog_ds_charindex="18715"><servlet></servlet></p><br><p goog_ds_charindex="18726">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<servlet-name></servlet-name>Calendar</p><br><p goog_ds_charindex="18770">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<servlet-class></servlet-class>com.google.<span class="hilite1"><span class="hilite1">gwt</span></span>.sample.dynatable.server.SchoolCalendarServiceImpl</p><br><p goog_ds_charindex="18872">&nbsp;</p><br><p goog_ds_charindex="18885">&nbsp;</p><br><p goog_ds_charindex="18886"><servlet-mapping></servlet-mapping></p><br><p goog_ds_charindex="18905">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<servlet-name></servlet-name>Calendar</p><br><p goog_ds_charindex="18949">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<url-pattern></url-pattern>/calendar</p><br><p goog_ds_charindex="18992">&nbsp;</p><br><p goog_ds_charindex="19012"><br goog_ds_charindex="19013"><br></p><br><span goog_ds_charindex="19015" style="font-weight: bold;">使用数据源</span><br><p goog_ds_charindex="19023">Hosted Mode 虽然开发起来很方便，但是也有缺点，例如，数据源的配置就有问题。</p><br><p goog_ds_charindex="19068">在<span class="hilite1"><span class="hilite1">GWT</span></span> Hosted Mode下无法配置数据源，一种可选的方式是使用一个假的数据库链接</p><br><p goog_ds_charindex="19114">管理类，这个类的接口返回Connection，内部以DriverManager的方式实现，等待</p><br><p goog_ds_charindex="19163">后续部署之后再切换到数据源模式。<br goog_ds_charindex="19180"><br></p><br><p goog_ds_charindex="19182"><br goog_ds_charindex="19183"><br></p><br><p goog_ds_charindex="19185" style="font-weight: bold;">日志处理(Log4J)</p><br>回想<span class="hilite1"><span class="hilite1">GWT</span></span>应用程序，client包内部的代码将会被编译为客户端JavaScript代码，所以这里<br goog_ds_charindex="19246"><br>不需要记录日志，也不可能使用Log4j。<br goog_ds_charindex="19267"><br>但是Server包内的内容在服务器上运行，需要合理的使用日志。<br goog_ds_charindex="19299"><br><p goog_ds_charindex="19300" style="font-weight: bold;"><br goog_ds_charindex="19301"><br></p><br><p goog_ds_charindex="19303" style="font-weight: bold;">&nbsp;</p><br><p goog_ds_charindex="19304"><strong goog_ds_charindex="19305">一个简单的Login示例</strong></p><br><p goog_ds_charindex="19320">代码结构如下：</p><br><p goog_ds_charindex="19329">&nbsp;</p><br><p goog_ds_charindex="19330">└─src<br goog_ds_charindex="19336"><br>&nbsp;&nbsp;&nbsp; └─com<br goog_ds_charindex="19346"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └─jpleasure<br goog_ds_charindex="19366"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └─<span class="hilite1"><span class="hilite1">gwt</span></span><br goog_ds_charindex="19384"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └─logon<br goog_ds_charindex="19408"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; LogonDemo.<span class="hilite1"><span class="hilite1">gwt</span></span>.xml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">GWT</span></span>配置模块文件<br goog_ds_charindex="19480"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; <br goog_ds_charindex="19504"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├─client&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户端代码包<br goog_ds_charindex="19580"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; │&nbsp; LogonDemo.java&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hilite1"><span class="hilite1">GWT</span></span>代码的入口点<br goog_ds_charindex="19653"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; │&nbsp; LogonDemoController.java&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;画面迁移控制类<br goog_ds_charindex="19721"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; │&nbsp; <br goog_ds_charindex="19748"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; ├─exception&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;异常定义包<br goog_ds_charindex="19820"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ApplicationException.java&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用程序异常<br goog_ds_charindex="19889"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br goog_ds_charindex="19920"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp; ├─panel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页面Panel包<br goog_ds_charindex="19997"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujziyz00lzxwrqjcyr5eud/" rel="next" title="sql server出错-transaction can not start while firehose mode">
+                <i class="fa fa-chevron-left"></i> sql server出错-transaction can not start while firehose mode
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujziy800l9xwrqfkhcgugu/" rel="prev" title="jsp重定向forward和sendRedirect的比较">
+                jsp重定向forward和sendRedirect的比较 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

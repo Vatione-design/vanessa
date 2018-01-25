@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            Jeroen Borgers译者            韩锴            发布于            2008年10月29日 上午2时54分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 6中的线程优化真的有效么？——第二部分">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5uy01yu4urqwef43j17/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            Jeroen Borgers译者            韩锴            发布于            2008年10月29日 上午2时54分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.infoq.com/resource/sponsorship/featuredcategory/739/Java.gif;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/java-threading-optimizations-p2/zh/resources/image1.jpg;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/java-threading-optimizations-p2/zh/resources/image3.jpg;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310">
+<meta property="og:image" content="http://www.infoq.com/resource/articles/java-threading-optimizations-p2/zh/resources/image2.jpg;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310">
+<meta property="og:updated_time" content="2018-01-22T10:24:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 6中的线程优化真的有效么？——第二部分">
+<meta name="twitter:description" content="作者            Jeroen Borgers译者            韩锴            发布于            2008年10月29日 上午2时54分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt">
+<meta name="twitter:image" content="http://www.infoq.com/resource/sponsorship/featuredcategory/739/Java.gif;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5uy01yu4urqwef43j17/"/>
+
+
+
+
+
+  <title>Java 6中的线程优化真的有效么？——第二部分 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5uy01yu4urqwef43j17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 6中的线程优化真的有效么？——第二部分</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-05T15:47:00+08:00">
+                2008-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>            作者<br>            <strong>Jeroen Borgers</strong>译者<br>            <strong>韩锴</strong><br>            发布于<br>            2008年10月29日 上午2时54分<br>        </p>
+
+<pre><code>&lt;dl class=&quot;tags2&quot;&gt;&lt;dt class=&quot;community&quot;&gt;社区&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/java;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot; name=&quot;java&quot; id=&quot;739&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Java&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;主题&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/performance-scalability;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot; name=&quot;performance-scalability&quot; id=&quot;754&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;性能和可伸缩性&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;标签&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/Parallel-Programming;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot; name=&quot;Parallel-Programming&quot; id=&quot;1,405&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;并行计算&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/JVM;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot; name=&quot;JVM&quot; id=&quot;965&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;JVM&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/Multi-threading;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot; name=&quot;Multi-threading&quot; id=&quot;1,420&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;多线程&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/concurrency;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot; name=&quot;concurrency&quot; id=&quot;1,191&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;并发&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/JavaSE;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot; name=&quot;JavaSE&quot; id=&quot;964&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Java SE&lt;/a&gt;&lt;/dd&gt;&lt;/dl&gt;
+
+   &lt;p&gt;在&lt;a href=&quot;http://www.infoq.com/cn/articles/java-threading-optimizations-p1;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310&quot;&gt;本文的第一部分&lt;/a&gt;中，
+</code></pre><p>我们通过一个单一线程的基准，比较了同步的StringBuffer和非同步的StringBuilder之间的性能。从最初的基准测试结果来看，偏向锁<br>提供了最佳的性能，比其他的优化方式更有效。测试的结果似乎表明获取锁是一项昂贵的操作。但是在得出最终的结论之前，我决定先对结果进行检验：我请我的同<br>事们在他们的机器上运行了这个测试。尽管大多数结果都证实了我的测试结果，但是有一些结果却完全不同。在本文的第二部分中，我们将更深入地看一看用于检验<br>测试结果的技术。最后我们将回答现实中的问题：为什么在不同的处理器上的锁开销差异如此巨大？</p><p></p>
+<div class="vendor-content-box-float"><br>    <h3>相关<span class="vendor">厂商</span>内容</h3><br><br><br><br><br>        <p class="entrypdf"><br>            <a href="http://www.infoq.com/infoq/url.action?i=407&amp;t=f" target="_blank"><br>                InfoQ中文站电子杂志《架构师》试刊号发布<br>            </a><br>        </p><br><br>        <p class="entryarticle"><br>            <a href="http://www.infoq.com/infoq/url.action?i=444&amp;t=f" target="_blank"><br>                Java 6中的线程优化真的有效么？（第二部分）<br>            </a><br>        </p><br><br>        <p class="entrydemo"><br>            <a href="http://www.infoq.com/infoq/url.action?i=430&amp;t=f" target="_blank"><br>                中国软件安全峰会(（11月5日·6日）后报名<br>            </a><br>        </p><br><br>        <p class="entrydemo"><br>            <a href="http://www.infoq.com/infoq/url.action?i=443&amp;t=f" target="_blank"><br>                沙龙：OpenSolaris前世今生/Groovy&amp;Grails应用二三事(11.8西安)<br>            </a><br>        </p><br><br>        <p class="entrypdf"><br>            <a href="http://www.infoq.com/infoq/url.action?i=344&amp;t=f" target="_blank"><br>                IDC：《软件商成长路线图》白皮书免费下载<br>            </a><br>        </p><br><br><br><br><br>        <h3>相关赞助商</h3><br><br>            <a href="http://www.infoq.com/infoq/url.action?i=245&amp;t=f" target="_blank"><br>                <img src="http://www.infoq.com/resource/sponsorship/featuredcategory/739/Java.gif;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310" alt="" title="" style="margin: 0pt 0pt 5px 5px;" align="right" border="0"><br>            </a><br><br><br><br>        <div class="entrysponsors"><br>            <p><a href="http://www.infoq.com/infoq/url.action?i=244&amp;t=f" target="_blank">InfoQ中文站Java社区</a>，关注企业Java社区的变化与创新，通过新闻、文章、视频访谈和演讲以及迷你书等为中国Java技术社区提供一流资讯。</p><br>        </div>
+
+<p></p></div><p></p>
+<p></p><h2>基准测试中的陷阱</h2><p></p>
+<p>通过一个基准测试，尤其是一个“小规模基准测试”（microbenchmark），来回答这个问题是非常困难的。多半情况下，基准测试会出现一些<br>与你期望测量的完全不同的情景。即使当你要测量影响这个问题的因素时，结果也会被其他的因素所影响。有一点在这个实验开始之初就已经很明确了，即这个基准<br>测试需要由其他人全面地进行审查，这样我才能避免落入报告无效基准测试数据的陷阱中。除了其他人的检查以外，我还使用了一些工具和技术来校验结果，这些我<br>会在下面的几节中谈到。</p><br><h2>结果的统计处理</h2><br><p>大多数计算机所执行的操作都会在某一固定的时间内完成。就我的经验而言，我发现即使是那些不确定性的操作，在大多数条件下基本上也能在固定的时间内<br>完成。正是根据计算的这种特性，我们可以使用一种工具，它通过测量让我们了解事情何时开始变得不正常了。这样的工具是基于统计的，其测量结果会有些出入。<br>这就是说，即使看到了一些超过正常水平的报告值，我也不会做过多过的解释的。原因是这样的，如果我提供了指令数固定的CPU，而它并没有在相对固定的时间<br>内完成的话，就说明我的测量受到了一些外部因素的影响。如果测试结果出现了很大的异常，则意味着我必须找到这个外部的影响进而解决它。</p><br><p>尽管这些异常效果会在小规模基准测试中被放大，但它不至于会影响大规模的基准测试。对于大规模的基准测试来说，被测量的目标应用程序的各个方面会彼<br>此产生干扰，这会带来一些异常。但是异常仍然能够提供一些很有益的信息，可以帮助我们对干扰级别作出判断。在稳定的负荷下，我并不会对个别异常情况感到意<br>外；当然，异常情况不能过多。对于那些比通常结果大一些或小一些的结果，我会观察测试的运行情况，并将它视为一种信号：我的基准测试尚未恰当地隔离或者设<br>置好。这样对相同的测试进行不同的处理，恰恰说明了全面的基准测试与小规模基准测试之间的不同。</p><br><p>最后一点，到此为止仍然不能说明你所测试的就是你所想的。这至多只能说明，对于最终的问题，这个测试是最有可能是正确的。</p><br><h3>预热方法的缓存</h3><br><p>JIT会编译你的代码，这也是众多影响基准测试的行为之一。Hotspot会频繁地检查你的程序，寻找可以应用某些优化的机会。当找到机会后，它会<br>要求 JIT编译器重新编译问题中的某段代码。此时它会应用一项技术，即当前栈替换（On Stack<br>Replacement，OSR），从而切换到新代码的执行上。执行OSR时会对测试产生各种连锁影响，包括要暂停线程的执行。当然，所有这样的活动都会<br>干扰到我们的基准测试。这类干扰会使测试出现偏差。我们手头上有两款工具，可以帮助我们标明代码何时受到JIT的影响了。第一个当然是测试中出现的差异，<br>第二个是-XX:-PrintCompilation标记。幸运的是，如果不是所有的代码在测试的早期就进行JIT化处理，那么我们可以将它视为另外一种<br>启动时的异常现象。我们需要做的就是在开始测量前，先不断地运行基准测试，直到所有代码都已经完成了JIT化。这个预热的阶段通常被称为“预热方法的缓存<br>”。</p><br><blockquote>大多数JVM会同时运行在解释的与本机的模式中。这就是所谓的混合模式执行。随着时间的流逝，Hotspot和JIT会根据收集<br>的信息将解释型代码转化为本机代码。Hotspot为了决定应该使用哪种优化方案，它会抽样一些调用和分支。一旦某个方法达到了特定的阈值后，它会通知<br>JIT生成本机代码。这个阈值可以通过-XX:CompileThreshold标记来设定。例如，设定<br>-XX:CompileThreshold=10000，Hotspot会在代码被执行10,000次后将它编译为本机代码。</blockquote><br><h3>堆管理</h3><br><p>下一个需要考虑的是垃圾收集，或者更广为人知的名字—堆管理。在任何应用程序执行的过程中，都会定期地发生很多种内存管理活动。它们包括：重新划分<br>栈空间大小、回收不再被使用的内存、将数据从一处移到另一处等等。所有这些行为都导致JVM影响你的应用程序。我们面对的问题是：基准测试中是否需要将内<br>存维护或者垃圾回收的时间包括进来？问题的答案取决于你要解决的问题的种类。在本例中，我只对获取锁的开销感兴趣，也就是说，我必须确保测试中不能包含垃<br>圾回收的时间。这一次，我们又能够通过异常的现象来发现影响测试的因素，一旦出现这种问题，垃圾回收都是一个可能的怀疑对象。明确问题的最佳方式是使用<br>-verbose:gc标志，开启GC的日志功能。</p><br><p>在这个基准测试中，我做了大量的String、StringBuffer和StringBuilder操作。在每次运行的过程中大概会创建4千万个<br>对象。对于这样一种数量级的对象群来说，垃圾回收毫无疑问会成为一个问题。我使用两项技术来避免。第一，提高堆空间的大小，防止在一个迭代中出现垃圾回<br>收。为此，我利用了如下的命令行：</p><br><pre>&gt;java -server -XX:+EliminateLocks -XX:+UseBiasedLocking -verbose:gc -XX:NewSize=1500m   -XX:SurvivorRatio=200000 LockTest</pre><br><p>然后，加入清单1的代码，它为下一次迭代准备好堆空间。</p><br><pre>System.gc();<br>Thread.sleep(1000);</pre><br><p><strong><em>清单1. 运行GC，然后进行短暂的休眠。</em></strong></p><br><p>休眠的目的在于给垃圾回收器充分的时间，在释放其他线程之后完成工作。有一点需要注意：如果没有CPU任何活动，某些处理器会降低时钟频率。因此，<br>尽管CPU时钟会自旋等待，但引入睡眠的同时也会引入延迟。如果你的处理器支持这种特性，你可能必须要深入到硬件并且关闭掉“节能”功能才行。</p><br><p>前面使用的标签并不能阻止GC的运行。它只表示在每一次测试用例中只运行一次GC。这一次的暂停非常小，它产生的开销对最终结果的影响微乎其微。对于我们这个测试来说，这已经足够好了。</p><br><h3>偏向锁延迟</h3><br><p>还有另外一种因素会对测试结果产生重要的影响。尽管大多数优化都会在测试的早期发生，但是由于某些未知的原因，偏向锁只发生在测试开始后的三到四秒<br>之后。我们又要重述一遍，异常行为再一次成为判断是否存在问题的重要标准了。-XX:+TraceBiasedLocking标志可以帮助我们追踪这个问<br>题。还可以延长预热时间来克服偏向锁导致的延迟。</p><br><h3>Hotspot提供的其他优化</h3><br><p>Hotspot不会在完成一次优化后就停止对代码的改动。相反，它会不断地寻找更多的机会，提供进一步的优化。对于锁来说，由于很多优化行为违反了<br>Java存储模型中描述的规范，所以它们是被禁止的。然而，如果锁已经被JIT化了，那么这些限制很快就会消失。在这个单线程化的基准测试<br>中，Hotspot可以非常安全地将锁省略掉。这样就会为其他的优化行为打开大门；比如方法内联、提取循环不变式以及死代码的清除。</p><br><blockquote>如果仔细思考下面的代码，可以发现A和B都是不变的，我们应该把它抽取出来放到循环外面，并引入第三个变量，这样可以避免重复的<br>计算，正如清单3中所示的那样。通常，这都是程序员的事情。但是Hotspot<br>可以识别出循环不变式并把它们抽取到循环体外面。因此，我们可以把代码写得像清单2那样，但是它执行时其实更类似于清单3的样子。<br><pre>  int A = 1;<br>  int B = 2;<br>  int sum = 0;<br>  for (int i =  0; i &lt; someThing; i++) sum += A + B;</pre><br><p><strong>清单2 循环中包含不变式</strong></p><br><pre>  int A = 1;<br>  int B = 2;<br>  int sum = 0;<br>  int invariant = A + B;<br>  for (int i =  0; i &lt; someThing; i++) sum += invariant; </pre><br><p><strong>清单3 不变式已抽取到循环之外</strong></p><br></blockquote><br><p>这些优化真的应该允许么？还是我们应该做一些事情防止它的发生？这个有待商榷。但至少，我们应该知道是否应用了这些优化。我们绝对要避免“死代码消<br>除”这种优化的出现，否则它会彻底扰乱我们的测试！Hotspot能够识别出我们没有使用concatBuffer和concatBuilder操作的结<br>果。或者可以说，这些操作没有边界效应。因此没有任何理由执行这些代码。一旦代码被标识为已“死亡”，JIT就会除去它。好在我的基准测试迷惑了<br>Hotspot，因此它并没有识别出这种优化，至少目前还没有。</p><br><p>如果由于锁的存在而抑制了内联，反之没有锁就可能出现内联，那么我们要确保在测试结果中没有包含额外的方法调用。现在可以用到的一种技术是引入一个接口（清单4）来迷惑Hotspot。</p><br><pre><font color="#7f0055"><strong>public</strong></font><strong> <font id="u_wg474" color="#7f0055">interface</font></strong><font id="u_wg475" color="#000000">Concat {</font><br>     String concatBuffer(String s1, String s2, String s3);<br>     String concatBuilder(String s1, String s2, String s3);<br><font color="#7f0055"><strong><br>public</strong></font><strong> <font color="#7f0055">class</font></strong> <font color="#000000">LockTest</font> <font color="#7f0055"><strong>implements</strong></font> Concat {<br><br>…}</pre><br><p><strong>清单4 使用接口防止方法内联</strong></p><br><p>防止内联的另一种方法是使用命令行选项-XX:-Inline。我已经验证，方法内联并没有给基准测试的报告带来任何不同。</p><br><h3>执行栈输出</h3><br><p>最后，请看下面的输出结果，它使用了下面的命令行标识。</p><br><pre>&gt;java -server -XX:+DoEscapeAnalysis -XX:+PrintCompilation -XX:+EliminateLocks -XX:+UseBiasedLocking -XX:+TraceBiasedLocking LockTest</pre><br><p><img alt="" _href="img://image1.jpg" src="http://www.infoq.com/resource/articles/java-threading-optimizations-p2/zh/resources/image1.jpg;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310"><br><br><br><br><span style="font-weight: bold;">图1 基准测试的执行栈输出</span></p><br><p>JVM默认会启动12个线程，包括：主线程、对象引用处理器、Finalize、Attach监听器等等。上图中第一个灰色段显示的是这些线程的对<br>齐，它们可以使用偏向锁（注意所有地址都以00结尾）。你尽管忽略可以忽略它们。接下来的黄色段包含了已编译方法的信息。我们看一下第5行和12行，能够<br>发现它们都标记了一个额外的“s”。表1的信息告诉我们这些方法都是同步的。包含了“%”的各行已经使用了OSR。红色的行是偏向锁被激活的地方。最底下<br>的蓝绿色框是基准测试开始计时的地方。从记录基准测试开始时间的输出中可以看到，所有编译都已经发生了。这说明前期的预热阶段足够长了。如果你想了解日志<br>输出规范的更多细节，可以参考这个<a href="http://forum.java.sun.com/thread.jspa?forumID=27&amp;messageID=980887&amp;threadID=235212" target="_blank" rel="noopener">页面</a>和这篇<a href="http://www.unixville.com/%7Emoazam/stories/2004/06/17/thePrintcompilationFlagAndHowToReadItsOutput.html" target="_blank" rel="noopener">文章</a>。</p><br><p><img alt="" _href="img://image3.jpg" src="http://www.infoq.com/resource/articles/java-threading-optimizations-p2/zh/resources/image3.jpg;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310"></p><br><p><strong>表1 编译示例码</strong></p><br><h3>单核系统下的结果</h3><br><p>尽管我的多数同事都在使用Intel Core 2<br>Duo处理器，但还是有一小部分人使用陈旧的单核机器。在这些陈旧的机器上，StringBuffer基准测试的结果和StringBuilder实现的<br>结果几乎相同。由于产生这种不同可能是多种因素使然，因此我需要另外一个测试，尝试忽略尽可能多的可能性。最好的选择是，在BIOS中关闭Core 2<br>Duo中的一个核，然后重新运行基准测试。运行的结果如图2所示。</p><br><p><img alt="" _href="img://image2.jpg" src="http://www.infoq.com/resource/articles/java-threading-optimizations-p2/zh/resources/image2.jpg;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310"></p><br><p><strong>图2 单核系统的性能</strong></p><br><p>在多核环境下运行的时候，关闭了三种优化行为后获得了一个基准值。这次，StringBuilder又保持了平稳的吞吐量。更有趣的是，尽管<br>StringBuffer比StringBuilder要稍慢，但是在多核平台下，StringBuffer的性能更接近于StringBuilder。<br>从这个测试开始我们将一步步勾勒出基准测试的真实面目。</p><br><p>在多核的世界中，线程间共享数据的现实呈现出一种全新的面貌。所有现代的CPU必须使用本地存储的缓存，将获取指令和数据的延迟降到最低。当我们使<br>用锁的时候，会导致一次存储关卡（Barrier）被插入到执行路径中。存储关卡像一个信号，它通知CPU此时必须和其他所有的CPU进行协调，以此获得<br>最新的数值。为了完成这个任务，CPU之间将要彼此通讯，从而导致每个处理器暂定当前正在运行的应用程序线程。这个过程要花多少时间已经成了CPU存储模<br>型的指标之一。越是保守的存储模型，越是线程安全的，但是它们在协调各个处理器核的时候也要花费更多的时间。在Core 2<br>Duo上，第二个核将固定的运行基准从3731ms提高到了6574ms，或者说增加了176%。很明显，Hotspot所提供的任何帮助都能明显改进我<br>们的应用程序的总体性能。</p><br><h2>逸出分析真的起作用了么？</h2><br><p>现在，还有一种优化很明显会起作用，但是我们还没有考虑，它就是锁省略。锁省略是最近才实现的技术，而且它依赖于逸出分析，后者是一种<br>Profiling<br>技术，其自身也是刚刚才实现的。为了稳妥一些，各公司和组织都宣称这些技术只有在有限的几种情况下才起作用。比如，在一个简单的循环里，对一个局部变量执<br>行递增，且该操作被包含在一个同步块内，由一个局部的锁保护着。这种情况下逸出分析是起作用的[<a href="http://blog.nirav.name/2007_02_01_archive.html" target="_blank" rel="noopener">http://blog.nirav.name/2007_02_01_archive.html</a>]。同时它在Mont Carlo的Scimark2基准测试中可以工作（参见[<a href="http://math.nist.gov/scimark2/index.html" target="_blank" rel="noopener">http://math.nist.gov/scimark2/index.html</a>]）。</p><br><h3>将逸出分析包含在测试中</h3><br><p>那么，为什么逸出分析可以用于上述的情况中，却不能用于我们的基准测试中？我曾经尝试过将StringBuffer和<br>StringBuilder的部分方法进行内联。我也修改过代码，希望可以强制逸出分析运行。我想看到锁最终被忽略，而性能可以获得大幅提升。老实说，处<br>理这个基准测试的过程既困惑，又让人倍感挫折。我必须无数次地在编辑器中使用ctrl-z，以便恢复到前面一个我认为逸出分析应该起作用的版本，但是却不<br>知由于什么原因，逸出分析却突然不起作用了。有时，锁省略却又会莫名其妙地出现。</p><br><p>最后，我认识到激活锁省略似乎和被锁对象的数据大小有关系。你运行清单2的代码就会看到这一点。正如你所看到的，无论运行多少次，结果都毫无区别，这说明DoEscapeAnalysi没有产生影响。</p><br><pre> &gt;java -server -XX:-DoEscapeAnalysis EATest<br> thread unsafe: 941 ms.<br> thread safe: 1960 ms.<br> Thread safety overhead: 208%<br><br> &gt;java -server -XX:+DoEscapeAnalysis EATest<br> thread unsafe: 941 ms.<br> thread safe: 1966 ms.<br> Thread safety overhead: 208% </pre><br><p>在下面的两次运行中，我移除了ThreadSafeObject类中一个没有被用过的域。如你所见，当开启了逸出分析，所有性能有了很大的提高。</p><br><pre> &gt;java -server -XX:-DoEscapeAnalysis EATest<br> thread unsafe: 934 ms.<br> thread safe: 1962 ms.<br> Thread safety overhead: 210%<br><br> &gt;java -server -XX:+DoEscapeAnalysis EATest<br> thread unsafe: 933 ms.<br> thread safe: 1119 ms.<br> Thread safety overhead: 119%</pre><br><p>逸出分析的数目在Windows和Linux上都能看到。然而在Mac OS<br>X上，即使有额外未被使用的变量也不会有任何影响，任何版本的基准测试的结果都是120%。这让我不由地相信在Mac OS<br>X上有效性的范围比其他系统更广泛。我猜测这是由于它的实现比较保守，根据不同条件（比如锁对象数据大小和其他OS特定的特性）及早地关掉了它。</p><br><h2>结论</h2><br><p>当我刚开始这个实验，解释应用各种锁优化的Hotspot的有效性的时候，我估计它将花费我几个小时的时间，最终这会丰富我的blog的内容。但是<br>就像其他的基准测试一样，对结果进行验证和解释的过程最终耗费了几周的时间。同样，我也与很多专家进行合作，他们分别花费了大量时间检查结果，并发表他们<br>的见解。即使在这些工作完成以后，仍然很难说哪些优化起作用了，而哪些没有起作用。尽管这篇文章引述了一组测试结果，但它们是特定我的硬件和系统的。大家<br>可以考虑是否能在自己的系统上看到相同类型的测试结果。另外，我最初认为这不过是个小规模基准测试，但是后来它逐渐既要满足我，也要满足所有审核代码的<br>人，而且去掉了Hotspot不必要的优化。总之，这个实验的复杂度远远地超出了我的预期。</p><br><p>如果你需要在多核机器上运行多线程的应用程序，并且关心性能，那么很明显，你需要不断地更新所使用的JDK到最新版本。很多（但不是全部）前面的版<br>本的优化都可以在最新的版本中获得兼容。你必须保证所有的线程优化都是激活的。在JDK 6.0中，它们默认是激活的。但是在JDK<br>5.0中，你需要在命令行中显式地设置它们。如果你在多核机器上运行单线程的应用程序，就要禁用除第一个核以外所有核的优化，这样会使应用程序运行得更<br>快。</p><br><p>在更低级的层面上，单核系统上锁的开销远远低于双核处理器。不同核之间的协调，比如存储关卡语义，通过关掉一个核运行的测试结果看，很明显会带来系<br>统开销。我们的确需要线程优化，以此降低这一开销。幸运的是，锁粗化和（尤其是）偏向锁对于基准测试的性能确实有明显的影响。我也希望逸出分析与锁省略一<br>起更能够做到更好，产生更多的影响。这项技术会起作用，可只是在很少的情况下。客观地说，逸出分析仍然还处于它的初级阶段，还需要大量的时间才能变得成<br>熟。</p><br><p>最后的结论是，最权威的基准测试是让你的应用程序运行在自己的系统上。当你的多线程应用的性能没有符合你的期望的时候，这篇文章能够为你提供了一些思考问题的启示。而这就是此文最大的价值所在。</p><br><h2>关于Jeroen Borgers</h2><br><p>Jeroen Borger是<a href="http://www.xebia.com/" target="_blank" rel="noopener">Xebia </a>的资深咨询师。Xebia是<br>一家国际IT咨询与项目组织公司，专注于企业级Java和敏捷开发。Jeroen帮助他的客户攻克企业级Java系统的性能问题，他同时还是Java性能<br>调试课程的讲师。他在从1996年开始就可以在不同的Java项目中工作，担任过开发者、架构师、团队lead、质量负责人、顾问、审核员、性能测试和调<br>试员。他从2005年开始专注于性能问题。</p><br><h2>鸣谢</h2><br><p>没有其他人的鼎力相助，是不会有这篇文章的。特别感谢下面的朋友：</p><br><p>Dr. Cliff Click，原Sun公司的Server VM主要架构师，现工作在Azul System；他帮我分析，并提供了很多宝贵的资源。</p><br><p>Kirk Pepperdine，性能问题的权威，帮助我编辑文章。</p><br><p>David Dagastine，Sun JVM性能组的lead，他为我解释了很多问题，并把我引领到正确的方向。</p><br><p>我的很多Xebia的同事帮我进行了基准测试。</p><br><h2>资源</h2><br><p>Java   concurrency in practice, Brian Goetz et all.</p><br><p><a href="http://www.ibm.com/developerworks/java/library/j-jtp10185/" target="_blank" rel="noopener">Java   theory and practice: Synchronization optimizations in Mustang</a>,</p><br><p><a href="http://blog.xebia.com/2007/12/21/did-escape-analysis-escape-from-java-6/#more-358" target="_blank" rel="noopener">Did escape analysis escape from Java 6</a></p><br><p>Dave Dice’s <a href="http://blogs.sun.com/dave/entry/biased_locking_in_hotspot" target="_blank" rel="noopener">Weblog</a></p><br><p><a href="http://java.sun.com/performance/reference/whitepapers/6_performance.html" target="_blank" rel="noopener">Java SE 6 Performance White Paper</a></p><br><p><strong>清单1.</strong></p><br><p class="western" id="u_wg618" style="margin-bottom: 0pt; line-height: 100%;">&nbsp;</p><br><p class="western" id="u_wg620" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;   <font id="jwz8" size="2"><span id="u_wg621" lang="en-US"><font id="u_wg622"><font id="u_wg623" face="Courier New, monospace"><strong id="u_wg624"><font id="u_wg625" color="#7f0055">public</font></strong>   <strong id="u_wg626"><font id="u_wg627" color="#7f0055">class</font></strong><font id="u_wg628" color="#000000">   LockTest {</font></font></font></span></font></p><br><p class="western" id="u_wg629" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz80" size="2"><span id="u_wg630" lang="en-US"><font id="u_wg631"><font id="u_wg632" face="Courier New, monospace"><strong id="u_wg633"><font id="u_wg634" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; private</font></strong>   <strong id="u_wg635"><font id="u_wg636" color="#7f0055">static</font></strong>   <strong id="u_wg637"><font id="u_wg638" color="#7f0055">final</font></strong>   <strong id="u_wg639"><font id="u_wg640" color="#7f0055">int</font></strong>   <em id="u_wg641"><font id="u_wg642" color="#0000c0">MAX</font></em><font id="u_wg643" color="#000000">   = 20000000; </font><font id="u_wg644" color="#3f7f5f">// 20   million</font></font></font></span></font></p><br><p class="western" id="u_wg645" style="margin-bottom: 0pt; line-height: 100%;"><font id="jwz81" size="2"><br id="u_wg646"><br></font></p><br><p class="western" id="u_wg647" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz82" size="2"><span id="u_wg648" lang="en-US"><font id="u_wg649"><font id="u_wg650" face="Courier New, monospace"><strong id="u_wg651"><font id="u_wg652" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; public</font></strong>   <strong id="u_wg653"><font id="u_wg654" color="#7f0055">static</font></strong>   <strong id="u_wg655"><font id="u_wg656" color="#7f0055">void</font></strong><font id="u_wg657" color="#000000">   <span id="u_wg658" style="background: rgb(192, 192, 192) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">main</span>(String[]   args)   </font><strong id="u_wg659"><font id="u_wg660" color="#7f0055">throws</font></strong><font id="u_wg661" color="#000000">   InterruptedException {</font></font></font></span></font></p><br><p class="western" id="u_wg667" style="margin-left: 0.49in; text-indent: 0.49in; margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz83" size="2"><span id="u_wg663" lang="en-US"><font id="u_wg664"><font id="u_wg665" face="Courier New, monospace"><font id="u_wg666" color="#3f7f5f">//   warm up the method   cache</font></font></font></span><span id="u_wg668" lang="en-US"><font id="u_wg669"><font id="u_wg670" face="Courier New, monospace"><strong id="u_wg671"><font id="u_wg672" color="#7f0055"><br id="h.b1"><br></font></strong></font></font></span></font></p><br><p class="western" id="u_wg667" style="margin-left: 0.49in; text-indent: 0.49in; margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz84" size="2"><span id="u_wg668" lang="en-US"><font id="u_wg669"><font id="u_wg670" face="Courier New, monospace"><strong id="u_wg671"><font id="u_wg672" color="#7f0055">for</font></strong><font id="u_wg673" color="#000000">   (</font><strong id="u_wg674"><font id="u_wg675" color="#7f0055">int</font></strong><font id="u_wg676" color="#000000">   i = 0; i &lt;   </font><em id="u_wg677"><font id="u_wg678" color="#0000c0">MAX</font></em><font id="u_wg679" color="#000000">;   i++) {</font></font> </font></span></font></p><br><p class="western" id="u_wg680" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz85" size="2"><span id="u_wg681" lang="en-US"><font id="u_wg682"><font id="u_wg683" face="Courier New, monospace"><font id="u_wg684" color="#000000">   <em id="u_wg685">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; concatBuffer</em>(</font><font id="u_wg686" color="#2a00ff">“Josh”</font><font id="u_wg687" color="#000000">,   </font><font id="u_wg688" color="#2a00ff">“James”</font><font id="u_wg689" color="#000000">,   </font><font id="u_wg690" color="#2a00ff">“Duke”</font><font id="u_wg691" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg692" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz86" size="2"><span id="u_wg693" lang="en-US"><font id="u_wg694"><font id="u_wg695" face="Courier New, monospace"><font id="u_wg696" color="#000000">   <em id="u_wg697">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; concatBuilder</em>(</font><font id="u_wg698" color="#2a00ff">“Josh”</font><font id="u_wg699" color="#000000">,   </font><font id="u_wg700" color="#2a00ff">“James”</font><font id="u_wg701" color="#000000">,   </font><font id="u_wg702" color="#2a00ff">“Duke”</font><font id="u_wg703" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg704" style="margin-left: 0.49in; text-indent: 0.49in; margin-bottom: 0pt; line-height: 100%;"><font id="u_wg705" face="Courier New, monospace" size="2"><font id="u_wg706"><font id="u_wg707">}</font></font></font></p><br><p class="western" id="u_wg708" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz87" size="2"><span id="u_wg709" lang="en-US"><font id="u_wg710"><font id="u_wg711" face="Courier New, monospace"><font id="u_wg712" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; System.<em id="u_wg713">gc</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg714" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz88" size="2"><span id="u_wg715" lang="en-US"><font id="u_wg716"><font id="u_wg717" face="Courier New, monospace"><font id="u_wg718" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Thread.<em id="u_wg719">sleep</em>(1000);</font></font></font></span></font></p><br><p class="western" id="u_wg720" style="margin-bottom: 0pt; line-height: 100%;"><font id="jwz89" size="2"><br id="u_wg721"><br></font></p><br><p class="western" id="u_wg722" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <font id="jwz810" size="2"><span id="u_wg723" lang="en-US"><font id="u_wg724"><font id="u_wg725" face="Courier New, monospace"><strong id="u_wg726"><font id="u_wg727" color="#7f0055">long</font></strong><font id="u_wg728" color="#000000">   start =   System.<em id="u_wg729">currentTimeMillis</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg730" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz811" size="2"><span id="u_wg731" lang="en-US"><font id="u_wg732"><font id="u_wg733" face="Courier New, monospace"><strong id="u_wg734"><font id="u_wg735" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; for</font></strong><font id="u_wg736" color="#000000">   (</font><strong id="u_wg737"><font id="u_wg738" color="#7f0055">int</font></strong><font id="u_wg739" color="#000000">   i = 0; i &lt;   </font><em id="u_wg740"><font id="u_wg741" color="#0000c0">MAX</font></em><font id="u_wg742" color="#000000">;   i++) {</font></font></font></span></font></p><br><p class="western" id="u_wg743" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz812" size="2"><span id="u_wg744" lang="en-US"><font id="u_wg745"><font id="u_wg746" face="Courier New, monospace"><font id="u_wg747" color="#000000">   <em id="u_wg748">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; concatBuffer</em>(</font><font id="u_wg749" color="#2a00ff">“Josh”</font><font id="u_wg750" color="#000000">,   </font><font id="u_wg751" color="#2a00ff">“James”</font><font id="u_wg752" color="#000000">,   </font><font id="u_wg753" color="#2a00ff">“Duke”</font><font id="u_wg754" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg755" style="margin-bottom: 0pt; line-height: 100%;"><font id="u_wg756" face="Courier New, monospace" size="2"><font id="u_wg757"><font id="u_wg758">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; }</font></font></font></p><br><p class="western" id="u_wg759" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz813" size="2"><span id="u_wg760" lang="en-US"><font id="u_wg761"><font id="u_wg762" face="Courier New, monospace"><strong id="u_wg763"><font id="u_wg764" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; long</font></strong><font id="u_wg765" color="#000000">   bufferCost = System.<em id="u_wg766">currentTimeMillis</em>() -   start;</font></font></font></span></font></p><br><p class="western" id="u_wg767" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz814" size="2"><span id="u_wg768" lang="en-US"><font id="u_wg769"><font id="u_wg770" face="Courier New, monospace"><font id="u_wg771" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; System.</font><em id="u_wg772"><font id="u_wg773" color="#0000c0">out</font></em><font id="u_wg774" color="#000000">.println(</font><font id="u_wg775" color="#2a00ff">“StringBuffer:   “</font><font id="u_wg776" color="#000000"> + bufferCost +   </font><font id="u_wg777" color="#2a00ff">“   ms.”</font><font id="u_wg778" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg779" style="margin-bottom: 0pt; line-height: 100%;"><font id="jwz815" size="2"><br id="u_wg780"><br></font></p><br><p class="western" id="u_wg781" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz816" size="2"><span id="u_wg782" lang="en-US"><font id="u_wg783"><font id="u_wg784" face="Courier New, monospace"><font id="u_wg785" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; System.<em id="u_wg786">gc</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg787" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz817" size="2"><span id="u_wg788" lang="en-US"><font id="u_wg789"><font id="u_wg790" face="Courier New, monospace"><font id="u_wg791" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Thread.<em id="u_wg792">sleep</em>(1000);</font></font></font></span></font></p><br><p class="western" id="u_wg793" style="margin-bottom: 0pt; line-height: 100%;"><font id="jwz818" size="2"><br id="u_wg794"><br></font></p><br><p class="western" id="u_wg795" style="margin-bottom: 0pt; line-height: 100%; margin-left: 120px;" lang="nl-NL"><font id="jwz819" size="2"><span id="u_wg796" lang="en-US"><font id="u_wg797"><font id="u_wg798" face="Courier New, monospace"><font id="u_wg799" color="#000000">   start =   System.<em id="u_wg800">currentTimeMillis</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg801" style="margin-bottom: 0pt; line-height: 100%; margin-left: 120px;" lang="nl-NL"><font id="jwz820" size="2"><span id="u_wg802" lang="en-US"><font id="u_wg803"><font id="u_wg804" face="Courier New, monospace"><strong id="u_wg805"><font id="u_wg806" color="#7f0055">for</font></strong><font id="u_wg807" color="#000000">   (</font><strong id="u_wg808"><font id="u_wg809" color="#7f0055">int</font></strong><font id="u_wg810" color="#000000">   i = 0; i &lt;   </font><em id="u_wg811"><font id="u_wg812" color="#0000c0">MAX</font></em><font id="u_wg813" color="#000000">;   i++) {</font></font></font></span></font></p><br><p class="western" id="u_wg814" style="margin-bottom: 0pt; line-height: 100%; margin-left: 120px;" lang="nl-NL"><font id="jwz821" size="2"><span id="u_wg815" lang="en-US"><font id="u_wg816"><font id="u_wg817" face="Courier New, monospace"><font id="u_wg818" color="#000000">   <em id="u_wg819">concatBuilder</em>(</font><font id="u_wg820" color="#2a00ff">“Josh”</font><font id="u_wg821" color="#000000">,   </font><font id="u_wg822" color="#2a00ff">“James”</font><font id="u_wg823" color="#000000">,   </font><font id="u_wg824" color="#2a00ff">“Duke”</font><font id="u_wg825" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg826" style="margin-bottom: 0pt; line-height: 100%; margin-left: 120px;"><font id="u_wg827" face="Courier New, monospace" size="2"><font id="u_wg828"><font id="u_wg829">   }</font></font></font></p><br><p class="western" id="u_wg830" style="margin-bottom: 0pt; line-height: 100%; margin-left: 80px;" lang="nl-NL">&nbsp;</p><br><div style="margin-left: 120px;"><font id="jwz822" size="2"><span id="u_wg831" lang="en-US"><font id="u_wg832"><font id="u_wg833" face="Courier New, monospace"><strong id="u_wg834"><font id="u_wg835" color="#7f0055">long</font></strong><font id="u_wg836" color="#000000">   builderCost = System.<em id="u_wg837">currentTimeMillis</em>() -   start;</font></font></font></span></font></div><br><p class="western" id="u_wg830" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;</p><br><p class="western" id="u_wg838" style="margin-bottom: 0pt; line-height: 100%; margin-left: 120px;" lang="nl-NL"><font id="jwz823" size="2"><span id="u_wg839" lang="en-US"><font id="u_wg840"><font id="u_wg841" face="Courier New, monospace"><font id="u_wg842" color="#000000">   System.</font><em id="u_wg843"><font id="u_wg844" color="#0000c0">out</font></em><font id="u_wg845" color="#000000">.println(</font><font id="u_wg846" color="#2a00ff">“StringBuilder:   “</font><font id="u_wg847" color="#000000"> + builderCost +   </font><font id="u_wg848" color="#2a00ff">“   ms.”</font><font id="u_wg849" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg850" style="margin-bottom: 0pt; line-height: 100%; margin-left: 120px;" lang="nl-NL"><font id="jwz824" size="2"><span id="u_wg851" lang="en-US"><font id="u_wg852"><font id="u_wg853" face="Courier New, monospace"><font id="u_wg854" color="#000000">   System.</font><em id="u_wg855"><font id="u_wg856" color="#0000c0">out</font></em><font id="u_wg857" color="#000000">.println(</font><font id="u_wg858" color="#2a00ff">“Thread   safety overhead of StringBuffer: “</font></font></font></span></font></p><br><p class="western" id="u_wg859" style="margin-bottom: 0pt; line-height: 100%; margin-left: 80px;" lang="nl-NL">&nbsp;</p><br><div style="margin-left: 120px;"><font id="jwz825" size="2"><span id="u_wg860" lang="en-US"><font id="u_wg861"><font id="u_wg862" face="Courier New, monospace"><font id="u_wg863" color="#000000">   + ((bufferCost <em> 10000 / (builderCost </em> 100)) - 100) +   </font><font id="u_wg864" color="#2a00ff">“%\n”</font><font id="u_wg865" color="#000000">);</font></font></font></span></font></div><br><p class="western" id="u_wg859" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;</p><br><p class="western" id="u_wg866" style="margin-bottom: 0pt; line-height: 100%;"><font id="jwz826" size="2"><br id="u_wg867"><br></font></p><br><p class="western" id="u_wg868" style="margin-bottom: 0pt; line-height: 100%; margin-left: 40px;"><font id="u_wg869" face="Courier New, monospace" size="2"><font id="u_wg870"><font id="u_wg871">   }</font></font></font></p><br><p class="western" id="u_wg872" style="margin-bottom: 0pt; line-height: 100%; margin-left: 40px;"><font id="jwz827" size="2"><br id="u_wg873"><br></font></p><br><p class="western" id="u_wg874" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;</p><br><div style="margin-left: 40px;"><font id="jwz828" size="2"><span id="u_wg875" lang="en-US"><font id="u_wg876"><font id="u_wg877" face="Courier New, monospace"><strong id="u_wg878"><font id="u_wg879" color="#7f0055">public</font></strong>   <strong id="u_wg880"><font id="u_wg881" color="#7f0055">static</font></strong><font id="u_wg882" color="#000000">   String concatBuffer(String s1, String s2, String s3)   {</font></font></font></span></font></div><br><p class="western" id="u_wg874" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;</p><br><p class="western" id="u_wg883" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz829" size="2"><span id="u_wg884" lang="en-US"><font id="u_wg885"><font id="u_wg886" face="Courier New, monospace"><font id="u_wg887" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; StringBuffer sb =   </font><strong id="u_wg888"><font id="u_wg889" color="#7f0055">new</font></strong><font id="u_wg890" color="#000000">   StringBuffer();</font></font></font></span></font></p><br><p class="western" id="u_wg891" style="margin-bottom: 0pt; line-height: 100%;"><font id="u_wg892" face="Courier New, monospace" size="2"><font id="u_wg893"><font id="u_wg894">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append(s1);</font></font></font></p><br><p class="western" id="u_wg895" style="margin-bottom: 0pt; line-height: 100%;"><font id="u_wg896" face="Courier New, monospace" size="2"><font id="u_wg897"><font id="u_wg898">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append(s2);</font></font></font></p><br><p class="western" id="u_wg899" style="margin-bottom: 0pt; line-height: 100%;"><font id="u_wg900" face="Courier New, monospace" size="2"><font id="u_wg901"><font id="u_wg902">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append(s3);</font></font></font></p><br><p class="western" id="u_wg903" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz830" size="2"><span id="u_wg904" lang="en-US"><font id="u_wg905"><font id="u_wg906" face="Courier New, monospace"><strong id="u_wg907"><font id="u_wg908" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return</font></strong><font id="u_wg909" color="#000000">   sb.toString();</font></font></font></span></font></p><br><p class="western" id="u_wg910" style="margin-bottom: 0pt; line-height: 100%; margin-left: 40px;">&nbsp;<font id="u_wg911" face="Courier New, monospace" size="2"><font id="u_wg912"><font id="u_wg913">}</font></font></font></p><br><p class="western" id="u_wg914" style="margin-bottom: 0pt; line-height: 100%; margin-left: 40px;"><font id="jwz831" size="2"><br id="u_wg915"><br></font></p><br><div style="margin-left: 40px;">&nbsp;<font id="jwz832" size="2"><span id="u_wg917" lang="en-US"><font id="u_wg918"><font id="u_wg919" face="Courier New, monospace"><strong id="u_wg920"><font id="u_wg921" color="#7f0055">public</font></strong>   <strong id="u_wg922"><font id="u_wg923" color="#7f0055">static</font></strong><font id="u_wg924" color="#000000">   String concatBuilder(String s1, String s2, String s3)   {</font></font></font></span></font></div><br><p class="western" id="u_wg916" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;</p><br><p class="western" id="u_wg925" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz833" size="2"><span id="u_wg926" lang="en-US"><font id="u_wg927"><font id="u_wg928" face="Courier New, monospace"><font id="u_wg929" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; StringBuilder sb =   </font><strong id="u_wg930"><font id="u_wg931" color="#7f0055">new</font></strong><font id="u_wg932" color="#000000">   StringBuilder();</font></font></font></span></font></p><br><p class="western" id="u_wg933" style="margin-bottom: 0pt; line-height: 100%;"><font id="u_wg934" face="Courier New, monospace" size="2"><font id="u_wg935"><font id="u_wg936">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append(s1);</font></font></font></p><br><p class="western" id="u_wg937" style="margin-bottom: 0pt; line-height: 100%;"><font id="u_wg938" face="Courier New, monospace" size="2"><font id="u_wg939"><font id="u_wg940">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append(s2);</font></font></font></p><br><p class="western" id="u_wg941" style="margin-bottom: 0pt; line-height: 100%;"><font id="u_wg942" face="Courier New, monospace" size="2"><font id="u_wg943"><font id="u_wg944">   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append(s3);</font></font></font></p><br><p class="western" id="u_wg945" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz834" size="2"><span id="u_wg946" lang="en-US"><font id="u_wg947"><font id="u_wg948" face="Courier New, monospace"><strong id="u_wg949"><font id="u_wg950" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return</font></strong><font id="u_wg951" color="#000000">   sb.toString();</font></font></font></span></font></p><br><p class="western" id="u_wg952" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;</p><br><div style="margin-left: 40px;"><font id="u_wg953" size="2"><font id="u_wg954" face="Courier New, monospace"><font id="u_wg955" color="#000000">}</font></font></font></div><br><p class="western" id="u_wg952" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL">&nbsp;</p><br><p class="western" id="u_wg956" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="jwz835" size="2"><br id="u_wg957"><br></font></p><br><p class="western" id="u_wg958" style="margin-bottom: 0pt; line-height: 100%;" lang="nl-NL"><font id="u_wg959" face="Courier New, monospace" size="2"><font id="u_wg960"><font id="u_wg961">}</font></font></font></p><br><p class="western" id="u_wg962" style="margin-bottom: 0.14in;">&nbsp;</p><br><p><strong>清单2.</strong></p><br><p class="western" id="u_wg966" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt" size="2"><span id="u_wg967" lang="en-US"><font id="u_wg968"><font id="u_wg969"><strong id="u_wg970"><font id="u_wg971" color="#7f0055">public</font></strong>   <strong id="u_wg972"><font id="u_wg973" color="#7f0055">class</font></strong><font id="u_wg974" color="#000000">   EATest {</font></font></font></span></font></p><br><p class="western" id="u_wg975" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt0" size="2"><br id="u_wg976"><br></font></p><br><p class="western" id="u_wg977" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt1" size="2"><span id="u_wg978" lang="en-US"><font id="u_wg979"><font id="u_wg980"><strong id="u_wg981"><font id="u_wg982" color="#7f0055">&nbsp;&nbsp;&nbsp; private</font></strong>   <strong id="u_wg983"><font id="u_wg984" color="#7f0055">static</font></strong>   <strong id="u_wg985"><font id="u_wg986" color="#7f0055">final</font></strong>   <strong id="u_wg987"><font id="u_wg988" color="#7f0055">int</font></strong>   <em id="u_wg989"><font id="u_wg990" color="#0000c0">MAX</font></em><font id="u_wg991" color="#000000">   = 200000000; </font><font id="u_wg992" color="#3f7f5f">// 200   million</font></font></font></span></font></p><br><p class="western" id="u_wg993" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt2" size="2"><br id="u_wg994"><br></font></p><br><p class="western" id="u_wg995" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt3" size="2"><span id="u_wg996" lang="en-US"><font id="u_wg997"><font id="u_wg998"><strong id="u_wg999"><font id="u_wg1000" color="#7f0055">&nbsp;&nbsp;&nbsp; public</font></strong>   <strong id="u_wg1001"><font id="u_wg1002" color="#7f0055">static</font></strong>   <strong id="u_wg1003"><font id="u_wg1004" color="#7f0055">final</font></strong>   <strong id="u_wg1005"><font id="u_wg1006" color="#7f0055">void</font></strong><font id="u_wg1007" color="#000000">   main(String[] args)   </font><strong id="u_wg1008"><font id="u_wg1009" color="#7f0055">throws</font></strong><font id="u_wg1010" color="#000000">   InterruptedException {</font></font></font></span></font></p><br><p class="western" id="u_wg1011" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt4" size="2"><span id="u_wg1012" lang="en-US"><font id="u_wg1013"><font id="u_wg1014"><font id="u_wg1015" color="#3f7f5f">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; //   warm up the method cache</font></font></font></span></font></p><br><p class="western" id="u_wg1016" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt5" size="2"><span id="u_wg1017" lang="en-US"><font id="u_wg1018"><font id="u_wg1019"><font id="u_wg1020" color="#000000">   <em id="u_wg1021">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; sumThreadUnsafe</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1022" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt6" size="2"><span id="u_wg1023" lang="en-US"><font id="u_wg1024"><font id="u_wg1025"><font id="u_wg1026" color="#000000">   <em id="u_wg1027">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; sumThreadSafe</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1028" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt7" size="2"><span id="u_wg1029" lang="en-US"><font id="u_wg1030"><font id="u_wg1031"><font id="u_wg1032" color="#000000">   <em id="u_wg1033">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; sumThreadUnsafe</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1034" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt8" size="2"><span id="u_wg1035" lang="en-US"><font id="u_wg1036"><font id="u_wg1037"><font id="u_wg1038" color="#000000">   <em id="u_wg1039">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; sumThreadSafe</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1040" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt9" size="2"><span id="u_wg1041" lang="en-US"><font id="u_wg1042"><font id="u_wg1043"><font id="u_wg1044" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; System.</font><em id="u_wg1045"><font id="u_wg1046" color="#0000c0">out</font></em><font id="u_wg1047" color="#000000">.println(</font><font id="u_wg1048" color="#2a00ff">“Starting   test”</font><font id="u_wg1049" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg1050" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt10" size="2"><br id="u_wg1051"><br></font></p><br><p class="western" id="u_wg1052" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt11" size="2"><span id="u_wg1053" lang="en-US"><font id="u_wg1054"><font id="u_wg1055"><strong id="u_wg1056"><font id="u_wg1057" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; long</font></strong><font id="u_wg1058" color="#000000">   start;</font></font></font></span></font></p><br><p class="western" id="u_wg1059" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt12" size="2"><br id="u_wg1060"><br></font></p><br><p class="western" id="u_wg1061" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt13" size="2"><span id="u_wg1062" lang="en-US"><font id="u_wg1063"><font id="u_wg1064"><font id="u_wg1065" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; start =   System.<em id="u_wg1066">currentTimeMillis</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1067" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt14" size="2"><span id="u_wg1068" lang="en-US"><font id="u_wg1069"><font id="u_wg1070"><font id="u_wg1071" color="#000000">   <em id="u_wg1072">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; sumThreadUnsafe</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1073" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt15" size="2"><span id="u_wg1074" lang="en-US"><font id="u_wg1075"><font id="u_wg1076"><strong id="u_wg1077"><font id="u_wg1078" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; long</font></strong><font id="u_wg1079" color="#000000">   unsafeCost = System.<em id="u_wg1080">currentTimeMillis</em>() -   start;</font></font></font></span></font></p><br><p class="western" id="u_wg1081" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt16" size="2"><span id="u_wg1082" lang="en-US"><font id="u_wg1083"><font id="u_wg1084"><font id="u_wg1085" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; System.</font><em id="u_wg1086"><font id="u_wg1087" color="#0000c0">out</font></em><font id="u_wg1088" color="#000000">.println(</font><font id="u_wg1089" color="#2a00ff">“   thread unsafe: “</font><font id="u_wg1090" color="#000000"> + unsafeCost +   </font><font id="u_wg1091" color="#2a00ff">“   ms.”</font><font id="u_wg1092" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg1093" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt17" size="2"><br id="u_wg1094"><br></font></p><br><p class="western" id="u_wg1095" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt18" size="2"><span id="u_wg1096" lang="en-US"><font id="u_wg1097"><font id="u_wg1098"><font id="u_wg1099" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; start =   System.<em id="u_wg1100">currentTimeMillis</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1101" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt19" size="2"><span id="u_wg1102" lang="en-US"><font id="u_wg1103"><font id="u_wg1104"><font id="u_wg1105" color="#000000">   <em id="u_wg1106">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; sumThreadSafe</em>();</font></font></font></span></font></p><br><p class="western" id="u_wg1107" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt20" size="2"><span id="u_wg1108" lang="en-US"><font id="u_wg1109"><font id="u_wg1110"><strong id="u_wg1111"><font id="u_wg1112" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; long</font></strong><font id="u_wg1113" color="#000000">   safeCost = System.<em id="u_wg1114">currentTimeMillis</em>() -   start;</font></font></font></span></font></p><br><p class="western" id="u_wg1115" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt21" size="2"><span id="u_wg1116" lang="en-US"><font id="u_wg1117"><font id="u_wg1118"><font id="u_wg1119" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; System.</font><em id="u_wg1120"><font id="u_wg1121" color="#0000c0">out</font></em><font id="u_wg1122" color="#000000">.println(</font><font id="u_wg1123" color="#2a00ff">“   thread safe: “</font><font id="u_wg1124" color="#000000"> + safeCost +   </font><font id="u_wg1125" color="#2a00ff">“   ms.”</font><font id="u_wg1126" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg1127" style="margin-left: 0.0766in; text-indent: 0.49in; margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL">&nbsp;&nbsp;   <font id="c2wt22" size="2"><span id="u_wg1128" lang="en-US"><font id="u_wg1129"><font id="u_wg1130"><font id="u_wg1131" color="#000000">System.</font><em id="u_wg1132"><font id="u_wg1133" color="#0000c0">out</font></em><font id="u_wg1134" color="#000000">.println(</font><font id="u_wg1135" color="#2a00ff">“Thread   safety overhead: “</font></font></font></span></font></p><br><p class="western" id="u_wg1127" style="margin-left: 0.49in; text-indent: 0.49in; margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL">&nbsp;</p><br><p class="western" id="u_wg1136" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt23" size="2"><span id="u_wg1137" lang="en-US"><font id="u_wg1138"><font id="u_wg1139"><font id="u_wg1140" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; + ((safeCost <em> 10000 / (unsafeCost </em> 100)) - 100) +   </font><font id="u_wg1141" color="#2a00ff">“%\n”</font><font id="u_wg1142" color="#000000">);</font></font></font></span></font></p><br><p class="western" id="u_wg1143" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt24" size="2"><br id="u_wg1144"><br></font></p><br><p class="western" id="u_wg1145" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1146" size="2"><font id="u_wg1147"><font id="u_wg1148">&nbsp;&nbsp;&nbsp; }</font></font></font></p><br><p class="western" id="u_wg1149" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt25" size="2"><br id="u_wg1150"><br></font></p><br><p class="western" id="u_wg1151" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt26" size="2"><span id="u_wg1152" lang="en-US"><font id="u_wg1153"><font id="u_wg1154"><strong id="u_wg1155"><font id="u_wg1156" color="#7f0055">&nbsp;&nbsp;&nbsp; public</font></strong>   <strong id="u_wg1157"><font id="u_wg1158" color="#7f0055">static</font></strong>   <strong id="u_wg1159"><font id="u_wg1160" color="#7f0055">int</font></strong><font id="u_wg1161" color="#000000">   sumThreadSafe() {</font></font></font></span></font></p><br><p class="western" id="u_wg1162" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt27" size="2"><span id="u_wg1163" lang="en-US"><font id="u_wg1164"><font id="u_wg1165"><font id="u_wg1166" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; String[] names =   </font><strong id="u_wg1167"><font id="u_wg1168" color="#7f0055">new</font></strong><font id="u_wg1169" color="#000000">   String[] {   </font><font id="u_wg1170" color="#2a00ff">“Josh”</font><font id="u_wg1171" color="#000000">,   </font><font id="u_wg1172" color="#2a00ff">“James”</font><font id="u_wg1173" color="#000000">,   </font><font id="u_wg1174" color="#2a00ff">“Duke”</font><font id="u_wg1175" color="#000000">,   </font><font id="u_wg1176" color="#2a00ff">“B”</font><font id="u_wg1177" color="#000000">   };</font></font></font></span></font></p><br><p class="western" id="u_wg1178" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <font id="u_wg1179" size="2"><font id="u_wg1180"><font id="u_wg1181" color="#000000">ThreadSafeObject   ts =   </font><strong id="u_wg1182"><font id="u_wg1183" color="#7f0055">new</font></strong><font id="u_wg1184" color="#000000">   ThreadSafeObject();</font></font></font></p><br><p class="western" id="u_wg1185" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <font id="u_wg1186" size="2"><font id="u_wg1187"><span id="u_wg1188" lang="en-US"><strong id="u_wg1189"><font id="u_wg1190" color="#7f0055">int</font></strong><font id="u_wg1191" color="#000000">   sum = 0;</font></span></font></font></p><br><p class="western" id="u_wg1192" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt28" size="2"><span id="u_wg1193" lang="en-US"><font id="u_wg1194"><font id="u_wg1195"><strong id="u_wg1196"><font id="u_wg1197" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; for</font></strong><font id="u_wg1198" color="#000000">   (</font><strong id="u_wg1199"><font id="u_wg1200" color="#7f0055">int</font></strong><font id="u_wg1201" color="#000000">   i = 0; i &lt;   </font><em id="u_wg1202"><font id="u_wg1203" color="#0000c0">MAX</font></em><font id="u_wg1204" color="#000000">;   i++) {</font></font></font></span></font></p><br><p class="western" id="u_wg1205" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1206" size="2"><font id="u_wg1207"><font id="u_wg1208">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; sum +=   ts.test(names[i % 4]);</font></font></font></p><br><p class="western" id="u_wg1209" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1210" size="2"><font id="u_wg1211"><font id="u_wg1212">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; }</font></font></font></p><br><p class="western" id="u_wg1213" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt29" size="2"><span id="u_wg1214" lang="en-US"><font id="u_wg1215"><font id="u_wg1216"><strong id="u_wg1217"><font id="u_wg1218" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; return</font></strong><font id="u_wg1219" color="#000000">   sum;</font></font></font></span></font></p><br><p class="western" id="u_wg1220" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1221" size="2"><font id="u_wg1222"><font id="u_wg1223">&nbsp;&nbsp;&nbsp; }</font></font></font></p><br><p class="western" id="u_wg1224" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt30" size="2"><br id="u_wg1225"><br></font></p><br><p class="western" id="u_wg1226" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt31" size="2"><span id="u_wg1227" lang="en-US"><font id="u_wg1228"><font id="u_wg1229"><strong id="u_wg1230"><font id="u_wg1231" color="#7f0055">&nbsp;&nbsp;&nbsp; public</font></strong>   <strong id="u_wg1232"><font id="u_wg1233" color="#7f0055">static</font></strong>   <strong id="u_wg1234"><font id="u_wg1235" color="#7f0055">int</font></strong><font id="u_wg1236" color="#000000">   sumThreadUnsafe() {</font></font></font></span></font></p><br><p class="western" id="u_wg1237" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt32" size="2"><span id="u_wg1238" lang="en-US"><font id="u_wg1239"><font id="u_wg1240"><font id="u_wg1241" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; String[] names =   </font><strong id="u_wg1242"><font id="u_wg1243" color="#7f0055">new</font></strong><font id="u_wg1244" color="#000000">   String[] {   </font><font id="u_wg1245" color="#2a00ff">“Josh”</font><font id="u_wg1246" color="#000000">,   </font><font id="u_wg1247" color="#2a00ff">“James”</font><font id="u_wg1248" color="#000000">,   </font><font id="u_wg1249" color="#2a00ff">“Duke”</font><font id="u_wg1250" color="#000000">,   </font><font id="u_wg1251" color="#2a00ff">“B”</font><font id="u_wg1252" color="#000000">   };</font></font></font></span></font></p><br><p class="western" id="u_wg1253" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt33" size="2"><span id="u_wg1254" lang="en-US"><font id="u_wg1255"><font id="u_wg1256"><font id="u_wg1257" color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ThreadUnsafeObject tus =   </font><strong id="u_wg1258"><font id="u_wg1259" color="#7f0055">new</font></strong><font id="u_wg1260" color="#000000">   ThreadUnsafeObject();</font></font></font></span></font></p><br><p class="western" id="u_wg1261" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt34" size="2"><span id="u_wg1262" lang="en-US"><font id="u_wg1263"><font id="u_wg1264"><strong id="u_wg1265"><font id="u_wg1266" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; int</font></strong><font id="u_wg1267" color="#000000">   sum = 0;</font></font></font></span></font></p><br><p class="western" id="u_wg1268" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt35" size="2"><span id="u_wg1269" lang="en-US"><font id="u_wg1270"><font id="u_wg1271"><strong id="u_wg1272"><font id="u_wg1273" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; for</font></strong><font id="u_wg1274" color="#000000">   (</font><strong id="u_wg1275"><font id="u_wg1276" color="#7f0055">int</font></strong><font id="u_wg1277" color="#000000">   i = 0; i &lt;   </font><em id="u_wg1278"><font id="u_wg1279" color="#0000c0">MAX</font></em><font id="u_wg1280" color="#000000">;   i++) {</font></font></font></span></font></p><br><p class="western" id="u_wg1281" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1282" size="2"><font id="u_wg1283"><font id="u_wg1284">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sum +=   tus.test(names[i % 4]);</font></font></font></p><br><p class="western" id="u_wg1285" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1286" size="2"><font id="u_wg1287"><font id="u_wg1288">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; }</font></font></font></p><br><p class="western" id="u_wg1289" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt36" size="2"><span id="u_wg1290" lang="en-US"><font id="u_wg1291"><font id="u_wg1292"><strong id="u_wg1293"><font id="u_wg1294" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; return</font></strong><font id="u_wg1295" color="#000000">   sum;</font></font></font></span></font></p><br><p class="western" id="u_wg1296" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1297" size="2"><font id="u_wg1298"><font id="u_wg1299">&nbsp;&nbsp;&nbsp; }</font></font></font></p><br><p class="western" id="u_wg1300" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt37" size="2"><br id="u_wg1301"><br></font></p><br><p class="western" id="u_wg1302" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1303" size="2"><font id="u_wg1304"><font id="u_wg1305">}</font></font></font></p><br><p class="western" id="u_wg1306" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt38" size="2"><br id="u_wg1307"><br></font></p><br><p class="western" id="u_wg1308" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt39" size="2"><span id="u_wg1309" lang="en-US"><font id="u_wg1310"><font id="u_wg1311"><strong id="u_wg1312"><font id="u_wg1313" color="#7f0055">final</font></strong>   <strong id="u_wg1314"><font id="u_wg1315" color="#7f0055">class</font></strong><font id="u_wg1316" color="#000000">   ThreadUnsafeObject {</font></font></font></span></font></p><br><p class="western" id="u_wg1317" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt40" size="2"><span id="u_wg1318" lang="en-US"><font id="u_wg1319"><font id="u_wg1320"><font id="u_wg1321" color="#3f7f5f">&nbsp;&nbsp;&nbsp; &nbsp; //   private int index = 0;</font></font></font></span></font></p><br><p class="western" id="u_wg1322" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt41" size="2"><span id="u_wg1323" lang="en-US"><font id="u_wg1324"><font id="u_wg1325"><strong id="u_wg1326"><font id="u_wg1327" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp; private</font></strong>   <strong id="u_wg1328"><font id="u_wg1329" color="#7f0055">int</font></strong>   <font id="u_wg1330" color="#0000c0">count</font><font id="u_wg1331" color="#000000"> =   0;</font></font></font></span></font></p><br><p class="western" id="u_wg1332" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt42" size="2"><br id="u_wg1333"><br></font></p><br><p class="western" id="u_wg1334" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt43" size="2"><span id="u_wg1335" lang="en-US"><font id="u_wg1336"><font id="u_wg1337"><strong id="u_wg1338"><font id="u_wg1339" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp; private</font></strong>   <strong id="u_wg1340"><font id="u_wg1341" color="#7f0055">char</font></strong><font id="u_wg1342" color="#000000">[]   </font><font id="u_wg1343" color="#0000c0">value</font><font id="u_wg1344" color="#000000">   = </font><strong id="u_wg1345"><font id="u_wg1346" color="#7f0055">new</font></strong>   <strong id="u_wg1347"><font id="u_wg1348" color="#7f0055">char</font></strong><font id="u_wg1349" color="#000000">[1];</font></font></font></span></font></p><br><p class="western" id="u_wg1350" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt44" size="2"><br id="u_wg1351"><br></font></p><br><p class="western" id="u_wg1352" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt45" size="2"><span id="u_wg1353" lang="en-US"><font id="u_wg1354"><font id="u_wg1355"><strong id="u_wg1356"><font id="u_wg1357" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp; public</font></strong>   <strong id="u_wg1358"><font id="u_wg1359" color="#7f0055">int</font></strong><font id="u_wg1360" color="#000000">   test(String str) {</font></font></font></span></font></p><br><p class="western" id="u_wg1361" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt46" size="2"><span id="u_wg1362" lang="en-US"><font id="u_wg1363"><font id="u_wg1364"><font id="u_wg1365" color="#0000c0">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; value</font><font id="u_wg1366" color="#000000">[0]   = str.charAt(0);</font></font></font></span></font></p><br><p class="western" id="u_wg1367" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt47" size="2"><span id="u_wg1368" lang="en-US"><font id="u_wg1369"><font id="u_wg1370"><font id="u_wg1371" color="#0000c0">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; count</font><font id="u_wg1372" color="#000000">   = str.length();</font></font></font></span></font></p><br><p class="western" id="u_wg1373" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt48" size="2"><span id="u_wg1374" lang="en-US"><font id="u_wg1375"><font id="u_wg1376"><strong id="u_wg1377"><font id="u_wg1378" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; return</font></strong>   <font id="u_wg1379" color="#0000c0">count</font><font id="u_wg1380" color="#000000">;</font></font></font></span></font></p><br><p class="western" id="u_wg1381" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <font id="u_wg1382" size="2"><font id="u_wg1383"><font id="u_wg1384">}</font></font></font></p><br><p class="western" id="u_wg1385" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="u_wg1386" size="2"><font id="u_wg1387"><font id="u_wg1388">}</font></font></font></p><br><p class="western" id="u_wg1389" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt49" size="2"><br id="u_wg1390"><br></font></p><br><p class="western" id="u_wg1391" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt50" size="2"><span id="u_wg1392" lang="en-US"><font id="u_wg1393"><font id="u_wg1394"><strong id="u_wg1395"><font id="u_wg1396" color="#7f0055">final</font></strong>   <strong id="u_wg1397"><font id="u_wg1398" color="#7f0055">class</font></strong><font id="u_wg1399" color="#000000">   ThreadSafeObject {</font></font></font></span></font></p><br><p class="western" id="u_wg1400" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt51" size="2"><span id="u_wg1401" lang="en-US"><font id="u_wg1402"><font id="u_wg1403"><strong id="u_wg1404"><font id="u_wg1405" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp; private</font></strong>   <strong id="u_wg1406"><font id="u_wg1407" color="#7f0055">int</font></strong>   <font id="u_wg1408" color="#0000c0">index</font><font id="u_wg1409" color="#000000"> =   0; </font><font id="u_wg1410" color="#3f7f5f">// remove this line, or just the ‘=   0’ and it will go faster!!!</font></font></font></span></font></p><br><p class="western" id="u_wg1416" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt52" size="2"><span id="u_wg1417" lang="en-US"><font id="u_wg1418"><font id="u_wg1419"><strong id="u_wg1420"><font id="u_wg1421" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp; private</font></strong>   <strong id="u_wg1422"><font id="u_wg1423" color="#7f0055">int</font></strong>   <font id="u_wg1424" color="#0000c0">count</font><font id="u_wg1425" color="#000000"> =   0;</font></font></font></span></font></p><br><p class="western" id="u_wg1426" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt53" size="2"><br id="u_wg1427"><br></font></p><br><p class="western" id="u_wg1428" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt54" size="2"><span id="u_wg1429" lang="en-US"><font id="u_wg1430"><font id="u_wg1431"><strong id="u_wg1432"><font id="u_wg1433" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp; private</font></strong>   <strong id="u_wg1434"><font id="u_wg1435" color="#7f0055">char</font></strong><font id="u_wg1436" color="#000000">[]   </font><font id="u_wg1437" color="#0000c0">value</font><font id="u_wg1438" color="#000000">   = </font><strong id="u_wg1439"><font id="u_wg1440" color="#7f0055">new</font></strong>   <strong id="u_wg1441"><font id="u_wg1442" color="#7f0055">char</font></strong><font id="u_wg1443" color="#000000">[1];</font></font></font></span></font></p><br><p class="western" id="u_wg1444" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;"><font id="c2wt55" size="2"><br id="u_wg1445"><br></font></p><br><p class="western" id="u_wg1446" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt56" size="2"><span id="u_wg1447" lang="en-US"><font id="u_wg1448"><font id="u_wg1449"><strong id="u_wg1450"><font id="u_wg1451" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp; public</font></strong>   <strong id="u_wg1452"><font id="u_wg1453" color="#7f0055">synchronized</font></strong>   <strong id="u_wg1454"><font id="u_wg1455" color="#7f0055">int</font></strong><font id="u_wg1456" color="#000000">   test(String str) {</font></font></font></span></font></p><br><p class="western" id="u_wg1457" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt57" size="2"><span id="u_wg1458" lang="en-US"><font id="u_wg1459"><font id="u_wg1460"><font id="u_wg1461" color="#0000c0">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; value</font><font id="u_wg1462" color="#000000">[0]   = str.charAt(0);</font></font></font></span></font></p><br><p class="western" id="u_wg1463" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="c2wt58" size="2"><span id="u_wg1464" lang="en-US"><font id="u_wg1465"><font id="u_wg1466"><font id="u_wg1467" color="#0000c0">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; count</font><font id="u_wg1468" color="#000000">   = str.length();</font></font></font></span></font></p><br><p class="western" id="u_wg1469" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="u_wg1470" size="2"><font id="u_wg1471"><strong id="u_wg1472"><font id="u_wg1473" color="#7f0055">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; return</font></strong>   <font id="u_wg1474" color="#0000c0">count</font><font id="u_wg1475" color="#000000">;</font></font></font></p><br><p class="western" id="u_wg1476" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="u_wg1477" size="2"><font id="u_wg1478"><font id="u_wg1479">&nbsp;&nbsp;&nbsp; }</font></font></font></p><br><p class="western" id="u_wg1480" style="margin-bottom: 0pt; line-height: 100%; font-family: Courier New;" lang="nl-NL"><font id="u_wg1481" size="2"><font id="u_wg1482"><font id="u_wg1483">}</font></font></font></p><br><p><strong>查看英文原文</strong>：<a target="_blank" href="http://www.infoq.com/articles/java-threading-optimizations-p2;jsessionid=62B1F6AE7684B173ACD5D0F9B9BEF310">Do Java 6 threading optimizations actually work? - Part II</a>。</p><p><br></p><p>转自：<a href="http://www.infoq.com/cn/articles/java-threading-optimizations-p2" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/java-threading-optimizations-p2</a><br></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko50b00ja4urqxb82irsu/" rel="next" title="NetBeans Weekly News">
+                <i class="fa fa-chevron-left"></i> NetBeans Weekly News
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5p801gf4urq3zy1jq0e/" rel="prev" title="解决云计算安全问题的虚拟专用网络——VPN-Cubed">
+                解决云计算安全问题的虚拟专用网络——VPN-Cubed <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">相关厂商内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">相关赞助商</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">基准测试中的陷阱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">结果的统计处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">预热方法的缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">堆管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">偏向锁延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Hotspot提供的其他优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">执行栈输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">单核系统下的结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">逸出分析真的起作用了么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">将逸出分析包含在测试中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">关于Jeroen Borgers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">鸣谢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">资源</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

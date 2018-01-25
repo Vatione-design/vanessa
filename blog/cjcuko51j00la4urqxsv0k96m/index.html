@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NetBeans," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;2010-10-18下载 NetBeans IDE 7.0 里程碑 2NetBeans IDE 7.0 里程碑 2 现在已可供下载。这次建立的稳定开发重点包括新功能及对 JavaEE，GlassFish，WebLogic 等的改进。Edit2010-10-18特性插件：PHP Nette 框架在 NetBeans 目前特性插件的项目中提供了对 PHP Nette 框架支持，语法高亮，">
+<meta name="keywords" content="NetBeans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NetBeans Weekly News 刊号 # 121 - Oct 18, 2010  (NetBeans 7.0 里程碑 2)">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko51j00la4urqxsv0k96m/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;nbsp;2010-10-18下载 NetBeans IDE 7.0 里程碑 2NetBeans IDE 7.0 里程碑 2 现在已可供下载。这次建立的稳定开发重点包括新功能及对 JavaEE，GlassFish，WebLogic 等的改进。Edit2010-10-18特性插件：PHP Nette 框架在 NetBeans 目前特性插件的项目中提供了对 PHP Nette 框架支持，语法高亮，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://blogs.sun.com/theaquarium/resource/NetBeansNew.png">
+<meta property="og:updated_time" content="2018-01-25T10:11:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NetBeans Weekly News 刊号 # 121 - Oct 18, 2010  (NetBeans 7.0 里程碑 2)">
+<meta name="twitter:description" content="&amp;nbsp;2010-10-18下载 NetBeans IDE 7.0 里程碑 2NetBeans IDE 7.0 里程碑 2 现在已可供下载。这次建立的稳定开发重点包括新功能及对 JavaEE，GlassFish，WebLogic 等的改进。Edit2010-10-18特性插件：PHP Nette 框架在 NetBeans 目前特性插件的项目中提供了对 PHP Nette 框架支持，语法高亮，">
+<meta name="twitter:image" content="http://blogs.sun.com/theaquarium/resource/NetBeansNew.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko51j00la4urqxsv0k96m/"/>
+
+
+
+
+
+  <title>NetBeans Weekly News 刊号 # 121 - Oct 18, 2010  (NetBeans 7.0 里程碑 2) | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko51j00la4urqxsv0k96m/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NetBeans Weekly News 刊号 # 121 - Oct 18, 2010  (NetBeans 7.0 里程碑 2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-10-19T07:31:37+08:00">
+                2010-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p><img src="http://blogs.sun.com/theaquarium/resource/NetBeansNew.png" alt="" width="143" height="92"></p><p></p>
+<table class="colapse"><br><tbody><br><tr><br><td class="valign-top"><br><p>&nbsp;</p><br><p>2010-10-18</p><br></td><br><td><strong>下载 NetBeans IDE 7.0 里程碑 2</strong><br>NetBeans IDE 7.0 里程碑 2 现在已可供下载。这次建立的稳定开发重点包括新功能及对 <a href="http://netbeans.org/community/news/show/1499.html" target="_blank" rel="noopener">JavaEE，GlassFish，WebLogic</a> 等的改进。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4935', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-10-18</td><br><td><strong>特性插件：PHP Nette 框架</strong><br>在 NetBeans 目前特性插件的项目中提供了对 PHP Nette 框架支持，语法高亮，模板以及更多！</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4936', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-10-18</td><br><td><strong>简化 Web 服务生成</strong><br>REST 简化了 Web 服务的创建。NetBeans IDE 通过提供的工具对 REST 进行了近一步的简化。阅读 Jeff Rubinoff 即将发表的更深层次的报告。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4937', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-10-18</td><br><td><strong>国际化 GUI 表单</strong><br>本教程将向您介绍如何使一个单独的表单乃至整个项目进行国际化。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4938', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-10-18</td><br><td><strong>NetBeans IDE 中 PHP 的代码模板</strong><br>了解有关 NetBeans IDE 中易于使用的 PHP 代码模板。如何使用它们和一些常见的用例。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4939', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-10-18</td><br><td><strong>在伦敦的 NetBeans RCP 培训</strong><br>上周，Jaroslav Tulach, Toni Epple,和 Geertjan Wielenga 在伦敦 SkillsMatter 介绍了 NetBeans 平台的免费活动。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4940', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-10-18</td><br><td><strong>在Bielefeld 的 NetBeans RCP 培训</strong><br>在德国比勒费尔德大学的生物信息学学生正在利用 NetBeans 平台研究他们的工作，在这里可读到所有相关内容。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4941', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-10-18</td><br><td><strong>水族馆博客对 NetBeans 7.0 里程碑 2 的报道</strong><br>水族馆博客对 NetBeans 7.0 里程碑 2 的主要改进进行了报道。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4942', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-10-18</td><br><td><strong>Vaadin 插件的改进</strong><br>Vaadin 插件对 NetBeans IDE 来说是一个很大的发展，基于来自 Vaadin 团队的请求。在这里可读到所有相关内容！</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4943', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-10-18</td><br><td><strong>NetBeans 平台和 Cookies</strong><br>Cookiemonsters 注意了！来自瑞典的尼克拉斯低频向您介绍了&ldquo;Cookies&rdquo;在 NetBeans 平台上的概念。</td><br><td><a onclick="return !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4944', 'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br></tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/NetBeans/" rel="tag"># NetBeans</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4t8005e4urq89q317ds/" rel="next" title="B3log Solo 0.1.0 发布了！">
+                <i class="fa fa-chevron-left"></i> B3log Solo 0.1.0 发布了！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4ul007y4urqi7rj1l0u/" rel="prev" title="Firefox 4.0：我们2011年再见面吧">
+                Firefox 4.0：我们2011年再见面吧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

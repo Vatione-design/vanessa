@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Demo,HTML5," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="B3log 社区首页可以找个用下。HOHO（图为 Timekiwi 网站的使用者个人页面，可以将 Facebook、Twitter、Instagram 等服务上的讯息整合在同一个时间轴上）如果有在使用 facebook 的朋友，最近应该已经渐渐开始有机会使用到新版的时间轴接口了，尽管网友对于时间轴的接口褒贬不一，但实际来看，时间轴的浏览接口有几个好处：? 迅速看到你与朋友的美好回忆? 迅速认识一位">
+<meta name="keywords" content="JavaScript,Demo,HTML5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时间轴网站大集合与网页制作组件">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5jl01a54urqtv0br7s1/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="B3log 社区首页可以找个用下。HOHO（图为 Timekiwi 网站的使用者个人页面，可以将 Facebook、Twitter、Instagram 等服务上的讯息整合在同一个时间轴上）如果有在使用 facebook 的朋友，最近应该已经渐渐开始有机会使用到新版的时间轴接口了，尽管网友对于时间轴的接口褒贬不一，但实际来看，时间轴的浏览接口有几个好处：? 迅速看到你与朋友的美好回忆? 迅速认识一位">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/F/FF/FF213A72A0CA4DCC384D9916D93D17EE.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/0/06/0616F68BA32269B2849DF0FDF35AB195.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/E/E9/E975974421755EB53E97BEAF0EDA22D1.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/F/F3/F3264E4373B9C150CB07014ABE233277.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/B/B2/B26661E4BB39B4056EE84EE3BE7D29C2.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/E/E5/E54F18D5C3AF0AF083034FD70D7C27D7.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/1/15/15F2E649A7944FA6EAD038BC5FCB5EF8.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/B/BC/BCA1FCC090415B983FE1CF0F4C21194F.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/0/0B/0B109055BB872AF03B375A3330CE2D13.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/2/20/20CB4B9C1F290632713B59C65EBC38CE.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/0/01/01256B94835D0DCBDACF5AD5EAAE9AF4.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/1/1D/1DCE3600E6EA7010A593999C2104221E.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/6/60/60E365DA19D2561365B733C9C8E095EF.png">
+<meta property="og:image" content="http://img1.cache.netease.com/catchpic/B/B4/B4D23D813121EC5BBD033B7ECFA6E2FA.png">
+<meta property="og:updated_time" content="2018-01-22T02:29:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="时间轴网站大集合与网页制作组件">
+<meta name="twitter:description" content="B3log 社区首页可以找个用下。HOHO（图为 Timekiwi 网站的使用者个人页面，可以将 Facebook、Twitter、Instagram 等服务上的讯息整合在同一个时间轴上）如果有在使用 facebook 的朋友，最近应该已经渐渐开始有机会使用到新版的时间轴接口了，尽管网友对于时间轴的接口褒贬不一，但实际来看，时间轴的浏览接口有几个好处：? 迅速看到你与朋友的美好回忆? 迅速认识一位">
+<meta name="twitter:image" content="http://img1.cache.netease.com/catchpic/F/FF/FF213A72A0CA4DCC384D9916D93D17EE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5jl01a54urqtv0br7s1/"/>
+
+
+
+
+
+  <title>时间轴网站大集合与网页制作组件 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5jl01a54urqtv0br7s1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">时间轴网站大集合与网页制作组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2011-12-26T19:09:52+08:00">
+                2011-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="f_center"><span style="color: #993366;"><a href="http://www.b3log.org" target="_blank">B3log 社区首页</a>可以找个用下。HOHO</span></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39291" title="1" src="http://img1.cache.netease.com/catchpic/F/FF/FF213A72A0CA4DCC384D9916D93D17EE.png" alt="时间轴网站大集合与网页制作组件" width="535" height="645"></p><br><p>（图为 Timekiwi 网站的使用者个人页面，可以将 Facebook、Twitter、Instagram 等服务上的讯息整合在同一个时间轴上）</p><br><p>如果有在使用 facebook 的朋友，最近应该已经渐渐开始有机会使用到新版的时间轴接口了，尽管网友对于时间轴的接口褒贬不一，但实际来看，时间轴的浏览接口有几个好处：</p><br><p>? 迅速看到你与朋友的美好回忆</p><br><p>? 迅速认识一位新的朋友</p><br><p>? 看起来比较厉害，尤其使用者可以选择性的放大某些讯息</p><br><p>? 时间轴浏览接口可以方便的让你新增过去发生过的人生大事</p><br><p>其实时间轴接口不是创举，以国人爱用的服务 Plurk 噗浪来说，很早就有横向滚动条的时间轴页面了。</p><br><p class="f_center"><img class="aligncenter size-full wp-image-39292" title="2" src="http://img1.cache.netease.com/catchpic/0/06/0616F68BA32269B2849DF0FDF35AB195.png" alt="时间轴网站大集合与网页制作组件" width="528" height="346"></p><br><p>（图为已经关闭的 Nifty Timeline）</p><br><p>日 本前 25 大、全球前 300 大的入口网站 Nifty 在几年前也有很棒的时间轴服务，使用者可以在在线建立各式各样的时间轴表格，例如帮政治人物写编年史、把自己交过的女朋友都放到时间轴上，不过后来或许是 因为 Nifty 找不到获利模式，或是使用率太低，目前这个服务已经GG了，唯一能看到的剩下网站的联机帮助页面。</p><br><p>（有读者表示 GG 是宅男用语，我特别说明一下，GG 是在线游戏玩家用来表示「这场打得真好！」，也就是「Good game!」的缩写，有点类似 good job，后来反正不管是赢是输，总之快结束了就可以喊 GG 了，也有玩家表示，GG 是 &ldquo;Good bye, Garbage&rdquo; 的缩写）</p><br><p>扯远了，其实目前还有很多与时间轴有关的网站，让我来一一介绍这几个网站与相关的开发资源，或许你也可以开发出一个不错的时间轴应用，记得要上来 Inside 分享一下呀～ :p</p><br><p>TimeKiwi</p><br><p class="f_center"><img class="aligncenter size-full wp-image-39293" title="3" src="http://img1.cache.netease.com/catchpic/E/E9/E975974421755EB53E97BEAF0EDA22D1.png" alt="时间轴网站大集合与网页制作组件" width="261" height="300"></p><br><p>（图为我的 Twitter + Instagram 串在一起之后的时间轴）</p><br><p>TimeKiwi 是最近几天才推出的新服务，很显然的是在向 Facebook 致敬，使用者除了可以将 facebook 上的讯息呈现在 Timekiwi 之外，还可以将 Twitter、Instagram、Tumblr、Flickr、Foursquare 等当红网站的数据拉进来一并在同一个时间轴呈现，我个人认为这个概念挺不错的，早期的 FriendFeed 提供的功能就是单一接口整合来自多个服务的讯息，现在光是加个时间轴，好像就是另外一个不错的服务了。（微创新，Micro innovation）</p><br><p><strong>Google Timeline</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39294" title="4" src="http://img1.cache.netease.com/catchpic/F/F3/F3264E4373B9C150CB07014ABE233277.png" alt="时间轴网站大集合与网页制作组件" width="507" height="335"></p><br><p>Google Timeline 不是一个服务，而是 Google 公司简介的其中一个页面，网页上以横向时间轴的方式呈现了 Google 公司从创办以来的关键里程碑。点击画面上的连结会出现的则是事件的简介，这算是相当阳春的时间轴应用。</p><br><p><strong>Preceden</strong>&nbsp;</p><br><p class="f_center"><img class="aligncenter size-full wp-image-39297" title="5" src="http://img1.cache.netease.com/catchpic/B/B2/B26661E4BB39B4056EE84EE3BE7D29C2.png" alt="时间轴网站大集合与网页制作组件" width="546" height="428"></p><br><p>Preceden的时间轴功能看起来是相对单纯的，做起来其实很像一般的甘特图，而且看起来简简单单的功能，居然是要收费的（尽管看起来不贵）。</p><br><p><strong>TimeToast</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39298" title="6" src="http://img1.cache.netease.com/catchpic/E/E5/E54F18D5C3AF0AF083034FD70D7C27D7.png" alt="时间轴网站大集合与网页制作组件" width="519" height="437"></p><br><p>TimeToast 的服务看起来稍微炫一点，除了依时间序列呈现资料之外，直接就可以看到各个时间点的信息内容，可惜的是时间轴的绘制使用的是 Flash 的技术，在这个 HTML5 当道的年代，加上越来越多人使用行动装置浏览网站，已经宣称不继续发展的行动版 Flash 势必会逐渐式微，这是网站经营者必须面对的议题</p><br><p class="f_center"><img class="aligncenter size-full wp-image-39299" title="7" src="http://img1.cache.netease.com/catchpic/1/15/15F2E649A7944FA6EAD038BC5FCB5EF8.png" alt="时间轴网站大集合与网页制作组件" width="578" height="415"></p><br><p>（图：看起来似乎有学生利用 TimeToast 做了台湾贸易史的 Timeline）</p><br><p><strong>Tiki-Toki</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39300" title="8" src="http://img1.cache.netease.com/catchpic/B/BC/BCA1FCC090415B983FE1CF0F4C21194F.png" alt="时间轴网站大集合与网页制作组件" width="507" height="285"></p><br><p>Tiki-Toki的时间轴看起来很炫，制作出来的时间轴图表不仅可以包含多媒体的内容，还能自定样式、背景图片，如果好好设计肯定可以做出很棒的时间轴图表。</p><br><p>此 外，Tiki-Toki 的时间轴是以 HTML5 技术制作的，因此用户不需要额外安装软件，只要有支持 HTML5 即可浏览（当然，HTML5 目前还是个尚未定案的标准 :p），换句话说你也可以很轻易的嵌入自己的网站，不需要强迫你的使用者装 Flash 当闪电侠。</p><br><p><strong>dipity</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39301" title="9" src="http://img1.cache.netease.com/catchpic/0/0B/0B109055BB872AF03B375A3330CE2D13.png" alt="时间轴网站大集合与网页制作组件" width="531" height="447"></p><br><p>dipity目前首页的时间轴是刚过世不久的苹果计算机创办人 Steve Jobs 的生平年表。</p><br><p><strong>Timeline Reader of Associated Press（美国联合通讯社）</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39302" title="10" src="http://img1.cache.netease.com/catchpic/2/20/20CB4B9C1F290632713B59C65EBC38CE.png" alt="时间轴网站大集合与网页制作组件" width="528" height="416"></p><br><p>Timeline Reader是美国联合通讯社的实验室产品，利用时间轴接口让用户浏览、阅读新闻。</p><br><p><strong>Hiiir 好时光</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39303" title="11" src="http://img1.cache.netease.com/catchpic/0/01/01256B94835D0DCBDACF5AD5EAAE9AF4.png" alt="时间轴网站大集合与网页制作组件" width="504" height="463"></p><br><p>Hiiir 好时光，这是国人自制的时间轴部落格外挂，早期是用来让部落客、网站经营者可以利用他们提供的时间轴外挂来呈现网站上的文章、数据，并且将时间轴外挂作为广告嵌入的工具，协助网站创造另一种获利的可能。</p><br><p><strong>SIMILE Widgets: Timeline</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39304" title="12" src="http://img1.cache.netease.com/catchpic/1/1D/1DCE3600E6EA7010A593999C2104221E.png" alt="时间轴网站大集合与网页制作组件" width="561" height="354"></p><br><p>SIMILI Widgets相当特别，这是由麻省理工学院（MIT）某个实验室的项目计划独立出来的一个开放原始码项目，提供了几个网站开发人员可能有机会用到的数据可视化组件。其中我觉得 Timeline 是最棒的（其他的应该都有更好的替代品）</p><br><p><strong>其他开发资源</strong></p><br><p class="f_center"><img class="aligncenter size-full wp-image-39305" title="13" src="http://img1.cache.netease.com/catchpic/6/60/60E365DA19D2561365B733C9C8E095EF.png" alt="时间轴网站大集合与网页制作组件" width="513" height="259"></p><br><p>? jQuery Timelinr 网页上的 demo 效果不错，不过这看起来比较适合拿来接案XD</p><br><p>? Pure CSS Timeline 很不错的一个范例，单纯利用 CSS 的技巧将列表（也就是 HTML 中的 li 标签）以时间轴的方式呈现。</p><br><p>? TimeGlider 本身是一个制作时间轴图表的网站，同时也提供了一个 jQuery 的外挂：(timeglider.js)[<a href="http://timeglider.com/jquery/" target="_blank" rel="noopener">http://timeglider.com/jquery/</a>]</p><br><p><strong>Evolution of Web（因特网的演变）</strong></p><br><p class="f_center"><img class="size-full wp-image-39306" title="14" src="http://img1.cache.netease.com/catchpic/B/B4/B4D23D813121EC5BBD033B7ECFA6E2FA.png" alt="时间轴网站大集合与网页制作组件" width="523" height="416"></p><br><div class="gg200x300">&nbsp;</div><br><p>最后再补充一个时间轴图表的运用，Evolution of Web不是让网友制作时间轴图表的工具，而是以时间轴来呈现 HTTP 通讯协议、Web 与各家主流浏览器自 1990 年以来的演进。当然，这个网站是利用 HTML5 技术制作的。</p><br><p>&nbsp;</p><br><p>转自：<a href="http://tech.hexun.com/2011-12-23/136589398.html" target="_blank" rel="noopener">http://tech.hexun.com/2011-12-23/136589398.html</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/blog/tags/Demo/" rel="tag"># Demo</a>
+          
+            <a href="/blog/tags/HTML5/" rel="tag"># HTML5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4uf007j4urqm76eqemb/" rel="next" title="ECMAScript 6 看上去很美">
+                <i class="fa fa-chevron-left"></i> ECMAScript 6 看上去很美
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4uy008u4urqadxviban/" rel="prev" title="GAE 博客——B3log Solo 0.4.0 Beta2 发布了！">
+                GAE 博客——B3log Solo 0.4.0 Beta2 发布了！ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

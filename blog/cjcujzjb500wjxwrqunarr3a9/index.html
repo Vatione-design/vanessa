@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Knowledge,Mobile,WebToolkit," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="转自：移动开发技术周报：使用GenyMotion加速Android开发，iOS 7 UI设计技巧 &amp;nbsp; 以下是本周为大家推荐的移动开发阅读材料。 工具： Chromecast and Google Cast SDK Update：2013 年7月24日，Google发布了Chromecast电视棒，使用者可以把手机画面投射在电视上。Google近日对Google Cast SDK进行了更新">
+<meta name="keywords" content="Knowledge,Mobile,WebToolkit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动开发技术周报">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzjb500wjxwrqunarr3a9/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="转自：移动开发技术周报：使用GenyMotion加速Android开发，iOS 7 UI设计技巧 &amp;nbsp; 以下是本周为大家推荐的移动开发阅读材料。 工具： Chromecast and Google Cast SDK Update：2013 年7月24日，Google发布了Chromecast电视棒，使用者可以把手机画面投射在电视上。Google近日对Google Cast SDK进行了更新">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-25T13:32:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动开发技术周报">
+<meta name="twitter:description" content="转自：移动开发技术周报：使用GenyMotion加速Android开发，iOS 7 UI设计技巧 &amp;nbsp; 以下是本周为大家推荐的移动开发阅读材料。 工具： Chromecast and Google Cast SDK Update：2013 年7月24日，Google发布了Chromecast电视棒，使用者可以把手机画面投射在电视上。Google近日对Google Cast SDK进行了更新">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzjb500wjxwrqunarr3a9/"/>
+
+
+
+
+
+  <title>移动开发技术周报 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzjb500wjxwrqunarr3a9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动开发技术周报</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-09-04T01:28:07+08:00">
+                2013-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p>转自：<a target="_blank" href="http://www.infoq.com/cn/news/2013/08/mobile-weekly-genymotion">移动开发技术周报：使用GenyMotion加速Android开发，iOS 7 UI设计技巧</a></p><p></p>
+<p></p><p>&nbsp;</p><p></p>
+<p></p><p>以下是本周为大家推荐的移动开发阅读材料。</p><p></p>
+<p></p><p>工具：</p><p></p>
+<ol><br><li><br><p><a href="http://googlechromereleases.blogspot.tw/2013/08/chromecast-and-google-cast-sdk-update.html" target="_blank" rel="noopener">Chromecast and Google Cast SDK Update</a>：2013 年7月24日，Google发布了Chromecast电视棒，使用者可以把手机画面投射在电视上。Google近日对Google Cast SDK进行了更新，增强了Chromecast设备发现的能力，同时Google Play Movies的稳定性也有所改善。</p><br></li><br><li><br><p><a href="http://blog.getbootstrap.com/2013/08/19/bootstrap-3-released/" target="_blank" rel="noopener">Bootstrap 3.0正式发布</a>，增加了平面设计化以及移动优先的特性，也重新改写了JavaScript Plug-in，减少冲突。</p><br></li><br><li><br><p><a href="http://steveice.blogspot.tw/2013/07/genymotion-android.html" target="_blank" rel="noopener">GenyMotion</a>是一套性能卓越且易于测试感测器的模拟器，目前已经有一些Android开发者开始使用这套模拟器。本文是笔者的一次试用体验。</p><br></li><br></ol><br><p>技巧：</p><br><ol><br><li><a href="http://ivomynttinen.com/blog/the-ios-7-design-cheat-sheet/" target="_blank" rel="noopener">The iOS Design Cheat Sheet</a>：2013年6月，苹果在WWDC上发布了iOS 7，扁平化设计意味着很多设计模式都跟以前不同。iOS开发者可以参考这篇Cheat Sheet来快速把应用转移到iOS 7上。</li><br><li><a href="http://www.teehanlax.com/blog/reproducing-the-ios-7-mail-apps-interface/" target="_blank" rel="noopener">实现iOS 7 Mail App的滑动效果</a>：iOS 7的Mail App增加了滑动后增加功能的效果，让用户可以更简单的整理邮件。这个功能通过iOS 7新增的API实现，本文介绍了实现的细节。</li><br><li><a href="https://www.cocoacontrols.com/posts/a-primer-on-hybrid-apps-for-ios" target="_blank" rel="noopener">A Primer on Hybrid Apps for iOS</a>：目前，Web App能做的事情有限，Native App的开发门槛又太高，转为开发Hybrid App是将来的趋势。这篇CocoaControl所撰写的开发指南是一篇不错的Hybrid App入门指南。本文已经有<a href="http://blog.jobbole.com/46554/" target="_blank" rel="noopener">中文版</a>。</li><br></ol><br><p>杂货：</p><br><ol><br><li><a href="http://www.businessinsider.com/these-secrets-will-improve-your-mobile-ads-click-through-rates-2013-8?op=1#ixzz2d2MLNIEl" target="_blank" rel="noopener">如何设计一个吸引人的广告</a>：来自BusinessInsider的文章，介绍怎样才能实现一个好的广告设计。</li><br><li><a href="http://yeoman.io/blog/hello-1.0.html" target="_blank" rel="noopener">Yeoman发布1.0版本</a>：Yeoman是一套快速构建管理工具，可以快速部署需要的开发环境。本次发布的1.0版加入了面向移动设备的组件生成器，可以简单的实现跨设备测试，不仅是实时的，还支持多设备。Yeoman结合了<a href="http://www.browserstack.com/" target="_blank" rel="noopener">BrowserStack</a>服务，可以测试应用在不同设备上的显示效果。</li><br><li><a href="http://cdc.tencent.com/?p=7694" target="_blank" rel="noopener">用户体验设计预见色彩情感</a>：不同的色彩会给我们不同的感觉，橙色给人温暖感，蓝色给人忧郁感。来自腾讯CDC的这篇文章介绍色彩对用户体验的影响。</li><br></ol>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Knowledge/" rel="tag"># Knowledge</a>
+          
+            <a href="/blog/tags/Mobile/" rel="tag"># Mobile</a>
+          
+            <a href="/blog/tags/WebToolkit/" rel="tag"># WebToolkit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj2f00p5xwrqye1uxrgz/" rel="next" title="使用ETags减少Web应用带宽和负载">
+                <i class="fa fa-chevron-left"></i> 使用ETags减少Web应用带宽和负载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzigr0023xwrqrq3427qu/" rel="prev" title="Content Security Policy">
+                Content Security Policy <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

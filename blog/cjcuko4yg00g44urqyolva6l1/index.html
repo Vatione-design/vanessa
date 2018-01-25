@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="OpenSource,B3log," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp; Java 开源博客 &amp;mdash;&amp;mdash;&amp;nbsp;Solo&amp;nbsp;0.6.8 正式版发布了，欢迎大家下载。另外，欢迎观摩我们的另一个产品，在线 Golang IDE&amp;mdash;&amp;mdash;Wide！ 特性 基于标签的文章分类博客/标签&amp;nbsp;Atom/RSS、Sitemap&amp;nbsp;输出评论回复及邮件提醒自定义页面、导航多编辑器：Markdown、TinyM">
+<meta name="keywords" content="OpenSource,B3log">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 开源博客 —— Solo 0.6.8 正式版发布了！">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4yg00g44urqyolva6l1/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;nbsp; Java 开源博客 &amp;mdash;&amp;mdash;&amp;nbsp;Solo&amp;nbsp;0.6.8 正式版发布了，欢迎大家下载。另外，欢迎观摩我们的另一个产品，在线 Golang IDE&amp;mdash;&amp;mdash;Wide！ 特性 基于标签的文章分类博客/标签&amp;nbsp;Atom/RSS、Sitemap&amp;nbsp;输出评论回复及邮件提醒自定义页面、导航多编辑器：Markdown、TinyM">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/873584/6817919/72ffdb5c-d2e2-11e4-8be8-37ac1b08ff81.jpg">
+<meta property="og:updated_time" content="2018-01-24T11:16:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 开源博客 —— Solo 0.6.8 正式版发布了！">
+<meta name="twitter:description" content="&amp;nbsp; Java 开源博客 &amp;mdash;&amp;mdash;&amp;nbsp;Solo&amp;nbsp;0.6.8 正式版发布了，欢迎大家下载。另外，欢迎观摩我们的另一个产品，在线 Golang IDE&amp;mdash;&amp;mdash;Wide！ 特性 基于标签的文章分类博客/标签&amp;nbsp;Atom/RSS、Sitemap&amp;nbsp;输出评论回复及邮件提醒自定义页面、导航多编辑器：Markdown、TinyM">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/873584/6817919/72ffdb5c-d2e2-11e4-8be8-37ac1b08ff81.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4yg00g44urqyolva6l1/"/>
+
+
+
+
+
+  <title>Java 开源博客 —— Solo 0.6.8 正式版发布了！ | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4yg00g44urqyolva6l1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 开源博客 —— Solo 0.6.8 正式版发布了！</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-02T21:50:41+08:00">
+                2015-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><div><a title="Solo" href="https://cloud.githubusercontent.com/assets/873584/6817919/72ffdb5c-d2e2-11e4-8be8-37ac1b08ff81.jpg" class="fancybox" data-fancybox-group="group" target="_blank" rel="noopener"><img title="Solo" src="https://cloud.githubusercontent.com/assets/873584/6817919/72ffdb5c-d2e2-11e4-8be8-37ac1b08ff81.jpg" alt="Solo" width="100%" data-bd-imgshare-binded="1"></a></div></p>
+<p></p><p>&nbsp;</p><p></p>
+<p></p><p>Java 开源博客 &mdash;&mdash;&nbsp;<a href="https://github.com/b3log/b3log-solo" target="_blank">Solo</a>&nbsp;0.6.8 正式版发布了，欢迎大家<a href="http://pan.baidu.com/share/link?shareid=541735&amp;uk=3255126224" target="_blank">下载</a>。另外，欢迎观摩我们的另一个产品，在线 Golang IDE&mdash;&mdash;<a href="https://wide.b3log.org/" target="_blank">Wide</a>！</p><p></p>
+<p></p><h3>特性</h3><p></p>
+<ul><br><li>基于标签的文章分类</li><br><li>博客/标签&nbsp;<a href="https://github.com/b3log/b3log-solo/wiki/feed" target="_blank">Atom/RSS</a>、<a href="https://github.com/b3log/b3log-solo/wiki/Sitemap" target="_blank">Sitemap</a>&nbsp;输出</li><br><li><a href="https://github.com/b3log/b3log-solo/wiki/Comment_reply" target="_blank">评论回复及邮件提醒</a></li><br><li>自定义页面、导航</li><br><li>多编辑器：Markdown、TinyMCE、KindEditor</li><br><li>置顶/相关/随机/<a href="https://github.com/b3log/b3log-solo/wiki/External_articles" target="_blank">站外相关</a>文章</li><br><li>文章、页面永久链接</li><br><li>文章草稿夹、<a href="https://github.com/b3log/b3log-solo/wiki/article_sign" target="_blank">签名档</a>、<a href="https://github.com/b3log/b3log-solo/wiki/has_update" target="_blank">更新提示</a></li><br><li><a href="https://github.com/b3log/b3log-solo/wiki/multi_users" target="_blank">多用户</a>、多语言、<a href="https://github.com/b3log/b3log-solo/wiki/Skin" target="_blank">多主题</a>、插件</li><br><li><a href="https://github.com/b3log/b3log-solo/wiki/Metaweblog" target="_blank">MetaWeblog API</a></li><br></ul><br><h3>Release 0.6.8 - Mar 24, 2015</h3><br><ul><br><li><a href="https://github.com/b3log/b3log-solo/issues/11992" target="_blank">11992 可配置 favicon 获取</a>&nbsp;<span>feature</span></li><br><li><a href="https://github.com/b3log/b3log-solo/issues/12000" target="_blank">12000 新皮肤 &mdash;&mdash; Bruce</a>&nbsp;<span>skin</span></li><br><li><a href="https://github.com/b3log/b3log-solo/issues/12006" target="_blank">12006 取消 ping Google</a>&nbsp;<span>enhancement</span></li><br><li><a href="https://github.com/b3log/b3log-solo/issues/11999" target="_blank">11999 默认配置参数调整</a>&nbsp;<span>enhancement</span></li><br><li><a href="https://github.com/b3log/b3log-solo/issues/12004" target="_blank">12004 checkstyle、jacobe 插件不自动执行</a>&nbsp;<span>development</span></li><br></ul><br><div><br><h3>试用与安装</h3><br><ul><br><li>你可以通过我们提供的&nbsp;<a href="http://demo.b3log.org/" target="_blank">Demo</a>&nbsp;进行试用</li><br><li>线上生产环境建议使用 solo-mysql 版本，配置步骤请看<a href="https://github.com/b3log/b3log-solo/wiki/Pre_installation" target="_blank">这里</a></li><br></ul><br></div><br><h3>社区</h3><br><p><a href="http://symphony.b3log.org/about" target="_blank">B3log 社区</a>是一个内容分享社区，与传统社区不同的是，B3log 社区提供了内容相关 APIs 与个人博客进行互联，实现了博客与社区之间帖子/博文、回复/评论的双向同步。</p><br><p>所有使用 Solo 的同学都可以参与到社区中来，只需在发布文章的时候勾选&ldquo;发布到社区&rdquo;。</p><br><h3>联系我们</h3><br><ul><br><li>QQ 群：13139268，Java/NodeJS/Golang 技术，验证信息：b3log</li><br><li>微信公众号：流云工作室</li><br></ul><br><h3>发布历史</h3><br><ol><br><li><a href="http://88250.b3log.org/b3log-solo-067-released" target="_blank">Java 开源博客&mdash;&mdash;B3log Solo 0.6.7 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-066-released" target="_blank">Java 开源博客&mdash;&mdash;B3log Solo 0.6.6 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/articles/2013/11/01/1383269578996.html" target="_blank">Java 开源博客&mdash;&mdash;B3log Solo 0.6.5 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-061-released" target="_blank">Java 开源博客&mdash;&mdash;B3log Solo 0.6.1 正式版发布了！</a></li><br><li><a href="http://88250.b3log.org/b3log-solo-060-released" target="_blank">Java 开源博客&mdash;&mdash;B3log Solo 0.6.0 正式版发布了！</a></li><br></ol><hr width="100%"><br><h3>捐赠</h3><br><p>如果你觉得我们做得还不错，可以捐赠我们，无论多少都是一份心意：</p><br><p><a href="http://b3log.org/donate.html" target="_blank">http://b3log.org/donate.html</a></p><br><h3>B3log 在线服务</h3><br><p>目前我们提供了两个产品的在线服务：</p><br><ul><br><li><a href="http://b3log.org/services/#solo" target="_blank">个人独立博客 Solo</a>，￥100/年</li><br><li><a href="http://b3log.org/services/#wide" target="_blank">在线 Golang IDE Wide</a>，个人使用免费</li><br></ul><br><p>更多详情请看这里：<a href="http://b3log.org/services/" target="_blank">http://b3log.org/services</a></p><br><h3>我们是谁</h3><br><ul><br><li>我们是一个分布式团队，组建于 2010 年</li><br><li>我们创建了一个开源组织&mdash;&mdash;<a href="https://github.com/b3log" target="_blank">B3log</a></li><br><li>我们创建了一个工作室&mdash;&mdash;<a href="http://liuyun.io/" target="_blank">流云</a></li><br></ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/OpenSource/" rel="tag"># OpenSource</a>
+          
+            <a href="/blog/tags/B3log/" rel="tag"># B3log</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko51f00l24urqhs913e5u/" rel="next" title="NetBeans Weekly News Issue # 322 - April 2, 2015">
+                <i class="fa fa-chevron-left"></i> NetBeans Weekly News Issue # 322 - April 2, 2015
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5qm01ht4urqcjr8ijqy/" rel="prev" title="软件开发领域的10场有意思的对抗">
+                软件开发领域的10场有意思的对抗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Release 0.6.8 - Mar 24, 2015</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">试用与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">社区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">联系我们</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">发布历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">捐赠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">B3log 在线服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">我们是谁</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以前看javascript和界面设计是一个概念，现在又是一个概念，以前太单纯的轻视了它，现在学习起来，从各个方面看来他们都具有重要价值。&amp;nbsp;作者：ITPUB BLOG&amp;nbsp;&amp;nbsp;            2009-08-17            过去，人们对于Javascript一直报着轻视的态度，人们认为它又慢又容易出错，而且在不同浏览器中解释也不一样，但是现在，Java">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="是什么让我们爱上Javascript">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj8a00u3xwrqp46wwybp/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="以前看javascript和界面设计是一个概念，现在又是一个概念，以前太单纯的轻视了它，现在学习起来，从各个方面看来他们都具有重要价值。&amp;nbsp;作者：ITPUB BLOG&amp;nbsp;&amp;nbsp;            2009-08-17            过去，人们对于Javascript一直报着轻视的态度，人们认为它又慢又容易出错，而且在不同浏览器中解释也不一样，但是现在，Java">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T07:24:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="是什么让我们爱上Javascript">
+<meta name="twitter:description" content="以前看javascript和界面设计是一个概念，现在又是一个概念，以前太单纯的轻视了它，现在学习起来，从各个方面看来他们都具有重要价值。&amp;nbsp;作者：ITPUB BLOG&amp;nbsp;&amp;nbsp;            2009-08-17            过去，人们对于Javascript一直报着轻视的态度，人们认为它又慢又容易出错，而且在不同浏览器中解释也不一样，但是现在，Java">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj8a00u3xwrqp46wwybp/"/>
+
+
+
+
+
+  <title>是什么让我们爱上Javascript | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj8a00u3xwrqp46wwybp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">是什么让我们爱上Javascript</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-08-18T05:46:00+08:00">
+                2009-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　以前看javascript和界面设计是一个概念，现在又是一个概念，以前太单纯的轻视了它，现在学习起来，从各个方面看来他们都具有重要价值。</p><br><p>&nbsp;</p><br><p>作者：<strong class="red">ITPUB BLOG</strong><br>&nbsp;&nbsp;<br>            <a href="http://archive.it168.com/10004/2009/2009-08-17.shtml" target="_blank">2009-08-17</a><br>            </p><br><p>过去，人们对于Javascript一直报着轻视的态度，人们认为它又慢又容易出错，而且在不同浏览器中解释也不一样，但是现在，Javascript确确实实的在改变我们的<a class="nounderline" title="网络" href="http://net.it168.com/" target="_blank">网络</a><br>，<br>越来越多的网络和APP应用开始使用Javascript.今天，我们就来讲讲我们为什么会有这种观念，回顾Javascript的历史来诊断他的现状，<br>同时通过一些片段来表明Javascript同其他开发语言的本质不同，唯有如此我们才能明白为何Javascript这么重要。</p><br><p>　　<strong>早期的迷惑</strong><br></p><br><p>　　从某种程度上来讲，Javascript是Java的恶魔兄弟(Java’s evil twin)。他们同岁，都于1995年以Beta的版本出现，并且都在次年1996年推出了1.0版本。在语法上他们也很相近，从名称上来看他们就像是一家人一样。</p><br><p>　<br>　我们第一次听说Javascript是在1995年，当时Netscape推出了Navigator<br>2.0的Beta版本，这个版本中没有包含Javascript，但是有对于Java Applet的支持。同时，Netscape<br>宣布页面内嵌的语言LiveScript.这个声明并没有引起太多的注意，在当时Java<br>Applet是一个热门的技术，当时对于为什么Netscape要在浏览器中内嵌两种语言也不是十分清楚，难道有什么事情LiveScript能做而<br>Java做不了的么?</p><br><p>　　2个月以后，LiveScript看到了曙光，在Navigator<br>2.0B3中，它被重新命名为JavaScript.这次改动吸引了众多人的关注。&ldquo;Oh，他肯定不能体现他的价值。&rdquo;、&ldquo;为什么Sun要让这么个玩具来<br>搭Java的车?&rdquo;我至今仍人为这次改名是一个失败的主意，因为他引起了无尽的困惑，很多非编程人员从来都没有明白过Java和Javascript是两<br>个不同的东西。</p><br><p>　　改名字的另外一个影响是细微的，但是我认为改善了这个语言的接受程度。与Java的关系使这门语言看起来并不是一个全新<br>的东西。事实上，当时Java本身都还不是十分成熟，也还没有到1.0，但是外界对于Java成熟状况的认知要比本身高出很多。例如，在1995年，时代<br>杂志将Java选为当年的十大新产品之一。同时，市面上已经有很多关于Java的书籍。所以，当Netscape将这项技术命名为JavaScript，<br>其意图很明显就是表明当时的Java开发团体是使用和评价JavaScript的最佳人选。</p><br><p>　　在怀疑的浪潮中，凭借JavaScript与Java Applet的<a class="nounderline" title="通信" href="http://tele.it168.com/" target="_blank">通信</a><br>和控制能力，JavaScript开始出现在一些应用中。所以，那些对Java感兴趣的人开始觉得有了学习JavaScript的必要。</p><br><p>　<br>　Javascript就像一个玩具，它是面向对象的，所有的东西都是公有的，没有封装。另外，你无法创建真正的子类，在实例变量和方法之间并没有真正的<br>区别，这就像一个灾难。你可以在任何时候将一个变量变成一个方法。在这方面我并不是孤独的，虽然对于面向对象的细节每个人的理解都有所不同，但是Java<br>程序员几乎无一例外的认为，JavaScript并不是一门严肃的编程语言，我们也不像用它来做些什么。</p><br><p>　　<strong>附加的伤害</strong><br></p><br><p>　<br>　在早期的时候，JavaScript并没有什么真正的技术问题，它是缓慢又充满风险的，并且只在Netscape下工作。后来IE也支持了，但并不是完<br>全兼容。人们吹捧他用来编写页面的applets，但是它并不能检测applet的失败。它从来没有被广泛的使用过，很快他就成为了一个分母，人们仅仅用<br>它来完成那些可靠的任务，并且避免在其他的地方使用。</p><br><p>　　什么是JavaScript能够可靠的支持的?闪动的、基于图像的视觉效果。人们<br>开始制造一些炫目的效果。Netscape引导了这个趋势，在页面中使用令人生厌的图层干扰了人们对正常内容的浏览。那些各种各样闪动、滚动的效果让我们<br>认为这个标签简直就是网络的原罪。到处都充斥着闪动的Banner、滚动的Banner、状态栏里跳动的文字、随时可能弹出的对话框、&hellip;&hellip;各种各样的滥用<br>还在不断继续。Miscorsoft也开始谈论DHTML，但是不久DHTML就变成了Buggy、Slow、Unmaintable网站的代名词。</p><br><p>　　对了，不要忘记<a class="nounderline" title="安全" href="http://safe.it168.com/" target="_blank">安全</a><br>问题。一般来讲，当你构建一个图灵完备(Turing-Complete)的编程语言时，你就需要特别小心安全问题。Netscape做的不够好，早期的Javascript中存在漏洞，而且花了很长时间才完全解决掉。</p><br><p>　<br>　结果是什么?很多的有技术头脑的用户关闭了浏览器的Javascript支持。要知道，在1996年的时候可以被称为有&ldquo;技术头脑<br>(Technically Savvy)&rdquo;的人员站的比重相当的高。所以，这些人便不再依赖于JavaScript，因为这会导致用户不使用你的网站。</p><br><p>　<br>　那些使用JavaScript的用户做的也不够好。那些严谨的程序员完全抛弃了JavaScript，但是设计师和页面人员补充了进来。早期的书籍中都<br>提供了糟糕的JavaScript实例，但是很少去从语义上对它进行分析、阐述。(David<br>Flanagan是个例外)让事情更糟糕的是，有些人(也许是大多数人)根据就没从书中学习过JavaScript，他们只是从一个网站现有的代码中拷<br>贝，修改，然后粘贴到自己的网站上让它工作，到最后都不知道为何这些代码能够正常运行。</p><br><p>　　即使大家都是从例子开始学习<br>JavaScript，只要保证两件事情这也许会成为一个很好的策略。第一个就是大家都学习好的例子，但显然JavaScript并不属于这种情况。第二<br>种情况就是这种语言应该和学习它的人所知道的另外一种语言相似，但是很不幸，虽然JavaScript从语义上看来和Java非常相近，但实际上<br>JavaScript来自一个和Java完全不同的编程语言家族。JavaScript是NewtonScript、Self、Smalltalk&hellip;&hellip;和<br>Lisp语言的一个直系后裔。Waldemar<br>Horwat，一位在JavaScript早期产生重大影响的工程人员说，我更愿意把JavaScript认为是Common<br>Lisp的另一种形式。这个说法有些夸张，但是如果你知道这两种语言，你就会很容易发现两者之间确实存在很多相似之处。</p><br><p>　　所以状况就变的<br>越来越不好，一门与之前广泛传播的语言有很大不同的新语言，被一些没有经验的编程者推广，其他的编程人员Follow了他们的例子。更多的用户基于安全考<br>虑关闭了JavaScript的支持，还有有经验的程序员推荐大家避免使用JavaScript.上面的这些还不够，浏览器大战似乎一触即发，儿<br>JavaScript被选作了一种武器。战争中的双方都不断的发展JavaScript，有时候甚至故意引入了很多不兼容特性。JavaScript此时<br>已经变得更庞大，但同时也更容易引起问题。</p><br><p>　　也难怪没有人会喜欢她。</p><br><p><strong>帝国的重建</strong><br></p><br><p>　　在那段时间，我还是不断听到更多关于JavaScript的消息。关于基于prototype和面向对<br>象的特性的介绍总是让我很好奇，我曾经看到过的教材里从来没有提到过这些，也许是作者本人也没有必要的语言背景去将这些概念联系起来。同时，人们开始指出<br>由于浏览器造成了多少错误，而不是JavaScript本身。</p><br><p>　　后来，IE赢了，Netscape投降了，这一阶段的浏览器大战结束了。<br>Miscrosoft开始将他们的bug光芒覆盖到CSS领域(任何处理过IE6下页面开发的工程师都应该深有感受)，而Mozila的团队则开始认真的<br>考虑兼容性的问题。除了一些根深蒂固的区别，想要修改他们必须大量的修改源码，这个小组修复大多数的不同，于是IE和Mozilla/Firefox下的<br>JavaScript变得更可控了。其他的开发者也更加的有迹可循。</p><br><p>　　JavaScript和浏览器的内置支持开始进入了一段稳固的发展<br>时期。在我们大家都忙着写自己的JavaScript代码的时候，几乎没有人注意到一个具有传奇色彩的特性引入-XMLHttpRequest.最重要的<br>DHTML特性，Ajax的重要部分，悄悄的加入到了IE中来。Microsoft的Outlook小组引入了这个ActiveX控件来使Outlook<br>支持<a class="nounderline" title="网络" href="http://net.it168.com/" target="_blank">网络</a><br>访<br>问。200年的Ajax Experience的大会上，Dion Almaer和Ben<br>Galbraith做了很多关于XMLHttpRequest的工作，但是在Mozilla第一次引入XMLHttpRequest支持的时候的官方文件<br>中，他的特性根本就没有提到。</p><br><p>　　那段时间有很多JavaScript的活动，在JavaScript的支持下，Macromedia为<br>Flash提供了脚本语言支持。Adobe也在不断努力使他们的很多程序可以使用JavaScript来控制和扩展。Apple将JavaScript嵌<br>入了它的Sherlock应用中。当然，Mozilla项目也做出了一个重要决定，他们大部分的浏览器都可以支持JavaScript.很明<br>显，JavaScript已经不再仅仅是一个网页语言，而成为了程序中嵌入的动态的、运行时扩展的编程语言的首选。其中的原因也许是当时大家或多或少的都<br>会一些JavaScript，还有当时存在两个高质量的嵌入扩展(SpiderMonkey c语言编写，Rhino Java语言编写)。</p><br><p>　　在2000年的时候，一些人(著名的Brent Ashley、Alex Russell、Douglas Crockford)开始注意到JavaScript究竟能做什么。Brend开始研究JavaScript与<a class="nounderline" title="服务器" href="http://server.it168.com/" target="_blank">服务器</a><br><a class="nounderline" title="通信" href="http://tele.it168.com/" target="_blank">通信</a><br>的<br>方法，提出了我们现在公认的Ajax<br>Style.而且在当时浏览器对于XMLHttpRequest支持不是很完善的时候，他增加或者形成了很多完成这项处理的很多巧妙的方法。他建立了一个<br>网站&ldquo;Remote Scripts Resources&rdquo;，并且编写了一个JavaScript Remote Scripting<br>(JSRS)库来支持不同浏览器的兼容性。</p><br><p>　　Alex Russel建立了一个netWindow项目，意图建立一个支持富UI、可编程、图形环境的网页，同时带有完全可拖动的窗口和其他小组件，netWindows变成了nWigets，并且最终催生了Dojo Project，一个当前重要的Ajax框架。</p><br><p>　<br>　Douglas Crockford一直在研究JavaScript语言的丰富性，最后他发布了一系列有建设性的文章，例如：The World’s<br>Most Misunderstood Programming<br>Language，在这些文章中，他指出了JavaScript在使用中的一些技巧和一些缺点。</p><br><p>　　Brent、Alex和Doug当时的声音都很薄弱，就像旷野中的呼声，但是当最后其他的Web开发社区准备将注意力投向JavaScript的时候，他们所作的这些工作让我们的生活变得更加简单了。</p><br><p>　　我在2000年到2003年中段的时候，对于JavaScript的关注都只是一些零星的片段，我确实没有投入太多的关注，我沉浸在Java的乐土中，闲暇的时候研究一下Ruby，而正是这段经历为我再一次的认识JavaScript提供了准备。</p><br><p>　<br>　在2003年的6月，我的朋友给我演示了netWindows，当我从地板上捡起我的下巴来以后(After i pick my jaw up<br>off the<br>floor，作者还真是幽默)，我朋友告诉我说Alex这个人不是疯子，我如梦方醒开始认真的研究JavaScript，现在看来，当时Google也有<br>一帮人在做同样的事情。</p><br><p>　　<strong>伟大的革命</strong><br></p><br><p>　　每个看这篇文章的人都应该知道一些Ajax第一次引爆<a class="nounderline" title="屏幕" href="http://product.it168.com/list/b/0107_1.shtml" target="_blank">屏幕</a><br>的情景，今天我来简短的说一些完整的情节。</p><br><p>　　第一个引起我注意的Ajax应用是Gmail.很明显，他先是下载了很多的JavaScript，然后在后台不断地与<a class="nounderline" title="服务器" href="http://product.it168.com/files/0402search.shtml" target="_blank">服务器</a><br>进行通信，避免页面的刷新。他确实给人非常深的印象，同时也给其他的技术团队带来不知所措的感觉。我当时在想Google一定是有一个非常成熟的定制化工具来开发如此复杂的客户/服务器端管理。</p><br><p>　　真正让我明白的是Google的Google Suggest.现在的人一定很熟悉，当我们输入的时候，通过与服务器的交互将我们可能需要的词条显示出来供我们选择。</p><br><p>　<br>　Google<br>Suggest在两个方面让我印象深刻，第一是他是如此简单以至于大多数的技术人员都能够明白他的工作原理并且应用到自己的网络项目中;另外一个是<br>Google Suggest针对用户的每次keyup事件进行相应和通信，让我看到同服务器通信是如此的简单，我完全被折服了。</p><br><p>　　不久以后又袭来了Google Maps，Jess James Garret形成了Ajax这个术语，从此以后讨论变得更加方便。</p><br><p>　　从此以后，Ajax变成了我们处理网络应用的的标准方法。而且现在我们有了更多的工具和第三方库选择，但我们又陷入另一个难题：选择太多了。</p><br><p>　　<strong>停止担心，爱上DOM</strong><br></p><br><p>　　我已经阐明了为什么JavaScript有这个名声的众多原因，其中有好的也有坏的，在这众多的原因中，我只想重复一条，他是如此重要，能够解释为什么很多有经验的程序员经给被自己的经验所蒙蔽。</p><br><p>　<br>　这一部分作者以一个例子来说明了JavaScript的编写方式和Java是多么的不同，最后提出了一些有意义的总结：Functions are<br>first-class objects. Methods are just functions attached to objects.<br>You can add methods to classes at any time (even after instances have<br>been created)。</p><br><p>　　Individual objects can have their own methods.<br>``Class constructors’’ are just functions. Functions， being objects，<br>can have their own properties. You can call functions with fewer (or<br>more) arguments than the function is declared to take. If no value is<br>passed for a function argument， it gets the value undefined.</p><br><p>　　总结最后让我们每一位JavaScript开发者来正确的认识JavaScript，用它来完成他应当完成的任务。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuj6j4k008fl6rq644kmv8t/" rel="next" title="痘痘告诉你，身体哪里生病了">
+                <i class="fa fa-chevron-left"></i> 痘痘告诉你，身体哪里生病了
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzijf004zxwrqtohu0rch/" rel="prev" title="Html5新标签的使用">
+                Html5新标签的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

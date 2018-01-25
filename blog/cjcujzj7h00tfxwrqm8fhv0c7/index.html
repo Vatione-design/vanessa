@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Knowledge," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者            Patrick Kua译者            李剑            发布于            2008年9月23日 下午11时47分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;dd">
+<meta name="keywords" content="Knowledge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="敏捷教练，从A到Z">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcujzj7h00tfxwrqm8fhv0c7/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者            Patrick Kua译者            李剑            发布于            2008年9月23日 下午11时47分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;dd">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T01:01:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="敏捷教练，从A到Z">
+<meta name="twitter:description" content="作者            Patrick Kua译者            李剑            发布于            2008年9月23日 下午11时47分          &amp;lt;dl class=&amp;quot;tags2&amp;quot;&amp;gt;&amp;lt;dt class=&amp;quot;community&amp;quot;&amp;gt;社区&amp;lt;/dt&amp;gt;&amp;lt;dd">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcujzj7h00tfxwrqm8fhv0c7/"/>
+
+
+
+
+
+  <title>敏捷教练，从A到Z | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcujzj7h00tfxwrqm8fhv0c7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">敏捷教练，从A到Z</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-10-10T02:46:00+08:00">
+                2008-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>            作者<br>            <strong>Patrick Kua</strong>译者<br>            <strong>李剑</strong><br>            发布于<br>            2008年9月23日 下午11时47分<br>        </p>
+
+<pre><code>&lt;dl class=&quot;tags2&quot;&gt;&lt;dt class=&quot;community&quot;&gt;社区&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/agile&quot; name=&quot;agile&quot; id=&quot;743&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Agile&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;主题&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/leadership&quot; name=&quot;leadership&quot; id=&quot;809&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;领导能力&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/teamwork&quot; name=&quot;teamwork&quot; id=&quot;810&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;团队协作&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;标签&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/management&quot; name=&quot;management&quot; id=&quot;799&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;管理&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/coaching_mentoring&quot; name=&quot;coaching_mentoring&quot; id=&quot;750&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;教练和指导&lt;/a&gt;&lt;/dd&gt;&lt;/dl&gt;
+</code></pre><p>敏捷方法学带来了新的角色——“敏捷教练”，它不常见于传统方法学中，甚或不曾为之提及。已驾轻就熟的实践者，可能会视之为浑然天成，羚羊挂角、无迹可<br>寻；而初窥门径的新手则会心生疑云：“敏捷教练为何如此重要？‘部门经理’、‘团队领导’、‘技术领导’，他们的问题何在？Monster.com为此提<br>供54个职位，又是何故？” <br><br> “奇文共欣赏，疑义相与析”，当是吾等本色。且与笔者同游于本文中，或可领会敏捷教练之所思、所行，更要知其意义所在。<br><br> <strong>字典索引 A-Z</strong><br><br><small> </small><br>        <table order="0" width="100%" border="0"><br>    <tbody><br>        <tr valign="middle" align="left"><br>            <td><a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#A" target="_blank" rel="noopener">A 即 Advice（建议）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#B" target="_blank" rel="noopener">B 即 Balance（平衡）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#C" target="_blank" rel="noopener">C 即 Celebration（庆功）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#D" target="_blank" rel="noopener">D 即 Daring（勇敢）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#E" target="_blank" rel="noopener">E 即 Encouragement（鼓励）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#F" target="_blank" rel="noopener">F 即 Feedback（反馈）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#G" target="_blank" rel="noopener">G 即 Guidance（引导）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#H" target="_blank" rel="noopener">H 即 Humility（谦虚）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#I" target="_blank" rel="noopener">I 即 Infectious（感染力）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#J" target="_blank" rel="noopener">J 即 Jiggle（摇摆）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#K" target="_blank" rel="noopener">K 即 Knowledge（知识）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#L" target="_blank" rel="noopener">L 即 Listening（聆听）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#M" target="_blank" rel="noopener">M 即 Mentor（导师）</a></td><br>            <td><a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#N" target="_blank" rel="noopener">N 即 Naysayers（怀疑论者）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#O" target="_blank" rel="noopener">O 即 Obligated（担当）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#P" target="_blank" rel="noopener">P 即 Principles（原则）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#Q" target="_blank" rel="noopener">Q 即 Questioning（提问）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#R" target="_blank" rel="noopener">R 即 Retrospectives（回顾）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#S" target="_blank" rel="noopener">S 即 Sensitive（敏感）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#T" target="_blank" rel="noopener">T 即 Transparency（透明）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#U" target="_blank" rel="noopener">U 即 Unlock（释放潜力）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#V" target="_blank" rel="noopener">V 即 Vocabulary（词汇）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#W" target="_blank" rel="noopener">W 即 Welcoming（接纳）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#X" target="_blank" rel="noopener">X 即 Xenodochial（友好）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#Y" target="_blank" rel="noopener">Y 即 Yarn（讲故事）</a><br> <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#Z" target="_blank" rel="noopener">Z 即 Zen（禅意）</a></td><br>        </tr><br>    </tbody><br></table><br><a name="A"><br></a></p><h3><a name="A">A 即 Advice（建议）：“我曾见别人做过。我觉得你们这样做效果更好。”</a></h3><p></p>
+<p>以传统方式工作的经理会明确指导团队该怎么做，而不是帮助他们找到属于自己的道路。敏捷教练虽然常常以顾问的角色出现，但她不会做太多导向工作，而是在需要的时候出现，帮助团队避开已为人知的陷阱，或是引导他们走向佳境（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#G" target="_blank" rel="noopener">引导</a>和<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#M" target="_blank" rel="noopener">导师</a>）。</p>
+
+
+
+
+
+
+
+
+
+<div class="vendor-content-box-float"><br></div>
+
+
+
+
+<p><a name="B"></a></p>
+<h3>B 即 Balance（平衡）：“别把好东西丢掉。”</h3><br><br><p>有时候团队会忙得自顾不暇，以至于又回到老路上来。教练会寻找良机，跟团队一起工作，去发现、尝试可能为团队带来巨大利益的新做法。他还会确保那些依然为团队带来收益的实践不会被随手抛弃，为人遗落，他常常会把它们跟新方法合并。</p><br><a name="C"><br><h3>C 即 Celebration（庆功）：“嘿，上个迭代你们干的太棒了！” </h3><br></a><br><p>团队常常会低估成功和肯定式探询的力量。迭代一步步向结果推进，形成节奏，帮助大家意识到何时达成目标（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#F" target="_blank" rel="noopener">反馈</a>）。但是人们常常会忘记迭代中的庆功。整个团队在项目结束以后，或是某些重大里程碑完成后庆功（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#I" target="_blank" rel="noopener">感染力</a>），会极大鼓舞士气。敏捷教练每天会跟团队一起庆祝每个小小的胜利。</p><br><a name="D"><br><h3>D 即 Daring（勇敢）：“跟你们说，我豁出去了，是这样的……” </h3><br></a><br><p>引入变化就有相应的风险，敏捷教练需要承担责任，寻找途径，以最小的风险带来最大的价值。在团队中，他往往是第一个破冰而行的，激励团队，给每个人带来安全感，让他们有勇气提出建议，即使不敢尝试不同的工作方式。</p><br><a name="E"><br><h3>E 即 Encouragement（鼓励）：“加油！这玩意很NB！”</h3><br></a><br><p>有些敏捷实践看上去很直白，可如果没有理解它们背后的原理和带来的影响，实施起来就会很容易出问题。简单试上一段时间以后，人们往往会感觉到哪些东西从前效果更好，现在用的实践存在哪些限制（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#Q" target="_blank" rel="noopener">提问</a>）。敏捷教练会为人们提供支持和鼓励，帮助他们度过尝试新实践的不适应期，有时也会帮他们解决掉实践中比较难以实施的部分。</p><br><a name="F"><br><h3>F 即 Feedback（反馈） ：“你有没有发现团队……？” </h3><br></a><br><p>所有的敏捷方法学都提倡快速反馈。敏捷教练在团队工作的方方面面都会强调反馈机制的重要性——从团队协作，到过程，再到实践。定期的反馈可以帮助团队更有效地适应所处的特殊环境。</p><br><a name="G"><br><h3>G 即 Guidance（引导） ：“看上去我们有三种选择，我觉得前两种可能更好，你们觉得呢？”</h3><br></a><br><p>敏捷狂热者的工作方式跟敏捷教练不同。狂热者习惯使用命令和控制的方式，而敏捷教练只是加以引导，帮助每个人自我学习。他引导团队避开已知的陷阱，但他也明白失败是成功之母。</p><br><a name="H"><br><h3>H 即 Humility（谦虚）：“实际上，活儿是大家干的，不是我。”</h3><br></a><br><p>敏捷教练会为团队提供指导，帮助他们完成工作。当他们犯错误的时候，她要勇于承担责任，团队取得成功后，她要保证适当的人得到奖赏。傲慢自大的教练在团队中没有容身之地。</p><br><a name="I"><br><h3>I 即 Infectious（感染力）：“你得过来看看这个！”</h3><br></a><br><p>敏捷教练会给团队带来激情和活力，用自己为榜样，鼓舞人们燃起对工作的激情。他理解团队愿意接受多少变化，也知道自己展示热情的分寸，不会被人跟敏捷狂热者混为一谈。他也一直在寻找恰当的时机与大家分享他的能量与热情。</p><br><a name="J"><br><h3>J 即 Jiggle（摇摆）：“这样调整一下，再那样调整一下。” </h3><br></a><br><p>很多事情要想做好不只一种方式，即便团队跟上次采用同样的实践也是如此。敏捷教练帮助团队在以往经验和认识的基础上调整实践，使他们更好地适应团队与环境。</p><br><a name="K"><br><h3>K 即 Knowledge（知识） ：“你读过这本书/这篇论文/这个邮件列表了么？”</h3><br></a><br><p>敏捷方面的知识浩如烟海：敏捷实践、敏捷原则、实施方法与面临的挑战，等等等等。敏捷教练对这整套资源很熟悉，可以引导大家去看相关的书籍、论文或是博客，查找跟他们遇到的问题相关的资源。</p><br><a name="L"><br><h3>L 即 Listening（聆听） ：“你说你想要做……” </h3><br></a><br><p>敏捷教练需要倾听团队的看法，从而了解他们当前的状态、他们的好恶。有时候也会把她听到的东西反馈给团队。她认真听取每个人的意见，掌握他们的需求与担忧，并据此调整她工作的优先级和相关活动。有时她也会把这些意见跟别人分享，也会鼓励人们为自己辩护。</p><br><a name="M"><br><h3>M 即 Mentor（导师） : 让自己成为多余的人</h3><br></a><br><p>敏捷教练的终极目标是打造自给自足的团队，他们可以对实践过程进行自我调整。为了达到这个目的，他需要找到适当的人，对其进行指导，提供支持，这些人的角色看起来很像教练。</p><br><a name="N"><br><h3>N 即 Naysayers（怀疑论者）：“我不信”</h3><br></a><br><p>每个团队可能都有某些人彻头彻尾的站到敏捷教练的对立面去，而且也没有什么说得过去的理由。敏捷教练要能经得住这种刁难，去理解他们的需要，理解他们为什么会感到威胁（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#L" target="_blank" rel="noopener">聆听</a>, <a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#Q" target="_blank" rel="noopener">提问</a>和<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#S" target="_blank" rel="noopener">敏感</a>）。她会跟他们一起工作，让他们感到自己的意见受到重视，满足他们的需要，让他们释放掉压力。不情不愿的家伙需要得到鼓励，这也是教练的工作。</p><br><a name="O"><br><h3>O 即 Obligated（担当）：“团队中的一部分”</h3><br></a><br><p>敏捷教练需要证明他的建议是完全为了团队利益（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#T" target="_blank" rel="noopener">透明</a>），如果他能够作为团队的一部分，跟团队一起工作，能够体验到一项决策的后续影响，这对他的工作将很有帮助。</p><br><a name="P"><br></a><h3><a name="P">P 即 Principles（原则）：“不要只看到现象，还要看清本质。”</a></h3>
+
+<p>穿透实践的执行过程，洞彻其背后原则，是为敏捷教练应为之事。脱离原则的实践会变成无本之木，收效甚微，而脱离了实践的原则更是寸步难行（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#G" target="_blank" rel="noopener">引导</a>）。敏捷教练会帮助团队体验一系列实践，帮助他们理解这些实践所带来的价值，帮助他们适应这些实践对团队对组织带来的效果，由此掌握原则。</p><br><a name="Q"><br><h3>Q 即 Questioning（提问） ：“你看到了什么？感觉如何？”</h3><br></a><br><p>提问问题可以帮助我们厘清状况，到底是顺风顺水，还是步履维艰（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#N" target="_blank" rel="noopener">怀疑论者</a>）。敏捷教练常常问问题，将事实与个人看法分开，对现状有更好的认识。如果不问问题，就轻易做出决定，长期来看对团队会有不良影响。</p><br><a name="R"><br><h3>R 即 Retrospectives（回顾） ：“我们学到了什么？哪些东西我们会继续坚持？哪些东西应该另起炉灶？”</h3><br></a><br><p>回顾是一个很关键的实践，敏捷教练用它来帮助团队认识到自己的成果。项目回顾可以给新项目提供之前积聚的智慧，而中间阶段或是固定频率的回顾可以帮<br>助团队快速响应不断变化的环境，保证工作效率并不断提升。在回顾中着重突出那些已经实施了的变化，或者至少指出那些时时重复出现的问题，都可让教练和团队<br>共同受益。（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#L" target="_blank" rel="noopener">聆听</a>）。</p><br><a name="S"><br><h3>S 即 Sensitive（敏感） ：“我在想他们是不是已经准备好……”</h3><br></a><br><p>最优秀的敏捷教练会尊重团队所在的组织文化和工作环境（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#L" target="_blank" rel="noopener">聆听</a>和<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#W" target="_blank" rel="noopener">热心</a>）。她不会命令他们改变工作方式；她会首先观察形势，然后才提出建议。</p><br><a name="T"><br><h3>T 即 Transparency（透明）：“我希望你可以这样试试看，因为我觉得这有助于你……”</h3><br></a><br><p>诚实可以建立敏捷教练与团队之间的信任。他会解释做事的理由，让大家晓得尝试新事物可以带来什么好处。通过解释当前的状况及其与过去的经验或学习到<br>的教训之间的相似之处，人们会觉得可以安心接受他的建议。有时候，让大家知道他没有暗地里做什么事情，或是有什么隐藏的动机，这也是很重要的。</p><br><a name="U"><br><h3>U 即 Unlock（释放潜能）：“我没想到这团队还能办到这些！”</h3><br></a><br><p>因为所处环境的限制，团队常常都有很多潜力爆发不出来。通过认真观察和对当前流程的尊重，敏捷教练可以帮助团队识别并消除系统的限制，释放团队的潜力。</p><br><a name="V"><br></a><h3><a name="V">V 即 Vocabulary（词汇）：“YAGNI？Burn up？Muda？”</a></h3><br><br><p>每套方法学都有相伴的词汇。敏捷教练了解这些词汇、缩写、特殊单词的含义，把它们跟团队的思想体系相匹配。当新的模型与现有模型有所冲突时，这样做尤其有用，而且可能需要实验式教学（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#Z" target="_blank" rel="noopener">禅意</a>）。</p><br><a name="W"><br><h3>W 即 Welcoming（接纳）：“你们觉得我们应该怎么做？”</h3><br></a><br><p>倘若敏捷教练做得很成功，团队就会提出新的思想，真正加以执行。敏捷教练应该欢迎并支持个人的提议，保护它们不会像过去那样饱受批评。</p><br><a name="X"><br><h3>X 即 Xenodochial（友好）：“对陌生人友好”</h3><br></a><br><p>大多数敏捷教练都会不停转换团队，需要适应不同的环境。他们不但要被不同的人接受，而且需要确保他们的一言一行不会让人产生排斥心理（参见<a href="http://www.infoq.com/cn/articles/agile-coach-a-to-z#S" target="_blank" rel="noopener">敏感</a>）。每个人都有自己的想法和动机——教练必须能够意识到这一点，知道每个人都有未发挥出来的可能。</p><br><a name="Y"><br><h3>Y 即 Yarn（讲故事）：“从前啊……” </h3><br></a><br><p>在不同的文化中传播知识，讲故事是很有效的途径，敏捷教练也常用它来散播知识和想法。有些故事讲述了以前的种种经验教训，有些可能只是作为隐喻来阐述概念。</p><br><a name="Z"><br></a><h3><a name="Z">Z 即 Zen（禅意）：“你必须找到自己的路”</a></h3><br><br><p>事非经过不知难。有些道理必须要亲身体验以后才能明白。与其苦口婆心，不如想办法打造安全的环境，纵使人们犯错，也至少不会有严重的后果。敏捷教练可以使用苏格拉底式的问答方式，帮助人们找到针对自己问题的最佳解决方法。</p><br><h3>关于作者</h3><br><p>Patrick<br>Kua是一名软件工程师，同时还是一位导师和教练，就职于ThoughtWorks。Patrick一直积极投身于团队的建设发展，给周围的人带来激情与<br>活力。他相信，如果人们可以把喜欢的事与工作保持一致，就可以生活得更快乐，有更好的发展。过去的三年半时间里，他训练和指导过很多团队实施敏捷。</p><br><p><strong>查看英文原文</strong>：<a title="The Agile Coach, from A to Z" href="http://www.infoq.com/articles/agile-coach-a-to-z" target="_blank" rel="noopener">The Agile Coach, from A to Z</a>。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Knowledge/" rel="tag"># Knowledge</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcujzj1e00o7xwrqttodz2fs/" rel="next" title="云计算">
+                <i class="fa fa-chevron-left"></i> 云计算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcujzis000erxwrqx3z4ceyr/" rel="prev" title="OpenOffice.org 更新至 3.0.0">
+                OpenOffice.org 更新至 3.0.0 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">A 即 Advice（建议）：“我曾见别人做过。我觉得你们这样做效果更好。”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">B 即 Balance（平衡）：“别把好东西丢掉。”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">C 即 Celebration（庆功）：“嘿，上个迭代你们干的太棒了！” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">D 即 Daring（勇敢）：“跟你们说，我豁出去了，是这样的……” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">E 即 Encouragement（鼓励）：“加油！这玩意很NB！”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">F 即 Feedback（反馈） ：“你有没有发现团队……？” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">G 即 Guidance（引导） ：“看上去我们有三种选择，我觉得前两种可能更好，你们觉得呢？”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">H 即 Humility（谦虚）：“实际上，活儿是大家干的，不是我。”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">I 即 Infectious（感染力）：“你得过来看看这个！”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">J 即 Jiggle（摇摆）：“这样调整一下，再那样调整一下。” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">K 即 Knowledge（知识） ：“你读过这本书/这篇论文/这个邮件列表了么？”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">12.</span> <span class="nav-text">L 即 Listening（聆听） ：“你说你想要做……” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">13.</span> <span class="nav-text">M 即 Mentor（导师） : 让自己成为多余的人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">14.</span> <span class="nav-text">N 即 Naysayers（怀疑论者）：“我不信”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">15.</span> <span class="nav-text">O 即 Obligated（担当）：“团队中的一部分”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">16.</span> <span class="nav-text">P 即 Principles（原则）：“不要只看到现象，还要看清本质。”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">17.</span> <span class="nav-text">Q 即 Questioning（提问） ：“你看到了什么？感觉如何？”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">18.</span> <span class="nav-text">R 即 Retrospectives（回顾） ：“我们学到了什么？哪些东西我们会继续坚持？哪些东西应该另起炉灶？”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">19.</span> <span class="nav-text">S 即 Sensitive（敏感） ：“我在想他们是不是已经准备好……”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">20.</span> <span class="nav-text">T 即 Transparency（透明）：“我希望你可以这样试试看，因为我觉得这有助于你……”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">21.</span> <span class="nav-text">U 即 Unlock（释放潜能）：“我没想到这团队还能办到这些！”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">22.</span> <span class="nav-text">V 即 Vocabulary（词汇）：“YAGNI？Burn up？Muda？”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">23.</span> <span class="nav-text">W 即 Welcoming（接纳）：“你们觉得我们应该怎么做？”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">24.</span> <span class="nav-text">X 即 Xenodochial（友好）：“对陌生人友好”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">25.</span> <span class="nav-text">Y 即 Yarn（讲故事）：“从前啊……” </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">26.</span> <span class="nav-text">Z 即 Zen（禅意）：“你必须找到自己的路”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">27.</span> <span class="nav-text">关于作者</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

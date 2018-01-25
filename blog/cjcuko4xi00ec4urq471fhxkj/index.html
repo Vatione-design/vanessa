@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;lt;p class=&amp;quot;info&amp;quot;&amp;gt;     作者     &amp;lt;strong&amp;gt;Charles Humble&amp;lt;/strong&amp;gt;译者     &amp;lt;strong&amp;gt;崔康&amp;lt;/strong&amp;gt;     发布于     2008年11月24日 上午1时35分 &amp;lt;/p&amp;gt;  &amp;lt;dl class=&amp;quot;tags2&amp;quo">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaFX技术预览">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4xi00ec4urq471fhxkj/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;lt;p class=&amp;quot;info&amp;quot;&amp;gt;     作者     &amp;lt;strong&amp;gt;Charles Humble&amp;lt;/strong&amp;gt;译者     &amp;lt;strong&amp;gt;崔康&amp;lt;/strong&amp;gt;     发布于     2008年11月24日 上午1时35分 &amp;lt;/p&amp;gt;  &amp;lt;dl class=&amp;quot;tags2&amp;quo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T19:10:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaFX技术预览">
+<meta name="twitter:description" content="&amp;lt;p class=&amp;quot;info&amp;quot;&amp;gt;     作者     &amp;lt;strong&amp;gt;Charles Humble&amp;lt;/strong&amp;gt;译者     &amp;lt;strong&amp;gt;崔康&amp;lt;/strong&amp;gt;     发布于     2008年11月24日 上午1时35分 &amp;lt;/p&amp;gt;  &amp;lt;dl class=&amp;quot;tags2&amp;quo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4xi00ec4urq471fhxkj/"/>
+
+
+
+
+
+  <title>JavaFX技术预览 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4xi00ec4urq471fhxkj/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaFX技术预览</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-27T03:38:00+08:00">
+                2008-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1><br></h1>
+
+<pre><code>&lt;p class=&quot;info&quot;&gt;
+    作者
+    &lt;strong&gt;Charles Humble&lt;/strong&gt;译者
+    &lt;strong&gt;崔康&lt;/strong&gt;
+    发布于
+    2008年11月24日 上午1时35分
+&lt;/p&gt;
+
+&lt;dl class=&quot;tags2&quot;&gt;&lt;dt class=&quot;community&quot;&gt;社区&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/architecture&quot; name=&quot;architecture&quot; id=&quot;1,390&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Architecture&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/java&quot; name=&quot;java&quot; id=&quot;739&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Java&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;主题&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/LanguageDesign&quot; name=&quot;LanguageDesign&quot; id=&quot;4,079&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;语言设计&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/web2_0&quot; name=&quot;web2_0&quot; id=&quot;767&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;Web 2.0&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/ria&quot; name=&quot;ria&quot; id=&quot;777&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;RIA&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/rich-client-desktop&quot; name=&quot;rich-client-desktop&quot; id=&quot;830&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;富客户端/桌面&lt;/a&gt;&lt;/dd&gt;&lt;dt class=&quot;topics&quot;&gt;标签&lt;/dt&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/javafx_mobile&quot; name=&quot;javafx_mobile&quot; id=&quot;1,189&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;JavaFX Mobile&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/openSourceJava&quot; name=&quot;openSourceJava&quot; id=&quot;771&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;开源Java&lt;/a&gt;,&lt;/dd&gt;&lt;dd&gt;&lt;a href=&quot;http://www.infoq.com/cn/javafx_script&quot; name=&quot;javafx_script&quot; id=&quot;1,154&quot; onclick=&quot;try {CategoryPopup.showPopup(this);} catch(e) {}; return false;&quot;&gt;JavaFX脚本&lt;/a&gt;&lt;/dd&gt;&lt;/dl&gt;
+
+   &lt;p&gt;Java
+</code></pre><p>的成功可以归结于这样一个事实：它在其所面向的领域里是门非常优秀的通用语言。对于现代企业计算中典型的长时间运行的服务器端编程，以及其它诸如<br>以支持跨平台、稳定性和安全性为关键的移动开发等方面，Java都是一个不错的选择。但对于一些需要一定程度的专业知识的编程任务，Java和所有通用语<br>言一样不是非常合适。比方说挑战技术和管理的现代GUI设计。</p><p></p>
+<div class="vendor-content-box-float"><br>    <h3>相关<span class="vendor">厂商</span>内容</h3><br><br><br><br><br><br>        <p class="entrypdf"><br>            <a href="http://www.infoq.com/cn/vendorcontent/show.action?vcr=303" target="_blank" rel="noopener"><br>                SOY Framework：Java富客户端快速开发框架<br>            </a><br>        </p><br><br><br><br><br>        <p class="entrypdf"><br>            <a href="http://www.infoq.com/cn/vendorcontent/show.action?vcr=444" target="_blank" rel="noopener"><br>                InfoQ中文站读者独享6折SD2C技术大会门票，即刻抢购<br>            </a><br>        </p><br><br><br><br><br>        <p class="entrypdf"><br>            <a href="http://www.infoq.com/cn/vendorcontent/show.action?vcr=450" target="_blank" rel="noopener"><br>                沙龙：GlassFish的OSGi模块化架构分析（11.29 杭州）<br>            </a><br>        </p><br><br><br><br><br><br><br></div>
+
+
+
+
+<p>从管理角度来看，一个流畅、复杂的用户界面通常需要一些不同的角色——图像艺术家、信息架构师、动画设计人员和程序员。虽<br>然某些人可以担当起所有的职责，但这类人绝对是少数。通常来说，整个开发过程需要不同的工作人员的参与，设计人员和开发人员之间资源的来回流动常常是个大<br>问题。技术方面，现代UI设计需要高层次的技术知识。类似Swing这样的复杂工具包，它为开发人员提供了一套复杂的控件，但在创建UI时，开发人员需要<br>花很多时间去学习其使用方法。此外，界面的响应能力在很大程度上依赖于并发性。这本身不是什么问题——Java多线程编程很简单——但随之带来的是大量的<br>管理转换和动画的固定代码。</p><br><p>Sun凭借JavaFX介入富互联网应用领域，向Adobe的Flex和<br>Microsoft的Silverlight宣战。JavaFX无疑是Sun为Java开发人员解决相关问题的策略之一。它的目标在于为创建横跨桌面、互<br>联网和移动设备的富互联网应用提供一个基础平台，这也可以看出Sun的Java系列产品的一个重大转变，它不再仅仅专注于底层技术，而是开始创建完整的解<br>决方案。目前的技术预览版包括两个主要组件：关注于设计人员/开发人员工作流的Nile项目和JavaFX Script——一个编写Java<br>GUI应用的新型说明性语言（declarative language）。</p><br><p>Flex和Silverlight都选用XML作为自己的说明性语言（分别使用MXML和XAML），而<br>Sun却选择重新开发一门新的脚本语言——JavaFX Script。Sun高级工程师Joshua<br>Marinacci告诉我们，Sun不打算添加对XML语言支持：</p><br><blockquote> “我们发现很多开发人员非常讨厌XML，他们想要的是一个为图形界面优化过的更为简洁的说明性语法。我们相信熟悉JavaScript的开发人员会发现JavaFX Script非常好用。”<br></blockquote><br><p>JavaFX Script是一个说明性的、静态类型的、编译的、领域特定语言（DSL），它建立在Java标准版和缩微版的基础上，使用来自JavaFX环境的Java包来创建用户界面。它主要针对两类用户组：</p><br><ol><li>已经熟悉Swing但仍在寻找一种更快更有效的方式来创建富功能界面的Java开发人员。</li><li>熟悉其它脚本语言例如JavaScript或ActionScript的Web开发人员。</li></ol><br><p>JavaFX Script的开发效率很高，拥有一些非常方便的用于插入和删除操作的功能（比如，insert 10 before<br>x[1];）。它还解决了其它很多常见问题，例如，它可以轻松地把UI组件绑定到后台数据库；它通过一个简化的类似监听者的机制（称为事件触发器）在变量<br>值改变时触发相应的事件。</p><br><p>Sun在语言的可读性上苦下工夫，使它易于掌握，容易读懂。但这样做的一个结果是，他们在<br>Java和JavaScript中使用了类似BASIC的布尔操作符而不是C风格的操作符。所以，JavaFX<br>Script用“and”替代&amp;&amp;，用“or”替代||。另外，它能够同时支持“not”和“!”。适应这样的用法不需要很多时间，但我<br>的确发现很多客户都对此感到很惊讶。</p><br><p>JavaFX<br>Script还有其它一些方面也很让人吃惊。比方说，它虽然支持使用保留字来创建函数或者变量，但它却要求用法式引号消除原意——例如，ar<br>&lt;&lt;while&gt;&gt; = 100——而非通过情境分析来判断。再比方说，JavaFX<br>Script选择支持多继承而不采用Java的接口方式。Marinacci解释说：</p><br><blockquote>“GUI环境下，我们发现使用多继承可以简化很多任务。大多数情况下，开发人员没必要用到创建子类，所以这不是什么大问题。子类的应用主要集中在组件开发上。”<br></blockquote><br><p>JavaFX借鉴并增强了一些源自的Java的思想。值得一提的是JavaFXDoc在Javadoc的基础上对文档工具做了<br>必要的更新。JavaFXDoc放弃了HTML，选择生成XML格式文档，随后转换成其它输出格式。目前的格式是XHTML1.0。这种两步走的策略为将<br>来支持其它格式例如PDF或者建立存储知识的数据库的可能性保留了实现的余地。新的输出格式不使用frame，可以很容易地通过CSS对其格式化。它同时<br>还可以对各个profile做基本的过滤——例如，JavaFX API被分为通用、桌面和移动profile，可以正确过滤文档。这里有一个<a href="http://openjfx.java.sun.com/current-build/doc/api/index.html" title="例子" target="_blank" rel="noopener">例子</a>。另一个能够体现高效开发的功能是JavaFXDoc通过@examples标识生成内部示例。示例代码自动根据语法高亮显示，然后文档工具编译和执行示例把结果截屏贴到文档中，提供了一种自动更新文档截屏的方法。</p><br><p>我们与Marinacci还谈到了这项工具的未来开发计划，他证实Sun正在开发一个搜索解决方案，但1.0版不会提供。对核心Javadoc工具<br>的更新目 前暂定在Java 7发布，他相信Javadoc未来版本的开发会吸取JavaFXDoc带来的经验教训。JavaFX<br>Script可以访问所有现存Java包，它本身也包含了一些新的API。其中两个关键API是媒体 API（目前提供的是原生库版本，在1.0版中将以<a href="http://www.on2.com/index.php?id=439&amp;news_id=622%29" target="_blank" rel="noopener">On2 TrueMotion video codecs</a>取<br>而代之）和场景图形API。场景图形API体现出具有Swing技术背景的开发人员通常思考GUI的方式的转变。这里GUI代表了一系列层次的可视化节<br>点，这些节点组成场景并与用户交互。场景图像模型支持效果、任意变换（缩放和旋转）和动画。场景图形保留图形对象，每当页面刷新时都会重画图形，这就隐藏<br>了处理重画的细节、缓存和其它类似于Java2D那样的即时性API问题。这种层次的抽象也允许API进行各种优化，例如预加载纹理和图形卡的原型。场景<br>图形API与JavaFX紧密关联，但你也可以在普通Java程序中应用。</p><br><p>Sun把API分成3种profile，目前可以用的有 两种：通用profile<br>API在所有设备上都可用，包括场景图形API和媒体组件，而桌面profile则更类似于Swing组件。第三种是移动profile，预计在2009<br>年发布，对移动设备开发人员可能是一个完整的应用栈，不过目前没有详细的公开的信息。</p><br><p>截至到撰写本文时，通用API尚且存在一两个重大的遗漏——例如，JavaFX预览版中没有和Table、TabbedPane、TextArea或BookPanel相同的对象。1.0版应该会更为完整些。 Marinacci告诉我们：</p><br><blockquote> “我们计划把Swing组件移植到子类节点，然后就可以自由地把Swing组件和图形节点混合在一起，不需要再使用适配器类。目前，高级类（例如树和表格）只在桌面系统上可用。”</blockquote><br><p>开发一个新的语言而不是听从Adobe的领导是一个大胆的尝试，我觉得这个很好的决策。JavaFX<br>Script很好用，而且除了目前的应用外还有其它一些可能的用途——例如，JavaFX数据格式（FXD），这是Nile项目的一个关键部分，采用<br>JavaFX Script说明性格式的一个子集来表示图形资源。</p><br><p>Microsoft为Silverlight提供了特别的工具箱（Expression工具包），直接转换Adobe的 Creative<br>Suite的输出文件。Sun也正在开发自己的工具（预计明年），他们决定通过Nile项目来支持目前流行的一些工具，这些工具中首当其冲的是Adobe<br>的Illustrator和Photoshop。</p><br><p>Nile项目支持OS X和Windows，它包含特别针对Adobe Illustrator和Photoshop<br>CS3的插件、一个SVG转换工具以及JavaFX数据格式（FXD）查看器。使用Adobe工具的设计者可以像往常一样创建图形资源，最后以FXD的格<br>式输出。用户可以通过查看器来浏览图形文件，以确认输出的文件如期望的一样。开发人员还可以通过JavaFX脚本语言来访问和处理组成图形资源文件的各个<br>图层。这些操作对于图形资源的处理表现地很好，但定制样式到基本组件却仍然是个问题。Sun目前正在研究如何利用CSS包装Swing组件，这是<br>JavaFX 1.0版中计划实现的目标之一。</p><br><p>所有这些工作都在Java 6 Update<br>10（正式名称为消费者JRE项目）的基础上完成——对部署、性能、内存使用和内建的感观（Nimbus）的改善更有助于推动Swing高效地开发桌面应<br>用。可惜的是，目前对开发人员来说，这些改善仍然很有限。尽管Sun公司已经发布了update<br>10的Windows、Linux和Solaris版本，但这几个版本在applet quickstarter、内核安装文件和Direct3D<br>pipeline（仅限于Windows平台）方面的实现方式完全不同。此外，苹果公司在所有64-bit Intel Mac的OSX<br>10.5上对Java 6都有所限制。<br>Marinacci也向我们证实了Sun正在与苹果合作改善Java和JavaFX对OSX的支持的消息，但没有透露任何细节。同时，他还向我们提供了最<br>新的下载统计数据：</p><br><blockquote> “JRE每月平均有4000-5000万次的下载，有些月份会达到1亿。这些下载95%是JavaSE 6。在JavaSE<br>6 update<br>10正式发布数月之后，它会开启自动更新，我们期望能够看到类似的数据。根据Omniture的统计，连接到因特网的计算机有91%都安装了Java。”</blockquote><br><p>Flash<br>和Silverlight都是完全封闭代码的专有工具，对于某些开发人员来说在使用上是一个巨大的障碍。由于Flash中的很多关键代码例如音频和视频解<br>码器都由第三方授权使用，Adode因此很难像Sun开放Java那样轻松地开放Flash平台。虽然license还没有最后敲定，但Sun正在努力把<br>JavaFX作为开源软件发布，目前他们已经在GPL v.2<br>license下发布了编译器和场景图形API。开源也许能够显著提高JavaFX平台的普及率，然而，若想成为有力的竞争者，JavaFX还有很多重要<br>的工作要做。</p><br><p><b>查看英文原文：</b><a href="http://www.infoq.com/articles/jfx_preview" title="Java FX Technology Preview" target="_blank" rel="noopener">Java FX Technology Preview</a>。</p><p>转自：<a href="http://www.infoq.com/cn/articles/jfx_preview" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/jfx_preview</a><br></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4ui007r4urqwoefnj7n/" rel="next" title="Change my blog theme">
+                <i class="fa fa-chevron-left"></i> Change my blog theme
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko55e00rd4urq5lrjdfgx/" rel="prev" title="Web 2.0 Winners for MAY 9, 2008">
+                Web 2.0 Winners for MAY 9, 2008 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.1.</span> <span class="nav-text">相关厂商内容</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

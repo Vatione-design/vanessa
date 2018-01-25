@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JSF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;用 Seam Remoting 和 Ajax4jsf 无缝熔接客户机和服务器 级别： 中级Dan Allen (dan.allen@mojavelinux.com), 高级 Java 工程师, CodeRyte, Inc.2007 年  6 月  25 日JSF 基于组件的方法论促进了抽象，但大多数 Ajax 实现由于公开了底层的 HTTP 交换而使之大受干扰。在 无缝集成 JSF 系">
+<meta name="keywords" content="JSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seam - 无缝集成 JSF，第 3 部分: 用于 JSF 的 Ajax">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko53y00p44urqz0fmhfac/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="&amp;nbsp;用 Seam Remoting 和 Ajax4jsf 无缝熔接客户机和服务器 级别： 中级Dan Allen (dan.allen@mojavelinux.com), 高级 Java 工程师, CodeRyte, Inc.2007 年  6 月  25 日JSF 基于组件的方法论促进了抽象，但大多数 Ajax 实现由于公开了底层的 HTTP 交换而使之大受干扰。在 无缝集成 JSF 系">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/developerworks/cn/java/j-seam3/fuse.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/rules/blue_rule.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/v14/icons/u_bold.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:image" content="http://www.ibm.com/i/c.gif">
+<meta property="og:updated_time" content="2018-01-22T18:17:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Seam - 无缝集成 JSF，第 3 部分: 用于 JSF 的 Ajax">
+<meta name="twitter:description" content="&amp;nbsp;用 Seam Remoting 和 Ajax4jsf 无缝熔接客户机和服务器 级别： 中级Dan Allen (dan.allen@mojavelinux.com), 高级 Java 工程师, CodeRyte, Inc.2007 年  6 月  25 日JSF 基于组件的方法论促进了抽象，但大多数 Ajax 实现由于公开了底层的 HTTP 交换而使之大受干扰。在 无缝集成 JSF 系">
+<meta name="twitter:image" content="http://www.ibm.com/i/c.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko53y00p44urqz0fmhfac/"/>
+
+
+
+
+
+  <title>Seam - 无缝集成 JSF，第 3 部分: 用于 JSF 的 Ajax | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko53y00p44urqz0fmhfac/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Seam - 无缝集成 JSF，第 3 部分: 用于 JSF 的 Ajax</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-26T08:38:00+08:00">
+                2008-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;<table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td width="100%"><p id="subtitle"><em>用 Seam Remoting 和 Ajax4jsf 无缝熔接客户机和服务器</em></p><img alt="" src="http://www.ibm.com/i/c.gif" class="display-img" width="1" height="6"></td></tr></tbody><br></table></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0"><br><tbody><tr valign="top"><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td width="100%"><table class="no-print" width="160" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><br><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><!-- this content will be automatically generated across all content areas --><!--END RESERVED FOR FUTURE USE INCLUDE FILES--><br></td></tr></tbody></table><p>级别： 中级</p><p><a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#author" target="_blank" rel="noopener">Dan Allen</a> (<a href="mailto:dan.allen@mojavelinux.com?subject=%E7%94%A8%E4%BA%8E%20JSF%20%E7%9A%84%20Ajax" target="_blank" rel="noopener">dan.allen@mojavelinux.com</a>), 高级 Java 工程师, CodeRyte, Inc.<br></p><p>2007 年  6 月  25 日</p><blockquote>JSF 基于组件的方法论促进了抽象，但大多数 Ajax 实现由于公开了底层的 HTTP 交换而使之大受干扰。在 <a href="http://www.ibm.com/developerworks/cn/java/j-seam/" target="_blank" rel="noopener">无缝集成 JSF 系列</a><br>最后的这篇文章中，Dan Allen 展示了如何使用<br>Seam Remoting API 和 Ajax4jsf 组件与服务器上的受管 bean 通信，就好像这些 bean<br>与浏览器同在本地一样。您将了解利用 Ajax 作为 JSF 事件驱动架构的一种自然改进是多么地容易，以及如何在不影响 JSF<br>组件模型的前提下实现这一目的。</blockquote><!--START RESERVED FOR FUTURE USE INCLUDE FILES--><!-- include java script once we verify teams wants to use this and it will work on dbcs and cyrillic characters --><br><br><!--END RESERVED FOR FUTURE USE INCLUDE FILES--><br>            <p>时下，大多数<br>Java? 开发人员都很看好 mashup，所以您可能会困惑：Seam 与号称 Web 2.0 的技术，尤其是 Ajax，如何能集成。若能使用<br>Seam 启动 JSF 中的部分页面更新或者用 Google Map 协助 JSF 应用程序<br>mashup，那将非常酷，不是么？您不仅能这么做，而且还非常容易。</p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="N10075"><b>更多 Ajax 技术资源！</b></a><br><br>                <p>请访问 <a href="http://www.ibm.com/developerworks/cn/ajax/" target="_blank" rel="noopener">Ajax 技术资源中心</a>，这是有关 Ajax 编程模型信息的一站式中心，包括很多文档、教程、论坛、blog、wiki 和新闻。任何关于 Ajax 的新信息都能在这里找到。</p><br>            </td></tr></tbody></table></td></tr></tbody></table><br>            <p>在 <a href="http://www.ibm.com/developerworks/cn/java/j-seam/" target="_blank" rel="noopener"><br><br>                    <i>无缝集成 JSF</i> 系列</a> 的最后一篇文章中，我将为您展示如何使用 Seam<br>Remoting API 和 Ajax4jsf 组件来协助基于 JSF 应用程序中的 Ajax 风格的交互。正如您将会看到的，结合 Seam<br>和 Ajax 的最大好处在于它让您可以享用所有 Web 2.0 的奢侈东西，而同时又<i>不需要</i> 陷于使用 JavaScript <code>XMLHttpRequest</code><br>对象的痛苦之中。借助 Seam Remoting 和 Ajax4jsf，可以与服务器上的受管 bean 通信，就好像这些 bean 与浏览器同在本地一样。浏览器和服务器状态保持同步，而且永远无需处理促成它们之间通信的低层 API。</p><br>            <p>我首先会为您展示 Seam 是如何推动 Ajax 编程的基于组件的新方式的。您将学会如何使用 Seam Remoting API<br>来通过 Ajax 进行 JavaScript 和服务器端对象间的通信。一旦理解了这种面向 Ajax 的新（且简单的）方式，您就可以使用它来增强 Open 18 应用程序，方法如下：</p><br>            <ul><li>在 Open 18 球场目录和 Google Maps 之间创建一个 mashup。 </li><li>使用 Ajax4jsf 合并应用程序的球场目录页和球场细节页。 </li><li>重新访问应用程序的 Spring 集成并让 Spring bean 在 Seam Remoting 的生命周期可用。</li></ul><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="seamupgrade"><b>升级到 Seam 1.2.1.GA</b></a><br><br>Seam 世界发展迅猛，自本系列上一篇文章发表以来，该框架的新版本业已发布。本文中的示例引用的是 <a href="http://labs.jboss.com/portal/jbossseam/download/index.html" target="_blank" rel="noopener">Seam 1.2.1<br>或更高版本</a>。在 Seam 的更早版本中，服务器端的 remoting 功能完全由 <code>SeamRemotingServlet</code> 实现。而在最近的版本中，该功能性已重构到 Seam<br>Remoting 包，而且还用了一个通用的 <code>ResourceServlet</code> 来指派非 JSF 请求的处理，比如 remoting 调用。<br>此外，remoting 库现在还被打包成一个单独的 JAR，即 jboss-seam-remoting.jar。除了运行本系列 “<a href="http://www.ibm.com/developerworks/cn/java/j-seam1/" target="_blank" rel="noopener">Seam-无缝集成 JSF，第 1 部分: 为 JSF 量身定做的应用程序框架</a>” 中的示例所需的 JAR 之外，还需要将该 JAR 包括到应用程序类路径中。</td></tr></tbody></table></td></tr></tbody></table><br>            <p> Open 18 和 Google Maps 之间的 mashup 让用户可以定位地图中的高尔夫球场目录中的位置。将此球场目录和球场细节页合并起来（并将低层代码 <i>Ajax 化</i>）<br>可以让您显示球场的细节信息而无需加载新页。将 Spring bean 和 Seam Remoting 相集成让您可以捕获 Google<br>Maps 位置标记的重定位并能将相关球场的经度和纬度存储到数据库中。如您所见，结果就是会产生所有高尔夫球员都喜欢使用的 Web 2.0<br>风格的应用程序，这真是让人印象深刻！</p><br>            <p>如果您曾经深受涉及到大量 JavaScript 的过于复杂的<br>Ajax 编程之苦，如果到目前为止，您都由于不想面对其复杂性而一直尽量避免使用<br>Ajax，那么本文所要教授的内容将会帮助您免除这种担心。在重构应用程序时，您需要进行一些 JavaScript 编码，但与大多数 Ajax<br>实现不同，JavaScript 并不会占据您代码中的大部分；相反，它只扩展了服务器端的<br>Java 对象。</p><br>            <p><a name="N100C3"><span class="atitle">通向 Ajax 的不同之路</span></a></p><br>            <p>正如在应用程序中希望避免显式的内存管理一样，您亦<i>不</i><br>希望必须要处理低层的 Ajax<br>请求协议。这么做只会带来更大的麻烦（更确切地说，是更多的麻烦），比如多浏览器支持、数据封送处理、并发冲突、服务器负载以及定制 servlet<br>和 servlet 过滤器。其中您想要避免的最大的麻烦是无意间公开的无状态的请求-响应范例，但该范例是基于组件的框架，比如<br>JSF，所想要隐藏的。</p><br>            <p>JSF 生命周期通过对底层的 servlet<br>模型屏蔽应用程序代码促进了面向组件的设计。为了保持处理 Ajax 的这种抽象性，您可以将低层的这些琐碎工作交由 Seam Remoting 或<br>Ajax4jsf 处理。这两个库均可负责通过 Ajax 交互将 JSF 组件熔合到浏览器时所需的管道处理。图 1 显示了实际应用中的 Seam<br>Remoting。当事件触发时，比如用户单击了一个按钮，消息就会异步发送给服务器上的组件。一旦收到响应，它就会用来对此页进行增量更新。用来处理浏<br>览器和服务器端组件间的交互的低层通信协议都藏于 API 之后。</p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="about"><b>关于本系列</b></a><br><br>                <a href="http://www.ibm.com/developerworks/cn/java/j-seam/" target="_blank" rel="noopener">Seam - 无缝集成 JSF</a> 讲述了 Seam 是第一个真正适合 JSF 的应用程序框架，能够修正其他扩展框架无法修正的主要弱点。阅读该系列的文章，你可以自己判断 Seam 是不是对 JSF 的适当补充。<br></td></tr></tbody></table></td></tr></tbody></table><br>            <p>在图<br>1 所示的用例中，用户能看到单击按钮后所发生的方法调用的结果。在研究此用例时，有两个要点需要注意： (1) 该页永远无法刷新；(2)<br>客户端代码与组件上的方法进行透明通信，而不是显式地构建然后再请求 URL。标准的 HTTP 请求在后台使用，但客户端代码永远无需直接与<br>HTTP 协议交互。</p><br><br>                <br><a name="figure1"><b>图 1. Seam Remoting 熔合 JSF 组件和浏览器</b></a><br><br>                <img alt="Seam Remoting 的一个用例示意图" src="http://www.ibm.com/developerworks/cn/java/j-seam3/fuse.gif" width="351" height="191"><br>            <br><br>            <p><a name="N100F0"><span class="smalltitle">Seam Remoting 和 Ajax4jsf</span></a></p><br>            <p>Seam<br>Remoting 和 Ajax4jsf 是两个独特的库，可分别服务于 JSF 的 “Ajax 化” 的目的。两个库均使用 Ajax<br>来引入交互模型，其中浏览器和服务器间的通信可以在后台异步发生，并对用户不可见。没有必要为了执行服务器上的方法而浪费用户页面重载的时间。在这些库所<br>发出的 Ajax 请求中由服务器检索到的信息可用来增量地 “实时”<br>更新页面的状态。两个库均可配备生命周期，此生命周期可以在浏览器需要的时候恢复（restore）组件的状态。这种 Ajax<br>交互并不是真的请求而是一种 “恢复并执行”。浏览器像是 “敲敲” 服务器的 “肩膀”，请它在服务器端的一个受管 bean<br>上执行一个方法并返回结果。</p><br>            <p>虽然这两个库工作起来有些差别，但它们并不是相互排斥的。由于它们都采用的是 JSF 组件模型，所以二者可以很容易地相互结合，这将在本文后面的部分详细介绍。目前，我们只需分别考虑二者各自将 Ajax 风格的交互引入 JSF 应用程序的方式：</p><br>            <ul><li><br>                    <b>Seam Remoting</b><br>提供了 JavaScript API，可以使用这些 API 来像访问本地对象一样来访问 JavaScript<br>中的服务器端组件，以便通过方法调用发送和检索数据。Seam Remoting 使用定制的、非 JSF<br>生命周期来使该浏览器能够与服务器端的组件通信。只有 Seam 容器和其组件可以在这些请求期间被恢复。透明协议是<br>Ajax，但您无需费心数据包如何传输的细节。<br><br>                    <br><br>                </li><li><br>                    <b>Ajax4jsf</b><br>则通过完全隐藏 JavaScript 的使用让抽象更进了一步。它将所有逻辑都包裹在基本 UI<br>组件内。Ajax4jsf 通过完整的 JSF 生命周期接受 Ajax 请求。因而，支持 Ajax<br>的组件可以在不触发浏览器导航事件的前提下执行动作处理程序、升级 JSF 组件树以及重新呈现该页的某些部分。同样地，通信也是通过 Ajax<br>实现的，但所有这些均在后台发生，页面开发人员不可见。Ajax4jsf 面向组件的方法让 Ajax 功能得以成为 JSF<br>很自然的一部分，而不是格格不入的外来者。</li></ul><br>            <p>我将深入探究这些方式，但我们还是先来看看 Ajax 的基础知识吧。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N10111"><span class="atitle">缩小差异</span></a></p><br>            <p>要<br>想让应用程序成为 Ajax/Web 2.0 意义上的 “富” 应用程序，Web<br>浏览器（也即客户机）必须能直接访问服务器上的组件。由于在客户机和服务器间存在着巨大差异，让这个目标成为现实还是很有挑战性的。差异的一个方面（即网<br>络）存在于客户机浏览器，另一方面存在于服务器和其组件。Ajax 应用程序的一个目标是让它们可以相互 “通话”。</p><br>            <p>实际上，在大多数传统的 Web 应用程序中，客户机和服务器可以正常通信，但交互性就完全是另一回事了。服务器发起对话，浏览器收听对话。您如果以前曾陷于<i>这</i> 类对话之中，实在不足为怪。在没有 Ajax 通信的世界里，浏览器可以发送对任何 URL 的同步请求，但它必须要呈现服务器发回的 HTML。这类交互性的另一个不足之处是等待时间很多。</p><br>            <p>若<br>只有 HTTP 这种没有什么发展的语言，浏览器客户机将对服务器如何生成 HTML<br>完全束手无策，进而也就无从知道其组件的内容。从浏览器的立场上看，页面生成过程完全是个黑盒子。浏览器可以以 URL<br>形式询问服务器不同的问题并将打包成请求参数和 POST 数据的提示一并传递，但它其实并不 “讲”<br>服务器的语言。如果想要给浏览器提供一个到应用程序服务器端动作的视图，则需要建立更复杂的通信手段。这种面向页面的确定性方法对此无能为力。</p><br>            <p><a name="N10123"><span class="smalltitle">Web 浏览器作为 Ajax 客户机</span></a></p><br><br>            <p>Seam<br>Remoting 和 Ajax4jsf 对打破客户和浏览器组件的隔阂所采用的方式有所不同，所以很有必要知道如何利用好这二者。Seam<br>Remoting 提供了浏览器本地语言 JavaScript 形式的 API，通过这些 API<br>服务器端组件上的方法就可以被访问到。若要将访问权赋予这些方法，它们必须通过 <code>@Remote</code> 注释被显式地标记为 “remote”。</p><br>            <p>Seam Remoting 中的调用机制与 Java RMI 类似，二者都使用本地代理对象或 “存根” 来允许 JavaScript 调用位于远程服务器上的组件。就客户而言，该存根对象<i>就是</i><br>远端对象。该存根负责实现实际远端对象上的方法执行。当远端方法被调用时，响应就会将此方法调用的返回值封装起来。返回值被编制处理成一个<br>JavaScript 对象。因此，Seam Remoting 就使浏览器可以 “讲” 服务器的本地语言。Java 代码和 JavaScript<br>现已合二为一，这对于那些认为这二者原本就是一种语言的人多少有点出乎意料。</p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="N10139"><b>与 Ajax 的对话</b></a><br><br>Seam 通向 Ajax 的方法让浏览器与服务器状态的复杂细节，比如哪些对话是当前的活动对话，利害相关。使用 Seam Remoting 来控制对话内容的能力会对日后需要在 conversation 作用域内的对象上进行远程调用十分重要。</td></tr></tbody></table></td></tr></tbody></table>
+
+<pre><code>&lt;p&gt;另
+</code></pre><p>一方面，Ajax4jsf 提供了 JSF 组件标记来声明性地关联 UI 事件和服务器端受管 bean<br>上的动作处理程序。这些动作处理程序方法不需要被标记成 “remote”。相反，它们都是一些传统的 JSF 动作处理程序，或者是受管 bean<br>上的公共方法，这些方法或者无实参或者接受 <code>ActionEvent</code>。</p><p></p>
+<pre><code>&lt;p&gt;与 Seam Remoting 不同，Ajax4jsf 可以将 JSF 组件树中的更改返回到浏览器。这些更改以 XHTML
+</code></pre><p>片段的形式返回。这些段与此页中单个的 JSF 组件相关联并证明其自身为部分页更新。因此，此页的隔离区域可以通过新的 标记由浏览器重新呈现。这些段都是特殊请求的，或者通过使用 Ajax4jsf 组件标记的 <code>reRender</code> 属性，或者通过<br>将模板的多个区域封装到用属性 <code>ajaxRendered=”true”</code> 标示的输出面板中。<code>reRender</code> 属性表示的是应该被重现的一个特定的组件集，由其组件 ID 加以引用。相比之下，使用 <code>ajaxRendered=”true”</code> 的方式就有些太过全面了，要求只要 Ajax4jsf 管理的 Ajax 请求完成，所有 “由 Ajax 呈现” 的区域都要更新。</p><p></p>
+<pre><code>&lt;p&gt;Ajax4jsf 和 Seam Remoting 使浏览器从基本的 HTML 呈现器成长为一种成熟的 Ajax 客户机。当集成这两种框架时，应用程序&lt;i&gt;的确&lt;/i&gt;
+</code></pre><p>会让人兴奋不已。实际上（这个消息有点出人意料，所以您最好坐下来听），综合 Seam Remoting 和 Ajax4jsf<br>的功能可以让您从开发自己定制的 Ajax JSF 组件中解脱出来！您可以在 Ajax 通信中采用任何现有的、非 Ajax 启用的 JSF<br>组件，方法是在其声明中嵌套 <code>a4j:support</code> 标记。如果您工作于 UI 组件之外（正如在后面的 Google Maps mashup 中所做的那样）且需要查询服务器端的组件以获取信息、更新该组件或指导它来执行操作，您可以用 Seam Remoting 管理此交互。</p><br>            <p>当 Seam Remoting 和 Ajax4jsf 在功能上有些重叠时，二者都可以很利于将 Ajax 风格的交互添加到应用程序。此外，您很快就会看到，两个库都为 JSF 应用程序提供了无缝的 Ajax 解决方案。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N10166"><span class="atitle">Seam Remoting 快速入门</span></a></p><br>            <p>如<br>果 Seam Remoting 实现起来不是如此复杂的话，那么它真是一种理想的解决方案。不要担心！Seam Remoting<br>并不会如您曾领教过的那些远端 EJB 对象那样可怕。使用 Seam Remoting API 启用 JavaScript<br>代码来与服务器端组件进行交互最好的一面是过程异乎寻常地简单。Seam 真的可以为您完成所有的辛苦工作 —— 您甚至都无需编辑一行<br>XML，就可以开始使用它！（如果目前您进行 XML 编程要比 Java 编程多，那么这真是一个振奋人心的消息。）</p><br>            <p>让我们先来快速看看使用 Seam Remoting 来 “Ajax 化” JSF 应用程序所需的步骤。</p><br>            <p><a name="N10172"><span class="smalltitle">公开 bean</span></a></p><br>            <p>将服务器端对象方法对远端 Ajax 公开有两个要求：此方法必须是 Seam 组件的公共成员且必须配备 <code>@WebRemote</code><br>注释。就这两点！</p><br>            <p>实际的简单性在清单 1 中可见一斑，其中 Seam 组件 <code>ReasonPotAction</code> 为了远端执行而<br>向 Ajax 客户公开了单一一个方法，即 <code>drawReason()</code>。每次这个方法在此存根上被调用的时候，该调用都会跨 Internet 传递到服务器并会通过在服务器端使用对应的方法随机选择所列的 “在项目中采用 Seam 的十大理由” 之一。服务器随后向客户返回该值（有关这十个理由的更多信息，请参见 <a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#resources" target="_blank" rel="noopener">参考资料</a>）。</p><br>            <br><a name="listing1"><b>清单 1. 公开远端方法调用</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                @Name(“reasonPot”)<br>@Scope(ScopeType.SESSION)<br>public class ReasonPotAction {<br>    private static String[] reasons = new String[] {<br>        “It’s the quickest way to get \”rich\”.”,<br>        “It’s the easiest way to get started with EJB 3.0.”,<br>        “It’s the best way to leverage JSF.”,<br>        “It’s the easiest way to do BPM.”,<br>        “But CRUD is easy too!”,<br>        “It makes persistence a breeze.”,<br>        “Use annotations (instead of XML).”,<br>        “Get hip to automated integration testing.”,<br>        “Marry open source with open standards.”,<br>        “It just works!”<br>    };<br>    <br>    private Random randomIndexSelector = new Random();<br>    <br>    @WebRemote<br>    public String drawReason() {<br>        return reasons[randomIndexSelector.nextInt(reasons.length)];<br>    }<br>}<br></pre></td></tr></tbody></table><br><br>            <p><a name="N10198"><span class="smalltitle">服务于资源</span></a></p><br>            <p>服务器端组件设置好后，需要让浏览器准备好来调用 <code>@WebRemote</code><br>方法。Seam 使用定制 servlet 来处理 HTTP 请求以便执行远端方法并返回其结果。无需担心：您将不必直接与那个 servlet<br>进行交互。Seam Remoting JavaScript 库负责处理所有的与 Seam servlet 的交互，而处理的方式也与它管理 <code>XMLHttpRequest</code> 对象的所有方面相同。</p><p></p>
+<pre><code>&lt;p&gt;您
+</code></pre><p>需要考虑使用这个 servlet 的惟一情况是在应用程序中设置 Seam Remoting 的时候。更好的是您只需配置 Seam 的定制<br>servlet 一次，而不管有多少 Seam 特性需要定制 servlet 的服务。与为每个特性使用特定的 servlet 相反 ——<br>该特性可能是将资源（比如一个 JavaScript 文件）提供给浏览器或处理一个非 JSF 请求（像 Ajax remoting<br>调用），Seam 将所有这些任务捆绑于单一一个控制器 <i>Resource Servlet</i> 之下。这个 servlet 使用一个委托链模型，将这些任务传递到注册的处理程序。例如，<code>Remoting</code> 对象（我稍后就会介绍）会注册其自身来接收所有由 Seam Remoting JavaScript 库发出的 Ajax 请求。</p><br>            <p>Resource Servlet 的 XML 定义如清单 2 所示，且必须安装于应用程序的 web.xml 文件中 Faces Servlet 之下：</p><br>            <br><a name="listing2"><b>清单 2. Seam Resource Servlet 的 XML 定义</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                &lt;servlet&gt;<br>  &lt;servlet-name&gt;Seam Resource Servlet&lt;/servlet-name&gt;<br>  &lt;servlet-class&gt;org.jboss.seam.servlet.ResourceServlet&lt;/servlet-class&gt;<br>&lt;/servlet&gt;<br>&lt;servlet-mapping&gt;<br>  &lt;servlet-name&gt;Seam Resource Servlet&lt;/servlet-name&gt;<br>  &lt;url-pattern&gt;/seam/resource/*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;<br></pre></td></tr></tbody></table><br><br>            <p><a name="N101C0"><span class="smalltitle">自引导 API</span></a></p><p></p>
+<pre><code>&lt;p&gt;Seam Remoting 机制真正的幕后原因是 JavaScript
+</code></pre><p>库。Resource Servlet 将作业指派给 <code>Remoting</code> 对象以服务这些库。所发出的两个 JavaScript 库建立适合浏览器的挂钩以便借助 JavaScript 调用远端方法。</p><p></p>
+<pre><code>&lt;p&gt;必
+</code></pre><p>须要将这两个 JavaScript 库都导入页面，如清单 3 所示。第一个库 remote.js 是静态的，将 Seam 的客户端<br>remoting 框架传递给浏览器。第二个库 interface.js<br>是在每个请求上动态创建的。它包含远端存根和与服务器端组件进行交互所需的复杂类型。注意，Seam<br>并不为所有指定一个方法为远端的所有组件都生成存根和复杂类型。相反，它会解析 interface.js URL 中的 <code>?</code> 字符后面的该查询字符串来收集要公开的组件名。每一个组件名都由 <code>&amp;amp;</code><br>符号分隔。使用这种堆栈式的方法可以使浏览器为外部 JavaScript 文件所进行的请求的数量为最小。Seam<br>之后会只为这些组件生成这些存根和复杂类型。作为一个例子，清单 3 中的这两个 JavaScript 导入将会加载 Seam Remoting<br>库并指示 Seam 准备好 <code>reasonPot</code> 和 <code>anotherName</code><br> 组件：</p><br>            <br><a name="listing3"><b>清单 3. 导入客户端框架和 API</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                &lt;script type=”text/javascript”<br>src=”seam/resource/remoting/resource/remote.js”&gt;&lt;/script&gt;<br>&lt;script type=”text/javascript”<br>src=”seam/resource/remoting/interface.js?reasonPot&amp;amp;anotherName”&gt;&lt;/script&gt;<br></pre></td></tr></tbody></table><br><br>            <p>有了这些，您就可以着手了！您已经完成了 Seam Remoting 设置，现在可以开始进行一些远程调用了。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N101ED"><span class="atitle">进行远程调用</span></a></p><br>            <p>所有用于 Seam Remoting 库的客户端框架代码都封装在 <code>Seam</code> JavaScript 对象中。实际上，这个高层对象只是一个名称空间 —— 一个可以将一组功能捆绑在惟一一个名字之下的容器。在<br>JavaScript 中，名称空间不过是一个可以加载静态属性、静态方法和其他一些嵌套名称空间对象的对象。需要注意的<i>重要一点</i><br>是 Seam Remoting 中的 JavaScript 与其他 JavaScript 可以很好地合作。这意味着您可以利用诸如<br>Prototype 或 Dojo 这样的库来让 JSF UI 与服务器端组件交互。在 JSF UI 中使用第三方 JavaScript<br>库过去一直是 JSF 开发人员所面临的一个巨大挑战，所以 <code>Seam</code> JavaScript 对象备受欢迎： </p><br>            <p>Seam Remoting 库的功能在 <code>Seam.Component</code> 和 <code>Seam.Remoting</code> 名称空间对象间分配。<code>Seam.Component</code> 的静态方法提供了对远端 Seam 组件的访问，而静态 <code>Seam.Remoting</code> 方法则用来控制 remoting 设置并创建定制数据类型。正如您从本示例中所见的，定制数据类型是任何需要本地创建以调用远端方法的非原语对象。</p><br>            <p><a name="N10214"><span class="smalltitle">执行细节</span></a></p><p></p>
+<pre><code>&lt;p&gt;要执行一个远端方法，首先要获得持有此方法的组件的一个实例。如果想要使用现有的 Seam 组件实例（意味着它已经存在于服务器），就可以使用 &lt;code&gt;Seam.Component.getInstance()&lt;/code&gt;；如果想要在进行调用之前先实例化一个新实例，则可以使用 &lt;code&gt;Seam.Component.newInstance()&lt;/code&gt;。
+</code></pre><p>这些实例均是由 Seam 动态构建的远端存根。存根代理所有的方法调用，将组件名、方法和参数编排处理成 XML，并通过一个 Ajax 请求将<br>XML 有效负载传递到服务器端组件。服务器上的 remoting 框架代码获取这个请求，对这个 XML<br>进行解除编排处理，提取出组件名、方法和实参，然后再在服务器端组件实例上调用此方法。最后，此服务器以 Ajax<br>调用的响应向客户机发回返回值。同样，所有这些工作都藏于存根的背后，极大地简化了 JavaScript 代码。</p><br>            <p>至此，有关背景的介绍已经足够了。清单 4 显示了该如何执行 conversation 作用域内的 <code>reasonPot</code> 组件上的 <code>drawReason()</code> 方法，该组件在 <a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#listing1" target="_blank" rel="noopener">清单 1</a> 中被标记为远端服务。一旦获得了组件存根，执行此方法就如同任何其他的 JavaScript 方法调用一样，不是么？</p><br>            <br><a name="listing4"><b>清单 4. 调用远端方法</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                &lt;script type=”text/javascript”&gt;<br>Seam.Component.getInstance(“reasonPot”).drawReason(displayReason);<br><br>function displayReason(reason) {<br>  alert(reason);<br>}<br>&lt;/script&gt;<br></pre></td></tr></tbody></table><br><br>            <p>在清单 4<br>中，应该注意到存根上的方法和服务器端组件上的 “实际”<br>方法存在一个重要差异。您觉察到了么？每个在组件存根上的调用都是异步完成的。这意味着远端方法调用的结果并不能立即对执行线程可用。正因为如此，存根上<br>的方法并没有要返回的值，而不管匹配的服务器端方法是否有要返回的值。当远端存根上的方法执行时，它实际上像是在说：“好吧，我稍后再答复您，请留下您的<br>联系电话。”您所提供的码实际上就是 “回调” JavaScript 函数。其任务是捕获实际的返回值。</p><br>            <p><br>                <i>回调函数</i><br>是异步 API 的标准结构。当来自 Ajax 请求的响应回到浏览器时，它由 Seam Remoting JavaScript<br>框架执行。如果服务器端组件上的方法具有非空返回值，该值就会作为其惟一的实参传递进此回调函数。另一方面，如果服务器端组件上的方法具有一个空返回类<br>型，则可以忽略此可选参数。</p><br>            <p><a name="N10247"><span class="smalltitle">conversation 作用域内的 bean</span></a></p><br>            <p>对<br>于大多数 remoting 需求，您都可以使用到目前为止所介绍的 API<br>加以应对。若请求的给出是为了检索服务器端组件或执行其公开的方法中的一个，那么该组件必须在 remoting 生命周期内可见。引用<br>conversation 作用域内的 bean 不需要任何额外的工作，原因是这些 bean 总是对在同一个浏览器对话中发出的 HTTP<br>请求可用。</p><br>            <p>conversation 作用域内的 bean 需要更多技巧，因为它们基于对话令牌的存在而与<br>HTTP 请求相关联。当处理 conversation 作用域内的 bean<br>时，您必须要能够在远程调用期间建立正确的对话上下文。此对话通过与远程请求一同发送对话令牌来重新激活。这种交互的细节由 Seam<br>Remoting 框架处理，只要您提供对话令牌即可。</p><p></p>
+<pre><code>&lt;p&gt;请记住，Ajax 请求完全可以从相同的窗口发出以与此服务器上的两个或更多的对话通信。如果在检索组件实例存根之前指定了对话 ID，那么 Seam 就可以对它们进行区分。使用 &lt;code&gt;Seam.Remoting.getContext().setConversationId(&quot;#{conversation.id}
+</code></pre><p>“) 可以实现这一目的。</p><br>            <p>Seam 总是在 <code>#{conversation.id}</code> 值绑定表达式下公开当前的对话。JavaScript<br>实际上可以看到解析后的值，通常是一个数值，而不是表达式占位符。您可以与 remoting 内容一起注册该值，它然后会由随后的请求传递。相反，您可以读在之前的请求中分配的这个对话 ID，方法是在远端调用发起后，调用 <code>Seam.Remoting.getContext().getConversationId()</code>。通过这种方式，remoting 调用就可以充分利用 conversation 作用域的益处<i>并</i> 参与状态行为。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N10268"><span class="atitle">Google map 和 Open 18 应用程序</span></a></p><br>            <p><br>                <a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#listing1" target="_blank" rel="noopener">清单 1</a> 中的 Reason Pot 示例（“使用 Seam 的十大理由”）很有趣，但现在是时候该让 Seam Remoting<br>库大显身手了！将重点重新放到 “<a href="http://www.ibm.com/developerworks/cn/java/j-seam2/" target="_blank" rel="noopener">无缝集成 JSF，第 2 部分: 借助 Seam 进行对话</a>”<br>中所介绍的 Open 18 应用程序。您可能记得 Open 18<br>是个高尔夫球场目录。用户可以浏览球场的列表并随后深入查看单个球场的细节。Open 18 还允许用户创建、更新和删除球场。在其 Web 1.0<br>版本中，用户和这个应用程序间的每个交互都会使页面重载。</p><br>            <p>借助 Ajax，可以有多种改进 Open 18 应用程序的方法，在我们继续之前，您可以自己尝试其中的一些方法。第一个可以做的事情是在 Open 18 和 Google Map 之间创建一个 mashup。<br> 时下，若不采用 mapping 实现，在 Internet 就走不多远，而如果添加此特性，您的用户当然会非常高兴。将 Seam Remoting API 和 Google<br>Maps Geocoder API 结合起来让您可以定位 Google map 上的球场目录中的每个球场。</p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="mapskey"><b>使用 Google Maps API</b></a><br><br>要使用 Google Maps API，您必须注册一个免费的 API key。Google 之所以要求申请这个 key 是为了维护有关 API<br>使用的统计数据和控制对此服务的滥用以便它能保持免费。申请这个 key 需要 Google 账号，但，根据服务条款，此 key<br>不能共享。为了遵守这些条款，我在示例中使用了一个假<br>key 。要在自己的计算机上运行 <a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#download" target="_blank" rel="noopener">示例应用程序</a>，需要用您自己的 key 替换字符串 <code>GOOGLE_KEY</code>。</td></tr></tbody></table></td></tr></tbody></table><br>            <p><a name="N1028D"><span class="smalltitle">借用 Google 的世界视图</span></a></p><p></p>
+<pre><code>&lt;p&gt;地理空间绘制乍听起来需要很多技巧，但若 Google Maps
+</code></pre><p>JavaScript API 能代您完成很多工作的话，那就另当别论了。<code>GMap2</code> 类可以绘制地图并负责视图端口中的滚动和缩放事件。另一个 Google Maps 类 <code>GClientGeocoder</code> 则基于地址字符串解析地理空间的坐标。您的工作只不过就是初始化地图并为每个球场添加标记。</p><br>            <p>要在地图上放上标记，首先要通过远端方法调用从服务器端组件获取球场集。接下来，用 <code>GClientGeocoder</code><br>将每个球场的地址翻译成地理空间点（经度和纬度）。最后，使用该点来在地图的相应坐标上放置标记。作为一个额外的小特性，您还可以将编辑图标旁边的罗盘图<br>标装备在目录中的每行。当单击了目录行中的罗盘图标时，地图就会缩放直到所选球场出现在视图内。与此同时，此地图还会在标记上呈现一个气球，显示给定球场<br>的地名、地址、电话和 Web 站点。通过直接单击地图上的一个标记也可以弹出相同的气球。图 2 显示的是完成后的应用程序的预览：</p><p></p>
+<pre><code>    &lt;br&gt;&lt;a name=&quot;figure1&quot;&gt;&lt;b&gt;图 2. Google Maps mashup 的一个屏幕截图&lt;/b&gt;&lt;/a&gt;&lt;br&gt;
+    &lt;img alt=&quot;Google Maps mashup 的一个屏幕截图&quot; src=&quot;http://www.ibm.com/developerworks/cn/java/j-seam3/mashup.jpg&quot; width=&quot;550&quot; height=&quot;335&quot;&gt;
+&lt;br&gt;
+&lt;p&gt;总
+</code></pre><p>的来说，地图组件和面向位置数据的集成很有趣，此 mashup 尤其具启迪意义。用户现在可以实际查看地图上每个球场的边界！在 Map<br>模式，高尔夫球场属性用淡绿色呈现。如果缩放功能足够强大，那么在球场区域还会出现一个标签覆盖图，显示此球场的名称。Satellite<br>模式则更有趣，它显示了球场的面貌。若缩放的程度足够，甚至还可以看到每个球洞的特征，比如发球台、球道和果岭！高尔夫球场位置的 mashup<br>以及互动性的地图视图就能让您的努力有所回报。</p><br>            <br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><img src="http://www.ibm.com/i/v14/rules/blue_rule.gif" alt="" width="100%" height="1"><br><img alt="" src="http://www.ibm.com/i/c.gif" width="8" border="0" height="6"></td></tr></tbody></table><table class="no-print" align="right" cellpadding="0" cellspacing="0"><tbody><tr align="right"><td><img src="http://www.ibm.com/i/c.gif" alt="" width="100%" height="4"><br><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td valign="middle"><img src="http://www.ibm.com/i/v14/icons/u_bold.gif" alt="" width="16" border="0" height="16"><br></td><td valign="top" align="right"><a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#main" class="fbox" target="_blank" rel="noopener"><b>回页首</b></a></td></tr></tbody></table></td></tr></tbody></table><br><br><p><a name="N102B7"><span class="atitle">编织进 Google Maps</span></a></p><p></p>
+<pre><code>&lt;p&gt;Google Maps 很易于集成和嵌入到 Web 应用程序。正如我已经提到的，它负责了所有呈现地图的所有细节并会提供一个 API 来绘制地图上的地理空间位置。&lt;code&gt;GClientGeocoder&lt;/code&gt; 对象担负所有解析地理空间位置和回送所需的经度和纬度数据这样的艰巨任务。&lt;/p&gt;
+&lt;p&gt;将
+</code></pre><p>地址解析为地理空间点的方法存根与 Seam Remoting<br>方法存根的工作原理相同。当该方法被调用来获取返回值时，一个回调函数会传递给此方法。在那时，还会向 Google HQ 发送一个 Ajax<br>请求，而且当响应回至浏览器时，此回调函数会执行。Google Maps API<br>的智能界面让定位变得非常文字化，因为所基于的只有邮寄地址。您无需再为每个球场维护地理空间的坐标，那样只会增加混乱！这个 API<br>上的额外的例程之后会使用纬度和经度数据来为地图上的这些位置构建呈现标记。</p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="N102C9"><b>定制它！</b></a><br><br>配置 Google map 的显示可用的方法很多。配置此地图本身并不是本文的重点所在，留给您自己尝试练习。有关信息，请参看 <a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#resources" target="_blank" rel="noopener">参考资料</a>。您可能还会使用高层的 JavaScript 函数，而不是使用面向对象的结构来封装此逻辑。同样地，您尽可以按您自己的意愿自由定制代码。</td></tr></tbody></table></td></tr></tbody></table><br>            <p>与地图集成相关的 API 方法有两个：<code>Geocoder.getLatLng()</code> 和 <code>GMap.addOverlay()</code>。首先，<code>Geocoder.getLatLng()</code> 方法将地址字符串解析为一个 <code>GLatLng</code> 点。数据对象只用来包装经度和纬度值对。此方法的第二个实参是一个回调 JavaScript 函数，一旦与 Google<br>HQ 的通信完成，该函数即会执行。此函数继续执行以通过使用 <code>GMap.addOverlay()</code> 来将一个标记覆盖图添加到地图上。默认地，标记以红色的回形针表示。回形针的顶点指向地图上的地址位置。 </p><p></p>
+<pre><code>&lt;p&gt;清单 5 显示了设置 Google map 并向它添加标记的 JavaScript 代码。函数按执行顺序排列。除了新导入的 Google
+</code></pre><p>Maps API 脚本之外，您还应该识别出 <a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#listing3" target="_blank" rel="noopener">清单 3</a> 中曾经用到的 Seam Remoting 脚本。</p><br>            <br><a name="listing5"><b>清单 5. 映射 Open 18 和 Geocoder</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                &lt;script type=”text/javascript”<br>    src=”<a href="http://maps.google.com/maps?file=api&amp;amp;v=2.x&amp;amp;key=GOOGLE_KEY&quot;&gt;&lt;/script&amp;gt" target="_blank" rel="noopener">http://maps.google.com/maps?file=api&amp;amp;v=2.x&amp;amp;key=GOOGLE_KEY&quot;&gt;&lt;/script&amp;gt</a>;<br>&lt;script type=”text/javascript”<br>    src=”seam/resource/remoting/resource/remote.js”&gt;&lt;/script&gt;<br>&lt;script type=”text/javascript”<br>    src=”seam/resource/remoting/interface.js?courseAction”&gt;&lt;/script&gt;<br>&lt;script type=”text/javascript”&gt;<br>// &lt;![CDATA[<br>var gmap = null;<br>var geocoder = null;<br>var markers = {};<br>var mapIsInitialized = false;<br><br>GEvent.addDomListener(window, ‘load’, initializeMap);<br><br>/<strong><br> <em> Create a new GMap2 Google map and add markers (pins) for each of the<br> </em> courses.<br> */<br>function initializeMap() {<br>    if (!GBrowserIsCompatible()) return;<br>    gmap = new GMap2(document.getElementById(‘map’));<br>    gmap.addControl(new GLargeMapControl());<br>    gmap.addControl(new GMapTypeControl());<br>    // center on the U.S. (Lebanon, Kansas)<br>    gmap.setCenter(new GLatLng(38.2, -95), 4);<br>    geocoder = new GClientGeocoder();<br>    GEvent.addDomListener(window, ‘unload’, GUnload);<br>    addCourseMarkers();<br>}<br><br>/</strong><br> <em> Retrieve the collection of courses from the server and add corresponding<br> </em> markers to the map.<br> <em>/<br>function addCourseMarkers() {<br>    function onResult(courses) {<br>        for (var i = 0, len = courses.length; i &lt; len; i++) {<br>            addCourseMarker(courses[i]);<br>        }<br><br>        mapIsInitialized = true;<br>    }<br><br>    Seam.Remoting.getContext().setConversationId(“#{conversation.id}”);<br>    Seam.Component.getInstance(“courseAction”).getCourses(onResult);<br>}<br><br>/**<br> </em> Resolve the coordinates of the course to a GLatLng point and adds a marker<br> <em> at that location.<br> </em>/<br>function addCourseMarker(course) {<br>    var address = course.getAddress();<br>    var addressAsString = [<br>        address.getStreet(),<br>        address.getCity(),<br>        address.getState(),<br>        address.getPostalCode()<br>    ].join(“ “);<br>    geocoder.getLatLng(addressAsString, function(latlng) {<br>        createAndPlaceMarker(course, latlng);<br>    });<br>}<br><br>/<strong><br> <em> Instantiate a new GMarker, add it to the map as an overlay, and register<br> </em> events.<br> */<br>function createAndPlaceMarker(course, latlng) {<br>    // skip adding marker if no address is found<br>    if (!latlng) return;<br>    var marker = new GMarker(latlng);<br>    // hide the course directly on the marker<br>    marker.courseBean = course;<br>    markers[course.getId()] = marker;<br>    gmap.addOverlay(marker);<br><br>    function showDetailBalloon() {<br>        showCourseInfoBalloon(this);<br>    }<br><br>    GEvent.addListener(marker, ‘click’, showDetailBalloon);<br>}<br><br>/</strong><br> <em> Display the details of the course in a balloon caption for the specified<br> </em> marker.  You should definitely escape the data to prevent XSS!<br> */<br>function showCourseInfoBalloon(marker) {<br>    var course = marker.courseBean;<br>    var address = course.getAddress();<br>    var content = ‘&lt;strong&gt;’ + course.getName() + ‘&lt;/strong&gt;’;<br>    content += ‘&lt;br /&gt;’;<br>    content += address.getStreet();<br>    content += ‘&lt;br /&gt;’;<br>    content += address.getCity() + ‘, ‘ +<br>        address.getState() + ‘ ‘ +<br>        address.getPostalCode();<br>    content += ‘&lt;br /&gt;’;<br>    content += course.getPhoneNumber();<br>    if (course.getUri() != null) {<br>    content += ‘&lt;br /&gt;’;<br>    content += ‘&lt;a href=”‘ + course.getUri() + ‘“ target=”_blank”&gt;’ +<br>        course.getUri().replace(‘http://‘, ‘’) + ‘&lt;/a&gt;&lt;/div&gt;’;<br>    }<br><br>    marker.openInfoWindowHtml(content);<br>}<br><br>// ]]&gt;<br>&lt;/script&gt;<br></pre></td></tr></tbody></table><br><p></p>
+<pre><code>&lt;p&gt;清单 5 乍看起来真是有点吓人，但实际上，它所包含的内容并不多。页面加载后，Google map 就会使用 &lt;code&gt;GMap2&lt;/code&gt; 构造函数进行初始化、插入到目标 DOM 元素并会以美国为中心。&lt;i&gt;成功了！&lt;/i&gt; 您现在就有了 Google Maps 显示。比您所想的要容易一些，对么？一旦地图初始化，球场标记就会添加进来。代码的难点就是创建这些标记，所以让我们重点看看 &lt;code&gt;addCourseMarkers()&lt;/code&gt; 函数，其中嵌入了 Seam Remoting API。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;N1030A&quot;&gt;&lt;span class=&quot;smalltitle&quot;&gt;定位球场&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;为
+</code></pre><p>了节省服务器资源，您希望远端调用检索相同的球场列表，这些球场是在页面被 JSF 呈现时加载进 conversation<br>作用域内的。要想确保持有这个集合的对话能够在远端调用的过程中被重新激活，此对话 ID 必须建立在 remoting<br>内容的基础上，正如本文之前讨论的那样。引用当前对话 ID 的这个值绑定表达式 <code>#{conversation.id}</code> 在页面呈现时被解析，而其值随后会通过 <code>setConversationId()</code> 方法传递给 Remoting Context。任何借助组件存根到远端方法的后续调用都会传递该值并激活相关的对话。对话激活后，同样的球场列表才会可用。</p><br>            <table width="40%" align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="10"><img alt="" src="http://www.ibm.com/i/c.gif" width="10" height="1"></td><td><table width="100%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td bgcolor="#eeeeee"><br>                <a name="loadingmessage"><b>活动指示器</b></a><br><br>在运行示例时，您应当会注意到在调用期间，Seam 在页面的右上角放上了一个 “<i>Loading…</i>” 消息。这个消息让用户得以知道后台有动作发生，真是考虑周到的一种做法。如果您更愿意不显示这个消息或如果您更愿意定制它，那么您就能够通过 <code>Seam.Remoting</code> JavaScript 对象实现此目的。<br></td></tr></tbody></table></td></tr></tbody></table><br>            <p>要找到球场，下一步是使用 <code>Seam.Remoting.getInstance()</code> 获取到 <code>courseAction</code> 组件的引用，然后执行存根上的 <code>getCourses()</code><br>方法。正如先前所介绍的，存根方法会采用回调函数作为其最后的实参，该实参用来捕获响应中的球场列表。注意到返回值不再是原语类型，而是用户定义的<br>JavaBean 集。Seam 创建 JavaScript 结构来模仿服务器端组件的方法签名中所用的 JavaBean 类。在本例中，Seam<br>通过相同的 getters 和 setters 来将响应反编排到代表 <code>Course</code> 条目的 JavaScript 对象。<a href="http://www.ibm.com/developerworks/cn/java/j-seam3/#listing5" target="_blank" rel="noopener">清单 5</a> 中的很多地方都使用了球场对象上的 getter 方法来读取球场数据。</p><br>            <p>在把球场放到地图上的最后一个步骤中，每个球场的地址都被<br><code>GClientGeocoder</code> 转换成 <code>GLatLng</code> 点。该值随后被用来创建 <code>GMarker</code> 小部件，这个小部件作为覆盖图添加到地图上。</p><br>            <p><a name="N10351"><span class="smalltitle">没有罗盘的地图</span></a></p><p></p>
+<pre><code>&lt;p&gt;现
+</code></pre><p>在，您的地图已经点缀了所有这些光鲜的标记，但还不可能将球场目录中的行与地图上的标记关联起来。这时就需要罗盘图标发挥作用了。我们将添加多一点<br>JavaScript，以便在该球场的罗盘图标被单击时，能使用 Google Maps API 来缩放和居中地图。清单 6<br>显示了罗盘图标的组件标记。该组件被插入到目录中每一行的编辑图标之前。球场编辑功能在 “<a href="http://www.ibm.com/developerworks/cn/java/j-seam2/" target="_blank" rel="noopener">无缝集成 JSF，第 2 部分: 借助 Seam 进行对话</a>” 中有详细的介绍。)</p><br>            <br><a name="listing6"><b>清单 6. 能呈现罗盘图标的组件标记</b></a><br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                &lt;h:graphicImage value=”/images/compass.png” alt=”[ Zoom ]” title=”Zoom to course on map”<br><span style="margin-top: 0pt; margin-bottom: 0pt; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 11px; color: rgb(255, 0, 0);">|<p></p>
+</span></pre></td></tr></tbody></table></td></tr></tbody></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JSF/" rel="tag"># JSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5v801z04urqek46tv05/" rel="next" title="Seam - 无缝集成 JSF，第 2 部分: 借助 Seam 进行对话">
+                <i class="fa fa-chevron-left"></i> Seam - 无缝集成 JSF，第 2 部分: 借助 Seam 进行对话
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4ui007r4urqwoefnj7n/" rel="prev" title="Change my blog theme">
+                Change my blog theme <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

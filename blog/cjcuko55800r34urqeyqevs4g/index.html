@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Knowledge," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天有个朋友搞设计的，发了几张室内设计的图片给我，真好看以后也要他给我设计一套漂亮的房子，为了以后漂亮的房子，我要好好努力阿V-Ray 是一款强大高效的渲染引擎V-Ray 光影追踪渲染器有Basic Package 和 Advanced Package两种包装形式。Basic Package具有适当的功能和较低的价格，适合学生和业余艺 术家使用。Advanced Package 包含有几种特殊功能">
+<meta name="keywords" content="Knowledge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="V-Ray特征">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko55800r34urqeyqevs4g/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="今天有个朋友搞设计的，发了几张室内设计的图片给我，真好看以后也要他给我设计一套漂亮的房子，为了以后漂亮的房子，我要好好努力阿V-Ray 是一款强大高效的渲染引擎V-Ray 光影追踪渲染器有Basic Package 和 Advanced Package两种包装形式。Basic Package具有适当的功能和较低的价格，适合学生和业余艺 术家使用。Advanced Package 包含有几种特殊功能">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-23T09:19:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="V-Ray特征">
+<meta name="twitter:description" content="今天有个朋友搞设计的，发了几张室内设计的图片给我，真好看以后也要他给我设计一套漂亮的房子，为了以后漂亮的房子，我要好好努力阿V-Ray 是一款强大高效的渲染引擎V-Ray 光影追踪渲染器有Basic Package 和 Advanced Package两种包装形式。Basic Package具有适当的功能和较低的价格，适合学生和业余艺 术家使用。Advanced Package 包含有几种特殊功能">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko55800r34urqeyqevs4g/"/>
+
+
+
+
+
+  <title>V-Ray特征 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko55800r34urqeyqevs4g/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">V-Ray特征</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-03-09T10:08:00+08:00">
+                2008-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><span style="font-weight: bold;">今天有个朋友搞设计的，发了几张室内设计的图片给我，真好看<br>以后也要他给我设计一套漂亮的房子，为了以后漂亮的房子，我要好好努力阿<br><br>V-Ray 是一款强大高效的渲染引擎</span><br><br>V-Ray 光影追踪渲染器有Basic Package 和 Advanced Package两种包装形式。Basic Package具有适当的功能和较低的价格，适合学生和业余艺 术家使用。Advanced Package 包含有几种特殊功能，适用于专业人员使用。<br><br><span style="font-weight: bold;">Basic Package的软件包提供的功能特点vray渲染</span><br><br>&middot; 真正的光影追踪反射和折射。(See: VRayMap)<br>&middot; 平滑的反射和折射。(See: VRayMap)<br>&middot; 半透明材质用于创建石蜡、大理石、磨砂玻璃。(See: VRayMap)<br>&middot; 面阴影(柔和阴影)。 包括方体和球体发射器。(See: VRayShadow)<br>&middot; 间接照明系统(全局照明系统)。可采取直接光照 (brute force), 和光照贴图方式（HDRi）。(See: Indirect illumination)<br>&middot; 运动模糊。包括类似Monte Carlo 采样方法。(See: Motion blur)<br>&middot; 摄像机景深效果。(See: DOF)<br>&middot; 抗锯齿功能。包括 fixed, simple 2-level 和 adaptive approaches等采样方法。(See: Image sampler)<br>&middot; 散焦功能。(See: Caustics )<br>&middot; G-缓冲(RGBA, material/object ID, Z-buffer, velocity etc.) (See: G-Buffer )<br><br><span style="font-weight: bold;">Advanced Package软件包提供的功能特点</span><br><br>除包含所有基本功能外，还包括下列功能：<br>&middot; 基于G-缓冲的抗锯齿功能。(See: Image sampler)<br>&middot; 可重复使用光照贴图 (save and load support)。对于fly-through 动画可增加采样。(See: Indirect illumination)<br>&middot; 可重复使用光子贴图 (save and load support)。(See: Caustics)<br>&middot; 带有分析采样的运动模糊。(See: Motion blur )<br>&middot; 真正支持 HDRI贴图。 包含 <em>.hdr, </em>.rad 图片装载器，可处理立方体贴图和角贴图贴图坐标。可直接贴图而不会产生变形或切片。<br>&middot; 可产生正确物理照明的自然面光源。(See: VRayLight)<br>&middot; 能够更准确并更快计算的自然材质。(See: VRay material)<br>&middot; 基于TCP/IP协议的分布式渲染。(See: Distributed rendering)<br>&middot; 不同的摄像机镜头：fish-eye, spherical, cylindrical and cubic cameras (See: Camera)<br><br><span style="font-weight: bold;"><br><br></span><span class="searchMarked"><span style="color: rgb(255, 99, 71);">V-ray对应的有一下版本：</span><br><br><span style="color: rgb(184, 134, 11);">3ds Max插件</span>&nbsp;&nbsp; </span>V-Ray for 3ds Max&nbsp;&nbsp; <a href="http://www.cgrealm.cn/wiki/doc.php?action=view&amp;docid=27" target="_blank" rel="noopener">查看详细介绍</a><br><span style="color: rgb(184, 134, 11);">Rhino插件</span>&nbsp;&nbsp;&nbsp;&nbsp; V-Ray for Rhino &nbsp; &nbsp; <a href="http://www.cgrealm.cn/wiki/doc.php?action=view&amp;docid=25" target="_blank" rel="noopener">查看详细介绍</a><br><span style="color: rgb(184, 134, 11);">SketchUp插件</span>&nbsp; V-Ray for SketchUp&nbsp; <a href="http://www.cgrealm.cn/wiki/doc.php?action=view&amp;docid=26" target="_blank" rel="noopener">查看详细介绍</a><br><span style="color: rgb(184, 134, 11);">Cinima 4D插件</span> V-Ray for Cinima 4D <a href="http://www.cgrealm.cn/wiki/doc.php?action=view&amp;docid=28" target="_blank" rel="noopener">查看详细介绍</a><br><br>官方主页：<br><a href="http://www.chaosgroup.com" target="_blank" rel="noopener">http://www.chaosgroup.com</a><br><a href="http://www.asgvis.com/" target="_blank" rel="noopener">http://www.asgvis.com/</a><br><a href="http://www.vrayforc4d.com/&amp;nbsp" target="_blank" rel="noopener">http://www.vrayforc4d.com/&amp;nbsp</a>;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Knowledge/" rel="tag"># Knowledge</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5a500y94urqlxk0zlr0/" rel="next" title="ごじゅうおん">
+                <i class="fa fa-chevron-left"></i> ごじゅうおん
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5n401e04urqteqcbzln/" rel="prev" title="破解巴菲特的10大绝招">
+                破解巴菲特的10大绝招 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaEE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作者        Dionysios G. Synodinos译者        宋玮        发布于        2009年2月3日 下午10时55分    社区Java主题Enterprise Application Blocks标签Java EEJava EE 6 Platform规范的公共草案已经发布了，其将对公众评估和反馈保持开放，直到2009年2月23日为止。">
+<meta name="keywords" content="JavaEE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java EE 6 Platform草案包含了Web Profile">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko4y100fd4urqpyuhypnl/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="作者        Dionysios G. Synodinos译者        宋玮        发布于        2009年2月3日 下午10时55分    社区Java主题Enterprise Application Blocks标签Java EEJava EE 6 Platform规范的公共草案已经发布了，其将对公众评估和反馈保持开放，直到2009年2月23日为止。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-24T18:54:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java EE 6 Platform草案包含了Web Profile">
+<meta name="twitter:description" content="作者        Dionysios G. Synodinos译者        宋玮        发布于        2009年2月3日 下午10时55分    社区Java主题Enterprise Application Blocks标签Java EEJava EE 6 Platform规范的公共草案已经发布了，其将对公众评估和反馈保持开放，直到2009年2月23日为止。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko4y100fd4urqpyuhypnl/"/>
+
+
+
+
+
+  <title>Java EE 6 Platform草案包含了Web Profile | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko4y100fd4urqpyuhypnl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java EE 6 Platform草案包含了Web Profile</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-02-09T14:05:00+08:00">
+                2009-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="info"><br>        作者<br>        <strong>Dionysios G. Synodinos</strong>译者<br>        <strong>宋玮</strong><br>        发布于<br>        2009年2月3日 下午10时55分<br>    </p><br><dl class="tags2"><dt class="community">社区</dt><dd><a id="739" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="java" href="http://www.infoq.com/cn/java" target="_blank" rel="noopener">Java</a></dd><dt class="topics">主题</dt><dd><a id="3,713" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="EAB" href="http://www.infoq.com/cn/EAB" target="_blank" rel="noopener">Enterprise Application Blocks</a></dd><dt class="topics">标签</dt><dd><a id="772" onclick="try {CategoryPopup.showPopup(this);} catch(e) {}; return false;" name="javaee5" href="http://www.infoq.com/cn/javaee5" target="_blank" rel="noopener">Java EE</a></dd></dl><br><p><a href="http://jcp.org/en/jsr/detail?id=316" target="_blank" rel="noopener">Java EE 6 Platform规范的公共草案</a>已经发布了，其将对公众评估和反馈保持开放，直到2009年2月23日为止。 或许这一 <a href="http://weblogs.java.net/blog/robc/archive/2008/10/update_on_the_s.html" target="_blank" rel="noopener">迟到的草案</a>最引人注目的地方就是Web Profile，这是Java EE平台历史上第一个profile。</p><br><p>规范的领导者Roberto Chinnici<a href="http://weblogs.java.net/blog/robc/archive/2009/01/java_ee_6_platf_1.html" target="_blank" rel="noopener">对这一Web Profile做了概述</a>：</p><br><blockquote><br><p>经过深思熟虑，平台专家组选择中等版本的Web Profile，接近我<a href="http://weblogs.java.net/blog/robc/archive/2008/02/profiles_in_the_1.html" target="_blank" rel="noopener">先前博文</a>中所提到的选项B。</p><br><p>所需的技术包括：</p><br><p>Servlet 3.0<br><br>JSP 2.2<br><br>EL 1.2<br><br>对其他语言的调试支持(JSR-45) 1.0<br><br>JSTL 1.2<br><br>JSF 2.0<br><br>JSR-250 1.1<br><br>EJB 3.1 Lite<br><br>JTA 1.1<br><br>JPA 2.0</p><br><p>你可能注意到有些版本号与最新发布的API（比如 EL 1.2）并不匹配。这是因为我们计划经由一个维护评估来改动相应技术的小版本号。当它们可用时我会提供更多细节。</p><br></blockquote><br><p>Web Profile的基本情况在草案中做了解释：</p><br><blockquote><br><p>Web Profile定位于现代Web应用的开发者。</p><br><p>至于&ldquo;现代&rdquo;这个词，我们主要是想强调这样一个事实：自从第一个Servlet规范问世以来，Web应用世界已经有了长足的发展。不可避免的，许多<br>用于创建即便是简单Web应用的技术也得到了跳跃式发展。实际上，今天很少有Web应用是直接用servlet<br>API编写的：大多数应用都依赖于标准的或第三方框架和类库（通常是开源的），它们间接用到了servlet容器的服务。</p><br><p>除了管理HTTP交互，大多数Web应用在事务管理、安全和持久化领域有相当大的需求。有时，这种需求完全可以用Java<br>EE平台的部分技术来解决，比如Enterprise JavaBeans (EJB) 3.x和Java Persistence<br>API，但是它们很少能由&ldquo;普通（plain）&rdquo; servlet容器支持。通过合并这些API，Web<br>Profile的目标是改善使用Java平台开发Web应用应该被考虑的基本技术栈。</p><br><p>定位为&ldquo;现代&rdquo;Web应用就暗示着要提供相当完整的技术栈，包括标准API、成品即可满足大级别Web应用需求的能力。更进一步，这一技术栈应该易于成长，以解决其余开发者的需求。</p><br><p>与走向完整性相反，另一方希望就限制Web容器内存占用的愿望做出平衡，这既包括物理方面也包括概念方面。从开发者学习Web<br>Profile的观点来看，与一个功能更强大但是过于复杂累赘的profile相比，拥有一个小型的、功能集中的profile更有价值，而且技术之间重<br>叠要尽量少。</p><br><p>在定义Web Profile过程中，我们努力在这两种需求之间寻找平衡。</p><br><p>在完整性方面，Web Profile提供了一个完整的技术栈，其所具有的技术能够处理展现和状态管理（JavaServer<br>Faces、JavaServer Pages）、核心Web容器功能（Servlet）、业务逻辑（Enterprise JavaBeans<br>Lite）、事务（Java Transaction API）、持久化（Java Persistence API）以及更多。</p><br><p>至于简单性，它省去了很多企业后台API，它们都是Java<br>EE平台的一部分。它还依赖于Servlet规范中新的可插接特性（参见文档的第8.2节）以允许应用以最小的配置使用扩展了servlet容器的类库。<br>例如，Java API for Restful Web Services（JAX-RS）是完整Java<br>EE平台的一个标准的技术，但却不是Web Profile的一部分，它可以不用对应用的Web.xml描述符做出任何改变就被&ldquo;插接&rdquo;到Web容器中。</p><br><p>最终，值得提醒的是，Web Profile产品发行可以不限于必须的技术，还可以发行更多的技术。因此在安装时可能要在不同配置之间做出选择，除了必须的核心，可以安装一些更丰富的扩展，或者完全自定义安装（&ldquo;手动选择&rdquo;安装）。</p><br></blockquote><br><p>Roberto还解释了为什么JAX-RS不是Web Profile一个必须的组件，因为专家组感到把它包含进来还为时过早。</p><br><p>缺少的其它东西还有Web Beans，它在Web Profile和完整平台中都没有被列为必须组件：</p><br><blockquote><br><p>Web Beans在Web Profile和完整平台中都没有被列为必须组件。另一方面，在EE.6.29节提到了正在考虑列入的组件。就这一主题专家组恳请来自社区的反馈。</p><br><p>敏感读者还会注意到Web Beans<a href="http://jcp.org/en/jsr/detail?id=299" target="_blank" rel="noopener">规范</a>（目前是公共草案）就在昨天进行大量更新。Gavin King的 <a href="http://in.relation.to/Bloggers/RevisedPublicDraftOfJSR299JavaContextsAndDependencyInjection" target="_blank" rel="noopener">博文</a>记<br>录了这些改变的详细内容，它们大多是由来自JSR-316专家组的反馈触发的。最大的变化之一是，&ldquo;Web<br>Beans&rdquo;术语本身已经从规范中消失了。尽管这对有些人来说是一个打击，但是它确实有利于开发，因为这意味着Web<br>Beans提供的功能与已确立的Java EE&ldquo;容器&rdquo;和&ldquo;组件&rdquo;概念相合并。我认为最终的结果是一个更便于使用的、更好集成的、更易于学习的&ldquo;Web<br>Beans&rdquo;、为整个Java EE平台提供的上下文支持和依赖注入。</p><br></blockquote><br><p>Bean Validation也没有被列为Java EE 6组件JSR：</p><br><blockquote><br><p>敏感的读者还会注意到<a href="http://jcp.org/en/jsr/detail?id=303" target="_blank" rel="noopener">JSR-303</a>曾在<br>公共评估版中出现，但却也未列入Java EE<br>6组件JSR。这只是时间问题；平台专家组刚刚开始讨论是否将JSR-303包含进来，因此在平台规范的公共草案发布之时还未做出这一决定。我要指出的<br>是，由Emmanuel<br>Bernard领导的EJSR-303专家组在解决JPA和JSF的校验领域需求方面已经做了大量工作，因此我确信JSR-303终将被社区所接受。</p><br></blockquote><br><p>该<a href="http://jcp.org/aboutJava/communityprocess/pr/jsr316/index.html" target="_blank" rel="noopener">草案可供下载</a>并包含了Java EE 6 规范和Web Profile规范。</p><br><p>关于社区对于该新规范的想法，在java.net上有一个关于此的投票。尽管投票的人为数不多，但结果显示<a href="http://java.net/pub/pq/244" target="_blank" rel="noopener">该版本草案并没有激发起大家的兴趣</a>：</p><br><blockquote><br><p>我喜欢它&nbsp;&nbsp; 12.1%<br><br>我认为主体规范缺少了重要JSR&nbsp;&nbsp; 3%<br><br>我认为web profile规范缺少了重要JSR&nbsp;&nbsp; 6%<br><br>由于一些其它原因我不喜欢它&nbsp;&nbsp; 6% <br><br>我还没有看过，但是打算看一下&nbsp;&nbsp; 9%<br><br>我还没有看过，而且不打算看&nbsp;&nbsp; 63.6%</p><br></blockquote><br><p>从InfoQ的<strong><a href="http://www.infoq.com/javaee5" target="_blank" rel="noopener">Enterprise Java</a></strong>主题下可以找到更多信息。</p><br><p><strong>查看英文原文：</strong><a href="http://www.infoq.com/news/2009/01/java-ee6-draft" target="_blank" rel="noopener">Java EE 6 Platform Draft Published featuring the Web Profile</a></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaEE/" rel="tag"># JavaEE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko4wf00c54urqusj0mnj7/" rel="next" title="IntelliJ IDEA 8 中文乱码解决办法">
+                <i class="fa fa-chevron-left"></i> IntelliJ IDEA 8 中文乱码解决办法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko54c00pq4urqpgep2jvh/" rel="prev" title="Sun的未来与云计算">
+                Sun的未来与云计算 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[收藏]                  [打印] [推荐]                                    10） const，goto什么？没错，它们都是Java的关键字，但它们什么也不干。9） Java的些许趣味像Personal Java，JavaOS.8） 索引化的Jar索引化的Jar是指这样">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="痛批Java十大最无用特性">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko5n001dw4urqh6bdm8bp/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="[收藏]                  [打印] [推荐]                                    10） const，goto什么？没错，它们都是Java的关键字，但它们什么也不干。9） Java的些许趣味像Personal Java，JavaOS.8） 索引化的Jar索引化的Jar是指这样">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-12T23:13:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="痛批Java十大最无用特性">
+<meta name="twitter:description" content="[收藏]                  [打印] [推荐]                                    10） const，goto什么？没错，它们都是Java的关键字，但它们什么也不干。9） Java的些许趣味像Personal Java，JavaOS.8） 索引化的Jar索引化的Jar是指这样">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko5n001dw4urqh6bdm8bp/"/>
+
+
+
+
+
+  <title>痛批Java十大最无用特性 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko5n001dw4urqh6bdm8bp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">痛批Java十大最无用特性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-05-09T08:34:00+08:00">
+                2009-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table border="0" cellspacing="5" cellpadding="0" width="730"><br><tbody><br><tr><br><td align="left" valign="top"><br><table border="0" cellspacing="0" cellpadding="5" width="100%"><br><tbody><br><tr><br><td class="h26blackb" width="82%" align="left" valign="top"><br></td><br><!--文章标题end--><br>                  <!--收藏打印推荐begin--><br><td class="s12blackh140" align="right" valign="middle"><br>                  [<a class="s12blackh140" onclick="javascript:window.external.AddFavorite(document.URL,document.title);return false" href="http://soft.ccw.com.cn/news/htm2009/20090507_623491.shtml#" target="_self">收藏</a>]<br>                  [<a class="s12blackh140" onclick="window.print()" href="http://soft.ccw.com.cn/news/htm2009/20090507_623491.shtml#" target="_self">打印</a>] [<a class="s12blackh140" href="http://www.ccw.com.cn/sendMail/emailList.asp" target="_blank">推荐</a>]</td><br><!--收藏打印推荐end--><br><br></tr><br></tbody><br></table><br></td><br></tr><br><tr><br><td align="left" valign="top"><br><table border="0" cellspacing="0" cellpadding="5" width="100%"><br><tbody><br><tr><br><!--作者和时间begin--><br><td class="s12blackh140" width="50%" align="left" valign="middle"></td><br><!--作者和时间end--><br>                  <!--内容导航下拉框begin--><br><td class="s12blackh140" align="right" valign="middle"><br>                  </td><br><!--内容导航下拉框end--><br><br></tr><br></tbody><br></table><br></td><br></tr><br><tr><br><td height="1" background="http://imgs.ccw.com.cn/200803/20080317/dottedline.gif"></td><br></tr><br><tr><br><td class="s14h180" style="padding-left: 10px; padding-right: 10px; text-indent: 28px;" width="730" align="left" valign="top"><br><div id="contentAdv"><br><div id="ad_position_roller_35"><br><script src="http://ad.ccw.com.cn/adshow.asp?positionID=35&amp;js=1&amp;innerJs=1"></script><br></div><br></div><br><p class="newtext"><strong>10） const，goto</strong></p><br><p class="newtext">什么？没错，它们都是Java的关键字，但它们什么也不干。</p><br><p class="newtext"><strong>9） Java的些许趣味</strong></p><br><p class="newtext">像Personal Java，JavaOS.</p><br><p class="newtext"><strong>8） 索引化的Jar</strong></p><br><p class="newtext">索引化的Jar是指这样的Jar文件中包含有一个特殊的索引文件（META-INF/INDEX.LIST），该文件用于指定该Jar中有哪些包。在Ant中，可用index=”true”.它的目的是为了<a href="http://wiki.ccw.com.cn/AP" target="_blank"><span style="color: #0000cc;"><strong>Ap</strong></span></a>plet和Webstart应用能够延迟加载Jar文件，并提高类加载的速度。</p><br><p class="newtext"><strong>7） bin目录中的多数exe文件</strong></p><br><p class="newtext">例如，javah.exe，jav<a href="http://wiki.ccw.com.cn/index.php/ADO" target="_blank"><span style="color: #0000cc;"><strong>ado</strong></span></a>c.exe，jdb.exe，jar.exe.它们已被Ant，Maven和IDE取代了。</p><br><p class="newtext">译者：虽然较少直接使用这些工具，但学会使用它们还是很有好处的。比如，在某时，我们手边并没有Ant，Maven或Eclipse之类的工具，特别当只是出于简单的应用，直接使用命令会更加便捷。</p><br><p class="newtext"><strong>6） Applet</strong></p><br><p class="newtext">它在10年前很流行，从那开始，它的流行度就一直在下降。但Applet将会在Java SE 6 update 10中卷土重来。</p><br><p class="newtext">译者：Applet还是有它的空间。如果一定要说有问题，那就是整个Java桌面应用的问题。</p><br><p class="newtext"><strong>5） CORBA</strong></p><br><p class="newtext">该API可能会从开发者的”你最想从Java中删除的API”竟选中胜出。</p><br><p class="newtext"><strong>4） javax.accessibility和accessibility</strong></p><br><p class="newtext">这个包始于Java 1.2，但就没怎么被用过。一方面，Swing确实能为你做很多事，但另一方面，它不能为你做每一件事。特别是，空的文本框和文本域需被说明。</p><br><p class="newtext"><strong>3） MIDI库</strong></p><br><p class="newtext">是的，Java有内建的MIDI API.所以，从1.1开始，Java就能够播放音乐。当时，他们加入了一个音源库，音质听起来比较好。而现在，音源库就没声卡听起来那么好了。</p><br><p class="newtext">在谈到模块化JRE时，多数时候，CORBA被认为是不需要被下载的，而音源库API则可能是最不需要的。</p><br><p class="newtext"><strong>2） Java 6 API</strong></p><br><p class="newtext">这是Apple最需被责备之处，因为他们决定不在32位平台中支持Java 6，那么就会有许多API和程序被阻止在Java 5处。</p><br><p class="newtext"><strong>1） 断言</strong></p><br><p class="newtext">在Java1.4中，<a href="http://topic.ccw.com.cn/corpCenter/379.html" target="_blank"><span style="color: #0000cc;"><strong>Sun</strong></span></a>加入了断言。我记得在那时有一些评论谈到Java缺少断言/前置/后置条件，所以就加了这一特性。但让我们直面它，断言确实很少使用。</p><br><p class="newtext">&nbsp;</p><br><p class="newtext">转自：<strong><a href="http://soft.ccw.com.cn/news/htm2009/20090507_623491.shtml" target="_blank" rel="noopener">http://soft.ccw.com.cn/news/htm2009/20090507_623491.shtml</a></strong></p><br></td><br></tr><br></tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5mw01dr4urqcd6d6vmq/" rel="next" title="界面需求分析方法-用户为中心的体验 UCD">
+                <i class="fa fa-chevron-left"></i> 界面需求分析方法-用户为中心的体验 UCD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko5k001al4urq5ol0wzil/" rel="prev" title="最美的十大爱情句子">
+                最美的十大爱情句子 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

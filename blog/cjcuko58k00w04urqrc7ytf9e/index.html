@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="转自：http://www.cnblogs.com/bloodmage/archive/2010/06/14/1758208.html&amp;nbsp;&amp;nbsp;每种浏览器都包含一个代码引擎或渲染引擎，它负责解释Web页面上的代码，javascript解释器是其中的一部分。&amp;nbsp;Netscape4惨败之后，网景公司于1998年创立了Mozilla项目，开发了Gecko引擎，现在它支持着Mozil">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ppk on javascript  第3章 浏览器">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko58k00w04urqrc7ytf9e/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="转自：http://www.cnblogs.com/bloodmage/archive/2010/06/14/1758208.html&amp;nbsp;&amp;nbsp;每种浏览器都包含一个代码引擎或渲染引擎，它负责解释Web页面上的代码，javascript解释器是其中的一部分。&amp;nbsp;Netscape4惨败之后，网景公司于1998年创立了Mozilla项目，开发了Gecko引擎，现在它支持着Mozil">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+<meta property="og:image" content="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+<meta property="og:image" content="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif">
+<meta property="og:updated_time" content="2018-01-04T14:21:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ppk on javascript  第3章 浏览器">
+<meta name="twitter:description" content="转自：http://www.cnblogs.com/bloodmage/archive/2010/06/14/1758208.html&amp;nbsp;&amp;nbsp;每种浏览器都包含一个代码引擎或渲染引擎，它负责解释Web页面上的代码，javascript解释器是其中的一部分。&amp;nbsp;Netscape4惨败之后，网景公司于1998年创立了Mozilla项目，开发了Gecko引擎，现在它支持着Mozil">
+<meta name="twitter:image" content="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko58k00w04urqrc7ytf9e/"/>
+
+
+
+
+
+  <title>ppk on javascript  第3章 浏览器 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko58k00w04urqrc7ytf9e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ppk on javascript  第3章 浏览器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-07-31T07:31:00+08:00">
+                2010-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转自：<a href="http://www.cnblogs.com/bloodmage/archive/2010/06/14/1758208.html" target="_blank" rel="noopener">http://www.cnblogs.com/bloodmage/archive/2010/06/14/1758208.html</a></p><br><p>&nbsp;</p><br><p>&nbsp;</p><br><p>每种浏览器都包含一个代码引擎或渲染引擎，它负责解释Web页面上的代码，javascript解释器是其中的一部分。</p><br><p>&nbsp;</p><br><p>Netscape4惨败之后，网景公司于1998年创立了Mozilla项目，开发了Gecko引擎，现在它支持着Mozilla, Firefox, Netscape, Camino等浏览器。</p><br><p>Explorer的代码引擎叫做Trident，1999年3月发布的Explorer5.0是第一个支持W3C DOM和XMLHttpRequest的浏览器，但也是最后一个包含了主要Javascript更新的Explorer版本。</p><br><p>Safari于2003年发布，它使用KHTML代码引擎，它是Macintosh平台的默认浏览器。</p><br><p>Opera是一个独立的浏览器，在浏览器大战期间，它没有实现DHTML，现在看来，这是一个相当英明的决定。</p><br><p>&nbsp;</p><br><p>4种兼容性问题</p><br><p>不支持：这些出现问题的功能不是&ldquo;不可或缺&rdquo;的基础功能，都能够通过对象检测判断，而且浏览器也在努力消除这些问题，如document.sytleSheets来读写整个样式表，目前Safari和Opera也增加了对其的支持。</p><br><p>合理的不同看法：如defer属性对加载脚本的要求，Exploer有独特的理解，幸好这种问题是最少有的。</p><br><p>有意为之的兼容性问题：通常是浏览器大战的遗留问题，也可以通过对象检测来判断，一旦微软着手实现W3C事件标准，最后一批被故意造成的兼容性问题也将得到解决。</p><br><p>浏览器bug：这是由于编程的缺陷造成的不可预见的错误，它是无法解决也是无法衡量的。如Exploer6会被normalize()方法导致崩溃。</p><br><p>&nbsp;</p><br><p>浏览器兼容性问题是单纯的生活的事实，它不会轻易消失，应该尽快地习惯它，至少听任它。</p><br><p>在任何情况下都不要先为某一个浏览器写脚本，然后增加其他浏览器的支持。在项目支出就应该解决这些兼容性问题，而不是放在最后。</p><br><p>&nbsp;</p><br><p>对象检测</p><br><p>对象检测是避免兼容性问题的最佳助手。它的一般方法是检查想使用的对象，看它们是否存在，如果不存在，就结束函数。（if(!对象)），从技术上说，对象检测是把一个对象转换成一个布尔值。</p><br><p>检查W3C DOM：</p><br><p>var W3CDOM = document.createElement &amp;&amp; document.getElementsByTagName;</p><br><p>&nbsp;</p><br><p>对W3C DOM的检测使我们可以总是假设浏览器也支持相关的功能，如appendChild，而省去对它的检查。</p><br><p>事件处理测试：</p><br><div class="cnblogs_code" onclick="cnblogs_code_show('13c752f0-7b5f-46a5-92ca-295d763ab6e2')"><img id="code_img_closed_13c752f0-7b5f-46a5-92ca-295d763ab6e2" class="code_img_closed" style="display: none;" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><br></div><br><div class="cnblogs_code" onclick="cnblogs_code_show('13c752f0-7b5f-46a5-92ca-295d763ab6e2')"><pre name="code" class="brush:java;" cols="50" rows="15">function<br> addEventSimple(obj, evt, fn) {<br>    if (obj.addEventListener) // W3C<br>        obj.addEventListener(evt, fn, false);<br>    else if<br>         (obj.attachEvent) // 微软<br>      obj.attachEvent(‘on’ + evt, fn);<br>}</pre><br> <br><br></div><br><p>我们期望未来的版本使用标准，所以对标准的支持应该最先检查，事实上先检查attachEvent，Fx等浏览器会报错。</p><br><p>&nbsp;</p><br><p>浏览器检测</p><br><p>为什么浏览器检测行不通？浏览器兼容性模式是不断变化的，今天不支持的属性，明天可能会支持；而且浏览器常常会伪装自己的身份，以便通过浏览器检测。</p><br><p>浏览器检测的军备竞赛</p><br><p>navigator.userAgent中保存了每一个浏览器的识别字符串。1995年前后的Mosaic和Netscape年代中，由于<br>Netscape的cookie和&lt;center&gt;标签等的支持，服务器端的程序员决定使用浏览器检测来区分两种浏览器，他们检测识别字符串<br>是否从Mozilla/开始，这给javascript世界带来了不必要的磨难。浏览器厂商被迫将自己的识别字符串变成从Mozilla/开始，即便是<br>Explorer最初进入市场时也将自己伪装成了Netscape。浏览器大战开始后，Web开发者们做出反应，他们创建了更多的浏览器程序来区分<br>Netscape和Exploer，而当战争结束时，已经有数不清的网站设置了检测脚本只允许Explorer访问，历史重演了，一些浏览器如<br>Opera，又不得不修改自己的识别字符串来匹配Explorer，甚至将识别字符串的设置开放给用户。</p><br><p>拆解浏览器字符串</p><br><div class="cnblogs_code" onclick="cnblogs_code_show('eac7dece-c744-4dca-946a-68c2fe33ec17')"><img id="code_img_closed_eac7dece-c744-4dca-946a-68c2fe33ec17" class="code_img_closed" style="display: none;" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><br><img id="code_img_opened_eac7dece-c744-4dca-946a-68c2fe33ec17" class="code_img_opened" onclick="cnblogs_code_hide('eac7dece-c744-4dca-946a-68c2fe33ec17',event)" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt=""><br><div id="cnblogs_code_open_eac7dece-c744-4dca-946a-68c2fe33ec17"><br><pre><div><!--   <br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.12) Gecko/20050915<br><br>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)<br><br>Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/312.8 (KHTML, like Gecko) Safari/312.6<br><br>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2)</span><br></div><br></pre><br></div><br></div><br><p>第一个是Mozilla1.7.12，第二个是NT5.1(即XP)的Explorer6.0，第三个是Safari1.3.2，第四个是伪装后的Safari1.3.2。</p><br><p>userAgent：使用navigator.userAgent，而不是navigator.appName和navigator.appVersion。前者尚有一些遵循，后者都是谎言；</p><br><p>Mozilla/：只能证明浏览器是1994年后发布的；</p><br><p>/[version number]：没有意义，每一个现代浏览器都生命是第4版或第5版的Mozilla；</p><br><p>不规则字符串：通常被圆括号包围，包含这非常复杂的缩写；</p><br><p>Opera：唯一支持window.opera属性，可以检测这个对象来判断；</p><br><p>Safari, iCab和Konqueror：不像Opera那样勇于承担风险，它们可以完全地伪装自己；</p><br><p>Gecko：Mozilla识别串通常都会包含Gecko，但不幸Safari等也包含；</p><br><p>MSIE：没有意义，绝大多数的浏览器都包含MSIE；</p><br><p>版本号：Exploer和Opera允许在名字后面找到自己的版本号，而其他浏览器都无效，比如Mozilla的隐藏版本；</p><br><p>操作系统：Windows操作系统都以Win开始，当然这不适用于伪装的串。</p><br><p>(<a href="http://www.quirksmode.org/js/detect.html" target="_blank" rel="noopener">http://www.quirksmode.org/js/detect.html</a><br>)</p><br><p>浏览器检测的正确使用</p><br><p>当你需要知道访问者的浏览器，如站点统计时，这些检测不会影响脚本逻辑。</p><br><p>当我们用对象检测时需要排除浏览器bug等时，可以将对象检测和浏览器检测一起使用。</p><br><p>&nbsp;</p><br><p>调试</p><br><p>Mozilla有最好的错误信息，因此多在Mozilla中调试；</p><br><p>使用return，alert，confirm是不错的方法，复杂的调试可以自己创建一个错误控制台；</p><br><p>将bug报告给浏览器厂商。</p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko5du01394urqa8etxpvu/" rel="next" title="各浏览器的默认CSS">
+                <i class="fa fa-chevron-left"></i> 各浏览器的默认CSS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4vr00ak4urqycbop3fk/" rel="prev" title="HTML 5 各浏览器支持情况">
+                HTML 5 各浏览器支持情况 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

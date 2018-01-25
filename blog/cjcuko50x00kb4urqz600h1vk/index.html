@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NetBeans," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2010-07-21Oracle TechCast 视频：NetBeans IDE 6.9&amp;mdash;&amp;mdash;JavaFX Composer 与 OSGi   NetBeans 工程经理 John Jullion-Ceccarelli 和 Martin  Ryzl 提供了 NetBeans IDE 6.9 中新功能的导览，包括一个新的 JavaFX Composer 的实例。Edit201">
+<meta name="keywords" content="NetBeans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NetBeans Weekly News - Issue # 446 - Jul 20, 2010">
+<meta property="og:url" content="https://vanessa.js.org/blog/cjcuko50x00kb4urqz600h1vk/index.html">
+<meta property="og:site_name" content="Vanessa">
+<meta property="og:description" content="2010-07-21Oracle TechCast 视频：NetBeans IDE 6.9&amp;mdash;&amp;mdash;JavaFX Composer 与 OSGi   NetBeans 工程经理 John Jullion-Ceccarelli 和 Martin  Ryzl 提供了 NetBeans IDE 6.9 中新功能的导览，包括一个新的 JavaFX Composer 的实例。Edit201">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.netbeans.info/appl2/show_image.php?id=4541&column=image&table=story&type=image/png&db=xnetbeans&db_type=pear&id_col=story_id">
+<meta property="og:image" content="http://www.netbeans.info/appl2/show_image.php?id=4545&column=image&table=story&type=image/jpeg&db=xnetbeans&db_type=pear&id_col=story_id">
+<meta property="og:updated_time" content="2018-01-23T01:50:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NetBeans Weekly News - Issue # 446 - Jul 20, 2010">
+<meta name="twitter:description" content="2010-07-21Oracle TechCast 视频：NetBeans IDE 6.9&amp;mdash;&amp;mdash;JavaFX Composer 与 OSGi   NetBeans 工程经理 John Jullion-Ceccarelli 和 Martin  Ryzl 提供了 NetBeans IDE 6.9 中新功能的导览，包括一个新的 JavaFX Composer 的实例。Edit201">
+<meta name="twitter:image" content="http://www.netbeans.info/appl2/show_image.php?id=4541&column=image&table=story&type=image/png&db=xnetbeans&db_type=pear&id_col=story_id">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://vanessa.js.org/blog/cjcuko50x00kb4urqz600h1vk/"/>
+
+
+
+
+
+  <title>NetBeans Weekly News - Issue # 446 - Jul 20, 2010 | Vanessa</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vanessa</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vanessa.js.org/blog/blog/cjcuko50x00kb4urqz600h1vk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vanessa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanessa">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NetBeans Weekly News - Issue # 446 - Jul 20, 2010</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-07-22T13:30:00+08:00">
+                2010-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table class="colapse" border="0"><br><tbody><br><tr><br><td class="valign-top">2010-07-21</td><br><td><strong>Oracle TechCast 视频：NetBeans IDE 6.9&mdash;&mdash;JavaFX Composer 与 OSGi</strong> <br> <img style="float: left; margin: 0px 5px 5px 0px;" src="http://www.netbeans.info/appl2/show_image.php?id=4541&amp;column=image&amp;table=story&amp;type=image/png&amp;db=xnetbeans&amp;db_type=pear&amp;id_col=story_id" alt="show_image.php.png" width="110" height="32"> NetBeans 工程经理 John Jullion-Ceccarelli 和 Martin  Ryzl 提供了 NetBeans IDE 6.9 中新功能的导览，包括一个新的 JavaFX Composer 的实例。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4541',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-07-21</td><br><td><strong>Oracle 对 NetBeans 的支持服务现已可用</strong> <br> 当面对一个复杂，时间敏感或昂贵的技术问题时，为什么换 个方式，找专家来获取解决方案呢？ NetBeans 软件的技术支持现在已经作为 Oracle 开发工具支持服务的一部分。其优点为：24/7  的服务援助，不受限制的时间支撑等等。<br> 获取有关如何利用 Oracle 的开发工具支持全部功能的<a href="http://www.oracle.com/us/support/development-tools-080025.html" target="_blank" rel="noopener">更多 细节</a> 。了解对 NetBeans 社区所有可用的<a href="http://netbeans.org/kb/support.html" target="_blank" rel="noopener">支 持资源</a> 。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4542',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-07-21</td><br><td><strong>NetBeans 6.9 插件&mdash;&mdash;Scala 2.8.0</strong> <br> Scala 开发团队和 NetBeans  梦之队成员 Caoyuan Deng 提供的 NetBeans 6.9 Scala 插件现已可用。继续阅读下载详情和安装向导。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4543',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-07-21</td><br><td><strong>新的屏幕录像：NetBeans IDE 6.9 中的 Java EE 6和 GlassFish 3</strong> <br> GlassFish  的福音传道者 Arun Gupta 的5部分截屏显示了NetBeans IDE 6.9如何为 Java EE 6和 GlassFish  3提供了全面的工具。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4544',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-07-21</td><br><td><strong>JavaFX Composer Twitter 教程</strong> <br> <img style="float: left; margin: 0px 5px 5px 0px;" src="http://www.netbeans.info/appl2/show_image.php?id=4545&amp;column=image&amp;table=story&amp;type=image/jpeg&amp;db=xnetbeans&amp;db_type=pear&amp;id_col=story_id" alt="show_image.php.jpg" width="110" height="51"> JavaFX 应用程序可以获取和展现一些来自 RESTful Web  服务或其他远程数据源的数据。本教程使用 JavaFX Composer 数据源支持创建了一个简单的 Twitter 应用程序。您将学习到如何使用  GET 和 POST 数据来/到 一个HTTP服务。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4545',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-07-21</td><br><td><strong>OSGi 声明式服务使用NetBeans IDE 中的Maven</strong> <br> 了解如何在 NetBeans IDE  6.9中集成支持 OSGi 框架来简化了你项目中创建和使用 OSGi bundles 的过程。在本教程中，您将创建一个来自 Maven OSGI  bundle 原型的简单的 OSGi bundle，然后把 bundle 部署到 Felix OSGi 包含 IDE 的容器中。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4546',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-07-21</td><br><td><strong>NetBeans 平台 EMF 集成教程</strong> <br> 本教程介绍了用户如何合并一个 EMF 模块到 NetBeans  平台应用程序中。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4547',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr style="background-color: #eeeeee;"><br><td class="valign-top">2010-07-21</td><br><td><strong>NetBeans 平台中 MVC 模式的优点</strong> <br> 此博客概述了如何关联一些 NetBeans  平台的关键术语，概念和模型视图控制器（MVC）模式的 APIs。</td><br><td><a onclick="return  !newWindow('/appl/index.php?mod=newsletter_admin&amp;sec=story_edit&amp;type=owner&amp;sId=4548',  'Edit story', '600' , '600');" href="http://services.netbeans.org/appl/index.php?mod=newsletter_admin&amp;sec=story_list" target="_blank" rel="noopener">Edit</a></td><br></tr><br><tr><br><td class="valign-top">2010-07-21</td><br><td><strong>在 Windows 上安装 Java Card</strong> <br> 本文来自开发者 Lavamunky，介绍了有关在  Windows 环境中下载 JavaCard 进行工作的步骤。</td><br></tr><br></tbody><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/NetBeans/" rel="tag"># NetBeans</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/cjcuko58e00vq4urq6i226h3u/" rel="next" title="meta标签说明">
+                <i class="fa fa-chevron-left"></i> meta标签说明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/cjcuko4tz006i4urq1vc3h9um/" rel="prev" title="CSS3 （Smashing Magazine） 设计比赛 获奖作品">
+                CSS3 （Smashing Magazine） 设计比赛 获奖作品 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Vanessa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">874</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">224</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanessa</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
