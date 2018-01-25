@@ -11,7 +11,11 @@ a{color:#4285f4;}
 }
 .clear{background-color:transparent;border:0px;clear:both;display:block;font-size:0px;height:0px;line-height:0px;overflow:hidden;}
 .none{display:none;}
-h1{color:#EBEBEB;font-size:60px;line-height:60px;text-align:center;text-shadow:0 0 30px #d23f31;font-weight: 400;}
+h1{font-size:60px;line-height:60px;text-align:center;text-shadow:0 0 30px #d23f31;font-weight: 400;}
+h1 a {color:#EBEBEB;text-decoration: none}
+h1 a:hover {
+    color: #d23f31;
+}
 #wrap{border-radius:100px 15px 100px 15px;box-shadow:0 0 15px #d23f31;height:265px;margin:20px auto;overflow:hidden;padding:15px;width:924px;}
 ul{clear:both;}
 li{background-image:url("../images/about/bg-transparent.png");border:1px solid #999999;border-radius:5px 5px 5px 5px;float:left;height:120px;list-style:none outside none;margin:5px;overflow:hidden;position:relative;width:120px;}
@@ -22,7 +26,7 @@ li.center:hover,ul.current>li.center{background-color:#d23f31;color:#E8E8E8;text
 @media (max-width: 924px) {
     .body {
         position: inherit;
-        margin: 50px 20px;
+        margin: 50px 0;
     }
 
     #wrap {
